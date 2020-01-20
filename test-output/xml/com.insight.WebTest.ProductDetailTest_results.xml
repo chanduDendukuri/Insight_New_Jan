@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="WebApplication"
+           tests="1"
+           failures="1"
+           errors="0"
+           skipped="0"
+           time="180.021">
+  <properties />
+            <testcase name="PID02_Warranties" time="180.021" classname="com.insight.WebTest.ProductDetailTest">
+                <failure type="org.openqa.selenium.WebDriverException"
+                  message="element click intercepted: Element &lt;span class=&quot;c-header-main-nav__text  u-truncate&quot; style=&quot;border: 4px solid yellow;&quot;&gt;...&lt;/span&gt; is not clickable at point (884, 57). Other element would receive the click: &lt;div id=&quot;cookieModal&quot; class=&quot;reveal-modal medium&quot; aria-labelledby=&quot;modalTitle&quot; data-reveal=&quot;&quot; role=&quot;dialog&quot; style=&quot;display: block; opacity: 0.412; visibility: visible; top: -161.092px;&quot;&gt;...&lt;/div&gt;
+  (Session info: chrome=77.0.3865.120)
+  (Driver info: chromedriver=77.0.3865.40 (f484704e052e0b556f8030b65b953dce96503217-refs/branch-heads/3865@{#442}),platform=Windows NT 10.0.18362 x86_64) (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 46 milliseconds
+Build info: version: &apos;2.53.1&apos;, revision: &apos;a36b8b1cd5757287168e54b817830adce9b0158d&apos;, time: &apos;2016-06-30 19:26:09&apos;
+System info: host: &apos;CTLINLP-0891&apos;, ip: &apos;172.21.68.56&apos;, os.name: &apos;Windows 10&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;1.8.0_211&apos;
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities [{mobileEmulationEnabled=false, timeouts={implicit=0, pageLoad=300000, script=30000}, hasTouchScreen=false, platform=XP, acceptSslCerts=false, goog:chromeOptions={debuggerAddress=localhost:61054}, acceptInsecureCerts=false, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, setWindowRect=true, unexpectedAlertBehaviour=ignore, applicationCacheEnabled=false, rotatable=false, networkConnectionEnabled=false, chrome={chromedriverVersion=77.0.3865.40 (f484704e052e0b556f8030b65b953dce96503217-refs/branch-heads/3865@{#442}), userDataDir=C:\Users\e002106\AppData\Local\Temp\scoped_dir14484_830427059}, takesHeapSnapshot=true, pageLoadStrategy=normal, strictFileInteractability=false, databaseEnabled=false, handlesAlerts=true, version=77.0.3865.120, browserConnectionEnabled=false, proxy={}, nativeEvents=true, locationContextEnabled=true, cssSelectorsEnabled=true}]
+Session ID: d2e6ce431a261bba3c0d1f146b0d6fba"
+              >
+<![CDATA[org.openqa.selenium.WebDriverException: element click intercepted: Element <span class="c-header-main-nav__text  u-truncate" style="border: 4px solid yellow;">...</span> is not clickable at point (884, 57). Other element would receive the click: <div id="cookieModal" class="reveal-modal medium" aria-labelledby="modalTitle" data-reveal="" role="dialog" style="display: block; opacity: 0.412; visibility: visible; top: -161.092px;">...</div>
+  (Session info: chrome=77.0.3865.120)
+  (Driver info: chromedriver=77.0.3865.40 (f484704e052e0b556f8030b65b953dce96503217-refs/branch-heads/3865@{#442}),platform=Windows NT 10.0.18362 x86_64) (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 46 milliseconds
+Build info: version: '2.53.1', revision: 'a36b8b1cd5757287168e54b817830adce9b0158d', time: '2016-06-30 19:26:09'
+System info: host: 'CTLINLP-0891', ip: '172.21.68.56', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '1.8.0_211'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities [{mobileEmulationEnabled=false, timeouts={implicit=0, pageLoad=300000, script=30000}, hasTouchScreen=false, platform=XP, acceptSslCerts=false, goog:chromeOptions={debuggerAddress=localhost:61054}, acceptInsecureCerts=false, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, setWindowRect=true, unexpectedAlertBehaviour=ignore, applicationCacheEnabled=false, rotatable=false, networkConnectionEnabled=false, chrome={chromedriverVersion=77.0.3865.40 (f484704e052e0b556f8030b65b953dce96503217-refs/branch-heads/3865@{#442}), userDataDir=C:\Users\e002106\AppData\Local\Temp\scoped_dir14484_830427059}, takesHeapSnapshot=true, pageLoadStrategy=normal, strictFileInteractability=false, databaseEnabled=false, handlesAlerts=true, version=77.0.3865.120, browserConnectionEnabled=false, proxy={}, nativeEvents=true, locationContextEnabled=true, cssSelectorsEnabled=true}]
+Session ID: d2e6ce431a261bba3c0d1f146b0d6fba
+  sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+  sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+  sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+  java.lang.reflect.Constructor.newInstance(Constructor.java:423)
+  org.openqa.selenium.remote.ErrorHandler.createThrowable(ErrorHandler.java:206)
+  org.openqa.selenium.remote.ErrorHandler.throwIfResponseFailed(ErrorHandler.java:158)
+  org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:678)
+  org.openqa.selenium.remote.RemoteWebElement.execute(RemoteWebElement.java:327)
+  org.openqa.selenium.remote.RemoteWebElement.click(RemoteWebElement.java:85)
+  sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+  sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+  sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+  java.lang.reflect.Method.invoke(Method.java:498)
+  org.openqa.selenium.support.events.EventFiringWebDriver$EventFiringWebElement$1.invoke(EventFiringWebDriver.java:335)
+  com.sun.proxy.$Proxy18.click(Unknown Source)
+  org.openqa.selenium.support.events.EventFiringWebDriver$EventFiringWebElement.click(EventFiringWebDriver.java:348)
+  com.insight.accelerators.ActionEngine.click(ActionEngine.java:642)
+  com.insight.Lib.SearchLib.clickOnSecondaryHeaderAndNavigate(SearchLib.java:28)
+  com.insight.Lib.SearchLib.navigateToProductSearchResultsAndSearchProduct(SearchLib.java:77)
+  com.insight.WebTest.ProductDetailTest.PID02_Warranties(ProductDetailTest.java:551)
+  sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+  sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+  sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+  java.lang.reflect.Method.invoke(Method.java:498)
+  org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:85)
+  org.testng.internal.Invoker.invokeMethod(Invoker.java:639)
+  org.testng.internal.Invoker.invokeTestMethod(Invoker.java:821)
+  org.testng.internal.Invoker.invokeTestMethods(Invoker.java:1131)
+  org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:124)
+  org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:108)
+  org.testng.TestRunner.privateRun(TestRunner.java:773)
+  org.testng.TestRunner.run(TestRunner.java:623)
+  org.testng.SuiteRunner.runTest(SuiteRunner.java:357)
+  org.testng.SuiteRunner.runSequentially(SuiteRunner.java:352)
+  org.testng.SuiteRunner.privateRun(SuiteRunner.java:310)
+  org.testng.SuiteRunner.run(SuiteRunner.java:259)
+  org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+  org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:86)
+  org.testng.TestNG.runSuitesSequentially(TestNG.java:1185)
+  org.testng.TestNG.runSuitesLocally(TestNG.java:1110)
+  org.testng.TestNG.run(TestNG.java:1018)
+  org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:132)
+  org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:236)
+  org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:81)
+]]>
+      </failure>
+
+          </testcase>
+  
+  
+  
+</testsuite>

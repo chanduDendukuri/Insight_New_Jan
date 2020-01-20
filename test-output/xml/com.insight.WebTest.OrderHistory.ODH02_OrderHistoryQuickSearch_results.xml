@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="ODH02"
+           tests="1"
+           failures="0"
+           errors="0"
+           skipped="0"
+           time="507.045">
+  <properties />
+  
+  
+            <testcase name="ODH02" time="507.045" classname="com.insight.WebTest.OrderHistory.ODH02_OrderHistoryQuickSearch" />
+      
+</testsuite>

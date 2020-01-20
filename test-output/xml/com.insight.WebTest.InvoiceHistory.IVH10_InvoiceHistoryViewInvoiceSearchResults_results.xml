@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="WebApplication"
+           tests="1"
+           failures="0"
+           errors="0"
+           skipped="0"
+           time="219.131">
+  <properties />
+  
+  
+            <testcase name="IVH10" time="219.131" classname="com.insight.WebTest.InvoiceHistory.IVH10_InvoiceHistoryViewInvoiceSearchResults" />
+      
+</testsuite>

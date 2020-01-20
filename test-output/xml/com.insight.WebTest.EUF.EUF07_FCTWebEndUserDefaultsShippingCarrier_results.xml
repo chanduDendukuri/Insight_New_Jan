@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="WebApplication"
+           tests="1"
+           failures="0"
+           errors="0"
+           skipped="0"
+           time="247.303">
+  <properties />
+  
+  
+            <testcase name="TC_EUF07" time="247.303" classname="com.insight.WebTest.EUF.EUF07_FCTWebEndUserDefaultsShippingCarrier" />
+      
+</testsuite>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="WebApplication"
+           tests="1"
+           failures="0"
+           errors="0"
+           skipped="0"
+           time="391.531">
+  <properties />
+  
+  
+            <testcase name="Tc_CRT07" time="391.531" classname="com.insight.WebTest.Cart.CRT07_SaveCartTest" />
+      
+</testsuite>

@@ -1,0 +1,1334 @@
+2020-01-20 08:03:52,837  INFO (main:com.insight.accelerators.TestEngineWeb:beforeSuite:161) - Suite time ==============>20_Jan_2020_08_03_52_447
+2020-01-20 08:03:52,852  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:03:52,853  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = insightWebURL
+2020-01-20 08:03:52,853  INFO (main:com.insight.accelerators.TestEngineWeb:beforeClass:177) - ---------------------
+2020-01-20 08:03:52,854  INFO (main:com.insight.accelerators.TestEngineWeb:beforeClass:178) - -----Before Class----
+2020-01-20 08:03:52,854  INFO (main:com.insight.accelerators.TestEngineWeb:beforeClass:179) - ---------------------
+2020-01-20 08:03:52,854  INFO (main:com.insight.accelerators.TestEngineWeb:beforeClass:180) - Execution Start Time :: 1579525432391
+2020-01-20 08:03:52,854  INFO (main:com.insight.accelerators.TestEngineWeb:beforeClass:181) - browser name :: chrome Browser version :: 76.0 platform ::windows 10
+2020-01-20 08:03:52,866  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:03:52,867  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = clientName
+2020-01-20 08:03:52,867  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:03:52,868  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = deviceName
+2020-01-20 08:03:52,869  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:03:52,869  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = iterationMode
+2020-01-20 08:03:52,869  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:03:52,870  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = suiteName
+2020-01-20 08:03:52,871  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:03:52,871  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = onErrorAction
+2020-01-20 08:03:52,872  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:03:52,873  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = singleThreadExecution
+2020-01-20 08:03:52,874  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:03:52,874  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = AUT
+2020-01-20 08:03:52,874  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:03:52,874  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = baseUrl
+2020-01-20 08:03:52,875  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:03:52,875  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = showroomUrl
+2020-01-20 08:03:52,876  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:03:52,876  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = Waittime
+2020-01-20 08:03:52,877  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:03:52,877  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = DynamicWait
+2020-01-20 08:03:52,878  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:03:52,878  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = MinWait
+2020-01-20 08:03:52,880  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:03:52,880  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = insightWebUrl
+2020-01-20 08:03:52,881  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:03:52,881  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = cmtUserName
+2020-01-20 08:03:52,881  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:03:52,882  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = cmtPassWord
+2020-01-20 08:03:52,882  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:03:52,884  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = emailID
+2020-01-20 08:03:52,884  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:03:52,885  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = browserName
+2020-01-20 08:03:52,885  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:03:52,885  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = version
+2020-01-20 08:03:52,886  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:03:52,886  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = platform
+2020-01-20 08:03:52,886  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:03:52,887  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = reportFormat
+2020-01-20 08:03:52,887  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:03:52,887  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = locationResult
+2020-01-20 08:03:52,887  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:03:52,888  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = folderScreenShot
+2020-01-20 08:03:52,888  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:03:52,888  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = locationClientLogo
+2020-01-20 08:03:52,888  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:03:52,889  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = locationMobileLogo
+2020-01-20 08:03:52,889  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:03:52,889  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = showroomClientLogo
+2020-01-20 08:03:52,890  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:03:52,890  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = locationCompanyLogo
+2020-01-20 08:03:52,890  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:03:52,890  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = locationFailedLogo
+2020-01-20 08:03:52,890  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:03:52,891  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = locationMinusLogo
+2020-01-20 08:03:52,960  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:03:52,961  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = locationPassedLogo
+2020-01-20 08:03:52,962  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:03:52,962  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = locationPlusLogo
+2020-01-20 08:03:52,963  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:03:52,963  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = locationWarningLogo
+2020-01-20 08:03:52,963  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:03:52,963  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = onSuccessScreenshot
+2020-01-20 08:03:52,964  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:03:52,964  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = userName
+2020-01-20 08:03:52,965  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:03:52,966  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = accessKey
+2020-01-20 08:03:52,966  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:03:52,967  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = cloudImplicitWait
+2020-01-20 08:03:52,967  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:03:52,967  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = cloudPageLoadTimeOut
+2020-01-20 08:03:52,970  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:03:52,970  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = locationCssFolder
+2020-01-20 08:03:52,970  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:03:52,970  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = locationJsFolder
+2020-01-20 08:03:52,971  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:03:52,971  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = locationImagesFolder
+2020-01-20 08:03:52,971  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:03:52,971  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = callReceivingURL
+2020-01-20 08:03:52,972  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:03:52,972  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = dispatchURL
+2020-01-20 08:03:52,972  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:03:52,973  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = RSOWebURL
+2020-01-20 08:03:52,973  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:03:52,973  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = RSOWebURLMestag
+2020-01-20 08:03:52,974  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:03:52,974  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = Carving
+2020-01-20 08:03:52,974  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:03:52,974  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = ServiceTracker
+2020-01-20 08:03:52,975  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:03:52,975  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = ServiceTrackerQuickLaunch
+2020-01-20 08:03:52,975  INFO (main:com.insight.accelerators.TestEngineWeb:beforeClass:202) - local
+2020-01-20 08:03:53,049  INFO (main:com.insight.report.BrowserContext:getBrowserContext:153) - New BrowserContext Instance Was Created And Placed In Map : BrowserContext.mapBrowserContext
+2020-01-20 08:03:53,052  INFO (main:com.insight.report.BrowserContext:toString:141) - <BrowserContext><Name> chrome</Name><Version> windows 10</Version><Platform>local</Platform></BrowserContext>
+2020-01-20 08:03:53,052  INFO (main:com.insight.report.BrowserContext:getBrowserContext:159) - BrowserContext Info Being returned: <BrowserContext><Name> chrome</Name><Version> windows 10</Version><Platform>local</Platform></BrowserContext>
+2020-01-20 08:03:53,053  INFO (main:com.insight.report.BrowserContext:toString:141) - <BrowserContext><Name> chrome</Name><Version> windows 10</Version><Platform>local</Platform></BrowserContext>
+2020-01-20 08:03:53,053  INFO (main:com.insight.report.BrowserContext:getBrowserContext:159) - BrowserContext Info Being returned: <BrowserContext><Name> chrome</Name><Version> windows 10</Version><Platform>local</Platform></BrowserContext>
+2020-01-20 08:03:53,253  INFO (main:com.insight.report.CReporterWeb:filePath:158) - resultDir = results\CHROME-windows 10-local_2020-01-20_08_03_53_253
+2020-01-20 08:03:53,254  INFO (main:com.insight.report.CReporterWeb:copyLogos:212) - Current Logo Name : logos/insight.JPG
+2020-01-20 08:03:53,284  INFO (main:com.insight.report.CReporterWeb:copyLogos:231) - logos\insight.JPGcopied to results\CHROME-windows 10-local_2020-01-20_08_03_53_253\screenshots
+2020-01-20 08:03:53,284  INFO (main:com.insight.report.CReporterWeb:copyLogos:212) - Current Logo Name : logos/cigniti_logo.png
+2020-01-20 08:03:53,291  INFO (main:com.insight.report.CReporterWeb:copyLogos:231) - logos\cigniti_logo.pngcopied to results\CHROME-windows 10-local_2020-01-20_08_03_53_253\screenshots
+2020-01-20 08:03:53,291  INFO (main:com.insight.report.CReporterWeb:copyLogos:212) - Current Logo Name : logos/failed.ico
+2020-01-20 08:03:53,303  INFO (main:com.insight.report.CReporterWeb:copyLogos:231) - logos\failed.icocopied to results\CHROME-windows 10-local_2020-01-20_08_03_53_253\screenshots
+2020-01-20 08:03:53,303  INFO (main:com.insight.report.CReporterWeb:copyLogos:212) - Current Logo Name : logos/Minus.ico
+2020-01-20 08:03:53,318  INFO (main:com.insight.report.CReporterWeb:copyLogos:231) - logos\Minus.icocopied to results\CHROME-windows 10-local_2020-01-20_08_03_53_253\screenshots
+2020-01-20 08:03:53,319  INFO (main:com.insight.report.CReporterWeb:copyLogos:212) - Current Logo Name : logos/passed.ico
+2020-01-20 08:03:53,330  INFO (main:com.insight.report.CReporterWeb:copyLogos:231) - logos\passed.icocopied to results\CHROME-windows 10-local_2020-01-20_08_03_53_253\screenshots
+2020-01-20 08:03:53,330  INFO (main:com.insight.report.CReporterWeb:copyLogos:212) - Current Logo Name : logos/Plus.ico
+2020-01-20 08:03:53,345  INFO (main:com.insight.report.CReporterWeb:copyLogos:231) - logos\Plus.icocopied to results\CHROME-windows 10-local_2020-01-20_08_03_53_253\screenshots
+2020-01-20 08:03:53,346  INFO (main:com.insight.report.CReporterWeb:copyLogos:212) - Current Logo Name : logos/warning.ico
+2020-01-20 08:03:53,360  INFO (main:com.insight.report.CReporterWeb:copyLogos:231) - logos\warning.icocopied to results\CHROME-windows 10-local_2020-01-20_08_03_53_253\screenshots
+2020-01-20 08:03:53,360  INFO (main:com.insight.report.CReporterWeb:copyLogos:212) - Current Logo Name : logos/css
+2020-01-20 08:03:53,415  INFO (main:com.insight.report.CReporterWeb:copyLogos:212) - Current Logo Name : logos/images
+2020-01-20 08:03:53,450  INFO (main:com.insight.report.CReporterWeb:copyLogos:212) - Current Logo Name : logos/js
+2020-01-20 08:03:54,276  INFO (main:com.insight.report.CReporterWeb:<init>:65) - instance member browserContext was set to : 
+2020-01-20 08:03:54,277  INFO (main:com.insight.report.BrowserContext:<init>:66) - <BrowserContext><Name> chrome</Name><Version> windows 10</Version><Platform>local</Platform></BrowserContext>
+2020-01-20 08:03:54,277  INFO (main:com.insight.report.CReporterWeb:<init>:66) - <BrowserContext><Name> chrome</Name><Version> windows 10</Version><Platform>local</Platform></BrowserContext>
+2020-01-20 08:03:54,278  INFO (main:com.insight.report.CReporterWeb:getCReporter:89) - Instance Of CReporter Created
+2020-01-20 08:03:54,279  INFO (main:com.insight.report.CReporterWeb:getCReporter:91) - reporter was placed into CReporter.mapBrowserContextReporter
+2020-01-20 08:03:54,417  INFO (main:com.insight.report.BrowserContext:toString:141) - <BrowserContext><Name> chrome</Name><Version> windows 10</Version><Platform>local</Platform></BrowserContext>
+2020-01-20 08:03:54,417  INFO (main:com.insight.report.ReportXML:setBrowserContext:70) - browserContext set to : <BrowserContext><Name> chrome</Name><Version> windows 10</Version><Platform>local</Platform></BrowserContext>
+2020-01-20 08:03:54,418  INFO (main:com.insight.report.ReportXML:createDirectoryForReports:170) - resultDir = results\REPORT_XML_chrome-2020-01-20
+2020-01-20 08:03:54,418  INFO (main:com.insight.report.ReportXML:checkTestCaseXML:332) - tcName : Tc_SBP04
+2020-01-20 08:03:56,147  INFO (main:com.insight.accelerators.TestEngineWeb:getTotalRow:327) - ******getData*******: SBP04_AvilableShippingAddress
+2020-01-20 08:03:56,161  INFO (main:com.insight.accelerators.TestEngineWeb:getTotalRow:344) - Test Starts from row -> 25
+2020-01-20 08:03:56,162  INFO (main:com.insight.accelerators.TestEngineWeb:getTotalRow:353) - Total cols in test -> 39
+2020-01-20 08:03:56,162  INFO (main:com.insight.accelerators.TestEngineWeb:fnOpenTest:314) - Selenium  URLlocal
+2020-01-20 08:04:01,349  INFO (main:com.insight.accelerators.TestEngineWeb:setWebDriverForLocal:494) - Driver launch ::chrome
+2020-01-20 08:04:09,170  INFO (main:com.insight.accelerators.TestEngineWeb:getDataByRowNo:254) - ******getData*******: SBP04_AvilableShippingAddress
+2020-01-20 08:04:09,171  INFO (main:com.insight.accelerators.TestEngineWeb:getDataByRowNo:272) - Test Starts from row -> 25
+2020-01-20 08:04:09,171  INFO (main:com.insight.accelerators.TestEngineWeb:getDataByRowNo:281) - Total cols in test -> 39
+2020-01-20 08:04:09,173  INFO (main:com.insight.accelerators.TestEngineWeb:getDataByRowNo:292) - Total rows in test -> 1
+2020-01-20 08:04:09,200  INFO (main:com.insight.report.CReporterWeb:initTestCaseDescription:1856) - TC descr: AvilableShippingAddress
+2020-01-20 08:04:09,367  INFO (main:com.insight.report.ReportXML:captureTestStepDetails:493) - step description : **************Iteration Number::  1 For:: null ::and:: null To Validate::null  **************
+2020-01-20 08:04:09,391  INFO (main:com.insight.report.ReportXML:captureTestStepDetails:536) - Test method name : Tc_SBP04
+2020-01-20 08:04:09,707  INFO (main:com.insight.report.ReportXML:captureTestStepDetails:620) - File saved
+2020-01-20 08:04:09,745  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:09,745  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = smart
+2020-01-20 08:04:09,746  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:09,746  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = canada
+2020-01-20 08:04:09,747  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:09,747  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = emBaseUrl
+2020-01-20 08:04:09,747  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:09,748  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = ncBaseUrl
+2020-01-20 08:04:09,748  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:09,749  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = adminURL
+2020-01-20 08:04:09,750  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:09,750  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = callReceivingURL
+2020-01-20 08:04:09,750  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:09,750  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = dispatchURL
+2020-01-20 08:04:09,750  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:09,750  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = RSOWebURL
+2020-01-20 08:04:09,751  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:09,751  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = RSOWebURLMestag
+2020-01-20 08:04:09,751  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:09,751  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = RSP
+2020-01-20 08:04:09,751  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:09,752  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = Carving
+2020-01-20 08:04:09,752  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:09,752  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = ServiceTracker
+2020-01-20 08:04:09,753  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:09,753  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = ServiceTrackerQuickLaunch
+2020-01-20 08:04:09,753  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:09,753  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = cmtUserName
+2020-01-20 08:04:09,753  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:09,753  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = cmtPassWord
+2020-01-20 08:04:09,754  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:09,754  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = emailID
+2020-01-20 08:04:09,845  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:09,846  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = smart
+2020-01-20 08:04:09,846  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:09,846  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = canada
+2020-01-20 08:04:09,846  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:09,847  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = emBaseUrl
+2020-01-20 08:04:09,847  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:09,847  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = ncBaseUrl
+2020-01-20 08:04:09,847  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:09,847  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = adminURL
+2020-01-20 08:04:09,848  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:09,848  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = callReceivingURL
+2020-01-20 08:04:09,848  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:09,848  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = dispatchURL
+2020-01-20 08:04:09,848  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:09,848  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = RSOWebURL
+2020-01-20 08:04:09,849  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:09,849  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = RSOWebURLMestag
+2020-01-20 08:04:09,849  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:09,849  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = RSP
+2020-01-20 08:04:09,849  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:09,849  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = Carving
+2020-01-20 08:04:09,850  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:09,850  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = ServiceTracker
+2020-01-20 08:04:09,850  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:09,850  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = ServiceTrackerQuickLaunch
+2020-01-20 08:04:09,967  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:09,967  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = smart
+2020-01-20 08:04:09,967  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:09,967  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = canada
+2020-01-20 08:04:09,968  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:09,968  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = emBaseUrl
+2020-01-20 08:04:09,969  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:09,969  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = ncBaseUrl
+2020-01-20 08:04:09,969  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:09,969  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = adminURL
+2020-01-20 08:04:09,969  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:09,969  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = callReceivingURL
+2020-01-20 08:04:09,970  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:09,970  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = dispatchURL
+2020-01-20 08:04:09,970  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:09,970  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = RSOWebURL
+2020-01-20 08:04:09,970  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:09,970  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = RSOWebURLMestag
+2020-01-20 08:04:09,971  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:09,971  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = RSP
+2020-01-20 08:04:09,971  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:09,971  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = Carving
+2020-01-20 08:04:09,971  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:09,971  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = ServiceTracker
+2020-01-20 08:04:09,972  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:09,972  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = ServiceTrackerQuickLaunch
+2020-01-20 08:04:09,973  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:09,974  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = cmtUserName
+2020-01-20 08:04:09,974  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:09,974  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = cmtPassWord
+2020-01-20 08:04:09,975  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:09,976  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = emailID
+2020-01-20 08:04:10,055  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,056  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = smart
+2020-01-20 08:04:10,056  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,056  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = canada
+2020-01-20 08:04:10,056  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,057  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = emBaseUrl
+2020-01-20 08:04:10,057  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,057  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = ncBaseUrl
+2020-01-20 08:04:10,057  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,057  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = adminURL
+2020-01-20 08:04:10,057  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,058  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = callReceivingURL
+2020-01-20 08:04:10,058  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,058  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = dispatchURL
+2020-01-20 08:04:10,058  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,058  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = RSOWebURL
+2020-01-20 08:04:10,058  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,059  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = RSOWebURLMestag
+2020-01-20 08:04:10,059  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,059  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = RSP
+2020-01-20 08:04:10,067  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,067  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = Carving
+2020-01-20 08:04:10,067  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,068  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = ServiceTracker
+2020-01-20 08:04:10,068  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,068  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = ServiceTrackerQuickLaunch
+2020-01-20 08:04:10,069  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,069  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = smart
+2020-01-20 08:04:10,069  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,070  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = canada
+2020-01-20 08:04:10,070  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,070  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = emBaseUrl
+2020-01-20 08:04:10,072  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,072  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = ncBaseUrl
+2020-01-20 08:04:10,073  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,073  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = adminURL
+2020-01-20 08:04:10,075  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,075  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = callReceivingURL
+2020-01-20 08:04:10,076  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,076  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = dispatchURL
+2020-01-20 08:04:10,076  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,076  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = RSOWebURL
+2020-01-20 08:04:10,077  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,077  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = RSOWebURLMestag
+2020-01-20 08:04:10,077  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,077  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = RSP
+2020-01-20 08:04:10,077  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,077  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = Carving
+2020-01-20 08:04:10,078  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,078  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = ServiceTracker
+2020-01-20 08:04:10,078  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,078  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = ServiceTrackerQuickLaunch
+2020-01-20 08:04:10,079  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,079  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = cmtUserName
+2020-01-20 08:04:10,079  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,080  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = cmtPassWord
+2020-01-20 08:04:10,080  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,080  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = emailID
+2020-01-20 08:04:10,137  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,138  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = smart
+2020-01-20 08:04:10,138  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,138  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = canada
+2020-01-20 08:04:10,138  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,138  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = emBaseUrl
+2020-01-20 08:04:10,139  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,139  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = ncBaseUrl
+2020-01-20 08:04:10,139  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,139  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = adminURL
+2020-01-20 08:04:10,140  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,140  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = callReceivingURL
+2020-01-20 08:04:10,141  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,141  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = dispatchURL
+2020-01-20 08:04:10,141  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,141  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = RSOWebURL
+2020-01-20 08:04:10,141  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,141  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = RSOWebURLMestag
+2020-01-20 08:04:10,142  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,142  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = RSP
+2020-01-20 08:04:10,142  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,142  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = Carving
+2020-01-20 08:04:10,142  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,142  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = ServiceTracker
+2020-01-20 08:04:10,143  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,143  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = ServiceTrackerQuickLaunch
+2020-01-20 08:04:10,145  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,145  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = smart
+2020-01-20 08:04:10,145  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,145  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = canada
+2020-01-20 08:04:10,145  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,145  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = emBaseUrl
+2020-01-20 08:04:10,147  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,147  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = ncBaseUrl
+2020-01-20 08:04:10,147  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,147  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = adminURL
+2020-01-20 08:04:10,149  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,149  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = callReceivingURL
+2020-01-20 08:04:10,149  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,149  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = dispatchURL
+2020-01-20 08:04:10,149  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,149  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = RSOWebURL
+2020-01-20 08:04:10,150  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,150  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = RSOWebURLMestag
+2020-01-20 08:04:10,150  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,150  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = RSP
+2020-01-20 08:04:10,150  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,150  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = Carving
+2020-01-20 08:04:10,150  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,151  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = ServiceTracker
+2020-01-20 08:04:10,151  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,151  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = ServiceTrackerQuickLaunch
+2020-01-20 08:04:10,151  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,151  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = cmtUserName
+2020-01-20 08:04:10,151  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,151  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = cmtPassWord
+2020-01-20 08:04:10,152  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,152  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = emailID
+2020-01-20 08:04:10,152  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,152  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = smart
+2020-01-20 08:04:10,152  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,152  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = canada
+2020-01-20 08:04:10,153  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,153  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = emBaseUrl
+2020-01-20 08:04:10,153  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,153  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = ncBaseUrl
+2020-01-20 08:04:10,153  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,153  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = adminURL
+2020-01-20 08:04:10,153  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,154  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = callReceivingURL
+2020-01-20 08:04:10,154  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,154  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = dispatchURL
+2020-01-20 08:04:10,154  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,154  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = RSOWebURL
+2020-01-20 08:04:10,155  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,155  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = RSOWebURLMestag
+2020-01-20 08:04:10,155  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,155  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = RSP
+2020-01-20 08:04:10,155  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,155  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = Carving
+2020-01-20 08:04:10,156  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,156  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = ServiceTracker
+2020-01-20 08:04:10,156  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,156  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = ServiceTrackerQuickLaunch
+2020-01-20 08:04:10,157  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,157  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = smart
+2020-01-20 08:04:10,157  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,158  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = canada
+2020-01-20 08:04:10,158  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,158  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = emBaseUrl
+2020-01-20 08:04:10,159  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,159  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = ncBaseUrl
+2020-01-20 08:04:10,159  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,159  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = adminURL
+2020-01-20 08:04:10,159  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,160  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = callReceivingURL
+2020-01-20 08:04:10,160  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,160  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = dispatchURL
+2020-01-20 08:04:10,160  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,160  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = RSOWebURL
+2020-01-20 08:04:10,161  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,161  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = RSOWebURLMestag
+2020-01-20 08:04:10,162  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,162  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = RSP
+2020-01-20 08:04:10,162  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,162  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = Carving
+2020-01-20 08:04:10,163  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,163  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = ServiceTracker
+2020-01-20 08:04:10,163  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,163  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = ServiceTrackerQuickLaunch
+2020-01-20 08:04:10,163  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,163  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = cmtUserName
+2020-01-20 08:04:10,164  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,164  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = cmtPassWord
+2020-01-20 08:04:10,164  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,164  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = emailID
+2020-01-20 08:04:10,164  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,164  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = smart
+2020-01-20 08:04:10,165  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,165  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = canada
+2020-01-20 08:04:10,165  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,165  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = emBaseUrl
+2020-01-20 08:04:10,165  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,165  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = ncBaseUrl
+2020-01-20 08:04:10,166  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,166  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = adminURL
+2020-01-20 08:04:10,166  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,166  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = callReceivingURL
+2020-01-20 08:04:10,166  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,166  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = dispatchURL
+2020-01-20 08:04:10,166  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,167  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = RSOWebURL
+2020-01-20 08:04:10,167  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,167  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = RSOWebURLMestag
+2020-01-20 08:04:10,167  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,167  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = RSP
+2020-01-20 08:04:10,167  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,167  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = Carving
+2020-01-20 08:04:10,168  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,168  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = ServiceTracker
+2020-01-20 08:04:10,168  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,168  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = ServiceTrackerQuickLaunch
+2020-01-20 08:04:10,168  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,168  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = smart
+2020-01-20 08:04:10,169  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,169  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = canada
+2020-01-20 08:04:10,169  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,169  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = emBaseUrl
+2020-01-20 08:04:10,169  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,169  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = ncBaseUrl
+2020-01-20 08:04:10,169  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,169  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = adminURL
+2020-01-20 08:04:10,170  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,170  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = callReceivingURL
+2020-01-20 08:04:10,170  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,170  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = dispatchURL
+2020-01-20 08:04:10,170  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,170  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = RSOWebURL
+2020-01-20 08:04:10,171  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,171  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = RSOWebURLMestag
+2020-01-20 08:04:10,171  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,171  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = RSP
+2020-01-20 08:04:10,171  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,171  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = Carving
+2020-01-20 08:04:10,171  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,171  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = ServiceTracker
+2020-01-20 08:04:10,172  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,172  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = ServiceTrackerQuickLaunch
+2020-01-20 08:04:10,172  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,172  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = cmtUserName
+2020-01-20 08:04:10,173  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,173  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = cmtPassWord
+2020-01-20 08:04:10,173  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,173  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = emailID
+2020-01-20 08:04:10,208  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,208  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = smart
+2020-01-20 08:04:10,208  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,208  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = canada
+2020-01-20 08:04:10,209  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,209  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = emBaseUrl
+2020-01-20 08:04:10,209  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,209  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = ncBaseUrl
+2020-01-20 08:04:10,209  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,209  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = adminURL
+2020-01-20 08:04:10,209  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,210  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = callReceivingURL
+2020-01-20 08:04:10,210  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,210  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = dispatchURL
+2020-01-20 08:04:10,210  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,210  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = RSOWebURL
+2020-01-20 08:04:10,214  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,214  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = RSOWebURLMestag
+2020-01-20 08:04:10,215  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,215  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = RSP
+2020-01-20 08:04:10,216  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,216  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = Carving
+2020-01-20 08:04:10,216  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,216  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = ServiceTracker
+2020-01-20 08:04:10,216  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,216  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = ServiceTrackerQuickLaunch
+2020-01-20 08:04:10,217  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,217  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = smart
+2020-01-20 08:04:10,217  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,217  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = canada
+2020-01-20 08:04:10,217  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,217  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = emBaseUrl
+2020-01-20 08:04:10,217  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,218  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = ncBaseUrl
+2020-01-20 08:04:10,218  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,218  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = adminURL
+2020-01-20 08:04:10,218  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,218  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = callReceivingURL
+2020-01-20 08:04:10,219  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,219  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = dispatchURL
+2020-01-20 08:04:10,219  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,219  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = RSOWebURL
+2020-01-20 08:04:10,219  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,219  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = RSOWebURLMestag
+2020-01-20 08:04:10,219  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,219  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = RSP
+2020-01-20 08:04:10,220  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,220  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = Carving
+2020-01-20 08:04:10,220  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,220  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = ServiceTracker
+2020-01-20 08:04:10,220  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,220  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = ServiceTrackerQuickLaunch
+2020-01-20 08:04:10,254  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,254  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = smart
+2020-01-20 08:04:10,254  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,254  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = canada
+2020-01-20 08:04:10,254  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,254  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = emBaseUrl
+2020-01-20 08:04:10,255  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,255  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = ncBaseUrl
+2020-01-20 08:04:10,255  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,255  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = adminURL
+2020-01-20 08:04:10,255  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,255  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = callReceivingURL
+2020-01-20 08:04:10,256  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,256  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = dispatchURL
+2020-01-20 08:04:10,256  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,256  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = RSOWebURL
+2020-01-20 08:04:10,256  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,256  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = RSOWebURLMestag
+2020-01-20 08:04:10,256  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,256  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = RSP
+2020-01-20 08:04:10,257  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,257  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = Carving
+2020-01-20 08:04:10,257  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,257  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = ServiceTracker
+2020-01-20 08:04:10,257  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,257  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = ServiceTrackerQuickLaunch
+2020-01-20 08:04:10,289  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,289  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = smart
+2020-01-20 08:04:10,290  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,290  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = canada
+2020-01-20 08:04:10,290  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,290  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = emBaseUrl
+2020-01-20 08:04:10,290  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,290  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = ncBaseUrl
+2020-01-20 08:04:10,291  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,291  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = adminURL
+2020-01-20 08:04:10,291  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,291  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = callReceivingURL
+2020-01-20 08:04:10,291  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,291  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = dispatchURL
+2020-01-20 08:04:10,291  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,291  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = RSOWebURL
+2020-01-20 08:04:10,292  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,292  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = RSOWebURLMestag
+2020-01-20 08:04:10,292  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,292  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = RSP
+2020-01-20 08:04:10,292  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,292  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = Carving
+2020-01-20 08:04:10,293  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,293  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = ServiceTracker
+2020-01-20 08:04:10,293  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,293  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = ServiceTrackerQuickLaunch
+2020-01-20 08:04:10,293  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,293  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = smart
+2020-01-20 08:04:10,293  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,293  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = canada
+2020-01-20 08:04:10,294  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,294  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = emBaseUrl
+2020-01-20 08:04:10,294  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,294  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = ncBaseUrl
+2020-01-20 08:04:10,294  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,294  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = adminURL
+2020-01-20 08:04:10,295  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,295  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = callReceivingURL
+2020-01-20 08:04:10,295  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,295  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = dispatchURL
+2020-01-20 08:04:10,296  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,296  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = RSOWebURL
+2020-01-20 08:04:10,296  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,296  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = RSOWebURLMestag
+2020-01-20 08:04:10,296  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,296  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = RSP
+2020-01-20 08:04:10,296  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,296  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = Carving
+2020-01-20 08:04:10,297  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,297  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = ServiceTracker
+2020-01-20 08:04:10,297  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,297  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = ServiceTrackerQuickLaunch
+2020-01-20 08:04:10,297  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,297  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = cmtUserName
+2020-01-20 08:04:10,297  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,297  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = cmtPassWord
+2020-01-20 08:04:10,298  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,298  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = emailID
+2020-01-20 08:04:10,298  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,298  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = smart
+2020-01-20 08:04:10,298  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,298  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = canada
+2020-01-20 08:04:10,299  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,299  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = emBaseUrl
+2020-01-20 08:04:10,299  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,299  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = ncBaseUrl
+2020-01-20 08:04:10,299  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,299  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = adminURL
+2020-01-20 08:04:10,299  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,299  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = callReceivingURL
+2020-01-20 08:04:10,300  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,300  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = dispatchURL
+2020-01-20 08:04:10,300  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,300  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = RSOWebURL
+2020-01-20 08:04:10,300  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,300  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = RSOWebURLMestag
+2020-01-20 08:04:10,301  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,301  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = RSP
+2020-01-20 08:04:10,301  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,301  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = Carving
+2020-01-20 08:04:10,302  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,302  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = ServiceTracker
+2020-01-20 08:04:10,302  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,302  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = ServiceTrackerQuickLaunch
+2020-01-20 08:04:10,303  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,303  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = smart
+2020-01-20 08:04:10,303  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,303  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = canada
+2020-01-20 08:04:10,304  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,304  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = emBaseUrl
+2020-01-20 08:04:10,304  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,304  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = ncBaseUrl
+2020-01-20 08:04:10,304  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,304  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = adminURL
+2020-01-20 08:04:10,304  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,305  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = callReceivingURL
+2020-01-20 08:04:10,305  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,305  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = dispatchURL
+2020-01-20 08:04:10,305  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,305  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = RSOWebURL
+2020-01-20 08:04:10,305  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,305  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = RSOWebURLMestag
+2020-01-20 08:04:10,306  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,306  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = RSP
+2020-01-20 08:04:10,306  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,306  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = Carving
+2020-01-20 08:04:10,307  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,307  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = ServiceTracker
+2020-01-20 08:04:10,307  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,307  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = ServiceTrackerQuickLaunch
+2020-01-20 08:04:10,307  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,307  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = cmtUserName
+2020-01-20 08:04:10,308  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,308  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = cmtPassWord
+2020-01-20 08:04:10,308  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,308  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = emailID
+2020-01-20 08:04:10,308  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,308  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = smart
+2020-01-20 08:04:10,308  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,308  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = canada
+2020-01-20 08:04:10,309  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,309  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = emBaseUrl
+2020-01-20 08:04:10,309  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,309  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = ncBaseUrl
+2020-01-20 08:04:10,309  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,309  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = adminURL
+2020-01-20 08:04:10,309  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,310  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = callReceivingURL
+2020-01-20 08:04:10,310  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,310  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = dispatchURL
+2020-01-20 08:04:10,310  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,310  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = RSOWebURL
+2020-01-20 08:04:10,310  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,310  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = RSOWebURLMestag
+2020-01-20 08:04:10,311  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,311  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = RSP
+2020-01-20 08:04:10,311  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,311  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = Carving
+2020-01-20 08:04:10,311  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,311  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = ServiceTracker
+2020-01-20 08:04:10,311  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,315  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = ServiceTrackerQuickLaunch
+2020-01-20 08:04:10,315  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,315  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = smart
+2020-01-20 08:04:10,315  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,315  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = canada
+2020-01-20 08:04:10,315  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,315  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = emBaseUrl
+2020-01-20 08:04:10,316  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,316  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = ncBaseUrl
+2020-01-20 08:04:10,316  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,316  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = adminURL
+2020-01-20 08:04:10,316  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,316  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = callReceivingURL
+2020-01-20 08:04:10,316  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,317  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = dispatchURL
+2020-01-20 08:04:10,317  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,317  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = RSOWebURL
+2020-01-20 08:04:10,317  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,317  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = RSOWebURLMestag
+2020-01-20 08:04:10,317  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,317  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = RSP
+2020-01-20 08:04:10,318  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,318  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = Carving
+2020-01-20 08:04:10,318  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,318  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = ServiceTracker
+2020-01-20 08:04:10,318  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,318  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = ServiceTrackerQuickLaunch
+2020-01-20 08:04:10,318  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,318  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = cmtUserName
+2020-01-20 08:04:10,319  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,319  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = cmtPassWord
+2020-01-20 08:04:10,319  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,319  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = emailID
+2020-01-20 08:04:10,319  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,319  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = smart
+2020-01-20 08:04:10,320  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,320  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = canada
+2020-01-20 08:04:10,320  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,320  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = emBaseUrl
+2020-01-20 08:04:10,320  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,320  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = ncBaseUrl
+2020-01-20 08:04:10,321  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,321  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = adminURL
+2020-01-20 08:04:10,321  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,321  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = callReceivingURL
+2020-01-20 08:04:10,321  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,321  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = dispatchURL
+2020-01-20 08:04:10,321  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,321  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = RSOWebURL
+2020-01-20 08:04:10,322  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,322  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = RSOWebURLMestag
+2020-01-20 08:04:10,322  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,322  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = RSP
+2020-01-20 08:04:10,322  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,323  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = Carving
+2020-01-20 08:04:10,323  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,323  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = ServiceTracker
+2020-01-20 08:04:10,323  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,323  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = ServiceTrackerQuickLaunch
+2020-01-20 08:04:10,323  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,323  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = smart
+2020-01-20 08:04:10,324  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,324  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = canada
+2020-01-20 08:04:10,324  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,324  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = emBaseUrl
+2020-01-20 08:04:10,324  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,324  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = ncBaseUrl
+2020-01-20 08:04:10,324  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,325  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = adminURL
+2020-01-20 08:04:10,325  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,325  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = callReceivingURL
+2020-01-20 08:04:10,325  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,325  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = dispatchURL
+2020-01-20 08:04:10,325  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,325  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = RSOWebURL
+2020-01-20 08:04:10,326  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,326  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = RSOWebURLMestag
+2020-01-20 08:04:10,326  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,326  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = RSP
+2020-01-20 08:04:10,326  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,326  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = Carving
+2020-01-20 08:04:10,327  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,327  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = ServiceTracker
+2020-01-20 08:04:10,327  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,327  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = ServiceTrackerQuickLaunch
+2020-01-20 08:04:10,327  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,327  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = smart
+2020-01-20 08:04:10,328  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,328  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = canada
+2020-01-20 08:04:10,328  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,328  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = emBaseUrl
+2020-01-20 08:04:10,328  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,328  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = ncBaseUrl
+2020-01-20 08:04:10,329  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,329  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = adminURL
+2020-01-20 08:04:10,329  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,329  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = callReceivingURL
+2020-01-20 08:04:10,329  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,329  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = dispatchURL
+2020-01-20 08:04:10,329  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,329  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = RSOWebURL
+2020-01-20 08:04:10,330  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,330  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = RSOWebURLMestag
+2020-01-20 08:04:10,330  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,330  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = RSP
+2020-01-20 08:04:10,332  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,332  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = Carving
+2020-01-20 08:04:10,332  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,332  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = ServiceTracker
+2020-01-20 08:04:10,332  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,332  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = ServiceTrackerQuickLaunch
+2020-01-20 08:04:10,333  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,333  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = smart
+2020-01-20 08:04:10,333  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,333  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = canada
+2020-01-20 08:04:10,333  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,333  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = emBaseUrl
+2020-01-20 08:04:10,333  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,333  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = ncBaseUrl
+2020-01-20 08:04:10,334  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,334  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = adminURL
+2020-01-20 08:04:10,334  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,334  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = callReceivingURL
+2020-01-20 08:04:10,334  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,334  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = dispatchURL
+2020-01-20 08:04:10,334  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,334  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = RSOWebURL
+2020-01-20 08:04:10,335  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,335  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = RSOWebURLMestag
+2020-01-20 08:04:10,335  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,335  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = RSP
+2020-01-20 08:04:10,335  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,335  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = Carving
+2020-01-20 08:04:10,335  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,335  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = ServiceTracker
+2020-01-20 08:04:10,336  INFO (main:com.insight.report.ConfigFileReadWrite:read:146) - fileName = resources/cignitiReporter.properties
+2020-01-20 08:04:10,336  INFO (main:com.insight.report.ConfigFileReadWrite:read:147) - key = ServiceTrackerQuickLaunch
+2020-01-20 08:04:10,336  INFO (main:com.insight.accelerators.ActionEngine:click:663) - +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+2020-01-20 08:04:10,336  INFO (main:com.insight.accelerators.ActionEngine:click:664) - Class namecom.insight.Lib.CMTLibMethod name : loginToCMT
+2020-01-20 08:04:10,336  INFO (main:com.insight.accelerators.ActionEngine:click:665) - Method : click  ::  Locator : Login link
+2020-01-20 08:04:10,345  INFO (main:com.insight.accelerators.ActionEngine:click:668) - Waiting for element
+2020-01-20 08:04:10,895  INFO (main:com.insight.accelerators.ActionEngine:click:670) - Locator is Visible :: By.xpath: //div[@class='o-grid__item  o-grid__item--shrink  u-push-auto@desktop']//nav//li//a[contains(text(),'Login')]
+2020-01-20 08:04:11,349  INFO (main:com.insight.accelerators.ActionEngine:click:672) - Clicked on the Locator
+2020-01-20 08:04:14,022  INFO (main:com.insight.accelerators.ActionEngine:click:674) - identified the element :: By.xpath: //div[@class='o-grid__item  o-grid__item--shrink  u-push-auto@desktop']//nav//li//a[contains(text(),'Login')]
+2020-01-20 08:04:14,022  INFO (main:com.insight.accelerators.ActionEngine:click:675) - +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+2020-01-20 08:04:14,043  INFO (main:com.insight.report.ReportXML:captureTestStepDetails:493) - step description : Successfully Clicked On 
+2020-01-20 08:04:14,044  INFO (main:com.insight.report.ReportXML:captureTestStepDetails:536) - Test method name : Tc_SBP04
+2020-01-20 08:04:14,069  INFO (main:com.insight.report.ReportXML:captureTestStepDetails:620) - File saved
+2020-01-20 08:04:19,070  INFO (main:com.insight.accelerators.ActionEngine:isElementPresent:757) - +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+2020-01-20 08:04:19,070  INFO (main:com.insight.accelerators.ActionEngine:dynamicWait:1977) - +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+2020-01-20 08:04:19,070  INFO (main:com.insight.accelerators.ActionEngine:dynamicWait:1978) - Class name : com.insight.accelerators.ActionEngineMethod name : isElementPresent
+2020-01-20 08:04:19,070  INFO (main:com.insight.accelerators.ActionEngine:dynamicWait:1979) - Method : isElementPresent  ::  Locator : By.xpath: //a[@class='close-reveal-modal']
+2020-01-20 08:04:19,122  INFO (main:com.insight.accelerators.ActionEngine:dynamicWait:1984) - By.xpath: //a[@class='close-reveal-modal']:: displayed succussfully
+2020-01-20 08:04:19,122  INFO (main:com.insight.accelerators.ActionEngine:dynamicWait:1985) - +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+2020-01-20 08:04:19,162  INFO (main:com.insight.accelerators.ActionEngine:isElementPresent:760) - +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+2020-01-20 08:04:19,180  INFO (main:com.insight.report.ReportXML:captureTestStepDetails:493) - step description : Close icon is visible
+2020-01-20 08:04:19,182  INFO (main:com.insight.report.ReportXML:captureTestStepDetails:536) - Test method name : Tc_SBP04
+2020-01-20 08:04:19,189  INFO (main:com.insight.report.ReportXML:captureTestStepDetails:620) - File saved
+2020-01-20 08:04:19,189  INFO (main:com.insight.accelerators.ActionEngine:click:663) - +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+2020-01-20 08:04:19,189  INFO (main:com.insight.accelerators.ActionEngine:click:664) - Class namecom.insight.Lib.CMTLibMethod name : loginToCMT
+2020-01-20 08:04:19,190  INFO (main:com.insight.accelerators.ActionEngine:click:665) - Method : click  ::  Locator : Close icon
+2020-01-20 08:04:19,190  INFO (main:com.insight.accelerators.ActionEngine:click:668) - Waiting for element
+2020-01-20 08:04:19,294  INFO (main:com.insight.accelerators.ActionEngine:click:670) - Locator is Visible :: By.xpath: //a[@class='close-reveal-modal']
+2020-01-20 08:04:19,365  INFO (main:com.insight.accelerators.ActionEngine:click:672) - Clicked on the Locator
+2020-01-20 08:04:19,511  INFO (main:com.insight.accelerators.ActionEngine:click:674) - identified the element :: By.xpath: //a[@class='close-reveal-modal']
+2020-01-20 08:04:19,511  INFO (main:com.insight.accelerators.ActionEngine:click:675) - +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+2020-01-20 08:04:19,538  INFO (main:com.insight.report.ReportXML:captureTestStepDetails:493) - step description : Successfully Clicked On 
+2020-01-20 08:04:19,539  INFO (main:com.insight.report.ReportXML:captureTestStepDetails:536) - Test method name : Tc_SBP04
+2020-01-20 08:04:19,638  INFO (main:com.insight.report.ReportXML:captureTestStepDetails:620) - File saved
+2020-01-20 08:04:19,638  INFO (main:com.insight.accelerators.ActionEngine:isElementPresent:757) - +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+2020-01-20 08:04:19,638  INFO (main:com.insight.accelerators.ActionEngine:dynamicWait:1977) - +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+2020-01-20 08:04:19,638  INFO (main:com.insight.accelerators.ActionEngine:dynamicWait:1978) - Class name : com.insight.accelerators.ActionEngineMethod name : isElementPresent
+2020-01-20 08:04:19,639  INFO (main:com.insight.accelerators.ActionEngine:dynamicWait:1979) - Method : isElementPresent  ::  Locator : By.xpath: //div[@id='onetrust-close-btn-container']/a
+2020-01-20 08:04:39,686  INFO (main:com.insight.accelerators.ActionEngine:dynamicWait:1987) - Timed out after 10 seconds waiting for presence of element located by: By.xpath: //div[@id='onetrust-close-btn-container']/a
+Build info: version: '2.53.1', revision: 'a36b8b1cd5757287168e54b817830adce9b0158d', time: '2016-06-30 19:26:09'
+System info: host: 'USPHXWQTP04', ip: '172.25.6.15', os.name: 'Windows Server 2016', os.arch: 'amd64', os.version: '10.0', java.version: '1.8.0_231'
+Driver info: org.openqa.selenium.support.events.EventFiringWebDriver
+2020-01-20 08:04:59,700  INFO (main:com.insight.accelerators.ActionEngine:isElementPresent:765) - no such element: Unable to locate element: {"method":"xpath","selector":"//div[@id='onetrust-close-btn-container']/a"}
+  (Session info: chrome=78.0.3904.70)
+  (Driver info: chromedriver=77.0.3865.40 (f484704e052e0b556f8030b65b953dce96503217-refs/branch-heads/3865@{#442}),platform=Windows NT 10.0.14393 x86_64) (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 20.01 seconds
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+Build info: version: '2.53.1', revision: 'a36b8b1cd5757287168e54b817830adce9b0158d', time: '2016-06-30 19:26:09'
+System info: host: 'USPHXWQTP04', ip: '172.25.6.15', os.name: 'Windows Server 2016', os.arch: 'amd64', os.version: '10.0', java.version: '1.8.0_231'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities [{mobileEmulationEnabled=false, timeouts={implicit=0, pageLoad=300000, script=30000}, hasTouchScreen=false, platform=XP, acceptSslCerts=false, goog:chromeOptions={debuggerAddress=localhost:60624}, acceptInsecureCerts=false, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, setWindowRect=true, unexpectedAlertBehaviour=ignore, applicationCacheEnabled=false, rotatable=false, networkConnectionEnabled=false, chrome={chromedriverVersion=77.0.3865.40 (f484704e052e0b556f8030b65b953dce96503217-refs/branch-heads/3865@{#442}), userDataDir=C:\Users\qtpsvc\AppData\Local\Temp\2\scoped_dir14344_16972377}, takesHeapSnapshot=true, pageLoadStrategy=normal, strictFileInteractability=false, databaseEnabled=false, handlesAlerts=true, version=78.0.3904.70, browserConnectionEnabled=false, proxy={}, nativeEvents=true, locationContextEnabled=true, cssSelectorsEnabled=true}]
+Session ID: fb8b2627ce7d51fa35c49398fbacb8b9
+*** Element info: {Using=xpath, value=//div[@id='onetrust-close-btn-container']/a}
+2020-01-20 08:04:59,700  INFO (main:com.insight.accelerators.ActionEngine:typeText:1106) - +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+2020-01-20 08:04:59,700  INFO (main:com.insight.accelerators.ActionEngine:typeText:1107) - Class name : com.insight.Lib.CMTLibMethod name : loginToCMT
+2020-01-20 08:04:59,700  INFO (main:com.insight.accelerators.ActionEngine:typeText:1108) - Method : Type  ::  Locator : User Name :: Data :QTPSvcAdmin 
+2020-01-20 08:04:59,701  INFO (main:com.insight.accelerators.ActionEngine:typeText:1110) - Waiting for element :
+2020-01-20 08:04:59,701  INFO (main:com.insight.accelerators.ActionEngine:typeText:1112) - Locator is Visible :: By.id: username
+2020-01-20 08:04:59,981  INFO (main:com.insight.accelerators.ActionEngine:typeText:1115) - Typed the Locator data :: QTPSvcAdmin 
+2020-01-20 08:04:59,981  INFO (main:com.insight.accelerators.ActionEngine:typeText:1116) - +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+2020-01-20 08:05:00,005  INFO (main:com.insight.report.ReportXML:captureTestStepDetails:493) - step description : Successfully Entered value 'QTPSvcAdmin '
+2020-01-20 08:05:00,006  INFO (main:com.insight.report.ReportXML:captureTestStepDetails:536) - Test method name : Tc_SBP04
+2020-01-20 08:05:00,068  INFO (main:com.insight.report.ReportXML:captureTestStepDetails:620) - File saved
+2020-01-20 08:05:00,069  INFO (main:com.insight.accelerators.ActionEngine:typeText:1106) - +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+2020-01-20 08:05:00,069  INFO (main:com.insight.accelerators.ActionEngine:typeText:1107) - Class name : com.insight.Lib.CMTLibMethod name : loginToCMT
+2020-01-20 08:05:00,069  INFO (main:com.insight.accelerators.ActionEngine:typeText:1108) - Method : Type  ::  Locator : password :: Data :Password@11
+2020-01-20 08:05:00,069  INFO (main:com.insight.accelerators.ActionEngine:typeText:1110) - Waiting for element :
+2020-01-20 08:05:00,069  INFO (main:com.insight.accelerators.ActionEngine:typeText:1112) - Locator is Visible :: By.id: password
+2020-01-20 08:05:00,350  INFO (main:com.insight.accelerators.ActionEngine:typeText:1115) - Typed the Locator data :: Password@11
+2020-01-20 08:05:00,350  INFO (main:com.insight.accelerators.ActionEngine:typeText:1116) - +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+2020-01-20 08:05:00,367  INFO (main:com.insight.report.ReportXML:captureTestStepDetails:493) - step description : Successfully Entered value 'Password@11'
+2020-01-20 08:05:00,368  INFO (main:com.insight.report.ReportXML:captureTestStepDetails:536) - Test method name : Tc_SBP04
+2020-01-20 08:05:00,378  INFO (main:com.insight.report.ReportXML:captureTestStepDetails:620) - File saved
+2020-01-20 08:05:00,378  INFO (main:com.insight.accelerators.ActionEngine:click:663) - +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+2020-01-20 08:05:00,378  INFO (main:com.insight.accelerators.ActionEngine:click:664) - Class namecom.insight.Lib.CMTLibMethod name : loginToCMT
+2020-01-20 08:05:00,378  INFO (main:com.insight.accelerators.ActionEngine:click:665) - Method : click  ::  Locator : Login button
+2020-01-20 08:05:00,379  INFO (main:com.insight.accelerators.ActionEngine:click:668) - Waiting for element
+2020-01-20 08:05:00,453  INFO (main:com.insight.accelerators.ActionEngine:click:670) - Locator is Visible :: By.id: login-submit-button
+2020-01-20 08:05:00,518  INFO (main:com.insight.accelerators.ActionEngine:click:672) - Clicked on the Locator
+2020-01-20 08:05:02,950  INFO (main:com.insight.accelerators.ActionEngine:click:674) - identified the element :: By.id: login-submit-button
+2020-01-20 08:05:02,950  INFO (main:com.insight.accelerators.ActionEngine:click:675) - +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+2020-01-20 08:05:02,992  INFO (main:com.insight.report.ReportXML:captureTestStepDetails:493) - step description : Successfully Clicked On 
+2020-01-20 08:05:02,994  INFO (main:com.insight.report.ReportXML:captureTestStepDetails:536) - Test method name : Tc_SBP04
+2020-01-20 08:05:03,017  INFO (main:com.insight.report.ReportXML:captureTestStepDetails:620) - File saved
+2020-01-20 08:05:06,017  INFO (main:com.insight.accelerators.ActionEngine:waitForVisibilityOfElement:289) - +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+2020-01-20 08:05:06,017  INFO (main:com.insight.accelerators.ActionEngine:waitForVisibilityOfElement:290) - Class namecom.insight.Lib.CMTLibMethod name : loginToCMT
+2020-01-20 08:05:06,017  INFO (main:com.insight.accelerators.ActionEngine:waitForVisibilityOfElement:291) - Method : loginToCMT  ::  Locator : WEB GROUP in CMT TOOL HOME PAGE
+2020-01-20 08:05:06,093  INFO (main:com.insight.accelerators.ActionEngine:waitForVisibilityOfElement:296) - +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+2020-01-20 08:05:06,113  INFO (main:com.insight.report.ReportXML:captureTestStepDetails:493) - step description : Element :: WEB GROUP in CMT TOOL HOME PAGE  is visible
+2020-01-20 08:05:06,114  INFO (main:com.insight.report.ReportXML:captureTestStepDetails:536) - Test method name : Tc_SBP04
+2020-01-20 08:05:06,136  INFO (main:com.insight.report.ReportXML:captureTestStepDetails:620) - File saved
+2020-01-20 08:05:06,187  INFO (main:com.insight.accelerators.ActionEngine:type:992) - +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+2020-01-20 08:05:06,187  INFO (main:com.insight.accelerators.ActionEngine:type:993) - Class name : com.insight.Lib.CMTLibMethod name : handleWelcomeToInsightBetaPopUpInCMT
+2020-01-20 08:05:06,187  INFO (main:com.insight.accelerators.ActionEngine:type:994) - Method : Type  ::  Locator : POP UP TO ENTER EMAIL ID :: Data :Bharathi.Mettu@insight.com
+2020-01-20 08:05:11,198  INFO (main:com.insight.accelerators.ActionEngine:type:997) - Waiting for element :
+2020-01-20 08:05:11,282  INFO (main:com.insight.accelerators.ActionEngine:type:999) - Locator is Visible :: By.id: emailId
+2020-01-20 08:05:11,358  INFO (main:com.insight.accelerators.ActionEngine:type:1004) - Cleared the existing Locator data : 
+2020-01-20 08:05:11,700  INFO (main:com.insight.accelerators.ActionEngine:type:1007) - Typed the Locator data :: Bharathi.Mettu@insight.com
+2020-01-20 08:05:11,700  INFO (main:com.insight.accelerators.ActionEngine:type:1008) - +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+2020-01-20 08:05:11,700  INFO (main:com.insight.accelerators.ActionEngine:type:1020) - +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+2020-01-20 08:05:11,716  INFO (main:com.insight.report.ReportXML:captureTestStepDetails:493) - step description : Successfully Entered value 
+2020-01-20 08:05:11,717  INFO (main:com.insight.report.ReportXML:captureTestStepDetails:536) - Test method name : Tc_SBP04
+2020-01-20 08:05:11,726  INFO (main:com.insight.report.ReportXML:captureTestStepDetails:620) - File saved
+2020-01-20 08:05:11,726  INFO (main:com.insight.accelerators.ActionEngine:click:663) - +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+2020-01-20 08:05:11,726  INFO (main:com.insight.accelerators.ActionEngine:click:664) - Class namecom.insight.Lib.CMTLibMethod name : handleWelcomeToInsightBetaPopUpInCMT
+2020-01-20 08:05:11,726  INFO (main:com.insight.accelerators.ActionEngine:click:665) - Method : click  ::  Locator : POP UP SUBMIT BUTTON
+2020-01-20 08:05:11,726  INFO (main:com.insight.accelerators.ActionEngine:click:668) - Waiting for element
+2020-01-20 08:05:11,789  INFO (main:com.insight.accelerators.ActionEngine:click:670) - Locator is Visible :: By.id: resetPasswordSubmit
+2020-01-20 08:05:11,905  INFO (main:com.insight.accelerators.ActionEngine:click:672) - Clicked on the Locator
+2020-01-20 08:05:12,048  INFO (main:com.insight.accelerators.ActionEngine:click:674) - identified the element :: By.id: resetPasswordSubmit
+2020-01-20 08:05:12,048  INFO (main:com.insight.accelerators.ActionEngine:click:675) - +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+2020-01-20 08:05:12,063  INFO (main:com.insight.report.ReportXML:captureTestStepDetails:493) - step description : Successfully Clicked On 
+2020-01-20 08:05:12,064  INFO (main:com.insight.report.ReportXML:captureTestStepDetails:536) - Test method name : Tc_SBP04
+2020-01-20 08:05:12,072  INFO (main:com.insight.report.ReportXML:captureTestStepDetails:620) - File saved
+2020-01-20 08:05:12,085  INFO (main:com.insight.report.ReportXML:captureTestStepDetails:493) - step description : Sucessfully logged in to the account
+2020-01-20 08:05:12,086  INFO (main:com.insight.report.ReportXML:captureTestStepDetails:536) - Test method name : Tc_SBP04
+2020-01-20 08:05:12,112  INFO (main:com.insight.report.ReportXML:captureTestStepDetails:620) - File saved
+2020-01-20 08:05:12,112  INFO (main:com.insight.accelerators.ActionEngine:isElementVisible:3868) - +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+2020-01-20 08:05:12,112  INFO (main:com.insight.accelerators.ActionEngine:isElementVisible:3869) - Class namecom.insight.Lib.CMTLibMethod name : searchForWebGroup
+2020-01-20 08:05:12,112  INFO (main:com.insight.accelerators.ActionEngine:isElementVisible:3870) - Method : isElementClickable  ::  Locator : By.xpath: //div[@id='searchCriteriaMain']//h1[contains(text(),'Client Search')]
+2020-01-20 08:05:14,182  INFO (main:com.insight.report.ReportXML:captureTestStepDetails:493) - step description : Successfully Found Element CMT home page
+2020-01-20 08:05:14,183  INFO (main:com.insight.report.ReportXML:captureTestStepDetails:536) - Test method name : Tc_SBP04
+2020-01-20 08:05:14,198  INFO (main:com.insight.report.ReportXML:captureTestStepDetails:620) - File saved
+2020-01-20 08:05:14,213  INFO (main:com.insight.report.ReportXML:captureTestStepDetails:493) - step description : Client Admin Search Page Exists with client search label
+2020-01-20 08:05:14,214  INFO (main:com.insight.report.ReportXML:captureTestStepDetails:536) - Test method name : Tc_SBP04
+2020-01-20 08:05:14,224  INFO (main:com.insight.report.ReportXML:captureTestStepDetails:620) - File saved
+2020-01-20 08:05:14,224  INFO (main:com.insight.accelerators.ActionEngine:waitForVisibilityOfElement:289) - +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+2020-01-20 08:05:14,224  INFO (main:com.insight.accelerators.ActionEngine:waitForVisibilityOfElement:290) - Class namecom.insight.Lib.CMTLibMethod name : searchForWebGroup
+2020-01-20 08:05:14,224  INFO (main:com.insight.accelerators.ActionEngine:waitForVisibilityOfElement:291) - Method : searchForWebGroup  ::  Locator : WEB GROUP in CMT TOOL HOME PAGE
+2020-01-20 08:05:14,274  INFO (main:com.insight.accelerators.ActionEngine:waitForVisibilityOfElement:296) - +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+2020-01-20 08:05:14,291  INFO (main:com.insight.report.ReportXML:captureTestStepDetails:493) - step description : Element :: WEB GROUP in CMT TOOL HOME PAGE  is visible
+2020-01-20 08:05:14,292  INFO (main:com.insight.report.ReportXML:captureTestStepDetails:536) - Test method name : Tc_SBP04
+2020-01-20 08:05:14,303  INFO (main:com.insight.report.ReportXML:captureTestStepDetails:620) - File saved
+2020-01-20 08:05:14,303  INFO (main:com.insight.accelerators.ActionEngine:type:992) - +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+2020-01-20 08:05:14,303  INFO (main:com.insight.accelerators.ActionEngine:type:993) - Class name : com.insight.Lib.CMTLibMethod name : searchForWebGroup
+2020-01-20 08:05:14,303  INFO (main:com.insight.accelerators.ActionEngine:type:994) - Method : Type  ::  Locator : Web Group field Exists and Entered :: Data :860792779
+2020-01-20 08:05:19,303  INFO (main:com.insight.accelerators.ActionEngine:type:997) - Waiting for element :
+2020-01-20 08:05:19,348  INFO (main:com.insight.accelerators.ActionEngine:type:999) - Locator is Visible :: By.id: webGroupInput
+2020-01-20 08:05:19,413  INFO (main:com.insight.accelerators.ActionEngine:type:1004) - Cleared the existing Locator data : 
+2020-01-20 08:05:19,547  INFO (main:com.insight.accelerators.ActionEngine:type:1007) - Typed the Locator data :: 860792779
+2020-01-20 08:05:19,547  INFO (main:com.insight.accelerators.ActionEngine:type:1008) - +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+2020-01-20 08:05:19,547  INFO (main:com.insight.accelerators.ActionEngine:type:1020) - +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+2020-01-20 08:05:19,562  INFO (main:com.insight.report.ReportXML:captureTestStepDetails:493) - step description : Successfully Entered value 
+2020-01-20 08:05:19,564  INFO (main:com.insight.report.ReportXML:captureTestStepDetails:536) - Test method name : Tc_SBP04
+2020-01-20 08:05:19,572  INFO (main:com.insight.report.ReportXML:captureTestStepDetails:620) - File saved
+2020-01-20 08:05:19,573  INFO (main:com.insight.accelerators.ActionEngine:click:663) - +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+2020-01-20 08:05:19,573  INFO (main:com.insight.accelerators.ActionEngine:click:664) - Class namecom.insight.Lib.CMTLibMethod name : searchForWebGroup
+2020-01-20 08:05:19,573  INFO (main:com.insight.accelerators.ActionEngine:click:665) - Method : click  ::  Locator : SEARCH BUTTON in CMT TOOL HOME PAGE
+2020-01-20 08:05:19,573  INFO (main:com.insight.accelerators.ActionEngine:click:668) - Waiting for element
+2020-01-20 08:05:19,684  INFO (main:com.insight.accelerators.ActionEngine:click:670) - Locator is Visible :: By.id: eAdminCustomerSearchButton
+2020-01-20 08:05:19,726  INFO (main:com.insight.accelerators.ActionEngine:click:672) - Clicked on the Locator
+2020-01-20 08:05:19,942  INFO (main:com.insight.accelerators.ActionEngine:click:674) - identified the element :: By.id: eAdminCustomerSearchButton
+2020-01-20 08:05:19,942  INFO (main:com.insight.accelerators.ActionEngine:click:675) - +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+2020-01-20 08:05:19,958  INFO (main:com.insight.report.ReportXML:captureTestStepDetails:493) - step description : Successfully Clicked On 
+2020-01-20 08:05:19,960  INFO (main:com.insight.report.ReportXML:captureTestStepDetails:536) - Test method name : Tc_SBP04
+2020-01-20 08:05:19,970  INFO (main:com.insight.report.ReportXML:captureTestStepDetails:620) - File saved
+2020-01-20 08:05:19,970  INFO (main:com.insight.accelerators.ActionEngine:isElementVisible:3868) - +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+2020-01-20 08:05:19,971  INFO (main:com.insight.accelerators.ActionEngine:isElementVisible:3869) - Class namecom.insight.Lib.CMTLibMethod name : clickOnTheWebGroup
+2020-01-20 08:05:19,971  INFO (main:com.insight.accelerators.ActionEngine:isElementVisible:3870) - Method : isElementClickable  ::  Locator : By.xpath: //td[@id='webGroupName']//a[contains(text(),'TU IUS Test Group')]
+2020-01-20 08:05:22,038  INFO (main:com.insight.report.ReportXML:captureTestStepDetails:493) - step description : Successfully Found Element Search results are displayed on Client Search Page
+2020-01-20 08:05:22,039  INFO (main:com.insight.report.ReportXML:captureTestStepDetails:536) - Test method name : Tc_SBP04
+2020-01-20 08:05:22,048  INFO (main:com.insight.report.ReportXML:captureTestStepDetails:620) - File saved
+2020-01-20 08:05:22,048  INFO (main:com.insight.accelerators.ActionEngine:click:663) - +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+2020-01-20 08:05:22,048  INFO (main:com.insight.accelerators.ActionEngine:click:664) - Class namecom.insight.Lib.CMTLibMethod name : clickOnTheWebGroup
+2020-01-20 08:05:22,048  INFO (main:com.insight.accelerators.ActionEngine:click:665) - Method : click  ::  Locator : Web Group link exists :TU IUS Test Group
+2020-01-20 08:05:22,048  INFO (main:com.insight.accelerators.ActionEngine:click:668) - Waiting for element
+2020-01-20 08:05:22,090  INFO (main:com.insight.accelerators.ActionEngine:click:670) - Locator is Visible :: By.xpath: //td[@id='webGroupName']//a[contains(text(),'TU IUS Test Group')]
+2020-01-20 08:05:22,148  INFO (main:com.insight.accelerators.ActionEngine:click:672) - Clicked on the Locator
+2020-01-20 08:05:22,650  INFO (main:com.insight.accelerators.ActionEngine:click:674) - identified the element :: By.xpath: //td[@id='webGroupName']//a[contains(text(),'TU IUS Test Group')]
+2020-01-20 08:05:22,650  INFO (main:com.insight.accelerators.ActionEngine:click:675) - +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+2020-01-20 08:05:22,667  INFO (main:com.insight.report.ReportXML:captureTestStepDetails:493) - step description : Successfully Clicked On 
+2020-01-20 08:05:22,668  INFO (main:com.insight.report.ReportXML:captureTestStepDetails:536) - Test method name : Tc_SBP04
+2020-01-20 08:05:22,680  INFO (main:com.insight.report.ReportXML:captureTestStepDetails:620) - File saved
+2020-01-20 08:05:22,680  INFO (main:com.insight.accelerators.ActionEngine:mouseHover:1431) - +++++++++++++++++++++++++++++++++++++++++++++
+2020-01-20 08:05:22,680  INFO (main:com.insight.accelerators.ActionEngine:mouseHover:1432) - Mouse over start :: Manage Web group
+2020-01-20 08:05:22,949  INFO (main:com.insight.accelerators.ActionEngine:mouseHover:1438) - Mouse over End :: Manage Web group
+2020-01-20 08:05:22,949  INFO (main:com.insight.accelerators.ActionEngine:mouseHover:1439) - +++++++++++++++++++++++++++++++++++++++++++++
+2020-01-20 08:05:22,972  INFO (main:com.insight.report.ReportXML:captureTestStepDetails:493) - step description : MouserOver Action is Done on  :: Manage Web group
+2020-01-20 08:05:22,973  INFO (main:com.insight.report.ReportXML:captureTestStepDetails:536) - Test method name : Tc_SBP04
+2020-01-20 08:05:22,983  INFO (main:com.insight.report.ReportXML:captureTestStepDetails:620) - File saved
+2020-01-20 08:05:22,983  INFO (main:com.insight.accelerators.ActionEngine:click:663) - +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+2020-01-20 08:05:22,983  INFO (main:com.insight.accelerators.ActionEngine:click:664) - Class namecom.insight.Lib.CMTLibMethod name : hoverOnManageWebGroupsAndSelectOptions
+2020-01-20 08:05:22,983  INFO (main:com.insight.accelerators.ActionEngine:click:665) - Method : click  ::  Locator : Manage current Web group option: Users
+2020-01-20 08:05:22,983  INFO (main:com.insight.accelerators.ActionEngine:click:668) - Waiting for element
+2020-01-20 08:05:23,068  INFO (main:com.insight.accelerators.ActionEngine:click:670) - Locator is Visible :: By.xpath: //div[@id='manageWebGroupDiv']//a[contains(text(),'Users')]
+2020-01-20 08:05:23,118  INFO (main:com.insight.accelerators.ActionEngine:click:672) - Clicked on the Locator
+2020-01-20 08:05:23,600  INFO (main:com.insight.accelerators.ActionEngine:click:674) - identified the element :: By.xpath: //div[@id='manageWebGroupDiv']//a[contains(text(),'Users')]
+2020-01-20 08:05:23,600  INFO (main:com.insight.accelerators.ActionEngine:click:675) - +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+2020-01-20 08:05:23,635  INFO (main:com.insight.report.ReportXML:captureTestStepDetails:493) - step description : Successfully Clicked On 
+2020-01-20 08:05:23,636  INFO (main:com.insight.report.ReportXML:captureTestStepDetails:536) - Test method name : Tc_SBP04
+2020-01-20 08:05:23,646  INFO (main:com.insight.report.ReportXML:captureTestStepDetails:620) - File saved
+2020-01-20 08:05:23,646  INFO (main:com.insight.accelerators.ActionEngine:isElementVisible:3868) - +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+2020-01-20 08:05:23,646  INFO (main:com.insight.accelerators.ActionEngine:isElementVisible:3869) - Class namecom.insight.Lib.CMTLibMethod name : searchForaUserAndSelect
+2020-01-20 08:05:23,647  INFO (main:com.insight.accelerators.ActionEngine:isElementVisible:3870) - Method : isElementClickable  ::  Locator : By.xpath: //div[@id='userSearchTitle']//h1[contains(text(),'Manage Web Groups:')]
+2020-01-20 08:05:25,730  INFO (main:com.insight.report.ReportXML:captureTestStepDetails:493) - step description : Successfully Found Element User Management page
+2020-01-20 08:05:25,731  INFO (main:com.insight.report.ReportXML:captureTestStepDetails:536) - Test method name : Tc_SBP04
+2020-01-20 08:05:25,739  INFO (main:com.insight.report.ReportXML:captureTestStepDetails:620) - File saved
+2020-01-20 08:05:25,753  INFO (main:com.insight.report.ReportXML:captureTestStepDetails:493) - step description : User management page is displayed
+2020-01-20 08:05:25,754  INFO (main:com.insight.report.ReportXML:captureTestStepDetails:536) - Test method name : Tc_SBP04
+2020-01-20 08:05:25,763  INFO (main:com.insight.report.ReportXML:captureTestStepDetails:620) - File saved
+2020-01-20 08:05:30,763  INFO (main:com.insight.accelerators.ActionEngine:waitForVisibilityOfElement:289) - +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+2020-01-20 08:05:30,763  INFO (main:com.insight.accelerators.ActionEngine:waitForVisibilityOfElement:290) - Class namecom.insight.Lib.CMTLibMethod name : searchUsers
+2020-01-20 08:05:30,763  INFO (main:com.insight.accelerators.ActionEngine:waitForVisibilityOfElement:291) - Method : searchUsers  ::  Locator : LNAME EMAIL USERNAME: TU_IUSAdmin
+2020-01-20 08:05:30,834  INFO (main:com.insight.accelerators.ActionEngine:waitForVisibilityOfElement:296) - +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+2020-01-20 08:05:30,854  INFO (main:com.insight.report.ReportXML:captureTestStepDetails:493) - step description : Element :: LNAME EMAIL USERNAME: TU_IUSAdmin  is visible
+2020-01-20 08:05:30,856  INFO (main:com.insight.report.ReportXML:captureTestStepDetails:536) - Test method name : Tc_SBP04
+2020-01-20 08:05:30,870  INFO (main:com.insight.report.ReportXML:captureTestStepDetails:620) - File saved
+2020-01-20 08:05:30,870  INFO (main:com.insight.accelerators.ActionEngine:type:992) - +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+2020-01-20 08:05:30,870  INFO (main:com.insight.accelerators.ActionEngine:type:993) - Class name : com.insight.Lib.CMTLibMethod name : searchUsers
+2020-01-20 08:05:30,870  INFO (main:com.insight.accelerators.ActionEngine:type:994) - Method : Type  ::  Locator : LNAME EMAIL USERNAME: TU_IUSAdmin :: Data :TU_IUSAdmin
+2020-01-20 08:05:35,870  INFO (main:com.insight.accelerators.ActionEngine:type:997) - Waiting for element :
+2020-01-20 08:05:35,907  INFO (main:com.insight.accelerators.ActionEngine:type:999) - Locator is Visible :: By.id: userSearchText
+2020-01-20 08:05:35,960  INFO (main:com.insight.accelerators.ActionEngine:type:1004) - Cleared the existing Locator data : 
+2020-01-20 08:05:36,181  INFO (main:com.insight.accelerators.ActionEngine:type:1007) - Typed the Locator data :: TU_IUSAdmin
+2020-01-20 08:05:36,181  INFO (main:com.insight.accelerators.ActionEngine:type:1008) - +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+2020-01-20 08:05:36,181  INFO (main:com.insight.accelerators.ActionEngine:type:1020) - +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+2020-01-20 08:05:36,199  INFO (main:com.insight.report.ReportXML:captureTestStepDetails:493) - step description : Successfully Entered value 
+2020-01-20 08:05:36,200  INFO (main:com.insight.report.ReportXML:captureTestStepDetails:536) - Test method name : Tc_SBP04
+2020-01-20 08:05:36,208  INFO (main:com.insight.report.ReportXML:captureTestStepDetails:620) - File saved
+2020-01-20 08:05:36,208  INFO (main:com.insight.accelerators.ActionEngine:click:663) - +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+2020-01-20 08:05:36,210  INFO (main:com.insight.accelerators.ActionEngine:click:664) - Class namecom.insight.Lib.CMTLibMethod name : searchUsers
+2020-01-20 08:05:36,211  INFO (main:com.insight.accelerators.ActionEngine:click:665) - Method : click  ::  Locator : Search button Exists and Clicked
+2020-01-20 08:05:36,211  INFO (main:com.insight.accelerators.ActionEngine:click:668) - Waiting for element
+2020-01-20 08:05:36,272  INFO (main:com.insight.accelerators.ActionEngine:click:670) - Locator is Visible :: By.id: userSearchResultsButton
+2020-01-20 08:05:36,323  INFO (main:com.insight.accelerators.ActionEngine:click:672) - Clicked on the Locator
+2020-01-20 08:05:36,587  INFO (main:com.insight.accelerators.ActionEngine:click:674) - identified the element :: By.id: userSearchResultsButton
+2020-01-20 08:05:36,587  INFO (main:com.insight.accelerators.ActionEngine:click:675) - +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+2020-01-20 08:05:36,603  INFO (main:com.insight.report.ReportXML:captureTestStepDetails:493) - step description : Successfully Clicked On 
+2020-01-20 08:05:36,604  INFO (main:com.insight.report.ReportXML:captureTestStepDetails:536) - Test method name : Tc_SBP04
+2020-01-20 08:05:36,614  INFO (main:com.insight.report.ReportXML:captureTestStepDetails:620) - File saved
+2020-01-20 08:05:44,615  INFO (main:com.insight.accelerators.ActionEngine:getText:1279) - +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+2020-01-20 08:05:44,615  INFO (main:com.insight.accelerators.ActionEngine:getText:1280) - Class namecom.insight.Lib.CMTLibMethod name : verifyUserandClick
+2020-01-20 08:05:44,615  INFO (main:com.insight.accelerators.ActionEngine:waitTime:895) - Time out value is : 2
+2020-01-20 08:05:44,615  INFO (main:com.insight.accelerators.ActionEngine:isVisibleOnly:2654) - +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+2020-01-20 08:05:44,615  INFO (main:com.insight.accelerators.ActionEngine:isVisibleOnly:2655) - Class name :: com.insight.accelerators.ActionEngine Method name :: getText
+2020-01-20 08:05:44,615  INFO (main:com.insight.accelerators.ActionEngine:isVisibleOnly:2656) - Method : getText  ::  Locator : TU_IUSAdmin TU_IUSAdmin
+2020-01-20 08:05:44,707  INFO (main:com.insight.accelerators.ActionEngine:isVisibleOnly:2662) - +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+2020-01-20 08:05:44,765  INFO (main:com.insight.accelerators.ActionEngine:getText:1286) - Locator is Visible and text is retrieved :: TU_IUSAdmin TU_IUSAdmin
+2020-01-20 08:05:44,781  INFO (main:com.insight.report.ReportXML:captureTestStepDetails:493) - step description : TU_IUSAdmin TU_IUSAdmin is :
+2020-01-20 08:05:44,783  INFO (main:com.insight.report.ReportXML:captureTestStepDetails:536) - Test method name : Tc_SBP04
+2020-01-20 08:05:44,796  INFO (main:com.insight.report.ReportXML:captureTestStepDetails:620) - File saved
+2020-01-20 08:05:44,796  INFO (main:com.insight.accelerators.ActionEngine:getText:1297) - Locator is Visible and text is retrieved :: TU_IUSAdmin TU_IUSAdmin
+2020-01-20 08:05:44,796  INFO (main:com.insight.accelerators.ActionEngine:isElementVisible:3868) - +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+2020-01-20 08:05:44,796  INFO (main:com.insight.accelerators.ActionEngine:isElementVisible:3869) - Class namecom.insight.Lib.CMTLibMethod name : verifyUserandClick
+2020-01-20 08:05:44,796  INFO (main:com.insight.accelerators.ActionEngine:isElementVisible:3870) - Method : isElementClickable  ::  Locator : By.xpath: //div[@id='userSearchTitle']//h1[contains(text(),'Manage Web Groups:')]
+2020-01-20 08:05:46,854  INFO (main:com.insight.report.ReportXML:captureTestStepDetails:493) - step description : Successfully Found Element Manage Web Groups:  User Management
+2020-01-20 08:05:46,855  INFO (main:com.insight.report.ReportXML:captureTestStepDetails:536) - Test method name : Tc_SBP04
+2020-01-20 08:05:46,863  INFO (main:com.insight.report.ReportXML:captureTestStepDetails:620) - File saved
+2020-01-20 08:05:46,880  INFO (main:com.insight.report.ReportXML:captureTestStepDetails:493) - step description : Web Group Management: Users Page loaded
+2020-01-20 08:05:46,881  INFO (main:com.insight.report.ReportXML:captureTestStepDetails:536) - Test method name : Tc_SBP04
+2020-01-20 08:05:46,891  INFO (main:com.insight.report.ReportXML:captureTestStepDetails:620) - File saved
+2020-01-20 08:05:46,904  INFO (main:com.insight.report.ReportXML:captureTestStepDetails:493) - step description : User Contact Name present is : 
+2020-01-20 08:05:46,905  INFO (main:com.insight.report.ReportXML:captureTestStepDetails:536) - Test method name : Tc_SBP04
+2020-01-20 08:05:46,914  INFO (main:com.insight.report.ReportXML:captureTestStepDetails:620) - File saved
+2020-01-20 08:05:46,914  INFO (main:com.insight.accelerators.ActionEngine:click:663) - +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+2020-01-20 08:05:46,914  INFO (main:com.insight.accelerators.ActionEngine:click:664) - Class namecom.insight.Lib.CMTLibMethod name : verifyUserandClick
+2020-01-20 08:05:46,914  INFO (main:com.insight.accelerators.ActionEngine:click:665) - Method : click  ::  Locator : TU_IUSAdmin TU_IUSAdmin
+2020-01-20 08:05:46,914  INFO (main:com.insight.accelerators.ActionEngine:click:668) - Waiting for element
+2020-01-20 08:05:47,006  INFO (main:com.insight.accelerators.ActionEngine:click:670) - Locator is Visible :: By.xpath: //table[@id='userSearchResultsTable']/tbody/tr/td[@id='userName']/a[contains(text(),'TU_IUSAdmin TU_IUSAdmin')]
+2020-01-20 08:05:47,104  INFO (main:com.insight.accelerators.ActionEngine:click:672) - Clicked on the Locator
+2020-01-20 08:05:47,506  INFO (main:com.insight.accelerators.ActionEngine:click:674) - identified the element :: By.xpath: //table[@id='userSearchResultsTable']/tbody/tr/td[@id='userName']/a[contains(text(),'TU_IUSAdmin TU_IUSAdmin')]
+2020-01-20 08:05:47,506  INFO (main:com.insight.accelerators.ActionEngine:click:675) - +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+2020-01-20 08:05:47,526  INFO (main:com.insight.report.ReportXML:captureTestStepDetails:493) - step description : Successfully Clicked On 
+2020-01-20 08:05:47,527  INFO (main:com.insight.report.ReportXML:captureTestStepDetails:536) - Test method name : Tc_SBP04
+2020-01-20 08:05:47,538  INFO (main:com.insight.report.ReportXML:captureTestStepDetails:620) - File saved
+2020-01-20 08:05:47,538  INFO (main:com.insight.accelerators.ActionEngine:isElementVisible:3868) - +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+2020-01-20 08:05:47,538  INFO (main:com.insight.accelerators.ActionEngine:isElementVisible:3869) - Class namecom.insight.Lib.CMTLibMethod name : verifyUserandClick
+2020-01-20 08:05:47,538  INFO (main:com.insight.accelerators.ActionEngine:isElementVisible:3870) - Method : isElementClickable  ::  Locator : By.xpath: //div[@id='createNewUserContainer']//h1[contains(text(),'Web Group Management: Users')]
+2020-01-20 08:05:49,621  INFO (main:com.insight.report.ReportXML:captureTestStepDetails:493) - step description : Successfully Found Element user contaact page
+2020-01-20 08:05:49,622  INFO (main:com.insight.report.ReportXML:captureTestStepDetails:536) - Test method name : Tc_SBP04
+2020-01-20 08:05:49,631  INFO (main:com.insight.report.ReportXML:captureTestStepDetails:620) - File saved
+2020-01-20 08:05:49,644  INFO (main:com.insight.report.ReportXML:captureTestStepDetails:493) - step description : Uers contact page verified successfully
+2020-01-20 08:05:49,646  INFO (main:com.insight.report.ReportXML:captureTestStepDetails:536) - Test method name : Tc_SBP04
+2020-01-20 08:05:49,654  INFO (main:com.insight.report.ReportXML:captureTestStepDetails:620) - File saved
+2020-01-20 08:05:49,654  INFO (main:com.insight.accelerators.ActionEngine:click:663) - +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+2020-01-20 08:05:49,654  INFO (main:com.insight.accelerators.ActionEngine:click:664) - Class namecom.insight.Lib.CMTLibMethod name : setPermissions
+2020-01-20 08:05:49,654  INFO (main:com.insight.accelerators.ActionEngine:click:665) - Method : click  ::  Locator : Roles And Permissions
+2020-01-20 08:05:49,654  INFO (main:com.insight.accelerators.ActionEngine:click:668) - Waiting for element
+2020-01-20 08:05:49,763  INFO (main:com.insight.accelerators.ActionEngine:click:670) - Locator is Visible :: By.xpath: //div//ul[@id='tabMenuContainer']//li//a[contains(text(),'Roles and Permissions')]
+2020-01-20 08:05:49,813  INFO (main:com.insight.accelerators.ActionEngine:click:672) - Clicked on the Locator
+2020-01-20 08:05:50,342  INFO (main:com.insight.accelerators.ActionEngine:click:674) - identified the element :: By.xpath: //div//ul[@id='tabMenuContainer']//li//a[contains(text(),'Roles and Permissions')]
+2020-01-20 08:05:50,342  INFO (main:com.insight.accelerators.ActionEngine:click:675) - +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+2020-01-20 08:05:50,360  INFO (main:com.insight.report.ReportXML:captureTestStepDetails:493) - step description : Successfully Clicked On 
+2020-01-20 08:05:50,361  INFO (main:com.insight.report.ReportXML:captureTestStepDetails:536) - Test method name : Tc_SBP04
+2020-01-20 08:05:50,370  INFO (main:com.insight.report.ReportXML:captureTestStepDetails:620) - File saved
+2020-01-20 08:05:50,577  INFO (main:com.insight.accelerators.ActionEngine:setPermissions:480) - Enable Change Shipto check box already checked: Enable Change Shipto
+2020-01-20 08:05:50,596  INFO (main:com.insight.report.ReportXML:captureTestStepDetails:493) - step description : check box already checked::Enable Change Shipto
+2020-01-20 08:05:50,597  INFO (main:com.insight.report.ReportXML:captureTestStepDetails:536) - Test method name : Tc_SBP04
+2020-01-20 08:05:50,605  INFO (main:com.insight.report.ReportXML:captureTestStepDetails:620) - File saved
+2020-01-20 08:05:50,606  INFO (main:com.insight.accelerators.ActionEngine:click:663) - +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+2020-01-20 08:05:50,606  INFO (main:com.insight.accelerators.ActionEngine:click:664) - Class namecom.insight.Lib.CMTLibMethod name : setPermissions
+2020-01-20 08:05:50,606  INFO (main:com.insight.accelerators.ActionEngine:click:665) - Method : click  ::  Locator : Roles And Permissions
+2020-01-20 08:05:50,606  INFO (main:com.insight.accelerators.ActionEngine:click:668) - Waiting for element
+2020-01-20 08:05:50,934  INFO (main:com.insight.accelerators.ActionEngine:click:670) - Locator is Visible :: By.xpath: //div//ul[@id='tabMenuContainer']//li//a[contains(text(),'Roles and Permissions')]
+2020-01-20 08:05:50,996  INFO (main:com.insight.accelerators.ActionEngine:click:672) - Clicked on the Locator
+2020-01-20 08:05:51,721  INFO (main:com.insight.accelerators.ActionEngine:click:674) - identified the element :: By.xpath: //div//ul[@id='tabMenuContainer']//li//a[contains(text(),'Roles and Permissions')]
+2020-01-20 08:05:51,721  INFO (main:com.insight.accelerators.ActionEngine:click:675) - +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+2020-01-20 08:05:51,738  INFO (main:com.insight.report.ReportXML:captureTestStepDetails:493) - step description : Successfully Clicked On 
+2020-01-20 08:05:51,740  INFO (main:com.insight.report.ReportXML:captureTestStepDetails:536) - Test method name : Tc_SBP04
+2020-01-20 08:05:51,751  INFO (main:com.insight.report.ReportXML:captureTestStepDetails:620) - File saved
+2020-01-20 08:05:52,079  INFO (main:com.insight.accelerators.ActionEngine:setPermissions:480) - Allow Edit of Shipping Text fields check box already checked: Allow Edit of Shipping Text fields
+2020-01-20 08:05:52,096  INFO (main:com.insight.report.ReportXML:captureTestStepDetails:493) - step description : check box already checked::Allow Edit of Shipping Text fields
+2020-01-20 08:05:52,097  INFO (main:com.insight.report.ReportXML:captureTestStepDetails:536) - Test method name : Tc_SBP04
+2020-01-20 08:05:52,123  INFO (main:com.insight.report.ReportXML:captureTestStepDetails:620) - File saved
+2020-01-20 08:05:52,123  INFO (main:com.insight.accelerators.ActionEngine:click:663) - +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+2020-01-20 08:05:52,123  INFO (main:com.insight.accelerators.ActionEngine:click:664) - Class namecom.insight.Lib.CMTLibMethod name : setPermissions
+2020-01-20 08:05:52,123  INFO (main:com.insight.accelerators.ActionEngine:click:665) - Method : click  ::  Locator : Roles And Permissions
+2020-01-20 08:05:52,123  INFO (main:com.insight.accelerators.ActionEngine:click:668) - Waiting for element
+2020-01-20 08:05:52,192  INFO (main:com.insight.accelerators.ActionEngine:click:670) - Locator is Visible :: By.xpath: //div//ul[@id='tabMenuContainer']//li//a[contains(text(),'Roles and Permissions')]
+2020-01-20 08:05:52,547  INFO (main:com.insight.accelerators.ActionEngine:click:672) - Clicked on the Locator
+2020-01-20 08:05:53,307  INFO (main:com.insight.accelerators.ActionEngine:click:674) - identified the element :: By.xpath: //div//ul[@id='tabMenuContainer']//li//a[contains(text(),'Roles and Permissions')]
+2020-01-20 08:05:53,307  INFO (main:com.insight.accelerators.ActionEngine:click:675) - +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+2020-01-20 08:05:53,326  INFO (main:com.insight.report.ReportXML:captureTestStepDetails:493) - step description : Successfully Clicked On 
+2020-01-20 08:05:53,328  INFO (main:com.insight.report.ReportXML:captureTestStepDetails:536) - Test method name : Tc_SBP04
+2020-01-20 08:05:53,336  INFO (main:com.insight.report.ReportXML:captureTestStepDetails:620) - File saved
+2020-01-20 08:05:53,524  INFO (main:com.insight.accelerators.ActionEngine:setPermissions:480) - Enable Force Attention ship Line Entry check box already checked: Enable Force Attention ship Line Entry
+2020-01-20 08:05:53,561  INFO (main:com.insight.report.ReportXML:captureTestStepDetails:493) - step description : check box already checked::Enable Force Attention ship Line Entry
+2020-01-20 08:05:53,562  INFO (main:com.insight.report.ReportXML:captureTestStepDetails:536) - Test method name : Tc_SBP04
+2020-01-20 08:05:53,572  INFO (main:com.insight.report.ReportXML:captureTestStepDetails:620) - File saved
+2020-01-20 08:05:53,572  INFO (main:com.insight.accelerators.ActionEngine:waitForVisibilityOfElement:289) - +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+2020-01-20 08:05:53,572  INFO (main:com.insight.accelerators.ActionEngine:waitForVisibilityOfElement:290) - Class namecom.insight.Lib.CMTLibMethod name : clickCheckOutSettings
+2020-01-20 08:05:53,572  INFO (main:com.insight.accelerators.ActionEngine:waitForVisibilityOfElement:291) - Method : clickCheckOutSettings  ::  Locator : User Tabs::Checkout Settings
+2020-01-20 08:05:53,752  INFO (main:com.insight.accelerators.ActionEngine:waitForVisibilityOfElement:296) - +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+2020-01-20 08:05:53,768  INFO (main:com.insight.report.ReportXML:captureTestStepDetails:493) - step description : Element :: User Tabs::Checkout Settings  is visible
+2020-01-20 08:05:53,770  INFO (main:com.insight.report.ReportXML:captureTestStepDetails:536) - Test method name : Tc_SBP04
+2020-01-20 08:05:53,778  INFO (main:com.insight.report.ReportXML:captureTestStepDetails:620) - File saved
+2020-01-20 08:05:53,779  INFO (main:com.insight.accelerators.ActionEngine:click:663) - +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+2020-01-20 08:05:53,779  INFO (main:com.insight.accelerators.ActionEngine:click:664) - Class namecom.insight.Lib.CMTLibMethod name : clickCheckOutSettings
+2020-01-20 08:05:53,779  INFO (main:com.insight.accelerators.ActionEngine:click:665) - Method : click  ::  Locator : User Tabs::Checkout Settings
+2020-01-20 08:05:53,779  INFO (main:com.insight.accelerators.ActionEngine:click:668) - Waiting for element
+2020-01-20 08:05:53,921  INFO (main:com.insight.accelerators.ActionEngine:click:670) - Locator is Visible :: By.xpath: //div//ul[@id='tabMenuContainer']//li//a[contains(text(),'Checkout Settings')]
+2020-01-20 08:05:54,013  INFO (main:com.insight.accelerators.ActionEngine:click:672) - Clicked on the Locator
+2020-01-20 08:05:54,214  INFO (main:com.insight.accelerators.ActionEngine:click:674) - identified the element :: By.xpath: //div//ul[@id='tabMenuContainer']//li//a[contains(text(),'Checkout Settings')]
+2020-01-20 08:05:54,214  INFO (main:com.insight.accelerators.ActionEngine:click:675) - +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+2020-01-20 08:05:54,233  INFO (main:com.insight.report.ReportXML:captureTestStepDetails:493) - step description : Successfully Clicked On 
+2020-01-20 08:05:54,234  INFO (main:com.insight.report.ReportXML:captureTestStepDetails:536) - Test method name : Tc_SBP04
+2020-01-20 08:05:54,254  INFO (main:com.insight.report.ReportXML:captureTestStepDetails:620) - File saved
+2020-01-20 08:05:54,254  INFO (main:com.insight.accelerators.ActionEngine:waitForVisibilityOfElement:289) - +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+2020-01-20 08:05:54,254  INFO (main:com.insight.accelerators.ActionEngine:waitForVisibilityOfElement:290) - Class namecom.insight.Lib.CMTLibMethod name : selectOptionInCheckoutSettings
+2020-01-20 08:05:54,254  INFO (main:com.insight.accelerators.ActionEngine:waitForVisibilityOfElement:291) - Method : selectOptionInCheckoutSettings  ::  Locator : Wait forShipping Addresses
+2020-01-20 08:05:54,352  INFO (main:com.insight.accelerators.ActionEngine:waitForVisibilityOfElement:296) - +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+2020-01-20 08:05:54,369  INFO (main:com.insight.report.ReportXML:captureTestStepDetails:493) - step description : Element :: Wait forShipping Addresses  is visible
+2020-01-20 08:05:54,370  INFO (main:com.insight.report.ReportXML:captureTestStepDetails:536) - Test method name : Tc_SBP04
+2020-01-20 08:05:54,378  INFO (main:com.insight.report.ReportXML:captureTestStepDetails:620) - File saved
+2020-01-20 08:05:54,378  INFO (main:com.insight.accelerators.ActionEngine:click:663) - +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+2020-01-20 08:05:54,378  INFO (main:com.insight.accelerators.ActionEngine:click:664) - Class namecom.insight.Lib.CMTLibMethod name : selectOptionInCheckoutSettings
+2020-01-20 08:05:54,379  INFO (main:com.insight.accelerators.ActionEngine:click:665) - Method : click  ::  Locator : Click onShipping Addresses
+2020-01-20 08:05:54,379  INFO (main:com.insight.accelerators.ActionEngine:click:668) - Waiting for element
+2020-01-20 08:05:54,425  INFO (main:com.insight.accelerators.ActionEngine:click:670) - Locator is Visible :: By.xpath: //span[text()='Shipping Addresses']//parent::div//a
+2020-01-20 08:05:54,496  INFO (main:com.insight.accelerators.ActionEngine:click:672) - Clicked on the Locator
+2020-01-20 08:05:55,070  INFO (main:com.insight.accelerators.ActionEngine:click:674) - identified the element :: By.xpath: //span[text()='Shipping Addresses']//parent::div//a
+2020-01-20 08:05:55,070  INFO (main:com.insight.accelerators.ActionEngine:click:675) - +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+2020-01-20 08:05:55,091  INFO (main:com.insight.report.ReportXML:captureTestStepDetails:493) - step description : Successfully Clicked On 
+2020-01-20 08:05:55,093  INFO (main:com.insight.report.ReportXML:captureTestStepDetails:536) - Test method name : Tc_SBP04
+2020-01-20 08:05:55,101  INFO (main:com.insight.report.ReportXML:captureTestStepDetails:620) - File saved
+2020-01-20 08:05:55,101  INFO (main:com.insight.accelerators.ActionEngine:isElementPresent:757) - +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+2020-01-20 08:05:55,101  INFO (main:com.insight.accelerators.ActionEngine:dynamicWait:1977) - +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+2020-01-20 08:05:55,101  INFO (main:com.insight.accelerators.ActionEngine:dynamicWait:1978) - Class name : com.insight.accelerators.ActionEngineMethod name : isElementPresent
+2020-01-20 08:05:55,101  INFO (main:com.insight.accelerators.ActionEngine:dynamicWait:1979) - Method : isElementPresent  ::  Locator : By.xpath: //select[@id='ship_linking']
+2020-01-20 08:05:55,162  INFO (main:com.insight.accelerators.ActionEngine:dynamicWait:1984) - By.xpath: //select[@id='ship_linking']:: displayed succussfully
+2020-01-20 08:05:55,162  INFO (main:com.insight.accelerators.ActionEngine:dynamicWait:1985) - +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+2020-01-20 08:05:55,182  INFO (main:com.insight.accelerators.ActionEngine:isElementPresent:760) - +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+2020-01-20 08:05:55,204  INFO (main:com.insight.report.ReportXML:captureTestStepDetails:493) - step description : LINKEDACCOUNTSDROPDOWN is visible
+2020-01-20 08:05:55,206  INFO (main:com.insight.report.ReportXML:captureTestStepDetails:536) - Test method name : Tc_SBP04
+2020-01-20 08:05:55,216  INFO (main:com.insight.report.ReportXML:captureTestStepDetails:620) - File saved
+2020-01-20 08:05:55,423  INFO (main:com.insight.report.ReportXML:captureTestStepDetails:493) - step description : Unlink User from All Addresses  is Selected from the DropDownLink User To addresses
+2020-01-20 08:05:55,424  INFO (main:com.insight.report.ReportXML:captureTestStepDetails:536) - Test method name : Tc_SBP04
+2020-01-20 08:05:55,432  INFO (main:com.insight.report.ReportXML:captureTestStepDetails:620) - File saved
+2020-01-20 08:05:55,432  INFO (main:com.insight.accelerators.ActionEngine:click:663) - +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+2020-01-20 08:05:55,432  INFO (main:com.insight.accelerators.ActionEngine:click:664) - Class namecom.insight.Lib.ShipBillPayLibMethod name : SelectAllLinkedaddresses
+2020-01-20 08:05:55,432  INFO (main:com.insight.accelerators.ActionEngine:click:665) - Method : click  ::  Locator : Update Button Permissions
+2020-01-20 08:05:55,432  INFO (main:com.insight.accelerators.ActionEngine:click:668) - Waiting for element
+2020-01-20 08:05:55,514  INFO (main:com.insight.accelerators.ActionEngine:click:670) - Locator is Visible :: By.xpath: //div[@class='buttons']//a//span[contains(text(),'Update')]
+2020-01-20 08:05:55,594  INFO (main:com.insight.accelerators.ActionEngine:click:672) - Clicked on the Locator
+2020-01-20 08:05:55,949  INFO (main:com.insight.accelerators.ActionEngine:click:674) - identified the element :: By.xpath: //div[@class='buttons']//a//span[contains(text(),'Update')]
+2020-01-20 08:05:55,949  INFO (main:com.insight.accelerators.ActionEngine:click:675) - +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+2020-01-20 08:05:55,968  INFO (main:com.insight.report.ReportXML:captureTestStepDetails:493) - step description : Successfully Clicked On 
+2020-01-20 08:05:55,969  INFO (main:com.insight.report.ReportXML:captureTestStepDetails:536) - Test method name : Tc_SBP04
+2020-01-20 08:05:55,980  INFO (main:com.insight.report.ReportXML:captureTestStepDetails:620) - File saved
+2020-01-20 08:05:55,980  INFO (main:com.insight.accelerators.ActionEngine:isElementPresent:757) - +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+2020-01-20 08:05:55,980  INFO (main:com.insight.accelerators.ActionEngine:dynamicWait:1977) - +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+2020-01-20 08:05:55,980  INFO (main:com.insight.accelerators.ActionEngine:dynamicWait:1978) - Class name : com.insight.accelerators.ActionEngineMethod name : isElementPresent
+2020-01-20 08:05:55,980  INFO (main:com.insight.accelerators.ActionEngine:dynamicWait:1979) - Method : isElementPresent  ::  Locator : By.xpath: //div[@id='defaultBillingAddrDiv']
+2020-01-20 08:05:56,069  INFO (main:com.insight.accelerators.ActionEngine:dynamicWait:1984) - By.xpath: //div[@id='defaultBillingAddrDiv']:: displayed succussfully
+2020-01-20 08:05:56,069  INFO (main:com.insight.accelerators.ActionEngine:dynamicWait:1985) - +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+2020-01-20 08:05:56,099  INFO (main:com.insight.accelerators.ActionEngine:isElementPresent:760) - +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+2020-01-20 08:05:56,116  INFO (main:com.insight.report.ReportXML:captureTestStepDetails:493) - step description : No Defualt Address is visible
+2020-01-20 08:05:56,118  INFO (main:com.insight.report.ReportXML:captureTestStepDetails:536) - Test method name : Tc_SBP04
+2020-01-20 08:05:56,127  INFO (main:com.insight.report.ReportXML:captureTestStepDetails:620) - File saved
+2020-01-20 08:05:56,158  INFO (main:com.insight.report.ReportXML:captureTestStepDetails:493) - step description : No Defualt Address
+2020-01-20 08:05:56,159  INFO (main:com.insight.report.ReportXML:captureTestStepDetails:536) - Test method name : Tc_SBP04
+2020-01-20 08:05:56,175  INFO (main:com.insight.report.ReportXML:captureTestStepDetails:620) - File saved
+2020-01-20 08:05:56,175  INFO (main:com.insight.accelerators.ActionEngine:click:663) - +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+2020-01-20 08:05:56,175  INFO (main:com.insight.accelerators.ActionEngine:click:664) - Class namecom.insight.Lib.ShipBillPayLibMethod name : verifyNoDefaultAddress
+2020-01-20 08:05:56,175  INFO (main:com.insight.accelerators.ActionEngine:click:665) - Method : click  ::  Locator : Update Button Permissions
+2020-01-20 08:05:56,175  INFO (main:com.insight.accelerators.ActionEngine:click:668) - Waiting for element
+2020-01-20 08:05:56,238  INFO (main:com.insight.accelerators.ActionEngine:click:670) - Locator is Visible :: By.xpath: //div[@class='buttons']//a//span[contains(text(),'Update')]
+2020-01-20 08:05:56,281  INFO (main:com.insight.accelerators.ActionEngine:click:672) - Clicked on the Locator
+2020-01-20 08:05:56,600  INFO (main:com.insight.accelerators.ActionEngine:click:674) - identified the element :: By.xpath: //div[@class='buttons']//a//span[contains(text(),'Update')]
+2020-01-20 08:05:56,600  INFO (main:com.insight.accelerators.ActionEngine:click:675) - +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+2020-01-20 08:05:56,645  INFO (main:com.insight.report.ReportXML:captureTestStepDetails:493) - step description : Successfully Clicked On 
+2020-01-20 08:05:56,646  INFO (main:com.insight.report.ReportXML:captureTestStepDetails:536) - Test method name : Tc_SBP04
+2020-01-20 08:05:56,654  INFO (main:com.insight.report.ReportXML:captureTestStepDetails:620) - File saved
+2020-01-20 08:05:56,655  INFO (main:com.insight.accelerators.ActionEngine:waitForVisibilityOfElement:289) - +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+2020-01-20 08:05:56,655  INFO (main:com.insight.accelerators.ActionEngine:waitForVisibilityOfElement:290) - Class namecom.insight.Lib.ShipBillPayLibMethod name : verifyNoDefaultAddress
+2020-01-20 08:05:56,655  INFO (main:com.insight.accelerators.ActionEngine:waitForVisibilityOfElement:291) - Method : verifyNoDefaultAddress  ::  Locator : Shipping Address Option Updated Msg
+2020-01-20 08:05:56,723  INFO (main:com.insight.accelerators.ActionEngine:waitForVisibilityOfElement:296) - +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+2020-01-20 08:05:56,739  INFO (main:com.insight.report.ReportXML:captureTestStepDetails:493) - step description : Element :: Shipping Address Option Updated Msg  is visible
+2020-01-20 08:05:56,740  INFO (main:com.insight.report.ReportXML:captureTestStepDetails:536) - Test method name : Tc_SBP04
+2020-01-20 08:05:56,749  INFO (main:com.insight.report.ReportXML:captureTestStepDetails:620) - File saved
+2020-01-20 08:05:56,749  INFO (main:com.insight.accelerators.ActionEngine:waitForVisibilityOfElement:289) - +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+2020-01-20 08:05:56,749  INFO (main:com.insight.accelerators.ActionEngine:waitForVisibilityOfElement:290) - Class namecom.insight.Lib.CMTLibMethod name : selectOptionInCheckoutSettings
+2020-01-20 08:05:56,749  INFO (main:com.insight.accelerators.ActionEngine:waitForVisibilityOfElement:291) - Method : selectOptionInCheckoutSettings  ::  Locator : Wait forAdditional Notifications
+2020-01-20 08:05:56,819  INFO (main:com.insight.accelerators.ActionEngine:waitForVisibilityOfElement:296) - +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+2020-01-20 08:05:56,838  INFO (main:com.insight.report.ReportXML:captureTestStepDetails:493) - step description : Element :: Wait forAdditional Notifications  is visible
+2020-01-20 08:05:56,839  INFO (main:com.insight.report.ReportXML:captureTestStepDetails:536) - Test method name : Tc_SBP04
+2020-01-20 08:05:56,847  INFO (main:com.insight.report.ReportXML:captureTestStepDetails:620) - File saved
+2020-01-20 08:05:56,847  INFO (main:com.insight.accelerators.ActionEngine:click:663) - +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+2020-01-20 08:05:56,848  INFO (main:com.insight.accelerators.ActionEngine:click:664) - Class namecom.insight.Lib.CMTLibMethod name : selectOptionInCheckoutSettings
+2020-01-20 08:05:56,848  INFO (main:com.insight.accelerators.ActionEngine:click:665) - Method : click  ::  Locator : Click onAdditional Notifications
+2020-01-20 08:05:56,848  INFO (main:com.insight.accelerators.ActionEngine:click:668) - Waiting for element
+2020-01-20 08:05:56,879  INFO (main:com.insight.accelerators.ActionEngine:click:670) - Locator is Visible :: By.xpath: //span[text()='Additional Notifications']//parent::div//a
+2020-01-20 08:05:56,986  INFO (main:com.insight.accelerators.ActionEngine:click:672) - Clicked on the Locator
+2020-01-20 08:05:57,186  INFO (main:com.insight.accelerators.ActionEngine:click:674) - identified the element :: By.xpath: //span[text()='Additional Notifications']//parent::div//a
+2020-01-20 08:05:57,186  INFO (main:com.insight.accelerators.ActionEngine:click:675) - +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+2020-01-20 08:05:57,204  INFO (main:com.insight.report.ReportXML:captureTestStepDetails:493) - step description : Successfully Clicked On 
+2020-01-20 08:05:57,205  INFO (main:com.insight.report.ReportXML:captureTestStepDetails:536) - Test method name : Tc_SBP04
+2020-01-20 08:05:57,215  INFO (main:com.insight.report.ReportXML:captureTestStepDetails:620) - File saved
+2020-01-20 08:05:57,215  INFO (main:com.insight.accelerators.ActionEngine:clearData:2372) - +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+2020-01-20 08:05:57,215  INFO (main:com.insight.accelerators.ActionEngine:clearData:2373) - Class namecom.insight.Lib.ShipBillPayLibMethod name : enterEmail
+2020-01-20 08:05:57,215  INFO (main:com.insight.accelerators.ActionEngine:clearData:2374) - Method : enterEmail
+2020-01-20 08:05:57,398  INFO (main:com.insight.accelerators.ActionEngine:clearData:2379) - +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+2020-01-20 08:05:57,398  INFO (main:com.insight.accelerators.ActionEngine:typeText:1106) - +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+2020-01-20 08:05:57,398  INFO (main:com.insight.accelerators.ActionEngine:typeText:1107) - Class name : com.insight.Lib.ShipBillPayLibMethod name : enterEmail
+2020-01-20 08:05:57,398  INFO (main:com.insight.accelerators.ActionEngine:typeText:1108) - Method : Type  ::  Locator : Email Address Field Exist and Entered::TU_IUSADMIN@MAILINATOR.COM :: Data :TU_IUSADMIN@MAILINATOR.COM
+2020-01-20 08:05:57,399  INFO (main:com.insight.accelerators.ActionEngine:typeText:1110) - Waiting for element :
+2020-01-20 08:05:57,399  INFO (main:com.insight.accelerators.ActionEngine:typeText:1112) - Locator is Visible :: By.xpath: //input[@id='addEmailAddress']
+2020-01-20 08:05:57,883  INFO (main:com.insight.accelerators.ActionEngine:typeText:1115) - Typed the Locator data :: TU_IUSADMIN@MAILINATOR.COM
+2020-01-20 08:05:57,883  INFO (main:com.insight.accelerators.ActionEngine:typeText:1116) - +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+2020-01-20 08:05:57,899  INFO (main:com.insight.report.ReportXML:captureTestStepDetails:493) - step description : Successfully Entered value 'TU_IUSADMIN@MAILINATOR.COM'
+2020-01-20 08:05:57,901  INFO (main:com.insight.report.ReportXML:captureTestStepDetails:536) - Test method name : Tc_SBP04
+2020-01-20 08:05:57,910  INFO (main:com.insight.report.ReportXML:captureTestStepDetails:620) - File saved
+2020-01-20 08:05:57,910  INFO (main:com.insight.accelerators.ActionEngine:click:663) - +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+2020-01-20 08:05:57,910  INFO (main:com.insight.accelerators.ActionEngine:click:664) - Class namecom.insight.Lib.ShipBillPayLibMethod name : enterEmail
+2020-01-20 08:05:57,910  INFO (main:com.insight.accelerators.ActionEngine:click:665) - Method : click  ::  Locator : Update Button Email Address in Additional Notification
+2020-01-20 08:05:57,911  INFO (main:com.insight.accelerators.ActionEngine:click:668) - Waiting for element
+2020-01-20 08:05:57,969  INFO (main:com.insight.accelerators.ActionEngine:click:670) - Locator is Visible :: By.xpath: //div[@class='buttons']//a//span[contains(text(),'Update')]
+2020-01-20 08:05:58,007  INFO (main:com.insight.accelerators.ActionEngine:click:672) - Clicked on the Locator
+2020-01-20 08:05:58,836  INFO (main:com.insight.accelerators.ActionEngine:click:674) - identified the element :: By.xpath: //div[@class='buttons']//a//span[contains(text(),'Update')]
+2020-01-20 08:05:58,836  INFO (main:com.insight.accelerators.ActionEngine:click:675) - +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+2020-01-20 08:05:58,860  INFO (main:com.insight.report.ReportXML:captureTestStepDetails:493) - step description : Successfully Clicked On 
+2020-01-20 08:05:58,861  INFO (main:com.insight.report.ReportXML:captureTestStepDetails:536) - Test method name : Tc_SBP04
+2020-01-20 08:05:58,876  INFO (main:com.insight.report.ReportXML:captureTestStepDetails:620) - File saved
+2020-01-20 08:05:58,876  INFO (main:com.insight.accelerators.ActionEngine:isElementPresent:757) - +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+2020-01-20 08:05:58,876  INFO (main:com.insight.accelerators.ActionEngine:dynamicWait:1977) - +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+2020-01-20 08:05:58,876  INFO (main:com.insight.accelerators.ActionEngine:dynamicWait:1978) - Class name : com.insight.accelerators.ActionEngineMethod name : isElementPresent
+2020-01-20 08:05:58,876  INFO (main:com.insight.accelerators.ActionEngine:dynamicWait:1979) - Method : isElementPresent  ::  Locator : By.id: reportingAdminLoginAs
+2020-01-20 08:06:18,911  INFO (main:com.insight.accelerators.ActionEngine:dynamicWait:1987) - Timed out after 10 seconds waiting for presence of element located by: By.id: reportingAdminLoginAs
+Build info: version: '2.53.1', revision: 'a36b8b1cd5757287168e54b817830adce9b0158d', time: '2016-06-30 19:26:09'
+System info: host: 'USPHXWQTP04', ip: '172.25.6.15', os.name: 'Windows Server 2016', os.arch: 'amd64', os.version: '10.0', java.version: '1.8.0_231'
+Driver info: org.openqa.selenium.support.events.EventFiringWebDriver
+2020-01-20 08:06:38,946  INFO (main:com.insight.accelerators.ActionEngine:isElementPresent:765) - no such element: Unable to locate element: {"method":"id","selector":"reportingAdminLoginAs"}
+  (Session info: chrome=78.0.3904.70)
+  (Driver info: chromedriver=77.0.3865.40 (f484704e052e0b556f8030b65b953dce96503217-refs/branch-heads/3865@{#442}),platform=Windows NT 10.0.14393 x86_64) (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 20.03 seconds
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+Build info: version: '2.53.1', revision: 'a36b8b1cd5757287168e54b817830adce9b0158d', time: '2016-06-30 19:26:09'
+System info: host: 'USPHXWQTP04', ip: '172.25.6.15', os.name: 'Windows Server 2016', os.arch: 'amd64', os.version: '10.0', java.version: '1.8.0_231'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities [{mobileEmulationEnabled=false, timeouts={implicit=0, pageLoad=300000, script=30000}, hasTouchScreen=false, platform=XP, acceptSslCerts=false, goog:chromeOptions={debuggerAddress=localhost:60624}, acceptInsecureCerts=false, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, setWindowRect=true, unexpectedAlertBehaviour=ignore, applicationCacheEnabled=false, rotatable=false, networkConnectionEnabled=false, chrome={chromedriverVersion=77.0.3865.40 (f484704e052e0b556f8030b65b953dce96503217-refs/branch-heads/3865@{#442}), userDataDir=C:\Users\qtpsvc\AppData\Local\Temp\2\scoped_dir14344_16972377}, takesHeapSnapshot=true, pageLoadStrategy=normal, strictFileInteractability=false, databaseEnabled=false, handlesAlerts=true, version=78.0.3904.70, browserConnectionEnabled=false, proxy={}, nativeEvents=true, locationContextEnabled=true, cssSelectorsEnabled=true}]
+Session ID: fb8b2627ce7d51fa35c49398fbacb8b9
+*** Element info: {Using=id, value=reportingAdminLoginAs}
+2020-01-20 08:06:38,947  INFO (main:com.insight.accelerators.ActionEngine:isElementPresent:757) - +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+2020-01-20 08:06:38,947  INFO (main:com.insight.accelerators.ActionEngine:dynamicWait:1977) - +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+2020-01-20 08:06:38,947  INFO (main:com.insight.accelerators.ActionEngine:dynamicWait:1978) - Class name : com.insight.accelerators.ActionEngineMethod name : isElementPresent
+2020-01-20 08:06:38,947  INFO (main:com.insight.accelerators.ActionEngine:dynamicWait:1979) - Method : isElementPresent  ::  Locator : By.xpath: //div[@id='userLoginAs']//a
+2020-01-20 08:06:38,994  INFO (main:com.insight.accelerators.ActionEngine:dynamicWait:1984) - By.xpath: //div[@id='userLoginAs']//a:: displayed succussfully
+2020-01-20 08:06:38,994  INFO (main:com.insight.accelerators.ActionEngine:dynamicWait:1985) - +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+2020-01-20 08:06:39,036  INFO (main:com.insight.accelerators.ActionEngine:isElementPresent:760) - +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+2020-01-20 08:06:39,053  INFO (main:com.insight.report.ReportXML:captureTestStepDetails:493) - step description : Login as is visible
+2020-01-20 08:06:39,056  INFO (main:com.insight.report.ReportXML:captureTestStepDetails:536) - Test method name : Tc_SBP04
+2020-01-20 08:06:39,066  INFO (main:com.insight.report.ReportXML:captureTestStepDetails:620) - File saved
+2020-01-20 08:06:39,067  INFO (main:com.insight.accelerators.ActionEngine:click:663) - +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+2020-01-20 08:06:39,067  INFO (main:com.insight.accelerators.ActionEngine:click:664) - Class namecom.insight.Lib.CMTLibMethod name : loginAsAdminCMT
+2020-01-20 08:06:39,067  INFO (main:com.insight.accelerators.ActionEngine:click:665) - Method : click  ::  Locator : Login as
+2020-01-20 08:06:39,067  INFO (main:com.insight.accelerators.ActionEngine:click:668) - Waiting for element
+2020-01-20 08:06:39,116  INFO (main:com.insight.accelerators.ActionEngine:click:670) - Locator is Visible :: By.xpath: //div[@id='userLoginAs']//a
+2020-01-20 08:06:39,161  INFO (main:com.insight.accelerators.ActionEngine:click:672) - Clicked on the Locator
+2020-01-20 08:06:39,339  INFO (main:com.insight.accelerators.ActionEngine:click:674) - identified the element :: By.xpath: //div[@id='userLoginAs']//a
+2020-01-20 08:06:39,339  INFO (main:com.insight.accelerators.ActionEngine:click:675) - +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+2020-01-20 08:06:39,356  INFO (main:com.insight.report.ReportXML:captureTestStepDetails:493) - step description : Successfully Clicked On 
+2020-01-20 08:06:39,357  INFO (main:com.insight.report.ReportXML:captureTestStepDetails:536) - Test method name : Tc_SBP04
+2020-01-20 08:06:39,369  INFO (main:com.insight.report.ReportXML:captureTestStepDetails:620) - File saved
+2020-01-20 08:07:00,473  INFO (main:com.insight.accelerators.ActionEngine:waitForVisibilityOfElement:289) - +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+2020-01-20 08:07:00,474  INFO (main:com.insight.accelerators.ActionEngine:waitForVisibilityOfElement:290) - Class namecom.insight.Lib.CommonLibMethod name : searchProduct
+2020-01-20 08:07:00,474  INFO (main:com.insight.accelerators.ActionEngine:waitForVisibilityOfElement:291) - Method : searchProduct  ::  Locator : SEARCH FIELD
+2020-01-20 08:07:07,427  INFO (main:com.insight.accelerators.ActionEngine:waitForVisibilityOfElement:296) - +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+2020-01-20 08:07:07,480  INFO (main:com.insight.report.ReportXML:captureTestStepDetails:493) - step description : Element :: SEARCH FIELD  is visible
+2020-01-20 08:07:07,487  INFO (main:com.insight.report.ReportXML:captureTestStepDetails:536) - Test method name : Tc_SBP04
+2020-01-20 08:07:07,549  INFO (main:com.insight.report.ReportXML:captureTestStepDetails:620) - File saved
+2020-01-20 08:07:07,550  INFO (main:com.insight.accelerators.ActionEngine:typeForSearchingProduct:916) - +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+2020-01-20 08:07:07,550  INFO (main:com.insight.accelerators.ActionEngine:typeForSearchingProduct:917) - Class name : com.insight.Lib.CommonLibMethod name : searchProduct
+2020-01-20 08:07:07,550  INFO (main:com.insight.accelerators.ActionEngine:typeForSearchingProduct:918) - Method : Type  ::  Locator : SEARCHFIELD :: Data :Workstations
+2020-01-20 08:07:12,559  INFO (main:com.insight.accelerators.ActionEngine:typeForSearchingProduct:921) - Waiting for element :
+2020-01-20 08:07:16,919  INFO (main:com.insight.accelerators.ActionEngine:typeForSearchingProduct:923) - Locator is Visible :: By.xpath: //input[@class='c-input  c-header-search__input']
+2020-01-20 08:07:19,331  INFO (main:com.insight.accelerators.ActionEngine:typeForSearchingProduct:928) - Cleared the existing Locator data : 
+2020-01-20 08:08:07,894  INFO (main:com.insight.accelerators.ActionEngine:typeForSearchingProduct:955) - Typed the Locator data :: Workstations
+2020-01-20 08:08:07,894  INFO (main:com.insight.accelerators.ActionEngine:typeForSearchingProduct:956) - +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+2020-01-20 08:08:07,894  INFO (main:com.insight.accelerators.ActionEngine:typeForSearchingProduct:968) - +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+2020-01-20 08:08:08,249  INFO (main:com.insight.report.ReportXML:captureTestStepDetails:493) - step description : Successfully Entered value 
+2020-01-20 08:08:08,254  INFO (main:com.insight.report.ReportXML:captureTestStepDetails:536) - Test method name : Tc_SBP04
+2020-01-20 08:08:08,368  INFO (main:com.insight.report.ReportXML:captureTestStepDetails:620) - File saved

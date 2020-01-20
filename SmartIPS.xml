@@ -1,0 +1,851 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suite name='INSIGHT Automation test suite'>
+
+    <parameter name="suiteExecuted" value="Regression" />
+    <parameter name="executionType" value="Sequential" />
+    <listeners>
+        <listener class-name="org.uncommons.reportng.HTMLReporter" />
+        <listener class-name="org.uncommons.reportng.JUnitXMLReporter" />
+       
+    </listeners>
+ <test name="CQT15" preserve-order='true'>
+     <parameter name="automationName" value="selenium"></parameter>
+      <parameter name="browser" value="chrome"></parameter>
+       <parameter name="browserVersion" value="NA"></parameter> 
+       <parameter name="environment" value="local"></parameter>   
+      <parameter name="platformName" value="windows 10"></parameter>
+       <parameter name="autoStart" value="web"></parameter>
+      <parameter name="seleniumurl" value="local"></parameter>      
+        <parameter name="browserName" value="chrome"></parameter>
+        <parameter name="browserVersion" value="76.0"></parameter>
+        <parameter name="seleniumurl" value="local"></parameter>
+         <parameter name="executionType" value="Sequential"></parameter>
+        <classes>
+            <class name="com.insight.SmartTest.Scripts.IPS.CQT15_IPSContractPricingError">
+	    <parameter name="nextTestJoin" value="false"></parameter>
+            <parameter name="StartRow" value="1"></parameter>
+            <parameter name="EndRow" value="null"></parameter>
+            </class>
+        </classes>
+    </test>	
+			<test name="CQT16" preserve-order='true'>
+     <parameter name="automationName" value="selenium"></parameter>
+      <parameter name="browser" value="chrome"></parameter>
+       <parameter name="browserVersion" value="NA"></parameter> 
+       <parameter name="environment" value="local"></parameter>   
+      <parameter name="platformName" value="windows 10"></parameter>
+       <parameter name="autoStart" value="web"></parameter>
+      <parameter name="seleniumurl" value="local"></parameter>      
+        <parameter name="browserName" value="chrome"></parameter>
+        <parameter name="browserVersion" value="76.0"></parameter>
+        <parameter name="seleniumurl" value="local"></parameter>
+         <parameter name="executionType" value="Sequential"></parameter>
+        <classes>
+            <class name="com.insight.SmartTest.Scripts.IPS.CQT16_IPSCopyLinksTest">
+			<parameter name="nextTestJoin" value="false"></parameter>
+            <parameter name="StartRow" value="1"></parameter>
+            <parameter name="EndRow" value="null"></parameter>
+            </class>
+        </classes>
+    </test>
+			<test name="CQT17" preserve-order='true'>
+     <parameter name="automationName" value="selenium"></parameter>
+      <parameter name="browser" value="chrome"></parameter>
+       <parameter name="browserVersion" value="NA"></parameter> 
+       <parameter name="environment" value="local"></parameter>   
+      <parameter name="platformName" value="windows 10"></parameter>
+       <parameter name="autoStart" value="web"></parameter>
+      <parameter name="seleniumurl" value="local"></parameter>      
+        <parameter name="browserName" value="chrome"></parameter>
+        <parameter name="browserVersion" value="76.0"></parameter>
+        <parameter name="seleniumurl" value="local"></parameter>
+         <parameter name="executionType" value="Sequential"></parameter>
+        <classes>
+            <class name="com.insight.SmartTest.Scripts.IPS.CQT17_IPSReportingFieldDataFEDSoftwareTest">
+			<parameter name="nextTestJoin" value="false"></parameter>
+            <parameter name="StartRow" value="1"></parameter>
+            <parameter name="EndRow" value="null"></parameter>
+            </class>
+        </classes>
+    </test>
+			
+			<test name="CQT18" preserve-order='true'>
+     <parameter name="automationName" value="selenium"></parameter>
+      <parameter name="browser" value="chrome"></parameter>
+       <parameter name="browserVersion" value="NA"></parameter> 
+       <parameter name="environment" value="local"></parameter>   
+      <parameter name="platformName" value="windows 10"></parameter>
+       <parameter name="autoStart" value="web"></parameter>
+      <parameter name="seleniumurl" value="local"></parameter>      
+        <parameter name="browserName" value="chrome"></parameter>
+        <parameter name="browserVersion" value="76.0"></parameter>
+        <parameter name="seleniumurl" value="local"></parameter>
+         <parameter name="executionType" value="Sequential"></parameter>
+        <classes>
+            <class name="com.insight.SmartTest.Scripts.IPS.CQT18_IPSReportingFieldDataSLEDSoftwareTest">
+			<parameter name="nextTestJoin" value="false"></parameter>
+            <parameter name="StartRow" value="1"></parameter>
+            <parameter name="EndRow" value="null"></parameter>
+            </class>
+        </classes>
+    </test>
+			<test name="CQT19" preserve-order='true'>
+     <parameter name="automationName" value="selenium"></parameter>
+      <parameter name="browser" value="chrome"></parameter>
+       <parameter name="browserVersion" value="NA"></parameter> 
+       <parameter name="environment" value="local"></parameter>   
+      <parameter name="platformName" value="windows 10"></parameter>
+       <parameter name="autoStart" value="web"></parameter>
+      <parameter name="seleniumurl" value="local"></parameter>      
+        <parameter name="browserName" value="chrome"></parameter>
+        <parameter name="browserVersion" value="76.0"></parameter>
+        <parameter name="seleniumurl" value="local"></parameter>
+         <parameter name="executionType" value="Sequential"></parameter>
+        <classes>
+            <class name="com.insight.SmartTest.Scripts.IPS.CQT19_IPSCiscoIDRefreshIconTest">
+			<parameter name="nextTestJoin" value="false"></parameter>
+            <parameter name="StartRow" value="1"></parameter>
+            <parameter name="EndRow" value="null"></parameter>
+            </class>
+        </classes>
+    </test>			
+			<test name="CQT20" preserve-order='true'>
+     <parameter name="automationName" value="selenium"></parameter>
+      <parameter name="browser" value="chrome"></parameter>
+       <parameter name="browserVersion" value="NA"></parameter> 
+       <parameter name="environment" value="local"></parameter>   
+      <parameter name="platformName" value="windows 10"></parameter>
+       <parameter name="autoStart" value="web"></parameter>
+      <parameter name="seleniumurl" value="local"></parameter>      
+        <parameter name="browserName" value="chrome"></parameter>
+        <parameter name="browserVersion" value="76.0"></parameter>
+        <parameter name="seleniumurl" value="local"></parameter>
+         <parameter name="executionType" value="Sequential"></parameter>
+        <classes>
+            <class name="com.insight.SmartTest.Scripts.IPS.CQT20_IPSCiscoIDSmartnetCoverageValidationTest">
+			<parameter name="nextTestJoin" value="false"></parameter>
+            <parameter name="StartRow" value="1"></parameter>
+            <parameter name="EndRow" value="null"></parameter>
+            </class>
+        </classes>
+    </test>	
+     			
+			<test name="CQT21" preserve-order='true'>
+     <parameter name="automationName" value="selenium"></parameter>
+      <parameter name="browser" value="chrome"></parameter>
+       <parameter name="browserVersion" value="NA"></parameter> 
+       <parameter name="environment" value="local"></parameter>   
+      <parameter name="platformName" value="windows 10"></parameter>
+       <parameter name="autoStart" value="web"></parameter>
+      <parameter name="seleniumurl" value="local"></parameter>      
+        <parameter name="browserName" value="chrome"></parameter>
+        <parameter name="browserVersion" value="76.0"></parameter>
+        <parameter name="seleniumurl" value="local"></parameter>
+         <parameter name="executionType" value="Sequential"></parameter>
+        <classes>
+            <class name="com.insight.SmartTest.Scripts.IPS.CQT21_IPSContractpricing_CapatListPrice">
+			<parameter name="nextTestJoin" value="false"></parameter>
+            <parameter name="StartRow" value="1"></parameter>
+            <parameter name="EndRow" value="null"></parameter>
+            </class>
+        </classes>
+    </test>	
+     			
+			<test name="CQT22" preserve-order='true'>
+     <parameter name="automationName" value="selenium"></parameter>
+      <parameter name="browser" value="chrome"></parameter>
+       <parameter name="browserVersion" value="NA"></parameter> 
+       <parameter name="environment" value="local"></parameter>   
+      <parameter name="platformName" value="windows 10"></parameter>
+       <parameter name="autoStart" value="web"></parameter>
+      <parameter name="seleniumurl" value="local"></parameter>      
+        <parameter name="browserName" value="chrome"></parameter>
+        <parameter name="browserVersion" value="76.0"></parameter>
+        <parameter name="seleniumurl" value="local"></parameter>
+         <parameter name="executionType" value="Sequential"></parameter>
+        <classes>
+            <class name="com.insight.SmartTest.Scripts.IPS.CQT22_IPSContractpricing_ContractReviewContract">
+			<parameter name="nextTestJoin" value="false"></parameter>
+            <parameter name="StartRow" value="1"></parameter>
+            <parameter name="EndRow" value="null"></parameter>
+            </class>
+        </classes>
+    </test>	
+     			
+			<test name="CQT23" preserve-order='true'>
+     <parameter name="automationName" value="selenium"></parameter>
+      <parameter name="browser" value="chrome"></parameter>
+       <parameter name="browserVersion" value="NA"></parameter> 
+       <parameter name="environment" value="local"></parameter>   
+      <parameter name="platformName" value="windows 10"></parameter>
+       <parameter name="autoStart" value="web"></parameter>
+      <parameter name="seleniumurl" value="local"></parameter>      
+        <parameter name="browserName" value="chrome"></parameter>
+        <parameter name="browserVersion" value="76.0"></parameter>
+        <parameter name="seleniumurl" value="local"></parameter>
+         <parameter name="executionType" value="Sequential"></parameter>
+        <classes>
+            <class name="com.insight.SmartTest.Scripts.IPS.CQT23_IPSContractpricing_CostplusContract">
+			<parameter name="nextTestJoin" value="false"></parameter>
+            <parameter name="StartRow" value="1"></parameter>
+            <parameter name="EndRow" value="null"></parameter>
+            </class>
+        </classes>
+    </test>	
+    		
+			<test name="CQT24" preserve-order='true'>
+     <parameter name="automationName" value="selenium"></parameter>
+      <parameter name="browser" value="chrome"></parameter>
+       <parameter name="browserVersion" value="NA"></parameter> 
+       <parameter name="environment" value="local"></parameter>   
+      <parameter name="platformName" value="windows 10"></parameter>
+       <parameter name="autoStart" value="web"></parameter>
+      <parameter name="seleniumurl" value="local"></parameter>      
+        <parameter name="browserName" value="chrome"></parameter>
+        <parameter name="browserVersion" value="76.0"></parameter>
+        <parameter name="seleniumurl" value="local"></parameter>
+         <parameter name="executionType" value="Sequential"></parameter>
+        <classes>
+            <class name="com.insight.SmartTest.Scripts.IPS.CQT24_IPSContractpricingFixedPriceContract">
+			<parameter name="nextTestJoin" value="false"></parameter>
+            <parameter name="StartRow" value="1"></parameter>
+            <parameter name="EndRow" value="null"></parameter>
+            </class>
+        </classes>
+    </test>	
+     			
+			<test name="CQT25" preserve-order='true'>
+     <parameter name="automationName" value="selenium"></parameter>
+      <parameter name="browser" value="chrome"></parameter>
+       <parameter name="browserVersion" value="NA"></parameter> 
+       <parameter name="environment" value="local"></parameter>   
+      <parameter name="platformName" value="windows 10"></parameter>
+       <parameter name="autoStart" value="web"></parameter>
+      <parameter name="seleniumurl" value="local"></parameter>      
+        <parameter name="browserName" value="chrome"></parameter>
+        <parameter name="browserVersion" value="76.0"></parameter>
+        <parameter name="seleniumurl" value="local"></parameter>
+         <parameter name="executionType" value="Sequential"></parameter>
+        <classes>
+            <class name="com.insight.SmartTest.Scripts.IPS.CQT25_IPSContractpricing_InsightListminusContract">
+			<parameter name="nextTestJoin" value="false"></parameter>
+            <parameter name="StartRow" value="1"></parameter>
+            <parameter name="EndRow" value="null"></parameter>
+            </class>
+        </classes>
+    </test>	
+    
+     			
+			<test name="CQT26" preserve-order='true'>
+     <parameter name="automationName" value="selenium"></parameter>
+      <parameter name="browser" value="chrome"></parameter>
+       <parameter name="browserVersion" value="NA"></parameter> 
+       <parameter name="environment" value="local"></parameter>   
+      <parameter name="platformName" value="windows 10"></parameter>
+       <parameter name="autoStart" value="web"></parameter>
+      <parameter name="seleniumurl" value="local"></parameter>      
+        <parameter name="browserName" value="chrome"></parameter>
+        <parameter name="browserVersion" value="76.0"></parameter>
+        <parameter name="seleniumurl" value="local"></parameter>
+         <parameter name="executionType" value="Sequential"></parameter>
+        <classes>
+            <class name="com.insight.SmartTest.Scripts.IPS.CQT26_IPSContractpricin_MSRPminusContract">
+			<parameter name="nextTestJoin" value="false"></parameter>
+            <parameter name="StartRow" value="1"></parameter>
+            <parameter name="EndRow" value="null"></parameter>
+            </class>
+        </classes>
+    </test>	 			
+			<test name="CQT27" preserve-order='true'>
+     <parameter name="automationName" value="selenium"></parameter>
+      <parameter name="browser" value="chrome"></parameter>
+       <parameter name="browserVersion" value="NA"></parameter> 
+       <parameter name="environment" value="local"></parameter>   
+      <parameter name="platformName" value="windows 10"></parameter>
+       <parameter name="autoStart" value="web"></parameter>
+      <parameter name="seleniumurl" value="local"></parameter>      
+        <parameter name="browserName" value="chrome"></parameter>
+        <parameter name="browserVersion" value="76.0"></parameter>
+        <parameter name="seleniumurl" value="local"></parameter>
+         <parameter name="executionType" value="Sequential"></parameter>
+        <classes>
+            <class name="com.insight.SmartTest.Scripts.IPS.CQT27_IPSContractpricing_ReferenceContract">
+			<parameter name="nextTestJoin" value="false"></parameter>
+            <parameter name="StartRow" value="1"></parameter>
+            <parameter name="EndRow" value="null"></parameter>
+            </class>
+        </classes>
+    </test>	
+     			
+			<test name="CQT28" preserve-order='true'>
+     <parameter name="automationName" value="selenium"></parameter>
+      <parameter name="browser" value="chrome"></parameter>
+       <parameter name="browserVersion" value="NA"></parameter> 
+       <parameter name="environment" value="local"></parameter>   
+      <parameter name="platformName" value="windows 10"></parameter>
+       <parameter name="autoStart" value="web"></parameter>
+      <parameter name="seleniumurl" value="local"></parameter>      
+        <parameter name="browserName" value="chrome"></parameter>
+        <parameter name="browserVersion" value="76.0"></parameter>
+        <parameter name="seleniumurl" value="local"></parameter>
+         <parameter name="executionType" value="Sequential"></parameter>
+        <classes>
+            <class name="com.insight.SmartTest.Scripts.IPS.CQT28_IPSContractpricing_ReferenceYIPRContract">
+			<parameter name="nextTestJoin" value="false"></parameter>
+            <parameter name="StartRow" value="1"></parameter>
+            <parameter name="EndRow" value="null"></parameter>
+            </class>
+        </classes>
+    </test>	
+     			
+			<test name="CQT29" preserve-order='true'>
+     <parameter name="automationName" value="selenium"></parameter>
+      <parameter name="browser" value="chrome"></parameter>
+       <parameter name="browserVersion" value="NA"></parameter> 
+       <parameter name="environment" value="local"></parameter>   
+      <parameter name="platformName" value="windows 10"></parameter>
+       <parameter name="autoStart" value="web"></parameter>
+      <parameter name="seleniumurl" value="local"></parameter>      
+        <parameter name="browserName" value="chrome"></parameter>
+        <parameter name="browserVersion" value="76.0"></parameter>
+        <parameter name="seleniumurl" value="local"></parameter>
+         <parameter name="executionType" value="Sequential"></parameter>
+        <classes>
+            <class name="com.insight.SmartTest.Scripts.IPS.CQT29_IPSContractpricing_USCPriceMatchContract">
+			<parameter name="nextTestJoin" value="false"></parameter>
+            <parameter name="StartRow" value="1"></parameter>
+            <parameter name="EndRow" value="null"></parameter>
+            </class>
+        </classes>
+    </test>	
+     			
+			<test name="CQT30" preserve-order='true'>
+     <parameter name="automationName" value="selenium"></parameter>
+      <parameter name="browser" value="chrome"></parameter>
+       <parameter name="browserVersion" value="NA"></parameter> 
+       <parameter name="environment" value="local"></parameter>   
+      <parameter name="platformName" value="windows 10"></parameter>
+       <parameter name="autoStart" value="web"></parameter>
+      <parameter name="seleniumurl" value="local"></parameter>      
+        <parameter name="browserName" value="chrome"></parameter>
+        <parameter name="browserVersion" value="76.0"></parameter>
+        <parameter name="seleniumurl" value="local"></parameter>
+         <parameter name="executionType" value="Sequential"></parameter>
+        <classes>
+            <class name="com.insight.SmartTest.Scripts.IPS.CQT30_IPSCPSSNonTaxTest">
+			<parameter name="nextTestJoin" value="false"></parameter>
+            <parameter name="StartRow" value="1"></parameter>
+            <parameter name="EndRow" value="null"></parameter>
+            </class>
+        </classes>
+    </test>	
+     			
+			<test name="CQT31" preserve-order='true'>
+     <parameter name="automationName" value="selenium"></parameter>
+      <parameter name="browser" value="chrome"></parameter>
+       <parameter name="browserVersion" value="NA"></parameter> 
+       <parameter name="environment" value="local"></parameter>   
+      <parameter name="platformName" value="windows 10"></parameter>
+       <parameter name="autoStart" value="web"></parameter>
+      <parameter name="seleniumurl" value="local"></parameter>      
+        <parameter name="browserName" value="chrome"></parameter>
+        <parameter name="browserVersion" value="76.0"></parameter>
+        <parameter name="seleniumurl" value="local"></parameter>
+         <parameter name="executionType" value="Sequential"></parameter>
+        <classes>
+            <class name="com.insight.SmartTest.Scripts.IPS.CQT31_IPSERateNonTaxTest">
+			<parameter name="nextTestJoin" value="false"></parameter>
+            <parameter name="StartRow" value="1"></parameter>
+            <parameter name="EndRow" value="null"></parameter>
+            </class>
+        </classes>
+    </test>	
+     			
+			<test name="CQT32" preserve-order='true'>
+     <parameter name="automationName" value="selenium"></parameter>
+      <parameter name="browser" value="chrome"></parameter>
+       <parameter name="browserVersion" value="NA"></parameter> 
+       <parameter name="environment" value="local"></parameter>   
+      <parameter name="platformName" value="windows 10"></parameter>
+       <parameter name="autoStart" value="web"></parameter>
+      <parameter name="seleniumurl" value="local"></parameter>      
+        <parameter name="browserName" value="chrome"></parameter>
+        <parameter name="browserVersion" value="76.0"></parameter>
+        <parameter name="seleniumurl" value="local"></parameter>
+         <parameter name="executionType" value="Sequential"></parameter>
+        <classes>
+            <class name="com.insight.SmartTest.Scripts.IPS.CQT32_IPSERateTaxTest">
+			<parameter name="nextTestJoin" value="false"></parameter>
+            <parameter name="StartRow" value="1"></parameter>
+            <parameter name="EndRow" value="null"></parameter>
+            </class>
+        </classes>
+    </test>	
+     			
+			<test name="CQT33" preserve-order='true'>
+     <parameter name="automationName" value="selenium"></parameter>
+      <parameter name="browser" value="chrome"></parameter>
+       <parameter name="browserVersion" value="NA"></parameter> 
+       <parameter name="environment" value="local"></parameter>   
+      <parameter name="platformName" value="windows 10"></parameter>
+       <parameter name="autoStart" value="web"></parameter>
+      <parameter name="seleniumurl" value="local"></parameter>      
+        <parameter name="browserName" value="chrome"></parameter>
+        <parameter name="browserVersion" value="76.0"></parameter>
+        <parameter name="seleniumurl" value="local"></parameter>
+         <parameter name="executionType" value="Sequential"></parameter>
+        <classes>
+            <class name="com.insight.SmartTest.Scripts.IPS.CQT33_IPSCiscoID_ReferenceDocLinkingQuotes">
+			<parameter name="nextTestJoin" value="false"></parameter>
+            <parameter name="StartRow" value="1"></parameter>
+            <parameter name="EndRow" value="null"></parameter>
+            </class>
+        </classes>
+    </test>	
+     		
+			<test name="CQT34" preserve-order='true'>
+     <parameter name="automationName" value="selenium"></parameter>
+      <parameter name="browser" value="chrome"></parameter>
+       <parameter name="browserVersion" value="NA"></parameter> 
+       <parameter name="environment" value="local"></parameter>   
+      <parameter name="platformName" value="windows 10"></parameter>
+       <parameter name="autoStart" value="web"></parameter>
+      <parameter name="seleniumurl" value="local"></parameter>      
+        <parameter name="browserName" value="chrome"></parameter>
+        <parameter name="browserVersion" value="76.0"></parameter>
+        <parameter name="seleniumurl" value="local"></parameter>
+         <parameter name="executionType" value="Sequential"></parameter>
+        <classes>
+            <class name="com.insight.SmartTest.Scripts.IPS.CQT34_IPSBearNonTaxTest">
+			<parameter name="nextTestJoin" value="false"></parameter>
+            <parameter name="StartRow" value="1"></parameter>
+            <parameter name="EndRow" value="null"></parameter>
+            </class>
+        </classes>
+    </test>	
+    	
+			<test name="CQT35" preserve-order='true'>
+     <parameter name="automationName" value="selenium"></parameter>
+      <parameter name="browser" value="chrome"></parameter>
+       <parameter name="browserVersion" value="NA"></parameter> 
+       <parameter name="environment" value="local"></parameter>   
+      <parameter name="platformName" value="windows 10"></parameter>
+       <parameter name="autoStart" value="web"></parameter>
+      <parameter name="seleniumurl" value="local"></parameter>      
+        <parameter name="browserName" value="chrome"></parameter>
+        <parameter name="browserVersion" value="76.0"></parameter>
+        <parameter name="seleniumurl" value="local"></parameter>
+         <parameter name="executionType" value="Sequential"></parameter>
+        <classes>
+            <class name="com.insight.SmartTest.Scripts.IPS.CQT35_IPSBearTaxTest">
+			<parameter name="nextTestJoin" value="false"></parameter>
+            <parameter name="StartRow" value="1"></parameter>
+            <parameter name="EndRow" value="null"></parameter>
+            </class>
+        </classes>
+    </test>	
+   	
+			<test name="CQT36" preserve-order='true'>
+     <parameter name="automationName" value="selenium"></parameter>
+      <parameter name="browser" value="chrome"></parameter>
+       <parameter name="browserVersion" value="NA"></parameter> 
+       <parameter name="environment" value="local"></parameter>   
+      <parameter name="platformName" value="windows 10"></parameter>
+       <parameter name="autoStart" value="web"></parameter>
+      <parameter name="seleniumurl" value="local"></parameter>      
+        <parameter name="browserName" value="chrome"></parameter>
+        <parameter name="browserVersion" value="76.0"></parameter>
+        <parameter name="seleniumurl" value="local"></parameter>
+         <parameter name="executionType" value="Sequential"></parameter>
+        <classes>
+            <class name="com.insight.SmartTest.Scripts.IPS.CQT36_IPSContractPricingCiscoCostPlusContractTest">
+			<parameter name="nextTestJoin" value="false"></parameter>
+            <parameter name="StartRow" value="1"></parameter>
+            <parameter name="EndRow" value="null"></parameter>
+            </class>
+        </classes>
+    </test>			
+    		<test name="CQT37" preserve-order='true'>
+     <parameter name="automationName" value="selenium"></parameter>
+      <parameter name="browser" value="chrome"></parameter>
+       <parameter name="browserVersion" value="NA"></parameter> 
+       <parameter name="environment" value="local"></parameter>   
+      <parameter name="platformName" value="windows 10"></parameter>
+       <parameter name="autoStart" value="web"></parameter>
+      <parameter name="seleniumurl" value="local"></parameter>      
+        <parameter name="browserName" value="chrome"></parameter>
+        <parameter name="browserVersion" value="76.0"></parameter>
+        <parameter name="seleniumurl" value="local"></parameter>
+         <parameter name="executionType" value="Sequential"></parameter>
+        <classes>
+            <class name="com.insight.SmartTest.Scripts.IPS.CQT37_IPSContractPricing_CiscoFixedPriceContract">
+			<parameter name="nextTestJoin" value="false"></parameter>
+            <parameter name="StartRow" value="1"></parameter>
+            <parameter name="EndRow" value="null"></parameter>
+            </class>
+        </classes>
+    </test>
+    	<test name="CQT38" preserve-order='true'>
+     <parameter name="automationName" value="selenium"></parameter>
+      <parameter name="browser" value="chrome"></parameter>
+       <parameter name="browserVersion" value="NA"></parameter> 
+       <parameter name="environment" value="local"></parameter>   
+      <parameter name="platformName" value="windows 10"></parameter>
+       <parameter name="autoStart" value="web"></parameter>
+      <parameter name="seleniumurl" value="local"></parameter>      
+        <parameter name="browserName" value="chrome"></parameter>
+        <parameter name="browserVersion" value="76.0"></parameter>
+        <parameter name="seleniumurl" value="local"></parameter>
+         <parameter name="executionType" value="Sequential"></parameter>
+        <classes>
+            <class name="com.insight.SmartTest.Scripts.IPS.CQT38_IPSContractPricingCiscoInsightListMinusContractTest">
+			<parameter name="nextTestJoin" value="false"></parameter>
+            <parameter name="StartRow" value="1"></parameter>
+            <parameter name="EndRow" value="null"></parameter>
+            </class>
+        </classes>
+    </test>				
+    <test name="CQT39" preserve-order='true'>
+     <parameter name="automationName" value="selenium"></parameter>
+      <parameter name="browser" value="chrome"></parameter>
+       <parameter name="browserVersion" value="NA"></parameter> 
+       <parameter name="environment" value="local"></parameter>   
+      <parameter name="platformName" value="windows 10"></parameter>
+       <parameter name="autoStart" value="web"></parameter>
+      <parameter name="seleniumurl" value="local"></parameter>      
+        <parameter name="browserName" value="chrome"></parameter>
+        <parameter name="browserVersion" value="76.0"></parameter>
+        <parameter name="seleniumurl" value="local"></parameter>
+         <parameter name="executionType" value="Sequential"></parameter>
+        <classes>
+            <class name="com.insight.SmartTest.Scripts.IPS.CQT39_IPSContractPricingCiscoMSRPMinusContractTest">
+			<parameter name="nextTestJoin" value="false"></parameter>
+            <parameter name="StartRow" value="1"></parameter>
+            <parameter name="EndRow" value="null"></parameter>
+            </class>
+        </classes>
+    </test>				
+    <test name="CQT40" preserve-order='true'>
+     <parameter name="automationName" value="selenium"></parameter>
+      <parameter name="browser" value="chrome"></parameter>
+       <parameter name="browserVersion" value="NA"></parameter> 
+       <parameter name="environment" value="local"></parameter>   
+      <parameter name="platformName" value="windows 10"></parameter>
+       <parameter name="autoStart" value="web"></parameter>
+      <parameter name="seleniumurl" value="local"></parameter>      
+        <parameter name="browserName" value="chrome"></parameter>
+        <parameter name="browserVersion" value="76.0"></parameter>
+        <parameter name="seleniumurl" value="local"></parameter>
+         <parameter name="executionType" value="Sequential"></parameter>
+        <classes>
+            <class name="com.insight.SmartTest.Scripts.IPS.CQT40_IPSContractPricingCiscoUSCPriceMatchContractTest">
+			<parameter name="nextTestJoin" value="false"></parameter>
+            <parameter name="StartRow" value="1"></parameter>
+            <parameter name="EndRow" value="null"></parameter>
+            </class>
+        </classes>
+    </test>				
+    <test name="CQT41" preserve-order='true'>
+     <parameter name="automationName" value="selenium"></parameter>
+      <parameter name="browser" value="chrome"></parameter>
+       <parameter name="browserVersion" value="NA"></parameter> 
+       <parameter name="environment" value="local"></parameter>   
+      <parameter name="platformName" value="windows 10"></parameter>
+       <parameter name="autoStart" value="web"></parameter>
+      <parameter name="seleniumurl" value="local"></parameter>      
+        <parameter name="browserName" value="chrome"></parameter>
+        <parameter name="browserVersion" value="76.0"></parameter>
+        <parameter name="seleniumurl" value="local"></parameter>
+         <parameter name="executionType" value="Sequential"></parameter>
+        <classes>
+            <class name="com.insight.SmartTest.Scripts.IPS.CQT41_IPSContractPricingSoftwareCostplusContractTest">
+			<parameter name="nextTestJoin" value="false"></parameter>
+            <parameter name="StartRow" value="1"></parameter>
+            <parameter name="EndRow" value="null"></parameter>
+            </class>
+        </classes>
+    </test>				
+    <test name="CQT42" preserve-order='true'>
+     <parameter name="automationName" value="selenium"></parameter>
+      <parameter name="browser" value="chrome"></parameter>
+       <parameter name="browserVersion" value="NA"></parameter> 
+       <parameter name="environment" value="local"></parameter>   
+      <parameter name="platformName" value="windows 10"></parameter>
+       <parameter name="autoStart" value="web"></parameter>
+      <parameter name="seleniumurl" value="local"></parameter>      
+        <parameter name="browserName" value="chrome"></parameter>
+        <parameter name="browserVersion" value="76.0"></parameter>
+        <parameter name="seleniumurl" value="local"></parameter>
+         <parameter name="executionType" value="Sequential"></parameter>
+        <classes>
+            <class name="com.insight.SmartTest.Scripts.IPS.CQT42_IPSContractPricingSoftwareFixedPriceContractTest">
+			<parameter name="nextTestJoin" value="false"></parameter>
+            <parameter name="StartRow" value="1"></parameter>
+            <parameter name="EndRow" value="null"></parameter>
+            </class>
+        </classes>
+    </test>				
+    <test name="CQT43" preserve-order='true'>
+     <parameter name="automationName" value="selenium"></parameter>
+      <parameter name="browser" value="chrome"></parameter>
+       <parameter name="browserVersion" value="NA"></parameter> 
+       <parameter name="environment" value="local"></parameter>   
+      <parameter name="platformName" value="windows 10"></parameter>
+       <parameter name="autoStart" value="web"></parameter>
+      <parameter name="seleniumurl" value="local"></parameter>      
+        <parameter name="browserName" value="chrome"></parameter>
+        <parameter name="browserVersion" value="76.0"></parameter>
+        <parameter name="seleniumurl" value="local"></parameter>
+         <parameter name="executionType" value="Sequential"></parameter>
+        <classes>
+            <class name="com.insight.SmartTest.Scripts.IPS.CQT43_IPSContractPricingSoftwareInsightListminusContractTest">
+			<parameter name="nextTestJoin" value="false"></parameter>
+            <parameter name="StartRow" value="1"></parameter>
+            <parameter name="EndRow" value="null"></parameter>
+            </class>
+        </classes>
+    </test>				
+    <test name="CQT44" preserve-order='true'>
+     <parameter name="automationName" value="selenium"></parameter>
+      <parameter name="browser" value="chrome"></parameter>
+       <parameter name="browserVersion" value="NA"></parameter> 
+       <parameter name="environment" value="local"></parameter>   
+      <parameter name="platformName" value="windows 10"></parameter>
+       <parameter name="autoStart" value="web"></parameter>
+      <parameter name="seleniumurl" value="local"></parameter>      
+        <parameter name="browserName" value="chrome"></parameter>
+        <parameter name="browserVersion" value="76.0"></parameter>
+        <parameter name="seleniumurl" value="local"></parameter>
+         <parameter name="executionType" value="Sequential"></parameter>
+        <classes>
+            <class name="com.insight.SmartTest.Scripts.IPS.CQT44_IPSContractPricingSoftwareMSRPminusContractTest">
+			<parameter name="nextTestJoin" value="false"></parameter>
+            <parameter name="StartRow" value="1"></parameter>
+            <parameter name="EndRow" value="null"></parameter>
+            </class>
+        </classes>
+    </test>				
+    <test name="CQT45" preserve-order='true'>
+     <parameter name="automationName" value="selenium"></parameter>
+      <parameter name="browser" value="chrome"></parameter>
+       <parameter name="browserVersion" value="NA"></parameter> 
+       <parameter name="environment" value="local"></parameter>   
+      <parameter name="platformName" value="windows 10"></parameter>
+       <parameter name="autoStart" value="web"></parameter>
+      <parameter name="seleniumurl" value="local"></parameter>      
+        <parameter name="browserName" value="chrome"></parameter>
+        <parameter name="browserVersion" value="76.0"></parameter>
+        <parameter name="seleniumurl" value="local"></parameter>
+         <parameter name="executionType" value="Sequential"></parameter>
+        <classes>
+            <class name="com.insight.SmartTest.Scripts.IPS.CQT45_IPSContractPricingRoundingWithMultipleQtysTest">
+			<parameter name="nextTestJoin" value="false"></parameter>
+            <parameter name="StartRow" value="1"></parameter>
+            <parameter name="EndRow" value="null"></parameter>
+            </class>
+        </classes>
+    </test>				
+    <test name="CQT46" preserve-order='true'>
+     <parameter name="automationName" value="selenium"></parameter>
+      <parameter name="browser" value="chrome"></parameter>
+       <parameter name="browserVersion" value="NA"></parameter> 
+       <parameter name="environment" value="local"></parameter>   
+      <parameter name="platformName" value="windows 10"></parameter>
+       <parameter name="autoStart" value="web"></parameter>
+      <parameter name="seleniumurl" value="local"></parameter>      
+        <parameter name="browserName" value="chrome"></parameter>
+        <parameter name="browserVersion" value="76.0"></parameter>
+        <parameter name="seleniumurl" value="local"></parameter>
+         <parameter name="executionType" value="Sequential"></parameter>
+        <classes>
+            <class name="com.insight.SmartTest.Scripts.IPS.CQT46_IPSFEDMissingReportingFieldAfterSavedQuoteTest">
+			<parameter name="nextTestJoin" value="false"></parameter>
+            <parameter name="StartRow" value="1"></parameter>
+            <parameter name="EndRow" value="null"></parameter>
+            </class>
+        </classes>
+    </test>				
+    <test name="CQT49" preserve-order='true'>
+     <parameter name="automationName" value="selenium"></parameter>
+      <parameter name="browser" value="chrome"></parameter>
+       <parameter name="browserVersion" value="NA"></parameter> 
+       <parameter name="environment" value="local"></parameter>   
+      <parameter name="platformName" value="windows 10"></parameter>
+       <parameter name="autoStart" value="web"></parameter>
+      <parameter name="seleniumurl" value="local"></parameter>      
+        <parameter name="browserName" value="chrome"></parameter>
+        <parameter name="browserVersion" value="76.0"></parameter>
+        <parameter name="seleniumurl" value="local"></parameter>
+         <parameter name="executionType" value="Sequential"></parameter>
+        <classes>
+            <class name="com.insight.SmartTest.Scripts.IPS.CQT49_IPSCappingAtListPriceWithTICTest">
+			<parameter name="nextTestJoin" value="false"></parameter>
+            <parameter name="StartRow" value="1"></parameter>
+            <parameter name="EndRow" value="null"></parameter>
+            </class>
+        </classes>
+    </test>		
+     <test name="CQT50" preserve-order='true'>
+     <parameter name="automationName" value="selenium"></parameter>
+      <parameter name="browser" value="chrome"></parameter>
+       <parameter name="browserVersion" value="NA"></parameter> 
+       <parameter name="environment" value="local"></parameter>   
+      <parameter name="platformName" value="windows 10"></parameter>
+       <parameter name="autoStart" value="web"></parameter>
+      <parameter name="seleniumurl" value="local"></parameter>      
+        <parameter name="browserName" value="chrome"></parameter>
+        <parameter name="browserVersion" value="76.0"></parameter>
+        <parameter name="seleniumurl" value="local"></parameter>
+         <parameter name="executionType" value="Sequential"></parameter>
+        <classes>
+            <class name="com.insight.SmartTest.Scripts.IPS.CQT50_IPSSLEDMissingReportingFieldAfterSavedQuoteTest">
+			<parameter name="nextTestJoin" value="false"></parameter>
+            <parameter name="StartRow" value="1"></parameter>
+            <parameter name="EndRow" value="null"></parameter>
+            </class>
+        </classes>
+    </test>		
+     <test name="CQT53" preserve-order='true'>
+     <parameter name="automationName" value="selenium"></parameter>
+      <parameter name="browser" value="chrome"></parameter>
+       <parameter name="browserVersion" value="NA"></parameter> 
+       <parameter name="environment" value="local"></parameter>   
+      <parameter name="platformName" value="windows 10"></parameter>
+       <parameter name="autoStart" value="web"></parameter>
+      <parameter name="seleniumurl" value="local"></parameter>      
+        <parameter name="browserName" value="chrome"></parameter>
+        <parameter name="browserVersion" value="76.0"></parameter>
+        <parameter name="seleniumurl" value="local"></parameter>
+         <parameter name="executionType" value="Sequential"></parameter>
+        <classes>
+            <class name="com.insight.SmartTest.Scripts.IPS.CQT53_IPSOpenMarketExclusion">
+			<parameter name="nextTestJoin" value="false"></parameter>
+            <parameter name="StartRow" value="1"></parameter>
+            <parameter name="EndRow" value="null"></parameter>
+            </class>
+        </classes>
+    </test>		
+     <test name="CQT54" preserve-order='true'>
+     <parameter name="automationName" value="selenium"></parameter>
+      <parameter name="browser" value="chrome"></parameter>
+       <parameter name="browserVersion" value="NA"></parameter> 
+       <parameter name="environment" value="local"></parameter>   
+      <parameter name="platformName" value="windows 10"></parameter>
+       <parameter name="autoStart" value="web"></parameter>
+      <parameter name="seleniumurl" value="local"></parameter>      
+        <parameter name="browserName" value="chrome"></parameter>
+        <parameter name="browserVersion" value="76.0"></parameter>
+        <parameter name="seleniumurl" value="local"></parameter>
+         <parameter name="executionType" value="Sequential"></parameter>
+        <classes>
+            <class name="com.insight.SmartTest.Scripts.IPS.CQT54_IPSConfigurationPartnerCTOBOM">
+			<parameter name="nextTestJoin" value="false"></parameter>
+            <parameter name="StartRow" value="1"></parameter>
+            <parameter name="EndRow" value="null"></parameter>
+            </class>
+        </classes>
+    </test>		
+     <test name="CQT55" preserve-order='true'>
+     <parameter name="automationName" value="selenium"></parameter>
+      <parameter name="browser" value="chrome"></parameter>
+       <parameter name="browserVersion" value="NA"></parameter> 
+       <parameter name="environment" value="local"></parameter>   
+      <parameter name="platformName" value="windows 10"></parameter>
+       <parameter name="autoStart" value="web"></parameter>
+      <parameter name="seleniumurl" value="local"></parameter>      
+        <parameter name="browserName" value="chrome"></parameter>
+        <parameter name="browserVersion" value="76.0"></parameter>
+        <parameter name="seleniumurl" value="local"></parameter>
+         <parameter name="executionType" value="Sequential"></parameter>
+        <classes>
+            <class name="com.insight.SmartTest.Scripts.IPS.CQT55_IPSProductSearchViaContractTabTest">
+			<parameter name="nextTestJoin" value="false"></parameter>
+            <parameter name="StartRow" value="1"></parameter>
+            <parameter name="EndRow" value="null"></parameter>
+            </class>
+        </classes>
+    </test>		
+     <test name="CQT57" preserve-order='true'>
+     <parameter name="automationName" value="selenium"></parameter>
+      <parameter name="browser" value="chrome"></parameter>
+       <parameter name="browserVersion" value="NA"></parameter> 
+       <parameter name="environment" value="local"></parameter>   
+      <parameter name="platformName" value="windows 10"></parameter>
+       <parameter name="autoStart" value="web"></parameter>
+      <parameter name="seleniumurl" value="local"></parameter>      
+        <parameter name="browserName" value="chrome"></parameter>
+        <parameter name="browserVersion" value="76.0"></parameter>
+        <parameter name="seleniumurl" value="local"></parameter>
+         <parameter name="executionType" value="Sequential"></parameter>
+        <classes>
+            <class name="com.insight.SmartTest.Scripts.IPS.CQT57_IPSQuoteWithYCGETest">
+			<parameter name="nextTestJoin" value="false"></parameter>
+            <parameter name="StartRow" value="1"></parameter>
+            <parameter name="EndRow" value="null"></parameter>
+            </class>
+        </classes>
+    </test>		
+     <test name="ORD03" preserve-order='true'>
+     <parameter name="automationName" value="selenium"></parameter>
+      <parameter name="browser" value="chrome"></parameter>
+       <parameter name="browserVersion" value="NA"></parameter> 
+       <parameter name="environment" value="local"></parameter>   
+      <parameter name="platformName" value="windows 10"></parameter>
+       <parameter name="autoStart" value="web"></parameter>
+      <parameter name="seleniumurl" value="local"></parameter>      
+        <parameter name="browserName" value="chrome"></parameter>
+        <parameter name="browserVersion" value="76.0"></parameter>
+        <parameter name="seleniumurl" value="local"></parameter>
+         <parameter name="executionType" value="Sequential"></parameter>
+        <classes>
+            <class name="com.insight.SmartTest.Scripts.IPS.ORD03_IPSMissingReportingFieldInfoTest">
+			<parameter name="nextTestJoin" value="false"></parameter>
+            <parameter name="StartRow" value="1"></parameter>
+            <parameter name="EndRow" value="null"></parameter>
+            </class>
+        </classes>
+    </test>		
+     <test name="VQT01" preserve-order='true'>
+     <parameter name="automationName" value="selenium"></parameter>
+      <parameter name="browser" value="chrome"></parameter>
+       <parameter name="browserVersion" value="NA"></parameter> 
+       <parameter name="environment" value="local"></parameter>   
+      <parameter name="platformName" value="windows 10"></parameter>
+       <parameter name="autoStart" value="web"></parameter>
+      <parameter name="seleniumurl" value="local"></parameter>      
+        <parameter name="browserName" value="chrome"></parameter>
+        <parameter name="browserVersion" value="76.0"></parameter>
+        <parameter name="seleniumurl" value="local"></parameter>
+         <parameter name="executionType" value="Sequential"></parameter>
+        <classes>
+            <class name="com.insight.SmartTest.Scripts.IPS.VQT01_IPSReportingFieldDataHarwareTest">
+			<parameter name="nextTestJoin" value="false"></parameter>
+            <parameter name="StartRow" value="1"></parameter>
+            <parameter name="EndRow" value="null"></parameter>
+            </class>
+        </classes>
+    </test>		
+     <test name="VQT02" preserve-order='true'>
+     <parameter name="automationName" value="selenium"></parameter>
+      <parameter name="browser" value="chrome"></parameter>
+       <parameter name="browserVersion" value="NA"></parameter> 
+       <parameter name="environment" value="local"></parameter>   
+      <parameter name="platformName" value="windows 10"></parameter>
+       <parameter name="autoStart" value="web"></parameter>
+      <parameter name="seleniumurl" value="local"></parameter>      
+        <parameter name="browserName" value="chrome"></parameter>
+        <parameter name="browserVersion" value="76.0"></parameter>
+        <parameter name="seleniumurl" value="local"></parameter>
+         <parameter name="executionType" value="Sequential"></parameter>
+        <classes>
+            <class name="com.insight.SmartTest.Scripts.IPS.VQT02_IPSFreeGroundFreightTest">
+			<parameter name="nextTestJoin" value="false"></parameter>
+            <parameter name="StartRow" value="1"></parameter>
+            <parameter name="EndRow" value="null"></parameter>
+            </class>
+        </classes>
+    </test>		
+    
+    				
+</suite>
+

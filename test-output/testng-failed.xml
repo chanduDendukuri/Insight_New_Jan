@@ -1,0 +1,299 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite guice-stage="DEVELOPMENT" name="Failed suite [INSIGHT Automation test suite1]">
+  <parameter name="environment" value="local"/>
+  <parameter name="suiteExecuted" value="Regression"/>
+  <parameter name="executionType" value="Sequential"/>
+  <parameter name="browser" value="chrome"/>
+  <parameter name="browserVersion" value="74.0"/>
+  <parameter name="automationName" value="selenium"/>
+  <parameter name="seleniumurl" value="local"/>
+  <parameter name="browserName" value="chrome"/>
+  <parameter name="platformName" value="windows 10"/>
+  <parameter name="autoStart" value="web"/>
+  <listeners>
+    <listener class-name="org.uncommons.reportng.HTMLReporter"/>
+    <listener class-name="org.uncommons.reportng.JUnitXMLReporter"/>
+  </listeners>
+  <test name="CAN01(failed)">
+    <classes>
+      <class name="com.insight.WebTest.Canada.CAN05_MenuSearchTest1">
+        <parameter name="EndRow" value="null"/>
+        <parameter name="nextTestJoin" value="false"/>
+        <parameter name="StartRow" value="1"/>
+        <methods>
+          <include name="beforeClass"/>
+          <include name="beforeMethod"/>
+          <include name="afterClass"/>
+          <include name="afterMethod"/>
+        </methods>
+      </class> <!-- com.insight.WebTest.Canada.CAN05_MenuSearchTest1 -->
+      <class name="com.insight.WebTest.OrderHistory.ODH02_OrderHistoryQuickSearch">
+        <parameter name="EndRow" value="null"/>
+        <parameter name="nextTestJoin" value="false"/>
+        <parameter name="StartRow" value="1"/>
+        <methods>
+          <include name="beforeSuite"/>
+          <include name="afterSuite"/>
+        </methods>
+      </class> <!-- com.insight.WebTest.OrderHistory.ODH02_OrderHistoryQuickSearch -->
+      <class name="com.insight.WebTest.Canada.CAN01_ShipBillPayTaxTest">
+        <parameter name="EndRow" value="null"/>
+        <parameter name="nextTestJoin" value="false"/>
+        <parameter name="StartRow" value="1"/>
+        <methods>
+          <include name="TC_CAN01"/>
+        </methods>
+      </class> <!-- com.insight.WebTest.Canada.CAN01_ShipBillPayTaxTest -->
+    </classes>
+  </test> <!-- CAN01(failed) -->
+  <test name="CAN02(failed)">
+    <classes>
+      <class name="com.insight.WebTest.Canada.CAN05_MenuSearchTest1">
+        <parameter name="EndRow" value="null"/>
+        <parameter name="nextTestJoin" value="false"/>
+        <parameter name="StartRow" value="1"/>
+        <methods>
+          <include name="beforeClass"/>
+          <include name="beforeMethod"/>
+          <include name="afterClass"/>
+          <include name="afterMethod"/>
+        </methods>
+      </class> <!-- com.insight.WebTest.Canada.CAN05_MenuSearchTest1 -->
+      <class name="com.insight.WebTest.OrderHistory.ODH02_OrderHistoryQuickSearch">
+        <parameter name="EndRow" value="null"/>
+        <parameter name="nextTestJoin" value="false"/>
+        <parameter name="StartRow" value="1"/>
+        <methods>
+          <include name="beforeSuite"/>
+          <include name="afterSuite"/>
+        </methods>
+      </class> <!-- com.insight.WebTest.OrderHistory.ODH02_OrderHistoryQuickSearch -->
+      <class name="com.insight.WebTest.Canada.CAN02_ShipBillPayEWRFeeTest">
+        <parameter name="EndRow" value="null"/>
+        <parameter name="nextTestJoin" value="false"/>
+        <parameter name="StartRow" value="1"/>
+        <methods>
+          <include name="TC_CAN02"/>
+        </methods>
+      </class> <!-- com.insight.WebTest.Canada.CAN02_ShipBillPayEWRFeeTest -->
+    </classes>
+  </test> <!-- CAN02(failed) -->
+  <test name="CAN07(failed)">
+    <classes>
+      <class name="com.insight.WebTest.Canada.CAN05_MenuSearchTest1">
+        <parameter name="EndRow" value="null"/>
+        <parameter name="nextTestJoin" value="false"/>
+        <parameter name="StartRow" value="1"/>
+        <methods>
+          <include name="beforeClass"/>
+          <include name="beforeMethod"/>
+          <include name="afterClass"/>
+          <include name="afterMethod"/>
+        </methods>
+      </class> <!-- com.insight.WebTest.Canada.CAN05_MenuSearchTest1 -->
+      <class name="com.insight.WebTest.OrderHistory.ODH02_OrderHistoryQuickSearch">
+        <parameter name="EndRow" value="null"/>
+        <parameter name="nextTestJoin" value="false"/>
+        <parameter name="StartRow" value="1"/>
+        <methods>
+          <include name="beforeSuite"/>
+          <include name="afterSuite"/>
+        </methods>
+      </class> <!-- com.insight.WebTest.OrderHistory.ODH02_OrderHistoryQuickSearch -->
+      <class name="com.insight.WebTest.Canada.CAN07_CartBasicTest">
+        <parameter name="EndRow" value="null"/>
+        <parameter name="nextTestJoin" value="false"/>
+        <parameter name="StartRow" value="1"/>
+        <methods>
+          <include name="TC_CAN07"/>
+        </methods>
+      </class> <!-- com.insight.WebTest.Canada.CAN07_CartBasicTest -->
+    </classes>
+  </test> <!-- CAN07(failed) -->
+  <test name="CAN13(failed)">
+    <classes>
+      <class name="com.insight.WebTest.Canada.CAN13_CartBundlesTest">
+        <parameter name="EndRow" value="null"/>
+        <parameter name="nextTestJoin" value="false"/>
+        <parameter name="StartRow" value="1"/>
+        <methods>
+          <include name="TC_CAN13"/>
+        </methods>
+      </class> <!-- com.insight.WebTest.Canada.CAN13_CartBundlesTest -->
+      <class name="com.insight.WebTest.Canada.CAN05_MenuSearchTest1">
+        <parameter name="EndRow" value="null"/>
+        <parameter name="nextTestJoin" value="false"/>
+        <parameter name="StartRow" value="1"/>
+        <methods>
+          <include name="beforeClass"/>
+          <include name="beforeMethod"/>
+          <include name="afterClass"/>
+          <include name="afterMethod"/>
+        </methods>
+      </class> <!-- com.insight.WebTest.Canada.CAN05_MenuSearchTest1 -->
+      <class name="com.insight.WebTest.OrderHistory.ODH02_OrderHistoryQuickSearch">
+        <parameter name="EndRow" value="null"/>
+        <parameter name="nextTestJoin" value="false"/>
+        <parameter name="StartRow" value="1"/>
+        <methods>
+          <include name="beforeSuite"/>
+          <include name="afterSuite"/>
+        </methods>
+      </class> <!-- com.insight.WebTest.OrderHistory.ODH02_OrderHistoryQuickSearch -->
+    </classes>
+  </test> <!-- CAN13(failed) -->
+  <test name="CAN04(failed)">
+    <classes>
+      <class name="com.insight.WebTest.Canada.CAN05_MenuSearchTest1">
+        <parameter name="EndRow" value="null"/>
+        <parameter name="nextTestJoin" value="false"/>
+        <parameter name="StartRow" value="1"/>
+        <methods>
+          <include name="beforeClass"/>
+          <include name="beforeMethod"/>
+          <include name="afterClass"/>
+          <include name="afterMethod"/>
+        </methods>
+      </class> <!-- com.insight.WebTest.Canada.CAN05_MenuSearchTest1 -->
+      <class name="com.insight.WebTest.OrderHistory.ODH02_OrderHistoryQuickSearch">
+        <parameter name="EndRow" value="null"/>
+        <parameter name="nextTestJoin" value="false"/>
+        <parameter name="StartRow" value="1"/>
+        <methods>
+          <include name="beforeSuite"/>
+          <include name="afterSuite"/>
+        </methods>
+      </class> <!-- com.insight.WebTest.OrderHistory.ODH02_OrderHistoryQuickSearch -->
+      <class name="com.insight.WebTest.Canada.CAN04_ShipBillPayFreightTest">
+        <parameter name="EndRow" value="null"/>
+        <parameter name="nextTestJoin" value="false"/>
+        <parameter name="StartRow" value="1"/>
+        <methods>
+          <include name="TC_CAN04"/>
+        </methods>
+      </class> <!-- com.insight.WebTest.Canada.CAN04_ShipBillPayFreightTest -->
+    </classes>
+  </test> <!-- CAN04(failed) -->
+  <test name="LNL05(failed)">
+    <classes>
+      <class name="com.insight.WebTest.Canada.CAN05_MenuSearchTest1">
+        <parameter name="EndRow" value="null"/>
+        <parameter name="nextTestJoin" value="false"/>
+        <parameter name="StartRow" value="1"/>
+        <methods>
+          <include name="beforeClass"/>
+          <include name="beforeMethod"/>
+          <include name="afterClass"/>
+          <include name="afterMethod"/>
+        </methods>
+      </class> <!-- com.insight.WebTest.Canada.CAN05_MenuSearchTest1 -->
+      <class name="com.insight.WebTest.OrderHistory.ODH02_OrderHistoryQuickSearch">
+        <parameter name="EndRow" value="null"/>
+        <parameter name="nextTestJoin" value="false"/>
+        <parameter name="StartRow" value="1"/>
+        <methods>
+          <include name="beforeSuite"/>
+          <include name="afterSuite"/>
+        </methods>
+      </class> <!-- com.insight.WebTest.OrderHistory.ODH02_OrderHistoryQuickSearch -->
+      <class name="com.insight.WebTest.LNL.LNL05_CopyLineLevelSmartTrackerTest">
+        <parameter name="EndRow" value="null"/>
+        <parameter name="nextTestJoin" value="false"/>
+        <parameter name="StartRow" value="1"/>
+        <methods>
+          <include name="TC_LNL05"/>
+        </methods>
+      </class> <!-- com.insight.WebTest.LNL.LNL05_CopyLineLevelSmartTrackerTest -->
+    </classes>
+  </test> <!-- LNL05(failed) -->
+  <test name="LNL06(failed)">
+    <classes>
+      <class name="com.insight.WebTest.Canada.CAN05_MenuSearchTest1">
+        <parameter name="EndRow" value="null"/>
+        <parameter name="nextTestJoin" value="false"/>
+        <parameter name="StartRow" value="1"/>
+        <methods>
+          <include name="beforeClass"/>
+          <include name="beforeMethod"/>
+          <include name="afterClass"/>
+          <include name="afterMethod"/>
+        </methods>
+      </class> <!-- com.insight.WebTest.Canada.CAN05_MenuSearchTest1 -->
+      <class name="com.insight.WebTest.OrderHistory.ODH02_OrderHistoryQuickSearch">
+        <parameter name="EndRow" value="null"/>
+        <parameter name="nextTestJoin" value="false"/>
+        <parameter name="StartRow" value="1"/>
+        <methods>
+          <include name="beforeSuite"/>
+          <include name="afterSuite"/>
+        </methods>
+      </class> <!-- com.insight.WebTest.OrderHistory.ODH02_OrderHistoryQuickSearch -->
+      <class name="com.insight.WebTest.LNL.LNL06_LineLevelCartDetailsTest">
+        <parameter name="EndRow" value="null"/>
+        <parameter name="nextTestJoin" value="false"/>
+        <parameter name="StartRow" value="1"/>
+        <methods>
+          <include name="TC_LNL06"/>
+        </methods>
+      </class> <!-- com.insight.WebTest.LNL.LNL06_LineLevelCartDetailsTest -->
+    </classes>
+  </test> <!-- LNL06(failed) -->
+  <test name="ODH01(failed)">
+    <classes>
+      <class name="com.insight.WebTest.Canada.CAN05_MenuSearchTest1">
+        <parameter name="EndRow" value="null"/>
+        <parameter name="nextTestJoin" value="false"/>
+        <parameter name="StartRow" value="1"/>
+        <methods>
+          <include name="beforeClass"/>
+          <include name="beforeMethod"/>
+          <include name="afterClass"/>
+          <include name="afterMethod"/>
+        </methods>
+      </class> <!-- com.insight.WebTest.Canada.CAN05_MenuSearchTest1 -->
+      <class name="com.insight.WebTest.OrderHistory.ODH02_OrderHistoryQuickSearch">
+        <parameter name="EndRow" value="null"/>
+        <parameter name="nextTestJoin" value="false"/>
+        <parameter name="StartRow" value="1"/>
+        <methods>
+          <include name="beforeSuite"/>
+          <include name="afterSuite"/>
+        </methods>
+      </class> <!-- com.insight.WebTest.OrderHistory.ODH02_OrderHistoryQuickSearch -->
+      <class name="com.insight.WebTest.OrderHistory.ODH01_OrderHistoryGenericSearch">
+        <parameter name="EndRow" value="null"/>
+        <parameter name="nextTestJoin" value="false"/>
+        <parameter name="StartRow" value="1"/>
+        <methods>
+          <include name="ODH01"/>
+        </methods>
+      </class> <!-- com.insight.WebTest.OrderHistory.ODH01_OrderHistoryGenericSearch -->
+    </classes>
+  </test> <!-- ODH01(failed) -->
+  <test name="ODH02(failed)">
+    <classes>
+      <class name="com.insight.WebTest.Canada.CAN05_MenuSearchTest1">
+        <parameter name="EndRow" value="null"/>
+        <parameter name="nextTestJoin" value="false"/>
+        <parameter name="StartRow" value="1"/>
+        <methods>
+          <include name="beforeClass"/>
+          <include name="beforeMethod"/>
+          <include name="afterClass"/>
+          <include name="afterMethod"/>
+        </methods>
+      </class> <!-- com.insight.WebTest.Canada.CAN05_MenuSearchTest1 -->
+      <class name="com.insight.WebTest.OrderHistory.ODH02_OrderHistoryQuickSearch">
+        <parameter name="EndRow" value="null"/>
+        <parameter name="nextTestJoin" value="false"/>
+        <parameter name="StartRow" value="1"/>
+        <methods>
+          <include name="ODH02"/>
+          <include name="beforeSuite"/>
+          <include name="afterSuite"/>
+        </methods>
+      </class> <!-- com.insight.WebTest.OrderHistory.ODH02_OrderHistoryQuickSearch -->
+    </classes>
+  </test> <!-- ODH02(failed) -->
+</suite> <!-- Failed suite [INSIGHT Automation test suite1] -->

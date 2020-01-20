@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="CAN05"
+           tests="1"
+           failures="0"
+           errors="0"
+           skipped="0"
+           time="229.968">
+  <properties />
+  
+  
+            <testcase name="TC_029" time="229.968" classname="com.insight.WebTest.Canada.CAN05_MenuSearchTest1" />
+      
+</testsuite>

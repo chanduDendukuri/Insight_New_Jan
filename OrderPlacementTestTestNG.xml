@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suite name='INSIGHT Automation test suite'>
+
+    <parameter name="suiteExecuted" value="Regression" />
+    <parameter name="executionType" value="Sequential" />
+    <listeners>
+        <listener class-name="org.uncommons.reportng.HTMLReporter" />
+        <listener class-name="org.uncommons.reportng.JUnitXMLReporter" />
+       
+    </listeners>
+<test name="ODP01" preserve-order='true'>
+    <parameter name="automationName" value="selenium"></parameter>
+    <parameter name="browser" value="chrome"></parameter>
+    <parameter name="browserVersion" value="NA"></parameter>
+    <parameter name="environment" value="local"></parameter>
+    <parameter name="platformName" value="windows 10"></parameter>
+    <parameter name="autoStart" value="web"></parameter>
+    <parameter name="seleniumurl" value="local"></parameter>
+    <parameter name="browserName" value="chrome"></parameter>
+    <parameter name="browserVersion" value="74.0"></parameter>
+    <parameter name="seleniumurl" value="local"></parameter>
+    <parameter name="executionType" value="Sequential"></parameter>
+    <classes>
+        <class name="com.insight.WebTest.OrderPlacementTests.ODP01_PlaceOrderBasicFileUploadTest">
+            <parameter name="nextTestJoin" value="false"></parameter>
+            <parameter name="StartRow" value="1"></parameter>
+            <parameter name="EndRow" value="null"></parameter>
+        </class>
+    </classes>
+</test>
+
+<test name="ODP02" preserve-order='true'>
+    <parameter name="automationName" value="selenium"></parameter>
+    <parameter name="browser" value="chrome"></parameter>
+    <parameter name="browserVersion" value="NA"></parameter>
+    <parameter name="environment" value="local"></parameter>
+    <parameter name="platformName" value="windows 10"></parameter>
+    <parameter name="autoStart" value="web"></parameter>
+    <parameter name="seleniumurl" value="local"></parameter>
+    <parameter name="browserName" value="chrome"></parameter>
+    <parameter name="browserVersion" value="74.0"></parameter>
+    <parameter name="seleniumurl" value="local"></parameter>
+    <parameter name="executionType" value="Sequential"></parameter>
+    <classes>
+        <class name="com.insight.WebTest.OrderPlacementTests.ODP02_PlaceOrderBasicIPSTest">
+            <parameter name="nextTestJoin" value="false"></parameter>
+            <parameter name="StartRow" value="1"></parameter>
+            <parameter name="EndRow" value="null"></parameter>
+        </class>
+    </classes>
+</test>
+
+<test name="ODP03" preserve-order='true'>
+    <parameter name="automationName" value="selenium"></parameter>
+    <parameter name="browser" value="chrome"></parameter>
+    <parameter name="browserVersion" value="NA"></parameter>
+    <parameter name="environment" value="local"></parameter>
+    <parameter name="platformName" value="windows 10"></parameter>
+    <parameter name="autoStart" value="web"></parameter>
+    <parameter name="seleniumurl" value="local"></parameter>
+    <parameter name="browserName" value="chrome"></parameter>
+    <parameter name="browserVersion" value="74.0"></parameter>
+    <parameter name="seleniumurl" value="local"></parameter>
+    <parameter name="executionType" value="Sequential"></parameter>
+    <classes>
+        <class name="com.insight.WebTest.OrderPlacementTests.ODP03_PlaceOrderConfirmationsTest">
+            <parameter name="nextTestJoin" value="false"></parameter>
+            <parameter name="StartRow" value="1"></parameter>
+            <parameter name="EndRow" value="null"></parameter>
+        </class>
+    </classes>
+</test>
+
+<test name="ODP04" preserve-order='true'>
+    <parameter name="automationName" value="selenium"></parameter>
+    <parameter name="browser" value="chrome"></parameter>
+    <parameter name="browserVersion" value="NA"></parameter>
+    <parameter name="environment" value="local"></parameter>
+    <parameter name="platformName" value="windows 10"></parameter>
+    <parameter name="autoStart" value="web"></parameter>
+    <parameter name="seleniumurl" value="local"></parameter>
+    <parameter name="browserName" value="chrome"></parameter>
+    <parameter name="browserVersion" value="74.0"></parameter>
+    <parameter name="seleniumurl" value="local"></parameter>
+    <parameter name="executionType" value="Sequential"></parameter>
+    <classes>
+        <class name="com.insight.WebTest.OrderPlacementTests.ODP04_PlaceOrderCreditCardTest">
+            <parameter name="nextTestJoin" value="false"></parameter>
+            <parameter name="StartRow" value="1"></parameter>
+            <parameter name="EndRow" value="null"></parameter>
+        </class>
+    </classes>
+</test>
+
+<test name="ODP05" preserve-order='true'>
+    <parameter name="automationName" value="selenium"></parameter>
+    <parameter name="browser" value="chrome"></parameter>
+    <parameter name="browserVersion" value="NA"></parameter>
+    <parameter name="environment" value="local"></parameter>
+    <parameter name="platformName" value="windows 10"></parameter>
+    <parameter name="autoStart" value="web"></parameter>
+    <parameter name="seleniumurl" value="local"></parameter>
+    <parameter name="browserName" value="chrome"></parameter>
+    <parameter name="browserVersion" value="74.0"></parameter>
+    <parameter name="seleniumurl" value="local"></parameter>
+    <parameter name="executionType" value="Sequential"></parameter>
+    <classes>
+        <class name="com.insight.WebTest.OrderPlacementTests.ODP05_PlaceOrderPrinterFirendlyTest">
+            <parameter name="nextTestJoin" value="false"></parameter>
+            <parameter name="StartRow" value="1"></parameter>
+            <parameter name="EndRow" value="null"></parameter>
+        </class>
+    </classes>
+</test>
+
+<test name="ODP06" preserve-order='true'>
+    <parameter name="automationName" value="selenium"></parameter>
+    <parameter name="browser" value="chrome"></parameter>
+    <parameter name="browserVersion" value="NA"></parameter>
+    <parameter name="environment" value="local"></parameter>
+    <parameter name="platformName" value="windows 10"></parameter>
+    <parameter name="autoStart" value="web"></parameter>
+    <parameter name="seleniumurl" value="local"></parameter>
+    <parameter name="browserName" value="chrome"></parameter>
+    <parameter name="browserVersion" value="74.0"></parameter>
+    <parameter name="seleniumurl" value="local"></parameter>
+    <parameter name="executionType" value="Sequential"></parameter>
+    <classes>
+        <class name="com.insight.WebTest.OrderPlacementTests.ODP06_CreditCardOverridePaymentTest">
+            <parameter name="nextTestJoin" value="false"></parameter>
+            <parameter name="StartRow" value="1"></parameter>
+            <parameter name="EndRow" value="null"></parameter>
+        </class>
+    </classes>
+</test>
+
+<test name="ODP07" preserve-order='true'>
+    <parameter name="automationName" value="selenium"></parameter>
+    <parameter name="browser" value="chrome"></parameter>
+    <parameter name="browserVersion" value="NA"></parameter>
+    <parameter name="environment" value="local"></parameter>
+    <parameter name="platformName" value="windows 10"></parameter>
+    <parameter name="autoStart" value="web"></parameter>
+    <parameter name="seleniumurl" value="local"></parameter>
+    <parameter name="browserName" value="chrome"></parameter>
+    <parameter name="browserVersion" value="74.0"></parameter>
+    <parameter name="seleniumurl" value="local"></parameter>
+    <parameter name="executionType" value="Sequential"></parameter>
+    <classes>
+        <class name="com.insight.WebTest.OrderPlacementTests.ODP07_ConvertQuoteTest">
+            <parameter name="nextTestJoin" value="false"></parameter>
+            <parameter name="StartRow" value="1"></parameter>
+            <parameter name="EndRow" value="null"></parameter>
+        </class>
+    </classes>
+</test>
+
+<test name="ODP08" preserve-order='true'>
+    <parameter name="automationName" value="selenium"></parameter>
+    <parameter name="browser" value="chrome"></parameter>
+    <parameter name="browserVersion" value="NA"></parameter>
+    <parameter name="environment" value="local"></parameter>
+    <parameter name="platformName" value="windows 10"></parameter>
+    <parameter name="autoStart" value="web"></parameter>
+    <parameter name="seleniumurl" value="local"></parameter>
+    <parameter name="browserName" value="chrome"></parameter>
+    <parameter name="browserVersion" value="74.0"></parameter>
+    <parameter name="seleniumurl" value="local"></parameter>
+    <parameter name="executionType" value="Sequential"></parameter>
+    <classes>
+        <class name="com.insight.WebTest.OrderPlacementTests.ODP08_ConvertQuoteBundlesTest">
+            <parameter name="nextTestJoin" value="false"></parameter>
+            <parameter name="StartRow" value="1"></parameter>
+            <parameter name="EndRow" value="null"></parameter>
+        </class>
+    </classes>
+</test>
+
+<test name="ODP09" preserve-order='true'>
+    <parameter name="automationName" value="selenium"></parameter>
+    <parameter name="browser" value="chrome"></parameter>
+    <parameter name="browserVersion" value="NA"></parameter>
+    <parameter name="environment" value="local"></parameter>
+    <parameter name="platformName" value="windows 10"></parameter>
+    <parameter name="autoStart" value="web"></parameter>
+    <parameter name="seleniumurl" value="local"></parameter>
+    <parameter name="browserName" value="chrome"></parameter>
+    <parameter name="browserVersion" value="74.0"></parameter>
+    <parameter name="seleniumurl" value="local"></parameter>
+    <parameter name="executionType" value="Sequential"></parameter>
+    <classes>
+        <class name="com.insight.WebTest.OrderPlacementTests.ODP09_ConvertQuoteIPSTest">
+            <parameter name="nextTestJoin" value="false"></parameter>
+            <parameter name="StartRow" value="1"></parameter>
+            <parameter name="EndRow" value="null"></parameter>
+        </class>
+    </classes>
+</test>
+
+<test name="ODP11" preserve-order='true'>
+    <parameter name="automationName" value="selenium"></parameter>
+    <parameter name="browser" value="chrome"></parameter>
+    <parameter name="browserVersion" value="NA"></parameter>
+    <parameter name="environment" value="local"></parameter>
+    <parameter name="platformName" value="windows 10"></parameter>
+    <parameter name="autoStart" value="web"></parameter>
+    <parameter name="seleniumurl" value="local"></parameter>
+    <parameter name="browserName" value="chrome"></parameter>
+    <parameter name="browserVersion" value="74.0"></parameter>
+    <parameter name="seleniumurl" value="local"></parameter>
+    <parameter name="executionType" value="Sequential"></parameter>
+    <classes>
+        <class name="com.insight.WebTest.OrderPlacementTests.ODP11_SmartTrackersPlaceOrderTest">
+            <parameter name="nextTestJoin" value="false"></parameter>
+            <parameter name="StartRow" value="1"></parameter>
+            <parameter name="EndRow" value="null"></parameter>
+        </class>
+    </classes>
+</test>
+
+<test name="ODP12" preserve-order='true'>
+    <parameter name="automationName" value="selenium"></parameter>
+    <parameter name="browser" value="chrome"></parameter>
+    <parameter name="browserVersion" value="NA"></parameter>
+    <parameter name="environment" value="local"></parameter>
+    <parameter name="platformName" value="windows 10"></parameter>
+    <parameter name="autoStart" value="web"></parameter>
+    <parameter name="seleniumurl" value="local"></parameter>
+    <parameter name="browserName" value="chrome"></parameter>
+    <parameter name="browserVersion" value="74.0"></parameter>
+    <parameter name="seleniumurl" value="local"></parameter>
+    <parameter name="executionType" value="Sequential"></parameter>
+    <classes>
+        <class name="com.insight.WebTest.OrderPlacementTests.ODP12_ReportingFieldsIPSTest">
+            <parameter name="nextTestJoin" value="false"></parameter>
+            <parameter name="StartRow" value="1"></parameter>
+            <parameter name="EndRow" value="null"></parameter>
+        </class>
+    </classes>
+</test>
+
+<test name="ODP15" preserve-order='true'>
+    <parameter name="automationName" value="selenium"></parameter>
+    <parameter name="browser" value="chrome"></parameter>
+    <parameter name="browserVersion" value="NA"></parameter>
+    <parameter name="environment" value="local"></parameter>
+    <parameter name="platformName" value="windows 10"></parameter>
+    <parameter name="autoStart" value="web"></parameter>
+    <parameter name="seleniumurl" value="local"></parameter>
+    <parameter name="browserName" value="chrome"></parameter>
+    <parameter name="browserVersion" value="74.0"></parameter>
+    <parameter name="seleniumurl" value="local"></parameter>
+    <parameter name="executionType" value="Sequential"></parameter>
+    <classes>
+        <class name="com.insight.WebTest.OrderPlacementTests.ODP15_OrderswithMultipleBOMsRequisitionTest">
+            <parameter name="nextTestJoin" value="false"></parameter>
+            <parameter name="StartRow" value="1"></parameter>
+            <parameter name="EndRow" value="null"></parameter>
+        </class>
+    </classes>
+</test>
+
+</suite>

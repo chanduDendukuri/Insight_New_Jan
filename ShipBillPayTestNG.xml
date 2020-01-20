@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suite name='INSIGHT Automation test suite'>
+
+    <parameter name="suiteExecuted" value="Regression" />
+    <parameter name="executionType" value="Sequential" />
+    <listeners>
+        <listener class-name="org.uncommons.reportng.HTMLReporter" />
+        <listener class-name="org.uncommons.reportng.JUnitXMLReporter" />
+       
+    </listeners>
+<test name="SBP01" preserve-order='true'>
+    <parameter name="automationName" value="selenium"></parameter>
+    <parameter name="browser" value="chrome"></parameter>
+    <parameter name="browserVersion" value="NA"></parameter>
+    <parameter name="environment" value="local"></parameter>
+    <parameter name="platformName" value="windows 10"></parameter>
+    <parameter name="autoStart" value="web"></parameter>
+    <parameter name="seleniumurl" value="local"></parameter>
+    <parameter name="browserName" value="chrome"></parameter>
+    <parameter name="browserVersion" value="74.0"></parameter>
+    <parameter name="seleniumurl" value="local"></parameter>
+    <parameter name="executionType" value="Sequential"></parameter>
+    <classes>
+        <class name="com.insight.WebTest.ShipBillPay.SBP01_StoredCardsLoginAsTest">
+            <parameter name="nextTestJoin" value="false"></parameter>
+            <parameter name="StartRow" value="1"></parameter>
+            <parameter name="EndRow" value="null"></parameter>
+        </class>
+    </classes>
+</test>
+
+<test name="SBP02" preserve-order='true'>
+    <parameter name="automationName" value="selenium"></parameter>
+    <parameter name="browser" value="chrome"></parameter>
+    <parameter name="browserVersion" value="NA"></parameter>
+    <parameter name="environment" value="local"></parameter>
+    <parameter name="platformName" value="windows 10"></parameter>
+    <parameter name="autoStart" value="web"></parameter>
+    <parameter name="seleniumurl" value="local"></parameter>
+    <parameter name="browserName" value="chrome"></parameter>
+    <parameter name="browserVersion" value="74.0"></parameter>
+    <parameter name="seleniumurl" value="local"></parameter>
+    <parameter name="executionType" value="Sequential"></parameter>
+    <classes>
+        <class name="com.insight.WebTest.ShipBillPay.SBP02_FreightFreeTest">
+            <parameter name="nextTestJoin" value="false"></parameter>
+            <parameter name="StartRow" value="1"></parameter>
+            <parameter name="EndRow" value="null"></parameter>
+        </class>
+    </classes>
+</test>
+
+<test name="SBP03" preserve-order='true'>
+    <parameter name="automationName" value="selenium"></parameter>
+    <parameter name="browser" value="chrome"></parameter>
+    <parameter name="browserVersion" value="NA"></parameter>
+    <parameter name="environment" value="local"></parameter>
+    <parameter name="platformName" value="windows 10"></parameter>
+    <parameter name="autoStart" value="web"></parameter>
+    <parameter name="seleniumurl" value="local"></parameter>
+    <parameter name="browserName" value="chrome"></parameter>
+    <parameter name="browserVersion" value="74.0"></parameter>
+    <parameter name="seleniumurl" value="local"></parameter>
+    <parameter name="executionType" value="Sequential"></parameter>
+    <classes>
+        <class name="com.insight.WebTest.ShipBillPay.SBP03_ASNShipNotesTest">
+            <parameter name="nextTestJoin" value="false"></parameter>
+            <parameter name="StartRow" value="1"></parameter>
+            <parameter name="EndRow" value="null"></parameter>
+        </class>
+    </classes>
+</test>
+
+<test name="SBP04" preserve-order='true'>
+    <parameter name="automationName" value="selenium"></parameter>
+    <parameter name="browser" value="chrome"></parameter>
+    <parameter name="browserVersion" value="NA"></parameter>
+    <parameter name="environment" value="local"></parameter>
+    <parameter name="platformName" value="windows 10"></parameter>
+    <parameter name="autoStart" value="web"></parameter>
+    <parameter name="seleniumurl" value="local"></parameter>
+    <parameter name="browserName" value="chrome"></parameter>
+    <parameter name="browserVersion" value="74.0"></parameter>
+    <parameter name="seleniumurl" value="local"></parameter>
+    <parameter name="executionType" value="Sequential"></parameter>
+    <classes>
+        <class name="com.insight.WebTest.ShipBillPay.SBP04_AvilableShippingAddressTest">
+            <parameter name="nextTestJoin" value="false"></parameter>
+            <parameter name="StartRow" value="1"></parameter>
+            <parameter name="EndRow" value="null"></parameter>
+        </class>
+    </classes>
+</test>
+
+<test name="SBP05" preserve-order='true'>
+    <parameter name="automationName" value="selenium"></parameter>
+    <parameter name="browser" value="chrome"></parameter>
+    <parameter name="browserVersion" value="NA"></parameter>
+    <parameter name="environment" value="local"></parameter>
+    <parameter name="platformName" value="windows 10"></parameter>
+    <parameter name="autoStart" value="web"></parameter>
+    <parameter name="seleniumurl" value="local"></parameter>
+    <parameter name="browserName" value="chrome"></parameter>
+    <parameter name="browserVersion" value="74.0"></parameter>
+    <parameter name="seleniumurl" value="local"></parameter>
+    <parameter name="executionType" value="Sequential"></parameter>
+    <classes>
+        <class name="com.insight.WebTest.ShipBillPay.SBP05_CarrierHeavyTest">
+            <parameter name="nextTestJoin" value="false"></parameter>
+            <parameter name="StartRow" value="1"></parameter>
+            <parameter name="EndRow" value="null"></parameter>
+        </class>
+    </classes>
+</test>
+
+<test name="SBP06" preserve-order='true'>
+    <parameter name="automationName" value="selenium"></parameter>
+    <parameter name="browser" value="chrome"></parameter>
+    <parameter name="browserVersion" value="NA"></parameter>
+    <parameter name="environment" value="local"></parameter>
+    <parameter name="platformName" value="windows 10"></parameter>
+    <parameter name="autoStart" value="web"></parameter>
+    <parameter name="seleniumurl" value="local"></parameter>
+    <parameter name="browserName" value="chrome"></parameter>
+    <parameter name="browserVersion" value="74.0"></parameter>
+    <parameter name="seleniumurl" value="local"></parameter>
+    <parameter name="executionType" value="Sequential"></parameter>
+    <classes>
+        <class name="com.insight.WebTest.ShipBillPay.SBP06_CreditCardOverrideTest">
+            <parameter name="nextTestJoin" value="false"></parameter>
+            <parameter name="StartRow" value="1"></parameter>
+            <parameter name="EndRow" value="null"></parameter>
+        </class>
+    </classes>
+</test>
+
+<test name="SBP07" preserve-order='true'>
+    <parameter name="automationName" value="selenium"></parameter>
+    <parameter name="browser" value="chrome"></parameter>
+    <parameter name="browserVersion" value="NA"></parameter>
+    <parameter name="environment" value="local"></parameter>
+    <parameter name="platformName" value="windows 10"></parameter>
+    <parameter name="autoStart" value="web"></parameter>
+    <parameter name="seleniumurl" value="local"></parameter>
+    <parameter name="browserName" value="chrome"></parameter>
+    <parameter name="browserVersion" value="74.0"></parameter>
+    <parameter name="seleniumurl" value="local"></parameter>
+    <parameter name="executionType" value="Sequential"></parameter>
+    <classes>
+        <class name="com.insight.WebTest.ShipBillPay.SBP07_ThirdPartyCarrierAccountTest">
+            <parameter name="nextTestJoin" value="false"></parameter>
+            <parameter name="StartRow" value="1"></parameter>
+            <parameter name="EndRow" value="null"></parameter>
+        </class>
+    </classes>
+</test>
+
+<test name="SBP08" preserve-order='true'>
+    <parameter name="automationName" value="selenium"></parameter>
+    <parameter name="browser" value="chrome"></parameter>
+    <parameter name="browserVersion" value="NA"></parameter>
+    <parameter name="environment" value="local"></parameter>
+    <parameter name="platformName" value="windows 10"></parameter>
+    <parameter name="autoStart" value="web"></parameter>
+    <parameter name="seleniumurl" value="local"></parameter>
+    <parameter name="browserName" value="chrome"></parameter>
+    <parameter name="browserVersion" value="74.0"></parameter>
+    <parameter name="seleniumurl" value="local"></parameter>
+    <parameter name="executionType" value="Sequential"></parameter>
+    <classes>
+        <class name="com.insight.WebTest.ShipBillPay.SBP08_SaveOrderTemplateIPSTest">
+            <parameter name="nextTestJoin" value="false"></parameter>
+            <parameter name="StartRow" value="1"></parameter>
+            <parameter name="EndRow" value="null"></parameter>
+        </class>
+    </classes>
+</test>
+
+<test name="SBP09" preserve-order='true'>
+    <parameter name="automationName" value="selenium"></parameter>
+    <parameter name="browser" value="chrome"></parameter>
+    <parameter name="browserVersion" value="NA"></parameter>
+    <parameter name="environment" value="local"></parameter>
+    <parameter name="platformName" value="windows 10"></parameter>
+    <parameter name="autoStart" value="web"></parameter>
+    <parameter name="seleniumurl" value="local"></parameter>
+    <parameter name="browserName" value="chrome"></parameter>
+    <parameter name="browserVersion" value="74.0"></parameter>
+    <parameter name="seleniumurl" value="local"></parameter>
+    <parameter name="executionType" value="Sequential"></parameter>
+    <classes>
+        <class name="com.insight.WebTest.ShipBillPay.SBP09_SharedUserWGSwitchTest">
+            <parameter name="nextTestJoin" value="false"></parameter>
+            <parameter name="StartRow" value="1"></parameter>
+            <parameter name="EndRow" value="null"></parameter>
+        </class>
+    </classes>
+</test>
+
+<test name="SBP11" preserve-order='true'>
+    <parameter name="automationName" value="selenium"></parameter>
+    <parameter name="browser" value="chrome"></parameter>
+    <parameter name="browserVersion" value="NA"></parameter>
+    <parameter name="environment" value="local"></parameter>
+    <parameter name="platformName" value="windows 10"></parameter>
+    <parameter name="autoStart" value="web"></parameter>
+    <parameter name="seleniumurl" value="local"></parameter>
+    <parameter name="browserName" value="chrome"></parameter>
+    <parameter name="browserVersion" value="74.0"></parameter>
+    <parameter name="seleniumurl" value="local"></parameter>
+    <parameter name="executionType" value="Sequential"></parameter>
+    <classes>
+        <class name="com.insight.WebTest.ShipBillPay.SBP11_IPSOrderTest">
+            <parameter name="nextTestJoin" value="false"></parameter>
+            <parameter name="StartRow" value="1"></parameter>
+            <parameter name="EndRow" value="null"></parameter>
+        </class>
+    </classes>
+</test>
+
+<test name="SBP12" preserve-order='true'>
+    <parameter name="automationName" value="selenium"></parameter>
+    <parameter name="browser" value="chrome"></parameter>
+    <parameter name="browserVersion" value="NA"></parameter>
+    <parameter name="environment" value="local"></parameter>
+    <parameter name="platformName" value="windows 10"></parameter>
+    <parameter name="autoStart" value="web"></parameter>
+    <parameter name="seleniumurl" value="local"></parameter>
+    <parameter name="browserName" value="chrome"></parameter>
+    <parameter name="browserVersion" value="74.0"></parameter>
+    <parameter name="seleniumurl" value="local"></parameter>
+    <parameter name="executionType" value="Sequential"></parameter>
+    <classes>
+        <class name="com.insight.WebTest.ShipBillPay.SBP12_SharedUserValidateStoredcardOptionTest">
+            <parameter name="nextTestJoin" value="false"></parameter>
+            <parameter name="StartRow" value="1"></parameter>
+            <parameter name="EndRow" value="null"></parameter>
+        </class>
+    </classes>
+</test>
+</suite>

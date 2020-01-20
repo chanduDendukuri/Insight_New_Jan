@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="CAN07"
+           tests="1"
+           failures="0"
+           errors="0"
+           skipped="0"
+           time="467.663">
+  <properties />
+  
+  
+            <testcase name="TC_CAN07" time="467.663" classname="com.insight.WebTest.Canada.CAN07_CartBasicTest" />
+      
+</testsuite>

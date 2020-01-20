@@ -1,0 +1,235 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE suite SYSTEM 'http://testng.org/testng-1.0.dtd'>
+<suite name='INSIGHT Automation test suite'>
+
+    <parameter name="suiteExecuted" value="Regression" />
+    <parameter name="executionType" value="Sequential" />
+    <listeners>
+        <listener class-name="org.uncommons.reportng.HTMLReporter" />
+        <listener class-name="org.uncommons.reportng.JUnitXMLReporter" />
+       
+    </listeners>
+    <test name="QTH01" preserve-order='true'>
+     <parameter name="automationName" value="selenium"></parameter>
+      <parameter name="browser" value="chrome"></parameter>
+       <parameter name="browserVersion" value="NA"></parameter> 
+       <parameter name="environment" value="local"></parameter>   
+      <parameter name="platformName" value="windows 10"></parameter>
+       <parameter name="autoStart" value="web"></parameter>
+      <parameter name="seleniumurl" value="local"></parameter>      
+        <parameter name="browserName" value="chrome"></parameter>
+        <parameter name="browserVersion" value="76.0"></parameter>
+        <parameter name="seleniumurl" value="local"></parameter>
+         <parameter name="executionType" value="Sequential"></parameter>
+        <classes>
+            <class name="com.insight.WebTest.QuoteHistory.QTH01_QuoteHistoryViewQuoteHistPageTest">           
+                <methods>              
+                    <parameter name="nextTestJoin" value="false"></parameter>
+                    <parameter name="StartRow" value="1"></parameter>
+                    <parameter name="EndRow" value="null"></parameter>                                 
+                </methods>
+            </class>
+        </classes>        
+   </test>
+   <test name="QTH02" preserve-order='true'>
+     <parameter name="automationName" value="selenium"></parameter>
+      <parameter name="browser" value="chrome"></parameter>
+       <parameter name="browserVersion" value="NA"></parameter> 
+       <parameter name="environment" value="local"></parameter>   
+      <parameter name="platformName" value="windows 10"></parameter>
+       <parameter name="autoStart" value="web"></parameter>
+      <parameter name="seleniumurl" value="local"></parameter>      
+        <parameter name="browserName" value="chrome"></parameter>
+        <parameter name="browserVersion" value="76.0"></parameter>
+        <parameter name="seleniumurl" value="local"></parameter>
+         <parameter name="executionType" value="Sequential"></parameter>
+        <classes>
+            <class name="com.insight.WebTest.QuoteHistory.QTH03_QuoteHistoryViewSearchResultsTest">           
+                <methods>              
+                    <parameter name="nextTestJoin" value="false"></parameter>
+                    <parameter name="StartRow" value="1"></parameter>
+                    <parameter name="EndRow" value="null"></parameter>                                 
+                </methods>
+            </class>
+        </classes>        
+   </test>
+   <test name="QTH04" preserve-order='true'>
+     <parameter name="automationName" value="selenium"></parameter>
+      <parameter name="browser" value="chrome"></parameter>
+       <parameter name="browserVersion" value="NA"></parameter> 
+       <parameter name="environment" value="local"></parameter>   
+      <parameter name="platformName" value="windows 10"></parameter>
+       <parameter name="autoStart" value="web"></parameter>
+      <parameter name="seleniumurl" value="local"></parameter>      
+        <parameter name="browserName" value="chrome"></parameter>
+        <parameter name="browserVersion" value="76.0"></parameter>
+        <parameter name="seleniumurl" value="local"></parameter>
+         <parameter name="executionType" value="Sequential"></parameter>
+        <classes>
+            <class name="com.insight.WebTest.QuoteHistory.QTH04_QuoteHistoryVLMQuoteTest">           
+                <methods>              
+                    <parameter name="nextTestJoin" value="false"></parameter>
+                    <parameter name="StartRow" value="1"></parameter>
+                    <parameter name="EndRow" value="null"></parameter>                                 
+                </methods>
+            </class>
+        </classes>        
+   </test>
+      <test name="QTH05" preserve-order='true'>
+     <parameter name="automationName" value="selenium"></parameter>
+      <parameter name="browser" value="chrome"></parameter>
+       <parameter name="browserVersion" value="NA"></parameter> 
+       <parameter name="environment" value="local"></parameter>   
+      <parameter name="platformName" value="windows 10"></parameter>
+       <parameter name="autoStart" value="web"></parameter>
+      <parameter name="seleniumurl" value="local"></parameter>      
+        <parameter name="browserName" value="chrome"></parameter>
+        <parameter name="browserVersion" value="76.0"></parameter>
+        <parameter name="seleniumurl" value="local"></parameter>
+         <parameter name="executionType" value="Sequential"></parameter>
+        <classes>
+            <class name="com.insight.WebTest.QuoteHistory.QTH05_QuoteHistoryDirectBillCartTest">           
+                <methods>              
+                    <parameter name="nextTestJoin" value="false"></parameter>
+                    <parameter name="StartRow" value="1"></parameter>
+                    <parameter name="EndRow" value="null"></parameter>                                 
+                </methods>
+            </class>
+        </classes>        
+   </test>
+    
+      <test name="QTH06" preserve-order='true'>
+     <parameter name="automationName" value="selenium"></parameter>
+      <parameter name="browser" value="chrome"></parameter>
+       <parameter name="browserVersion" value="NA"></parameter> 
+       <parameter name="environment" value="local"></parameter>   
+      <parameter name="platformName" value="windows 10"></parameter>
+       <parameter name="autoStart" value="web"></parameter>
+      <parameter name="seleniumurl" value="local"></parameter>      
+        <parameter name="browserName" value="chrome"></parameter>
+        <parameter name="browserVersion" value="76.0"></parameter>
+        <parameter name="seleniumurl" value="local"></parameter>
+         <parameter name="executionType" value="Sequential"></parameter>
+        <classes>
+            <class name="com.insight.WebTest.QuoteHistory.QTH06_QuoteHistoryDateSearchTest">           
+                <methods>              
+                    <parameter name="nextTestJoin" value="false"></parameter>
+                    <parameter name="StartRow" value="1"></parameter>
+                    <parameter name="EndRow" value="null"></parameter>                                 
+                </methods>
+            </class>
+        </classes>        
+   </test>
+     
+      <test name="QTH07" preserve-order='true'>
+     <parameter name="automationName" value="selenium"></parameter>
+      <parameter name="browser" value="chrome"></parameter>
+       <parameter name="browserVersion" value="NA"></parameter> 
+       <parameter name="environment" value="local"></parameter>   
+      <parameter name="platformName" value="windows 10"></parameter>
+       <parameter name="autoStart" value="web"></parameter>
+      <parameter name="seleniumurl" value="local"></parameter>      
+        <parameter name="browserName" value="chrome"></parameter>
+        <parameter name="browserVersion" value="76.0"></parameter>
+        <parameter name="seleniumurl" value="local"></parameter>
+         <parameter name="executionType" value="Sequential"></parameter>
+        <classes>
+            <class name="com.insight.WebTest.QuoteHistory.QTH07_DiscountIPSTest">           
+                <methods>              
+                    <parameter name="nextTestJoin" value="false"></parameter>
+                    <parameter name="StartRow" value="1"></parameter>
+                    <parameter name="EndRow" value="null"></parameter>                                 
+                </methods>
+            </class>
+        </classes>        
+   </test>
+      
+      <test name="QTH09" preserve-order='true'>
+     <parameter name="automationName" value="selenium"></parameter>
+      <parameter name="browser" value="chrome"></parameter>
+       <parameter name="browserVersion" value="NA"></parameter> 
+       <parameter name="environment" value="local"></parameter>   
+      <parameter name="platformName" value="windows 10"></parameter>
+       <parameter name="autoStart" value="web"></parameter>
+      <parameter name="seleniumurl" value="local"></parameter>      
+        <parameter name="browserName" value="chrome"></parameter>
+        <parameter name="browserVersion" value="76.0"></parameter>
+        <parameter name="seleniumurl" value="local"></parameter>
+         <parameter name="executionType" value="Sequential"></parameter>
+        <classes>
+            <class name="com.insight.WebTest.QuoteHistory.QTH09_ConvertSmartQuoteOnWebTest">           
+                <methods>              
+                    <parameter name="nextTestJoin" value="false"></parameter>
+                    <parameter name="StartRow" value="1"></parameter>
+                    <parameter name="EndRow" value="null"></parameter>                                 
+                </methods>
+            </class>
+        </classes>        
+   </test>
+   <test name="QTH011" preserve-order='true'>
+     <parameter name="automationName" value="selenium"></parameter>
+      <parameter name="browser" value="chrome"></parameter>
+       <parameter name="browserVersion" value="NA"></parameter> 
+       <parameter name="environment" value="local"></parameter>   
+      <parameter name="platformName" value="windows 10"></parameter>
+       <parameter name="autoStart" value="web"></parameter>
+      <parameter name="seleniumurl" value="local"></parameter>      
+        <parameter name="browserName" value="chrome"></parameter>
+        <parameter name="browserVersion" value="76.0"></parameter>
+        <parameter name="seleniumurl" value="local"></parameter>
+         <parameter name="executionType" value="Sequential"></parameter>
+        <classes>
+            <class name="com.insight.WebTest.QuoteHistory.QTH11_ConvertQuote3rdPartyCarrierTest">           
+                <methods>              
+                    <parameter name="nextTestJoin" value="false"></parameter>
+                    <parameter name="StartRow" value="1"></parameter>
+                    <parameter name="EndRow" value="null"></parameter>                                 
+                </methods>
+            </class>
+        </classes>        
+   </test>
+     <test name="QTH012" preserve-order='true'>
+     <parameter name="automationName" value="selenium"></parameter>
+      <parameter name="browser" value="chrome"></parameter>
+       <parameter name="browserVersion" value="NA"></parameter> 
+       <parameter name="environment" value="local"></parameter>   
+      <parameter name="platformName" value="windows 10"></parameter>
+       <parameter name="autoStart" value="web"></parameter>
+      <parameter name="seleniumurl" value="local"></parameter>      
+        <parameter name="browserName" value="chrome"></parameter>
+        <parameter name="browserVersion" value="76.0"></parameter>
+        <parameter name="seleniumurl" value="local"></parameter>
+         <parameter name="executionType" value="Sequential"></parameter>
+        <classes>
+            <class name="com.insight.WebTest.QuoteHistory.QTH12_CQTValidateSoftwareLicenseFieldsTest">           
+                <methods>              
+                    <parameter name="nextTestJoin" value="false"></parameter>
+                    <parameter name="StartRow" value="1"></parameter>
+                    <parameter name="EndRow" value="null"></parameter>                                 
+                </methods>
+            </class>
+        </classes>        
+   </test>
+      <test name="QTH013" preserve-order='true'>
+     <parameter name="automationName" value="selenium"></parameter>
+      <parameter name="browser" value="chrome"></parameter>
+       <parameter name="browserVersion" value="NA"></parameter> 
+       <parameter name="environment" value="local"></parameter>   
+      <parameter name="platformName" value="windows 10"></parameter>
+       <parameter name="autoStart" value="web"></parameter>
+      <parameter name="seleniumurl" value="local"></parameter>      
+        <parameter name="browserName" value="chrome"></parameter>
+        <parameter name="browserVersion" value="76.0"></parameter>
+        <parameter name="seleniumurl" value="local"></parameter>
+         <parameter name="executionType" value="Sequential"></parameter>
+        <classes>
+            <class name="com.insight.WebTest.QuoteHistory.QTH13_CQTRecalculatesOnFreightChangeTest">           
+                <methods>              
+                    <parameter name="nextTestJoin" value="false"></parameter>
+                    <parameter name="StartRow" value="1"></parameter>
+                    <parameter name="EndRow" value="null"></parameter>                                 
+                </methods>
+            </class>
+        </classes>        
+   </test>
+</suite>

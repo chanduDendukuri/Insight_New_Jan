@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="CAN02"
+           tests="1"
+           failures="0"
+           errors="0"
+           skipped="0"
+           time="236.057">
+  <properties />
+  
+  
+            <testcase name="TC_CAN02" time="236.057" classname="com.insight.WebTest.Canada.CAN02_ShipBillPayEWRFeeTest" />
+      
+</testsuite>

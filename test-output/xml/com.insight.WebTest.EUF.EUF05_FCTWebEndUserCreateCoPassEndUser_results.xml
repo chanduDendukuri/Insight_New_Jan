@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="WebApplication"
+           tests="1"
+           failures="0"
+           errors="0"
+           skipped="0"
+           time="213.455">
+  <properties />
+  
+  
+            <testcase name="TC_EUF05" time="213.455" classname="com.insight.WebTest.EUF.EUF05_FCTWebEndUserCreateCoPassEndUser" />
+      
+</testsuite>

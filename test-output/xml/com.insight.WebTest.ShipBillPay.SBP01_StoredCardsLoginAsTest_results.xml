@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="WebApplication"
+           tests="1"
+           failures="0"
+           errors="0"
+           skipped="0"
+           time="264.576">
+  <properties />
+  
+  
+            <testcase name="Tc_SBP01" time="264.576" classname="com.insight.WebTest.ShipBillPay.SBP01_StoredCardsLoginAsTest" />
+      
+</testsuite>

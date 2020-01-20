@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="WebApplication"
+           tests="1"
+           failures="0"
+           errors="0"
+           skipped="0"
+
+           time="190.122">
+  <properties />
+  
+  
+            <testcase name="TC_VQT02" time="190.122" classname="com.insight.SmartTest.Scripts.IUS.VQT02_IPSFreeGroundFreightTest" />
+
+           time="212.397">
+  <properties />
+  
+  
+            <testcase name="TC_VQT02" time="212.397" classname="com.insight.SmartTest.Scripts.IUS.VQT02_IPSFreeGroundFreightTest" />
+
+      
+</testsuite>

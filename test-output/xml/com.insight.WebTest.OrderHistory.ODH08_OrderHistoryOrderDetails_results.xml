@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="WebApplication"
+           tests="1"
+           failures="0"
+           errors="0"
+           skipped="0"
+           time="192.414">
+  <properties />
+  
+  
+            <testcase name="ODH08" time="192.414" classname="com.insight.WebTest.OrderHistory.ODH08_OrderHistoryOrderDetails" />
+      
+</testsuite>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="WebApplication"
+           tests="1"
+           failures="0"
+           errors="0"
+           skipped="0"
+           time="469.626">
+  <properties />
+  
+  
+            <testcase name="TC_ODP02" time="469.626" classname="com.insight.WebTest.OrderPlacementTests.ODP02_PlaceOrderBasicIPSTest" />
+      
+</testsuite>

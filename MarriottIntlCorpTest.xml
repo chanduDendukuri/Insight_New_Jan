@@ -1,0 +1,211 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE suite SYSTEM 'http://testng.org/testng-1.0.dtd'>
+<suite name='INSIGHT Automation test suite'>
+    <parameter name="suiteExecuted" value="Regression" />
+    <parameter name="executionType" value="Sequential" />
+    <listeners>
+        <listener class-name="org.uncommons.reportng.HTMLReporter" />
+        <listener class-name="org.uncommons.reportng.JUnitXMLReporter" />
+    </listeners>
+    <test name="MIC01" preserve-order='true'>
+     <parameter name="automationName" value="selenium"></parameter>
+      <parameter name="browser" value="chrome"></parameter>
+       <parameter name="browserVersion" value="NA"></parameter> 
+       <parameter name="environment" value="local"></parameter>   
+      <parameter name="platformName" value="windows 10"></parameter>
+       <parameter name="autoStart" value="web"></parameter>
+      <parameter name="seleniumurl" value="local"></parameter>      
+        <parameter name="browserName" value="chrome"></parameter>
+        <parameter name="browserVersion" value="76.0"></parameter>
+        <parameter name="seleniumurl" value="local"></parameter>
+         <parameter name="executionType" value="Sequential"></parameter>
+        <classes>
+            <class name="com.insight.WebTest.MIC.MIC01_MIntlUserTest">
+                <methods>
+                    <parameter name="nextTestJoin" value="false"></parameter>
+                    <parameter name="StartRow" value="1"></parameter>
+                    <parameter name="EndRow" value="null"></parameter>
+                </methods>
+                </class>
+        </classes>  
+    </test>
+   <test name="MIC02" preserve-order='true'>
+     <parameter name="automationName" value="selenium"></parameter>
+      <parameter name="browser" value="chrome"></parameter>
+       <parameter name="browserVersion" value="NA"></parameter> 
+       <parameter name="environment" value="local"></parameter>   
+      <parameter name="platformName" value="windows 10"></parameter>
+       <parameter name="autoStart" value="web"></parameter>
+      <parameter name="seleniumurl" value="local"></parameter>      
+        <parameter name="browserName" value="chrome"></parameter>
+        <parameter name="browserVersion" value="76.0"></parameter>
+        <parameter name="seleniumurl" value="local"></parameter>
+         <parameter name="executionType" value="Sequential"></parameter>
+        <classes>
+            <class name="com.insight.WebTest.MIC.MIC02_MIGlobalSoftwareTest">
+                <methods>
+                    <parameter name="nextTestJoin" value="false"></parameter>
+                    <parameter name="StartRow" value="1"></parameter>
+                    <parameter name="EndRow" value="null"></parameter>
+                </methods>
+                </class>
+        </classes>  
+    </test>
+    <test name="MIC03" preserve-order='true'>
+     <parameter name="automationName" value="selenium"></parameter>
+      <parameter name="browser" value="chrome"></parameter>
+       <parameter name="browserVersion" value="NA"></parameter> 
+       <parameter name="environment" value="local"></parameter>   
+      <parameter name="platformName" value="windows 10"></parameter>
+       <parameter name="autoStart" value="web"></parameter>
+      <parameter name="seleniumurl" value="local"></parameter>      
+        <parameter name="browserName" value="chrome"></parameter>
+        <parameter name="browserVersion" value="76.0"></parameter>
+        <parameter name="seleniumurl" value="local"></parameter>
+         <parameter name="executionType" value="Sequential"></parameter>
+        <classes>
+            <class name="com.insight.WebTest.MIC.MIC03_PAAPPNMITest">
+                <methods>
+s                    <parameter name="nextTestJoin" value="false"></parameter>
+                    <parameter name="StartRow" value="1"></parameter>
+                    <parameter name="EndRow" value="null"></parameter>
+                </methods>
+                </class>
+        </classes>  
+    </test> 
+     <test name="MIC04" preserve-order='true'>
+     <parameter name="automationName" value="selenium"></parameter>
+      <parameter name="browser" value="chrome"></parameter>
+       <parameter name="browserVersion" value="NA"></parameter> 
+       <parameter name="environment" value="local"></parameter>   
+      <parameter name="platformName" value="windows 10"></parameter>
+       <parameter name="autoStart" value="web"></parameter>
+      <parameter name="seleniumurl" value="local"></parameter>      
+        <parameter name="browserName" value="chrome"></parameter>
+        <parameter name="browserVersion" value="76.0"></parameter>
+        <parameter name="seleniumurl" value="local"></parameter>
+         <parameter name="executionType" value="Sequential"></parameter>
+        <classes>
+            <class name="com.insight.WebTest.MIC.MIC04_PAAPPQuoteTest">
+                <methods>
+s                    <parameter name="nextTestJoin" value="false"></parameter>
+                    <parameter name="StartRow" value="1"></parameter>
+                    <parameter name="EndRow" value="null"></parameter>
+                </methods>
+                </class>
+        </classes>  
+    </test> 
+     <test name="MIC05" preserve-order='true'>
+     <parameter name="automationName" value="selenium"></parameter>
+      <parameter name="browser" value="chrome"></parameter>
+       <parameter name="browserVersion" value="NA"></parameter> 
+       <parameter name="environment" value="local"></parameter>   
+      <parameter name="platformName" value="windows 10"></parameter>
+       <parameter name="autoStart" value="web"></parameter>
+      <parameter name="seleniumurl" value="local"></parameter>      
+        <parameter name="browserName" value="chrome"></parameter>
+        <parameter name="browserVersion" value="76.0"></parameter>
+        <parameter name="seleniumurl" value="local"></parameter>
+         <parameter name="executionType" value="Sequential"></parameter>
+        <classes>
+            <class name="com.insight.WebTest.MIC.MIC05_MGSPropAssocQuoteTest">
+                <methods>
+s                    <parameter name="nextTestJoin" value="false"></parameter>
+                    <parameter name="StartRow" value="1"></parameter>
+                    <parameter name="EndRow" value="null"></parameter>
+                </methods>
+                </class>
+        </classes>  
+    </test> 
+  <test name="MIC06" preserve-order='true'>
+     <parameter name="automationName" value="selenium"></parameter>
+      <parameter name="browser" value="chrome"></parameter>
+       <parameter name="browserVersion" value="NA"></parameter> 
+       <parameter name="environment" value="local"></parameter>   
+      <parameter name="platformName" value="windows 10"></parameter>
+       <parameter name="autoStart" value="web"></parameter>
+      <parameter name="seleniumurl" value="local"></parameter>      
+        <parameter name="browserName" value="chrome"></parameter>
+        <parameter name="browserVersion" value="76.0"></parameter>
+        <parameter name="seleniumurl" value="local"></parameter>
+         <parameter name="executionType" value="Sequential"></parameter>
+        <classes>
+            
+              <class name="com.insight.WebTest.MIC.MIC06_SharedMgdServicesOrderTest">
+                <methods>
+                    <parameter name="nextTestJoin" value="false"></parameter>
+                    <parameter name="StartRow" value="1"></parameter>
+                    <parameter name="EndRow" value="null"></parameter>
+                </methods>
+                </class>
+        </classes>   
+    </test>
+     <test name="MIC07" preserve-order='true'>
+     <parameter name="automationName" value="selenium"></parameter>
+      <parameter name="browser" value="chrome"></parameter>
+       <parameter name="browserVersion" value="NA"></parameter> 
+       <parameter name="environment" value="local"></parameter>   
+      <parameter name="platformName" value="windows 10"></parameter>
+       <parameter name="autoStart" value="web"></parameter>
+      <parameter name="seleniumurl" value="local"></parameter>      
+        <parameter name="browserName" value="chrome"></parameter>
+        <parameter name="browserVersion" value="76.0"></parameter>
+        <parameter name="seleniumurl" value="local"></parameter>
+         <parameter name="executionType" value="Sequential"></parameter>
+        <classes>
+           <class name="com.insight.WebTest.MIC.MIC07_PAAprovalMIGobalTest">
+                <methods>
+                    <parameter name="nextTestJoin" value="false"></parameter>
+                    <parameter name="StartRow" value="1"></parameter>
+                    <parameter name="EndRow" value="null"></parameter>
+                </methods></class>
+        </classes>        
+    </test> 
+     <test name="MIC08" preserve-order='true'>
+     <parameter name="automationName" value="selenium"></parameter>
+      <parameter name="browser" value="chrome"></parameter>
+       <parameter name="browserVersion" value="NA"></parameter> 
+       <parameter name="environment" value="local"></parameter>   
+      <parameter name="platformName" value="windows 10"></parameter>
+       <parameter name="autoStart" value="web"></parameter>
+      <parameter name="seleniumurl" value="local"></parameter>      
+        <parameter name="browserName" value="chrome"></parameter>
+        <parameter name="browserVersion" value="76.0"></parameter>
+        <parameter name="seleniumurl" value="local"></parameter>
+         <parameter name="executionType" value="Sequential"></parameter>
+        <classes>
+            
+                <class name="com.insight.WebTest.MIC.MIC08_OrderShareMgdMarriottINTLITest">
+                <methods>
+                    <parameter name="nextTestJoin" value="false"></parameter>
+                    <parameter name="StartRow" value="1"></parameter>
+                    <parameter name="EndRow" value="null"></parameter>
+                </methods></class>
+        </classes>      
+    </test>
+     <test name="MIC09" preserve-order='true'>
+     <parameter name="automationName" value="selenium"></parameter>
+      <parameter name="browser" value="chrome"></parameter>
+       <parameter name="browserVersion" value="NA"></parameter> 
+       <parameter name="environment" value="local"></parameter>   
+      <parameter name="platformName" value="windows 10"></parameter>
+       <parameter name="autoStart" value="web"></parameter>
+      <parameter name="seleniumurl" value="local"></parameter>      
+        <parameter name="browserName" value="chrome"></parameter>
+        <parameter name="browserVersion" value="76.0"></parameter>
+        <parameter name="seleniumurl" value="local"></parameter>
+         <parameter name="executionType" value="Sequential"></parameter>
+        <classes>
+            
+                <class name="com.insight.WebTest.MIC.MIC09_VerifyAddressSwitchWGSBPTest">
+                <methods>
+                    <parameter name="nextTestJoin" value="false"></parameter>
+                    <parameter name="StartRow" value="1"></parameter>
+                    <parameter name="EndRow" value="null"></parameter>
+                </methods></class>
+        </classes>      
+    </test>
+</suite>
+
+
+

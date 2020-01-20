@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="WebApplication"
+           tests="1"
+           failures="0"
+           errors="0"
+           skipped="0"
+           time="249.273">
+  <properties />
+  
+  
+            <testcase name="CAN04_ShipBillPayFreight" time="249.273" classname="com.insight.WebTest.CanadaTest" />
+      
+</testsuite>

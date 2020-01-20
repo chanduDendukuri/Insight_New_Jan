@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="WebApplication"
+           tests="1"
+           failures="0"
+           errors="0"
+           skipped="0"
+           time="245.545">
+  <properties />
+  
+  
+            <testcase name="IVH08" time="245.545" classname="com.insight.WebTest.InvoiceHistory.IVH04_InvoiceHierachyTreeTreeGlobal" />
+      
+</testsuite>

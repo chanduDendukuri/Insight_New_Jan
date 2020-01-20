@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="WebApplication"
+           tests="1"
+           failures="0"
+           errors="0"
+           skipped="0"
+           time="126.489">
+  <properties />
+  
+  
+            <testcase name="SER01_AccountSearch" time="126.489" classname="com.insight.SmartTest.Scripts.IUS.SER01_AccountSearchTest" />
+      
+</testsuite>
