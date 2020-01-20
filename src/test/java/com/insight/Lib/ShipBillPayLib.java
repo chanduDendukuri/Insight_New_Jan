@@ -536,10 +536,10 @@ public class ShipBillPayLib extends ShipBillPayObj {
 		typeText(OrderObj.ZIPCODE,zipcode,"ZIP/Postal code::"+zipcode+"");
 		selectByVisibleText(OrderObj.SELECT_COUNTRY,Country,"Country::"+Country+"");
 		selectByVisibleText(OrderObj.SELECT_STATE,state,"STATE::"+state+""); 
-		waitForVisibilityOfElement(MarriottIntlCorpObj.SHIP_ATTENTION, "Ship Attention");
-		if (isElementPresent(MarriottIntlCorpObj.SHIP_ATTENTION, "Ship Attention")) {
-			click(MarriottIntlCorpObj.SHIP_ATTENTION, "Ship Attention");
-			type(MarriottIntlCorpObj.SHIP_ATTENTION, attention, "Ship Attention");
+		waitForVisibilityOfElement(OrderObj.SHIP_ATTENTION, "Ship Attention");
+		if (isElementPresent(OrderObj.SHIP_ATTENTION, "Ship Attention")) {
+			click(OrderObj.SHIP_ATTENTION, "Ship Attention");
+			type(OrderObj.SHIP_ATTENTION, attention, "Ship Attention");
 		click(OrderObj.SHIPPING_ADDRESS_CONTINUE_BTN,"Continue button");
 		if(isElementPresent(OrderObj.ADDRESS_VALIDATION_WINDOW_HDR, "Address validation popup")){
 			click(OrderObj.SAVE_ADDRESS_BTN, "Save address button");

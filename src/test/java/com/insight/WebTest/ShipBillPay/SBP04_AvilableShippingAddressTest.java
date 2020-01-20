@@ -136,7 +136,7 @@ public class SBP04_AvilableShippingAddressTest extends ShipBillPayLib{
 				String companyname3="IUS Created Shipping Adress Canada"+"_"+getRandomNumeric(4);
 				shipbLib.AddNewshippingAddressWithcountry(data.get("link"),companyname3, data.get("street2"),
 						data.get("city2"), data.get("zipcode2"), data.get("state2"), data.get("Country2"),data.get("Attention"));
-				shipbLib.clickstoredAddressandVerify(companyname3);
+				shipbLib.VerifyCreatedAddress(companyname3);
 				// Search for the Account Name
 				orderLib.shippingBillPayContinueButton();
 				// login-4
@@ -147,7 +147,7 @@ public class SBP04_AvilableShippingAddressTest extends ShipBillPayLib{
 				cmtLib.hoverOnManageWebGroupsAndSelectOptions(data.get("Manage_Web_Grp_Options"));
 				cmtLib.searchForaUserAndSelect(data.get("LnameEmailUname"), data.get("ContactName"));
 				cmtLib.setPermissions(data.get("Menu_Name"), data.get("Set_Permission3"));
-				//cmtLib.loginAsAdminCMT();
+				cmtLib.loginAsAdminCMT();
 				// add to cart
 				commonLib.searchProduct(data.get("Search_Item"));
 				searchLib.verifyBreadCrumbInSearchResultsPage(data.get("Search_Item"));
@@ -159,11 +159,11 @@ public class SBP04_AvilableShippingAddressTest extends ShipBillPayLib{
 				String companyname="IUS Created Shipping Adress Canada"+"_"+getRandomNumeric(4);
 				shipbLib.AddNewshippingAddressWithcountry(data.get("link"),companyname, data.get("street"),
 						data.get("city"), data.get("zipcode"), data.get("state"), data.get("Country"),data.get("Attention"));
-				shipbLib.clickstoredAddressandVerify(companyname);
+				shipbLib.VerifyCreatedAddress(companyname);
 				String companyname1="IUS Created Shipping Adress Canada"+"_"+getRandomNumeric(4);
 				shipbLib.AddNewshippingAddressWithcountry(data.get("link"),companyname1, data.get("street2"),
 						data.get("city2"), data.get("zipcode2"), data.get("state2"), data.get("Country"),data.get("Attention"));
-				shipbLib.clickstoredAddressandVerify(companyname);
+				shipbLib.VerifyCreatedAddress(companyname);
 				// permissions unchek
 				cmtLib.navigateBackToCMT();
 				cmtLib.hoverOverMasterGroupAndSelectChangeGrp();

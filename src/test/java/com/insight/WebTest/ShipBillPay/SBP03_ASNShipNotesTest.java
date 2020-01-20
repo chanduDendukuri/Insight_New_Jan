@@ -101,7 +101,7 @@ public class SBP03_ASNShipNotesTest extends ShipBillPayLib{
 				Thread.sleep(5000);
 				cartLib.enterMailIdToNotificationFieldAndVerifyErrorMessage(data.get("Email1"));
 				Thread.sleep(5000);
-				cartLib.enterMailIdToNotificationFieldAndVerifyMessageNote(data.get("Email2"));
+				//cartLib.enterMailIdToNotificationFieldAndVerifyMessageNote(data.get("Email2"));
 				Thread.sleep(5000);
 				commonLib.searchProduct(data.get("Search_Item"));
 				commonLib.addFirstDisplyedItemToCartAndVerify();

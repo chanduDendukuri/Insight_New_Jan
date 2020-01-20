@@ -172,6 +172,7 @@ public class OrderObj extends ActionEngine{
 				public static By ZIPCODE = By.name("zipCode");
 				public static By SELECT_STATE= By.name("state");
 				public static By SELECT_COUNTRY=By.name("country");
+				public static By SHIP_ATTENTION=By.xpath("//input[@name='attentionForm.attentionLine']");
 				public static By SHIPPINGADDRESS_CONTINUE_BTN=By.xpath("//button[@class='button expanded section__button no-margin-bot']");
 				public static By ADDRESSVALIDATION_WINDOW_HDR= By.xpath("//h3[@class='iw-modal__heading']");
 				public static By SAVEADDRESS_BTN = By.xpath("//div[@class='column small-6 medium-shrink']/button");
@@ -199,7 +200,7 @@ public class OrderObj extends ActionEngine{
 	
 	public static By SHIPPING_ADDRESS_CONTINUE_BTN = By.xpath("//button[@class='button expanded section__button no-margin-bot']");
 	public static By ADDRESS_VALIDATION_WINDOW_HDR = By.xpath("//h3[@class='iw-modal__heading']");
-	public static By SAVE_ADDRESS_BTN = By.xpath("//div[@class='column small-6 medium-shrink']/button");
+	public static By SAVE_ADDRESS_BTN = By.xpath("//button[contains(text(),'Save address')]");
 	public static By SHIPPING_OPTIONS_CONTINUE_BTN = By.xpath("//div[@class='column small-12 medium-shrink']/BUTTON");
 	
 
