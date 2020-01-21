@@ -553,6 +553,7 @@ action.moveToElement(el).perform();
 		// Thread.sleep(2000);
 		if (waitForVisibilityOfElement(SALESDOCMENTSEARCHFIELD, "Sales Doc Search Icon")) {
 			click(HomePage.SEARCHBUTTON_SALESDOCNUM, "Sales Doc Search Icon");
+			loadingSymbol();
 			reporter.SuccessReport("Sales Doc Search Icon::", "", "displaying");
 		} else {
 			reporter.failureReport("Sales Doc Search Icon::", "Sales Doc Search Icon is not Displayed", "");
@@ -2229,8 +2230,9 @@ else {
 	}
 
 	public void VerifyContractPriceShouldbeEqualToYPOO(String contractid, float YP00) throws Throwable {
-		String ContractPrice = getText(getcontractsellingPrice(contractid), "get sell price");
-		if (ContractPrice.equals(YP00)) {
+		String ContractPrice1 = getText(getcontractsellingPrice(contractid), "get sell price");
+		float ContractPrice  =Float.parseFloat(ContractPrice1);
+		if (ContractPrice==YP00) {
 			reporter.SuccessReport("Verify that YP00 should equal to contractid",
 					"YP00" + YP00 + " equals to contractid" + ContractPrice + "", "");
 		} else {
@@ -3440,7 +3442,7 @@ public float getSellPriceFromInlineItemsContract(String contractid) throws Throw
 	 * @throws Throwable
 	 */
 	public void VerifyZPMLMinusZDMLShouldbeEqualToYP00(float ZPML, float ZDML, float YP00) throws Throwable {
-		float ZpmlminusZdml = ZPML - ZDML;
+		float ZpmlminusZdml = ZPML + ZDML;
 		if ((YP00 == ZpmlminusZdml)) {
 			reporter.SuccessReport("Verify that ZPML minus  ZDML equals the YP00 value",
 					"ZPML Minus ZDML::" + ZpmlminusZdml + " equals the YP00 :" + YP00 + "value ", "");
@@ -3458,7 +3460,7 @@ public float getSellPriceFromInlineItemsContract(String contractid) throws Throw
 	 * @throws Throwable
 	 */
 	public void VerifyZPMLMinusZDMLShouldbeEqualToZP00(float ZPML, float ZDML, float YP00) throws Throwable {
-		float ZpmlminusZdml = ZPML - ZDML;
+		float ZpmlminusZdml = ZPML + ZDML;
 		if ((YP00 == ZpmlminusZdml)) {
 			reporter.SuccessReport("Verify that ZPML minus  ZDML equals the YP00 value",
 					"ZPML Minus ZDML::" + ZpmlminusZdml + " equals the YP00 :" + YP00 + "value ", "");
