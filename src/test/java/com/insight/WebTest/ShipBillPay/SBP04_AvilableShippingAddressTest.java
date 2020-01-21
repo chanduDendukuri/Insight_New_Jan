@@ -84,6 +84,7 @@ public class SBP04_AvilableShippingAddressTest extends ShipBillPayLib{
 				cartLib.clickOnContinueButtonInAddInformtion();
 				orderLib.clickContinueOnLineLevelInfo();
 				// verify shipping address
+				Thread.sleep(5000);
 				VerifyDefualtSoldtoAddress(data.get("SoldToAddress"));
 				shipbLib.VerifyStoredAddress(data.get("storedaddress"));
 				clickstoredAddressandVerify(data.get("storedaddress"));
@@ -113,6 +114,7 @@ public class SBP04_AvilableShippingAddressTest extends ShipBillPayLib{
 				orderLib.proceedToCheckout();
 				cartLib.clickOnContinueButtonInAddInformtion();
 				orderLib.clickContinueOnLineLevelInfo();
+				Thread.sleep(5000);
 				VerifyDefualtSoldtoAddress(data.get("SoldToAddress2"));
 				shipbLib.VerifyStoredAddress(data.get("Defualtaddress"));
 				clickstoredAddressandVerify(data.get("Defualtaddress"));
