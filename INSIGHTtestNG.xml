@@ -18,11 +18,11 @@
        <parameter name="autoStart" value="web"></parameter>
       <parameter name="seleniumurl" value="local"></parameter>      
         <parameter name="browserName" value="chrome"></parameter>
-        <parameter name="browserVersion" value="76.0"></parameter>
+        <parameter name="browserVersion" value="NA"></parameter>
         <parameter name="seleniumurl" value="local"></parameter>
          <parameter name="executionType" value="Sequential"></parameter>
         <classes>
-            <class name="com.insight.WebTest.ShipBillPay.SBP04_AvilableShippingAddressTest">
+            <class name="com.insight.SmartTest.Scripts.IPS.CQT19_IPSCiscoIDRefreshIconTest">
             
            
                 <methods>
@@ -34,6 +34,8 @@
                      
                 </methods>
             </class>
+            
+            
         </classes>        
     </test>
 </suite>

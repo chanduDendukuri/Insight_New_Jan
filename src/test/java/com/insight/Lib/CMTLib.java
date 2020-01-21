@@ -2472,7 +2472,14 @@ public class CMTLib extends CMTObj {
 		 *
 		 */
 		public void clickOnSharedUserUrl() throws Throwable {
-			click(SHAREDUSERURL,"Back to User Search");
+			if(isVisibleOnly(SHAREDUSERURL,"Shared User Url")) {
+			String URl=getText(SHAREDUSERURL,"URL");
+			System.out.println(URl);
+			click(SHAREDUSERURL,"Shared User Url");
+			reporter.SuccessReport("Verify User URL in Information Tab on Manage Web groups: Create User Page"," User URL in Information Tab Exists", "User URL::"+URl+"");
+			}else {
+				reporter.failureReport("Verify User URL in Information Tab on Manage Web groups: Create User Page"," User URL in Information Tab Does Not Exists", "");
+			}
 		}
 		
 		public void clickDesignatedShippingOptions(String optionToSelect) throws Throwable {

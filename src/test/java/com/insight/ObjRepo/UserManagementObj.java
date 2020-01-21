@@ -37,5 +37,6 @@ public class UserManagementObj extends ActionEngine{
 		return By.xpath("(//td[@id='UserType'][contains(.,'"+userType+"')])[1]");
 	 }
 	public static By HEADER_LOGO=By.xpath("//div[@class='c-header-logo']");
+	public static By Error_MSG=By.xpath("//div[@id='ErrorMsg']");
 	}
 	
