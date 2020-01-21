@@ -1149,6 +1149,20 @@ public class ShipBillPayLib extends ShipBillPayObj {
 		}
 		
 		public void clickEdit()throws Throwable{
+			click(EDIT_LINK,"Edit Link Shipping Address");
+		}
+		/**
+		 * This method is to add products By Quick shop
+		 * 
+		 * @throws Throwable
+		 */
+		public void clickstoredAddressandCancle(String Text) throws Throwable {
+			click(STOREDADDRESS_LINK, "Link::STORED ADDRESS");
+			click(SEARCH_FIELD,"Link:SEARCH AVAILABLE ADDRESSES");
+			type(SEARCH_FIELD,Text,"Search Field");
+			click(search_Button,"Search Button");
+			Thread.sleep(3000);
+			click(CANCELBUTTON_STOREDADDRESS, "Cancle Button on search shipping address page");
 			click(EDIT_LINK,"Link");
 		}
 }
