@@ -210,20 +210,8 @@ public static By SELECT_COUNTRY=By.name("country");
 public static By SHIPPINGADDRESS_CONTINUE_BTN=By.xpath("//button[@class='button expanded section__button no-margin-bot']");
 public static By ADDRESSVALIDATION_WINDOW_HDR= By.xpath("//h3[@class='iw-modal__heading']");
 public static By SAVEADDRESS_BTN = By.xpath("//div[@class='column small-6 medium-shrink']/button");
+public static By EDIT_LINK=By.xpath("//h3[contains(text(),'Shipping address')]/following-sibling::a");
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
