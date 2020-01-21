@@ -238,10 +238,10 @@ public class UserManagementLib extends UserManagementObj {
 			}
 	
 	public void verifyErrorMsg() throws Throwable {		
-		if (isElementPresent(HEADER_LOGO, "WelcomePage")) {	
-			reporter.SuccessReport("Verify Error Msg::", "WelCome Page exists","");
+		if (isElementPresent(Error_MSG, "Error Message")) {	
+			reporter.SuccessReport("Verify Error Msg::", "Error Message exists","The email format is invalid");
 		} else {
-			reporter.failureReport("Verify Error Msg::", "WelCome Page does not exist","");
+			reporter.failureReport("Verify Error Msg::", "Error Message does not exist","");
 		}	
 			}
 }
