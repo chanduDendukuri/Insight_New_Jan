@@ -533,11 +533,17 @@ public class CommonLib extends ActionEngine{
 			if(isVisibleOnly(CommonObj.getCompanyStandardsProductGroup(productGroup, productName), "product group")) {
 				reporter.SuccessReport("Verify product group exists", "Product group exists", "Product group : "+productGroup+ " product Name: "+productName);
 				click(CommonObj.getCompanyStandardsProductGroup(productGroup, productName), "select product from product group Product Group : "+productName,"Produc name : "+productName);
+				if(isElementPresent(CommonObj.getProductGrpNavigation(productGroup, productName), "NAVIGATED PRODUCT GROUP")){
+					 reporter.SuccessReport("verify the selected product is displayed under the product group","Selected product is displayed correctly in the product group table.",productGroup+" >> " + productName);
+				}else {
+					reporter.failureReport("verify the selected product group is displayed","Selected product is not displayed correctly under the product group.","");
+				}
 			}else {
 				reporter.failureReport("verify product group exists", "product group doest not exists", "", driver);
 			}
-			
 		}
+			
+		
 		
 		/**
 		 * Method is to click on the account tools menu DD

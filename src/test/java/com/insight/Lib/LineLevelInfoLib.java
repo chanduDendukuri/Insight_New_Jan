@@ -504,6 +504,8 @@ public class LineLevelInfoLib extends LineLevelInfoObj{
 				myList1.get(j).click();
 				Thread.sleep(3000);
 	 		}
+	    }else {
+	    	reporter.failureReport("Verify add items check box", "Add items check box does not exist", "", driver);
 	    }
 	}
 	

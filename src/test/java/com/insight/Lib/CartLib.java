@@ -811,7 +811,6 @@ public class CartLib extends ActionEngine {
 	public String getSummaryAmountInCart() throws Throwable {
 		Thread.sleep(5000);
 		String summaryAmount = getText(CartObj.SUMMARY_TOTAL, "summaryTotalAmount");
-
 		return summaryAmount;
 	}
 
@@ -1767,7 +1766,7 @@ public class CartLib extends ActionEngine {
 	 */
 	public void verifyCartBreadCrumb() throws Throwable {
 		if (isElementPresent(CartObj.CART_LABEL_ON_CART_PAGE, "cart page")) {
-			reporter.SuccessReport("Verify cart page", "Cart page is displayed", "");
+			reporter.SuccessReport("Verify cart page", "User successfully navigated to cart page", "PageDetails : Cart");
 		} else {
 			reporter.failureReport("Verify cart page", "Cart page is not displayed", "", driver);
 		}
