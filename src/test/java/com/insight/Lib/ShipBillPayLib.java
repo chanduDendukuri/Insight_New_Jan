@@ -558,6 +558,14 @@ public class ShipBillPayLib extends ShipBillPayObj {
 			reporter.failureReport("New Address Is Not Created", "New Address Is Not Created", "");
 		}
 	}
+	public void VerifyDefualtSoldtoAddress(String Company) throws Throwable {
+		waitForVisibilityOfElement(OrderObj.SHIPPING_ADDRESS, "Shipping Address");
+		if (isElementPresent(CREATEDADDRES(Company), "Sold-To Shipping Address")) {
+			reporter.SuccessReport("Verify Sold-To Shipping Address", "Sold-To Shipping Address", "COMPANY::"+Company);
+		} else {
+			reporter.failureReport("Verify Sold-To Shipping Address", "Sold-To Shipping Address", "");
+		}
+	}
 
 	public void SelectAllLinkedaddresses(String Linkuseraddresses) throws Throwable {
 		if (isElementPresent(LINKEDACCOUNTSDROPDOWN, "LINKEDACCOUNTSDROPDOWN")) {
@@ -1140,6 +1148,9 @@ public class ShipBillPayLib extends ShipBillPayObj {
 
 		}
 		
+		public void clickEdit()throws Throwable{
+			click(EDIT_LINK,"Link");
+		}
 }
 
 
