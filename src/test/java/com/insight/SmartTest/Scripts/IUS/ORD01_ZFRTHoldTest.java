@@ -77,8 +77,14 @@ public class ORD01_ZFRTHoldTest extends HomeLib {
 				VerifycolourAfterRejectingItem(data.get("colour"));
 				clickSideBarSmart();
 				String quotenumber = GetQuoteNumber();
+				if(quotenumber!=null) {
+					reporter.SuccessReport("QuoteNumber:", "Quotenumber is displayed", "");
+				}
+				else {
+					reporter.failureReport("QuoteNumber:", "Quotenumber is not displayed", "",driver);
+				}
 				clickClosthedocument(quotenumber);
-				//clickYesButtontocloseDocument();
+				clickYesButtontocloseDocument();
 				System.out.println("Testcase completed");
 			} catch (Exception e) {
 				// TODO Auto-generated catch block

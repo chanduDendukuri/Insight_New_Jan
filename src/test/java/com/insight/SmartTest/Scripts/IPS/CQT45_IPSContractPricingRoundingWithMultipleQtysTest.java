@@ -117,7 +117,7 @@ public class CQT45_IPSContractPricingRoundingWithMultipleQtysTest extends HomeLi
 			ReportControl.fnEnableJoin();
 			ReportStatus.fnUpdateResultStatus("IPSContractPricingRoundingWithMultipleQtys", "CQT_45",
 					ReportStatus.strMethodName, counter, browser);
-			//fnCloseTest();
+			fnCloseTest();
 			ReportControl.fnNextTestJoin(nextTestJoin);
 		}
 	}
