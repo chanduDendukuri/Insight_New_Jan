@@ -69,6 +69,7 @@ public class CQT06_LABCANCanada extends HomeLib {
 						List<String> Price= verifyCurrencyTypes(data.get("inputValue"));		                    
 		                    for(int i =0;i<Price.size();i++){		                    	
 		                     	 String resultprice=Price.get(i);
+		                     	 if(resultprice!=null)
 		                     	reporter.SuccessReport("Currency value: ", resultprice, "");
 		                    	}
 						clickOnAddToOrderButton();
