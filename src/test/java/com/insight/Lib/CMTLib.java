@@ -2512,5 +2512,29 @@ public class CMTLib extends CMTObj {
 			//click(DesignatedshippingFedoption_dropdown, "Default Shipping Option");
 			//selectByVisibleText(DesignatedshippingFedoption_dropdown, defaultShippingOtion,
 					//"Default_Shipping_Option Selected is::"+defaultShippingOtion+"");
+
+		}
+		/**
+		 * This method is to click on Roles and permissions tab and disable the
+		 * required permission check box and update.
+		 * 
+		 * @param menuName
+		 * @param userPermissions
+		 * @return 
+		 * @throws Throwable
+		 */
+		public void setPermissionsToDisableWithousReport( String userPermissions) throws Throwable {
+			if (isCheckBoxSelected(getUserPermission(userPermissions))) {
+				click(getUserPermission(userPermissions), "User permissions : "+userPermissions+"is OFF");
+				click(UPDATE_USER_BTN, "Update user button");
+				if (isVisibleOnly(PERMISSION_UPDATE_MSG, "update sucessful message")) {
+					LOG.info("Permissions Updated Succesfully");
+				} else {
+					LOG.info("Permissions not Updated Succesfully");
+				}
+
+			} else {
+				LOG.info(userPermissions + " check box already checked.");
+			}
 		}
 }

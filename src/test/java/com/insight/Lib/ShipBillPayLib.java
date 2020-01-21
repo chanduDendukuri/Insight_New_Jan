@@ -1160,6 +1160,10 @@ public class ShipBillPayLib extends ShipBillPayObj {
 			click(search_Button,"Search Button");
 			Thread.sleep(3000);
 			click(CANCELBUTTON_STOREDADDRESS, "Cancle Button on search shipping address page");
-
+			click(EDIT_LINK,"Link");
 		}
 }
+
+
+
+

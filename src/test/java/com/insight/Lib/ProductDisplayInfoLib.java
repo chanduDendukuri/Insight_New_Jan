@@ -138,6 +138,7 @@ public class ProductDisplayInfoLib extends productsDisplayInfoObj {
 		int number = Integer.parseInt(itemNo);	
 		String productName=getText(productsDisplayInfoObj.getproductName(number), "Get product name");
 		clickOnly(productsDisplayInfoObj.COMPARE_SIMILAR_LINK(itemNo), "Compare similar link");
+		verifyMasterProductLabelExists();
 		return productName;
 	}
 
@@ -1106,6 +1107,31 @@ public class ProductDisplayInfoLib extends productsDisplayInfoObj {
     	}
     
     }
+    /**
+     * Verify master product label
+     * @throws Throwable
+     */
+    	public void verifyMasterProductLabelExists() throws Throwable {
+				if(isVisibleOnly(MASTER_PRODUCT_LABEl, "Master product label")) {
+					reporter.SuccessReport("Verify Master Product in Compare Similar Products Page ","Master Product Column Exists", "");
+				}else {
+					reporter.failureReport("Verify Master Product in Compare Similar Products Page ","Master Product Column does not Exists", "",driver);
+				}
+    	}
+  
+    	/**
+         * Verify master product label
+         * @throws Throwable
+         */
+        	public void verifySimilarProductLabelExists() throws Throwable {
+    				if(isVisibleOnly(SIMILAR_PRODUCTS_COLUMN, "Similar product label")) {
+    					reporter.SuccessReport("Similar Products in Compare Similar Products Page ","Similar Products Column Exists", "");
+    				}else {
+    					reporter.failureReport("Verify Similar Product in Compare Similar Products Page ","Similar Products Column does not Exists", "",driver);
+    				}
+        	}
+      
+    	
 }
   
 	
