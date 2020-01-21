@@ -58,7 +58,7 @@ public class CQT06_LABCANCanada extends HomeLib {
 					Objlib.enterKeywordInProductSearchWindow(data.get("Keyword"));
 					Objlib.clickOnSearchButtonInProductSearchWindow();
 					verifyResultsofMaterailIdofKeyWordSearch(data.get("MaterailId"));
-					Thread.sleep(3000);
+					
 						if (verifyAddToOrderPopup()) {
 							clickOnTabsInLineItemDetailsPopUp(data.get("Tab")); //Availability
 							clickOnSourceNamePlusIcon(data.get("SourceName")); //Channel
@@ -69,7 +69,7 @@ public class CQT06_LABCANCanada extends HomeLib {
 						List<String> Price= verifyCurrencyTypes(data.get("inputValue"));		                    
 		                    for(int i =0;i<Price.size();i++){		                    	
 		                     	 String resultprice=Price.get(i);
-		                     	reporter.SuccessReport("Currency value ", resultprice, "");
+		                     	reporter.SuccessReport("Currency value: ", resultprice, "");
 		                    	}
 						clickOnAddToOrderButton();
 							Objlib.closebuttonInProductSearch();
@@ -80,7 +80,7 @@ public class CQT06_LABCANCanada extends HomeLib {
 					clickUpdateCosting();
 					clickSideBarSmart();
 					clickonSaveasQuote();
-					Thread.sleep(3000);
+					
 					ClickOnSendbutton();
 					clickOkButton();
 					//clickClosthedocument(data.get("Doctype"));

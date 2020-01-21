@@ -1924,7 +1924,7 @@ else {
 	public void enterPONumber(String data) throws Throwable {
 		click(HomePage.txtPoNumber, "PO Number");
 		type(HomePage.txtPoNumber, data, "PO Number");
-		Thread.sleep(5000);
+		loadingSymbol();
 		
 		ClickOkInPoNumberPopup();
 		
@@ -1972,6 +1972,7 @@ else {
 	public void enterPOrelNumber(String data) throws Throwable {
 		Thread.sleep(3000);
 		click(HomePage.txtPoRelNumber, "PO Release Number");
+		loadingSymbol();
 		type(HomePage.txtPoRelNumber, data, "PO Release Number");
 		try {
 			ClickOkInPoNumberPopup();
