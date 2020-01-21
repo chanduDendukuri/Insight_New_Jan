@@ -3452,6 +3452,16 @@ public float getSellPriceFromInlineItemsContract(String contractid) throws Throw
 					"ZPML Minus ZDML Not equals the YP00 value", "", driver);
 		}
 	}
+	public void VerifyZPMLMinusZDMLShouldbeEqualToYP001(float ZPML, float ZDML, float YP00) throws Throwable {
+		float ZpmlminusZdml = ZPML - ZDML;
+		if ((YP00 == ZpmlminusZdml)) {
+			reporter.SuccessReport("Verify that ZPML minus  ZDML equals the YP00 value",
+					"ZPML Minus ZDML::" + ZpmlminusZdml + " equals the YP00 :" + YP00 + "value ", "");
+		} else {
+			reporter.failureReport("Verify that ZPML Minus ZDML equals the YP00 value",
+					"ZPML Minus ZDML Not equals the YP00 value", "", driver);
+		}
+	}
 
 	/**
 	 * 
