@@ -3132,6 +3132,7 @@ public float getSellPriceFromInlineItemsContract(String contractid) throws Throw
 		isVisibleOnly(txt_Permarginpercent(row), "Rep Margin Percent Value");
 
 		click(txt_Permarginpercent(row), "Rep Margin Percent Value");
+		clearData(Txtrepmargin_percentage(row));
 		type(Txtrepmargin_percentage(row), MArginNum, "Rep Margin Percent Value");
 		driver.findElement(Txtrepmargin_percentage(row)).sendKeys(Keys.ENTER);
 		loadingSymbol();
