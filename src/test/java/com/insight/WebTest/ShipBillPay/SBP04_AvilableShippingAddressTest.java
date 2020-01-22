@@ -85,8 +85,7 @@ public class SBP04_AvilableShippingAddressTest extends ShipBillPayLib{
 				orderLib.clickContinueOnLineLevelInfo();
 				// verify shipping address
 				VerifyDefualtSoldtoAddress(data.get("SoldToAddress"));
-				shipbLib.VerifyStoredAddress(data.get("storedaddress"));
-				clickstoredAddressandVerify(data.get("storedaddress"));
+				clickstoredAddressandVerify(data.get("storedaddress"),data.get("storedaddress"));
 				orderLib.shippingBillPayContinueButton();
 				commonLib.clickLogOutLink(data.get("Logout_Header"));
 				// login-2
@@ -114,8 +113,7 @@ public class SBP04_AvilableShippingAddressTest extends ShipBillPayLib{
 				cartLib.clickOnContinueButtonInAddInformtion();
 				orderLib.clickContinueOnLineLevelInfo();
 				VerifyDefualtSoldtoAddress(data.get("SoldToAddress2"));
-				shipbLib.VerifyStoredAddress(data.get("Defualtaddress"));
-				clickstoredAddressandVerify(data.get("Defualtaddress"));
+				clickstoredAddressandVerify(data.get("Defualtaddress"),data.get("Defualtaddress"));
 				orderLib.shippingBillPayContinueButton();
 				commonLib.clickLogOutLink(data.get("Logout_Header"));
 				// login-3
@@ -138,8 +136,8 @@ public class SBP04_AvilableShippingAddressTest extends ShipBillPayLib{
 				cartLib.clickOnContinueButtonInAddInformtion();
 				orderLib.clickContinueOnLineLevelInfo();
 				String companyname3="IUS Created Shipping Adress Canada"+"_"+getRandomNumeric(4);
-				shipbLib.AddNewshippingAddressWithcountry(data.get("link"),companyname3, data.get("street2"),
-						data.get("city2"), data.get("zipcode2"), data.get("state2"), data.get("Country2"),data.get("Attention"));
+				shipbLib.AddNewshippingAddressWithcountry(data.get("link"),companyname3, data.get("street"),
+						data.get("city"), data.get("zipcode"), data.get("state"), data.get("Country"),data.get("Attention"));
 				shipbLib.VerifyCreatedAddress(companyname3);
 				Thread.sleep(3000);
 				scrollUp();
@@ -165,10 +163,10 @@ public class SBP04_AvilableShippingAddressTest extends ShipBillPayLib{
 				cartLib.clickOnContinueButtonInAddInformtion();
 				orderLib.clickContinueOnLineLevelInfo();
 				String companyname="IUS Created Shipping Adress Canada"+"_"+getRandomNumeric(4);
-				shipbLib.AddNewshippingAddressWithcountry(data.get("link"),companyname, data.get("street"),
-						data.get("city"), data.get("zipcode"), data.get("state"), data.get("Country"),data.get("Attention"));
-				shipbLib.VerifyCreatedAddress(companyname);
+				shipbLib.AddNewshippingAddressWithcountry(data.get("link"),companyname, data.get("street2"),
+						data.get("city2"), data.get("zipcode2"), data.get("state2"), data.get("Country2"),data.get("Attention"));
 				Thread.sleep(3000);
+				shipbLib.VerifyCreatedAddress(companyname);
 				scrollUp();
 				clickEdit();
 				clickstoredAddressandCancle(companyname);

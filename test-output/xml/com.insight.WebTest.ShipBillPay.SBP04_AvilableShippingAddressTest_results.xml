@@ -4,10 +4,10 @@
            failures="0"
            errors="0"
            skipped="0"
-           time="907.591">
+           time="895.104">
   <properties />
   
   
-            <testcase name="Tc_SBP04" time="907.591" classname="com.insight.WebTest.ShipBillPay.SBP04_AvilableShippingAddressTest" />
+            <testcase name="Tc_SBP04" time="895.104" classname="com.insight.WebTest.ShipBillPay.SBP04_AvilableShippingAddressTest" />
       
 </testsuite>

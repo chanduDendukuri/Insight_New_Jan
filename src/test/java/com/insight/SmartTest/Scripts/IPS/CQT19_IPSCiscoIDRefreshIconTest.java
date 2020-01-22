@@ -129,7 +129,7 @@ public class CQT19_IPSCiscoIDRefreshIconTest extends HomeLib {
 					VerifyUpdateCosingPopup();
 					CancelButtonInUpdateCosting();
 
-					Swipedownapplication();
+					
 					String expmrgprice = getmfgPricevalue("00020", "mfrList","30.03");
 					String expmrgprice1 = getmfgPricevalue("00040", "mfrList", "30.03");
 					String expmrgpric2 = getmfgPricevalue("00060", "mfrList", "30.03");
@@ -139,7 +139,7 @@ public class CQT19_IPSCiscoIDRefreshIconTest extends HomeLib {
 				 else
 					 reporter.failureReport(ExpMrflstPrice, "ExpMrflstPrice value is not as expected ", "");
 				
-					SwipeUpapplication();
+					
 
 					doubleclickOnLineItem("000020");
 					clickOnVCTab("Coverage/Billing");

@@ -211,6 +211,12 @@ public static By SHIPPINGADDRESS_CONTINUE_BTN=By.xpath("//button[@class='button 
 public static By ADDRESSVALIDATION_WINDOW_HDR= By.xpath("//h3[@class='iw-modal__heading']");
 public static By SAVEADDRESS_BTN = By.xpath("//div[@class='column small-6 medium-shrink']/button");
 public static By EDIT_LINK=By.xpath("//h3[contains(text(),'Shipping address')]/following-sibling::a");
+public static By SHIPPING_ADDRES=By.xpath("//p[@id='iw-checkout__address-section-selected-address']");
+public static By SHIPPING_ADDRESES=By.xpath("//p[@id='iw-checkout__address-section-selected-address']/br[1]");
+public static By SHIPPING_ADDRESESSECONDLINE=By.xpath("//p[@id='iw-checkout__address-section-selected-address']/br[2]");
+
+
+
 }
 
 
