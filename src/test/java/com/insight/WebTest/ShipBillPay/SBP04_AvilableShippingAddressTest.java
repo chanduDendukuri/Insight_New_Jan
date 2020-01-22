@@ -84,7 +84,6 @@ public class SBP04_AvilableShippingAddressTest extends ShipBillPayLib{
 				cartLib.clickOnContinueButtonInAddInformtion();
 				orderLib.clickContinueOnLineLevelInfo();
 				// verify shipping address
-				Thread.sleep(5000);
 				VerifyDefualtSoldtoAddress(data.get("SoldToAddress"));
 				shipbLib.VerifyStoredAddress(data.get("storedaddress"));
 				clickstoredAddressandVerify(data.get("storedaddress"));
@@ -114,7 +113,6 @@ public class SBP04_AvilableShippingAddressTest extends ShipBillPayLib{
 				orderLib.proceedToCheckout();
 				cartLib.clickOnContinueButtonInAddInformtion();
 				orderLib.clickContinueOnLineLevelInfo();
-				Thread.sleep(5000);
 				VerifyDefualtSoldtoAddress(data.get("SoldToAddress2"));
 				shipbLib.VerifyStoredAddress(data.get("Defualtaddress"));
 				clickstoredAddressandVerify(data.get("Defualtaddress"));
@@ -157,7 +155,6 @@ public class SBP04_AvilableShippingAddressTest extends ShipBillPayLib{
 				cmtLib.hoverOnManageWebGroupsAndSelectOptions(data.get("Manage_Web_Grp_Options"));
 				cmtLib.searchForaUserAndSelect(data.get("LnameEmailUname"), data.get("ContactName"));
 				cmtLib.setPermissions(data.get("Menu_Name"), data.get("Set_Permission3"));
-				
 				cmtLib.loginAsAdminCMT();
 				// add to cart
 				commonLib.searchProduct(data.get("Search_Item"));
@@ -183,14 +180,6 @@ public class SBP04_AvilableShippingAddressTest extends ShipBillPayLib{
 				scrollUp();
 				clickEdit();
 				clickstoredAddressandCancle(companyname1);
-				String companyname2="IUS Created Shipping Adress Canada"+"_"+getRandomNumeric(4);
-				shipbLib.AddNewshippingAddressWithcountry(data.get("link"),companyname1, data.get("street2"),
-						data.get("city2"), data.get("zipcode2"), data.get("state2"), data.get("Country"),data.get("Attention"));
-				shipbLib.VerifyCreatedAddress(companyname2);
-				Thread.sleep(3000);
-				scrollUp();
-				clickEdit();
-				clickstoredAddressandVerify(companyname2);
 				commonLib.clickLogOutLink(data.get("Logout_Header"));
 				// permissions unchek
 				cmtLib.navigateBackToCMT();

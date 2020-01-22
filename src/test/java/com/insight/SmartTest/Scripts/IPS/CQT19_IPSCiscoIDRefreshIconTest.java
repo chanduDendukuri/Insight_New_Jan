@@ -70,7 +70,7 @@ public class CQT19_IPSCiscoIDRefreshIconTest extends HomeLib {
 					clickOnLItem00020CON("00020","con");
 					clickOnVCTab("VC");
 					String duration = getDurationFieldValue();
-					if (duration.equals("12.00"))
+					if (duration.equals("12"))
 						System.out.println("Duration is 12");
 					VerifyDuration("24");
 					VerifyDuration("36");
@@ -85,19 +85,17 @@ public class CQT19_IPSCiscoIDRefreshIconTest extends HomeLib {
 					ClickOncancelbutton();
 					clickAdvancedHeader();
 					clickAdvancedHeaderTab("Cisco");
-					
+					Calendar cal = Calendar.getInstance();
+					cal.add(Calendar.MONTH, 36);
 					Enter36MonthstoEndDateField(36);
-					clickOnCopydates();Swipedownapplication();
+					clickOnCopydates();
 					clickOnLItem00020CON("00020", "con");
 					clickOnVCTab("VC");
 					String duration1 = getDurationFieldValue();
-					
-					checkdurationfieldenabledordisabled();
-					ClickonArrowNextToLineitem();
-					ClickonArrowNextToLineitem();
-					checkdurationfieldenabledordisabled();
-					ClickonArrowNextToLineitem();
-					ClickonArrowNextToLineitem();
+					if (duration1.equals("24"))
+						System.out.println("Duration is 24");
+					VerifyDuration(data.get("Duration1"));
+					VerifyDuration(data.get("Duration1"));
 					checkdurationfieldenabledordisabled();
 					clickOnVCTab("Coverage/Billing");
 					String Cstartdate = coverageStartDate();
@@ -108,7 +106,6 @@ public class CQT19_IPSCiscoIDRefreshIconTest extends HomeLib {
 					clickUpdateCosting();
 					VerifyUpdateCosingPopup();
 					CancelButtonInUpdateCosting();
-					Swipedownapplication();
 					getmfgPricevalue("00020", "mfrList","");
 					getmfgPricevalue("00040", "mfrList", "");
 					getmfgPricevalue("00060", "mfrList", "");
@@ -119,7 +116,6 @@ public class CQT19_IPSCiscoIDRefreshIconTest extends HomeLib {
 					ClickonleftArrowpriorToLineitem();
 					clickOnVCTab("VC");
 					checkdurationfieldenabledordisabled();
-					VerifyDuration("36.03");
 					clickDoneButton();
 					clickUpdateCosting();
 					VerifyUpdateCosingPopup();

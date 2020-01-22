@@ -3,9 +3,12 @@ package com.insight.Lib;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
+
 import com.insight.ObjRepo.CMTObj;
 import com.insight.ObjRepo.CartObj;
 import com.insight.ObjRepo.CommonObj;
@@ -14,8 +17,6 @@ import com.insight.ObjRepo.productsDisplayInfoObj;
 
 public class SearchLib extends CommonObj {
 
-ProductDisplayInfoLib pipLib=new ProductDisplayInfoLib();
-	
 	/**
 	 * This method is to click on the Primary header and select the product
 	 * category from the drop-down and verifies the successful navigation.
@@ -95,12 +96,11 @@ ProductDisplayInfoLib pipLib=new ProductDisplayInfoLib();
 		Thread.sleep(3000);
 		if (isElementPresent(productsDisplayInfoObj.COMPARE_SIMILAR_PROD_HEADING, "similar product heading")
 				&& masterProductName.contains(ProductName)) {
-			reporter.SuccessReport("Verify the Master Product in Compare Similar Products Page",
-					"Master product displayed Sucessfully with Similar products","Master Product : "+masterProductName);
-			reporter.SuccessReport("Selected Product and Master Product in Compare Similar Products Page", "Master Product is Same as Selected Product", "Master Product : "+ProductName);
+			reporter.SuccessReport("Verify the Product Name in Compare Similar Products Page",
+					"Master product displayed Sucessfully with Similar products",masterProductName);
 		} else {
 			reporter.failureReport("Verify the Product Name in Compare Similar Products Page",
-					"Master product is not displayed.Expected is : ","Master product : "+masterProductName);
+					"Master product is not displayed.Expected is : ",masterProductName);
 		}
 	}
 
@@ -110,14 +110,12 @@ ProductDisplayInfoLib pipLib=new ProductDisplayInfoLib();
 	 * @throws Throwable 
 	 */
 	public void verifySimilarProductsExists() throws Throwable {
-		pipLib.verifySimilarProductLabelExists();
 		List<WebElement> elements=driver.findElements(productsDisplayInfoObj.SIMILAR_PRODUCTS);
 		int similarProducts=elements.size()-1;
 		if(similarProducts!=0) {
-			reporter.SuccessReport("Similar Products in Compare Similar Products Page", "Similar Products Exists and count is : ","Similar products count : "+Integer.toString(similarProducts));
-			
+			reporter.SuccessReport("Similar products", "Similar products exists",Integer.toString(similarProducts));
 		}else {
-			reporter.failureReport("Similar Products in Compare Similar Products Page", "Similar Products Column does not exists","Similar products count : "+Integer.toString(similarProducts));
+			reporter.failureReport("Similar products", "Similar products does not exists",Integer.toString(similarProducts));
 		}
 	}
 	
@@ -138,7 +136,7 @@ ProductDisplayInfoLib pipLib=new ProductDisplayInfoLib();
 			Thread.sleep(3000);
 			String itemnumber=Integer.toString(i+1);
 			if(compareNum.equals(itemnumber)) {
-				reporter.SuccessReport("Verify compared products", "Compare list products added are : ", compareNum);
+				reporter.SuccessReport("Verify compared products", "Compare list products are : ", compareNum);
 			}else {
 				reporter.failureReport("Verify compared products", "Compare list products are not correct ", compareNum);
 			}
@@ -183,7 +181,7 @@ ProductDisplayInfoLib pipLib=new ProductDisplayInfoLib();
 	public void clickOnComparedItemsLink() throws Throwable{
 		scrollUp();
 		if(isElementPresent(productsDisplayInfoObj.COMPARE_YOUR_LIST_LINK, "compare List Number")) {
-			click(productsDisplayInfoObj.COMPARE_YOUR_LIST_LINK,"compare List Number link","Comapare your list item link");
+			click(productsDisplayInfoObj.COMPARE_YOUR_LIST_LINK,"compare List Number link");
 		}else {
 			reporter.failureReport("Verify compare items link", "Compare items link does not exists", "NA", driver);
 		}
@@ -979,21 +977,6 @@ ProductDisplayInfoLib pipLib=new ProductDisplayInfoLib();
 	}
 	
 	/**
-	 * Method is to verify the search results 
-	 * 
-	 * @throws Throwable
-	 */
-	public void verifysearchResults(String searchText) throws Throwable {
-		String ProdName=null;
-		waitForVisibilityOfElement(SEARCH_RESULTS_PAGE,  "Search results");
-		if (isElementPresent(SEARCH_RESULTS_PAGE, "Search results")) {
-			 ProdName=getText(productsDisplayInfoObj.FIRST_PROD_NAME, "First Product");
-			reporter.SuccessReport("Verify search results page", "Search results displayed for "+searchText, "Search Results: "+ProdName);
-		} else {
-			reporter.failureReport("Verify search results page", "Search results not displayed","Search Results: "+ ProdName,driver);
-		}
-	}
-	/**
 	 * 
 	 * @param contractName
 	 * @throws Throwable
@@ -1035,15 +1018,7 @@ ProductDisplayInfoLib pipLib=new ProductDisplayInfoLib();
 	 * @throws Throwable
 	 */
 	public String verifyCompareList() throws Throwable{
-		String list=null;
-		if (isVisibleOnly(COMPARE_LIST_ITEMS, "Compare list")) {
-			list=getText(COMPARE_LIST_ITEMS, "compare list items");
-			reporter.SuccessReport("Items in the compare list", "Compare Your List label exists and items in the list are : ", "Items in the List: "+list);
-		}else {
-			reporter.failureReport("Items in the compare list", "Compare Your List label does not exists ", "Items in the List: "+list);
-		}
-		return list;
-		
+		return getText(COMPARE_LIST_ITEMS, "compare list items");
 	}
 	
 	public String verifyFrenchCompareList() throws Throwable{
@@ -1107,7 +1082,7 @@ ProductDisplayInfoLib pipLib=new ProductDisplayInfoLib();
 	 */
 	public void verifyBreadCrumbInSearchResultsPage(String productName) throws Throwable {
 		if(isElementPresent(productsDisplayInfoObj.getBreadCrumb(productName), "Product in Breadcrumb") || isElementPresent(productsDisplayInfoObj.getFilterBreadCrumb(productName), "Product in Breadcrumb")) {
-			reporter.SuccessReport("Verify Breadcrumb", "Breadcrumb in search results page:: "+productName+"","Breadcrumb: " +productName+" Stock Only");
+			reporter.SuccessReport("Verify Breadcrumb", "Breadcrumb in search results page:: "+productName+"","Breadcrumb: " +productName);
 		}else {
 			reporter.failureReport("Verify Breadcrumb", "Breadcrumb in search results page not found ", "Breadcrumb: "+productName,driver);
 		}
@@ -1167,3 +1142,9 @@ ProductDisplayInfoLib pipLib=new ProductDisplayInfoLib();
 		}
 	}
 }
+
+
+
+
+	
+

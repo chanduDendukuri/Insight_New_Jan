@@ -16,7 +16,6 @@ public class SER03_CompareTest extends SearchLib {
 	CMTLib cmtLib = new CMTLib();
 	CartLib cartLib=new CartLib();
 	OrderLib orderLib=new OrderLib();
-	ChinaLib chinaLib=new ChinaLib();
 
 	    //#############################################################################################################
 		//#		Name of the Test			:	   SER03_Compare
@@ -46,53 +45,41 @@ public class SER03_CompareTest extends SearchLib {
 					// Test Steps execution
 
 					fnOpenTest();
+					/*
+					 * navigateToProductSearchResultsAndSearchProduct(data.get("HeaderName"),
+					 * data.get("HeaderList"), data.get("ProductType"), data.get("ProductName"));
+					 */
 					// search Monitors
 					searchInHomePage( data.get("ProductName1"));
 					verifyBreadCrumbInSearchResultsPage(data.get("ProductName1"));
-					verifysearchResults(data.get("ProductName1"));
 					String productName=prodInfoLib.clickOnCompareSimilarLink(data.get("Product_Number"));
 					verifyTheProductNameInCompareSimilarProductsPage(productName);
 					// Similar products verification
 					verifySimilarProductsExists();
+					navigateToBackPage();
 					
 					// search Thinkpads
 					searchInHomePage( data.get("ProductName2"));
 					verifyBreadCrumbInSearchResultsPage(data.get("ProductName2"));
 					int itemscount = Integer.valueOf(data.get("Items_Count"));
 					
-					// 2 Items added to compare list 
-					clickOnAddToMyCompareListLink(itemscount);
-					Thread.sleep(3000);
-    				//Verify  products added to list
-    				verifyCompareList();
-    				
-    				// click compare items link
-    				clickOnComparedItemsLink();
-    				Thread.sleep(3000);
-    				// verify products added in compare list
-    				chinaLib.verifyCompareProductsPage(itemscount);
+					// 3 Items added to compare list 
+					clickOnAddToMyCompareListLinkandVerify(itemscount);
 					
-    				// Adding another part
-    				chinaLib.addAnotherPartInCompareProductsPage(data.get("Part_Number"));
-    				chinaLib.verifyPartNumberAddedInCompareProductListPage(data.get("Part_Number"));
-    				// Verify number of products displayed
-    				chinaLib.verifyCompareProductsPage(itemscount+1);
-    				
-    				// search Workstations
+					// search Workstations
 					searchInHomePage( data.get("ProductName3"));
 					verifyBreadCrumbInSearchResultsPage(data.get("ProductName3"));
-    				
-					//Verify  products added to list
-    				verifyCompareList();
-    				// Add one more product to compare list
-    				clickOnAddToMyCompareListLink(itemscount-2);
-    				// verify products added in compare list
-    				chinaLib.verifyCompareProductsPage(itemscount+2);
-    				
-    				clickOnCloseIconInCompareProductsPage();
-    				chinaLib.verifyCompareProductsPage(itemscount+1);
-    				
-    				// Add to cart
+					int itemNum = Integer.valueOf(data.get("Items_Count"));
+					clickOnAddToMyCompareListLinkIndividually(itemNum-2);
+					String compareNum=verifyCompareList();
+					int compareItemsNum=Integer.parseInt(compareNum);
+					Thread.sleep(3000);
+					clickOnComparedItemsLink();
+					verifyComparedProductsExists(compareItemsNum);
+					clickOnCloseIconInCompareProductsPage();
+					Thread.sleep(3000);
+					verifyComparedProductsExists(compareItemsNum-1);
+					// Add to cart
 					prodInfoLib.addToCart();
 					orderLib.continueToCheckOutOnAddCart();
 				

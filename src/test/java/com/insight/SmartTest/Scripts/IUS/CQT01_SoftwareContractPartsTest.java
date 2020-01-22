@@ -54,8 +54,7 @@ public class CQT01_SoftwareContractPartsTest extends HomeLib {
 					clickAdvancedHeaderTab(data.get("Tab1"));//programs Tab
 					Productsearch(data.get("ContractId"));//0040049088
 					SearchButton();
-					clickOnMaterialID();
-					//verifyResultsofMaterailIdofKeyWordSearch(data.get("MaterialId"));//6529107
+					verifyResultsofMaterailIdofKeyWordSearch(data.get("MaterialId"));//6529107
 					clickOnAddToOrderButton();
 					clickCloseButton();
 					clickonConXSystem(data.get("ItemNum1"));// 000010
@@ -81,8 +80,7 @@ public class CQT01_SoftwareContractPartsTest extends HomeLib {
 					clickOnVIPCheckBox();
 					clickOnSaveButtonOnOptionsAndLevelsPopup();
 					SearchButton();
-					clickOnMaterialID();
-					//verifyResultsofMaterailIdofKeyWordSearch(data.get("MaterialId"));
+					verifyResultsofMaterailIdofKeyWordSearch(data.get("MaterialId"));
 					clickOnAddToOrderButton();
 					clickCloseButton();
 					clickUpdateCosting();
