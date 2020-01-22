@@ -212,7 +212,7 @@ public class CMTLib extends CMTObj {
 	public void hoverOnManageWebGroupsAndSelectOptions(String ManageWebGrpOptions) throws Throwable {
 
 		mouseHover(MANAGE_WEBGRP, "Manage Web group");
-		click(getManageWebGroupDDLinks(ManageWebGrpOptions), "Manage current Web group option: " + ManageWebGrpOptions);
+		click(getManageWebGroupDDLinks(ManageWebGrpOptions), "Change Web group option: " + ManageWebGrpOptions);
 	}
 
 	/**
