@@ -163,19 +163,19 @@ public class CMTLib extends CMTObj {
 		String error=null;
 		if (isVisibleOnly(FOGET_PASSWORD_ERROR_MESSAGE, "error message")) {
 			 error = getText(FOGET_PASSWORD_ERROR_MESSAGE, "error message");
-			reporter.SuccessReport("Verifying error message", "Email Error Message Exists", error );
+			reporter.SuccessReport("Verifying Success message", "Email Success Message Exists", error );
 		} else {
-			reporter.failureReport("Verifying error message", "Email Error Message does not Exist", error, driver);
+			reporter.failureReport("Verifying Success message", "Email Success Message does not Exist", error, driver);
 		}
 	}
 
 	public void verifyPasswordResetEmailEnteredSucessMessage(String input) throws Throwable {
 		String error=null;
-		if (isVisibleOnly(FORGET_PASSWORD_RESET_SUCESS_MESSAGE, "error message")) {
-			error=getText(FORGET_PASSWORD_RESET_SUCESS_MESSAGE, "error message");
-			reporter.SuccessReport("Verifying error message", "Apperead error message is ", error);
+		if (isVisibleOnly(FORGET_PASSWORD_RESET_SUCESS_MESSAGE, "Success message")) {
+			error=getText(FORGET_PASSWORD_RESET_SUCESS_MESSAGE, "Success message");
+			reporter.SuccessReport("Verifying Success message", "Apperead Success message is ", error);
 		} else {
-			reporter.failureReport("Verifying error message","Error message is not appeared ", error, driver);
+			reporter.failureReport("Verifying Success message","Success message is not appeared ", error, driver);
 		}
 	}
 
@@ -295,8 +295,8 @@ public class CMTLib extends CMTObj {
 	 * @throws Throwable
 	 */
 	public void loginVerification(String contactName) throws Throwable {
-		waitForVisibilityOfElement(CMTObj.getLoginVerficationByContactNameOnHeader(contactName), "contact Name");
-		if (isElementPresent(CMTObj.getLoginVerficationByContactNameOnHeader(contactName), "contact Name")) {
+		waitForVisibilityOfElement(CMTObj.getLoginVerficationByContactNameOnHeader(contactName), "contact Name is "+contactName);
+		if (isVisibleOnly(CMTObj.getLoginVerficationByContactNameOnHeader(contactName), "contact Name")) {
 			reporter.SuccessReport("Verify the Same User Logged into Insight from CMT",
 					"User login verification is successfull. User is : ", contactName);
 		} else {
