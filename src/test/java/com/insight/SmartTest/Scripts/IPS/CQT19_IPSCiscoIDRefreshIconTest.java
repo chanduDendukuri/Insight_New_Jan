@@ -71,7 +71,7 @@ public class CQT19_IPSCiscoIDRefreshIconTest extends HomeLib {
 					clickOnVCTab("VC");
 					String duration = getDurationFieldValue();
 					if (duration.equals("12.00"))
-						System.out.println("Duration is 12");
+						reporter.SuccessReport("Duration: ", "Duration is ", duration);
 					VerifyDuration("24");
 					VerifyDuration("36");
 					clickDoneButton();
@@ -83,35 +83,56 @@ public class CQT19_IPSCiscoIDRefreshIconTest extends HomeLib {
 					clickUpdateCosting();
 
 					ClickOncancelbutton();
+					String ExpMrflstPrice = getmfgPricevalue("00020", "mfrList","");
+					String ExpMrflstPrice1 = getmfgPricevalue("00040", "mfrList", "");
+					String ExpMrflstPrice2  =getmfgPricevalue("00060", "mfrList", "");
+					 if(ExpMrflstPrice.equals("20.00")&&ExpMrflstPrice1.equals("20.00")&&ExpMrflstPrice2.equals("20.00")) {
+				        	reporter.SuccessReport(ExpMrflstPrice, "ExpMrflstPrice value is ", "ExpMrflstPrice");
+				        }
+					 else
+						 reporter.failureReport(ExpMrflstPrice, "ExpMrflstPrice value is not as expected ", "");
 					clickAdvancedHeader();
 					clickAdvancedHeaderTab("Cisco");
 					
 					Enter36MonthstoEndDateField(36);
-					clickOnCopydates();Swipedownapplication();
+					clickOnCopydates();
+					Swipedownapplication();
 					clickOnLItem00020CON("00020", "con");
 					clickOnVCTab("VC");
 					String duration1 = getDurationFieldValue();
 					
 					checkdurationfieldenabledordisabled();
+					VerifyDuration("36.03");
 					ClickonArrowNextToLineitem();
 					ClickonArrowNextToLineitem();
 					checkdurationfieldenabledordisabled();
+					VerifyDuration("36.03");
 					ClickonArrowNextToLineitem();
 					ClickonArrowNextToLineitem();
 					checkdurationfieldenabledordisabled();
+					VerifyDuration("36.03");
 					clickOnVCTab("Coverage/Billing");
 					String Cstartdate = coverageStartDate();
 					String CendDate = coverageEndDate();
 					if (Cstartdate.equals(CendDate))
-						System.out.println("Start date and End dates are matching");
+						reporter.SuccessReport("Coverage Start and End date: ","Start date and End dates are matching",  "");
+					else
+						reporter.failureReport("Coverage Start and End date: ","Start date and End dates are not matching",  "");
 					clickDoneButton();
 					clickUpdateCosting();
 					VerifyUpdateCosingPopup();
 					CancelButtonInUpdateCosting();
 					Swipedownapplication();
-					getmfgPricevalue("00020", "mfrList","");
-					getmfgPricevalue("00040", "mfrList", "");
-					getmfgPricevalue("00060", "mfrList", "");
+					String expmrgprice = getmfgPricevalue("00020", "mfrList","30.03");
+					String expmrgprice1 = getmfgPricevalue("00040", "mfrList", "30.03");
+					String expmrgpric2 = getmfgPricevalue("00060", "mfrList", "30.03");
+					if(expmrgprice.equals("30.03")&&expmrgprice1.equals("30.03")&&expmrgpric2.equals("30.03")) {
+			        	reporter.SuccessReport(ExpMrflstPrice, "ExpMrflstPrice value is ", "ExpMrflstPrice");
+			        }
+				 else
+					 reporter.failureReport(ExpMrflstPrice, "ExpMrflstPrice value is not as expected ", "");
+				
+					SwipeUpapplication();
 					doubleclickOnLineItem("000020");
 					clickOnVCTab("Coverage/Billing");
 					ClearEnddateCoveragefield();
@@ -119,13 +140,16 @@ public class CQT19_IPSCiscoIDRefreshIconTest extends HomeLib {
 					ClickonleftArrowpriorToLineitem();
 					clickOnVCTab("VC");
 					checkdurationfieldenabledordisabled();
-					VerifyDuration("36.03");
+					enterDurationUnderVC("36.03");
 					clickDoneButton();
 					clickUpdateCosting();
 					VerifyUpdateCosingPopup();
 					CancelButtonInUpdateCosting();
 					clickonSaveasQuote();
-
+					clickSideBarSmart();
+					String QN = GetQuoteNumber();
+					clickClosthedocument(QN);
+                    clickYesButtontocloseDocument();
 					
 					System.out.println("Testcase completed");
 				} catch (Exception e) {
