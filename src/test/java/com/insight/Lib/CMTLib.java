@@ -160,18 +160,22 @@ public class CMTLib extends CMTObj {
 	}
 
 	public void verifyPasswordResetWrongEmailEnteredMessage() throws Throwable {
-		if (isElementPresent(FOGET_PASSWORD_ERROR_MESSAGE, "error message")) {
-			reporter.SuccessReport("Verifying error message", "Email Error Message Exists", "");
+		String error=null;
+		if (isVisibleOnly(FOGET_PASSWORD_ERROR_MESSAGE, "error message")) {
+			 error = getText(FOGET_PASSWORD_ERROR_MESSAGE, "error message");
+			reporter.SuccessReport("Verifying error message", "Email Error Message Exists", error );
 		} else {
-			reporter.failureReport("Verifying error message", "Email Error Message does not Exist", "", driver);
+			reporter.failureReport("Verifying error message", "Email Error Message does not Exist", error, driver);
 		}
 	}
 
-	public void verifyPasswordResetEmailEnteredSucessMessage() throws Throwable {
-		if (isElementPresent(FORGET_PASSWORD_RESET_SUCESS_MESSAGE, "error message")) {
-			reporter.SuccessReport("Verifying error message", "Email Succuss Message Exists", "");
+	public void verifyPasswordResetEmailEnteredSucessMessage(String input) throws Throwable {
+		String error=null;
+		if (isVisibleOnly(FORGET_PASSWORD_RESET_SUCESS_MESSAGE, "error message")) {
+			error=getText(FORGET_PASSWORD_RESET_SUCESS_MESSAGE, "error message");
+			reporter.SuccessReport("Verifying error message", "Apperead error message is ", error);
 		} else {
-			reporter.failureReport("Verifying error message", "Email Succuss Message does not Exists", "", driver);
+			reporter.failureReport("Verifying error message","Error message is not appeared ", error, driver);
 		}
 	}
 
@@ -487,7 +491,7 @@ public class CMTLib extends CMTObj {
 		click(getUsersTabMenus(menuName), "Roles And Permissions");
 		if (isCheckBoxSelected(getUserPermission(userPermissions))) {
 			LOG.info(userPermissions + " check box already checked: " + userPermissions);
-			reporter.SuccessReport(userPermissions, "check box already checked::" + userPermissions + "",
+			reporter.SuccessReport(userPermissions, "check box already checked::" + userPermissions + "ON",
 					userPermissions);
 		} else {
 			click(getUserPermission(userPermissions), "User permissions: " + userPermissions);
@@ -495,7 +499,7 @@ public class CMTLib extends CMTObj {
 			waitForVisibilityOfElement(PERMISSION_UPDATE_MSG, "PERMISSION UPDATE MSG");
 			if (isElementPresent(PERMISSION_UPDATE_MSG, "update sucessful message")) {
 				reporter.SuccessReport("Verify the Sucess message ", "Permissions Updated Succesfully",
-						"" + userPermissions + "");
+						"OFF" + userPermissions + "");
 			} else {
 				reporter.failureReport("Verify the sucess message", "Permissions are not Updated Succesfully", "",
 						driver);
@@ -1196,7 +1200,13 @@ public class CMTLib extends CMTObj {
 	}
 
 	public void deleteClientNotification(String repMail) throws Throwable {
-		click(clientNotifiationDeleteIcon(repMail), "Delete client notification");
+		if(isVisibleOnly(clientNotifiationDeleteIcon(repMail),"Repo Email")){
+			reporter.SuccessReport("Verifying newly added Sales repo", "Newly added sales repo is reflected ", repMail);
+			click(clientNotifiationDeleteIcon(repMail), "Delete client notification ");
+
+		}else{
+			reporter.failureReport("Verifying newly added Sales repo", "Newly added sales repo is not reflected ", repMail,driver);
+		}
 	}
 
 	/**
@@ -1263,7 +1273,8 @@ public class CMTLib extends CMTObj {
 		click(removeEmailInClientNotifications(repEmail), "rep Email ");
 		type(CLIENT_NOTIFICATION_EMAIL, repEmail, "client email");
 		click(ACTION_ICON_CLIENT_NOTIFICATIONS, "Save");
-		if (isElementPresent(CLIENT_NOTIFICATION_EMAIL_SUCCESS_MSG, "Email added")) {
+		Thread.sleep(8000);
+		if (isVisibleOnly(CLIENT_NOTIFICATION_EMAIL_SUCCESS_MSG, "Email added")) {
 			reporter.SuccessReport("Verify client notification adeed ", "Client notification email adeed successfully ",
 					repEmail);
 		} else {
