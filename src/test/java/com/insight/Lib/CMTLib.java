@@ -295,8 +295,8 @@ public class CMTLib extends CMTObj {
 	 * @throws Throwable
 	 */
 	public void loginVerification(String contactName) throws Throwable {
-		waitForVisibilityOfElement(CMTObj.getLoginVerficationByContactNameOnHeader(contactName), "contact Name");
-		if (isElementPresent(CMTObj.getLoginVerficationByContactNameOnHeader(contactName), "contact Name")) {
+		waitForVisibilityOfElement(CMTObj.getLoginVerficationByContactNameOnHeader(contactName), "contact Name is "+contactName);
+		if (isVisibleOnly(CMTObj.getLoginVerficationByContactNameOnHeader(contactName), "contact Name")) {
 			reporter.SuccessReport("Verify the Same User Logged into Insight from CMT",
 					"User login verification is successfull. User is : ", contactName);
 		} else {
