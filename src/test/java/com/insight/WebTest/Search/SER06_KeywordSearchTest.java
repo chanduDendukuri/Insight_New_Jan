@@ -76,7 +76,7 @@ public class SER06_KeywordSearchTest extends SearchLib {
 					//clickShopAllTypesButton();
 					verifyTheResultsForSearchTerm(data.get("SearchText4"));
 					// Approve items only
-					//filterSelectionInProductsSearchPage(data.get("Approved_Items"));
+					filterSelectionInProductsSearchPage(data.get("Approved_Items"));
 					verifyBreadCrumbInSearchResultsPage(data.get("Approved_Items"));
 					verifyTheResultsForSearchTerm(data.get("SearchText4"));
 					removeTheFilter(data.get("Approved_Items"));
@@ -86,17 +86,17 @@ public class SER06_KeywordSearchTest extends SearchLib {
 					searchInHomePage(data.get("SearchText5"));
 					verifyTheResultsForSearchTerm(data.get("SearchText5"));
 					// Approve items only
-					//filterSelectionInProductsSearchPage(data.get("Approved_Items"));
+				    filterSelectionInProductsSearchPage(data.get("Approved_Items"));
 					removeTheFilter(data.get("Approved_Items"));
 					verifyTheResultsForSearchTerm(data.get("SearchText4"));
 					
 					// Printers
 					searchInHomePage(data.get("SearchText6"));
 					verifyTheResultsForSearchTerm(data.get("SearchText6"));
-					getProductCount();
 					
 					// Stock only
 					removeTheFilter(data.get("filter"));
+					getProductCount();
 					filterSelectionInProductsSearchPage(data.get("filter"));
 					getProductCount();
 					//removeTheFilter(data.get("Approved_Items"));
