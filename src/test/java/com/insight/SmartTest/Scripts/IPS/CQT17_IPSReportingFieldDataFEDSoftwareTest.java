@@ -58,7 +58,7 @@ public class CQT17_IPSReportingFieldDataFEDSoftwareTest extends HomeLib {
 				ClickonArrowNextToLineitem();
 				String lineitemvalue=getLineItemText();
 				if(lineitemvalue.equals("000020"))
-					selectContractID(data.get("contactid"));
+					selectContractID(data.get("Contractid"));
 				enterUSCOMMmember(data.get("USCOMMmember"));
 				ClickonArrowNextToLineitem();
 				String lineitemvalue1=getLineItemText();
