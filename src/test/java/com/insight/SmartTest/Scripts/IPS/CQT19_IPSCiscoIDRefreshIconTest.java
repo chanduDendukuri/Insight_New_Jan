@@ -95,42 +95,35 @@ public class CQT19_IPSCiscoIDRefreshIconTest extends HomeLib {
 						 reporter.failureReport(ExpMrflstPrice, "ExpMrflstPrice value is not as expected ", "");
 					clickAdvancedHeader();
 					clickAdvancedHeaderTab("Cisco");
-					Calendar cal = Calendar.getInstance();
-					cal.add(Calendar.MONTH, 36);
-					Enter36MonthstoEndDateField(36);
+					String CoverageStartDate = getStartDateunderCiscoTab();
+					String CoverateEndDate = Enter36MonthstoEndDateField(36);
 					clickOnCopydates();
 
 					Swipedownapplication();
 					clickOnLItem00020CON("00020", "con");
 					clickOnVCTab("VC");
 					String duration1 = getDurationFieldValue();
-					
-					checkdurationfieldenabledordisabled();
-					VerifyDuration("36.03");
-					ClickonArrowNextToLineitem();
-					ClickonArrowNextToLineitem();
-					checkdurationfieldenabledordisabled();
-					VerifyDuration("36.03");
-					ClickonArrowNextToLineitem();
-					ClickonArrowNextToLineitem();
-
-					clickOnLItem00020CON("00020", "con");
-					clickOnVCTab("VC");
-					String duration2 = getDurationFieldValue();
-					if (duration2.equals("24"))
+					if (duration1.equals("36.03"))
 						reporter.SuccessReport("Duration: ", "Duration is ", duration);
-					VerifyDuration(data.get("Duration1"));
-					VerifyDuration(data.get("Duration1"));
-
 					checkdurationfieldenabledordisabled();
 					VerifyDuration("36.03");
+					checkdurationfieldenabledordisabled();
+					VerifyDuration("36.03");
+					checkdurationfieldenabledordisabled();
+					
+					
 					clickOnVCTab("Coverage/Billing");
 					String Cstartdate = coverageStartDate();
 					String CendDate = coverageEndDate();
-					if (Cstartdate.equals(CendDate))
+					if (CoverateEndDate.equals(CendDate))
 						reporter.SuccessReport("Coverage Start and End date: ","Start date and End dates are matching",  "");
 					else
 						reporter.failureReport("Coverage Start and End date: ","Start date and End dates are not matching",  "");
+					if (CoverageStartDate.equals(Cstartdate))
+						reporter.SuccessReport("Coverage Start and End date: ","Start date and End dates are matching",  "");
+					else
+						reporter.failureReport("Coverage Start and End date: ","Start date and End dates are not matching",  "");
+					
 					clickDoneButton();
 					clickUpdateCosting();
 					VerifyUpdateCosingPopup();
