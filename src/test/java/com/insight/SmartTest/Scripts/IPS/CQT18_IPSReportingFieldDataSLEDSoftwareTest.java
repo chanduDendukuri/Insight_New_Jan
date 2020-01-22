@@ -50,9 +50,10 @@ public class CQT18_IPSReportingFieldDataSLEDSoftwareTest extends HomeLib {
 				clickOnQuoteandAddlineitemsfromProductSearch(array,data.get("SoldToAcct"));
 				ClickOnXsymbolunderCon();
 		        driver.switchTo().defaultContent();
-		        SelectContractId(2);
+		        selectContractID(data.get("ContractId1"));
 		        VerifyLineItems("000010");
 		        VerifyLineItems("000020");
+		        selectContractID(data.get("ContractId2"));
 		        VerifyLineItems("000030");
 		        
 		        
@@ -67,8 +68,7 @@ public class CQT18_IPSReportingFieldDataSLEDSoftwareTest extends HomeLib {
 					 * System.out.println("LineItem 000030 is displayed");
 					 * ClickonArrowNextToLineitem();
 					 */
-				
-				SelectContractId(2);				
+		        selectContractID(data.get("ContractId3"));	
 				EnterUSCOMMember("MICROSOFT GOVERNMENT:",data.get("MICROSOFTGOVERNMENT"));
 				EnterUSCOMMember("AUTO-SCRIPT TEST:",data.get("AUTOSCRIPTTEST"));
 				clickonCopyreportingfieldstoallthelines();
