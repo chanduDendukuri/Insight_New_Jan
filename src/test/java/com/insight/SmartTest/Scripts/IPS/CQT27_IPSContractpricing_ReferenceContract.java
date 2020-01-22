@@ -54,7 +54,7 @@ public class CQT27_IPSContractpricing_ReferenceContract extends HomeLib {
 					AddMaterialOnLineItem(data.get("MaterialID1"));// C7974A
 					ClickOnXsymbolunderCon();
 					selectCOntractSubTabName(data.get("contactTabName"));// Contracts
-					clickOnContractId(data.get("contractid2"));
+					clickOnContractId(data.get("contractid1"));
 					clickDoneButton();
 					
 					clickOnLItem00020CON("000020", "con");
@@ -107,7 +107,7 @@ public class CQT27_IPSContractpricing_ReferenceContract extends HomeLib {
 					clickDoneButton();
 					clickOnCOntractIDinLineItemsList();
 					selectCOntractSubTabName(data.get("contactTabName"));// Contracts
-					float sellprice1 =getSellPriceFromContract(data.get("contractid2"));
+					float sellprice1 =getSellPriceFromContract(data.get("contractid1"));
 					//float sellprice1 =  (float) contract1;
 					clickonRightArrowforLineItem();
 					float sellprice2 =getSellPriceFromContract(data.get("contractid2"));
