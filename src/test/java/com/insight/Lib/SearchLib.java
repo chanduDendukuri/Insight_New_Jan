@@ -213,7 +213,7 @@ public class SearchLib extends CommonObj {
 	 * @throws Throwable
 	 */
 	public void searchInHomePage(String productName) throws Throwable {
-		Thread.sleep(10000);
+		Thread.sleep(5000);
 		waitForVisibilityOfElement(SEARCH,"Search Field");
 		typeForSearchingProduct(SEARCH,productName,"Search Text: "+productName);
 		WebElement ele=driver.findElement(SEARCH);
@@ -488,21 +488,44 @@ public class SearchLib extends CommonObj {
 	 * @throws Throwable
 	 */
 	public void searchInHeaderSelectFromSuggestions(String searchText) throws Throwable{
-		
+		WebElement element = driver.findElement(SEARCH);
 		typeForSearchingProduct(SEARCH,searchText , "Search text");
-		
-		
+		Thread.sleep(5000);
+		String result =null;
 		if(isElementPresent(SEARCH_SUGGESSIONS, "Search suggessions")){
-		click(SEARCH_SUGGESSIONS, "Search suggessions");
-		reporter.SuccessReport("Verifying whether the suggessions are displayed ","Suggessions are displayed for : ",searchText);
-		}else 
+			List<WebElement> myList = driver.findElements(SEARCH_SUGGESSIONS);
+			List<String> all_elements_text = new ArrayList<>();
+			for (int i = 0; i < myList.size(); i++) {
+				all_elements_text.add(myList.get(i).getText());
+				result = myList.get(i).getText();
+				reporter.SuccessReport("search suggessions are displayed ","Suggessions displayed as ",result);
+			}
+		/*click(SEARCH_SUGGESSIONS, "Search suggessions");
+		reporter.SuccessReport("Verifying whether the suggessions are displayed ","Suggessions are displayed for : ",searchText);*/
+			element.sendKeys(Keys.ENTER);
+		}else {
+			reporter.failureReport("Verifying whether the suggessions are displayed  "," Enter a valid text.You entered : ",searchText);
+		}
+		/*else 
 			if(isElementNotPresent(SEARCH_SUGGESSIONS, "Search suggessions")){
-				WebElement element = driver.findElement(SEARCH);
 				element.sendKeys(Keys.ENTER);
-			reporter.SuccessReport("Verifying whether the suggessions are displayed ","Suggessions are not displayed",searchText);
+			reporter.SuccessReport("Verifying whether the suggessions are displayed ","Suggessions are  displayed",searchText);
 		}
 			else {
 			reporter.failureReport("Verifying whether the suggessions are displayed  "," Enter a valid text.You entered : ",searchText);
+		}*/
+	}
+	
+	/**
+	 * verify Search Suggestions are Not Displayed
+	 * @throws Throwable
+	 */
+	public void verifySearchSuggestionsareNotDisplayed(String searchText) throws Throwable {
+		typeForSearchingProduct(SEARCH,searchText , "Search text");
+		if(isElementNotPresent(SEARCH_SUGGESSIONS, "Search suggessions")){
+			reporter.SuccessReport("Verifying whether the suggessions are displayed ","Suggessions are  not displayed","");
+		}else {
+			reporter.failureReport("Verifying whether the suggessions are displayed  "," search  Suggessions are displayed ","",driver);
 		}
 	}
 	/**
@@ -512,9 +535,9 @@ public class SearchLib extends CommonObj {
 	 */
 	public void selectAccountTools(String tabName,String tabName1) throws Throwable{
 		click(TOOLS_DD_HEADER, "Tools drop down on header");
-		click(FAVORITES, "FAVORITES");
+		click(FAVORITES, "FAVORITES","Link: Account Favorites");
 	    if(isElementPresent(USER_PREFERENCE, "User preference tab", true)){
-	    	click(getFavoritesTabs(tabName),"Account favorites");
+	    	click(getFavoritesTabs(tabName),"Account favorites : "+tabName,tabName);
 	    	if(isElementPresent(ACCOUNT_FAVORITES,"ACCOUNT FAVORITES")){
 	    		LOG.info("Element is present and active");
 	    	}else{
@@ -522,14 +545,26 @@ public class SearchLib extends CommonObj {
 	    	}
 	    }
 	    click(getFavoritesTabs(tabName1), "User preference tab");
-	   
-	   // condition to un check if checked/ check if un checked
-	    if(isElementPresent(SHOW_KEYWORD_SUGGESSIONS_UNCHECKED, "SHOW_KEYWORD_SUGGESSIONS_UNCHECKED")){
-	    click(SHOW_KEYWORD_SUGGESSIONS_UNCHECKED, "Show key word suggessions check box");
-	    }else {
-	    click(SHOW_KEYWORD_SUGGESSIONS_CHECKED, "Show key word suggessions check box");
-	    }
-	    click(UPDATE_PREF_BTN, "Update button in user preference tab");
+	}
+	
+	public void enableSearchSuggestions() throws Throwable {
+		if(isElementPresent(SHOW_KEYWORD_SUGGESSIONS_CHECKED, "SHOW KEYWORD SUGGESSIONS CHECKED")){
+		// Do nothing 
+		}else {
+			 click(SHOW_KEYWORD_SUGGESSIONS_UNCHECKED, "Show key word suggessions check box Enabled");
+		}
+	}
+	
+	public void disableSearchSuggestions() throws Throwable {
+		if(isElementPresent(SHOW_KEYWORD_SUGGESSIONS_UNCHECKED, "SHOW KEYWORD SUGGESSIONS CHECKED")){
+		// Do nothing 
+		}else {
+			 click(SHOW_KEYWORD_SUGGESSIONS_CHECKED, "Show key word suggessions check box Enabled");
+		}
+	}
+	
+	public void updateSuggessions() throws Throwable {
+		click(UPDATE_PREF_BTN, "Update button in user preference tab");
 	}
 	
 	public void verifyFilterSelectedBySuggestions() throws Throwable{
