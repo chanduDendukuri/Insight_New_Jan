@@ -66,13 +66,14 @@ public class CQT53_IPSOpenMarketExclusion  extends HomeLib {
 					selectCOntractID(data.get("contactid"),data.get("Tab1"));
 					// Verify Enrollment Code//
 					clickonRightArrowforLineItem();
-					selectCOntractID(data.get("contactid"),data.get("Tab1"));
+					//selectCOntractID(data.get("contactid"),data.get("Tab1"));
 					clickDoneButton();					 
 					clickUpdateCosting();
 					
 					clickSideBarSmart();
 					clickonSaveasQuote();
-					enterCancelButtonInPoupHdr();
+					ValidateError();
+					
 					String QuoteNum= GetQuoteNumber();	
 					if(QuoteNum!=null) {
 						reporter.SuccessReport("QuoteNumber:", "Quotenumber is displayed", "");
