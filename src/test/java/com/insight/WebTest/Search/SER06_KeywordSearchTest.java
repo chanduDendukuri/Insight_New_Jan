@@ -67,21 +67,28 @@ public class SER06_KeywordSearchTest extends SearchLib {
 					cmtLib.clickOnTheWebGroup(data.get("WebGrp_Name"));
 					cmtLib.hoverOnManageWebGroupsAndSelectOptions(data.get("ManageWebGrpOptions"));
 					cmtLib.hoverOnManageWebGroupsAndSelectOptions(data.get("Users"));
-
+					cmtLib.searchForaUserAndSelect(data.get("LnameEmailUname"), data.get("ContactName"));
 					cmtLib.loginAsAdminCMT();
+					cmtLib.loginVerification(data.get("ContactName"));
+					
 					// Desktops
 					searchInHomePage(data.get("SearchText4"));
-					clickShopAllTypesButton();
+					//clickShopAllTypesButton();
 					verifyTheResultsForSearchTerm(data.get("SearchText4"));
 					// Approve items only
-					filterSelectionInProductsSearchPage(data.get("Approved_Items"));
+					//filterSelectionInProductsSearchPage(data.get("Approved_Items"));
+					verifyBreadCrumbInSearchResultsPage(data.get("Approved_Items"));
+					verifyTheResultsForSearchTerm(data.get("SearchText4"));
+					removeTheFilter(data.get("Approved_Items"));
 					verifyTheResultsForSearchTerm(data.get("SearchText4"));
 					
 					// High performance
 					searchInHomePage(data.get("SearchText5"));
 					verifyTheResultsForSearchTerm(data.get("SearchText5"));
 					// Approve items only
-					filterSelectionInProductsSearchPage(data.get("Approved_Items"));
+					//filterSelectionInProductsSearchPage(data.get("Approved_Items"));
+					removeTheFilter(data.get("Approved_Items"));
+					verifyTheResultsForSearchTerm(data.get("SearchText4"));
 					
 					// Printers
 					searchInHomePage(data.get("SearchText6"));
@@ -92,7 +99,7 @@ public class SER06_KeywordSearchTest extends SearchLib {
 					removeTheFilter(data.get("filter"));
 					filterSelectionInProductsSearchPage(data.get("filter"));
 					getProductCount();
-					removeTheFilter(data.get("Approved_Items"));
+					//removeTheFilter(data.get("Approved_Items"));
 					// Manufacturers :HONEYWELL
 					filterSelectionInProductsSearchPage(data.get("Manufacturer"));
 					// Min price and Max price
