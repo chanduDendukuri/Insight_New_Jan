@@ -89,7 +89,7 @@ public class productsDisplayInfoObj extends CommonObj{
     public static By FIRST_PROD_NAME=By.xpath("//div[@id='search-item-0']//div//a[@class='select-prod']");
     public static By FIRST_PROD_IMAGE=By.xpath("//div[@id='search-item-0']//a//img[@class='lazy']");
     public static By CLOSE=By.xpath("//a[@class='close-reveal-modal']");
-    
+    public static By MAINTENANCE_FIELD=By.xpath("//label[@id='product-research-maintenance-label']/following::div//input[@value='No']");
     
     
     //sort By options

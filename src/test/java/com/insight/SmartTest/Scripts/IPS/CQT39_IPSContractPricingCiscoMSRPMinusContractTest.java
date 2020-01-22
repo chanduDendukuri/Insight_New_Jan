@@ -113,7 +113,7 @@ public class CQT39_IPSContractPricingCiscoMSRPMinusContractTest extends HomeLib{
                     	
                     }
 					// Need to compare pricing
-					VerifyZPMLMinusZDMLShouldbeEqualToYP00(price1value,price3value,price4value);
+					VerifyZPMLMinusZDMLShouldbeEqualToYP001(price1value,price3value,price4value);
 					VerifyYP00ShouldbeEqualToZP00(price2value,price4value);
 					clickDoneButton();
 					clickSideBarSmart();
