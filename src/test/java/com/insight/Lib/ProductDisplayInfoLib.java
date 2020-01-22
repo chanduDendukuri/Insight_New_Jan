@@ -463,7 +463,6 @@ public class ProductDisplayInfoLib extends productsDisplayInfoObj {
 		cartLib.verifyCartBreadCrumb();
 		String partNo = getText(ADDED_TO_CART_PPC_PART_NO, "part number in the personal product list cart");
 		List<String> prodDesc1=orderLib.getProductDescriptionOfCartProduct();
-		//List<String> quantity1=orderLib.getCartProductQuantity();
 		List<String> totalPrice1=orderLib.getCartProductTotalPrice();
 		if (partNo.replace("Insight Part # :", "").equals(partNumber)) {
 			reporter.SuccessReport("Verify the part added to cart ", "Part sucessfully added to cart. number is : ","Part Number : "+partNo+ "  prod Description : "+prodDesc1.get(0)+ " Quantity : 1" +"Total Price: "+totalPrice1.get(0));
