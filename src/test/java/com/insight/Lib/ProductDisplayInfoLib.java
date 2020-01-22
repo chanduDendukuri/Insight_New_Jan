@@ -32,7 +32,7 @@ public class ProductDisplayInfoLib extends productsDisplayInfoObj {
 	 */
 	public void clickProductResearchRequestAndFillDetails(String name, String email, String country, String quantity,
 			String partNo, String mnfr, String prodDesc) throws Throwable {
-		click(productsDisplayInfoObj.PRODUCT_RESEARCH, "Product research request link");
+		//click(productsDisplayInfoObj.PRODUCT_RESEARCH, "Product research request link");
 		waitForVisibilityOfElement(productsDisplayInfoObj.PROD_RESEARCH_NAME_TXT_BOX, "Name");
 		type(productsDisplayInfoObj.PROD_RESEARCH_NAME_TXT_BOX, name, "Your name text box");
 		type(productsDisplayInfoObj.PROD_RESEARCH_EMAIL_TXT_BOX, email, "email text box");
@@ -51,6 +51,73 @@ public class ProductDisplayInfoLib extends productsDisplayInfoObj {
 		}
 		click(productsDisplayInfoObj.CLOSE, "Close button");
 	}
+	
+	
+	public void verifyProductResearchRequestPopupFields() throws Throwable {
+		
+		// Your name
+		if(isVisibleOnly(productsDisplayInfoObj.PROD_RESEARCH_NAME_TXT_BOX, "Name text box")) {
+			reporter.SuccessReport("verify product research name text box exists", "Your Name Field Exists", "Your Name");
+		}else {
+			reporter.failureReport("verify product research name text box exists", "Your Name Field does not Exists", "Your Name");
+		}
+		// Email
+		if(isVisibleOnly(productsDisplayInfoObj.PROD_RESEARCH_EMAIL_TXT_BOX, "email text box")) {
+			reporter.SuccessReport("verify product research email text box exists", "email Field Exists", "Email");
+		}else {
+			reporter.failureReport("verify product research email text box exists", "email Field does not Exists", "Email");
+		}
+		
+		// Additional Email
+		if(isVisibleOnly(productsDisplayInfoObj.PROD_RESEARCH_ADDEMAIL_TXT_BOX, "Additional email text box")) {
+			reporter.SuccessReport("verify product research Additional email text box exists", "Additional email Field Exists", "Additional Email");
+		}else {
+			reporter.failureReport("verify product research Additional email text box exists", "Additional email Field does not Exists", "Additional Email");
+				}
+		
+		//country
+		if(isVisibleOnly(productsDisplayInfoObj.PROD_RESEARCH_COUNTRY_TXT_BOX, "Country")) {
+			reporter.SuccessReport("verify product research Country text box exists", "Country Field Exists", "Country");
+		}else {
+			reporter.failureReport("verify product research Country text box exists", "Country Field does not Exists", "Country");
+		}
+		
+		// quantity
+		if(isVisibleOnly(productsDisplayInfoObj.PROD_RESEARCH_QUANTITY_TXT_BOX, "quantity")) {
+			reporter.SuccessReport("verify product research quantity text box exists", "quantity Field Exists", "quantity");
+		}else {
+			reporter.failureReport("verify product research quantity text box exists", "quantity Field does not Exists", "quantity");
+		}
+		
+		// partNo
+		if(isVisibleOnly(productsDisplayInfoObj.PROD_RESEARCH_PARTNO_TXT_BOX, "part Number")) {
+			reporter.SuccessReport("verify product research part Number text box exists", "part Number Field Exists", "part Number");
+		}else {
+			reporter.failureReport("verify product research part Number text box exists", "part Number Field does not Exists", "part Number");
+		}
+		
+		// Manufacturer
+		if (isVisibleOnly(productsDisplayInfoObj.PROD_RESEARCH_MANFR_TXT_BOX, "Manufacturer")) {
+			reporter.SuccessReport("verify product research Manufacturer text box exists", "Manufacturer Field Exists","Manufacturer ");
+		} else {
+			reporter.failureReport("verify product research Manufacturer text box exists","Manufacturer Field does not Exists", "Manufacturer ");
+		}
+		
+		// product description
+		if (isVisibleOnly(productsDisplayInfoObj.PROD_RESEARCH_PROD_DESC_TXT_BOX, "product description")) {
+			reporter.SuccessReport("verify product research product description text box exists", "product description Field Exists","product description ");
+		} else {
+			reporter.failureReport("verify product research product description text box exists","product description Field does not Exists", "product description ");
+		}
+		
+		// Maintenance
+		if (isVisibleOnly(productsDisplayInfoObj.MAINTENANCE_FIELD, "Maintenance")) {
+			reporter.SuccessReport("verify product research Maintenance filed exists", "Maintenance Radio Selecton Exists","Maintenance selection");
+		} else {
+			reporter.failureReport("verify product research Maintenance field exists","Maintenance Radio Selecton does not Exists", "Maintenance selection");
+		}
+	}
+	
 
 	/**
 	 * This method is to verify the product search results displayed correctly
@@ -113,7 +180,7 @@ public class ProductDisplayInfoLib extends productsDisplayInfoObj {
 	 */
 	public void clickProductResearchRequest() throws Throwable {
 		Thread.sleep(3000);
-		click(productsDisplayInfoObj.PRODUCT_RESEARCH, "Product research request link");
+		click(productsDisplayInfoObj.PRODUCT_RESEARCH, "Product research request link","Product research request link");
 	}
 
 	/**
@@ -123,8 +190,8 @@ public class ProductDisplayInfoLib extends productsDisplayInfoObj {
 	 */
 	public void clickSendWithoutFillingRequestProductAndVerify(String productName) throws Throwable {
 		Thread.sleep(2000);
-		click(productsDisplayInfoObj.PRODUCT_REQ_SEND_BTN, "Product Research request screen send button");
-		isElementPresent(productsDisplayInfoObj.ERROR_MSG, "Error message in Product Research Request acreen");
+		click(productsDisplayInfoObj.PRODUCT_REQ_SEND_BTN, "Product Research request screen send button","Send button");
+		isElementPresent(productsDisplayInfoObj.ERROR_MSG, "Error message in Product Research Request screen exists");
 		click(productsDisplayInfoObj.PRODUCT_REQ_CANCEL_BTN, "Product Research request screen CANCEL button");
 		searchLib.verifyTheResultsForSearchTerm(productName);
 	}
