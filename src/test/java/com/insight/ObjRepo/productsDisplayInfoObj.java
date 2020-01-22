@@ -5,7 +5,7 @@ import org.openqa.selenium.By;
 public class productsDisplayInfoObj extends CommonObj{
 
 	
-	public static By getBreadCrumbs(String productCategory){
+    public static By getBreadCrumbs(String productCategory){
     	return By.xpath("//ul[@class='breadcrumbs js-fix-left-align js-insight-breadcrumbs']//li//span[contains(text(),'"+productCategory+"')]");
     }
     

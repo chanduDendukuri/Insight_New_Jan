@@ -91,6 +91,7 @@ public class SER04_CompanyStandardsTest extends SearchLib {
 					// verify table columns
 					verifyTheProductGroupTable(data.get("Product_Grp_Columns"));
 					verifyRadioButtonsSelected();
+					Thread.sleep(3000);
 					// SystemN Multiple CTO Link
 					commonLib.clickOnProductGrpInCompanyStandard( data.get("Product_Group3"), data.get("Product_Name4"));
 					// verify table columns
@@ -99,7 +100,6 @@ public class SER04_CompanyStandardsTest extends SearchLib {
 					// verify cart page loaded
 					cartLib.verifyCartBreadCrumb();
 					
-					cartLib.verifyProductGroupBundleAddedToCart(data.get("Product_Name4"));
 					String summaryAmount2=cartLib.getSummaryAmountInCart();
 					if(summaryAmount2!=null) {
 						reporter.SuccessReport("Parts are Added to Cart on Product Standards Page ", "Parts are Added to Cart", "Cart : TotalUSD "+summaryAmount2);
@@ -111,13 +111,16 @@ public class SER04_CompanyStandardsTest extends SearchLib {
 					prodInfoLib.verifyTheManufacturerNumberInProductDetailsPage(data.get("part_Number"));
 					String[] checkbox=data.get("Checkboxes").split(",");
 					clickAddToCompanyStandardsLink();
+					Thread.sleep(3000);
 					verifyConfigurationSetsPopup();
 					clickCancelOnSelectConfigurationSetPopup();
+					Thread.sleep(3000);
 					clickAddToCompanyStandardsLink();
 					verifyConfigurationSetsPopup();
-					for(i=0;i<=checkbox.length;i++) {
+					for(i=0;i<checkbox.length;i++) {
 						clickConfigurationSetsCheckboxs(checkbox[i]);
 					}
+					Thread.sleep(3000);
 					clickAddButtonOnSelectConfigurationSetPopup();
 					commonLib.clickLogOutLink(data.get("Logout"));
 					

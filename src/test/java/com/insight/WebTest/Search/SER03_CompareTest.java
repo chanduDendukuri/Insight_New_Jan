@@ -56,50 +56,49 @@ public class SER03_CompareTest extends SearchLib {
 					// Similar products verification
 					verifySimilarProductsExists();
 
-					
+
 					// search Thinkpads
 					searchInHomePage( data.get("ProductName2"));
 					verifyBreadCrumbInSearchResultsPage(data.get("ProductName2"));
 					int itemscount = Integer.valueOf(data.get("Items_Count"));
-					
-					// 2 Items added to compare list 
+
+					// 2 Items added to compare list
 					clickOnAddToMyCompareListLink(itemscount);
 					Thread.sleep(3000);
-    				//Verify  products added to list
-    				verifyCompareList();
+					    //Verify  products added to list
+					    verifyCompareList();
 
-    				// click compare items link
-    				clickOnComparedItemsLink();
-    				Thread.sleep(3000);
-    				// verify products added in compare list
-    				chinaLib.verifyCompareProductsPage(itemscount);
-
-    				// Adding another part
-    				chinaLib.addAnotherPartInCompareProductsPage(data.get("Part_Number"));
-    				chinaLib.verifyPartNumberAddedInCompareProductListPage(data.get("Part_Number"));
-    				// Verify number of products displayed
-    				chinaLib.verifyCompareProductsPage(itemscount+1);
-    				
-    				// search Workstations
+					    // click compare items link
+					    clickOnComparedItemsLink();
+					    Thread.sleep(3000);
+					    // verify products added in compare list
+					    chinaLib.verifyCompareProductsPage(itemscount);
+					   
+					    // Adding another part
+					    chinaLib.addAnotherPartInCompareProductsPage(data.get("Part_Number"));
+					    chinaLib.verifyPartNumberAddedInCompareProductListPage(data.get("Part_Number"));
+					    // Verify number of products displayed
+					    chinaLib.verifyCompareProductsPage(itemscount+1);
+					   
+					    // search Workstations
 					searchInHomePage( data.get("ProductName3"));
 					verifyBreadCrumbInSearchResultsPage(data.get("ProductName3"));
-    				
+					   
 					//Verify  products added to list
-    				verifyCompareList();
-    				// Add one more product to compare list
-
-    				clickOnAddToMyCompareListLink(itemscount-1);
-    				clickOnComparedItemsLink();
-
-    				// verify products added in compare list
-    				chinaLib.verifyCompareProductsPage(itemscount+2);
-    				
-    				clickOnCloseIconInCompareProductsPage();
-    				chinaLib.verifyCompareProductsPage(itemscount+1);
-    				
-    				// Add to cart
+					    verifyCompareList();
+					    // Add one more product to compare list
+					    clickOnAddToMyCompareListLink(itemscount-1);
+					    clickOnComparedItemsLink();
+					    // verify products added in compare list
+					    chinaLib.verifyCompareProductsPage(itemscount+2);
+					   
+					    clickOnCloseIconInCompareProductsPage();
+					    chinaLib.verifyCompareProductsPage(itemscount+1);
+					   
+					    // Add to cart
 					prodInfoLib.addToCart();
 					orderLib.continueToCheckOutOnAddCart();
+
     				
 				} catch (Exception e) {
 					ReportStatus.blnStatus = false;

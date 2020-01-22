@@ -81,15 +81,18 @@ MarriottIntlCorpLib marriottlib=new MarriottIntlCorpLib();
 						cmtLib.enterEmailAddressInAddAnAccount(emailAddress);
 						cmtLib.clickCreateUserButton();	
 						Thread.sleep(2000);
-						cmtLib.clickBackToUserSearch();
+						cmtLib.hoverOnManageWebGroupsAndSelectOptions(data.get("Manage_Web_Grp_Options"));
 						cmtLib.searchUsers(emailAddress);
 						Thread.sleep(2000);
 						cmtLib.contactNameSearchResultVerificationofCreatedUser(data.get("ContactName"));
 						cmtLib.verifyUserandClick(data.get("ContactName"));
+						cmtLib.clickOnRolesAndPermissionsTab(data.get("Menu_Name"));
 						String[] permissions = data.get("Set_Permission").split(",");
 						for (i = 0; i < permissions.length; i++) {
-							cmtLib.setPermissions(data.get("Menu_Name"), permissions[i]);
+							cmtLib.verifySetPermissions( permissions[i]);
 						}
+						verifyUserPermissionInvoice_DD();
+						verifyUserPermissionOrderTracking_DD();
 						Thread.sleep(2000);
 						cmtLib.clickInformationTab(data.get("Information_Tab"));
 						cmtLib.clickOnSharedUserUrl();

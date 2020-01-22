@@ -52,7 +52,7 @@ import com.insight.utilities.CustomTestListenerCT;
 import com.insight.utilities.DataBean;
 import com.insight.utilities.ExtentReportThread;
 import com.insight.utilities.WriteIntoExcel;
-//import atu.testrecorder.ATUTestRecorder;
+import atu.testrecorder.ATUTestRecorder;
 
 
 @Listeners(CustomTestListenerCT.class)
@@ -94,7 +94,7 @@ public class TestEngineWeb {
 	public String RSO_WEB_URL_MESTAG = null;
 	public String RSP_WEB_URL = null;
 	public static String LOCATION_CLIENT_LOGO = null;
-	//public ATUTestRecorder recorder;
+	public ATUTestRecorder recorder;
 
 	public static long startTime;
 	public static String fileName = System.getProperty("user.dir") + "/TestData/TestData.xls";
@@ -155,8 +155,8 @@ public class TestEngineWeb {
 		String formattedDate = sdf.format(date);
 		DateFormat dateFormat = new SimpleDateFormat("yy-MM-dd HH-mm-ss");
 		
-		//recorder=new ATUTestRecorder("./ScriptVideos\\","TestVideo-"+dateFormat.format(date),false);
-		//recorder.start();
+		recorder=new ATUTestRecorder("./ScriptVideos\\","TestVideo-"+dateFormat.format(date),false);
+		recorder.start();
 		suiteStartTime = formattedDate.replace(":", "_").replace(" ", "_");
 		LOG.info("Suite time ==============>" + suiteStartTime);
 		ReportControl.fnReportDefault();
@@ -350,7 +350,7 @@ public class TestEngineWeb {
 				//driver.close();
 				driver.quit();
 
-			   // recorder.stop();
+			    recorder.stop();
 				LOG.info("Driver quit ::" + browser);
 				System.out.println("Driver is close after Iteration");
 			}

@@ -70,8 +70,10 @@ public class CQT19_IPSCiscoIDRefreshIconTest extends HomeLib {
 					clickOnLItem00020CON("00020","con");
 					clickOnVCTab("VC");
 					String duration = getDurationFieldValue();
+
 					if (duration.equals("12.00"))
 						reporter.SuccessReport("Duration: ", "Duration is ", duration);
+
 					VerifyDuration("24");
 					VerifyDuration("36");
 					clickDoneButton();
@@ -93,9 +95,11 @@ public class CQT19_IPSCiscoIDRefreshIconTest extends HomeLib {
 						 reporter.failureReport(ExpMrflstPrice, "ExpMrflstPrice value is not as expected ", "");
 					clickAdvancedHeader();
 					clickAdvancedHeaderTab("Cisco");
-					
+					Calendar cal = Calendar.getInstance();
+					cal.add(Calendar.MONTH, 36);
 					Enter36MonthstoEndDateField(36);
 					clickOnCopydates();
+
 					Swipedownapplication();
 					clickOnLItem00020CON("00020", "con");
 					clickOnVCTab("VC");
@@ -109,6 +113,15 @@ public class CQT19_IPSCiscoIDRefreshIconTest extends HomeLib {
 					VerifyDuration("36.03");
 					ClickonArrowNextToLineitem();
 					ClickonArrowNextToLineitem();
+
+					clickOnLItem00020CON("00020", "con");
+					clickOnVCTab("VC");
+					String duration2 = getDurationFieldValue();
+					if (duration2.equals("24"))
+						reporter.SuccessReport("Duration: ", "Duration is ", duration);
+					VerifyDuration(data.get("Duration1"));
+					VerifyDuration(data.get("Duration1"));
+
 					checkdurationfieldenabledordisabled();
 					VerifyDuration("36.03");
 					clickOnVCTab("Coverage/Billing");
@@ -122,6 +135,7 @@ public class CQT19_IPSCiscoIDRefreshIconTest extends HomeLib {
 					clickUpdateCosting();
 					VerifyUpdateCosingPopup();
 					CancelButtonInUpdateCosting();
+
 					Swipedownapplication();
 					String expmrgprice = getmfgPricevalue("00020", "mfrList","30.03");
 					String expmrgprice1 = getmfgPricevalue("00040", "mfrList", "30.03");
@@ -133,6 +147,7 @@ public class CQT19_IPSCiscoIDRefreshIconTest extends HomeLib {
 					 reporter.failureReport(ExpMrflstPrice, "ExpMrflstPrice value is not as expected ", "");
 				
 					SwipeUpapplication();
+
 					doubleclickOnLineItem("000020");
 					clickOnVCTab("Coverage/Billing");
 					ClearEnddateCoveragefield();
@@ -140,7 +155,9 @@ public class CQT19_IPSCiscoIDRefreshIconTest extends HomeLib {
 					ClickonleftArrowpriorToLineitem();
 					clickOnVCTab("VC");
 					checkdurationfieldenabledordisabled();
+
 					enterDurationUnderVC("36.03");
+
 					clickDoneButton();
 					clickUpdateCosting();
 					VerifyUpdateCosingPopup();
