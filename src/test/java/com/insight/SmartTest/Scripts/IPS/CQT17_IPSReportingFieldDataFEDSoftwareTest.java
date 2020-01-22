@@ -58,7 +58,7 @@ public class CQT17_IPSReportingFieldDataFEDSoftwareTest extends HomeLib {
 				ClickonArrowNextToLineitem();
 				String lineitemvalue=getLineItemText();
 				if(lineitemvalue.equals("000020"))
-					SelectContractId(1);
+					selectContractID(data.get("contactid"));
 				enterUSCOMMmember(data.get("USCOMMmember"));
 				ClickonArrowNextToLineitem();
 				String lineitemvalue1=getLineItemText();
@@ -78,11 +78,14 @@ public class CQT17_IPSReportingFieldDataFEDSoftwareTest extends HomeLib {
 		        clickDoneButton();
 		        ClickOnDisplayMode();
 		        ClickOnXsymbolunderCon();
-		        reportingFiledData();
+		        validatetheLineitemfiledsaftersaving();
+		        //reportingFiledData();
 		        ClickonArrowNextToLineitem();
-		        reportingFiledData();
+		        validatetheLineitemfiledsaftersaving();
+		        //reportingFiledData();
 		        ClickonArrowNextToLineitem();
-		        reportingFiledData();
+		        validatetheLineitemfiledsaftersaving();
+		        //reportingFiledData();
 		        clickDoneButton();
 		        System.out.println("testcase completed");
 		        
