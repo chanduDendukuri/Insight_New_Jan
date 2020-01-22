@@ -621,8 +621,8 @@ public class HomePage extends ActionEngine
          public static By shippingConditinOption = By.xpath("//option[contains(text(),'80 Electronic Delivery')]"); 
          public static By txtTAAvalue = By.cssSelector("input[id='taa']");
          public static By txtChangeMode = By.xpath("//div[contains(text(),'CHANGE')]");
-
-
+public static By txtErrorpopup = By.xpath("//h3[contains(text(),'Error')]");
+public static By txtErrorMesage = By.xpath("//span[@class='preWrap']");
           
         
          

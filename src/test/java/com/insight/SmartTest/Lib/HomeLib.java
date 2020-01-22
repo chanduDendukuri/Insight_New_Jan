@@ -2116,6 +2116,19 @@ else {
 		{ click(CANCEL_BTN, "Cancel Button"); 
 		} 
 		}
+	public void ValidateError() throws Throwable {
+		if (waitForVisibilityOfElement(txtErrorpopup, "Errorpopup"))
+		{ 
+			String Errormesage = getText(txtErrorMesage, "ErrorMessage");
+			if(Errormesage!=null) {
+				reporter.SuccessReport("Error Message: ", "Error messages displayed as ", Errormesage);
+			}
+			else {
+				reporter.failureReport("Error Message: ", "Error messages not displayed ","");
+			}
+					click(OKBUTTONINPOPUP, "Ok Button"); 
+		} 
+		}
 
 	public void VerifyInformationPopUp(String Information)throws Throwable{
 		if(waitForVisibilityOfElement(INFO_POPUP, "Info pop up", driver)) {
