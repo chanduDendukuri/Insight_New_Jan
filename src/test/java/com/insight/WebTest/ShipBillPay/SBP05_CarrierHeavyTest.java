@@ -72,7 +72,7 @@ public class SBP05_CarrierHeavyTest extends ShipBillPayLib{
 				cmtLib.clickOnloginAs();
 				switchToChildWindow();
 				commonLib.searchProduct(data.get("Search_Item"));
-				commonLib.addFirstDisplyedItemToCartAndVerify();
+				commonLib.addToCartAndVerify();
 				canadaLib.continueToCheckout();
 				commonLib.updateCartQuantity(data.get("Quantity"));
 				orderLib.proceedToCheckout();
@@ -80,7 +80,8 @@ public class SBP05_CarrierHeavyTest extends ShipBillPayLib{
 				orderLib.clickContinueOnLineLevelInfo();
 				orderLib.shippingBillPayContinueButton();
 				//No carrier Preference
-				cartLib.verifyCarriersInCheckOut(data.get("Carriers"));
+				cartLib.verifyCarriersInCheckOut(data.get("Carriers"),data.get("Carrier2"));
+				cartLib.DefualtCarrierOption();
 				orderLib.shippingOptionsCarrierSelection();
 				orderLib.billingAddressContinueButton();
 				orderLib.selectPaymentMethod(data.get("Payment_method"));
@@ -95,20 +96,19 @@ public class SBP05_CarrierHeavyTest extends ShipBillPayLib{
 				commonLib.clickCheckOutSettings(data.get("Check_out_Settings"));
 				commonLib.selectOptionInCheckoutSettings(data.get("Shipping_Options"));
 				//CESV 
-				cmtLib.selectParticularDesignatedShippingOption(data.get("Default_Shipping_Options"));
+				cmtLib.selectParticularDesignatedShippingOption(data.get("Carrier2"));
 				commonLib.clickOnUpdateButtonInUserSettings();
 				cmtLib.clickOnloginAs();
 				switchToChildWindow();
 				commonLib.searchProduct(data.get("Search_Item1"));
-				commonLib.addFirstDisplyedItemToCartAndVerify();
+				commonLib.addToCartAndVerify();
 				canadaLib.continueToCheckout();
-				commonLib.updateCartQuantity(data.get("Quantity"));
 				orderLib.proceedToCheckout();
 				cartLib.clickOnContinueButtonInAddInformtion();
 				orderLib.clickContinueOnLineLevelInfo();
 				orderLib.shippingBillPayContinueButton();
-				cartLib.verifyCarriersInCheckOut(data.get("Carriers1"));
-				cartLib.selectCarrier(data.get("Carriers1"));
+				cartLib.verifyCarriers(data.get("Carrier2"),data.get("UPS"));
+				cartLib.selectCarrier(data.get("PGL"));
 				orderLib.shippingOptionsCarrierSelection();
 				orderLib.billingAddressContinueButton();
 				orderLib.selectPaymentMethod(data.get("Payment_method"));
@@ -121,6 +121,7 @@ public class SBP05_CarrierHeavyTest extends ShipBillPayLib{
 				cmtLib.navigateBackToCMT();
 				commonLib.clickCheckOutSettings(data.get("Check_out_Settings"));
 				commonLib.selectOptionInCheckoutSettings(data.get("Shipping_Options"));
+				cmtLib.DeselectAllDesignatedShippingOptions();
 				commonLib.selectDefaultShippingOptionInCheckoutSettings(data.get("Default_Shipping_Option"));
 				commonLib.clickOnUpdateButtonInUserSettings();
 

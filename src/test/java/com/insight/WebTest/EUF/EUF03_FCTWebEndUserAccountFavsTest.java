@@ -63,6 +63,8 @@ public class EUF03_FCTWebEndUserAccountFavsTest extends EndUserFeaturesLib{
 						clickOnTabInUserProfile(data.get("Tab_Name"));
 						clearMyFavoriteAccountsList();
 						addSearchListtoFavorites();
+						clearAndSearchWithAccountNum(data.get("Search"));
+						addSearchListtoFavorites();
 						clearAndSearchWithAccountNum(data.get("AccountName"));
 						addSearchListtoFavorites();
 						cmtLib.navigateBackToCMT();

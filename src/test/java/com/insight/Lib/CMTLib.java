@@ -2625,12 +2625,11 @@ public class CMTLib extends CMTObj {
 		} else {
 			// Do nothing
 		}
-		// click(DesignatedshippingFedoption_dropdown, "Default Shipping
-		// Option");
-		// selectByVisibleText(DesignatedshippingFedoption_dropdown,
-		// defaultShippingOtion,
-		// "Default_Shipping_Option Selected is::"+defaultShippingOtion+"");
 	}
+	
+       
+
+
 
 	/**
 	 * This method is to click on Roles and permissions tab and check the one

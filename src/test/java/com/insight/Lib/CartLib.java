@@ -662,36 +662,35 @@ public class CartLib extends ActionEngine {
 	 * 
 	 * @throws Throwable
 	 */
-	public void verifyCarriersInCheckOut(String carrier) throws Throwable {
+	public void verifyCarriersInCheckOut(String carrier,String Carriers) throws Throwable {
 		if (isElementPresent(OrderObj.SELECT_CARRIER_DD, "carrier Drop down")) {
 		String Text=getText(OrderObj.SELECT_CARRIER_DD,"carrier Drop down");
 		click(OrderObj.SELECT_CARRIER_DD, "carrier Drop down");
 			String carriers[] = carrier.split(",");
 			for (i = 0; i < carriers.length; i++) {
-				if (isElementPresent(OrderObj.selectCarrier(carriers[i]), carrier)) {
-					reporter.SuccessReport("verify carrier options::", ""+Text+"", "Available carriers ::"+carriers[i]);
+				if (isVisibleOnly(OrderObj.selectCarrier(carriers[i]),carrier)) {
 				} else {
 					reporter.failureReport("verify carrier options::", carriers[i] + " is not present", carriers[i],
 							driver);
 				}
 			}
-		} else if (isElementPresent(OrderObj.SELCET_CARRIER, "carrier Drop down")) {
-			String Text=getText(OrderObj.SELCET_CARRIER,"carrier Drop down");
-			click(OrderObj.SELCET_CARRIER, "carrier Drop down");
-			String carriers[] = carrier.split(",");
-			for (i = 0; i < carriers.length; i++) {
-				if (isElementPresent(OrderObj.selectCarrier(carriers[i]), carrier)) {
-					reporter.SuccessReport("verify carrier options",""+Text+"", carriers[i]);
-				} else {
-					reporter.failureReport("verify carrier options", carriers[i] + " is not present", carriers[i],
-							driver);
-				}
+			reporter.SuccessReport("verify carrier options::", "Selected Options::"+Text+"", "Available carriers"+carrier);
+		} 
+      else if (isVisibleOnly(OrderObj.SELECT_CARRIER_DD, "carrier Drop down")) {
+			  click(OrderObj.SELECT_CARRIER_DD, "carrier Drop down");
+			  String carriers[] =Carriers.split(","); 
+			  for (i = 0; i < carriers.length; i++) { 
+		         if(isElementPresent(OrderObj.selectCarrier(carriers[i]), Carriers)) {
+ 			  }
+			  else { 
+				  reporter.failureReport("verify carrier options", carriers[i] + " is not present", carriers[i], driver); }
+			  }
+			  reporter.SuccessReport("verify carrier options","No carrier preference","Expected Carrier Options:"+ carriers[i]);	
 			}
-		}
-	}
+      }
+	
 
 	public void selectCarrier(String carrier) throws Throwable {
-
 		click(OrderObj.SELCET_CARRIER, "carrier Drop down");
 		if (isElementPresent(ShipBillPayObj.selectCarrierDD(carrier), "shipping carrier Dropdown")) {
 			click(ShipBillPayObj.selectCarrierDD(carrier), "carrier Drop down");
@@ -1272,7 +1271,7 @@ public class CartLib extends ActionEngine {
 		waitForVisibilityOfElement(productsDisplayInfoObj.FIRST_PROD_NAME, "First product in search results page");
 		String ProdName=getText(productsDisplayInfoObj.FIRST_PROD_NAME, "First Product");
 		Thread.sleep(3000);
-		clickUntil(productsDisplayInfoObj.FIRST_PROD_NAME,productsDisplayInfoObj.BACK_TO_RESULTS, "First product in search results page displayed and clicked","Product name : "+ProdName);
+		clickUntil(productsDisplayInfoObj.FIRST_PROD_NAME,productsDisplayInfoObj.BACK_TO_RESULTS, "First product in search results page displayed and clicked "+ProdName,"Product name : "+ProdName);
 		waitForVisibilityOfElement(productsDisplayInfoObj.BACK_TO_RESULTS, "Back to results");
 	}
 
@@ -1907,7 +1906,39 @@ public class CartLib extends ActionEngine {
 		click(CommonObj.getAccountToolsDD(toolsMenuName, dropDown), "Select account tools");
 	}
 	
-	
-	
-	
+	public void DefualtCarrierOption() throws Throwable {
+		if (isVisibleOnly(OrderObj.SELECT_CARRIER_DD, "carrier Drop down")) {
+		String Text=getText(OrderObj.SELECT_CARRIER_DD,"Default Carrier Option::");
+		System.out.println(Text);
+		}
+	}
+	/**
+	 * Method is to verify carriers in checkout
+	 * 
+	 * @throws Throwable
+	 */
+	public void verifyCarriers(String carrier,String UPS) throws Throwable {
+		if (isVisibleOnly(OrderObj.SELECT_CARRIER_DD, "carrier Drop down")) {
+		String Text=getText(OrderObj.SELECT_CARRIER_DD,"carrier Drop down");
+		click(OrderObj.SELECT_CARRIER_DD, "carrier Drop down");
+			String carriers[] = carrier.split(",");
+			for (i = 0; i < carriers.length; i++) {
+				if (isVisibleOnly(OrderObj.selectCarrier(carriers[i]),carrier)) {
+				} else {
+					reporter.failureReport("verify carrier options::", carriers[i] + " is not present", carriers[i],
+							driver);
+				}
+			}
+			reporter.SuccessReport("verify carrier options::", "Selected Options::"+Text+"", "Available carriers"+carrier);
+		} 
+		else if(isVisibleOnly(OrderObj.SELECT_CARRIER_DD,"Carrier DropDown")){
+			click(OrderObj.SELECT_CARRIER_DD, "carrier Drop down");
+			if (isVisibleOnly(OrderObj.selectCarrier(UPS),"UPS")) {
+				reporter.failureReport("verify carrier options::", " Expected Carrier Exist","UPS  Exits in Available Carriers List",driver);
+			} else {
+				reporter.SuccessReport("verify carrier options::", " Expected Carrier Does Not Exist","UPS Not Exits in Available Carriers List");
+			}
+		}
+			
+		}
 }

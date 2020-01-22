@@ -213,7 +213,7 @@ public class SearchLib extends CommonObj {
 	 * @throws Throwable
 	 */
 	public void searchInHomePage(String productName) throws Throwable {
-		Thread.sleep(10000);
+		Thread.sleep(5000);
 		waitForVisibilityOfElement(SEARCH,"Search Field");
 		typeForSearchingProduct(SEARCH,productName,"Search Text: "+productName);
 		WebElement ele=driver.findElement(SEARCH);

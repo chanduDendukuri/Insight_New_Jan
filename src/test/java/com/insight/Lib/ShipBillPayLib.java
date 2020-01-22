@@ -453,9 +453,8 @@ public class ShipBillPayLib extends ShipBillPayObj {
 	}
 
 	public void VerifyStoredAddress(String storedaddress) throws Throwable {
-		click(STOREDADDRESS_LINK, "stored Address Link");
-		waitForVisibilityOfElement(STOREDADDRESS(storedaddress), "Sold To Shipping Address Avialable");
-		if (isElementPresent(STOREDADDRESS(storedaddress), "Stored Address is Visible")) {
+		click(STOREDADDRESS_LINK, "Stored Address Link");
+		if (isVisibleOnly(STOREDADDRESS(storedaddress), "Stored Address is Visible")) {
 			reporter.SuccessReport("Verify default stored address", "Defualt Stored Address is displayed ",
 					storedaddress);
 		} else {
@@ -549,17 +548,22 @@ public class ShipBillPayLib extends ShipBillPayObj {
 	}
 	}
 	public void VerifyCreatedAddress(String Company) throws Throwable {
-		waitForVisibilityOfElement(OrderObj.SHIPPING_ADDRESS, "Shipping Address");
+		isVisibleOnly(OrderObj.SHIPPING_ADDRESS, "Shipping Address");
 		if (isElementPresent(CREATEDADDRES(Company), "Created Address")) {
-			reporter.SuccessReport("Verify created address ", "Creted Address Is Verified successfully", Company);
+			String Addres=getText(SHIPPING_ADDRES,"Shiping address").trim();
+			String Addres1=getText(SHIPPING_ADDRESES,"Shiping address").trim();
+			String Addres2=getText(SHIPPING_ADDRESESSECONDLINE,"Shiping address").trim();
+			reporter.SuccessReport("Verify created address ", "Creted Address Is Verified successfully", Company+Addres+Addres1+Addres2);
 		} else {
 			reporter.failureReport("New Address Is Not Created", "New Address Is Not Created", "");
 		}
 	}
 	public void VerifyDefualtSoldtoAddress(String Company) throws Throwable {
-		waitForVisibilityOfElement(OrderObj.SHIPPING_ADDRESS, "Shipping Address");
-		if (isElementPresent(CREATEDADDRES(Company), "Sold-To Shipping Address")) {
-			reporter.SuccessReport("Verify Sold-To Shipping Address", "Sold-To Shipping Address", "COMPANY::"+Company);
+		if (isVisibleOnly(CREATEDADDRES(Company), "Sold-To Shipping Address")) {
+			String Addres=getText(SHIPPING_ADDRES,"Shiping address").trim();
+			String Addres1=getText(SHIPPING_ADDRESES,"Shiping address").trim();
+			String Addres2=getText(SHIPPING_ADDRESESSECONDLINE,"Shiping address").trim();
+			reporter.SuccessReport("Verify Sold-To Shipping Address", "Sold-To Shipping Address", "COMPANY::"+Company+Addres+Addres1+Addres2);
 		} else {
 			reporter.failureReport("Verify Sold-To Shipping Address", "Sold-To Shipping Address", "");
 		}
@@ -1130,8 +1134,16 @@ public class ShipBillPayLib extends ShipBillPayObj {
 		 * 
 		 * @throws Throwable
 		 */
-		public void clickstoredAddressandVerify(String Text) throws Throwable {
+		public void clickstoredAddressandVerify(String Text,String storedaddress) throws Throwable {
 			click(STOREDADDRESS_LINK, "Link::STORED ADDRESS");
+			if (isVisibleOnly(STOREDADDRESS(storedaddress), "Stored Address is Visible")) {
+				reporter.SuccessReport("Verify default stored address", "Defualt Stored Address is displayed ",
+						storedaddress);
+			} else {
+				reporter.failureReport("Verify default stored address", "Defualt Stored Address is Not displayed",
+						"Defualt Stored Address is not displayed");
+
+			}
 			click(SEARCH_FIELD,"Link:SEARCH AVAILABLE ADDRESSES");
 			type(SEARCH_FIELD,Text,"Search Field");
 			click(search_Button,"Search Button");
