@@ -67,7 +67,7 @@ public class ORD01_ZFRTHoldTest extends HomeLib {
 				SwipeUpapplication();
 				SwipeUpapplication();
 				clickAdvancedHeaderTab(data.get("Tab2"));//Hold
-				verifyHoldsText(data.get("Holdtext"));
+				verifyHoldsText(data.get("Holdtext1"),data.get("Holdtext2"));
 				Swipedownapplication();
 				rejectitem(data.get("LineItem"));
 				clickYesToRejectItem();
