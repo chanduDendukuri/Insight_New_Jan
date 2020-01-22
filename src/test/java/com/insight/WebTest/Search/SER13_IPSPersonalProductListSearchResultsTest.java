@@ -48,9 +48,11 @@ public class SER13_IPSPersonalProductListSearchResultsTest extends SearchLib {
 
 					// Selecting the type of the product and verifying
 					// navigation
-					navigateToProductSearchResultsAndSearchProduct(data.get("HeaderName"), data.get("HeaderList"),data.get("ProductType"), data.get("ProductName"));
+					//navigateToProductSearchResultsAndSearchProduct(data.get("HeaderName"), data.get("HeaderList"),data.get("ProductType"), data.get("ProductName"));
+					searchInHomePage(data.get("ProductType"));
 					// Add to Personal product list link should not display.
 					cartLib.selectFirstProductDisplay();
+					verifyBreadCrumbInSearchResultsPage(data.get("ProductType"));
 					prodInfoLib.verifyPersonalProductListLinkNotPresent();
 
 					// login to CMT
