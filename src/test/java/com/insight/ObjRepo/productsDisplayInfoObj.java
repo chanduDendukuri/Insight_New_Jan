@@ -23,15 +23,17 @@ public class productsDisplayInfoObj extends CommonObj{
     
   //compare products
     public static By COMPARE_SIMILAR_PROD_HEADING=By.xpath("//div//table//tr[@class='compare-similar-heading']");
-    public static By COMPARE_MASTER_PROD_NAME=By.xpath("//div[@class='table-overflow-container']//tr[5]//td[@class='compare-master-product']");
+    //public static By COMPARE_MASTER_PROD_NAME=By.xpath("//div[@class='table-overflow-container']//tr[5]//td[@class='compare-master-product']");
+    public static By COMPARE_MASTER_PROD_NAME=By.xpath("(//tr[@class='striped-row']//td[@class='compare-master-product'])[1]//strong");
     public static By COMPARE_LIST_NUM=By.xpath("//a//span[@class='js-compare-list-count']");
     public static By COMPARE_YOUR_LIST_LINK=By.xpath("//a[@class='compare-list-button js-compare-list-btn show-for-medium-up']//span");
     public static By CLOSE_ICON=By.xpath("//a[@class='compare-remove-item js-remove-compare']");
     public static By SIMILAR_PRODUCTS=By.xpath("//tr[@class='images-row']//td//img");
      public static By COMPARE_LIST_ITEMS_COUNT=By.xpath("//tr[@class='images-row']//td");
-     public static By MASTER_PRODUCT_LABEl=By.xpath("//td[@class='compare-master-product'][contains(text(),'Master product')]");
+
+     public static By MASTER_PRODUCT_LABEL=By.xpath("//td[@class='compare-master-product'][contains(text(),'Master product')]");
      public static By SIMILAR_PRODUCTS_COLUMN=By.xpath("//td[contains(text(),'Similar products')]");
-   
+
   // Add to cart
     public static By ADD_TO_CART=By.xpath("//a[@class='small button expand js-add-to-cart']");
     public static By ADDED_TO_CART_LABEL=By.xpath("//div[@class='added-to-cart'][contains(text(),'Added to Your Cart')]");
@@ -106,7 +108,13 @@ public class productsDisplayInfoObj extends CommonObj{
     public static By COMPANY_STANDARDS_POPUP=By.xpath("//div[@id='popUpDialogBody']//span//strong[contains(text(),'IUS Company Standards')]");
     public static By COMPANY_STANDARDS_CANCEL_BTN=By.xpath("//a[@id='company-standard-modal-cancel']");
     public static By COMPANY_STANDARDS_ADD_BTN=By.xpath("//a[@id='company-standard-modal-add']");
-    public static By COMAPNY_STANDARDS_CHEKBOXES=By.xpath("//input[@type='checkbox']");
+    public static By ConfigurationSetsCheckboxs(String fieldName) {
+    	return By.xpath("//span[contains(text(),'"+fieldName+"')]/parent::div//input");
+    }
+    public static By CONFIG_SET_LABEL=By.xpath("//div[@id='popUpDialogBody']//h3");
+    public static By CHECKBOX_LABELS=By.xpath("//div[@class='small-12 columns']//input/following::span");
+    
+    
     public static By COMPANY_STANDARDS_ALREADY_ADDED_SET_MSG=By.xpath("//div[@id='duplicateMessage']");
     public static By COMPANY_STANDARDS_ADDED_SET_MSG=By.xpath("//div[@id='nonESD' and contains(.,'was successfully added to the set')]");
     

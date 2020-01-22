@@ -571,7 +571,7 @@ public class ProductDisplayInfoLib extends productsDisplayInfoObj {
 		String prodMfrNumber = getText(MFR_NUMBER_PRODUCT_DETAILS_PAGE, "MFR_NUMBER_PRODUCT_DETAILS_PAGE")
 				.replace("\"", "").replace("Mfr. #", "").trim();
 		if(mnfNumber.contains(prodMfrNumber)){
-			reporter.SuccessReport("Verify manufacturer number " +mnfNumber+"in product details page", "Mfr Part# Exists ","Mfr Part# "+ mnfNumber);
+			reporter.SuccessReport("Verify manufacturer number " +mnfNumber+"in product details page", "Mfr Part# Exists and is same as searched result","Mfr Part# "+ mnfNumber);
 		}else{
 			reporter.failureReport("Verify manufacturer number in product details page", "Manufacturer number is not displayed correctly", mnfNumber,driver);
 		}
@@ -1105,14 +1105,14 @@ public class ProductDisplayInfoLib extends productsDisplayInfoObj {
     	}else {
     		reporter.failureReport("Verify welcome page","Welcome page is not visible", "", driver);
     	}
-    
     }
     /**
      * Verify master product label
      * @throws Throwable
      */
     	public void verifyMasterProductLabelExists() throws Throwable {
-				if(isVisibleOnly(MASTER_PRODUCT_LABEl, "Master product label")) {
+
+				if(isVisibleOnly(MASTER_PRODUCT_LABEL, "Master product label")) {
 					reporter.SuccessReport("Verify Master Product in Compare Similar Products Page ","Master Product Column Exists", "");
 				}else {
 					reporter.failureReport("Verify Master Product in Compare Similar Products Page ","Master Product Column does not Exists", "",driver);
@@ -1130,8 +1130,7 @@ public class ProductDisplayInfoLib extends productsDisplayInfoObj {
     					reporter.failureReport("Verify Similar Product in Compare Similar Products Page ","Similar Products Column does not Exists", "",driver);
     				}
         	}
-      
-    	
+
 }
   
 	

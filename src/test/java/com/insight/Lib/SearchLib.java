@@ -1,6 +1,7 @@
 package com.insight.Lib;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.Set;
 import org.openqa.selenium.By;
@@ -94,7 +95,8 @@ ProductDisplayInfoLib pipLib=new ProductDisplayInfoLib();
 				"compare Master Product Name");
 		Thread.sleep(3000);
 		if (isElementPresent(productsDisplayInfoObj.COMPARE_SIMILAR_PROD_HEADING, "similar product heading")
-				&& masterProductName.contains(ProductName)) {
+
+				&& ProductName.contains(masterProductName)) {
 			reporter.SuccessReport("Verify the Master Product in Compare Similar Products Page",
 					"Master product displayed Sucessfully with Similar products","Master Product : "+masterProductName);
 			reporter.SuccessReport("Selected Product and Master Product in Compare Similar Products Page", "Master Product is Same as Selected Product", "Master Product : "+ProductName);
@@ -110,6 +112,8 @@ ProductDisplayInfoLib pipLib=new ProductDisplayInfoLib();
 	 * @throws Throwable 
 	 */
 	public void verifySimilarProductsExists() throws Throwable {
+		ProductDisplayInfoLib pipLib=new ProductDisplayInfoLib();
+
 		pipLib.verifySimilarProductLabelExists();
 		List<WebElement> elements=driver.findElements(productsDisplayInfoObj.SIMILAR_PRODUCTS);
 		int similarProducts=elements.size()-1;
@@ -149,17 +153,17 @@ ProductDisplayInfoLib pipLib=new ProductDisplayInfoLib();
     public void clickOnAddToMyCompareListLink(int n) throws Throwable {
 	   
     	for (i = 0; i <n; i++) {
-		Thread.sleep(3000);
-		clickUntil(productsDisplayInfoObj.getAddToMyCompareListLink(Integer.toString(i)), productsDisplayInfoObj.URCOMPARELIST(Integer.toString(i)),"compare Link");
-		if(isVisibleOnly(productsDisplayInfoObj.URCOMPARELIST(Integer.toString(i)), "")) {
-			reporter.SuccessReport("verify item added to compare list", "Item added to compare list :", "Added compare Item " +(i+1));
-		}else {
-			reporter.failureReport("verify item added to compare list", "Item not added to compare list :", "",driver);
-		}
-		Thread.sleep(3000);
-		scrollToBottomWithCordinate("100");
-		
-	}
+    		Thread.sleep(3000);
+    		clickUntil(productsDisplayInfoObj.getAddToMyCompareListLink(Integer.toString(i)), productsDisplayInfoObj.URCOMPARELIST(Integer.toString(i)),"compare Link");
+    		if(isVisibleOnly(productsDisplayInfoObj.URCOMPARELIST(Integer.toString(i)), "")) {
+    			reporter.SuccessReport("verify item added to compare list", "Item added to compare list :", "Added compare Item " +(i+1));
+    		}else {
+    			reporter.failureReport("verify item added to compare list", "Item not added to compare list :", "",driver);
+    		}
+    		Thread.sleep(3000);
+    		scrollToBottomWithCordinate("100");
+    		
+    	}
 }
 	
 	/**
@@ -673,18 +677,14 @@ ProductDisplayInfoLib pipLib=new ProductDisplayInfoLib();
 
 		if (isElementNotPresent(InvoiceHistoryLib.COSE_ACCOUNT_TOOLS, "Account tools menu icon")) {
 			click(ACCOUNT_TOOLS, "Account tools menu icon");
-
-		
-
 		}
 		else {
 			click(Account_Tools1,"");
 			click(ACCOUNT_TOOLS, "Account tools menu icon");
 		}
-		   
-		   click(getAccountToolsMenu(toolsMenuName), "Account tools menu");
-		   click(getAccountToolsDD(toolsMenuName, dropDown), "Select account tools");
-		   click(getCompanyStandardsProductGroup(productGroup, productName), "select product from product group");
+		   click(getAccountToolsMenu(toolsMenuName), "Account tools menu",toolsMenuName);
+		   click(getAccountToolsDD(toolsMenuName, dropDown), "Select account tools",dropDown);
+		   click(getCompanyStandardsProductGroup(productGroup, productName), "select product from product group","product group : "+productGroup+"Product name: "+productName);
 		   Thread.sleep(1000);
 		   String prodDesc=getText(PROD_DESC_ACCOUNT_TOOLS, "product description account tools");
 		   clickUntil(PROD_DESC_ACCOUNT_TOOLS, MINI_WINDOW, "product description account tools");
@@ -707,6 +707,32 @@ ProductDisplayInfoLib pipLib=new ProductDisplayInfoLib();
 	}
 	
 	/**
+	 * Method is to verify the description in mini popup window
+	 * @throws Throwable
+	 */
+	
+	public void selectDescriptionAndVerifyMiniPopupWindow() throws Throwable {
+		String prodDesc=getText(PROD_DESC_ACCOUNT_TOOLS, "product description account tools");
+		   clickUntil(PROD_DESC_ACCOUNT_TOOLS, MINI_WINDOW, "product description account tools","Product Description Link: "+prodDesc);
+		   Thread.sleep(2000);
+		   
+		   Set<String> handle=driver.getWindowHandles();
+		   if (handle.size()>2) {
+			   switchToChildWindow();
+			   Thread.sleep(2000);
+			   String actualDesc=getText(PROD_DESC_MINI_PPP_WINDOW, "product description in PPP window");
+			   if(actualDesc.contains(prodDesc)){
+				   reporter.SuccessReport("verify the PPP window displayed for the selected product","PPP mini window displayed and the selected product in the product group table displayed correctly: \n ","Mini-PPP:  "+actualDesc);
+			   }
+	    	}else{
+			reporter.failureReport("verify the PPP window displayed for the selected product", "PPP window is not opened","");
+		}
+		   driver.close();
+		   ArrayList<String> tabs = new ArrayList<String>(driver.getWindowHandles());
+		   driver.switchTo().window(tabs.get(1));
+	}
+	
+	/**
 	 * This method is to select under a product group and verify the selected product group is populated in the Right side of the page.
 	 * @param productGroup
 	 * @param productName
@@ -714,7 +740,8 @@ ProductDisplayInfoLib pipLib=new ProductDisplayInfoLib();
 	 */
 	public void selectProductGroupAndVerify(String productGroup,String productName) throws Throwable{
 		
-		click(getCompanyStandardsProductGroup(productGroup, productName), "select product from product group");
+		click(getCompanyStandardsProductGroup(productGroup, productName), "select product from product group","Link : "+productName);
+		
 		if(isElementPresent(getProductGrpNavigation(productGroup, productName), "NAVIGATED PRODUCT GROUP")){
 			 reporter.SuccessReport("verify the selected product is displayed under the product group","Selected product is displayed correctly under the product group.",productName);
 			  if(isElementPresent(ADD_ITEMS_RADIO_BUTTON, "add items to cart radio button")){
@@ -792,30 +819,57 @@ ProductDisplayInfoLib pipLib=new ProductDisplayInfoLib();
 	 * Method is to verify the company standards link on the product detail page.
 	 * @throws Throwable
 	 */
-	public void verifyAddToCompanyStandardsLink() throws Throwable {
+	public void clickAddToCompanyStandardsLink() throws Throwable {
 
 		//click(productsDisplayInfoObj.FIRST_PROD_NAME, "first product");
 		if (isElementPresent(productsDisplayInfoObj.ADD_TO_COMPANY_STANDARDS_LINK,
 				"Add to company standards link")) {
 			click(productsDisplayInfoObj.ADD_TO_COMPANY_STANDARDS_LINK, "Add to company standards link");
 			isElementPresent(productsDisplayInfoObj.COMPANY_STANDARDS_POPUP, "Company standards popup", true);
-			Thread.sleep(3000);
-			click(productsDisplayInfoObj.COMPANY_STANDARDS_CANCEL_BTN, "Company standards cancel button");
-			click(productsDisplayInfoObj.ADD_TO_COMPANY_STANDARDS_LINK, "Add to company standards link");
-			click(productsDisplayInfoObj.COMAPNY_STANDARDS_CHEKBOXES, "config check boxes");
-			click(productsDisplayInfoObj.COMPANY_STANDARDS_ADD_BTN, "Company standards add button");
-			Thread.sleep(3000);
-			if (isElementPresent(productsDisplayInfoObj.COMPANY_STANDARDS_ALREADY_ADDED_SET_MSG,"Already added messgae") || isElementPresent(productsDisplayInfoObj.COMPANY_STANDARDS_ADDED_SET_MSG,
-							"Sucessfully added messgae")) {
-				reporter.SuccessReport("verify Sucessfully added messgae", "Sucessfully added to set ","");
-			} else {
-				reporter.failureReport("verify Sucessfully added messgae", " adding to set is not successful ","");
-			}
-		}else {
-			reporter.failureReport("verify Company standards link", " company standards link not found ","",driver);
-		}
+			// need to add print all the texts in popup
+	   }
 	}
 	
+	/**
+	 * Method to click cancel
+	 * @throws Throwable
+	 */
+	public void clickCancelOnSelectConfigurationSetPopup() throws Throwable {
+		click(productsDisplayInfoObj.COMPANY_STANDARDS_CANCEL_BTN, "Company standards cancel button");
+	}
+	/**
+	 * method to click on add 
+	 * @throws Throwable
+	 */
+	public void clickAddButtonOnSelectConfigurationSetPopup() throws Throwable {
+		click(productsDisplayInfoObj.COMPANY_STANDARDS_ADD_BTN, "Company standards add button","Company standards add button");
+	}
+	
+	public void clickConfigurationSetsCheckboxs(String fieldName) throws Throwable {
+		click(productsDisplayInfoObj.ConfigurationSetsCheckboxs(fieldName), "Configuration Sets Checkboxs", "CheckBox: "+fieldName);
+	}
+	
+	/**
+	 * 
+	 * @throws Throwable
+	 */
+	public void verifyConfigurationSetsPopup() throws Throwable {
+		Thread.sleep(3000);
+		if(isVisibleOnly(productsDisplayInfoObj.CONFIG_SET_LABEL, "config sets label")) {
+			reporter.SuccessReport("verify configure sets label", "Configure sets label exists", getText(productsDisplayInfoObj.CONFIG_SET_LABEL, "config set"));
+		    List <WebElement> elements=driver.findElements(productsDisplayInfoObj.CHECKBOX_LABELS);
+		    List<String> fields =new ArrayList<String>();
+		    for(i=0;i<elements.size();i++) {
+		    	fields.add(elements.get(i).getText());
+		    	List<String> allfields =new ArrayList<String>();
+		    	allfields.addAll(fields);
+		    	reporter.SuccessReport("Configuration Set(s) Popup Over the Search Results Page", "Configuration Set(s) Popup Exists",elements.get(i).getText());
+		    }
+		    
+		}else {
+			reporter.failureReport("Configuration Set(s) Popup Over the Search Results Page", "Configuration Set(s) Popup does not Exists","",driver);
+		}
+	}
 	/**
 	 * Method is to click Add to order and select  View cart link on company standards screen.
 	 * @throws Throwable
@@ -826,23 +880,24 @@ ProductDisplayInfoLib pipLib=new ProductDisplayInfoLib();
 		         for (int i = 0; i < myradioList.size(); i++) {
 			         if(myradioList.get(i).isSelected()){
 				          reporter.SuccessReport("verify the radio button checked or not","products are added","");
-				         
+			   }else {
+				   reporter.failureReport("verify the radio button checked or not","products are not checked","");
 			   }
-			} click(ADD_TO_ORDER, "Add to order button");
+			} click(ADD_TO_ORDER, "Add to order button","Add to Order");
 		}else if(isElementPresent(ADD_ITEMS_CHECKBOX, "Add items check box")){
 			List<WebElement> myList1=driver.findElements(ADD_ITEMS_CHECKBOX);
 			for (int j = 0; j < myList1.size(); j++) {
 				myList1.get(j).click();
 				Thread.sleep(3000);
 			}
-			click(ADD_TO_ORDER, "Add to oreder button");
+			click(ADD_TO_ORDER, "Add to oreder button","ADD TO ORDER");
 		}
 		
 		if(isElementPresent(VIEW_CART_PRODUCT_GROUP, "View cart Link")){
-			click(VIEW_CART_PRODUCT_GROUP, "View cart Link");
+			click(VIEW_CART_PRODUCT_GROUP, "View cart Link","View cart Link");
 			reporter.SuccessReport("verify View cart Link on Items added to cart Popup on Company standards", "View cart Link is visible and clicked","");
 		}else{
-			reporter.SuccessReport("verify View cart Link on Items added to cart Popup on Company standards", "View cart Link is not visible","");
+			reporter.failureReport("verify View cart Link on Items added to cart Popup on Company standards", "View cart Link is not visible","");
 		}
    }
 	/**
@@ -978,21 +1033,7 @@ ProductDisplayInfoLib pipLib=new ProductDisplayInfoLib();
 		}
 	}
 	
-	/**
-	 * Method is to verify the search results 
-	 * 
-	 * @throws Throwable
-	 */
-	public void verifysearchResults(String searchText) throws Throwable {
-		String ProdName=null;
-		waitForVisibilityOfElement(SEARCH_RESULTS_PAGE,  "Search results");
-		if (isElementPresent(SEARCH_RESULTS_PAGE, "Search results")) {
-			 ProdName=getText(productsDisplayInfoObj.FIRST_PROD_NAME, "First Product");
-			reporter.SuccessReport("Verify search results page", "Search results displayed for "+searchText, "Search Results: "+ProdName);
-		} else {
-			reporter.failureReport("Verify search results page", "Search results not displayed","Search Results: "+ ProdName,driver);
-		}
-	}
+
 	/**
 	 * 
 	 * @param contractName
@@ -1043,7 +1084,7 @@ ProductDisplayInfoLib pipLib=new ProductDisplayInfoLib();
 			reporter.failureReport("Items in the compare list", "Compare Your List label does not exists ", "Items in the List: "+list);
 		}
 		return list;
-		
+
 	}
 	
 	public String verifyFrenchCompareList() throws Throwable{
@@ -1166,4 +1207,40 @@ ProductDisplayInfoLib pipLib=new ProductDisplayInfoLib();
 			reporter.failureReport("Verify filter selected", "Filter selected is not found  ", filter, driver);
 		}
 	}
-}
+
+	
+	/**
+	 * Method is to verify the search results 
+	 * 
+	 * @throws Throwable
+	 */
+	public void verifysearchResults(String searchText) throws Throwable {
+		String ProdName=null;
+		waitForVisibilityOfElement(SEARCH_RESULTS_PAGE,  "Search results");
+		if (isElementPresent(SEARCH_RESULTS_PAGE, "Search results")) {
+			 ProdName=getText(productsDisplayInfoObj.FIRST_PROD_NAME, "First Product");
+			reporter.SuccessReport("Verify search results page", "Search results displayed for "+searchText, "Search Results: "+ProdName);
+		} else {
+			reporter.failureReport("Verify search results page", "Search results not displayed","Search Results: "+ ProdName,driver);
+		}
+	}
+	/**
+	 * Verify radio buttons selected in company standards screen
+	 * @throws Throwable
+	 */
+	public void verifyRadioButtonsSelected() throws Throwable{
+		if(isElementPresent(ADD_ITEMS_RADIO_BUTTON, "add items to cart radio button")){
+		     List<WebElement> myradioList=driver.findElements(ADD_ITEMS_RADIO_BUTTON);
+		         for (int i = 0; i < myradioList.size(); i++) {
+			         if(myradioList.get(i).isSelected()){
+				          reporter.SuccessReport("Add Column with Radio button Selected in product group Section on Product Standards Page","Add Column with Radio button Selected Exists","");
+			   }else {
+				   reporter.failureReport("verify the radio button checked or not","products are not checked ","");
+			   }
+	       }
+		}
+   }
+} 
+
+
+

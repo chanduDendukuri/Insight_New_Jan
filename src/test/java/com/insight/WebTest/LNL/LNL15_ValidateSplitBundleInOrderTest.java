@@ -73,7 +73,7 @@ public class LNL15_ValidateSplitBundleInOrderTest extends LineLevelInfoLib{
 						cmtLib.loginAsAdminCMT();
 						commonLib.clickAccountToolsFromSideMenuAndClickOnProductGrp(data.get("Tools_Menu1"),data.get("Tools_Menu_DD1"), data.get("Product_Group"), data.get("Product_Name"));
 						searchLib.clickAddToOrderOnCompanyStandardsScreen();
-						commonLib.clickCart();
+						//commonLib.clickCart();
 						cartLib.verifyProductGroupBundleAddedToCart(data.get("Product_Name"));
 						commonLib.verifyBundleIsAddedToCart();
 						commonLib.updateCartQuantity(data.get("Quantity"));

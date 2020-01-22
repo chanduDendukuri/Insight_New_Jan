@@ -46,6 +46,7 @@ public class SER03_CompareTest extends SearchLib {
 					// Test Steps execution
 
 					fnOpenTest();
+
 					// search Monitors
 					searchInHomePage( data.get("ProductName1"));
 					verifyBreadCrumbInSearchResultsPage(data.get("ProductName1"));
@@ -54,6 +55,7 @@ public class SER03_CompareTest extends SearchLib {
 					verifyTheProductNameInCompareSimilarProductsPage(productName);
 					// Similar products verification
 					verifySimilarProductsExists();
+
 					
 					// search Thinkpads
 					searchInHomePage( data.get("ProductName2"));
@@ -65,13 +67,13 @@ public class SER03_CompareTest extends SearchLib {
 					Thread.sleep(3000);
     				//Verify  products added to list
     				verifyCompareList();
-    				
+
     				// click compare items link
     				clickOnComparedItemsLink();
     				Thread.sleep(3000);
     				// verify products added in compare list
     				chinaLib.verifyCompareProductsPage(itemscount);
-					
+
     				// Adding another part
     				chinaLib.addAnotherPartInCompareProductsPage(data.get("Part_Number"));
     				chinaLib.verifyPartNumberAddedInCompareProductListPage(data.get("Part_Number"));
@@ -85,7 +87,10 @@ public class SER03_CompareTest extends SearchLib {
 					//Verify  products added to list
     				verifyCompareList();
     				// Add one more product to compare list
-    				clickOnAddToMyCompareListLink(itemscount-2);
+
+    				clickOnAddToMyCompareListLink(itemscount-1);
+    				clickOnComparedItemsLink();
+
     				// verify products added in compare list
     				chinaLib.verifyCompareProductsPage(itemscount+2);
     				
@@ -95,7 +100,7 @@ public class SER03_CompareTest extends SearchLib {
     				// Add to cart
 					prodInfoLib.addToCart();
 					orderLib.continueToCheckOutOnAddCart();
-				
+    				
 				} catch (Exception e) {
 					ReportStatus.blnStatus = false;
 					//gErrorMessage = e.getMessage();
