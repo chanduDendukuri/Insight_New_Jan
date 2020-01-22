@@ -2532,7 +2532,5 @@ public class CMTLib extends CMTObj {
         public void clickOnRolesAndPermissionsTab(String menuName) throws Throwable {
         	click(getUsersTabMenus(menuName), "Roles And Permissions");
 }
-
-
 }
 

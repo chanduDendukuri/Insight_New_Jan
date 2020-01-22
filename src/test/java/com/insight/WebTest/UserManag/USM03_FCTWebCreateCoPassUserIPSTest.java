@@ -53,15 +53,7 @@ public class USM03_FCTWebCreateCoPassUserIPSTest  extends UserManagementLib {
 							TestEngineWeb.reporter.initTestCaseDescription("FCTWebCreateCoPassUserIP");
 										 
 							CMTLib cmtLib = new CMTLib();
-							SearchLib searchLib = new SearchLib();
-							OrderLib orderLib=new OrderLib();
-							CanadaLib canadaLib=new CanadaLib();
-							CartLib cartLib=new CartLib();
-							MarriottIntlCorpLib mic=new MarriottIntlCorpLib();
-							InvoiceHistoryLib invoiceHistoryLib = new InvoiceHistoryLib();
-							MarriottIntlCorpLib marriottIntlCorpLib=new MarriottIntlCorpLib();
-							CommonLib commonLib = new CommonLib();
-							ShipBillPayLib sbp=new ShipBillPayLib();
+							
 							//Login
 							cmtLib.clickLoginLink(data.get("Header"));
 							cmtLib.handleWelcomeToInsightBetaPopUp();
