@@ -1200,7 +1200,13 @@ public class CMTLib extends CMTObj {
 	}
 
 	public void deleteClientNotification(String repMail) throws Throwable {
-		click(clientNotifiationDeleteIcon(repMail), "Delete client notification");
+		if(isVisibleOnly(clientNotifiationDeleteIcon(repMail),"Repo Email")){
+			reporter.SuccessReport("Verifying newly added Sales repo", "Newly added sales repo is reflected ", repMail);
+			click(clientNotifiationDeleteIcon(repMail), "Delete client notification ");
+
+		}else{
+			reporter.failureReport("Verifying newly added Sales repo", "Newly added sales repo is not reflected ", repMail,driver);
+		}
 	}
 
 	/**
@@ -1267,7 +1273,8 @@ public class CMTLib extends CMTObj {
 		click(removeEmailInClientNotifications(repEmail), "rep Email ");
 		type(CLIENT_NOTIFICATION_EMAIL, repEmail, "client email");
 		click(ACTION_ICON_CLIENT_NOTIFICATIONS, "Save");
-		if (isElementPresent(CLIENT_NOTIFICATION_EMAIL_SUCCESS_MSG, "Email added")) {
+		Thread.sleep(8000);
+		if (isVisibleOnly(CLIENT_NOTIFICATION_EMAIL_SUCCESS_MSG, "Email added")) {
 			reporter.SuccessReport("Verify client notification adeed ", "Client notification email adeed successfully ",
 					repEmail);
 		} else {

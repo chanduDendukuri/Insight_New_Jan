@@ -316,7 +316,7 @@ public class CanadaLib extends CanadaObj {
 	 */
 	public void clickOnSideMenuSelectAccountToolOptions(String toolsMenuName, String dropDown) throws Throwable {
 		Thread.sleep(10000);
-		if(isElementPresent(InvoiceHistoryLib.COSE_ACCOUNT_TOOLS, "close account tools")) {
+		if(isVisibleOnly(InvoiceHistoryLib.COSE_ACCOUNT_TOOLS, "close account tools")) {
 			click(InvoiceHistoryLib.COSE_ACCOUNT_TOOLS, "close account tools");
 		}
 		click(CommonObj.ACCOUNT_TOOLS, "Account tools menu icon");
