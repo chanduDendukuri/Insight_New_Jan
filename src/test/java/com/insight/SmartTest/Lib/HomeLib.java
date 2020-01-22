@@ -2529,9 +2529,9 @@ public void CancelButtonInUpdateCosting() throws Throwable {
 		ClickonArrowNextToLineitem();
 		String duration = getDurationFieldValue();
 		if (duration.equals(Durationvalue))
-			System.out.println("Duration is " + Durationvalue);
+			reporter.SuccessReport("Duration: ", "Duration is ", Durationvalue);
 		else
-			System.out.println(Durationvalue + " is not updated");
+			reporter.SuccessReport("Duration: ", "Duration is not updated ", "");
 	}
 
 	public String getmfgPricevalue(String LineitemName, String ColumnName, String durationvalue) throws Throwable {
@@ -3764,7 +3764,7 @@ public float getSellPriceFromInlineItemsContract(String contractid) throws Throw
 		isElementClickable(MATERIALATVCINITEMDETAILS, 3, "VC Material Line item and Adding Material::" + Material + "");
 		driver.findElement(addMaterialAtVcIcon).sendKeys(Material);
 		driver.findElement(addMaterialAtVcIcon).sendKeys(Keys.ENTER);
-		driver.manage().timeouts().implicitlyWait(6, TimeUnit.SECONDS);
+		loadingSymbol();
 	}
 
 	public String getFirstElementPriceValueFromLineItem() throws Throwable {

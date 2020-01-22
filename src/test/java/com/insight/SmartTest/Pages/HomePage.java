@@ -439,7 +439,7 @@ public class HomePage extends ActionEngine
 			 return By.xpath("//div[@class='react-datepicker__year-option'][contains(text(),'"+year+"')]");
 		 }
 		 public static By Dateselection(String date) {
-			 return By.xpath("//div[@class='react-datepicker__day'][contains(text(),'"+date+"')]");
+			 return By.xpath("//div[@class='react-datepicker__day' or @class='react-datepicker__day react-datepicker__day--weekend'][contains(text(),'"+date+"')]");
 		 }
 		 public static By txt_Startdate = By.cssSelector("input[name='start-date']");
 		 public static By txt_Enddate = By.cssSelector("input[name='end-date']");
