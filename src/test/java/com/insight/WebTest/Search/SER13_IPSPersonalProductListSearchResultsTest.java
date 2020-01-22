@@ -16,6 +16,8 @@ public class SER13_IPSPersonalProductListSearchResultsTest extends SearchLib {
 	CMTLib cmtLib = new CMTLib();
 	ProductDetailLib productDetailLib = new ProductDetailLib();
 	CartLib cartLib=new CartLib();
+	OrderLib orderLib=new OrderLib();
+	CommonLib commonLib=new CommonLib();
 
 	    // ############################################################################################################
 		// #    Name of the Test         : SER13_IPSPersonalProductListSearchResults
@@ -45,10 +47,6 @@ public class SER13_IPSPersonalProductListSearchResultsTest extends SearchLib {
 					TestEngineWeb.reporter.initTestCaseDescription("IPSPersonalProductListSearchResults");
 				
 					fnOpenTest();
-
-					// Selecting the type of the product and verifying
-					// navigation
-					//navigateToProductSearchResultsAndSearchProduct(data.get("HeaderName"), data.get("HeaderList"),data.get("ProductType"), data.get("ProductName"));
 					searchInHomePage(data.get("ProductType"));
 					// Add to Personal product list link should not display.
 					cartLib.selectFirstProductDisplay();
@@ -56,26 +54,46 @@ public class SER13_IPSPersonalProductListSearchResultsTest extends SearchLib {
 					prodInfoLib.verifyPersonalProductListLinkNotPresent();
 
 					// login to CMT
-					cmtLib.loginToCMTSetPermissions(data.get("Login"), data.get("WebGrp"), data.get("WebGrp_Name"),
-							data.get("Manage_Web_Grp_Options"), data.get("LnameEmailUname"), data.get("ContactName"),
-							data.get("Menu_Name"), data.get("Set_Permission"));
+					cmtLib.loginToCMT(data.get("Login"));
+					cmtLib.searchForWebGroup(data.get("WebGrp"));
+					cmtLib.clickOnTheWebGroup(data.get("WebGrp_Name"));
+					cmtLib.hoverOnManageWebGroupsAndSelectOptions(data.get("Manage_Web_Grp_Options"));
+					cmtLib.searchForaUserAndSelect(data.get("LnameEmailUname"), data.get("ContactName"));
+					// 
+					cmtLib.setPermissions(data.get("Menu_Name"), data.get("Set_Permission1"));
+					cmtLib.setPermissionsToDisable(data.get("Menu_Name"), data.get("Set_Permission2"));
+					// Login to CMT
+					cmtLib.loginAsAdminCMT();
+					cmtLib.loginVerification(data.get("ContactName"));
 
 					// Back to UAT
-					/*
-					 * navigateToProductSearchResultsAndSearchProduct(data.get("HeaderName"),
-					 * data.get("HeaderList"), data.get("ProductType"), data.get("ProductName"));
-					 */
 					searchInHomePage(data.get("SearchText"));
-					// Add to Personal product list link should display after
-					// setting in CMT
+					
+					String prodDesc=prodInfoLib.getFirstProdDescription();
+					Thread.sleep(3000);
 					cartLib.selectFirstProductDisplay();
-					productDetailLib.getMFRNumberInProductInfopage();
+					Thread.sleep(3000);
+					// Verifying short description on product details page
+					prodInfoLib.verifyShortDescriptionOnProductDetailsPage(prodDesc);
+					String partNumber=productDetailLib.getMFRNumberInProductInfopage();
+					if(partNumber!=null) {
+						reporter.SuccessReport("Verify Products Details Page", "Product Details page Exists", "part Number : "+partNumber);
+					}else {
+						reporter.failureReport("Verify Products Details Page", "Product Details page Exists", "part Number : "+partNumber, driver);
+					}
+					
 					prodInfoLib.selectProductAndverifyPersonalProductListLinkPresent();
 					prodInfoLib.ClickAddedItemsToPersonalProductList();
+					prodInfoLib.verifyManufacturerPartInPersonalListPage(partNumber);
+					
 					prodInfoLib.addItemsToProductList(data.get("Part_Number"));
 					prodInfoLib.addToCartAndVerify(data.get("Part_Number"));
 					
-					
+					orderLib.clickOnSideMenuSelectAccountToolOptions(data.get("Tools_Menu"), data.get("Tools_Menu_DD"));
+					prodInfoLib.deleteItemFromPersonalizedList();
+					prodInfoLib.deleteItemFromPersonalizedList();
+					prodInfoLib.verifyPersonalizedListEmpyMessagePresent();
+					commonLib.clickLogOutLink(data.get("Logout"));
 				}
 
 				catch (Exception e) {

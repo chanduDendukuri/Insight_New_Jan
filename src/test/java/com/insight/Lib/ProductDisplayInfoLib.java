@@ -407,8 +407,8 @@ public class ProductDisplayInfoLib extends productsDisplayInfoObj {
 		//click(ADDED_TO_PERSONAL_PROD_LIST, "ADDED TO PERSONAL PRODUCT LIST");
 		if(isVisibleOnly(ADD_ITEMS_TEXTBOX, "items text box")) {
 			reporter.SuccessReport("Verify Personal Product List Page ", "page Exists", "");
-			type(ADD_ITEMS_TEXTBOX, partNo, "part number");
-			click(ADD_BTN, "Add button");
+			type(ADD_ITEMS_TEXTBOX, partNo, "Add item(s) to your list");
+			click(ADD_BTN, "Add button","Add button to Add Part to Personal products list");
 		}else {
 			reporter.failureReport("Verify Personal Product List Page ", "page does not Exists", "");
 		}
@@ -432,6 +432,11 @@ public class ProductDisplayInfoLib extends productsDisplayInfoObj {
 	public void ClickAddedItemsToPersonalProductList() throws Throwable {
 		waitForVisibilityOfElement(ADDED_TO_PERSONAL_PROD_LIST, "ADDED TO PERSONAL PRODUCT LIST", driver);
 		click(ADDED_TO_PERSONAL_PROD_LIST, "ADDED TO PERSONAL PRODUCT LIST","Added Items to personal product list");
+		if(isVisibleOnly(PPL_LABEL, "PPL label")) {
+			reporter.SuccessReport("Verify personal product list page exists", "Personal product list page loaded", "");
+		}else {
+			reporter.failureReport("Verify personal product list page exists", "Personal product list page not loaded", "", driver);
+		}
 	}
 	/**
 	 * 

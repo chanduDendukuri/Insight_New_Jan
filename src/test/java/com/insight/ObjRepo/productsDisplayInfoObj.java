@@ -198,6 +198,7 @@ public class productsDisplayInfoObj extends CommonObj{
     public static By getMfrNumber(String number) {
     	return By.xpath("//div[@class='o-grid__item']//p[@class='c-item-card__details-text'][contains(.,'Mfr part #: "+number+"')]");
     }
+    public static By PPL_LABEL=By.xpath("//h1[contains(text(),'Personal Product List')]");
     
     /* *****************************************************************************************************************************
 	 * >>>>>>>>>>>>>>>>>>>>>>>>>>>>>LOCATOR IS TO GET THE ADD TO CART BUTTON USING THE MANUFACTURER NUMBER<<<<<<<<<<<<<<<<<<<<<<<<<

@@ -454,12 +454,12 @@ public class SearchLib extends CommonObj {
 		String headerName[]=header.split(",");
 		    for(i=0;i<headerName.length;i++){
 			if(isElementNotPresent(getSecondaryHeaderMenu(headerName[i]),"Home page header")){
-				reporter.SuccessReport("Verifying the header menu is present "," Menu is not present.Menu is :", headerName[i]);
+				reporter.SuccessReport("Verifying the header menu is present "," Menu is not present.Menu is :", "Menu: "+headerName[i]);
 			} else {
 				reporter.failureReport("Verifying the header menu is present "," Menu is present in the header. Permissions are not disabled properly.Menu item is: ",headerName[i]);
 	}
   }
-		    click(getSecondaryHeaderMenu(headerlist), "Shop menu : "+headerlist);
+		    click(getSecondaryHeaderMenu(headerlist), "Header Link: Shop -->  : "+headerlist);
 			isElementNotPresent(getShopAllBtnsFromMenuList(ShopBrand), "Shop By Brand button");
 }
 	/**
@@ -478,7 +478,7 @@ public class SearchLib extends CommonObj {
 			reporter.failureReport("Verifying the header menu is present "," Menu is not present in the header. Permissions are enabled properly.Menu item is: ",headerName[i]);
 			}
 		}
-		click(getSecondaryHeaderMenu(headerlist), "Shop menu :"+headerlist);
+		click(getSecondaryHeaderMenu(headerlist), "Header Link: Shop --> :"+headerlist);
 		isElementPresent(getShopAllBtnsFromMenuList(ShopBrand), "Shop By Brand button");
 	}
 	

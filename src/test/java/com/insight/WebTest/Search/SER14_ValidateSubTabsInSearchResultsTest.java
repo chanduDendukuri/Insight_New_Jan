@@ -14,6 +14,7 @@ public class SER14_ValidateSubTabsInSearchResultsTest extends SearchLib {
 
 	ProductDisplayInfoLib prodInfoLib = new ProductDisplayInfoLib();
 	CMTLib cmtLib = new CMTLib();
+	CommonLib commonLib=new CommonLib();
 
 	    // #############################################################################################################
 		// #    Name of the Test         : SER14_ValidateSubTabsInSearchResults
@@ -59,17 +60,20 @@ public class SER14_ValidateSubTabsInSearchResultsTest extends SearchLib {
 					}
 					// Login AS to UAT
 					cmtLib.loginAsAdminCMT();
+					cmtLib.loginVerification(data.get("ContactName"));
 					verifyMenusDisabledOnHomePage(data.get("HeaderName"), data.get("headerlist"),data.get("ShopAllBrands"));
-
+					commonLib.clickLogOutLink(data.get("Logout"));
+					
 					// Navigate Back to CMT tool
 					cmtLib.navigateBackToCMT();
 					// Enable whyinsight,services,enable_manage,shop_by_brand
 					cmtLib.clickOnRolesAndPermissionsAndSetPermission(data.get("Menu_Name"),data.get("Set_Permission"));
 					cmtLib.loginAsAdminCMT();
-
+					cmtLib.loginVerification(data.get("ContactName"));
+					
 					// login As to UAT
 					verifyMenuEnabledOnHomeScreen(data.get("HeaderName"), data.get("headerlist"),data.get("ShopAllBrands"));
-
+					commonLib.clickLogOutLink(data.get("Logout"));
 				}
 
 				catch (Exception e) {
