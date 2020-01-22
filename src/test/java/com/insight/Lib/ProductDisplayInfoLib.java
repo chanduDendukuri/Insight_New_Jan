@@ -191,7 +191,11 @@ public class ProductDisplayInfoLib extends productsDisplayInfoObj {
 	public void clickSendWithoutFillingRequestProductAndVerify(String productName) throws Throwable {
 		Thread.sleep(2000);
 		click(productsDisplayInfoObj.PRODUCT_REQ_SEND_BTN, "Product Research request screen send button","Send button");
-		isElementPresent(productsDisplayInfoObj.ERROR_MSG, "Error message in Product Research Request screen exists");
+		if(isElementPresent(productsDisplayInfoObj.ERROR_MSG, "Error message in Product Research Request screen exists")){
+		reporter.SuccessReport("Verify Error Message", "Error message displayed", "Please enter the fields error message");	
+		}else {
+			reporter.failureReport("Verify Error Message", "Error message not displayed","", driver);
+		}
 		click(productsDisplayInfoObj.PRODUCT_REQ_CANCEL_BTN, "Product Research request screen CANCEL button");
 		searchLib.verifyTheResultsForSearchTerm(productName);
 	}
