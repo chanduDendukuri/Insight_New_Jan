@@ -112,7 +112,7 @@ public class CQT27_IPSContractpricing_ReferenceContract extends HomeLib {
 					clickonRightArrowforLineItem();
 					float sellprice2 =getSellPriceFromContract(data.get("contractid2"));
 					//float sellprice2 = (float) contract2;				
-					clickDoneButton();
+					clickDoneButton(); 
 					if(price1value==price2value){
 						reporter.SuccessReport("Verify the ZPFX value for line 10 and 20 are same.", "Line 10 & 20 ZPFX values are same",
 								"Line 10 ZPFX value: "+Price1+" -- Line 20 ZPFX value: "+Price2);
