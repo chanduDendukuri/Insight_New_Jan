@@ -968,10 +968,10 @@ public void deSelectvaluefromotherGroupingDropdown(String option) throws Throwab
 	 * 
 	 * @throws Throwable
 	 */
-	public void verifyHoldsText(String holdText) throws Throwable {
+	public void verifyHoldsText(String holdText,String holdtext1) throws Throwable {
 		waitForVisibilityOfElement(HOLDS_TEXTAREA, "Hold");
 		String HoldText = getText(HOLDS_TEXTAREA, "Hold Text For Order");
-		if (HoldText.contains(holdText)) {
+		if (HoldText.contains(holdText)&& HoldText.contains(holdtext1)) {
 			reporter.SuccessReport("Hold Text For Order::", "" + HoldText + " ::is Visible", "");
 		} else {
 			reporter.failureReport("Hold Text For Order::", "Is not Visible", "");

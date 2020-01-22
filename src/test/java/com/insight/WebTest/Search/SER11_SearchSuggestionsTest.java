@@ -70,6 +70,8 @@ public class SER11_SearchSuggestionsTest extends SearchLib {
 					disableSearchSuggestions();
 					updateSuggessions();
 					verifySearchSuggestionsareNotDisplayed(data.get("SearchText"));
+					// Enable search Suggestions
+					enableSearchSuggestions();
 					commonLib.clickLogOutLink(data.get("Logout"));
 
 				}

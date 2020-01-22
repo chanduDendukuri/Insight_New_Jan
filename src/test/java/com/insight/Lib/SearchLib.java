@@ -454,12 +454,12 @@ public class SearchLib extends CommonObj {
 		String headerName[]=header.split(",");
 		    for(i=0;i<headerName.length;i++){
 			if(isElementNotPresent(getSecondaryHeaderMenu(headerName[i]),"Home page header")){
-				reporter.SuccessReport("Verifying the header menu is present "," Menu is not present.Menu is :", headerName[i]);
+				reporter.SuccessReport("Verifying the header menu is present "," Menu is not present.Menu is :", "Menu: "+headerName[i]);
 			} else {
 				reporter.failureReport("Verifying the header menu is present "," Menu is present in the header. Permissions are not disabled properly.Menu item is: ",headerName[i]);
 	}
   }
-		    click(getSecondaryHeaderMenu(headerlist), "Shop menu : "+headerlist);
+		    click(getSecondaryHeaderMenu(headerlist), "Header Link: Shop -->  : "+headerlist);
 			isElementNotPresent(getShopAllBtnsFromMenuList(ShopBrand), "Shop By Brand button");
 }
 	/**
@@ -478,7 +478,7 @@ public class SearchLib extends CommonObj {
 			reporter.failureReport("Verifying the header menu is present "," Menu is not present in the header. Permissions are enabled properly.Menu item is: ",headerName[i]);
 			}
 		}
-		click(getSecondaryHeaderMenu(headerlist), "Shop menu :"+headerlist);
+		click(getSecondaryHeaderMenu(headerlist), "Header Link: Shop --> :"+headerlist);
 		isElementPresent(getShopAllBtnsFromMenuList(ShopBrand), "Shop By Brand button");
 	}
 	
@@ -489,7 +489,7 @@ public class SearchLib extends CommonObj {
 	 */
 	public void searchInHeaderSelectFromSuggestions(String searchText) throws Throwable{
 		WebElement element = driver.findElement(SEARCH);
-		typeForSearchingProduct(SEARCH,searchText , "Search text");
+		typeForSearchingProduct(SEARCH,searchText , "Search text : "+searchText);
 		Thread.sleep(5000);
 		String result =null;
 		if(isElementPresent(SEARCH_SUGGESSIONS, "Search suggessions")){
@@ -498,13 +498,13 @@ public class SearchLib extends CommonObj {
 			for (int i = 0; i < myList.size(); i++) {
 				all_elements_text.add(myList.get(i).getText());
 				result = myList.get(i).getText();
-				reporter.SuccessReport("search suggessions are displayed ","Suggessions displayed as ",result);
+				reporter.SuccessReport("search suggestions are displayed ","suggestions displayed : ",result);
 			}
 		/*click(SEARCH_SUGGESSIONS, "Search suggessions");
 		reporter.SuccessReport("Verifying whether the suggessions are displayed ","Suggessions are displayed for : ",searchText);*/
 			element.sendKeys(Keys.ENTER);
 		}else {
-			reporter.failureReport("Verifying whether the suggessions are displayed  "," Enter a valid text.You entered : ",searchText);
+			reporter.failureReport("Verifying whether the suggestions are displayed  "," Enter a valid text.You entered : ",searchText);
 		}
 		/*else 
 			if(isElementNotPresent(SEARCH_SUGGESSIONS, "Search suggessions")){
@@ -523,9 +523,9 @@ public class SearchLib extends CommonObj {
 	public void verifySearchSuggestionsareNotDisplayed(String searchText) throws Throwable {
 		typeForSearchingProduct(SEARCH,searchText , "Search text");
 		if(isElementNotPresent(SEARCH_SUGGESSIONS, "Search suggessions")){
-			reporter.SuccessReport("Verifying whether the suggessions are displayed ","Suggessions are  not displayed","");
+			reporter.SuccessReport("Verifying whether the suggestions are displayed ","suggestions are  not displayed","");
 		}else {
-			reporter.failureReport("Verifying whether the suggessions are displayed  "," search  Suggessions are displayed ","",driver);
+			reporter.failureReport("Verifying whether the suggestions are displayed  "," search  suggestions are displayed ","",driver);
 		}
 	}
 	/**
@@ -548,18 +548,20 @@ public class SearchLib extends CommonObj {
 	}
 	
 	public void enableSearchSuggestions() throws Throwable {
-		if(isElementPresent(SHOW_KEYWORD_SUGGESSIONS_CHECKED, "SHOW KEYWORD SUGGESSIONS CHECKED")){
+		if(isElementPresent(SHOW_KEYWORD_SUGGESSIONS_CHECKED, "SHOW KEYWORD SUGGESTIONS CHECKED")){
 		// Do nothing 
 		}else {
-			 click(SHOW_KEYWORD_SUGGESSIONS_UNCHECKED, "Show key word suggessions check box Enabled");
+			scrollBottom();
+			 click(SHOW_KEYWORD_SUGGESSIONS_UNCHECKED, "Show key word suggestions check box Enabled");
 		}
 	}
 	
 	public void disableSearchSuggestions() throws Throwable {
-		if(isElementPresent(SHOW_KEYWORD_SUGGESSIONS_UNCHECKED, "SHOW KEYWORD SUGGESSIONS CHECKED")){
+		if(isElementPresent(SHOW_KEYWORD_SUGGESSIONS_UNCHECKED, "SHOW KEYWORD SUGGESTIONS CHECKED")){
 		// Do nothing 
 		}else {
-			 click(SHOW_KEYWORD_SUGGESSIONS_CHECKED, "Show key word suggessions check box Enabled");
+			scrollBottom();
+			 click(SHOW_KEYWORD_SUGGESSIONS_CHECKED, "Show key word suggestions check box Enabled");
 		}
 	}
 	

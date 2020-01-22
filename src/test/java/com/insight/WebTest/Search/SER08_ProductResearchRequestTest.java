@@ -69,10 +69,14 @@ public class SER08_ProductResearchRequestTest extends SearchLib {
 
 					// go back to CMT tool
 					cmtLib.navigateBackToCMT();
+					cmtLib.hoverOverMasterGroupAndSelectChangeGrp();
+					cmtLib.searchForWebGroup(data.get("WebGrp2"));
+					cmtLib.clickOnTheWebGroup(data.get("WebGrp_Name2"));
 					cmtLib.hoverOnManageWebGroupsAndSelectOptions(data.get("Manage_Web_Grp_Options"));
-					cmtLib.searchForaUserAndSelect(data.get("LnameEmailUname"), data.get("ContactName"));
+					cmtLib.searchForaUserAndSelect(data.get("LnameEmailUname1"), data.get("ContactName1"));
 					cmtLib.loginAsAdminCMT();
 					cmtLib.loginVerification( data.get("ContactName"));
+					
 					searchInHomePage(data.get("SearchText"));
 					verifyTheResultsForSearchTerm(data.get("SearchText"));
 					prodInfoLib.clickProductResearchRequest();
