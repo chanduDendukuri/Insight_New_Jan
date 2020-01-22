@@ -63,7 +63,7 @@ public class EUF10_FCTWebEndUserForgotUserNameTest extends EndUserFeaturesLib{
 						cmtLib.enterMailToResetPassword(data.get("email1"));
 						cmtLib.verifyPasswordResetWrongEmailEnteredMessage();
 						cmtLib.enterMailToResetPassword(data.get("email2"));
-						cmtLib.verifyPasswordResetEmailEnteredSucessMessage();
+						cmtLib.verifyPasswordResetEmailEnteredSucessMessage(data.get("email2"));
 						System.out.println("Test completed");
 						
 					} catch (Exception e) {

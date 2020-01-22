@@ -2446,15 +2446,27 @@ public class ActionEngine extends TestEngineWeb {
 
 	/**
 	 * Click on OK button on alert
+	 * @throws Throwable 
 	 */
-	protected void acceptAlert() {
+	protected void acceptAlert() throws Throwable {
+		boolean status = false;
+
 		try {
+			
 			WebDriverWait wait = new WebDriverWait(driver, 5);
 			wait.until(ExpectedConditions.alertIsPresent());
+			String alertMessage = driver.switchTo().alert().getText();
+			reporter.SuccessReport("Alert Message", "Popup Alert message is ", alertMessage);
 			driver.switchTo().alert().accept();
+			status = true;
 		} catch (Exception e) {
 			e.getMessage();
 		}
+		if(status){
+			String s1=Boolean.toString(status);
+			reporter.SuccessReport("Accepting Alert popup ", "Closing alert popup is ", s1);
+		}
+		
 	}
 
 	/**
@@ -3894,5 +3906,36 @@ public class ActionEngine extends TestEngineWeb {
 		return status;
 
 	}
+	
+	
+	public String generateRandomString( int length) throws Throwable {
+ 
+	  
+	        // chose a Character random from this String 
+	        String AlphaNumericString = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+	                                  + "abcdefghijklmnopqrstuvxyz"; 
+	  
+	        // create StringBuffer size of AlphaNumericString 
+	        StringBuilder sb = new StringBuilder(length); 
+	  
+	        for (int i = 0; i < length; i++) { 
+	  
+	            // generate a random number between 
+	            // 0 to AlphaNumericString variable length 
+	            int index 
+	                = (int)(AlphaNumericString.length() 
+	                        * Math.random()); 
+	  
+	            // add Character one by one in end of sb 
+	            sb.append(AlphaNumericString 
+	                          .charAt(index)); 
+	        } 
+	  
+	        return sb.toString(); 
+	    } 
+	  
+
+	
+
 
 }

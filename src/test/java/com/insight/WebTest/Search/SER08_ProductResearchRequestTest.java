@@ -14,6 +14,7 @@ public class SER08_ProductResearchRequestTest extends SearchLib {
 
 	ProductDisplayInfoLib prodInfoLib = new ProductDisplayInfoLib();
 	CMTLib cmtLib = new CMTLib();
+	CommonLib commonLib=new CommonLib();
 
 	// #############################################################################################################
 	// #    Name of the Test         : SER08_ProductResearchRequest
@@ -50,27 +51,37 @@ public class SER08_ProductResearchRequestTest extends SearchLib {
 					cmtLib.searchForWebGroup(data.get("WebGrp"));
 					cmtLib.clickOnTheWebGroup(data.get("WebGrp_Name"));
 					cmtLib.hoverOnManageWebGroupsAndSelectOptions(data.get("Manage_Web_Grp_Options"));
-
-					// Login As into UAT
+					cmtLib.searchForaUserAndSelect(data.get("LnameEmailUname"), data.get("ContactName"));
 					cmtLib.loginAsAdminCMT();
+					cmtLib.loginVerification(data.get("ContactName"));
+                     // Search            
 					searchInHomePage(data.get("SearchText"));
 					verifyTheResultsForSearchTerm(data.get("SearchText"));
 					prodInfoLib.clickProductResearchRequest();
+					prodInfoLib.verifyProductResearchRequestPopupFields();
 					prodInfoLib.clickSendWithoutFillingRequestProductAndVerify(data.get("SearchText"));
+					prodInfoLib.clickProductResearchRequest();
 					prodInfoLib.clickProductResearchRequestAndFillDetails(data.get("Name"), data.get("Email"),
 							data.get("Country"), data.get("Quantity"), data.get("PartNo."), data.get("Mnfr_Name"),
 							data.get("Prod_Desc"));
+					
+					commonLib.clickLogOutLink(data.get("Logout"));
 
 					// go back to CMT tool
 					cmtLib.navigateBackToCMT();
 					cmtLib.hoverOnManageWebGroupsAndSelectOptions(data.get("Manage_Web_Grp_Options"));
 					cmtLib.searchForaUserAndSelect(data.get("LnameEmailUname"), data.get("ContactName"));
 					cmtLib.loginAsAdminCMT();
+					cmtLib.loginVerification( data.get("ContactName"));
 					searchInHomePage(data.get("SearchText"));
 					verifyTheResultsForSearchTerm(data.get("SearchText"));
+					prodInfoLib.clickProductResearchRequest();
+					prodInfoLib.verifyProductResearchRequestPopupFields();
 					prodInfoLib.clickProductResearchRequestAndFillDetails(data.get("Name"), data.get("Email"),
 							data.get("Country"), data.get("Quantity"), data.get("PartNo."), data.get("Mnfr_Name"),
 							data.get("Prod_Desc"));
+					
+					commonLib.clickLogOutLink(data.get("Logout"));
 
 				}
 

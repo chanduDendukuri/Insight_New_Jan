@@ -80,7 +80,7 @@ public class CQT16_IPSCopyLinksTest extends HomeLib {
 		        
 		        ClickOnSaveAsQuoteButton();
 		        
-		        SelectAdherencetoflooroption("Client Satisfaction",data.get("Adherencetofloor"));
+		        SelectAdherencetoflooroption("Client Satisfaction",data.get("AdherenceFloorReason"));
 		        //SelectAdherencetoflooroption("Client Satisfaction");
 		        String QuoteNum1= GetQuoteNumber();
 				if(QuoteNum1!=null) {

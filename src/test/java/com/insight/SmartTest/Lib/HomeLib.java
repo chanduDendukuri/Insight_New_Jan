@@ -2116,6 +2116,19 @@ else {
 		{ click(CANCEL_BTN, "Cancel Button"); 
 		} 
 		}
+	public void ValidateError() throws Throwable {
+		if (waitForVisibilityOfElement(txtErrorpopup, "Errorpopup"))
+		{ 
+			String Errormesage = getText(txtErrorMesage, "ErrorMessage");
+			if(Errormesage!=null) {
+				reporter.SuccessReport("Error Message: ", "Error messages displayed as ", Errormesage);
+			}
+			else {
+				reporter.failureReport("Error Message: ", "Error messages not displayed ","");
+			}
+					click(OKBUTTONINPOPUP, "Ok Button"); 
+		} 
+		}
 
 	public void VerifyInformationPopUp(String Information)throws Throwable{
 		if(waitForVisibilityOfElement(INFO_POPUP, "Info pop up", driver)) {
@@ -2529,9 +2542,9 @@ public void CancelButtonInUpdateCosting() throws Throwable {
 		ClickonArrowNextToLineitem();
 		String duration = getDurationFieldValue();
 		if (duration.equals(Durationvalue))
-			System.out.println("Duration is " + Durationvalue);
+			reporter.SuccessReport("Duration: ", "Duration is ", Durationvalue);
 		else
-			System.out.println(Durationvalue + " is not updated");
+			reporter.SuccessReport("Duration: ", "Duration is not updated ", "");
 	}
 
 	public String getmfgPricevalue(String LineitemName, String ColumnName, String durationvalue) throws Throwable {
@@ -3440,6 +3453,16 @@ public float getSellPriceFromInlineItemsContract(String contractid) throws Throw
 	 * @throws Throwable
 	 */
 	public void VerifyZPMLMinusZDMLShouldbeEqualToYP00(float ZPML, float ZDML, float YP00) throws Throwable {
+		float ZpmlminusZdml = ZPML + ZDML;
+		if ((YP00 == ZpmlminusZdml)) {
+			reporter.SuccessReport("Verify that ZPML minus  ZDML equals the YP00 value",
+					"ZPML Minus ZDML::" + ZpmlminusZdml + " equals the YP00 :" + YP00 + "value ", "");
+		} else {
+			reporter.failureReport("Verify that ZPML Minus ZDML equals the YP00 value",
+					"ZPML Minus ZDML Not equals the YP00 value", "", driver);
+		}
+	}
+	public void VerifyZPMLMinusZDMLShouldbeEqualToYP001(float ZPML, float ZDML, float YP00) throws Throwable {
 		float ZpmlminusZdml = ZPML - ZDML;
 		if ((YP00 == ZpmlminusZdml)) {
 			reporter.SuccessReport("Verify that ZPML minus  ZDML equals the YP00 value",
@@ -3449,7 +3472,6 @@ public float getSellPriceFromInlineItemsContract(String contractid) throws Throw
 					"ZPML Minus ZDML Not equals the YP00 value", "", driver);
 		}
 	}
-
 	/**
 	 * 
 	 * @param YPOO
@@ -3458,7 +3480,7 @@ public float getSellPriceFromInlineItemsContract(String contractid) throws Throw
 	 * @throws Throwable
 	 */
 	public void VerifyZPMLMinusZDMLShouldbeEqualToZP00(float ZPML, float ZDML, float YP00) throws Throwable {
-		float ZpmlminusZdml = ZPML - ZDML;
+		float ZpmlminusZdml = ZPML + ZDML;
 		if ((YP00 == ZpmlminusZdml)) {
 			reporter.SuccessReport("Verify that ZPML minus  ZDML equals the YP00 value",
 					"ZPML Minus ZDML::" + ZpmlminusZdml + " equals the YP00 :" + YP00 + "value ", "");
@@ -3764,7 +3786,7 @@ public float getSellPriceFromInlineItemsContract(String contractid) throws Throw
 		isElementClickable(MATERIALATVCINITEMDETAILS, 3, "VC Material Line item and Adding Material::" + Material + "");
 		driver.findElement(addMaterialAtVcIcon).sendKeys(Material);
 		driver.findElement(addMaterialAtVcIcon).sendKeys(Keys.ENTER);
-		driver.manage().timeouts().implicitlyWait(6, TimeUnit.SECONDS);
+		loadingSymbol();
 	}
 
 	public String getFirstElementPriceValueFromLineItem() throws Throwable {

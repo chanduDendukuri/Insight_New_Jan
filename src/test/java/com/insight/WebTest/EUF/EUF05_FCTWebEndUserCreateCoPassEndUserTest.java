@@ -67,18 +67,23 @@ public class EUF05_FCTWebEndUserCreateCoPassEndUserTest extends EndUserFeaturesL
 						String userName=getRandomNumeric(4);
 						cmtLib.enterUserName("QTPTest"+userName);
 						String userName1=getRandomNumeric(4);
-						cmtLib.verifyAvailabiltyOfUserName("QTPTest"+userName1);
+						String userID="QTPTest"+userName1;
+						cmtLib.verifyAvailabiltyOfUserName(userID);
 						cmtLib.clickCreateUserButton();
+//This Method is to validate existing user error message
+
+						cmtLib.verifyUserNotExistMessage(userID);
+						
 						cmtLib.setPermissions(data.get("Menu_Name"),data.get("Set_Permission"));
 						cmtLib.clickInformationTab(data.get("Information_Tab"));
 						cmtLib.clickOnUserURL();
 						//create an account
 						cmtLib.verifyCreateAnAccountPage();
-						String email="QTPTest"+getRandomNumeric(4)+"@test.com";
+						String email="QTPTest"+generateRandomString(4)+"@test.com";
 						cmtLib.enterEmailInCreateAnAccount(email);
-						String firstName="QTPTest"+getRandomNumeric(4);
+						String firstName="QTPTest"+generateRandomString(4);
 						cmtLib.enterFirstNameInCreateAnAccount(firstName);
-						String lastName="QTPTest"+getRandomNumeric(4);
+						String lastName="QTPTest"+generateRandomString(4);
 						cmtLib.enterLastNameInCreateAnAccount(lastName);
 						cmtLib.enterPhoneNumberInCreateAnAccount(data.get("Phone_Number"));
 						String userNameCreateAccount="QTPTest"+getRandomNumeric(4);
