@@ -238,10 +238,25 @@ public class UserManagementLib extends UserManagementObj {
 			}
 	
 	public void verifyErrorMsg() throws Throwable {		
-		if (isElementPresent(HEADER_LOGO, "WelcomePage")) {	
-			reporter.SuccessReport("Verify Error Msg::", "WelCome Page exists","");
+		if (isElementPresent(Error_MSG, "Error Message")) {
+			String Error=getText(Error_MSG,"Error Msg");
+			reporter.SuccessReport("Verify Error Msg::", "Error Message exists",Error);
 		} else {
-			reporter.failureReport("Verify Error Msg::", "WelCome Page does not exist","");
+			reporter.failureReport("Verify Error Msg::", "Error Message does not exist","");
 		}	
 			}
+	public void verifyUserPermissionInvoice_DD() throws Throwable {
+		if (isVisibleOnly(Reporting_parent_Inbvoicing, "User Permission")) {
+			reporter.SuccessReport("Verify User Permission", "Select Reporting Parent in Enable Invoicing Under Account History exists and Selected", "");
+		} else {
+			reporter.failureReport("Verify User Permission", " Select Reporting Parent in Enable Invoicing Under Account History exists But Not Selected", "",driver);
+		}
+	}
+	public void verifyUserPermissionOrderTracking_DD() throws Throwable {
+		if (isVisibleOnly(Reporting_parent_ORDERTRACKING, "User Permission")) {
+			reporter.SuccessReport("Verify User Permission", "Select Reporting Parent in Enable Order Tracking Under Account History exists and Selected", "");
+		} else {
+			reporter.failureReport("Verify User Permission", " Select Reporting Parent in Enable Order Tracking Under Account History exists But Not Selected", "",driver);
+		}
+	}
 }

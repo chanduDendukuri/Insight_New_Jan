@@ -141,10 +141,11 @@ public class SBP04_AvilableShippingAddressTest extends ShipBillPayLib{
 				shipbLib.AddNewshippingAddressWithcountry(data.get("link"),companyname3, data.get("street2"),
 						data.get("city2"), data.get("zipcode2"), data.get("state2"), data.get("Country2"),data.get("Attention"));
 				shipbLib.VerifyCreatedAddress(companyname3);
+				Thread.sleep(3000);
+				scrollUp();
 				clickEdit();
-				clickstoredAddressandVerify(companyname3);
 				// Search for the Account Name
-				orderLib.shippingBillPayContinueButton();
+				clickstoredAddressandCancle(companyname3);
 				commonLib.clickLogOutLink(data.get("Logout_Header"));
 				// login-4
 				cmtLib.navigateBackToCMT();
@@ -154,7 +155,6 @@ public class SBP04_AvilableShippingAddressTest extends ShipBillPayLib{
 				cmtLib.hoverOnManageWebGroupsAndSelectOptions(data.get("Manage_Web_Grp_Options"));
 				cmtLib.searchForaUserAndSelect(data.get("LnameEmailUname"), data.get("ContactName"));
 				cmtLib.setPermissions(data.get("Menu_Name"), data.get("Set_Permission3"));
-				
 				cmtLib.loginAsAdminCMT();
 				// add to cart
 				commonLib.searchProduct(data.get("Search_Item"));
@@ -168,14 +168,18 @@ public class SBP04_AvilableShippingAddressTest extends ShipBillPayLib{
 				shipbLib.AddNewshippingAddressWithcountry(data.get("link"),companyname, data.get("street"),
 						data.get("city"), data.get("zipcode"), data.get("state"), data.get("Country"),data.get("Attention"));
 				shipbLib.VerifyCreatedAddress(companyname);
+				Thread.sleep(3000);
+				scrollUp();
 				clickEdit();
-				clickstoredAddressandVerify(companyname);
+				clickstoredAddressandCancle(companyname);
 				String companyname1="IUS Created Shipping Adress Canada"+"_"+getRandomNumeric(4);
 				shipbLib.AddNewshippingAddressWithcountry(data.get("link"),companyname1, data.get("street2"),
-						data.get("city2"), data.get("zipcode2"), data.get("state2"), data.get("Country"),data.get("Attention"));
+						data.get("city2"), data.get("zipcode2"), data.get("state2"), data.get("Country2"),data.get("Attention"));
 				shipbLib.VerifyCreatedAddress(companyname1);
+				Thread.sleep(3000);
+				scrollUp();
 				clickEdit();
-				clickstoredAddressandVerify(companyname);
+				clickstoredAddressandCancle(companyname1);
 				commonLib.clickLogOutLink(data.get("Logout_Header"));
 				// permissions unchek
 				cmtLib.navigateBackToCMT();

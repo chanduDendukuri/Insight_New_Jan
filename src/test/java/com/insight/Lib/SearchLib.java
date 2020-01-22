@@ -102,7 +102,7 @@ public class SearchLib extends CommonObj {
 			reporter.SuccessReport("Selected Product and Master Product in Compare Similar Products Page", "Master Product is Same as Selected Product", "Master Product : "+ProductName);
 		} else {
 			reporter.failureReport("Verify the Product Name in Compare Similar Products Page",
-					"Master product is not displayed.Expected is : ","Master product : "+masterProductName);
+					"Master product is not displayed.Expected is : ",masterProductName);
 		}
 	}
 
@@ -117,10 +117,9 @@ public class SearchLib extends CommonObj {
 		List<WebElement> elements=driver.findElements(productsDisplayInfoObj.SIMILAR_PRODUCTS);
 		int similarProducts=elements.size()-1;
 		if(similarProducts!=0) {
-			reporter.SuccessReport("Similar Products in Compare Similar Products Page", "Similar Products Exists and count is : ","Similar products count : "+Integer.toString(similarProducts));
-			
+			reporter.SuccessReport("Similar products", "Similar products exists",Integer.toString(similarProducts));
 		}else {
-			reporter.failureReport("Similar Products in Compare Similar Products Page", "Similar Products Column does not exists","Similar products count : "+Integer.toString(similarProducts));
+			reporter.failureReport("Similar products", "Similar products does not exists",Integer.toString(similarProducts));
 		}
 	}
 	
@@ -186,7 +185,7 @@ public class SearchLib extends CommonObj {
 	public void clickOnComparedItemsLink() throws Throwable{
 		scrollUp();
 		if(isElementPresent(productsDisplayInfoObj.COMPARE_YOUR_LIST_LINK, "compare List Number")) {
-			click(productsDisplayInfoObj.COMPARE_YOUR_LIST_LINK,"compare List Number link","Comapare your list item link");
+			click(productsDisplayInfoObj.COMPARE_YOUR_LIST_LINK,"compare List Number link");
 		}else {
 			reporter.failureReport("Verify compare items link", "Compare items link does not exists", "NA", driver);
 		}
@@ -1082,6 +1081,7 @@ public class SearchLib extends CommonObj {
 			reporter.failureReport("Items in the compare list", "Compare Your List label does not exists ", "Items in the List: "+list);
 		}
 		return list;
+
 	}
 	
 	public String verifyFrenchCompareList() throws Throwable{
@@ -1204,7 +1204,7 @@ public class SearchLib extends CommonObj {
 			reporter.failureReport("Verify filter selected", "Filter selected is not found  ", filter, driver);
 		}
 	}
-	
+
 	/**
 	 * Method is to verify the search results 
 	 * 
@@ -1239,7 +1239,4 @@ public class SearchLib extends CommonObj {
 } 
 
 
-
-
-	
 

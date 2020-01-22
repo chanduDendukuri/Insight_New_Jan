@@ -215,16 +215,3 @@ public static By EDIT_LINK=By.xpath("//h3[contains(text(),'Shipping address')]/f
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-

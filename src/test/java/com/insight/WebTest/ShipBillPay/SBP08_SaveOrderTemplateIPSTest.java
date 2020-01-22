@@ -114,7 +114,6 @@ public class SBP08_SaveOrderTemplateIPSTest extends ShipBillPayLib{
 				shipbLib.Selectshippingcarrier();
 				shipbLib.clickstoredAddress(data.get("Text"));
 				orderLib.billingAddressContinueButton(); 
-				
 				//Deletesavedcarts
 				shipbLib.Deletesavedcarts(Tamplate, data.get("toolsMenuName"), data.get("dropDown"));
 				commonLib.clickLogOutLink(data.get("Logout_Header"));

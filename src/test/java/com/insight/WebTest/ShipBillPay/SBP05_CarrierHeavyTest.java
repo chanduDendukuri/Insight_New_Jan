@@ -11,7 +11,6 @@ import com.insight.Lib.CartLib;
 import com.insight.Lib.CommonLib;
 import com.insight.Lib.OrderLib;
 import com.insight.Lib.ShipBillPayLib;
-import com.insight.ObjRepo.MarriottIntlCorpObj;
 import com.insight.accelerators.ReportControl;
 import com.insight.accelerators.TestEngineWeb;
 import com.insight.googledrive.ReportStatus;
@@ -54,7 +53,6 @@ public class SBP05_CarrierHeavyTest extends ShipBillPayLib{
 				OrderLib orderLib = new OrderLib();
 				ShipBillPayLib shipbLib = new ShipBillPayLib();
 				CanadaLib canadaLib = new CanadaLib();
-				MarriottIntlCorpObj MarroittObj=new MarriottIntlCorpObj();
 				cmtLib.loginToCMT(data.get("Header"));
 				cmtLib.searchForWebGroup(data.get("WebGrp"));
 				cmtLib.clickOnTheWebGroup(data.get("WebGrp_Name"));
@@ -80,12 +78,6 @@ public class SBP05_CarrierHeavyTest extends ShipBillPayLib{
 				orderLib.proceedToCheckout();
 				cartLib.clickOnContinueButtonInAddInformtion();
 				orderLib.clickContinueOnLineLevelInfo();
-				if (isElementPresent(MarroittObj.SHIP_ATTENTION, "Ship Attention")) {
-					click(MarroittObj.SHIP_ATTENTION, "Ship Attention");
-					type(MarroittObj.SHIP_ATTENTION, "1234", "Ship Attention");
-				}else {
-					//Do Nothing
-				}
 				orderLib.shippingBillPayContinueButton();
 				//No carrier Preference
 				cartLib.verifyCarriersInCheckOut(data.get("Carriers"));

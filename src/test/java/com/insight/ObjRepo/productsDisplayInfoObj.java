@@ -30,8 +30,10 @@ public class productsDisplayInfoObj extends CommonObj{
     public static By CLOSE_ICON=By.xpath("//a[@class='compare-remove-item js-remove-compare']");
     public static By SIMILAR_PRODUCTS=By.xpath("//tr[@class='images-row']//td//img");
      public static By COMPARE_LIST_ITEMS_COUNT=By.xpath("//tr[@class='images-row']//td");
+
      public static By MASTER_PRODUCT_LABEL=By.xpath("//td[@class='compare-master-product'][contains(text(),'Master product')]");
      public static By SIMILAR_PRODUCTS_COLUMN=By.xpath("//td[contains(text(),'Similar products')]");
+
   // Add to cart
     public static By ADD_TO_CART=By.xpath("//a[@class='small button expand js-add-to-cart']");
     public static By ADDED_TO_CART_LABEL=By.xpath("//div[@class='added-to-cart'][contains(text(),'Added to Your Cart')]");

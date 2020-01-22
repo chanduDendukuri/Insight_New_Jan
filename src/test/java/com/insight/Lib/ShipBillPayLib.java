@@ -447,8 +447,6 @@ public class ShipBillPayLib extends ShipBillPayObj {
 		typeText(OrderObj.REPORTING_FIELD_5, reportingField5, "Reporting Field 5");
 		typeText(WG_LNL, Wg_LNL_Txt, "RP_LNL_Txt text box::"+Wg_LNL_Txt+"");
 		click(CopyToALL,"Copt To ALL Exixts and Clicked");
-		click(OrderObj.LLI_CONTINUE_BTN, "Continue button");
-		
 		}else{
 			reporter.failureReport("Verify reporting fields displayed in the Line level information section","Reporting fields are not displayed Line level information","");
 		}
@@ -1076,7 +1074,7 @@ public class ShipBillPayLib extends ShipBillPayObj {
 				String newDate = today.format(DateTimeFormatter.ofPattern("d-MMMM-uuuu"));
 				String date[]=newDate.split("-");
 				System.out.println("newDate" + date[0]);
-				return newDate;
+				return date[0];
 
 			}
 
@@ -1121,8 +1119,7 @@ public class ShipBillPayLib extends ShipBillPayObj {
 			waitForVisibilityOfElement(CartObj.CART_LABEL_ON_CART_PAGE, "Cart Page");
 
 		}
-			
-			public void clickonTodayDate(String date)throws Throwable{
+     public void clickonTodayDate(String date)throws Throwable{
 			click(Date(date),"Today::"+date+"");
 			}
 		public void clickExpand()throws Throwable{
@@ -1149,10 +1146,20 @@ public class ShipBillPayLib extends ShipBillPayObj {
 		}
 		
 		public void clickEdit()throws Throwable{
-			click(EDIT_LINK,"Link");
+			click(EDIT_LINK,"Edit Link Shipping Address");
+		}
+		/**
+		 * This method is to add products By Quick shop
+		 * 
+		 * @throws Throwable
+		 */
+		public void clickstoredAddressandCancle(String Text) throws Throwable {
+			click(STOREDADDRESS_LINK, "Link::STORED ADDRESS");
+			click(SEARCH_FIELD,"Link:SEARCH AVAILABLE ADDRESSES");
+			type(SEARCH_FIELD,Text,"Search Field");
+			click(search_Button,"Search Button");
+			Thread.sleep(3000);
+			click(CANCELBUTTON_STOREDADDRESS, "Cancle Button on search shipping address page");
+
 		}
 }
-
-
-
-

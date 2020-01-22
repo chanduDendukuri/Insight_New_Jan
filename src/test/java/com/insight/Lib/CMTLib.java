@@ -2451,7 +2451,7 @@ public class CMTLib extends CMTObj {
 		 *
 		 */
 		public void clickBackToUserSearch() throws Throwable {
-			click(BACKTOUSERSEARCH_LINK,"Back to User Search");
+			click(BACKTOUSERSEARCH_LINK,"User Search");
 		}
 		/**
 		 * Method is to Verify the Search Result of Email for Created User
@@ -2472,7 +2472,14 @@ public class CMTLib extends CMTObj {
 		 *
 		 */
 		public void clickOnSharedUserUrl() throws Throwable {
-			click(SHAREDUSERURL,"Back to User Search");
+			if(isVisibleOnly(SHAREDUSERURL,"Shared User Url")) {
+			String URl=getText(SHAREDUSERURL,"URL");
+			System.out.println(URl);
+			click(SHAREDUSERURL,"Shared User Url");
+			reporter.SuccessReport("Verify User URL in Information Tab on Manage Web groups: Create User Page"," User URL in Information Tab Exists", "User URL::"+URl+"");
+			}else {
+				reporter.failureReport("Verify User URL in Information Tab on Manage Web groups: Create User Page"," User URL in Information Tab Does Not Exists", "");
+			}
 		}
 		
 		public void clickDesignatedShippingOptions(String optionToSelect) throws Throwable {
@@ -2505,29 +2512,27 @@ public class CMTLib extends CMTObj {
 			//click(DesignatedshippingFedoption_dropdown, "Default Shipping Option");
 			//selectByVisibleText(DesignatedshippingFedoption_dropdown, defaultShippingOtion,
 					//"Default_Shipping_Option Selected is::"+defaultShippingOtion+"");
-
 		}
 		/**
-		 * This method is to click on Roles and permissions tab and disable the
+		 * This method is to click on Roles and permissions tab and check the one
 		 * required permission check box and update.
 		 * 
 		 * @param menuName
 		 * @param userPermissions
-		 * @return 
 		 * @throws Throwable
 		 */
-		public void setPermissionsToDisableWithousReport( String userPermissions) throws Throwable {
+		public void verifySetPermissions(String userPermissions) throws Throwable {
 			if (isCheckBoxSelected(getUserPermission(userPermissions))) {
-				click(getUserPermission(userPermissions), "User permissions : "+userPermissions+"is OFF");
-				click(UPDATE_USER_BTN, "Update user button");
-				if (isVisibleOnly(PERMISSION_UPDATE_MSG, "update sucessful message")) {
-					LOG.info("Permissions Updated Succesfully");
-				} else {
-					LOG.info("Permissions not Updated Succesfully");
-				}
-
+				LOG.info(userPermissions + " check box already checked: "+userPermissions);
+				reporter.SuccessReport("Verify the Permission is Enabled::"+userPermissions, "check box already checked::"+userPermissions+"",userPermissions);
 			} else {
-				LOG.info(userPermissions + " check box already checked.");
+				reporter.failureReport("Verify Permissions::","Permission os not Enabled", ""+userPermissions+"");
 			}
 		}
+        public void clickOnRolesAndPermissionsTab(String menuName) throws Throwable {
+        	click(getUsersTabMenus(menuName), "Roles And Permissions");
 }
+
+
+}
+

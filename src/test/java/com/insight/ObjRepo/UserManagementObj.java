@@ -37,5 +37,8 @@ public class UserManagementObj extends ActionEngine{
 		return By.xpath("(//td[@id='UserType'][contains(.,'"+userType+"')])[1]");
 	 }
 	public static By HEADER_LOGO=By.xpath("//div[@class='c-header-logo']");
+	public static By Error_MSG=By.xpath("//div[@id='ErrorMsg']");
+	public static By Reporting_parent_Inbvoicing=By.xpath("//select[@id='1134_permissionLevel']/option[@selected='selected' and contains(text(),'Reporting Parent')]");
+	public static By Reporting_parent_ORDERTRACKING=By.xpath("//select[@id='1139_permissionLevel']/option[@selected='selected' and contains(text(),'Reporting Parent')]");
 	}
 	
