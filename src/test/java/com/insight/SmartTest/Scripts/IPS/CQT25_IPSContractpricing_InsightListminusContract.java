@@ -84,12 +84,12 @@ public class CQT25_IPSContractpricing_InsightListminusContract extends HomeLib {
 	                            String P2 = Price2.replace(",", "");
 	                            price2value = Float.parseFloat(P2);
 	                    	}
-	                    	if(b==2){   // YDLP--2
+	                    	if(b==2){   // YP00--2
 	                            Price3 = Price.get(b);
 	                            String P3 = Price3.replace(",", "");
 	                            price3value = Float.parseFloat(P3);
 	                    	}
-	                    	if(b==3){    // YP00--3
+	                    	if(b==3){    // YDLP--3
 	                           Price4 = Price.get(b);
 	                           String P4 = Price4.replace(",", "");
 	                           price4value = Float.parseFloat(P4);
