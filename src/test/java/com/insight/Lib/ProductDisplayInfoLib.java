@@ -347,7 +347,8 @@ public class ProductDisplayInfoLib extends productsDisplayInfoObj {
 		isElementPresent(productsDisplayInfoObj.BACK_TO_RESULTS, "Back to results");
 			scrollToBottomWithCordinate("150");
 			if (isElementPresent(ADD_TO_PERSONAL_PROD_LINK, "Add to personal product link")) {
-				click(ADD_TO_PERSONAL_PROD_LINK, "Add to personal product link");
+				reporter.SuccessReport("Verify personal product link present", "Add to Product Center' Link Exists", "");
+				click(ADD_TO_PERSONAL_PROD_LINK, "Add to personal product link","Add to personal product link");
 			}else {
 				reporter.failureReport("Verify personal product link present ",
 						"Personal product is not present. Enable the settings and Login As", "");
@@ -365,7 +366,7 @@ public class ProductDisplayInfoLib extends productsDisplayInfoObj {
 	if (isElementNotPresent(ADD_TO_PERSONAL_PROD_LINK, "Add to personal product link")) {
 		Thread.sleep(3000);
 		reporter.SuccessReport("Verify personal product link present ",
-				"Personal product is not present. Enable the settings and Login As", "");
+				"Add to Product Center' Link does not Exist", "");
 		LOG.info("Enable the settings in CMT and Login As to get the Add to Personal product list link");
 	} else {
 		reporter.failureReport("Verify personal product link present ",
@@ -403,10 +404,14 @@ public class ProductDisplayInfoLib extends productsDisplayInfoObj {
 	public void addItemsToProductList(String partNo) throws Throwable {
 		String result = null;
 		boolean flag = true;
-		click(ADDED_TO_PERSONAL_PROD_LIST, "ADDED TO PERSONAL PRODUCT LIST");
-		type(ADD_ITEMS_TEXTBOX, partNo, "part number");
-		click(ADD_BTN, "Add button");
-
+		//click(ADDED_TO_PERSONAL_PROD_LIST, "ADDED TO PERSONAL PRODUCT LIST");
+		if(isVisibleOnly(ADD_ITEMS_TEXTBOX, "items text box")) {
+			reporter.SuccessReport("Verify Personal Product List Page ", "page Exists", "");
+			type(ADD_ITEMS_TEXTBOX, partNo, "part number");
+			click(ADD_BTN, "Add button");
+		}else {
+			reporter.failureReport("Verify Personal Product List Page ", "page does not Exists", "");
+		}
 		if (flag) {
 			List<WebElement> myList = driver.findElements(MFR_PART);
 			List<String> all_elements_text = new ArrayList<>();
@@ -414,7 +419,7 @@ public class ProductDisplayInfoLib extends productsDisplayInfoObj {
 				all_elements_text.add(myList.get(i).getText());
 				result = myList.get(i).getText();
 				if (result.contains(partNo)) {
-					reporter.SuccessReport("Verify the part number", "Part number verification is sucessful", result);
+					reporter.SuccessReport("Verify the part number", "Product Exists and Added to cart","part Number : "+ result);
 				}
 			}
 		} else {
@@ -422,6 +427,25 @@ public class ProductDisplayInfoLib extends productsDisplayInfoObj {
 					"Part number verification is not successful. expected is : " + partNo + "Actual is : " + result,
 					"");
 		}
+	}
+	
+	public void ClickAddedItemsToPersonalProductList() throws Throwable {
+		waitForVisibilityOfElement(ADDED_TO_PERSONAL_PROD_LIST, "ADDED TO PERSONAL PRODUCT LIST", driver);
+		click(ADDED_TO_PERSONAL_PROD_LIST, "ADDED TO PERSONAL PRODUCT LIST","Added Items to personal product list");
+	}
+	/**
+	 * 
+	 * @param partNum
+	 * @throws Throwable
+	 */
+	public void verifyManufacturerPartInPersonalListPage(String partNum) throws Throwable {
+		Thread.sleep(3000);
+		if (isElementPresent(getMfrNumber(partNum), "Manufacturer number")) {
+			reporter.SuccessReport("Verify the part number", "Product Exists and Added","part Number : "+ partNum);
+		}else {
+			reporter.failureReport("Verify the part number", "Product does not Exists ","part Number : "+ partNum);
+		}
+		
 	}
 
 	/**
@@ -433,24 +457,49 @@ public class ProductDisplayInfoLib extends productsDisplayInfoObj {
 	 */
 	public void addToCartAndVerify(String partNumber) throws Throwable {
 
-		click(getAddToCartBtn(partNumber), "Add cart button");
-		waitForVisibilityOfElement(ADDED_TO_CART_PPC_PART_NO, "Part number");
+		clickUntil(getAddToCartBtn(partNumber), getGoToCartBtn(partNumber), "Add cart button", "Add cart button");
+		click(getGoToCartBtn(partNumber), "Go to cart Button", "Go to cart");
+		//waitForVisibilityOfElement(ADDED_TO_CART_PPC_PART_NO, "Part number");
+		cartLib.verifyCartBreadCrumb();
 		String partNo = getText(ADDED_TO_CART_PPC_PART_NO, "part number in the personal product list cart");
-		if (partNo.contains(partNumber)) {
-			reporter.SuccessReport("Verify the part added to cart ", "Part sucessfully added to cart. number is : ",
-					partNo);
+		List<String> prodDesc1=orderLib.getProductDescriptionOfCartProduct();
+		//List<String> quantity1=orderLib.getCartProductQuantity();
+		List<String> totalPrice1=orderLib.getCartProductTotalPrice();
+		if (partNo.replace("Insight Part # :", "").equals(partNumber)) {
+			reporter.SuccessReport("Verify the part added to cart ", "Part sucessfully added to cart. number is : ","Part Number : "+partNo+ "  prod Description : "+prodDesc1.get(0)+ " Quantity : 1" +"Total Price: "+totalPrice1.get(0));
 		} else {
-			reporter.failureReport("Verify the part added to cart ", "Part is not added to cart.", "");
+			reporter.failureReport("Verify the part added to cart ", "Part is not added to cart.", "",driver);
 		}
+		
 		Thread.sleep(3000);
-		click(CONTINUE_SHOPPING_BUTTON, "Continue shopping");
+		/*click(CONTINUE_SHOPPING_BUTTON, "Continue shopping");
 		click(DELETE_BTN, "Delete button");
 		Thread.sleep(1000);
 		click(DELETE_BTN, "Delete button");
 		isElementPresent(PART_DELETED_MSG, "Part deleted from your list", true);
-		isVisible(LIST_EMPTY_MSG, "Your Personal Product List is currently empty.");
+		isVisible(LIST_EMPTY_MSG, "Your Personal Product List is currently empty.");*/
 	}
 
+	/**
+	 * @throws Throwable
+	 */
+	public void deleteItemFromPersonalizedList() throws Throwable {
+		click(DELETE_BTN, "Delete button");
+	}
+	
+	/**
+	 * 
+	 * @throws Throwable
+	 */
+	public void verifyPersonalizedListEmpyMessagePresent() throws Throwable {
+		isElementPresent(PART_DELETED_MSG, "Part deleted from your list", true);
+		if(isVisible(LIST_EMPTY_MSG, "Your Personal Product List is currently empty.")) {
+			reporter.SuccessReport("Verify PP list empty","Personal Product List is currently empty" , "");
+		}else {
+			reporter.failureReport("Verify PP list empty", "Verify PP list is not empty", "", driver);
+		}
+	}
+	
 	/**
 	 * This method is to verify the contract name in the product display page
 	 * and add product to cart.

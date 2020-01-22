@@ -69,6 +69,7 @@ public class SER13_IPSPersonalProductListSearchResultsTest extends SearchLib {
 					cartLib.selectFirstProductDisplay();
 					productDetailLib.getMFRNumberInProductInfopage();
 					prodInfoLib.selectProductAndverifyPersonalProductListLinkPresent();
+					prodInfoLib.ClickAddedItemsToPersonalProductList();
 					prodInfoLib.addItemsToProductList(data.get("Part_Number"));
 					prodInfoLib.addToCartAndVerify(data.get("Part_Number"));
 					
