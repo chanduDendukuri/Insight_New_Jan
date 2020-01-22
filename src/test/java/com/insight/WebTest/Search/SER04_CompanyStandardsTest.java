@@ -109,6 +109,7 @@ public class SER04_CompanyStandardsTest extends SearchLib {
 					// search part number : 516814-B21-AX -- 516814-B21-AX
 					searchInHomePage(data.get("part_Number"));
 					prodInfoLib.verifyTheManufacturerNumberInProductDetailsPage(data.get("part_Number"));
+					removeTheFilterForInStockOnly(data.get("In_Stock"));	
 					String[] checkbox=data.get("Checkboxes").split(",");
 					clickAddToCompanyStandardsLink();
 					Thread.sleep(3000);
