@@ -2678,7 +2678,7 @@ public class CMTLib extends CMTObj {
 	 * @throws Throwable
 	 */
 	public void verifyUserNotExistMessage(String userName) throws Throwable {
-		if (isVisibleOnly(CMTObj.ERRORMSG_CREATEUSER, "Error message")) {
+		if (isVisibleOnly(CMTObj.ERRORMSG_CREATEUSER, "Error message")){
 			String errorMessage = getText(CMTObj.ERRORMSG_CREATEUSER, "Error message");
 			reporter.failureReport("New User Creation Error Message", "Your given User id " + userName + "is",
 					errorMessage, driver);

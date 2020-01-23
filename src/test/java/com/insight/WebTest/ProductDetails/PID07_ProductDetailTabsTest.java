@@ -26,6 +26,8 @@ public class PID07_ProductDetailTabsTest extends ActionEngine{
 	CMTLib cmtLib = new CMTLib();
 	CartLib cartLib = new CartLib();
 	ProductDetailLib productDetailLib = new ProductDetailLib();
+	SearchLib searchLib=new SearchLib();
+
 	// #############################################################################################################
 		// # Name of the Test : PID07_ProductDetailTabs
 		// # Migration Author : Cigniti Technologies
@@ -57,13 +59,20 @@ public class PID07_ProductDetailTabsTest extends ActionEngine{
 				CommonLib commonLib = new CommonLib();
 				ProductDetailLib productdetLib = new ProductDetailLib();
 				commonLib.searchProduct(data.get("Search_Item1"));
-				productdetLib.verifyBreadcrumb();
+				searchLib.verifyBreadCrumbInSearchResultsPage(data.get("Search_Item1"));
+				productdetLib.getFirstProdDescription();
+				cartLib.selectFirstProductDisplay();
+				productdetLib.getProductNameInProductDetailPage(data.get("Search_Item1"));
+				productdetLib.getMFRNumberInProductInfopage();
 				productdetLib.OverviewTab();
 				commonLib.searchProduct(data.get("Search_Item2"));
 				// Verify Specifications
-				productdetLib.Getproductdetails();
-				// Verify Accessories
-				productdetLib.VerifyAddAccessories();
+				productdetLib.verifySpecifications(data.get("Tab1"));
+				productdetLib.verifySpecifications(data.get("Tab2"));
+				productdetLib.verifySpecifications(data.get("Tab3"));
+				productdetLib.verifySpecifications(data.get("Tab4"));
+				Thread.sleep(3000);
+				scrollUp();
 				// Update Qauntiy
 				productdetLib.Verifyupdatequantity();
 			    //End of The Test
