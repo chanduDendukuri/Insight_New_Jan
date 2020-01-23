@@ -33,7 +33,7 @@ public class CMTLib extends CMTObj {
 	 */
 	public void loginToCMT(String login) throws Throwable {
 		click(CommonObj.getPrimaryNavLink(login), "Login link");
-		Thread.sleep(5000);
+		Thread.sleep(3000);
 		if (isElementPresent(CommonObj.CLOSE, "Close icon")) {
 			click(CommonObj.CLOSE, "Close icon");
 		}
@@ -545,7 +545,7 @@ public class CMTLib extends CMTObj {
 		} else {
 			LOG.info(userPermissions + " check box already checked.");
 			reporter.SuccessReport("Verify Customer Level Permissions",
-					"User permissions :" + userPermissions + "check box already Disabled", "" + userPermissions + "OFF");
+					"User permissions :" + userPermissions + "check box already Disabled", "" + userPermissions + " OFF");
 		}
 	}
 

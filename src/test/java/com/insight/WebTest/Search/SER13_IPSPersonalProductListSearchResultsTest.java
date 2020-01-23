@@ -47,10 +47,12 @@ public class SER13_IPSPersonalProductListSearchResultsTest extends SearchLib {
 					TestEngineWeb.reporter.initTestCaseDescription("IPSPersonalProductListSearchResults");
 				
 					fnOpenTest();
+					/*clickOnSecondaryHeaderAndNavigate(data.get("HeaderName"), data.get("HeaderList"));
+					selectTheProductByTypeAndVerifyNavigation(data.get("ProductType"));*/
 					searchInHomePage(data.get("ProductType"));
+					verifyBreadCrumbInSearchResultsPage(data.get("ProductType"));
 					// Add to Personal product list link should not display.
 					cartLib.selectFirstProductDisplay();
-					verifyBreadCrumbInSearchResultsPage(data.get("ProductType"));
 					prodInfoLib.verifyPersonalProductListLinkNotPresent();
 
 					// login to CMT
@@ -60,7 +62,7 @@ public class SER13_IPSPersonalProductListSearchResultsTest extends SearchLib {
 					cmtLib.hoverOnManageWebGroupsAndSelectOptions(data.get("Manage_Web_Grp_Options"));
 					cmtLib.searchForaUserAndSelect(data.get("LnameEmailUname"), data.get("ContactName"));
 					// 
-					cmtLib.setPermissions(data.get("Menu_Name"), data.get("Set_Permission1"));
+					cmtLib.setPermissions(data.get("Menu_Name"), data.get("Set_Permission"));
 					cmtLib.setPermissionsToDisable(data.get("Menu_Name"), data.get("Set_Permission2"));
 					// Login to CMT
 					cmtLib.loginAsAdminCMT();
