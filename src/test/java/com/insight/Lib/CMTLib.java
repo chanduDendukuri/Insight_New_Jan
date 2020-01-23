@@ -33,7 +33,7 @@ public class CMTLib extends CMTObj {
 	 */
 	public void loginToCMT(String login) throws Throwable {
 		click(CommonObj.getPrimaryNavLink(login), "Login link");
-		Thread.sleep(5000);
+		Thread.sleep(3000);
 		if (isElementPresent(CommonObj.CLOSE, "Close icon")) {
 			click(CommonObj.CLOSE, "Close icon");
 		}
@@ -545,7 +545,7 @@ public class CMTLib extends CMTObj {
 		} else {
 			LOG.info(userPermissions + " check box already checked.");
 			reporter.SuccessReport("Verify Customer Level Permissions",
-					"User permissions :" + userPermissions + "check box already Disabled", "" + userPermissions + "OFF");
+					"User permissions :" + userPermissions + "check box already Disabled", "" + userPermissions + " OFF");
 		}
 	}
 
@@ -1375,7 +1375,7 @@ public class CMTLib extends CMTObj {
 	public List<String> verifyDisplayWebIcon() throws Throwable {
 
 		// Verify Display Web Icon visibility
-		if (isElementPresent(DISPLAY_ON_WEB, "Web icon")) {
+		if (isVisibleOnly(DISPLAY_ON_WEB, "Web icon")) {
 			click(DISPLAY_ON_WEB, "Display web icon");
 			reporter.SuccessReport("Click Display  Web Icon on Manage Web Group: Contacts and Notifications Page",
 					"Display on Web Icon Existed and Clicked ", "");
@@ -1383,7 +1383,8 @@ public class CMTLib extends CMTObj {
 			reporter.failureReport("Click Display  Web Icon on Manage Web Group: Contacts and Notifications Page",
 					"Display on Web Icon Is Not Exists ", "");
 		}
-
+		
+		
 		// See the Reps Names
 		List<String> popupRepNamesList = new ArrayList<String>();
 		String popupRepName = null;
@@ -1398,11 +1399,30 @@ public class CMTLib extends CMTObj {
 				if (salesRep.size() >= 2) {
 
 					if (i == 1) {
-						type(getRepValuesOnDisplayWebPopup(i), Integer.toString(i + 1), "sales rep number text box");
+						String val=Integer.toString(i + 3);
+						type(getRepValuesOnDisplayWebPopup(i),val , "sales rep number text box");
+						
+						reporter.SuccessReport("Repo Name and its Value", "Repo Name is "+ getText(getRepNamesOnDisplayWebPopup(i), "Rep Names").replace(",", " ").trim() + " and order is -->" + val, val);
 					}
 					if (i == 2) {
-						type(getRepValuesOnDisplayWebPopup(i), Integer.toString(i - 1), "sales rep number text box");
+						String val1=Integer.toString(i + 1);
+						type(getRepValuesOnDisplayWebPopup(i), val1, "sales rep number text box");
+						reporter.SuccessReport("Repo Name and its Value", "Repo Name is "+ getText(getRepNamesOnDisplayWebPopup(i), "Rep Names").replace(",", " ").trim() + " and order is -->" + val1 , val1);
+						
 					}
+					if (i == 3) {
+						String val2=Integer.toString(i -1);
+						type(getRepValuesOnDisplayWebPopup(i), val2, "sales rep number text box");
+						reporter.SuccessReport("Repo Name and its Value", "Repo Name is "+ getText(getRepNamesOnDisplayWebPopup(i), "Rep Names").replace(",", " ").trim() + " and order is --> " + val2, val2);
+
+					}
+					if (i == 4) {
+						String val3=Integer.toString(i - 3);
+						type(getRepValuesOnDisplayWebPopup(i), val3, "sales rep number text box");
+						reporter.SuccessReport("Repo Name and its Value", "Repo Name is "+ getText(getRepNamesOnDisplayWebPopup(i), "Rep Names").replace(",", " ").trim() + " and order is -->  "+val3, val3);
+
+					}
+					
 				}
 
 			}
@@ -1419,16 +1439,121 @@ public class CMTLib extends CMTObj {
 			}
 
 			// JSClick(UPDATE_BUTTN, "Update button");
-		} else
+		} 
+		else
+			{
 			reporter.failureReport("Verify Rep Name on Manage Web Group: Contacts and Notifications Page",
 					"POPUP does not Exists ", "");
+			}
+		
+		if(isVisibleOnly(DISPLAY_ON_WEB,"Web Icon"))
+		{
+			click(DISPLAY_ON_WEB,"Display Web Icon");
+			if (isElementPresent(DISPLAY_ON_WEB_POPUP, "Web icon")) {
+				reporter.SuccessReport("Verify Rep Name on Manage Web Group: Contacts and Notifications Page",
+						"POP Exists with Display Sales Rep Names ", "");
 
-		// verify cancel button in Product Exp
-		if (isElementPresent(DISPLAY_ON_WEB_POPUP, "Web icon")) {
-			click(DISPLAY_ON_WEB, "Display web icon");
-			type(getRepValuesOnDisplayWebPopup(1), "abc", "sales rep number text box");
+				List<WebElement> salesRep = driver
+						.findElements(By.xpath("//div[@id='webNotificationSortPopUp']//input[@type='textbox']"));
+
+
+			for (i = 1; i <= salesRep.size(); i++) {
+				if (salesRep.size() >= 2) {
+
+					if (i == 1) {
+						String val=Integer.toString(i + 3);
+						type(getRepValuesOnDisplayWebPopup(i),val , "sales rep number text box");
+						
+						reporter.SuccessReport("Repo Name and its Value", "Repo Name is "+ getText(getRepNamesOnDisplayWebPopup(i), "Rep Names").replace(",", " ").trim() + " and its values is ", val);
+					}
+				/*	if (i == 2) {
+						String val1=Integer.toString(i + 1);
+						type(getRepValuesOnDisplayWebPopup(i), val1, "sales rep number text box");
+						reporter.SuccessReport("Repo Name and its Value", "Repo Name is "+ getText(getRepNamesOnDisplayWebPopup(i), "Rep Names").replace(",", " ").trim() + " and its values is ", val1);
+						
+					}
+					if (i == 3) {
+						String val2=Integer.toString(i -1);
+						type(getRepValuesOnDisplayWebPopup(i), val2, "sales rep number text box");
+						reporter.SuccessReport("Repo Name and its Value", "Repo Name is "+ getText(getRepNamesOnDisplayWebPopup(i), "Rep Names").replace(",", " ").trim() + " and its values is ", val2);
+
+					}
+					if (i == 4) {
+						String val3=Integer.toString(i - 3);
+						type(getRepValuesOnDisplayWebPopup(i), val3, "sales rep number text box");
+						reporter.SuccessReport("Repo Name and its Value", "Repo Name is "+ getText(getRepNamesOnDisplayWebPopup(i), "Rep Names").replace(",", " ").trim() + " and its values is ", val3);
+
+					}
+*/					
+				}
+			}
+			}
+
+			
 			click(UPDATE_BUTTN, "Update button");
 			waitForVisibilityOfElement(ALERTERORRR_MSG, "Error, the rules must numeric.");
+			if(isVisibleOnly(ALERTERORRR_MSG, "Error, the rules must numeric.")){
+				reporter.SuccessReport("Invalid data Validation", "Error message appeares when user enter invalid input", getText(ALERTERORRR_MSG, "Error, the rules must be unique."));
+			}
+
+		}
+		// verify cancel button in Product Exp
+		if (isElementPresent(DISPLAY_ON_WEB_POPUP, "Web icon")) {
+			//click(DISPLAY_ON_WEB, "Display web icon");
+			//type(getRepValuesOnDisplayWebPopup(1), "abc", "sales rep number text box");
+			
+			
+			List<WebElement> salesRep = driver
+					.findElements(By.xpath("//div[@id='webNotificationSortPopUp']//input[@type='textbox']"));
+
+			for (i = 1; i <= salesRep.size(); i++) {
+				if (salesRep.size() >= 2) {
+
+					if (i == 1) {
+						String val="a";
+						type(getRepValuesOnDisplayWebPopup(i),val , "sales rep number text box");
+						
+						reporter.SuccessReport("Repo Name and its Value", "Repo Name is "+ getText(getRepNamesOnDisplayWebPopup(i), "Rep Names").replace(",", " ").trim() + " and its values is ", val);
+					}
+					if (i == 2) {
+						String val1="b";
+						type(getRepValuesOnDisplayWebPopup(i), val1, "sales rep number text box");
+						reporter.SuccessReport("Repo Name and its Value", "Repo Name is "+ getText(getRepNamesOnDisplayWebPopup(i), "Rep Names").replace(",", " ").trim() + " and its values is ", val1);
+						
+					}
+					if (i == 3) {
+						String val2="c";
+						type(getRepValuesOnDisplayWebPopup(i), val2, "sales rep number text box");
+						reporter.SuccessReport("Repo Name and its Value", "Repo Name is "+ getText(getRepNamesOnDisplayWebPopup(i), "Rep Names").replace(",", " ").trim() + " and its values is ", val2);
+
+					}
+					if (i == 4) {
+						String val3="d";
+						type(getRepValuesOnDisplayWebPopup(i), val3, "sales rep number text box");
+						reporter.SuccessReport("Repo Name and its Value", "Repo Name is " +"<b>"+ getText(getRepNamesOnDisplayWebPopup(i), "</b>Rep Names").replace(",", " ").trim() + " and its values is ", val3);
+
+					}
+					
+				}
+
+			}
+			
+			
+			click(UPDATE_BUTTN, "Update button");
+			waitForVisibilityOfElement(ALERTERORRR_MSG, "Error, the rules must numeric.");
+			if(isVisibleOnly(ALERTERORRR_MSG, "Error, the rules must numeric.")){
+				reporter.SuccessReport("Invalid data Validation", "Error message appeares when user enter invalid input", getText(ALERTERORRR_MSG, "Error, the rules must numeric."));
+			}
+			
+			//Duplicate input
+			
+			/*List<WebElement> salesRep = driver
+					.findElements(By.xpath("//div[@id='webNotificationSortPopUp']//input[@type='textbox']"));*/
+
+			
+			
+			
+			
 			if (isElementPresent(CANCEL_BTN, "Cancel button")) {
 				click(CANCEL_BTN, "Cancel button click");
 				reporter.SuccessReport("Click CANCEL in POPUP on Manage Web Group: Contacts and Notifications Page",
@@ -1778,7 +1903,7 @@ public class CMTLib extends CMTObj {
 				if (isVisibleOnly(PHONE_NUMBER, "New Rep Phone Number")) {
 					click(PHONE_NUMBER, "Phone Number Text Field");
 					String getPhone = driver.findElement(PHONE_NUMBER).getText();
-					if (getPhone == null) {
+					if (getPhone == null || getPhone!=null) {
 						type(PHONE_NUMBER, Phone, "New Rep Phone Number::" + Phone + "");
 					}/*else{
 						reporter.SuccessReport("Phone number", " Repo Phone number ", getPhone);
@@ -1799,8 +1924,24 @@ public class CMTLib extends CMTObj {
 				}
 			}
 		} else
-			reporter.failureReport("Click on Add New Rep Link", "Add New Rep Link is NOT available", "", driver);
+			reporter.failureReport("Click on Add New Rep Link", "Add New Rep Link is NOT available ", "", driver);
 
+	}
+	public void verifyNewlyAddedRepo() throws Throwable{
+		if(isVisibleOnly(lblNewRepoText,"Newly Added repo")){
+			reporter.SuccessReport("Newly added Repo", " The newly added repo available ", getText(lblNewRepoText,"Newly Added repo"));
+		}else
+		{
+			reporter.failureReport("Newly added Repo", " The newly added repo is not available ", "NA", driver);
+		}
+	}
+	public void verifyNewlyAddedRepoAfterDelete() throws Throwable{
+		if(!isVisibleOnly(lblNewRepoText,"Newly Added repo")){
+			reporter.SuccessReport("Newly added Repo", " The newly added repo is successfully deleted ", "");
+		}else
+		{
+			reporter.failureReport("Newly added Repo", " The newly added repo is not deleted ", "", driver);
+		}
 	}
 
 	public void verifySuccessRepMsg() throws Throwable {
@@ -1839,7 +1980,7 @@ public class CMTLib extends CMTObj {
 	}
 
 	public void saveRepDetails() throws Throwable {
-		if (isElementPresent(SAVE_BTN, "Save Button")) {
+		if (isVisibleOnly(SAVE_BTN, "Save Button")) {
 
 			click(SAVE_BTN, "Click on save button");
 			reporter.SuccessReport("Verify that Save button exists and clicked", "Save button exists and clicked", "");
@@ -1849,7 +1990,7 @@ public class CMTLib extends CMTObj {
 	}
 
 	public void verifySuccessSaveMsg() throws Throwable {
-		if (isElementPresent(REP_SAVE_SUCCESS_MESSAGE, "Success save message")) {
+		if (isVisibleOnly(REP_SAVE_SUCCESS_MESSAGE, "Success save message")) {
 			reporter.SuccessReport("Verify that the message that the updates have been made successfully is displayed",
 					"the message that the updates have been made successfully is displayed", "");
 		} else
@@ -2697,4 +2838,16 @@ public class CMTLib extends CMTObj {
 		}
 	}
 
+	public boolean verifyCheckBoxSelectedForFirstElement() throws Throwable{
+		return isCheckBoxSelected(chkBxWebElement1);
+		}
+	public boolean verifyCheckBoxSelectedForSecondElement() throws Throwable{
+		return isCheckBoxSelected(chkBxWebElement2);
+		}
+	public boolean verifyCheckBoxSelectedForThirdElement() throws Throwable{
+		return isCheckBoxSelected(chkBxWebElement3);
+		}
+	public boolean verifyCheckBoxSelectedForFourthElement() throws Throwable{
+		return isCheckBoxSelected(chkBxWebElement4);
+		}
 }

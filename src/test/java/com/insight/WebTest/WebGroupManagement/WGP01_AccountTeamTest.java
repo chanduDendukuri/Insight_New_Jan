@@ -54,7 +54,40 @@ public class WGP01_AccountTeamTest extends CMTLib {
 
 					// Click on Display Icon
 					List<String> RepNamesInDisplayOnWeb = verifyDisplayWebIcon();
-
+					String s1=null;
+					
+					if(verifyCheckBoxSelectedForFirstElement()){
+						boolean a = verifyCheckBoxSelectedForFirstElement();
+						 s1=Boolean.toString(a);
+						reporter.SuccessReport("Display on web check box ", "Display on web check is selected", s1);
+					}else{
+						reporter.failureReport("Display on web check box ", "Display on web check is selected", s1,driver);
+					}
+					if(verifyCheckBoxSelectedForSecondElement())
+					{
+						boolean a = verifyCheckBoxSelectedForSecondElement();
+						 s1=Boolean.toString(a);
+						reporter.SuccessReport("Display on web check box ", "Display on web check is selected", s1);
+					}else{
+						reporter.failureReport("Display on web check box ", "Display on web check is selected", s1,driver);
+					}
+					if(verifyCheckBoxSelectedForThirdElement())
+					{
+						boolean a = verifyCheckBoxSelectedForSecondElement();
+						 s1=Boolean.toString(a);
+						reporter.SuccessReport("Display on web check box ", "Display on web check is selected", s1);
+					}else{
+						reporter.failureReport("Display on web check box ", "Display on web check is selected", s1,driver);
+					}
+					if(verifyCheckBoxSelectedForFourthElement())
+					{
+						boolean a = verifyCheckBoxSelectedForSecondElement();
+						 s1=Boolean.toString(a);
+						reporter.SuccessReport("Display on web check box ", "Display on web check is selected", s1);
+					}else{
+						reporter.failureReport("Display on web check box ", "Display on web check is selected", s1,driver);
+					}
+					
 					// Click on Product Exp
 					verifyProductExpIconFeature();
 

@@ -52,10 +52,12 @@ public class SER16_SearchResultsPermissionsAndContractsIPSTest extends SearchLib
 					cmtLib.clickOnTheWebGroup(data.get("WebGrp_Name"));
 					cmtLib.hoverOnManageWebGroupsAndSelectOptions(data.get("Manage_Web_Grp_Options"));
 					cmtLib.searchForaUserAndSelect(data.get("LnameEmailUname"), data.get("ContactName"));
+					cmtLib.permissionFromDD(data.get("Set_Permission3"), data.get("Permission_Drop_Down"));
 					String[] permissions1=data.get("Set_Permission1").split(",");
 					for (i = 0; i < permissions1.length; i++) { 
 					cmtLib.setPermissions(data.get("Menu_Name"),permissions1[i] );
 					}
+					cmtLib.setPermissionsToDisable(data.get("Menu_Name"), data.get("Set_Permission2"));
 					// Login to CMT
 					cmtLib.loginAsAdminCMT();
 					cmtLib.loginVerification(data.get("ContactName"));
@@ -64,6 +66,10 @@ public class SER16_SearchResultsPermissionsAndContractsIPSTest extends SearchLib
 					verifyContractAllDisplayed();
 					searchInHomePage(data.get("SearchText"));
 					verifyTheResultsForSearchTerm(data.get("SearchText"));
+					prodInfoLib.getPartNumberInSearchResultsPage();
+					
+					
+					
 					clickMorePricesAndViewContracts();
 					Thread.sleep(3000);
 					VerifyDefaultUSDContractPrice();
