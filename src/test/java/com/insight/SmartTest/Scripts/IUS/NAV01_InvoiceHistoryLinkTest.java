@@ -56,7 +56,7 @@ public class NAV01_InvoiceHistoryLinkTest extends HomeLib {
 					loginlib.loginIntoSmartApplication(data.get("UserName"),data.get("Password"));
 					
 					//Home Page
-					EnterSalesDocNumber("317419815");
+					EnterSalesDocNumber(data.get("SalesDoc"));
 					clickOnSalesDocSearch();
 					
 					//to see history dropdown,have to close side view bar

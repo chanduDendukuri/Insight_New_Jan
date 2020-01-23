@@ -58,7 +58,7 @@ public class CQT02_FreightESDTest extends HomeLib {
 				clickOnLICandMaintCheckBox();
 				clickOnSaveButtonOnOptionsAndLevelsPopup();
 
-				enrollmentDropDown("4100012345 - Insight Automated KBP Account 2400");
+				enrollmentDropDown(data.get("EnrollmentOption"));
 				clickLabelEnrollment();
 				
 				verifyQuoteProgramIsBlank();

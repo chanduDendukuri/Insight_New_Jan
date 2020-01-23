@@ -68,7 +68,7 @@ public class CQT07_CiscoGetConfigBundle_US extends HomeLib {
 					 EnterStartDateandEndDate(data.get("startdate"),data.get("endDate"));
 					 clickDoneButton();
 						clickUpdateCosting();
-						driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+						
 						//	To Get Updated  Rep cost for Line 20
 						String UpdatedRepPrice1= getRepCostValueFromLineItemTable(data.get("Pricevalue")); //2--Line 20
 						 Float UpdatedP1= Float.valueOf(UpdatedRepPrice1);		
@@ -86,7 +86,7 @@ public class CQT07_CiscoGetConfigBundle_US extends HomeLib {
 						 Float UpdatedRate1= Float.valueOf(UpdatedPricingRate1);					
 						 clickDoneButton();				
 					clickSideBarSmart();
-					Thread.sleep(3000);
+					
 					clickClosthedocument(data.get("Doctype"));
 					clickYesButtontocloseDocument();
 

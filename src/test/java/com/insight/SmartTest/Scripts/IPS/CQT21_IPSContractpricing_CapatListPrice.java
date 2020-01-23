@@ -53,7 +53,7 @@ public class CQT21_IPSContractpricing_CapatListPrice extends HomeLib {
 					 * clickOnSoldToSearchIcon();//10529929
 					 */		AddMaterialOnLineItem(data.get("MaterialID"));	
 							clickOnCOntractIDinLineItemsList();
-							selectCOntractID(data.get("contactid"),data.get("contactTab"));
+							selectCOntractID(data.get("ContractId"),data.get("ContractTab"));
 							clickDoneButton();
 							clickUpdateCosting();
 							
@@ -62,7 +62,7 @@ public class CQT21_IPSContractpricing_CapatListPrice extends HomeLib {
 							enterCancelButtonInPoupHdr();
 							String QuoteNum= GetQuoteNumber();
 							clickOnCOntractIDinLineItemsList();
-							selectCOntractSubTabName(data.get("contactTab2"));//Pricing
+							selectCOntractSubTabName(data.get("ContractTa2"));//Pricing
 							
 							//Get data from the pricing tab
 							List<String> Price = new ArrayList<>();
@@ -97,8 +97,8 @@ public class CQT21_IPSContractpricing_CapatListPrice extends HomeLib {
 			                    }
 			                    
 			                   				
-							selectCOntractID(data.get("contactid"),data.get("contactTab"));//Contracts
-							VerifyContractPriceShouldbeEqualToYPOO(Price4,data.get("contactid"));
+							selectCOntractID(data.get("ContractId"),data.get("ContractTab"));//Contracts
+							VerifyContractPriceShouldbeEqualToYPOO(Price4,data.get("ContractId"));
 							clickDoneButton();
 							//Need to compare pricing
 							VerifyZPFXShouldbeGreaterThanZPLS(price2value,price1value);

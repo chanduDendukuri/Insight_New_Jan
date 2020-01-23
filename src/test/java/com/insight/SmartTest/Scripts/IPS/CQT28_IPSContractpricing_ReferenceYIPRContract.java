@@ -54,7 +54,7 @@ public class CQT28_IPSContractpricing_ReferenceYIPRContract extends HomeLib {
 					//AddMaterialOnLineItem(data.get("MaterialID2"));//WS-C2960X-24PS-L
 					//AddMaterialOnLineItem(data.get("MaterialID3"));//CON-NSNT-C881WACC
 					clickOnCOntractIDinLineItemsList();
-					selectCOntractID(data.get("contactid"), data.get("contactTabName"));
+					selectCOntractID(data.get("ContractId"), data.get("ContractTabName"));
 					copyAllContractstoAllLines();
 					clickDoneButton();
 					clickUpdateCosting();
@@ -73,7 +73,7 @@ public class CQT28_IPSContractpricing_ReferenceYIPRContract extends HomeLib {
 						reporter.failureReport("QuoteNumber:", "Quotenumber is not displayed", "",driver);
 					}
 					clickOnCOntractIDinLineItemsList();
-					selectCOntractSubTabName(data.get("contractTab1"));// Pricing
+					selectCOntractSubTabName(data.get("ContractTab1"));// Pricing
 
 					// Get data from the pricing tab
 					List<String> Price = new ArrayList<>();
@@ -126,8 +126,8 @@ public class CQT28_IPSContractpricing_ReferenceYIPRContract extends HomeLib {
 				} else {
 				reporter.failureReport("Verify that YP00 equals to ZP00 value.","ZP00:"+Price2+"YP00: "+Price3 + "both are not same","", driver);
 				}
-					selectCOntractSubTabName(data.get("contractTab2"));// Contracts
-					VerifyContractPriceShouldbeEqualToYPOO(price3value, data.get("contactid"));	
+					selectCOntractSubTabName(data.get("ContractTab2"));// Contracts
+					VerifyContractPriceShouldbeEqualToYPOO(price3value, data.get("ContractId"));	
 					clickDoneButton();
 					clickSideBarSmart();
 					clickClosthedocument(QuoteNum1);
