@@ -711,6 +711,14 @@ public class SearchLib extends CommonObj {
 		}
 	}
 	
+	public void verifyDefaultUSContractInAllContractPricesPopup() throws Throwable {
+		if(isCheckBoxSelected(productsDisplayInfoObj.US_CONTRACTS_RADIO_BTN)) {
+			reporter.SuccessReport("Verify Defaulted Contract", "Defaulted Contract is USC", "Defaulted Contract: U.S. COMMUNITIES IT PRODUCTS & SERVICES");
+		}else {
+			reporter.failureReport("Verify Defaulted Contract", "Defaulted Contract is not USC", "",driver);
+		}
+	}
+	
 	/**
 	 * This method is to verify the default contract price displayed.
 	 * @throws Throwable

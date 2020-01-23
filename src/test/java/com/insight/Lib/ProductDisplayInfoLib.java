@@ -415,31 +415,16 @@ public class ProductDisplayInfoLib extends productsDisplayInfoObj {
 	 * @throws Throwable
 	 */
 	public void addItemsToProductList(String partNo) throws Throwable {
-		String result = null;
-		boolean flag = true;
 		//click(ADDED_TO_PERSONAL_PROD_LIST, "ADDED TO PERSONAL PRODUCT LIST");
 		if(isVisibleOnly(ADD_ITEMS_TEXTBOX, "items text box")) {
 			reporter.SuccessReport("Verify Personal Product List Page ", "page Exists", "");
 			type(ADD_ITEMS_TEXTBOX, partNo, "Add item(s) to your list");
 			click(ADD_BTN, "Add button","Add button to Add Part to Personal products list");
+			verifyManufacturerPartInPersonalListPage(partNo);
 		}else {
 			reporter.failureReport("Verify Personal Product List Page ", "page does not Exists", "");
 		}
-		if (flag) {
-			List<WebElement> myList = driver.findElements(MFR_PART);
-			List<String> all_elements_text = new ArrayList<>();
-			for (int i = 0; i < myList.size(); i++) {
-				all_elements_text.add(myList.get(i).getText());
-				result = myList.get(i).getText();
-				if (result.contains(partNo)) {
-					reporter.SuccessReport("Verify the part number", "Product Exists and Added to cart","part Number : "+ result);
-				}
-			}
-		} else {
-			reporter.failureReport("Verify the part number",
-					"Part number verification is not successful. expected is : " + partNo + "Actual is : " + result,
-					"");
-		}
+		
 	}
 	
 	public void ClickAddedItemsToPersonalProductList() throws Throwable {
