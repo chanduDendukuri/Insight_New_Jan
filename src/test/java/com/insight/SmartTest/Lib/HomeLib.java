@@ -3837,7 +3837,7 @@ public float getSellPriceFromInlineItemsContract(String contractid) throws Throw
 				click(txtPricingIDValue(i),"");
 				else {
 					reporter.failureReport("Pricing Id", "Pricing value is not displaying", "", driver);
-					break label1;
+					break;
 				}
 				action.sendKeys(Keys.ARROW_DOWN).perform();
 				
