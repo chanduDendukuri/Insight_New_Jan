@@ -58,6 +58,7 @@ public class ORD03_IPSMissingReportingFieldInfoTest extends HomeLib {
 				clickSaveorderwithoutAttachment();
 				verifyErrorMsg(data.get("Erromsg"));
 				clickOKinErrormsgBox();
+				clickSideBarSmart();
 				clickClosthedocument(data.get("Doctype"));
 				clickYesButtontocloseDocument();
 			} catch (Exception e) {

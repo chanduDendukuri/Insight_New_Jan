@@ -22,7 +22,7 @@
         <parameter name="seleniumurl" value="local"></parameter>
          <parameter name="executionType" value="Sequential"></parameter>
         <classes>
-            <class name="com.insight.SmartTest.Scripts.IPS.CQT27_IPSContractpricing_ReferenceContract">
+            <class name="com.insight.SmartTest.Scripts.IPS.ORD03_IPSMissingReportingFieldInfoTest">
             
            
                 <methods>

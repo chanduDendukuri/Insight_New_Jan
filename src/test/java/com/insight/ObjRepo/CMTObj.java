@@ -289,6 +289,10 @@ public class CMTObj extends ActionEngine {
 
 	public static By UPDATED_MESSAGE = By.xpath("//div[@id='UpdateMsg'][contains(.,'was updated')]");
 
+	public static By chkBxWebElement1 = By.id("accTeamDispWeb0");
+	public static By chkBxWebElement2 = By.id("accTeamDispWeb1");
+	public static By chkBxWebElement3 = By.id("accTeamDispWeb2");
+	public static By chkBxWebElement4 = By.id("accTeamDispWeb3");
 	public static By DISPLAY_ON_WEB = By.xpath("//div//img[@id = 'webNotificationSort']");
 	public static By DISPLAY_ON_WEB_POPUP = By.xpath("//div[@class='webSortPara']");
 	public static By CANCEL_BTN = By.xpath("//div//a[@title= 'CANCEL']");
