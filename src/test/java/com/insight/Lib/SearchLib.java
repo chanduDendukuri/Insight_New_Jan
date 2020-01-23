@@ -680,11 +680,11 @@ public class SearchLib extends CommonObj {
 	 * @param itemNumber
 	 * @throws Throwable 
 	 */
-	public void clickOnMorePrices(String itemNumber) throws Throwable {
+	public void clickOnMorePrices() throws Throwable {
 		List<WebElement> myList1 = driver.findElements(productsDisplayInfoObj.LIST_OF_ITEMS_SEARCH_RESULTS);
 		for (int i = 0; i < myList1.size(); i++) {
-			if(isVisible(productsDisplayInfoObj.more_Prices(itemNumber), "More prices link")) {
-				click(productsDisplayInfoObj.more_Prices(itemNumber), "More prices available link");
+			if(isVisible(productsDisplayInfoObj.more_Prices(Integer.toString(i)), "More prices link")) {
+				click(productsDisplayInfoObj.more_Prices(Integer.toString(i)), "More prices available link");
 			}else {
 				// do nothing
 			}
@@ -711,13 +711,44 @@ public class SearchLib extends CommonObj {
 		}
 	}
 	
-	public void verifyDefaultUSContractInAllContractPricesPopup() throws Throwable {
+	public void verifyDefaultUSContractInAllContractPricesPopup(String status) throws Throwable {
+		switch (status) {
+		case "checked":
 		if(isCheckBoxSelected(productsDisplayInfoObj.US_CONTRACTS_RADIO_BTN)) {
 			reporter.SuccessReport("Verify Defaulted Contract", "Defaulted Contract is USC", "Defaulted Contract: U.S. COMMUNITIES IT PRODUCTS & SERVICES");
 		}else {
 			reporter.failureReport("Verify Defaulted Contract", "Defaulted Contract is not USC", "",driver);
 		}
+	
+	case "unchecked":
+		if(!isCheckBoxSelected(productsDisplayInfoObj.US_CONTRACTS_RADIO_BTN)) {
+			reporter.SuccessReport("Verify Defaulted Contract", "Defaulted Contract is not USC", "");
+		}else {
+			reporter.failureReport("Verify Defaulted Contract", "Defaulted Contract is USC", "",driver);
+		}
 	}
+	}
+	/**
+	 * 
+	 * @param contract
+	 * @throws Throwable
+	 */
+	public void selectContractOnAllContractPricesPopup(String contract) throws Throwable {
+		if(isVisibleOnly(productsDisplayInfoObj.defaultContractRadioButton(contract), "contract")) {
+			click(productsDisplayInfoObj.defaultContractRadioButton(contract), "Web Radio Filter Option: "+contract, contract);
+		}else {
+			reporter.failureReport("verify contract present", contract+" does not exists", "", driver);
+		}
+	}
+	public void increaseQuantity(String quantity) throws Throwable {
+		if(isVisibleOnly(productsDisplayInfoObj.QUANTITY_CONTRACT_ALL, "quantity")){
+			clearData(productsDisplayInfoObj.QUANTITY_CONTRACT_ALL);
+			type(productsDisplayInfoObj.QUANTITY_CONTRACT_ALL,"Increase the Quantity : "+quantity,"NUMBER OF ITEMS");
+		}else {
+			reporter.failureReport("verify quantity exists", "Quantity field does not exists", "", driver);
+		}
+	}
+	 
 	
 	/**
 	 * This method is to verify the default contract price displayed.
@@ -1380,6 +1411,21 @@ public class SearchLib extends CommonObj {
 		}
 	}
 
+	
+	/**
+	 * 
+	 * @param contract
+	 * @throws Throwable
+	 */
+	public void verifydefaultcontractonAllcontractpopup(String contract) throws Throwable {
+		if(isVisibleOnly(productsDisplayInfoObj.defaultContractRadioButton(contract), "contract")) {
+			if(isCheckBoxSelected(productsDisplayInfoObj.defaultContractRadioButton(contract))) {
+				reporter.SuccessReport("verify default selected contract", "Dfault contract is : ", contract);
+			}
+		}else {
+			reporter.failureReport("verify contract present", contract+" is not default contract", "", driver);
+		}
+	}
 }
  
 
