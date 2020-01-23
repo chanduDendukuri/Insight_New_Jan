@@ -415,31 +415,16 @@ public class ProductDisplayInfoLib extends productsDisplayInfoObj {
 	 * @throws Throwable
 	 */
 	public void addItemsToProductList(String partNo) throws Throwable {
-		String result = null;
-		boolean flag = true;
 		//click(ADDED_TO_PERSONAL_PROD_LIST, "ADDED TO PERSONAL PRODUCT LIST");
 		if(isVisibleOnly(ADD_ITEMS_TEXTBOX, "items text box")) {
 			reporter.SuccessReport("Verify Personal Product List Page ", "page Exists", "");
 			type(ADD_ITEMS_TEXTBOX, partNo, "Add item(s) to your list");
 			click(ADD_BTN, "Add button","Add button to Add Part to Personal products list");
+			verifyManufacturerPartInPersonalListPage(partNo);
 		}else {
 			reporter.failureReport("Verify Personal Product List Page ", "page does not Exists", "");
 		}
-		if (flag) {
-			List<WebElement> myList = driver.findElements(MFR_PART);
-			List<String> all_elements_text = new ArrayList<>();
-			for (int i = 0; i < myList.size(); i++) {
-				all_elements_text.add(myList.get(i).getText());
-				result = myList.get(i).getText();
-				if (result.contains(partNo)) {
-					reporter.SuccessReport("Verify the part number", "Product Exists and Added to cart","part Number : "+ result);
-				}
-			}
-		} else {
-			reporter.failureReport("Verify the part number",
-					"Part number verification is not successful. expected is : " + partNo + "Actual is : " + result,
-					"");
-		}
+		
 	}
 	
 	public void ClickAddedItemsToPersonalProductList() throws Throwable {
@@ -550,9 +535,9 @@ public class ProductDisplayInfoLib extends productsDisplayInfoObj {
 	public void verifyContractInCartScreen(String contractName) throws Throwable {
 		String actualcontractName = getText(CART_CONTRACT_NAME, "contract name");
 		if (contractName.contains(actualcontractName)) {
-			reporter.SuccessReport("Verify the contract name", " Contract name verified successfully ", "");
+			reporter.SuccessReport("Verify the contract name", " Contract name verified successfully in cart page and is same as selected", actualcontractName);
 		} else {
-			reporter.failureReport("Verify the contract name", " Contract name not displayed correctly", "");
+			reporter.failureReport("Verify the contract name", " Contract name not displayed correctly in cart page", actualcontractName,driver);
 		}
 	}
 
@@ -1265,7 +1250,35 @@ public class ProductDisplayInfoLib extends productsDisplayInfoObj {
     				}
         	}
 
-
+	public void verifyCartPageAndPartDetails() throws Throwable {
+		List<String> prodDesc1 = orderLib.getProductDescriptionOfCartProduct();
+		List<String> totalPrice1 = orderLib.getCartProductTotalPrice();
+		List<String> unitPrice1=orderLib.getCartProductUnitPrice();
+		List<String> quantity=orderLib.getCartProductQuantity();
+		List<String> stock=orderLib.getCartProductStock();
+		if (prodDesc1.get(0)!=null && totalPrice1!=null) {
+			reporter.SuccessReport("Verify the part added to cart ", "Contract in Cart is the one selected in pop-up Exists and Value Returned ",
+					 "  prod Description : " + prodDesc1.get(0) + " Quantity : 2"
+							+ "Total Price: " + totalPrice1.get(0)+ " Unit price: "+unitPrice1+ "Stock :"+stock);
+		} else {
+			reporter.failureReport("Verify the part added to cart ", "Part is not added to cart.", "", driver);
+		}
+   }
+	
+	
+	public void contractNameOfFirstproduct() throws Throwable {
+		if(isVisibleOnly(CONTRACT_IN_SEARCH_RESULTS, "contract in search results")) {
+			String contract=getText(CONTRACT_IN_SEARCH_RESULTS, "contract");
+			if(contract.startsWith("US ")) {
+				reporter.failureReport("Contract of the first part in Search Result Exists and Value Returned", "USD is default contract", "", driver);
+			}else {
+				reporter.SuccessReport("Contract of the first part in Search Result Exists and Value Returned", "Contract of the first part in Search Result Exists and Value Returned", "contract of first product: "+contract);
+			}
+			
+		}else {
+			reporter.failureReport("Contract of the first part in Search Result Exists not viible", "Contract not visisble", "", driver);
+		}
+	}
 }
   
 	

@@ -80,12 +80,6 @@ MarriottIntlCorpLib marriottlib=new MarriottIntlCorpLib();
 						String emailAddress="TU_IPSADMIN"+getRandomNumeric(4)+"@MAILINATOR.COM";
 						cmtLib.enterEmailAddressInAddAnAccount(emailAddress);
 						cmtLib.clickCreateUserButton();	
-						Thread.sleep(2000);
-						cmtLib.hoverOnManageWebGroupsAndSelectOptions(data.get("Manage_Web_Grp_Options"));
-						cmtLib.searchUsers(emailAddress);
-						Thread.sleep(2000);
-						cmtLib.contactNameSearchResultVerificationofCreatedUser(data.get("ContactName"));
-						cmtLib.verifyUserandClick(data.get("ContactName"));
 						cmtLib.clickOnRolesAndPermissionsTab(data.get("Menu_Name"));
 						String[] permissions = data.get("Set_Permission").split(",");
 						for (i = 0; i < permissions.length; i++) {

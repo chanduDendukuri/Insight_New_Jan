@@ -544,7 +544,6 @@ public class CMTLib extends CMTObj {
 				reporter.failureReport("Verify the sucess message", "Permissions are not disabled Succesfully", "",
 						driver);
 			}
-
 		} else {
 			LOG.info(userPermissions + " check box already checked.");
 			reporter.SuccessReport("Verify Customer Level Permissions",

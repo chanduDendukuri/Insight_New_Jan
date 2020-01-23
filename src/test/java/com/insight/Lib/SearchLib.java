@@ -639,10 +639,10 @@ public class SearchLib extends CommonObj {
 	 *  Open market price availability and your price availability.
 	 * @throws Throwable
 	 */
-	public void clickMorePricesAndViewContracts() throws Throwable{
+	public void clickMorePricesAndViewContracts(String itemNum) throws Throwable{
 		String result = null;
 		boolean flag = true;
-		click(productsDisplayInfoObj.MORE_PRICES, "More prices available link");
+		
 		
 		if (flag) {
 			List<WebElement> myList = driver.findElements(productsDisplayInfoObj.ALL_CONTRACT_PRICES);
@@ -650,19 +650,17 @@ public class SearchLib extends CommonObj {
 			for (int i = 0; i < myList.size(); i++) {
 				all_elements_text.add(myList.get(i).getText());
 				result = myList.get(i).getText();
+				
 				if(myList.size()<1 ){
-					reporter.failureReport("Verify the contract prices displayed ",
-							"contract price are not displayed ","");
+					reporter.failureReport("Verify the contract prices displayed ","contract price are not displayed ","");
 				}else{
-					reporter.SuccessReport("Verify the contract prices displayed ",
-							"contract price is displayed as : " , result);
+					reporter.SuccessReport("Verify the contract prices displayed ","contract price is displayed as : " , result);
 				}
 				
 				if (isElementPresent(productsDisplayInfoObj.OPEN_MARKET, "Open Market")) {
 					String openMarket = getText(productsDisplayInfoObj.OPEN_MARKET, "Open Market"); // To get the open market price to verify
 					if(result.contains(openMarket)){
-					reporter.SuccessReport("Verify the Open Market price",
-							"Open Market price is displayed as : " , openMarket);
+					reporter.SuccessReport("Verify the Open Market price","Open Market price is displayed as : " , openMarket);
 				   }
 				}
 				else if (isElementPresent(productsDisplayInfoObj.YOUR_PRICE, "Your price")) {   // verifying your price is present 
@@ -676,6 +674,81 @@ public class SearchLib extends CommonObj {
 			reporter.failureReport("Verify the Open Market price", "Open Market price is not displayed","");
 		}
 	}
+	
+	/**
+	 * 
+	 * @param itemNumber
+	 * @throws Throwable 
+	 */
+	public void clickOnMorePrices() throws Throwable {
+		List<WebElement> myList1 = driver.findElements(productsDisplayInfoObj.LIST_OF_ITEMS_SEARCH_RESULTS);
+		for (int i = 0; i < myList1.size(); i++) {
+			if(isVisible(productsDisplayInfoObj.more_Prices(Integer.toString(i)), "More prices link")) {
+				click(productsDisplayInfoObj.more_Prices(Integer.toString(i)), "More prices available link");
+			}else {
+				// do nothing
+			}
+		}
+	}
+	/**
+	 * Method is to get all contracts in the contract prices popup
+	 * @throws Throwable
+	 */
+	
+	public void allContractPricesPopup() throws Throwable {
+		String result=null;
+		if(isVisibleOnly(productsDisplayInfoObj.ALL_CONTRACT_PRICES, "contract prices")) {
+			List<WebElement> myList = driver.findElements(productsDisplayInfoObj.ALL_CONTRACT_PRICES);
+			List<String> all_elements_text = new ArrayList<>();
+			reporter.SuccessReport("Verify that there are multiple Contract Prices", "	There are multiple Contract Prices", "Number of contract prices : "+myList.size());
+			for (int i = 0; i < myList.size(); i++) {
+				all_elements_text.add(myList.get(i).getText());
+				result = myList.get(i).getText();
+					reporter.SuccessReport("Available Contracts ","contracts Exists ","Contract: "+result);
+			}	
+		}else {
+			reporter.failureReport("Available contracts", "contracts does not exists", "", driver);
+		}
+	}
+	
+	public void verifyDefaultUSContractInAllContractPricesPopup(String status) throws Throwable {
+		switch (status) {
+		case "checked":
+		if(isCheckBoxSelected(productsDisplayInfoObj.US_CONTRACTS_RADIO_BTN)) {
+			reporter.SuccessReport("Verify Defaulted Contract", "Defaulted Contract is USC", "Defaulted Contract: U.S. COMMUNITIES IT PRODUCTS & SERVICES");
+		}else {
+			reporter.failureReport("Verify Defaulted Contract", "Defaulted Contract is not USC", "",driver);
+		}
+	
+	case "unchecked":
+		if(!isCheckBoxSelected(productsDisplayInfoObj.US_CONTRACTS_RADIO_BTN)) {
+			reporter.SuccessReport("Verify Defaulted Contract", "Defaulted Contract is not USC", "");
+		}else {
+			reporter.failureReport("Verify Defaulted Contract", "Defaulted Contract is USC", "",driver);
+		}
+	}
+	}
+	/**
+	 * 
+	 * @param contract
+	 * @throws Throwable
+	 */
+	public void selectContractOnAllContractPricesPopup(String contract) throws Throwable {
+		if(isVisibleOnly(productsDisplayInfoObj.defaultContractRadioButton(contract), "contract")) {
+			click(productsDisplayInfoObj.defaultContractRadioButton(contract), "Web Radio Filter Option: "+contract, contract);
+		}else {
+			reporter.failureReport("verify contract present", contract+" does not exists", "", driver);
+		}
+	}
+	public void increaseQuantity(String quantity) throws Throwable {
+		if(isVisibleOnly(productsDisplayInfoObj.QUANTITY_CONTRACT_ALL, "quantity")){
+			clearData(productsDisplayInfoObj.QUANTITY_CONTRACT_ALL);
+			type(productsDisplayInfoObj.QUANTITY_CONTRACT_ALL,"Increase the Quantity : "+quantity,"NUMBER OF ITEMS");
+		}else {
+			reporter.failureReport("verify quantity exists", "Quantity field does not exists", "", driver);
+		}
+	}
+	 
 	
 	/**
 	 * This method is to verify the default contract price displayed.
@@ -1338,6 +1411,21 @@ public class SearchLib extends CommonObj {
 		}
 	}
 
+	
+	/**
+	 * 
+	 * @param contract
+	 * @throws Throwable
+	 */
+	public void verifydefaultcontractonAllcontractpopup(String contract) throws Throwable {
+		if(isVisibleOnly(productsDisplayInfoObj.defaultContractRadioButton(contract), "contract")) {
+			if(isCheckBoxSelected(productsDisplayInfoObj.defaultContractRadioButton(contract))) {
+				reporter.SuccessReport("verify default selected contract", "Dfault contract is : ", contract);
+			}
+		}else {
+			reporter.failureReport("verify contract present", contract+" is not default contract", "", driver);
+		}
+	}
 }
  
 
