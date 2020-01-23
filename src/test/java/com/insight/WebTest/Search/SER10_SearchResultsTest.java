@@ -72,18 +72,21 @@ public class SER10_SearchResultsTest extends SearchLib {
 						reporter.failureReport("Verify product count", "Search Results count not same as initial count", "Count: "+finalCount, driver);
 					}
 					// select manufacturer - HP INC
-					filterSelectionInProductsSearchPage(data.get("Manufacturer1"));
+					selectManufacturerFiter(data.get("Manufacturer1"),data.get("Mfr_Heading1"));
+					verifyFilterBreadCrumb(data.get("Manufacturer1"));
 					String mfrCount=getProductCount();
 					// narrow by keyword -- core
-					searchProductInProductDisplayPage(data.get("Manufacturer2"));  //- lenovo
-					searchProductInProductDisplayPage(data.get("Keyword_Search"));
+					/*searchProductInProductDisplayPage(data.get("Manufacturer2"));  //- lenovo
+					verifyFilterBreadCrumb(data.get("Manufacturer2"));*/
+					searchProductInProductDisplayPage(data.get("Keyword_Search"));  // core
+					verifyFilterBreadCrumb(data.get("Keyword_Search"));
 					String coreProductsCount=getProductCount();
 					 if(Integer.valueOf(coreProductsCount)<Integer.valueOf(initialCount)) {
 	                    	reporter.SuccessReport("Verify product count", "Search Results count less than initial count", "Count: "+coreProductsCount);
 						}else {
 							reporter.failureReport("Verify product count", "Search Results count not less than initial count", "Count: "+coreProductsCount, driver);
 						}
-					 removeTheFilter(data.get("Core"));
+					 removeTheFilter(data.get("Keyword_Search"));
 					 String coreRemovedProductsCount=getProductCount();
 					
 					 if(coreRemovedProductsCount.equals(mfrCount)) {
@@ -91,7 +94,7 @@ public class SER10_SearchResultsTest extends SearchLib {
 						}else {
 							reporter.failureReport("Verify product count", "Search Results count not same as as the Pervious count", "Count: "+mfrCount, driver);
 						}
-					 removeTheFilter(data.get("Manufacturer2"));
+					 //removeTheFilter(data.get("Manufacturer2"));
 					 String mfr2ProductsCount=getProductCount();
 					 
 					 if(mfr2ProductsCount.equals(initialCount)) {
