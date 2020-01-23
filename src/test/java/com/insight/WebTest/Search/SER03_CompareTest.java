@@ -46,7 +46,6 @@ public class SER03_CompareTest extends SearchLib {
 					// Test Steps execution
 
 					fnOpenTest();
-
 					// search Monitors
 					searchInHomePage( data.get("ProductName1"));
 					verifyBreadCrumbInSearchResultsPage(data.get("ProductName1"));

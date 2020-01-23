@@ -75,6 +75,8 @@ public class SER06_KeywordSearchTest extends SearchLib {
 					searchInHomePage(data.get("SearchText4"));
 					//clickShopAllTypesButton();
 					verifyTheResultsForSearchTerm(data.get("SearchText4"));
+					// in-stock filter verification
+					verifyFilterBreadCrumb(data.get("filter"));
 					// Approve items only
 					filterSelectionInProductsSearchPage(data.get("Approved_Items"));
 					verifyBreadCrumbInSearchResultsPage(data.get("Approved_Items"));
@@ -85,6 +87,8 @@ public class SER06_KeywordSearchTest extends SearchLib {
 					// High performance
 					searchInHomePage(data.get("SearchText5"));
 					verifyTheResultsForSearchTerm(data.get("SearchText5"));
+					// in stock verification
+					verifyFilterBreadCrumb(data.get("filter"));
 					// Approve items only
 				    filterSelectionInProductsSearchPage(data.get("Approved_Items"));
 					removeTheFilter(data.get("Approved_Items"));

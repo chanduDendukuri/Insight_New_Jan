@@ -71,6 +71,7 @@ public class SER11_SearchSuggestionsTest extends SearchLib {
 					updateSuggessions();
 					verifySearchSuggestionsareNotDisplayed(data.get("SearchText"));
 					// Enable search Suggestions
+					selectAccountTools(data.get("FavoritesTabName"), data.get("FavoritesTabName1"));
 					enableSearchSuggestions();
 					commonLib.clickLogOutLink(data.get("Logout"));
 

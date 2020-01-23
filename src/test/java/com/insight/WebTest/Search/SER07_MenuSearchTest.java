@@ -46,19 +46,22 @@ public class SER07_MenuSearchTest extends SearchLib {
 									+ " ::and:: " + data.get("Password") + " To Validate::" + data.get("errorMessage")
 									+ "  **************","");
 
-					// Test Steps execution
 					fnOpenTest();
-					clickonShopAllButtonsInHeaderList(data.get("HeaderName"), data.get("ShopAll"));
-					verifyMenusInShopAllProductsPage(data.get("Menus"));
-					clickMenuItemCategoryInShopAllProductsPage(data.get("MenuItem"), data.get("Category"));
-					selectTheProductByTypeAndVerifyNavigation(data.get("ProductType"));
-
 					clickonShopAllButtonsInHeaderList(data.get("HeaderName"), data.get("ShopAllBrands"));
 					selectTopBrandsInShopAllBrandsPage(data.get("Brand1"), data.get("Url"));
-					Thread.sleep(2000);
+					
 					clickonShopAllButtonsInHeaderList(data.get("HeaderName"), data.get("ShopAllBrands"));
+					//explore label verification
+					verifyExploreAllBrandsLabel();
 					selectTopBrandsInShopAllBrandsPage(data.get("Brand2"),data.get("Url2"));
-
+					
+					clickOnSecondaryDDAndSelectListitem(data.get("HeaderName"), data.get("Header_List"));// technology deals
+					prodInfoLib.verifyInventoryBlowOutInTechnologyDealsPage();
+					
+					clickOnSecondaryDDAndSelectListitem(data.get("HeaderName"), data.get("Header_List2"));// software
+					// verify software page
+					verifyNavigatedBreadCrumb(data.get("Header_List2"));
+					
 				}
 
 				catch (Exception e) {

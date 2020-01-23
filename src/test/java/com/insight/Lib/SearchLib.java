@@ -411,7 +411,11 @@ public class SearchLib extends CommonObj {
 	}
 
 	public void removeTheFilterForInStockOnly(String filter) throws Throwable {
-		click(productsDisplayInfoObj.getRemoveFilterName(filter), "Remove filter: "+filter);
+		if(isVisibleOnly(productsDisplayInfoObj.getRemoveFilterName(filter), "Filter")) {
+			click(productsDisplayInfoObj.getRemoveFilterName(filter), "Remove filter: "+filter);	
+		}else {
+			// Do nothing
+		}
 	}
 
 	/**
@@ -561,7 +565,7 @@ public class SearchLib extends CommonObj {
 		// Do nothing 
 		}else {
 			scrollBottom();
-			 click(SHOW_KEYWORD_SUGGESSIONS_CHECKED, "Show key word suggestions check box Enabled");
+			 click(SHOW_KEYWORD_SUGGESSIONS_CHECKED, "Show key word suggestions check box Disabled");
 		}
 	}
 	
@@ -881,7 +885,7 @@ public class SearchLib extends CommonObj {
 	}
 	
 	public void clickConfigurationSetsCheckboxs(String fieldName) throws Throwable {
-		click(productsDisplayInfoObj.ConfigurationSetsCheckboxs(fieldName), "Configuration Sets Checkboxs", "CheckBox: "+fieldName);
+		click(productsDisplayInfoObj.ConfigurationSetsCheckboxs(fieldName), "Configuration Sets Checkboxs "+fieldName, "CheckBox: "+fieldName,"CheckBox: "+fieldName);
 	}
 	
 	/**
@@ -1273,7 +1277,43 @@ public class SearchLib extends CommonObj {
 	       }
 		}
    }
-} 
+
+	/**
+	 * Method to verify filter selected
+	 * @param filter
+	 * @throws Throwable
+	 */
+	public void verifyFilterBreadCrumb(String filter) throws Throwable {
+		if(isVisibleOnly(productsDisplayInfoObj.getRemoveFilterName(filter), "Filter")) {
+			reporter.SuccessReport("Filter verification", "Applied "+filter+" filter is verified and displayed", filter);
+	}else {
+		reporter.failureReport("Filter verification", "Applied "+filter+" filter is not displayed", filter, driver);
+	  }
+	}
+
+	/*
+	 * Method is to verify "Explore all the brands Insight has to offer."
+	 */
+	public void verifyExploreAllBrandsLabel() throws Throwable {
+		if(isVisibleOnly(EXPLORE_ALL_BRANDS_LABEL, "Explore all brands")) {
+			reporter.SuccessReport("Verify Explore all brands section", "Explore all the brands Insight has to offer.", "");
+		}else {
+			reporter.failureReport("Verify Explore all brands section", "Explore all the brands Insight has to offer. does not exist", "", driver);
+		}
+	}
+
+	public void verifyNavigatedBreadCrumb(String searchText) throws Throwable {
+		By BreadCrumb = productsDisplayInfoObj.getBreadCrumbs(searchText);
+
+		if (isVisibleOnly(BreadCrumb, "Bread Crumb")) {
+			reporter.SuccessReport("Verify the navigation", "Sucessfully Navigated to "+searchText ,searchText);
+		} else {
+			reporter.failureReport("Verify the navigation", "Navigation is not Sucessfully " , searchText);
+		}
+	}
+
+}
+ 
 
 
 
