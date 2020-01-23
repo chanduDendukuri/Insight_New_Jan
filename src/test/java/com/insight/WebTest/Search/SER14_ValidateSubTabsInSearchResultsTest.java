@@ -73,6 +73,7 @@ public class SER14_ValidateSubTabsInSearchResultsTest extends SearchLib {
 					
 					// login As to UAT
 					verifyMenuEnabledOnHomeScreen(data.get("HeaderName"), data.get("headerlist"),data.get("ShopAllBrands"));
+					Thread.sleep(4000);
 					commonLib.clickLogOutLink(data.get("Logout"));
 				}
 

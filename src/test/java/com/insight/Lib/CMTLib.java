@@ -262,7 +262,7 @@ public class CMTLib extends CMTObj {
 				LOG.info(userPermission + " check box already checked.");
 				reporter.SuccessReport(permissions[i]+" Permissions on WebGroup Management Page", "Check Box Field Exists and Enabled", permissions[i]);
 			} else {
-				click(getUserPermission(permissions[i]), "set user permissions ON" , permissions[i]);
+				click(getUserPermission(permissions[i]), "set user permission "+permissions[i]+" is ON " , permissions[i],permissions[i]);
 			}
 		}
 
@@ -533,7 +533,7 @@ public class CMTLib extends CMTObj {
 	public void setPermissionsToDisable(String menuName, String userPermissions) throws Throwable {
 		click(getUsersTabMenus(menuName), "Roles And Permissions");
 		if (isCheckBoxSelected(getUserPermission(userPermissions))) {
-			click(getUserPermission(userPermissions), "User permissions : " + userPermissions + "is OFF");
+			click(getUserPermission(userPermissions), "User permissions : " + userPermissions + " is OFF");
 			click(UPDATE_USER_BTN, "Update user button");
 			if (isElementPresent(PERMISSION_UPDATE_MSG, "update sucessful message")) {
 				reporter.SuccessReport("Verify the Sucess message ", "Permissions disabled Succesfully", "");

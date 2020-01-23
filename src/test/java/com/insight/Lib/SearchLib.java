@@ -285,8 +285,10 @@ public class SearchLib extends CommonObj {
 	}
 
 	
-	public void selectManufacturerFiter(String Filter) {
-		
+	public void selectManufacturerFiter(String filter) throws Throwable {
+		if(isVisibleOnly(productsDisplayInfoObj.getFilterSelection(filter),"filter")) {
+			JSClick(productsDisplayInfoObj.getFilterSelection(filter), "filter Name : "+filter);
+		}
 	}
 
 	/**
