@@ -230,8 +230,8 @@ public class UserManagementLib extends UserManagementObj {
 	 * Method is used to verify WelcomePage
 	 */
 	public void verifyWelcomePage() throws Throwable {		
-		if (isElementPresent(HEADER_LOGO, "WelcomePage")) {	
-			reporter.SuccessReport("Shared User WelCome Page", "WelCome Page exists","");
+		if (isVisibleOnly(HEADER_LOGO, "WelcomePage")) {	
+			reporter.SuccessReport("Shared User WelCome Page", "Welcome Home Page exists","");
 		} else {
 			reporter.failureReport("Shared User WelCome Page", "WelCome Page does not exist","");
 		}	

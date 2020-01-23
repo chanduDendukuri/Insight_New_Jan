@@ -22,11 +22,13 @@ import com.insight.googledrive.ReportStatus;
 import com.insight.utilities.TestUtil;
 
 public class PID06_StockLocationsTest extends ActionEngine{
+	
 	CommonLib commonLib = new CommonLib(); 
 	CMTLib cmtLib = new CMTLib();
 	CartLib cartLib = new CartLib();
 	ProductDetailLib productDetailLib = new ProductDetailLib();
 	SearchLib searchLib=new SearchLib();
+	ProductDisplayInfoLib productDisplayInfoLib=new ProductDisplayInfoLib();
 	
 	// #############################################################################################################
 		// # Name of the Test : PID06_StockLocations
@@ -62,10 +64,14 @@ public class PID06_StockLocationsTest extends ActionEngine{
 				productDetailLib.verifyAvailability();
 				productDetailLib.getFirstProdDescription();
 				cartLib.selectFirstProductDisplay();
+				productDetailLib.getProductNameInProductDetailPage(data.get("Search_Item"));
+				productDetailLib.getMFRNumberInProductInfopage();
 				productDetailLib.verifyAvailabilityInProductDetailPage();
+				//Search item2
 				commonLib.searchProduct(data.get("Search_Item1"));
 				searchLib.verifyBreadCrumbInSearchResultsPage(data.get("Search_Item1"));
 				productDetailLib.narrowDownFilters(data.get("Category"), data.get("Option"));
+				Thread.sleep(4000);
 				commonLib.spinnerImage();
 				productDetailLib.selectUnlimetedAvailabilityProduct();
 				productDetailLib.verifyAvailabilityInProductDetailPage();
@@ -75,6 +81,8 @@ public class PID06_StockLocationsTest extends ActionEngine{
 				cmtLib.setPermissions(data.get("Menu_Name"), data.get("Set_Permission"));
 				cmtLib.clickOnloginAs();
 				switchToChildWindow();
+				productDetailLib.verifyWelcomePage();
+				productDetailLib.verifytheLoginUser(data.get("Contact_Name"));
 				productDetailLib.selectAccountToolsFromSideMenuAndClickOnProductGrp(data.get("Tools_Menu"),
 						data.get("Tools_Menu_DD"), data.get("Product_Group"), data.get("Product_Name"));
 
