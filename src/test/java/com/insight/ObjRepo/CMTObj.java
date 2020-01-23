@@ -31,7 +31,7 @@ public class CMTObj extends ActionEngine {
 	public static By WEB_GRP_LINK=By.xpath("//a[@id='webGroupId1']");
 	public static By USER_MANAGEMENT_LABEL=By.xpath("//div[@id='userSearchTitle']//h1[contains(text(),'Manage Web Groups:')]");
 	public static By USER_CONTACT_PAGE=By.xpath("//div[@id='createNewUserContainer']//h1[contains(text(),'Web Group Management: Users')]");
-
+	public static By lblSuccessMessage=By.id("chkDefaultMessage");
 	// This method is to get the Logged in user to Verify the Same User Logged
 	// into Insight from CMT
 	
@@ -161,8 +161,13 @@ public class CMTObj extends ActionEngine {
 	public static By optionsInCheckOutSettings(String optionToSelect) {
 		return By.xpath("//span[text()='" + optionToSelect + "']//parent::div//a");
 	}
+	public static By defaultShippingCarrier=By.xpath("//*[@id='defaultShippingCarrier']//following-sibling::div//span");
+			public static By defaultshippingCarrier(String optionToSelect) {
+				return By.xpath("//*[@id='defaultShippingCarrier']//following-sibling::div//ul//li[text()='"+optionToSelect+"']");
+			}
 
 	public static By DEFAULT_SHIPPING_OPTION = By.xpath("//select[@id='defaultShipTypeSelID1']");
+
 	public static By UPDATE_BUTTON = By.xpath("//span[text()='Update']//parent::a");
 	public static By defaultShippingOption(String text) {
 		return By.xpath("//select[@id='defaultShipTypeSelID1']//option[text()='"+text+"']");

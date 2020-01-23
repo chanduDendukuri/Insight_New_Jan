@@ -14,6 +14,7 @@ public class SER11_SearchSuggestionsTest extends SearchLib {
 
 	ProductDisplayInfoLib prodInfoLib = new ProductDisplayInfoLib();
 	CMTLib cmtLib = new CMTLib();
+	CommonLib commonLib=new CommonLib();
 
 	    // #############################################################################################################
 		// #    Name of the Test         : SER11_SearchSuggestions
@@ -45,22 +46,33 @@ public class SER11_SearchSuggestionsTest extends SearchLib {
 					fnOpenTest();
 
 					searchInHeaderSelectFromSuggestions(data.get("SearchText"));
+					verifyBreadCrumbInSearchResultsPage(data.get("SearchText"));
 
 					// login to CMT
 					cmtLib.loginToCMTSelectUserAndLoginAS(data.get("Login"), data.get("WebGrp"),
 							data.get("WebGrp_Name"), data.get("Manage_Web_Grp_Options"), data.get("LnameEmailUname"),
 							data.get("ContactName"));
-
+					cmtLib.loginVerification(data.get("ContactName"));
 					// Navigate back to UAT
 					// Enable Show search Suggestions and verify
-					enableOrDisableSearchSuggestions(data.get("FavoritesTabName"), data.get("FavoritesTabName1"),
-							data.get("SearchText"));
-
+					
+					selectAccountTools(data.get("FavoritesTabName"), data.get("FavoritesTabName1"));
+					// Enable search Suggestions
+					enableSearchSuggestions();
+					updateSuggessions();
+					searchInHeaderSelectFromSuggestions(data.get("SearchText"));
+					verifyBreadCrumbInSearchResultsPage(data.get("SearchText"));
+					
 					// Disable Show search Suggestions and verify
-					enableOrDisableSearchSuggestions(data.get("FavoritesTabName"), data.get("FavoritesTabName1"),
-							data.get("SearchText"));
-
-					// selectAccountTools(data.get("FavoritesTabName"),data.get("FavoritesTabName1"));
+					selectAccountTools(data.get("FavoritesTabName"), data.get("FavoritesTabName1"));
+					// Enable search Suggestions
+					disableSearchSuggestions();
+					updateSuggessions();
+					verifySearchSuggestionsareNotDisplayed(data.get("SearchText"));
+					// Enable search Suggestions
+					// selectAccountTools(data.get("FavoritesTabName"), data.get("FavoritesTabName1"));
+					enableSearchSuggestions();
+					commonLib.clickLogOutLink(data.get("Logout"));
 
 				}
 

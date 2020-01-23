@@ -47,10 +47,18 @@ public class SER16_SearchResultsPermissionsAndContractsIPSTest extends SearchLib
 					// Test Steps execution
 					fnOpenTest();
 
-					// Login to CMT enable Open Market and Contracts/Agencies
-					// are enabled by default
-					cmtLib.loginToCMTSetPermissions(data.get("Login"), data.get("WebGrp"), data.get("WebGrp_Name"),data.get("Manage_Web_Grp_Options"), data.get("LnameEmailUname"), data.get("ContactName"),
-							data.get("Menu_Name"), data.get("Set_Permission"));
+					cmtLib.loginToCMT(data.get("Login"));
+					cmtLib.searchForWebGroup(data.get("WebGrp"));
+					cmtLib.clickOnTheWebGroup(data.get("WebGrp_Name"));
+					cmtLib.hoverOnManageWebGroupsAndSelectOptions(data.get("Manage_Web_Grp_Options"));
+					cmtLib.searchForaUserAndSelect(data.get("LnameEmailUname"), data.get("ContactName"));
+					String[] permissions1=data.get("Set_Permission1").split(",");
+					for (i = 0; i < permissions1.length; i++) { 
+					cmtLib.setPermissions(data.get("Menu_Name"),permissions1[i] );
+					}
+					// Login to CMT
+					cmtLib.loginAsAdminCMT();
+					cmtLib.loginVerification(data.get("ContactName"));
 
 					// Back to UAT and verify the above enabled settings
 					verifyContractAllDisplayed();

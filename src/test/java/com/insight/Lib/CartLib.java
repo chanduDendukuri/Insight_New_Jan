@@ -1271,7 +1271,7 @@ public class CartLib extends ActionEngine {
 		waitForVisibilityOfElement(productsDisplayInfoObj.FIRST_PROD_NAME, "First product in search results page");
 		String ProdName=getText(productsDisplayInfoObj.FIRST_PROD_NAME, "First Product");
 		Thread.sleep(3000);
-		clickUntil(productsDisplayInfoObj.FIRST_PROD_NAME,productsDisplayInfoObj.BACK_TO_RESULTS, "First product in search results page displayed and clicked","Product name : "+ProdName);
+		clickUntil(productsDisplayInfoObj.FIRST_PROD_NAME,productsDisplayInfoObj.BACK_TO_RESULTS, "First product in search results page displayed and clicked "+ProdName,"Product name : "+ProdName);
 		waitForVisibilityOfElement(productsDisplayInfoObj.BACK_TO_RESULTS, "Back to results");
 	}
 

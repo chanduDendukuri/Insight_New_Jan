@@ -605,9 +605,9 @@ public class CommonLib extends ActionEngine{
 		 */
 		public void spinnerImage() throws Throwable {
 			Thread.sleep(2000);
-			if(isElementPresent(CommonObj.SPINNER_IMAGE, "spinner image")) {
+			if(isVisibleOnly(CommonObj.SPINNER_IMAGE, "spinner image")) {
 			waitForInVisibilityOfElement(CommonObj.SPINNER_IMAGE, "spinner image");
-			if(isElementNotPresent(CommonObj.SPINNER_IMAGE, "spinner image")) {
+			if(isVisibleOnly(CommonObj.SPINNER_IMAGE, "spinner image")) {
 				LOG.info("spinner image disapperaed");
 			}else {
 				reporter.failureReport("spinner image","spinner image not disapperaed","");

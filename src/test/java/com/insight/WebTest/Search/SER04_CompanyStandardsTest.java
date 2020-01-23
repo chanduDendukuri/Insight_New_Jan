@@ -109,6 +109,7 @@ public class SER04_CompanyStandardsTest extends SearchLib {
 					// search part number : 516814-B21-AX -- 516814-B21-AX
 					searchInHomePage(data.get("part_Number"));
 					prodInfoLib.verifyTheManufacturerNumberInProductDetailsPage(data.get("part_Number"));
+					removeTheFilterForInStockOnly(data.get("In_Stock"));	
 					String[] checkbox=data.get("Checkboxes").split(",");
 					clickAddToCompanyStandardsLink();
 					Thread.sleep(3000);
@@ -123,8 +124,6 @@ public class SER04_CompanyStandardsTest extends SearchLib {
 					Thread.sleep(3000);
 					clickAddButtonOnSelectConfigurationSetPopup();
 					commonLib.clickLogOutLink(data.get("Logout"));
-					
-
 				}
 
 				catch (Exception e) {
@@ -138,15 +137,14 @@ public class SER04_CompanyStandardsTest extends SearchLib {
 			ReportStatus.blnStatus = false;
 			//gErrorMessage = e.getMessage();
 			gTestStatus = false;
-			ReportStatus.fnUpdateResultStatus("CompanyStandards", "SER04", ReportStatus.strMethodName,
-					1, browser);
+			ReportStatus.fnUpdateResultStatus("CompanyStandards", "SER04", ReportStatus.strMethodName,1, browser);
 			throw new RuntimeException(e);
 		}
 
 		finally {
         	ReportControl.fnEnableJoin();
 			ReportStatus.fnUpdateResultStatus("CompanyStandards", "SER04", ReportStatus.strMethodName, counter, browser);
-			//fnCloseTest();
+			fnCloseTest();
 			ReportControl.fnNextTestJoin(nextTestJoin);
 		}
 	}

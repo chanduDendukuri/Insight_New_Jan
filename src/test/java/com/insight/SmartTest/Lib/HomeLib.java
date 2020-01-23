@@ -968,10 +968,10 @@ public void deSelectvaluefromotherGroupingDropdown(String option) throws Throwab
 	 * 
 	 * @throws Throwable
 	 */
-	public void verifyHoldsText(String holdText) throws Throwable {
+	public void verifyHoldsText(String holdText,String holdtext1) throws Throwable {
 		waitForVisibilityOfElement(HOLDS_TEXTAREA, "Hold");
 		String HoldText = getText(HOLDS_TEXTAREA, "Hold Text For Order");
-		if (HoldText.contains(holdText)) {
+		if (HoldText.contains(holdText)&& HoldText.contains(holdtext1)) {
 			reporter.SuccessReport("Hold Text For Order::", "" + HoldText + " ::is Visible", "");
 		} else {
 			reporter.failureReport("Hold Text For Order::", "Is not Visible", "");
@@ -3132,6 +3132,7 @@ public float getSellPriceFromInlineItemsContract(String contractid) throws Throw
 		isVisibleOnly(txt_Permarginpercent(row), "Rep Margin Percent Value");
 
 		click(txt_Permarginpercent(row), "Rep Margin Percent Value");
+		clearData(Txtrepmargin_percentage(row));
 		type(Txtrepmargin_percentage(row), MArginNum, "Rep Margin Percent Value");
 		driver.findElement(Txtrepmargin_percentage(row)).sendKeys(Keys.ENTER);
 		loadingSymbol();

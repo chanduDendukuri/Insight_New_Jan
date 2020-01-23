@@ -163,19 +163,19 @@ public class CMTLib extends CMTObj {
 		String error=null;
 		if (isVisibleOnly(FOGET_PASSWORD_ERROR_MESSAGE, "error message")) {
 			 error = getText(FOGET_PASSWORD_ERROR_MESSAGE, "error message");
-			reporter.SuccessReport("Verifying error message", "Email Error Message Exists", error );
+			reporter.SuccessReport("Verifying Success message", "Email Success Message Exists", error );
 		} else {
-			reporter.failureReport("Verifying error message", "Email Error Message does not Exist", error, driver);
+			reporter.failureReport("Verifying Success message", "Email Success Message does not Exist", error, driver);
 		}
 	}
 
 	public void verifyPasswordResetEmailEnteredSucessMessage(String input) throws Throwable {
 		String error=null;
-		if (isVisibleOnly(FORGET_PASSWORD_RESET_SUCESS_MESSAGE, "error message")) {
-			error=getText(FORGET_PASSWORD_RESET_SUCESS_MESSAGE, "error message");
-			reporter.SuccessReport("Verifying error message", "Apperead error message is ", error);
+		if (isVisibleOnly(FORGET_PASSWORD_RESET_SUCESS_MESSAGE, "Success message")) {
+			error=getText(FORGET_PASSWORD_RESET_SUCESS_MESSAGE, "Success message");
+			reporter.SuccessReport("Verifying Success message", "Apperead Success message is ", error);
 		} else {
-			reporter.failureReport("Verifying error message","Error message is not appeared ", error, driver);
+			reporter.failureReport("Verifying Success message","Success message is not appeared ", error, driver);
 		}
 	}
 
@@ -260,8 +260,9 @@ public class CMTLib extends CMTObj {
 		for (i = 0; i < permissions.length; i++) {
 			if (isCheckBoxSelected(getUserPermission(permissions[i]))) {
 				LOG.info(userPermission + " check box already checked.");
+				reporter.SuccessReport(permissions[i]+" Permissions on WebGroup Management Page", "Check Box Field Exists and Enabled", permissions[i]);
 			} else {
-				click(getUserPermission(permissions[i]), "set user permissions " + permissions[i]);
+				click(getUserPermission(permissions[i]), "set user permissions ON" , permissions[i]);
 			}
 		}
 
@@ -295,8 +296,8 @@ public class CMTLib extends CMTObj {
 	 * @throws Throwable
 	 */
 	public void loginVerification(String contactName) throws Throwable {
-		waitForVisibilityOfElement(CMTObj.getLoginVerficationByContactNameOnHeader(contactName), "contact Name");
-		if (isElementPresent(CMTObj.getLoginVerficationByContactNameOnHeader(contactName), "contact Name")) {
+		waitForVisibilityOfElement(CMTObj.getLoginVerficationByContactNameOnHeader(contactName), "contact Name is "+contactName);
+		if (isVisibleOnly(CMTObj.getLoginVerficationByContactNameOnHeader(contactName), "contact Name")) {
 			reporter.SuccessReport("Verify the Same User Logged into Insight from CMT",
 					"User login verification is successfull. User is : ", contactName);
 		} else {
@@ -535,16 +536,16 @@ public class CMTLib extends CMTObj {
 			click(getUserPermission(userPermissions), "User permissions : " + userPermissions + "is OFF");
 			click(UPDATE_USER_BTN, "Update user button");
 			if (isElementPresent(PERMISSION_UPDATE_MSG, "update sucessful message")) {
-				reporter.SuccessReport("Verify the Sucess message ", "Permissions Updated Succesfully", "");
+				reporter.SuccessReport("Verify the Sucess message ", "Permissions disabled Succesfully", "");
 			} else {
-				reporter.failureReport("Verify the sucess message", "Permissions are not Updated Succesfully", "",
+				reporter.failureReport("Verify the sucess message", "Permissions are not disabled Succesfully", "",
 						driver);
 			}
 
 		} else {
 			LOG.info(userPermissions + " check box already checked.");
 			reporter.SuccessReport("Verify Customer Level Permissions",
-					"User permissions :" + userPermissions + "check box already Disabled", "" + userPermissions + "");
+					"User permissions :" + userPermissions + "check box already Disabled", "" + userPermissions + "OFF");
 		}
 	}
 
@@ -703,6 +704,13 @@ public class CMTLib extends CMTObj {
 			reporter.SuccessReport("Verify the Sucess message ", "Permissions Updated Succesfully", "");
 		} else {
 			reporter.failureReport("Verify the sucess message", "Permissions are not Updated Succesfully", "", driver);
+		}
+	}
+	public void verifyUpdateSuccessMessages() throws Throwable {
+		if (isVisibleOnly(SUCCESS_UPDATE_MSG, "update sucessful message")) {
+			reporter.SuccessReport("Verify the Sucess message ", "Permissions Updated Succesfully", getText(SUCCESS_UPDATE_MSG, "update sucessful message"));
+		} else {
+			reporter.failureReport("Verify the sucess message", "Permissions are not Updated Succesfully", getText(SUCCESS_UPDATE_MSG, "update sucessful message"), driver);
 		}
 	}
 
@@ -1077,6 +1085,13 @@ public class CMTLib extends CMTObj {
 			click(USER_SERVICE_LEVEL_SHIPPING, "user service level shipping");
 			selectByVisibleText(CMTObj.DEFAULT_SHIPPING_OPTION, optionToSelect, "Click on" + optionToSelect);
 		}
+	}
+	public void selectShippingOptions(String optionToSelect) throws Throwable {
+			// waitForVisibilityOfElement(CMTObj.DEFAULT_SHIPPING_OPTION, "Wait
+			// for" + optionToSelect);
+		click(CMTObj.defaultShippingCarrier,"Shipping carrier");
+			click(CMTObj.defaultshippingCarrier(optionToSelect), optionToSelect, "Click on" + optionToSelect);
+		
 	}
 
 	/**
@@ -1750,25 +1765,27 @@ public class CMTLib extends CMTObj {
 	}
 
 	public void addNewRepDetails(String Email, String Phone, String Fax) throws Throwable {
-		if (isElementPresent(ADD_NEW_REP, "Add New Rep Details")) {
+		if (isVisibleOnly(ADD_NEW_REP, "Add New Rep Details")) {
 			reporter.SuccessReport("Click on Add New Rep Link", "Add New Rep Link is available", "");
 			click(ADD_NEW_REP, "Click on add new rep");
-			if (isElementPresent(ADD_NEW_REP_POPUP, "Add New Rep popup")) {
+			if (isVisibleOnly(ADD_NEW_REP_POPUP, "Add New Rep popup")) {
 				// Enter Email Address,Name,Title,Phone NUmber,Fax Number,
 				// Photo, Information about Rep info in the Pop Up
-				if (isElementPresent(EMAIL_ADDRESS, "Email address")) {
+				if (isVisibleOnly(EMAIL_ADDRESS, "Email address")) {
 					type(EMAIL_ADDRESS, Email, "Email Address");
 				}
 				Thread.sleep(5000);
-				if (isElementPresent(PHONE_NUMBER, "New Rep Phone Number")) {
+				if (isVisibleOnly(PHONE_NUMBER, "New Rep Phone Number")) {
 					click(PHONE_NUMBER, "Phone Number Text Field");
 					String getPhone = driver.findElement(PHONE_NUMBER).getText();
 					if (getPhone == null) {
 						type(PHONE_NUMBER, Phone, "New Rep Phone Number::" + Phone + "");
-					}
+					}/*else{
+						reporter.SuccessReport("Phone number", " Repo Phone number ", getPhone);
+					}*/
 				}
 				Thread.sleep(5000);
-				if (isElementPresent(FAX_NUMBER, "Fax Number")) {
+				if (isVisibleOnly(FAX_NUMBER, "Fax Number")) {
 					click(FAX_NUMBER, "Fax Number");
 					String getFaxNum = driver.findElement(FAX_NUMBER).getText();
 					if (getFaxNum == null) {
@@ -1777,7 +1794,7 @@ public class CMTLib extends CMTObj {
 					type(FAX_NUMBER, Fax, "Fax Number");
 				}
 
-				if (isElementPresent(REP_UPDATE, "Update button")) {
+				if (isVisibleOnly(REP_UPDATE, "Update button")) {
 					click(REP_UPDATE, "Click Update button");
 				}
 			}
@@ -2667,6 +2684,16 @@ public class CMTLib extends CMTObj {
 					errorMessage, driver);
 		}else{
 			reporter.SuccessReport("Availability of new user", "The given User ID "+userName+ "is", "Available");
+		}
+	}
+	
+	public void verifyUpdateSuccessMessage() throws Throwable {
+		if(isVisibleOnly(CMTObj.lblSuccessMessage,"Success Message"))
+		{
+			reporter.SuccessReport("Update status", "Update status is " , getText(CMTObj.lblSuccessMessage,"Success Message"));
+			
+		}else{
+			reporter.failureReport("Update status", "Update status is " , getText(CMTObj.lblSuccessMessage,"Success Message"), driver);
 		}
 	}
 

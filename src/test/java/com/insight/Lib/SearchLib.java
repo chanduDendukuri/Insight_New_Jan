@@ -213,7 +213,7 @@ public class SearchLib extends CommonObj {
 	 * @throws Throwable
 	 */
 	public void searchInHomePage(String productName) throws Throwable {
-		Thread.sleep(10000);
+		Thread.sleep(5000);
 		waitForVisibilityOfElement(SEARCH,"Search Field");
 		typeForSearchingProduct(SEARCH,productName,"Search Text: "+productName);
 		WebElement ele=driver.findElement(SEARCH);
@@ -249,10 +249,14 @@ public class SearchLib extends CommonObj {
 	public void filterSelectionInProductsSearchPage(String filter) throws Throwable {
 
 		String result = null;
+		JSClick(productsDisplayInfoObj.getFilterSelection(filter), "filter Name : "+filter);
 		//clickUntil(productsDisplayInfoObj.getFilterSelection(filter),productsDisplayInfoObj.FILTER_ITEM, "filter Name");
-		click(productsDisplayInfoObj.getFilterSelection(filter), "filter Name : "+filter);
+		/*scrollBottom();
+		scrollToBottom();
+		click(productsDisplayInfoObj.getFilterSelection(filter), "filter Name : "+filter);*/
 		Thread.sleep(3000);
 		waitForVisibilityOfElement(productsDisplayInfoObj.FILTER_ITEM, "filter item");
+		
 		boolean flag = true;
 		if (flag) {
 
@@ -281,6 +285,9 @@ public class SearchLib extends CommonObj {
 	}
 
 	
+	public void selectManufacturerFiter(String Filter) {
+		
+	}
 
 	/**
 	 * Method is to navigate to the Custom catalog in the CMT tool and Include
@@ -375,15 +382,19 @@ public class SearchLib extends CommonObj {
 	 * @throws Throwable
 	 */
 	public void selectTopBrandsInShopAllBrandsPage(String brand, String url) throws Throwable {
-		
+		Boolean flag=false;
 		if(isElementPresent(getTopBrands(brand), "Top brands")){
 			Thread.sleep(2000);
 			click(getTopBrands(brand), "Top Brands: "+brand);
 			Thread.sleep(2000);
-			verify_url(driver, url);
-			reporter.SuccessReport("Verify top brand logos are displayed", "Logo is displayed and clicked", brand);
+			flag=verify_url(driver, url);
+			if(flag=true) {
+				reporter.SuccessReport("Verify results are displayed", brand+" page is displayed", brand);
+			}else {
+				reporter.failureReport("Verify results are displayed", brand+" page is not displayed", brand,driver);
+			}
 		}else{
-			reporter.failureReport("Verify top brand logos are displayed", "Logo is not displayed", brand);
+			reporter.failureReport("Verify top brands are displayed", brand+" is not present to select ", brand);
 		}
 		
 	}
@@ -411,7 +422,11 @@ public class SearchLib extends CommonObj {
 	}
 
 	public void removeTheFilterForInStockOnly(String filter) throws Throwable {
-		click(productsDisplayInfoObj.getRemoveFilterName(filter), "Remove filter: "+filter);
+		if(isVisibleOnly(productsDisplayInfoObj.getRemoveFilterName(filter), "Filter")) {
+			click(productsDisplayInfoObj.getRemoveFilterName(filter), "Remove filter: "+filter);	
+		}else {
+			// Do nothing
+		}
 	}
 
 	/**
@@ -454,12 +469,12 @@ public class SearchLib extends CommonObj {
 		String headerName[]=header.split(",");
 		    for(i=0;i<headerName.length;i++){
 			if(isElementNotPresent(getSecondaryHeaderMenu(headerName[i]),"Home page header")){
-				reporter.SuccessReport("Verifying the header menu is present "," Menu is not present.Menu is :", headerName[i]);
+				reporter.SuccessReport("Verifying the header menu is present "," Menu is not present.Menu is :", "Menu: "+headerName[i]);
 			} else {
 				reporter.failureReport("Verifying the header menu is present "," Menu is present in the header. Permissions are not disabled properly.Menu item is: ",headerName[i]);
 	}
   }
-		    click(getSecondaryHeaderMenu(headerlist), "Shop menu : "+headerlist);
+		    click(getSecondaryHeaderMenu(headerlist), "Header Link: Shop -->  : "+headerlist);
 			isElementNotPresent(getShopAllBtnsFromMenuList(ShopBrand), "Shop By Brand button");
 }
 	/**
@@ -478,7 +493,7 @@ public class SearchLib extends CommonObj {
 			reporter.failureReport("Verifying the header menu is present "," Menu is not present in the header. Permissions are enabled properly.Menu item is: ",headerName[i]);
 			}
 		}
-		click(getSecondaryHeaderMenu(headerlist), "Shop menu :"+headerlist);
+		click(getSecondaryHeaderMenu(headerlist), "Header Link: Shop --> :"+headerlist);
 		isElementPresent(getShopAllBtnsFromMenuList(ShopBrand), "Shop By Brand button");
 	}
 	
@@ -488,21 +503,44 @@ public class SearchLib extends CommonObj {
 	 * @throws Throwable
 	 */
 	public void searchInHeaderSelectFromSuggestions(String searchText) throws Throwable{
-		
-		typeForSearchingProduct(SEARCH,searchText , "Search text");
-		
-		
+		WebElement element = driver.findElement(SEARCH);
+		typeForSearchingProduct(SEARCH,searchText , "Search text : "+searchText);
+		Thread.sleep(5000);
+		String result =null;
 		if(isElementPresent(SEARCH_SUGGESSIONS, "Search suggessions")){
-		click(SEARCH_SUGGESSIONS, "Search suggessions");
-		reporter.SuccessReport("Verifying whether the suggessions are displayed ","Suggessions are displayed for : ",searchText);
-		}else 
+			List<WebElement> myList = driver.findElements(SEARCH_SUGGESSIONS);
+			List<String> all_elements_text = new ArrayList<>();
+			for (int i = 0; i < myList.size(); i++) {
+				all_elements_text.add(myList.get(i).getText());
+				result = myList.get(i).getText();
+				reporter.SuccessReport("search suggestions are displayed ","suggestions displayed : ",result);
+			}
+		/*click(SEARCH_SUGGESSIONS, "Search suggessions");
+		reporter.SuccessReport("Verifying whether the suggessions are displayed ","Suggessions are displayed for : ",searchText);*/
+			element.sendKeys(Keys.ENTER);
+		}else {
+			reporter.failureReport("Verifying whether the suggestions are displayed  "," Enter a valid text.You entered : ",searchText);
+		}
+		/*else 
 			if(isElementNotPresent(SEARCH_SUGGESSIONS, "Search suggessions")){
-				WebElement element = driver.findElement(SEARCH);
 				element.sendKeys(Keys.ENTER);
-			reporter.SuccessReport("Verifying whether the suggessions are displayed ","Suggessions are not displayed",searchText);
+			reporter.SuccessReport("Verifying whether the suggessions are displayed ","Suggessions are  displayed",searchText);
 		}
 			else {
 			reporter.failureReport("Verifying whether the suggessions are displayed  "," Enter a valid text.You entered : ",searchText);
+		}*/
+	}
+	
+	/**
+	 * verify Search Suggestions are Not Displayed
+	 * @throws Throwable
+	 */
+	public void verifySearchSuggestionsareNotDisplayed(String searchText) throws Throwable {
+		typeForSearchingProduct(SEARCH,searchText , "Search text");
+		if(isElementNotPresent(SEARCH_SUGGESSIONS, "Search suggessions")){
+			reporter.SuccessReport("Verifying whether the suggestions are displayed ","suggestions are  not displayed","");
+		}else {
+			reporter.failureReport("Verifying whether the suggestions are displayed  "," search  suggestions are displayed ","",driver);
 		}
 	}
 	/**
@@ -512,9 +550,9 @@ public class SearchLib extends CommonObj {
 	 */
 	public void selectAccountTools(String tabName,String tabName1) throws Throwable{
 		click(TOOLS_DD_HEADER, "Tools drop down on header");
-		click(FAVORITES, "FAVORITES");
+		click(FAVORITES, "FAVORITES","Link: Account Favorites");
 	    if(isElementPresent(USER_PREFERENCE, "User preference tab", true)){
-	    	click(getFavoritesTabs(tabName),"Account favorites");
+	    	click(getFavoritesTabs(tabName),"Account favorites : "+tabName,tabName);
 	    	if(isElementPresent(ACCOUNT_FAVORITES,"ACCOUNT FAVORITES")){
 	    		LOG.info("Element is present and active");
 	    	}else{
@@ -522,14 +560,28 @@ public class SearchLib extends CommonObj {
 	    	}
 	    }
 	    click(getFavoritesTabs(tabName1), "User preference tab");
-	   
-	   // condition to un check if checked/ check if un checked
-	    if(isElementPresent(SHOW_KEYWORD_SUGGESSIONS_UNCHECKED, "SHOW_KEYWORD_SUGGESSIONS_UNCHECKED")){
-	    click(SHOW_KEYWORD_SUGGESSIONS_UNCHECKED, "Show key word suggessions check box");
-	    }else {
-	    click(SHOW_KEYWORD_SUGGESSIONS_CHECKED, "Show key word suggessions check box");
-	    }
-	    click(UPDATE_PREF_BTN, "Update button in user preference tab");
+	}
+	
+	public void enableSearchSuggestions() throws Throwable {
+		if(isElementPresent(SHOW_KEYWORD_SUGGESSIONS_CHECKED, "SHOW KEYWORD SUGGESTIONS CHECKED")){
+		// Do nothing 
+		}else {
+			scrollBottom();
+			 click(SHOW_KEYWORD_SUGGESSIONS_UNCHECKED, "Show key word suggestions check box Enabled");
+		}
+	}
+	
+	public void disableSearchSuggestions() throws Throwable {
+		if(isElementPresent(SHOW_KEYWORD_SUGGESSIONS_UNCHECKED, "SHOW KEYWORD SUGGESTIONS CHECKED")){
+		// Do nothing 
+		}else {
+			scrollBottom();
+			 click(SHOW_KEYWORD_SUGGESSIONS_CHECKED, "Show key word suggestions check box Disabled");
+		}
+	}
+	
+	public void updateSuggessions() throws Throwable {
+		click(UPDATE_PREF_BTN, "Update button in user preference tab");
 	}
 	
 	public void verifyFilterSelectedBySuggestions() throws Throwable{
@@ -844,7 +896,7 @@ public class SearchLib extends CommonObj {
 	}
 	
 	public void clickConfigurationSetsCheckboxs(String fieldName) throws Throwable {
-		click(productsDisplayInfoObj.ConfigurationSetsCheckboxs(fieldName), "Configuration Sets Checkboxs", "CheckBox: "+fieldName);
+		click(productsDisplayInfoObj.ConfigurationSetsCheckboxs(fieldName), "Configuration Sets Checkboxs "+fieldName, "CheckBox: "+fieldName,"CheckBox: "+fieldName);
 	}
 	
 	/**
@@ -1236,7 +1288,43 @@ public class SearchLib extends CommonObj {
 	       }
 		}
    }
-} 
+
+	/**
+	 * Method to verify filter selected
+	 * @param filter
+	 * @throws Throwable
+	 */
+	public void verifyFilterBreadCrumb(String filter) throws Throwable {
+		if(isVisibleOnly(productsDisplayInfoObj.getRemoveFilterName(filter), "Filter")) {
+			reporter.SuccessReport("Filter verification", "Applied "+filter+" filter is verified and displayed", filter);
+	}else {
+		reporter.failureReport("Filter verification", "Applied "+filter+" filter is not displayed", filter, driver);
+	  }
+	}
+
+	/*
+	 * Method is to verify "Explore all the brands Insight has to offer."
+	 */
+	public void verifyExploreAllBrandsLabel() throws Throwable {
+		if(isVisibleOnly(EXPLORE_ALL_BRANDS_LABEL, "Explore all brands")) {
+			reporter.SuccessReport("Verify Explore all brands section", "Explore all the brands Insight has to offer.", "");
+		}else {
+			reporter.failureReport("Verify Explore all brands section", "Explore all the brands Insight has to offer. does not exist", "", driver);
+		}
+	}
+
+	public void verifyNavigatedBreadCrumb(String searchText) throws Throwable {
+		By BreadCrumb = productsDisplayInfoObj.getBreadCrumbs(searchText);
+
+		if (isVisibleOnly(BreadCrumb, "Bread Crumb")) {
+			reporter.SuccessReport("Verify the navigation", "Sucessfully Navigated to "+searchText ,searchText);
+		} else {
+			reporter.failureReport("Verify the navigation", "Navigation is not Sucessfully " , searchText);
+		}
+	}
+
+}
+ 
 
 
 

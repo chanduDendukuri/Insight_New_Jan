@@ -189,13 +189,16 @@ public class productsDisplayInfoObj extends CommonObj{
     public static By ADD_ITEMS_TEXTBOX=By.xpath("//div//input[@id='add-favorite-item']");
     public static By ADD_BTN=By.xpath("//button[@class='c-button  c-button--primary c-favorites__header-parts__submit']//span[@class='c-button__content']");
     public static By MFR_PART=By.xpath("//div[@class='o-grid__item']//p[@class='c-item-card__details-text']");
-    public static By ADDED_TO_CART_PPC_PART_NO=By.xpath("//ul[@class='c-item-card__modal-info__list']//li[1]");
+    public static By ADDED_TO_CART_PPC_PART_NO=By.xpath("//p[@class='cart__item-part cart__font-size--sm'][contains(.,'Insight Part #')]");
     public static By CONTINUE_SHOPPING=By.xpath("//span[@class='c-button__text' and contains(text(),'Continue Shopping')]");
     public static By DELETE_BTN=By.xpath("//span[@class='c-button__text' and contains(text(),'Delete')]");
     public static By PART_DELETED_MSG=By.xpath("//span[@class='c-toast__header-title'][contains(text(),'Part deleted from your list.')]");
     public static By LIST_EMPTY_MSG=By.xpath("//div[@class='c-favorites__list--empty']");
     public static By CONTINUE_SHOPPING_BUTTON=By.xpath("//button[contains(text(),'Continue Shopping')]");
-    
+    public static By getMfrNumber(String number) {
+    	return By.xpath("//div[@class='o-grid__item']//p[@class='c-item-card__details-text'][contains(.,'Mfr part #: "+number+"')]");
+    }
+    public static By PPL_LABEL=By.xpath("//h1[contains(text(),'Personal Product List')]");
     
     /* *****************************************************************************************************************************
 	 * >>>>>>>>>>>>>>>>>>>>>>>>>>>>>LOCATOR IS TO GET THE ADD TO CART BUTTON USING THE MANUFACTURER NUMBER<<<<<<<<<<<<<<<<<<<<<<<<<
@@ -205,7 +208,9 @@ public class productsDisplayInfoObj extends CommonObj{
     public static By getAddToCartBtn(String mfr_Part){
     	return By.xpath("//div[@class='c-item-card__details o-grid__item u-1/1 u-1/2@tablet'][contains(.,'"+mfr_Part+"')]/following-sibling::div//span[contains(text(),'Add to cart')]");
     }
-    
+    public static By getGoToCartBtn(String mfr_Part){
+    	return By.xpath("//div[@class='c-item-card__details o-grid__item u-1/1 u-1/2@tablet'][contains(.,'"+mfr_Part+"')]/following-sibling::div//span[contains(text(),'Go to cart')]");
+    }
     // contract Prices available
     
     public static By MORE_PRICES=By.xpath("//div[@id='search-item-0']//p[@class='prod-more-prices']//a");
