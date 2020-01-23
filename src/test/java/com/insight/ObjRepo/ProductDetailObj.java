@@ -157,4 +157,11 @@ public class ProductDetailObj extends ActionEngine {
 	public static By FIRSTPRODUCT_MFRPARTNUM = By.xpath("//div[@id='search-item-0']//p[@class='prod-part-number show-for-medium-up']");
 	public static By RECOMENDED_PRODUCT_MPRE_AVAILABLE_PRICE=By.xpath("//h3[text()='Recommended with Printers']//parent::div//section//p//a[text()='More Prices Available']");
 	public static By MOST_OFTEN_PURCHASED_PRODUCT=By.xpath("//h3[text()='People that bought also bought']//parent::div//div//section//div[@class='rr-name-wrapper']");
+	public static By SPECIFICATIONS_TAB=By.xpath("//a[@data-gtm-info='SPECIFICATIONS']");
+	public static By SPECTIFICATIONS(String Tab) {
+	return By.xpath("//div[@id='tpl-specs-specs-target']//div[@class='ccs-ds-extendedSpec-header' and contains(text(),'"+Tab+"')]");
+	}
+
+
+
 }

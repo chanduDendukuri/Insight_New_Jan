@@ -109,9 +109,6 @@ public class SBP06_CreditCardOverrideTest extends ShipBillPayLib {
 				// add product to cart
 				commonLib.searchProduct(data.get("Search_Item"));
 				commonLib.addFirstDisplyedItemToCartAndVerify();
-//				commonLib.continueToShopping();
-//				commonLib.clickCart();
-				
 				canadaLib.continueToCheckout();
 				// proceed to checkout
 				orderLib.proceedToCheckout();
@@ -143,8 +140,6 @@ public class SBP06_CreditCardOverrideTest extends ShipBillPayLib {
 				// add product to cart
 				commonLib.searchProduct(data.get("Search_Item"));
 				commonLib.addFirstDisplyedItemToCartAndVerify();
-//				commonLib.continueToShopping();
-//				commonLib.clickCart();
 				canadaLib.continueToCheckout();
 				// proceed to checkout
 				orderLib.proceedToCheckout();
