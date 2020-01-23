@@ -48,8 +48,10 @@ public class SER09_PersonalProductListSearchResultsTest extends SearchLib {
 
 					// Test Steps execution
 					fnOpenTest();
+					clickOnSecondaryHeaderAndNavigate(data.get("HeaderName"), data.get("HeaderList"));
+					selectTheProductByTypeAndVerifyNavigation(data.get("ProductType"));
 					// search Workstations
-					searchInHomePage(data.get("ProductType"));
+					//searchInHomePage(data.get("ProductType"));
 					verifyBreadCrumbInSearchResultsPage(data.get("ProductType"));
 					// Add to Personal product list link should not display.
 					cartLib.selectFirstProductDisplay();

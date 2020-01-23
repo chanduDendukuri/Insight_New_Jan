@@ -71,15 +71,13 @@ public class SER06_KeywordSearchTest extends SearchLib {
 					cmtLib.loginAsAdminCMT();
 					cmtLib.loginVerification(data.get("ContactName"));
 					
-					// Desktops
+					// Monitors
 					searchInHomePage(data.get("SearchText4"));
 					//clickShopAllTypesButton();
 					verifyTheResultsForSearchTerm(data.get("SearchText4"));
 					// in-stock filter verification
 					verifyFilterBreadCrumb(data.get("In_Stock_Only"));
 					// Approve items only
-					scrollBottom();
-					scrollBottom();
 					filterSelectionInProductsSearchPage(data.get("Approved_Items"));
 					verifyBreadCrumbInSearchResultsPage(data.get("Approved_Items_Remove_Filter"));
 					verifyTheResultsForSearchTerm(data.get("SearchText4"));
@@ -88,33 +86,34 @@ public class SER06_KeywordSearchTest extends SearchLib {
 					
 					// High performance
 					searchInHomePage(data.get("SearchText5"));
-					verifyTheResultsForSearchTerm(data.get("SearchText5"));
+					verifyBreadCrumbInSearchResultsPage(data.get("SearchText5"));
 					// in stock verification
 					verifyFilterBreadCrumb(data.get("In_Stock_Only"));
 					// Approve items only
-					scrollBottom();
-					scrollBottom();
 				    filterSelectionInProductsSearchPage(data.get("Approved_Items"));
 					removeTheFilter(data.get("Approved_Items_Remove_Filter"));
-					verifyTheResultsForSearchTerm(data.get("SearchText4"));
-					
+					verifyBreadCrumbInSearchResultsPage(data.get("SearchText5"));
+					verifyFilterBreadCrumb(data.get("In_Stock_Only"));
 					// Printers
 					searchInHomePage(data.get("SearchText6"));
 					verifyTheResultsForSearchTerm(data.get("SearchText6"));
 					
 					// Stock only
-					removeTheFilter(data.get("filter"));
+					removeTheFilter(data.get("In_Stock_Only"));
 					getProductCount();
 					filterSelectionInProductsSearchPage(data.get("filter"));
 					getProductCount();
-					//removeTheFilter(data.get("Approved_Items"));
+					//removeTheFilter(data.get("Approved_Items_Remove_Filter"));
 					// Manufacturers :HONEYWELL
 					filterSelectionInProductsSearchPage(data.get("Manufacturer"));
 					// Min price and Max price
+					prodInfoLib.verifyListPrice();
 					prodInfoLib.enterPriceDetailsFilters(data.get("Min_Price"), data.get("Max_Price"));
 					// Remove price filter
+					Thread.sleep(3000);
 					removeTheFilter(data.get("price_Filter"));
 					verifyFilterSelected(data.get("Manufacturer"));
+					prodInfoLib.verifyListPrice();
 					// LogOut
 					commonLib.clickLogOutLink(data.get("Logout"));
 					

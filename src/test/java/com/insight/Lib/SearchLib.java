@@ -28,12 +28,12 @@ public class SearchLib extends CommonObj {
 	 */
 	public void clickOnSecondaryHeaderAndNavigate(String header, String headerlist) throws Throwable {
 
-		click(getSecondaryHeaderMenu(header), "Secondary header link");
-		click(getSecondaryMenuListItems(headerlist), "Secondary header links list");
+		click(getSecondaryHeaderMenu(header), "Secondary header link "+header);
+		click(getSecondaryMenuListItems(headerlist), "Secondary header links list "+headerlist);
 		By BreadCrumb = productsDisplayInfoObj.getBreadCrumbs(headerlist);
 
 		if (isElementPresent(BreadCrumb, "Bread Crumb")) {
-			reporter.SuccessReport("Verify the navigation", "Sucessfully Navigated to : " ,headerlist);
+			reporter.SuccessReport("Verify the navigation", "Sucessfully Navigated to : " ,headerlist +" page");
 		} else {
 			reporter.failureReport("Verify the navigation", "Navigation is not Sucessfully : " , headerlist);
 		}
@@ -47,12 +47,12 @@ public class SearchLib extends CommonObj {
 	 * @throws Throwable
 	 */
 	public void selectTheProductByTypeAndVerifyNavigation(String typeOfProduct) throws Throwable {
-		click(productsDisplayInfoObj.getProductByType(typeOfProduct), "Product type ");
+		click(productsDisplayInfoObj.getProductByType(typeOfProduct), "Product type "+typeOfProduct);
 		By BreadCrumb = productsDisplayInfoObj.getBreadCrumbs(typeOfProduct);
 		if (isElementPresent(BreadCrumb, "Bread Crumb")) {
-			reporter.SuccessReport("Verify the navigation", "Sucessfully Navigated to : " , typeOfProduct);
+			reporter.SuccessReport("Verify the navigation", "Sucessfully Navigated to search results page " , typeOfProduct);
 		} else {
-			reporter.failureReport("Verify the navigation", "Navigation is not Sucessfully : " , typeOfProduct);
+			reporter.failureReport("Verify the navigation", "Navigation is not Sucessfull " , typeOfProduct);
 		}
 	}
 
@@ -77,7 +77,7 @@ public class SearchLib extends CommonObj {
 	 * @param ProductName
 	 * @throws Throwable
 	 */
-	public void navigateToProductSearchResultsAndSearchProduct(String header, String headerlist,String typeOfProduct,String ProductName) throws Throwable{
+	public void shopAndSearchProduct(String header, String headerlist,String typeOfProduct,String ProductName) throws Throwable{
 		clickOnSecondaryHeaderAndNavigate(header, headerlist);
 		selectTheProductByTypeAndVerifyNavigation(typeOfProduct);
 		Thread.sleep(3000);

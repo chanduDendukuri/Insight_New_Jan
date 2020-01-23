@@ -252,9 +252,11 @@ public class ProductDisplayInfoLib extends productsDisplayInfoObj {
 		String priceFilter = null;
 		String result = null;
 		boolean flag = true;
+		
 		type(productsDisplayInfoObj.MIN_PRICE, minPrice, "Minimum price");
 		type(productsDisplayInfoObj.MAX_PRICE, maxPrice, "Maximum price");
 		click(productsDisplayInfoObj.PRICE_SUBMIT, "filter price GO button");
+		//JSClick(productsDisplayInfoObj.PRICE_SUBMIT, "filter price GO button");
 		if (flag) {
 			// adding the filter elements to list
 			List<WebElement> myList = driver.findElements(productsDisplayInfoObj.FILTER_ITEM);
@@ -262,8 +264,8 @@ public class ProductDisplayInfoLib extends productsDisplayInfoObj {
 			for (int i = 0; i < myList.size(); i++) {
 				all_elements_text.add(myList.get(i).getText());
 				result = myList.get(i).getText().replace(",", "");
-
 				Thread.sleep(2000);
+				
 				priceFilter = "$" + minPrice.replace(",", "").replace(".00", "") + "-$" + maxPrice;
 				if (result.replace(".00", "").contains(priceFilter)) {
 					Thread.sleep(2000);
@@ -277,6 +279,13 @@ public class ProductDisplayInfoLib extends productsDisplayInfoObj {
 		}
 	}
 
+	public void verifyListPrice() throws Throwable {
+		if(isVisibleOnly(productsDisplayInfoObj.MIN_PRICE, "min price")&& isVisibleOnly(productsDisplayInfoObj.MAX_PRICE, "Max price")) {
+			reporter.SuccessReport("List Price Range in Narrow Section on Search Results Page", "List Price Range Exists", "");
+		}else {
+			reporter.failureReport("List Price Range in Narrow Section on Search Results Page", "List Price Range does not Exists", "", driver);
+		}
+	}
 	/**
 	 * This method is to click on pagination numbers.
 	 * 
@@ -471,9 +480,10 @@ public class ProductDisplayInfoLib extends productsDisplayInfoObj {
 		//waitForVisibilityOfElement(ADDED_TO_CART_PPC_PART_NO, "Part number");
 		cartLib.verifyCartBreadCrumb();
 		String partNo = getText(ADDED_TO_CART_PPC_PART_NO, "part number in the personal product list cart");
+		String actualpartNo=partNo.replaceAll("Insight Part #:", "").trim();
 		List<String> prodDesc1=orderLib.getProductDescriptionOfCartProduct();
 		List<String> totalPrice1=orderLib.getCartProductTotalPrice();
-		if (partNo.replace("Insight Part # :", "").equals(partNumber)) {
+		if ((actualpartNo).equals(partNumber)) {
 			reporter.SuccessReport("Verify the part added to cart ", "Part sucessfully added to cart. number is : ","Part Number : "+partNo+ "  prod Description : "+prodDesc1.get(0)+ " Quantity : 1" +"Total Price: "+totalPrice1.get(0));
 		} else {
 			reporter.failureReport("Verify the part added to cart ", "Part is not added to cart.", "",driver);
