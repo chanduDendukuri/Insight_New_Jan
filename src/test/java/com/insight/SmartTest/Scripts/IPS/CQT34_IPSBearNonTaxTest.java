@@ -48,7 +48,7 @@ public class CQT34_IPSBearNonTaxTest extends HomeLib{
 					EnableMaterialfield();
 					Addmaterail(data.get("Material1"));
 					Addmaterail(data.get("Material1"));
-					Addmaterail(data.get("Material1"));
+					//Addmaterail(data.get("Material1"));
 					clickonConXSystem(data.get("ItemNum"));// 000010
 					clickOnContractId(data.get("contactid"));
 					enterTestinReportingField0(data.get("Reprotingfield0text"));

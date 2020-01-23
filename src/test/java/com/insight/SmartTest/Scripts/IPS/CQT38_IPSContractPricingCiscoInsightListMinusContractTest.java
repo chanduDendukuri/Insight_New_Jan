@@ -112,7 +112,7 @@ public class CQT38_IPSContractPricingCiscoInsightListMinusContractTest extends H
                     }
                     
                    
-                    //comparision of retraived price values
+                    //comparision of retrieved price values
                     VerifyZPLSMinusYDLPShouldbeEqualToZP00(price1value,price4value,price2value);
 					VerifyZPLSMinusYDLPShouldbeEqualToYP00(price1value,price4value,price3value);
 					 clickDoneButton();
