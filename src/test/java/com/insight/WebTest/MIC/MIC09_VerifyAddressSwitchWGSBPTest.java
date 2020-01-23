@@ -11,7 +11,9 @@ import com.insight.Lib.CartLib;
 import com.insight.Lib.CommonLib;
 import com.insight.Lib.MarriottIntlCorpLib;
 import com.insight.Lib.OrderLib;
+import com.insight.Lib.ProductDetailLib;
 import com.insight.Lib.ProductDisplayInfoLib;
+import com.insight.Lib.SearchLib;
 import com.insight.Lib.ShipBillPayLib;
 import com.insight.accelerators.ReportControl;
 import com.insight.accelerators.TestEngineWeb;
@@ -27,6 +29,9 @@ public class MIC09_VerifyAddressSwitchWGSBPTest extends MarriottIntlCorpLib {
 	CartLib cartLib = new CartLib();
 	ProductDisplayInfoLib productDispinfoLib=new ProductDisplayInfoLib();
 	CanadaLib canadaLib = new CanadaLib();
+	ProductDetailLib productDetailLib = new ProductDetailLib();
+	SearchLib searchLib=new SearchLib();
+
 	
 	// #############################################################################################################
 	// # Name of the Test : MIC09_VerifyAddressSwitchWGSBP
@@ -61,7 +66,11 @@ public class MIC09_VerifyAddressSwitchWGSBPTest extends MarriottIntlCorpLib {
 							data.get("LnameEmailUname"), data.get("Contact_Name"));
 					cmtLib.loginAsAdminCMT();
 					commonLib.searchProduct(data.get("Search_Item"));
-					commonLib.addFirstDisplyedItemToCartAndVerify();
+					searchLib.verifyBreadCrumbInSearchResultsPage(data.get("Search_Item"));
+					productDetailLib.getFirstProdDescription();
+					cartLib.selectFirstProductDisplay();
+					productDetailLib.getProductNameInProductDetailPage(data.get("Search_Item"));
+					String partNumber = productDetailLib.getMFRNumberInProductInfopage();
 					canadaLib.continueToCheckout();
 					// proceed to checkout
 					proceedToCheckout();
