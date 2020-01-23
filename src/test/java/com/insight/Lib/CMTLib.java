@@ -160,22 +160,22 @@ public class CMTLib extends CMTObj {
 	}
 
 	public void verifyPasswordResetWrongEmailEnteredMessage() throws Throwable {
-		String error=null;
+		String error = null;
 		if (isVisibleOnly(FOGET_PASSWORD_ERROR_MESSAGE, "error message")) {
-			 error = getText(FOGET_PASSWORD_ERROR_MESSAGE, "error message");
-			reporter.SuccessReport("Verifying Success message", "Email Success Message Exists", error );
+			error = getText(FOGET_PASSWORD_ERROR_MESSAGE, "error message");
+			reporter.SuccessReport("Verifying Success message", "Email Success Message Exists", error);
 		} else {
 			reporter.failureReport("Verifying Success message", "Email Success Message does not Exist", error, driver);
 		}
 	}
 
 	public void verifyPasswordResetEmailEnteredSucessMessage(String input) throws Throwable {
-		String error=null;
+		String error = null;
 		if (isVisibleOnly(FORGET_PASSWORD_RESET_SUCESS_MESSAGE, "Success message")) {
-			error=getText(FORGET_PASSWORD_RESET_SUCESS_MESSAGE, "Success message");
+			error = getText(FORGET_PASSWORD_RESET_SUCESS_MESSAGE, "Success message");
 			reporter.SuccessReport("Verifying Success message", "Apperead Success message is ", error);
 		} else {
-			reporter.failureReport("Verifying Success message","Success message is not appeared ", error, driver);
+			reporter.failureReport("Verifying Success message", "Success message is not appeared ", error, driver);
 		}
 	}
 
@@ -260,9 +260,11 @@ public class CMTLib extends CMTObj {
 		for (i = 0; i < permissions.length; i++) {
 			if (isCheckBoxSelected(getUserPermission(permissions[i]))) {
 				LOG.info(userPermission + " check box already checked.");
-				reporter.SuccessReport(permissions[i]+" Permissions on WebGroup Management Page", "Check Box Field Exists and Enabled", permissions[i]);
+				reporter.SuccessReport(permissions[i] + " Permissions on WebGroup Management Page",
+						"Check Box Field Exists and Enabled", permissions[i]);
 			} else {
-				click(getUserPermission(permissions[i]), "set user permission "+permissions[i]+" is ON " , permissions[i],permissions[i]);
+				click(getUserPermission(permissions[i]), "set user permission " + permissions[i] + " is ON ",
+						permissions[i], permissions[i]);
 			}
 		}
 
@@ -296,7 +298,8 @@ public class CMTLib extends CMTObj {
 	 * @throws Throwable
 	 */
 	public void loginVerification(String contactName) throws Throwable {
-		waitForVisibilityOfElement(CMTObj.getLoginVerficationByContactNameOnHeader(contactName), "contact Name is "+contactName);
+		waitForVisibilityOfElement(CMTObj.getLoginVerficationByContactNameOnHeader(contactName),
+				"contact Name is " + contactName);
 		if (isVisibleOnly(CMTObj.getLoginVerficationByContactNameOnHeader(contactName), "contact Name")) {
 			reporter.SuccessReport("Verify the Same User Logged into Insight from CMT",
 					"User login verification is successfull. User is : ", contactName);
@@ -545,7 +548,8 @@ public class CMTLib extends CMTObj {
 		} else {
 			LOG.info(userPermissions + " check box already checked.");
 			reporter.SuccessReport("Verify Customer Level Permissions",
-					"User permissions :" + userPermissions + "check box already Disabled", "" + userPermissions + " OFF");
+					"User permissions :" + userPermissions + "check box already Disabled",
+					"" + userPermissions + " OFF");
 		}
 	}
 
@@ -706,11 +710,14 @@ public class CMTLib extends CMTObj {
 			reporter.failureReport("Verify the sucess message", "Permissions are not Updated Succesfully", "", driver);
 		}
 	}
+
 	public void verifyUpdateSuccessMessages() throws Throwable {
 		if (isVisibleOnly(SUCCESS_UPDATE_MSG, "update sucessful message")) {
-			reporter.SuccessReport("Verify the Sucess message ", "Permissions Updated Succesfully", getText(SUCCESS_UPDATE_MSG, "update sucessful message"));
+			reporter.SuccessReport("Verify the Sucess message ", "Permissions Updated Succesfully",
+					getText(SUCCESS_UPDATE_MSG, "update sucessful message"));
 		} else {
-			reporter.failureReport("Verify the sucess message", "Permissions are not Updated Succesfully", getText(SUCCESS_UPDATE_MSG, "update sucessful message"), driver);
+			reporter.failureReport("Verify the sucess message", "Permissions are not Updated Succesfully",
+					getText(SUCCESS_UPDATE_MSG, "update sucessful message"), driver);
 		}
 	}
 
@@ -972,6 +979,7 @@ public class CMTLib extends CMTObj {
 		for (int i = 0; i < myList.size(); i++) {
 			if (isElementPresent(ERROR_MESSAGE_CREATE_ACCOUNT, "error message")) {
 				String text = myList.get(i).getText();
+
 				reporter.SuccessReport("verifying error message", "Error message exists: " + text, text);
 			} else {
 				reporter.failureReport("verifying error message", "Error message does not exists: ", "", driver);
@@ -1086,12 +1094,13 @@ public class CMTLib extends CMTObj {
 			selectByVisibleText(CMTObj.DEFAULT_SHIPPING_OPTION, optionToSelect, "Click on" + optionToSelect);
 		}
 	}
+
 	public void selectShippingOptions(String optionToSelect) throws Throwable {
-			// waitForVisibilityOfElement(CMTObj.DEFAULT_SHIPPING_OPTION, "Wait
-			// for" + optionToSelect);
-		click(CMTObj.defaultShippingCarrier,"Shipping carrier");
-			click(CMTObj.defaultshippingCarrier(optionToSelect), optionToSelect, "Click on" + optionToSelect);
-		
+		// waitForVisibilityOfElement(CMTObj.DEFAULT_SHIPPING_OPTION, "Wait
+		// for" + optionToSelect);
+		click(CMTObj.defaultShippingCarrier, "Shipping carrier");
+		click(CMTObj.defaultshippingCarrier(optionToSelect), optionToSelect, "Click on" + optionToSelect);
+
 	}
 
 	/**
@@ -1215,12 +1224,13 @@ public class CMTLib extends CMTObj {
 	}
 
 	public void deleteClientNotification(String repMail) throws Throwable {
-		if(isVisibleOnly(clientNotifiationDeleteIcon(repMail),"Repo Email")){
+		if (isVisibleOnly(clientNotifiationDeleteIcon(repMail), "Repo Email")) {
 			reporter.SuccessReport("Verifying newly added Sales repo", "Newly added sales repo is reflected ", repMail);
 			click(clientNotifiationDeleteIcon(repMail), "Delete client notification ");
 
-		}else{
-			reporter.failureReport("Verifying newly added Sales repo", "Newly added sales repo is not reflected ", repMail,driver);
+		} else {
+			reporter.failureReport("Verifying newly added Sales repo", "Newly added sales repo is not reflected ",
+					repMail, driver);
 		}
 	}
 
@@ -1383,8 +1393,7 @@ public class CMTLib extends CMTObj {
 			reporter.failureReport("Click Display  Web Icon on Manage Web Group: Contacts and Notifications Page",
 					"Display on Web Icon Is Not Exists ", "");
 		}
-		
-		
+
 		// See the Reps Names
 		List<String> popupRepNamesList = new ArrayList<String>();
 		String popupRepName = null;
@@ -1399,30 +1408,46 @@ public class CMTLib extends CMTObj {
 				if (salesRep.size() >= 2) {
 
 					if (i == 1) {
-						String val=Integer.toString(i + 3);
-						type(getRepValuesOnDisplayWebPopup(i),val , "sales rep number text box");
-						
-						reporter.SuccessReport("Repo Name and its Value", "Repo Name is "+ getText(getRepNamesOnDisplayWebPopup(i), "Rep Names").replace(",", " ").trim() + " and order is -->" + val, val);
+						String val = Integer.toString(i + 3);
+						type(getRepValuesOnDisplayWebPopup(i), val, "sales rep number text box");
+
+						reporter.SuccessReport("Repo Name and its Value",
+								"Repo Name is "
+										+ getText(getRepNamesOnDisplayWebPopup(i), "Rep Names").replace(",", " ").trim()
+										+ " and order is -->" + val,
+								val);
 					}
 					if (i == 2) {
-						String val1=Integer.toString(i + 1);
+						String val1 = Integer.toString(i + 1);
 						type(getRepValuesOnDisplayWebPopup(i), val1, "sales rep number text box");
-						reporter.SuccessReport("Repo Name and its Value", "Repo Name is "+ getText(getRepNamesOnDisplayWebPopup(i), "Rep Names").replace(",", " ").trim() + " and order is -->" + val1 , val1);
-						
+						reporter.SuccessReport("Repo Name and its Value",
+								"Repo Name is "
+										+ getText(getRepNamesOnDisplayWebPopup(i), "Rep Names").replace(",", " ").trim()
+										+ " and order is -->" + val1,
+								val1);
+
 					}
 					if (i == 3) {
-						String val2=Integer.toString(i -1);
+						String val2 = Integer.toString(i - 1);
 						type(getRepValuesOnDisplayWebPopup(i), val2, "sales rep number text box");
-						reporter.SuccessReport("Repo Name and its Value", "Repo Name is "+ getText(getRepNamesOnDisplayWebPopup(i), "Rep Names").replace(",", " ").trim() + " and order is --> " + val2, val2);
+						reporter.SuccessReport("Repo Name and its Value",
+								"Repo Name is "
+										+ getText(getRepNamesOnDisplayWebPopup(i), "Rep Names").replace(",", " ").trim()
+										+ " and order is --> " + val2,
+								val2);
 
 					}
 					if (i == 4) {
-						String val3=Integer.toString(i - 3);
+						String val3 = Integer.toString(i - 3);
 						type(getRepValuesOnDisplayWebPopup(i), val3, "sales rep number text box");
-						reporter.SuccessReport("Repo Name and its Value", "Repo Name is "+ getText(getRepNamesOnDisplayWebPopup(i), "Rep Names").replace(",", " ").trim() + " and order is -->  "+val3, val3);
+						reporter.SuccessReport("Repo Name and its Value",
+								"Repo Name is "
+										+ getText(getRepNamesOnDisplayWebPopup(i), "Rep Names").replace(",", " ").trim()
+										+ " and order is -->  " + val3,
+								val3);
 
 					}
-					
+
 				}
 
 			}
@@ -1439,16 +1464,13 @@ public class CMTLib extends CMTObj {
 			}
 
 			// JSClick(UPDATE_BUTTN, "Update button");
-		} 
-		else
-			{
+		} else {
 			reporter.failureReport("Verify Rep Name on Manage Web Group: Contacts and Notifications Page",
 					"POPUP does not Exists ", "");
-			}
-		
-		if(isVisibleOnly(DISPLAY_ON_WEB,"Web Icon"))
-		{
-			click(DISPLAY_ON_WEB,"Display Web Icon");
+		}
+
+		if (isVisibleOnly(DISPLAY_ON_WEB, "Web Icon")) {
+			click(DISPLAY_ON_WEB, "Display Web Icon");
 			if (isElementPresent(DISPLAY_ON_WEB_POPUP, "Web icon")) {
 				reporter.SuccessReport("Verify Rep Name on Manage Web Group: Contacts and Notifications Page",
 						"POP Exists with Display Sales Rep Names ", "");
@@ -1456,53 +1478,66 @@ public class CMTLib extends CMTObj {
 				List<WebElement> salesRep = driver
 						.findElements(By.xpath("//div[@id='webNotificationSortPopUp']//input[@type='textbox']"));
 
+				for (i = 1; i <= salesRep.size(); i++) {
+					if (salesRep.size() >= 2) {
 
-			for (i = 1; i <= salesRep.size(); i++) {
-				if (salesRep.size() >= 2) {
+						if (i == 1) {
+							String val = Integer.toString(i + 3);
+							type(getRepValuesOnDisplayWebPopup(i), val, "sales rep number text box");
 
-					if (i == 1) {
-						String val=Integer.toString(i + 3);
-						type(getRepValuesOnDisplayWebPopup(i),val , "sales rep number text box");
-						
-						reporter.SuccessReport("Repo Name and its Value", "Repo Name is "+ getText(getRepNamesOnDisplayWebPopup(i), "Rep Names").replace(",", " ").trim() + " and its values is ", val);
+							reporter.SuccessReport("Repo Name and its Value", "Repo Name is "
+									+ getText(getRepNamesOnDisplayWebPopup(i), "Rep Names").replace(",", " ").trim()
+									+ " and its values is ", val);
+						}
+						/*
+						 * if (i == 2) { String val1=Integer.toString(i + 1);
+						 * type(getRepValuesOnDisplayWebPopup(i), val1,
+						 * "sales rep number text box");
+						 * reporter.SuccessReport("Repo Name and its Value",
+						 * "Repo Name is "+
+						 * getText(getRepNamesOnDisplayWebPopup(i),
+						 * "Rep Names").replace(",", " ").trim() +
+						 * " and its values is ", val1);
+						 * 
+						 * } if (i == 3) { String val2=Integer.toString(i -1);
+						 * type(getRepValuesOnDisplayWebPopup(i), val2,
+						 * "sales rep number text box");
+						 * reporter.SuccessReport("Repo Name and its Value",
+						 * "Repo Name is "+
+						 * getText(getRepNamesOnDisplayWebPopup(i),
+						 * "Rep Names").replace(",", " ").trim() +
+						 * " and its values is ", val2);
+						 * 
+						 * } if (i == 4) { String val3=Integer.toString(i - 3);
+						 * type(getRepValuesOnDisplayWebPopup(i), val3,
+						 * "sales rep number text box");
+						 * reporter.SuccessReport("Repo Name and its Value",
+						 * "Repo Name is "+
+						 * getText(getRepNamesOnDisplayWebPopup(i),
+						 * "Rep Names").replace(",", " ").trim() +
+						 * " and its values is ", val3);
+						 * 
+						 * }
+						 */
 					}
-				/*	if (i == 2) {
-						String val1=Integer.toString(i + 1);
-						type(getRepValuesOnDisplayWebPopup(i), val1, "sales rep number text box");
-						reporter.SuccessReport("Repo Name and its Value", "Repo Name is "+ getText(getRepNamesOnDisplayWebPopup(i), "Rep Names").replace(",", " ").trim() + " and its values is ", val1);
-						
-					}
-					if (i == 3) {
-						String val2=Integer.toString(i -1);
-						type(getRepValuesOnDisplayWebPopup(i), val2, "sales rep number text box");
-						reporter.SuccessReport("Repo Name and its Value", "Repo Name is "+ getText(getRepNamesOnDisplayWebPopup(i), "Rep Names").replace(",", " ").trim() + " and its values is ", val2);
-
-					}
-					if (i == 4) {
-						String val3=Integer.toString(i - 3);
-						type(getRepValuesOnDisplayWebPopup(i), val3, "sales rep number text box");
-						reporter.SuccessReport("Repo Name and its Value", "Repo Name is "+ getText(getRepNamesOnDisplayWebPopup(i), "Rep Names").replace(",", " ").trim() + " and its values is ", val3);
-
-					}
-*/					
 				}
 			}
-			}
 
-			
 			click(UPDATE_BUTTN, "Update button");
 			waitForVisibilityOfElement(ALERTERORRR_MSG, "Error, the rules must numeric.");
-			if(isVisibleOnly(ALERTERORRR_MSG, "Error, the rules must numeric.")){
-				reporter.SuccessReport("Invalid data Validation", "Error message appeares when user enter invalid input", getText(ALERTERORRR_MSG, "Error, the rules must be unique."));
+			if (isVisibleOnly(ALERTERORRR_MSG, "Error, the rules must numeric.")) {
+				reporter.SuccessReport("Invalid data Validation",
+						"Error message appeares when user enter invalid input",
+						getText(ALERTERORRR_MSG, "Error, the rules must be unique."));
 			}
 
 		}
 		// verify cancel button in Product Exp
 		if (isElementPresent(DISPLAY_ON_WEB_POPUP, "Web icon")) {
-			//click(DISPLAY_ON_WEB, "Display web icon");
-			//type(getRepValuesOnDisplayWebPopup(1), "abc", "sales rep number text box");
-			
-			
+			// click(DISPLAY_ON_WEB, "Display web icon");
+			// type(getRepValuesOnDisplayWebPopup(1), "abc", "sales rep number
+			// text box");
+
 			List<WebElement> salesRep = driver
 					.findElements(By.xpath("//div[@id='webNotificationSortPopUp']//input[@type='textbox']"));
 
@@ -1510,50 +1545,64 @@ public class CMTLib extends CMTObj {
 				if (salesRep.size() >= 2) {
 
 					if (i == 1) {
-						String val="a";
-						type(getRepValuesOnDisplayWebPopup(i),val , "sales rep number text box");
-						
-						reporter.SuccessReport("Repo Name and its Value", "Repo Name is "+ getText(getRepNamesOnDisplayWebPopup(i), "Rep Names").replace(",", " ").trim() + " and its values is ", val);
+						String val = "a";
+						type(getRepValuesOnDisplayWebPopup(i), val, "sales rep number text box");
+
+						reporter.SuccessReport("Repo Name and its Value",
+								"Repo Name is "
+										+ getText(getRepNamesOnDisplayWebPopup(i), "Rep Names").replace(",", " ").trim()
+										+ " and its values is ",
+								val);
 					}
 					if (i == 2) {
-						String val1="b";
+						String val1 = "b";
 						type(getRepValuesOnDisplayWebPopup(i), val1, "sales rep number text box");
-						reporter.SuccessReport("Repo Name and its Value", "Repo Name is "+ getText(getRepNamesOnDisplayWebPopup(i), "Rep Names").replace(",", " ").trim() + " and its values is ", val1);
-						
+						reporter.SuccessReport("Repo Name and its Value",
+								"Repo Name is "
+										+ getText(getRepNamesOnDisplayWebPopup(i), "Rep Names").replace(",", " ").trim()
+										+ " and its values is ",
+								val1);
+
 					}
 					if (i == 3) {
-						String val2="c";
+						String val2 = "c";
 						type(getRepValuesOnDisplayWebPopup(i), val2, "sales rep number text box");
-						reporter.SuccessReport("Repo Name and its Value", "Repo Name is "+ getText(getRepNamesOnDisplayWebPopup(i), "Rep Names").replace(",", " ").trim() + " and its values is ", val2);
+						reporter.SuccessReport("Repo Name and its Value",
+								"Repo Name is "
+										+ getText(getRepNamesOnDisplayWebPopup(i), "Rep Names").replace(",", " ").trim()
+										+ " and its values is ",
+								val2);
 
 					}
 					if (i == 4) {
-						String val3="d";
+						String val3 = "d";
 						type(getRepValuesOnDisplayWebPopup(i), val3, "sales rep number text box");
-						reporter.SuccessReport("Repo Name and its Value", "Repo Name is " +"<b>"+ getText(getRepNamesOnDisplayWebPopup(i), "</b>Rep Names").replace(",", " ").trim() + " and its values is ", val3);
+						reporter.SuccessReport("Repo Name and its Value", "Repo Name is " + "<b>"
+								+ getText(getRepNamesOnDisplayWebPopup(i), "</b>Rep Names").replace(",", " ").trim()
+								+ " and its values is ", val3);
 
 					}
-					
+
 				}
 
 			}
-			
-			
+
 			click(UPDATE_BUTTN, "Update button");
 			waitForVisibilityOfElement(ALERTERORRR_MSG, "Error, the rules must numeric.");
-			if(isVisibleOnly(ALERTERORRR_MSG, "Error, the rules must numeric.")){
-				reporter.SuccessReport("Invalid data Validation", "Error message appeares when user enter invalid input", getText(ALERTERORRR_MSG, "Error, the rules must numeric."));
+			if (isVisibleOnly(ALERTERORRR_MSG, "Error, the rules must numeric.")) {
+				reporter.SuccessReport("Invalid data Validation",
+						"Error message appeares when user enter invalid input",
+						getText(ALERTERORRR_MSG, "Error, the rules must numeric."));
 			}
-			
-			//Duplicate input
-			
-			/*List<WebElement> salesRep = driver
-					.findElements(By.xpath("//div[@id='webNotificationSortPopUp']//input[@type='textbox']"));*/
 
-			
-			
-			
-			
+			// Duplicate input
+
+			/*
+			 * List<WebElement> salesRep = driver .findElements(By.xpath(
+			 * "//div[@id='webNotificationSortPopUp']//input[@type='textbox']"))
+			 * ;
+			 */
+
 			if (isElementPresent(CANCEL_BTN, "Cancel button")) {
 				click(CANCEL_BTN, "Cancel button click");
 				reporter.SuccessReport("Click CANCEL in POPUP on Manage Web Group: Contacts and Notifications Page",
@@ -1656,20 +1705,24 @@ public class CMTLib extends CMTObj {
 	 * @throws Throwable
 	 */
 	public void enterProductGrpName(String ProdGrpName) throws Throwable {
+		String val = null;
 		if (isElementPresent(PROD_WEBGRP_NAME, "Product group")) {
 			// click(getManageWebGroupDDLinks(ProdGrpName), "Product group
 			// option: " + ProdGrpName);
+			val = getRandomNumeric(4);
 			type(PROD_WEBGRP_NAME, ProdGrpName, "Product Group Name");
 			reporter.SuccessReport("Enter Product Group Name on Product Group Creation Wizard",
 					"Product Group Name is Exists and Entered", "");
-		} else
+		} else {
 			reporter.failureReport("Enter Product Group Name on Product Group Creation Wizard",
 					"Product Group Name is Not Exists", "", driver);
+		}
 	}
 
 	public void selectCompanyStandardsLink() throws Throwable {
 		if (isElementPresent(COMP_STAND_WIZARD, "company standards wizard")) {
-			click(COMP_STAND_WIZARD, "company standards wizard");
+
+			click(COMP_STAND_WIZARD, "company standards wizard exists and clicked");
 			reporter.SuccessReport("Click Company Standards Wizard on Company Standards Management Page",
 					"Company Standards Wizard Existed and Clicked", "");
 
@@ -1685,14 +1738,17 @@ public class CMTLib extends CMTObj {
 	 * @throws Throwable
 	 */
 	public void enterCreateNewValue(String CreateNewName) throws Throwable {
-		if (isElementPresent(CATEGORY, "Select Category")) {
-			click(CATEGORY, "Select Category");
-			selectByVisibleText(CATEGORY, CreateNewName, "Select Category");
+		if (isElementPresent(CREATE_NEW, "Select Category")) {
+			/*
+			 * click(CATEGORY, "Select Category"); selectByVisibleText(CATEGORY,
+			 * CreateNewName, "Select Category");
+			 */
+			type(CREATE_NEW, CreateNewName, "Create New Name");
 			reporter.SuccessReport("Enter Category on Product Group Creation Wizard", "Category is Exists and Entered",
-					"");
+					CreateNewName);
 		} else
-			reporter.failureReport("Enter Category on Product Group Creation Wizard", "Category is Not Exists", "",
-					driver);
+			reporter.failureReport("Enter Category on Product Group Creation Wizard", "Category is Not Exists",
+					CreateNewName, driver);
 	}
 
 	public void clickContinueBtn() throws Throwable {
@@ -1765,7 +1821,7 @@ public class CMTLib extends CMTObj {
 			String item = result.split("Mfr Part #:")[1];
 			if (item != "") {
 				reporter.SuccessReport("Verify 1st Product Part # in Search Results Page",
-						"1st Product Part # is Exists", "");
+						"1st Product Part # is Exists", result);
 			} else
 				reporter.failureReport("Verify 1st Product Part # in Search Results Page",
 						"1st Product Part # is Not Exists", "", driver);
@@ -1797,9 +1853,9 @@ public class CMTLib extends CMTObj {
 					"Configuration Set Updated Not Exists", "", driver);
 	}
 
-	public void ClickCategoryLink() throws Throwable {
-		if (isElementPresent(QTPCATEGORY_LINK, "QTPCategory Link")) {
-			click(QTPCATEGORY_LINK, "QTPCategory Link");
+	public void ClickCategoryLink(String val) throws Throwable {
+		if (isVisibleOnly(lnkCatLink(val), "QTPCategory Link")) {
+			click(lnkCatLink(val), "QTPCategory Link");
 			reporter.SuccessReport("Click Category Link Under Current Categories  on Company Standards Management",
 					"Category Link  is Exists and Entered", "");
 		} else
@@ -1810,7 +1866,7 @@ public class CMTLib extends CMTObj {
 
 	public void ModifyCategory() throws Throwable {
 		if (isElementPresent(QTPCATEGORY_NAME, "QTPCategory Name")) {
-			type(QTPCATEGORY_NAME, "TestCategory", "QTPCategory Name");
+			type(QTPCATEGORY_NAME, "QTPCategory", "QTPCategory Name");
 			reporter.SuccessReport("Edit Category Name on Company Standards Management",
 					"Category Name Exists and Modified", "");
 		} else
@@ -1819,7 +1875,7 @@ public class CMTLib extends CMTObj {
 	}
 
 	public void CheckCollapseOption() throws Throwable {
-		if (isElementPresent(CHECK_COLLAPSE, "Collapse check box")) {
+		if (isVisibleOnly(CHECK_COLLAPSE, "Collapse check box")) {
 			WebElement chkOption = driver.findElement(CHECK_COLLAPSE);
 			boolean chk = chkOption.isSelected();
 			if (!chk) {
@@ -1863,6 +1919,29 @@ public class CMTLib extends CMTObj {
 		}
 	}
 
+	public void clickOnProductGroup(String productGroupName) throws Throwable {
+
+		if (isVisibleOnly(lblProductGroupNamelink(productGroupName), "Product Group")) {
+			click(lblProductGroupNamelink(productGroupName), "Product Group", productGroupName);
+			reporter.SuccessReport("Clicking on product group ", " Clicked on ", productGroupName);
+		} else {
+			reporter.failureReport("Clicking on prodcut group", "clicking on product group", productGroupName, driver);
+		}
+		if (isElementPresent(PRD_GRP_TO_MODIFY, "Prod group to modify")) {
+			// type(PRD_GRP_TO_MODIFY, "TestProdGroupCategory", "Product Group
+			// Category Name");
+			// click on update button
+			click(UPDT_BTN,"Update button");
+			if (isElementPresent(UPDT_BTN, "Update button")) {
+				click(UPDT_BTN, "Click Update button");
+				reporter.SuccessReport("Click Update on Company Standards Management",
+						"Update Link  is Exists and Clicked", "");
+			} else
+				reporter.failureReport("Click Update on Company Standards Management", "Update Link is Not Exists", "",
+						driver);
+		}
+	}
+
 	public void VerifyUpdateMsg() throws Throwable {
 		if (isElementPresent(PRD_GRP_UPDATE_MSG, "Product group update message"))
 			reporter.SuccessReport("Verify Product Group Updated on Company Standards Management Page",
@@ -1873,11 +1952,11 @@ public class CMTLib extends CMTObj {
 	}
 
 	public void VerifyICompanyStandards() throws Throwable {
-		if (isElementPresent(PRD_STANDARDS_PAGE, "Product Standards page")) {
+		if (isVisibleOnly(PRD_STANDARDS_PAGE, "Product Standards page")) {
 			reporter.SuccessReport("Verify Product Standards Page", "Product Standards Page is Loaded", "");
 
 			// Verify Product Groups are Collapsed
-			if (isElementPresent(PRD_GRP_COLLAPSE, "Product Group collapse")) {
+			if (isVisibleOnly(PRD_GRP_COLLAPSE, "Product Group collapse")) {
 				reporter.SuccessReport("Verify Product Grous are Collapsed on Product StandardsPage",
 						"Product Groups are Collapsed", "");
 
@@ -1903,11 +1982,12 @@ public class CMTLib extends CMTObj {
 				if (isVisibleOnly(PHONE_NUMBER, "New Rep Phone Number")) {
 					click(PHONE_NUMBER, "Phone Number Text Field");
 					String getPhone = driver.findElement(PHONE_NUMBER).getText();
-					if (getPhone == null || getPhone!=null) {
+					if (getPhone == null || getPhone != null) {
 						type(PHONE_NUMBER, Phone, "New Rep Phone Number::" + Phone + "");
-					}/*else{
-						reporter.SuccessReport("Phone number", " Repo Phone number ", getPhone);
-					}*/
+					} /*
+						 * else{ reporter.SuccessReport("Phone number",
+						 * " Repo Phone number ", getPhone); }
+						 */
 				}
 				Thread.sleep(5000);
 				if (isVisibleOnly(FAX_NUMBER, "Fax Number")) {
@@ -1927,19 +2007,20 @@ public class CMTLib extends CMTObj {
 			reporter.failureReport("Click on Add New Rep Link", "Add New Rep Link is NOT available ", "", driver);
 
 	}
-	public void verifyNewlyAddedRepo() throws Throwable{
-		if(isVisibleOnly(lblNewRepoText,"Newly Added repo")){
-			reporter.SuccessReport("Newly added Repo", " The newly added repo available ", getText(lblNewRepoText,"Newly Added repo"));
-		}else
-		{
+
+	public void verifyNewlyAddedRepo() throws Throwable {
+		if (isVisibleOnly(lblNewRepoText, "Newly Added repo")) {
+			reporter.SuccessReport("Newly added Repo", " The newly added repo available ",
+					getText(lblNewRepoText, "Newly Added repo"));
+		} else {
 			reporter.failureReport("Newly added Repo", " The newly added repo is not available ", "NA", driver);
 		}
 	}
-	public void verifyNewlyAddedRepoAfterDelete() throws Throwable{
-		if(!isVisibleOnly(lblNewRepoText,"Newly Added repo")){
+
+	public void verifyNewlyAddedRepoAfterDelete() throws Throwable {
+		if (!isVisibleOnly(lblNewRepoText, "Newly Added repo")) {
 			reporter.SuccessReport("Newly added Repo", " The newly added repo is successfully deleted ", "");
-		}else
-		{
+		} else {
 			reporter.failureReport("Newly added Repo", " The newly added repo is not deleted ", "", driver);
 		}
 	}
@@ -2784,10 +2865,6 @@ public class CMTLib extends CMTObj {
 			// Do nothing
 		}
 	}
-	
-       
-
-
 
 	/**
 	 * This method is to click on Roles and permissions tab and check the one
@@ -2810,44 +2887,95 @@ public class CMTLib extends CMTObj {
 	public void clickOnRolesAndPermissionsTab(String menuName) throws Throwable {
 		click(getUsersTabMenus(menuName), "Roles And Permissions");
 	}
+
 	/**
-	 * This Method is to validate existing user error message
-	 * required permission check box and update.
+	 * This Method is to validate existing user error message required
+	 * permission check box and update.
 	 * 
 	 * @param menuName
 	 * @param userPermissions
 	 * @throws Throwable
 	 */
 	public void verifyUserNotExistMessage(String userName) throws Throwable {
-		if (isVisibleOnly(CMTObj.ERRORMSG_CREATEUSER, "Error message")){
+		if (isVisibleOnly(CMTObj.ERRORMSG_CREATEUSER, "Error message")) {
 			String errorMessage = getText(CMTObj.ERRORMSG_CREATEUSER, "Error message");
 			reporter.failureReport("New User Creation Error Message", "Your given User id " + userName + "is",
 					errorMessage, driver);
-		}else{
-			reporter.SuccessReport("Availability of new user", "The given User ID "+userName+ "is", "Available");
-		}
-	}
-	
-	public void verifyUpdateSuccessMessage() throws Throwable {
-		if(isVisibleOnly(CMTObj.lblSuccessMessage,"Success Message"))
-		{
-			reporter.SuccessReport("Update status", "Update status is " , getText(CMTObj.lblSuccessMessage,"Success Message"));
-			
-		}else{
-			reporter.failureReport("Update status", "Update status is " , getText(CMTObj.lblSuccessMessage,"Success Message"), driver);
+		} else {
+			reporter.SuccessReport("Availability of new user", "The given User ID " + userName + "is", "Available");
 		}
 	}
 
-	public boolean verifyCheckBoxSelectedForFirstElement() throws Throwable{
+	public void verifyUpdateSuccessMessage() throws Throwable {
+		if (isVisibleOnly(CMTObj.lblSuccessMessage, "Success Message")) {
+			reporter.SuccessReport("Update status", "Update status is ",
+					getText(CMTObj.lblSuccessMessage, "Success Message"));
+
+		} else {
+			reporter.failureReport("Update status", "Update status is ",
+					getText(CMTObj.lblSuccessMessage, "Success Message"), driver);
+		}
+	}
+
+	public boolean verifyCheckBoxSelectedForFirstElement() throws Throwable {
 		return isCheckBoxSelected(chkBxWebElement1);
-		}
-	public boolean verifyCheckBoxSelectedForSecondElement() throws Throwable{
+	}
+
+	public boolean verifyCheckBoxSelectedForSecondElement() throws Throwable {
 		return isCheckBoxSelected(chkBxWebElement2);
-		}
-	public boolean verifyCheckBoxSelectedForThirdElement() throws Throwable{
+	}
+
+	public boolean verifyCheckBoxSelectedForThirdElement() throws Throwable {
 		return isCheckBoxSelected(chkBxWebElement3);
-		}
-	public boolean verifyCheckBoxSelectedForFourthElement() throws Throwable{
+	}
+
+	public boolean verifyCheckBoxSelectedForFourthElement() throws Throwable {
 		return isCheckBoxSelected(chkBxWebElement4);
+	}
+
+	public void clickOnAddCategoryPlusIcon() throws Throwable {
+		click(addCategoryPlusButton, "Add Category ", "Add Category plus icon");
+	}
+
+	public void enterNewCategory(String val) throws Throwable {
+		if (isVisibleOnly(QTPCATEGORY_NAME, "QTPCategory Name")) {
+			type(QTPCATEGORY_NAME, val, "QTPCategory Name");
+			reporter.SuccessReport("Edit Category Name on Company Standards Management",
+					"Category Name Exists and Modified", val);
+		} else
+			reporter.failureReport("Edit Category Name on Company Standards Management", "Category Name is Not Exists",
+					val, driver);
+	}
+
+	public void clickOnCreateButton() throws Throwable {
+		click(CREATE_BUTTON, "Create new Button", "Create new Button");
+	}
+
+	public void clickOnProductGroupLink() throws Throwable {
+		click(lnkAddProductGroup, "Add Product Group", "Add Product Group");
+	}
+
+	public void enterValueToCreateNewProductGroup(String val) throws Throwable {
+		type(PRD_GRP_NEW, val, "Product group");
+	}
+
+	public void selectCategoryFromDropDown(String val) throws Throwable {
+		click(selectCategorydrp, "Select drop down list", "select category");
+		click(selectCatDrpValue(val), "Select category", val);
+	}
+
+	public void deleteProductGroup() throws Throwable {
+
+		List<WebElement> salesRep = driver.findElements(lnkProductGroupToDelete);
+
+		for (i = 1; i <= salesRep.size(); i++) {
+			salesRep.get(i).click();
+			click(lnkDeleteProductGroups, "Delete product group", "Delete Product group");
+			acceptAlert();
 		}
+
+	}
+	public void clickOnLogout() throws Throwable{
+		click(lnkLogout,"logout","logout link");
+	}
 }
