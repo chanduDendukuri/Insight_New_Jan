@@ -62,7 +62,7 @@ public class EUF02_FCTWebEndUserDefaultsPaymentTest extends EndUserFeaturesLib{
 						cmtLib.selectOptionInCheckoutSettings(data.get("Payment_Options"));
 						cmtLib.clearPaymentOptionsInCheckoutSettings();
 						cmtLib.selectpaymentOptionsInCheckOutSettings(data.get("Options"));
-						cmtLib.selectDefaultPaymentOption(data.get("Default_Payment_Option"));
+						//cmtLib.selectDefaultPaymentOption(data.get("Default_Payment_Option"));
 						cmtLib.clickOnloginAs();
 						switchToChildWindow();
 						canadaLib.clickOnSideMenuSelectAccountToolOptions(data.get("Tools_Menu"),
