@@ -213,7 +213,12 @@ public class productsDisplayInfoObj extends CommonObj{
     }
     // contract Prices available
     
+    public static By more_Prices(String itemNo) {
+    	return By.xpath("//div[@id='search-item-"+itemNo+"']//p[@class='prod-more-prices']//a");
+    }
+    
     public static By MORE_PRICES=By.xpath("//div[@id='search-item-0']//p[@class='prod-more-prices']//a");
+    
     public static By OPEN_MARKET=By.xpath("//div[@class='large-12 columns js-modal-pick-contract']//label[contains(.,'OPEN MARKET')]");
     public static By YOUR_PRICE=By.xpath("//div[@class='large-12 columns js-modal-pick-contract']//label[contains(.,'YOUR PRICE')]");
     public static By ALL_CONTRACT_PRICES=By.xpath("//div[@class='large-12 columns js-modal-pick-contract']//label");
@@ -230,6 +235,8 @@ public class productsDisplayInfoObj extends CommonObj{
    
     //cart page Contract details
     public static By CART_CONTRACT_NAME=By.xpath("//div[@class='cart__table-block']//div[@class='columns']//strong");
+    
+    //public static By ALL_CONTRACT_PRICES=By.xpath("//div[@class='large-12 columns js-modal-pick-contract']//label");
     
     // Inventory Blow Out 
  	public static By FEATURED_TECH_DEALS_PRODUCTS=By.xpath("//div[@class='row product-summary-component product-summary-basic']//a[@class='select-prod']");
