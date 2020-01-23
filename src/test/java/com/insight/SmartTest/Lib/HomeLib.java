@@ -3805,7 +3805,7 @@ public float getSellPriceFromInlineItemsContract(String contractid) throws Throw
 		Actions action = new Actions(driver);
 		String Price = "";
 		String expecetedTypeCode[] = expValue.split("#");
-		int count =3;
+		int count =0;
 		List<String> all_elements_pricevalue = new ArrayList<>();
 		List<WebElement> elem = getWebElementList(HomePage.PricingTabTable, "Pricing List");
 		int size = elem.size();
@@ -3826,20 +3826,25 @@ public float getSellPriceFromInlineItemsContract(String contractid) throws Throw
 		if(all_elements_pricevalue.size()!=expecetedTypeCode.length) {
 			//elem.get(1).click();
 			click(txtPricingIDValue(0),"");
-			label1:
+		
+			
 			for(int j=0;j<expecetedTypeCode.length;j++) {
-				label:
+			label:
 			//for (i = size; i != 0; i++)
-					for (i = 1; i != 0; i++)
+					for (i = count; i != 0; i++)
 			{
+						action.sendKeys(Keys.ARROW_DOWN).perform();
+						
 				String pricevalue =  getText(txtPricingIDValue(i-1), "Pricing value");
-				if(isVisibleOnly(txtPricingIDValue(i), ""))
+				if(isVisibleOnly(txtPricingIDValue(i), "")) {
 				click(txtPricingIDValue(i),"");
+				count++;
+			}
 				else {
 					reporter.failureReport("Pricing Id", "Pricing value is not displaying", "", driver);
 					break label2;
 				}
-				action.sendKeys(Keys.ARROW_DOWN).perform();
+				//action.sendKeys(Keys.ARROW_DOWN).perform();
 				
 				
 			//	action.moveToElement(elem.get(i-1)).perform();
@@ -3850,15 +3855,21 @@ public float getSellPriceFromInlineItemsContract(String contractid) throws Throw
 					  action.moveToElement(driver.findElement(PRICINGID_VALUE(expecetedTypeCode[j]))).perform(); 
 					  Price =  getText(HomePage.pricing_ValueClmn(expecetedTypeCode[j]), "Pricing value");
 					  all_elements_pricevalue.add(Price);
+					
+					
+						
 						/*
 						 * if(getText(PRICINGID_VALUE(expecetedTypeCode[j]),"").equals("ZFSS")) {
 						 * reporter.failureReport("PricingID",
 						 * ""+expecetedTypeCode[j]+" is not displaying in the grid", "", driver); break
 						 * label1; }
 						 */
-						
-						  break label; 
-						 
+					  if(all_elements_pricevalue.size()==val) {
+							
+							reporter.SuccessReport("Price values:", "Found all the price values", "");
+							break;
+						}
+										 
 					  }
 					  
 					 
@@ -3870,7 +3881,9 @@ public float getSellPriceFromInlineItemsContract(String contractid) throws Throw
 			reporter.failureReport("Price Id: ", "Price Ids are not displaying", "", driver);
 		}
 		if(all_elements_pricevalue.size()==val) {
+			
 			reporter.SuccessReport("Price values:", "Found all the price values", "");
+			
 		}
 		else {
 			reporter.failureReport("Price value:", "Failed to find the price values", "", driver);

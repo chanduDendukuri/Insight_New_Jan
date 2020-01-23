@@ -53,11 +53,12 @@ public class ORD03_IPSMissingReportingFieldInfoTest extends HomeLib {
 				verifycontractwithreporingfield(data.get("Contract"));
 				clickDoneButton();
 				clickUpdateCosting();
-				clickSideBarSmart();
+				//clickSideBarSmart();
 				clickonSaveasOrder();
 				clickSaveorderwithoutAttachment();
 				verifyErrorMsg(data.get("Erromsg"));
 				clickOKinErrormsgBox();
+				clickSideBarSmart();
 				clickClosthedocument(data.get("Doctype"));
 				clickYesButtontocloseDocument();
 			} catch (Exception e) {
