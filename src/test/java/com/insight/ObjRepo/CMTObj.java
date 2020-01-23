@@ -376,7 +376,7 @@ public class CMTObj extends ActionEngine {
 			"(//td[@class='webNotificationsAccountHeadercolCandN']//following-sibling::td//a[contains(@href,'Rachel')])[1]/..//following-sibling::td//img[contains(@alt,'Delete')]");
 	public static By REP_DELETE_SUCCESS_MESSAGE = By.xpath(
 			"//div[@id='addRepSuccessOrError']//div[@class='successUpdated' and text()='The rep has been removed successfully ']");
-
+public static By lblNewRepoText=By.xpath("//*[@class='webNotificationsAccountHeadercolCandN']//following-sibling::td//a[contains(text(),'Rachel')]");
 	/** To get the hosted licensing permissions**/
 	public static By getHostedLicensingPermissions(String permissions){
 		return By.xpath("//div[@id='hostedLicensingDashboardPermissionView']//a[contains(text(),'"+permissions+"')]/parent::div/preceding-sibling::div//input");

@@ -1778,7 +1778,7 @@ public class CMTLib extends CMTObj {
 				if (isVisibleOnly(PHONE_NUMBER, "New Rep Phone Number")) {
 					click(PHONE_NUMBER, "Phone Number Text Field");
 					String getPhone = driver.findElement(PHONE_NUMBER).getText();
-					if (getPhone == null) {
+					if (getPhone == null || getPhone!=null) {
 						type(PHONE_NUMBER, Phone, "New Rep Phone Number::" + Phone + "");
 					}/*else{
 						reporter.SuccessReport("Phone number", " Repo Phone number ", getPhone);
@@ -1799,8 +1799,24 @@ public class CMTLib extends CMTObj {
 				}
 			}
 		} else
-			reporter.failureReport("Click on Add New Rep Link", "Add New Rep Link is NOT available", "", driver);
+			reporter.failureReport("Click on Add New Rep Link", "Add New Rep Link is NOT available ", "", driver);
 
+	}
+	public void verifyNewlyAddedRepo() throws Throwable{
+		if(isVisibleOnly(lblNewRepoText,"Newly Added repo")){
+			reporter.SuccessReport("Newly added Repo", " The newly added repo available ", getText(lblNewRepoText,"Newly Added repo"));
+		}else
+		{
+			reporter.failureReport("Newly added Repo", " The newly added repo is not available ", "NA", driver);
+		}
+	}
+	public void verifyNewlyAddedRepoAfterDelete() throws Throwable{
+		if(!isVisibleOnly(lblNewRepoText,"Newly Added repo")){
+			reporter.SuccessReport("Newly added Repo", " The newly added repo is successfully deleted ", "");
+		}else
+		{
+			reporter.failureReport("Newly added Repo", " The newly added repo is not deleted ", "", driver);
+		}
 	}
 
 	public void verifySuccessRepMsg() throws Throwable {
@@ -1839,7 +1855,7 @@ public class CMTLib extends CMTObj {
 	}
 
 	public void saveRepDetails() throws Throwable {
-		if (isElementPresent(SAVE_BTN, "Save Button")) {
+		if (isVisibleOnly(SAVE_BTN, "Save Button")) {
 
 			click(SAVE_BTN, "Click on save button");
 			reporter.SuccessReport("Verify that Save button exists and clicked", "Save button exists and clicked", "");
@@ -1849,7 +1865,7 @@ public class CMTLib extends CMTObj {
 	}
 
 	public void verifySuccessSaveMsg() throws Throwable {
-		if (isElementPresent(REP_SAVE_SUCCESS_MESSAGE, "Success save message")) {
+		if (isVisibleOnly(REP_SAVE_SUCCESS_MESSAGE, "Success save message")) {
 			reporter.SuccessReport("Verify that the message that the updates have been made successfully is displayed",
 					"the message that the updates have been made successfully is displayed", "");
 		} else
