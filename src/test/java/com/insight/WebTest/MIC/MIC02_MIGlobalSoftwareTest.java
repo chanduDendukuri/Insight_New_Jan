@@ -7,12 +7,15 @@ import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 import com.insight.Lib.CMTLib;
-
+import com.insight.Lib.CanadaLib;
+import com.insight.Lib.CartLib;
 import com.insight.Lib.CommonLib;
 
 import com.insight.Lib.MarriottIntlCorpLib;
 
 import com.insight.Lib.OrderLib;
+import com.insight.Lib.ProductDetailLib;
+import com.insight.Lib.SearchLib;
 import com.insight.Lib.ShipBillPayLib;
 import com.insight.accelerators.ReportControl;
 import com.insight.accelerators.TestEngineWeb;
@@ -26,6 +29,12 @@ public class MIC02_MIGlobalSoftwareTest extends MarriottIntlCorpLib {
 	CMTLib cmtLib = new CMTLib();
 	OrderLib orderLib = new OrderLib();
 	ShipBillPayLib shipbLib = new ShipBillPayLib();
+	ProductDetailLib productdetLib = new ProductDetailLib();
+	ShipBillPayLib shipBillpayLib=new ShipBillPayLib();
+	SearchLib searchLib=new SearchLib();
+	CartLib cartLib = new CartLib();
+	CanadaLib canadaLib = new CanadaLib(); 
+
 	
 	// #############################################################################################################
 	// # Name of the Test : MIC02_MIGlobalSoftware
@@ -60,6 +69,11 @@ public class MIC02_MIGlobalSoftwareTest extends MarriottIntlCorpLib {
 			cmtLib.clickOnRolesAndPermissionsAndSetPermission(data.get("Menu_Name"), data.get("Set_Permission"));//Enable Purchasing Popup
 			cmtLib.loginAsAdminCMT();
 			Thread.sleep(5000);
+			commonLib.searchProduct(data.get("Search_Item"));//20L5004HUS
+			productdetLib.getProductNameInProductDetailPage(data.get("Search_Item"));
+			productdetLib.getMFRNumberInProductInfopage();
+			commonLib.addToCartAndVerify();
+			canadaLib.continueToCheckout();
 			clickAccountToolsFromSideMenu(data.get("Tools_Menu"),data.get("Tools_Menu_DD"));			
 			CompanystandardsSelectProductGrp(data.get("CPG"), data.get("SelectCP"));
 			Verifypartnum(data.get("Verifypart"));
@@ -80,10 +94,7 @@ public class MIC02_MIGlobalSoftwareTest extends MarriottIntlCorpLib {
 			shippingOptionContinueButton();
 			addBillingInfo(data.get("Bill_Attention"), data.get("Bill_Suite"), data.get("Bill_Phone"));
 			Thread.sleep(5000);
-			orderLib.addNewCardInPayment(data.get("cardNumber"), data.get("cardName"), data.get("month"), data.get("year"),data.get("poNumber"),data.get("POReleaseNumber"));
-			Thread.sleep(8000);
-			orderLib.addNewCardInPayment(data.get("cardNumber"), data.get("cardName"), data.get("month"), data.get("year"),data.get("poNumber"),data.get("POReleaseNumber"));
-			Thread.sleep(5000);
+			termsInPaymentInfo();
 			orderLib.clickOnReviewOrderButton();
 			Thread.sleep(5000);
 			VerifyBrandidentifier(data.get("Brand_Identifier"));
@@ -98,17 +109,7 @@ public class MIC02_MIGlobalSoftwareTest extends MarriottIntlCorpLib {
 			verifyenduserdiv( data.get("PC_End_User_Div_Unit_Dept"));
 			verifyShippingattention(data.get("Ship_Attention"));
 			verifybillingattention(data.get("Bill_Attention"));
-			verifyPayementInfo(data.get("PAYMENT_TYPE"));
 			commonLib.clickLogOutLink(data.get("Logout_Header"));
-			Thread.sleep(5000);
-			cmtLib.navigateBackToCMT();
-			cmtLib.hoverOverMasterGroupAndSelectChangeGrp();
-			cmtLib.searchForWebGroup(data.get("WebGrp"));
-			cmtLib.clickOnTheWebGroup(data.get("WebGrp_Name"));
-			cmtLib.hoverOnManageWebGroupsAndSelectOptions(data.get("ManageWebGrpOptions"));
-			Thread.sleep(3000);
-			cmtLib.searchForaUserAndSelect(data.get("LnameEmailUname"), data.get("ContactName"));
-			cmtLib.setPermissionsToDisable(data.get("Menu_Name"), data.get("Set_Permission"));
 			System.out.println("Test completed");
 
 			} catch (Exception e) {

@@ -57,6 +57,7 @@ public class WGP04_NewRepTest extends CMTLib {
 					addNewRepDetails(data.get("Rep_Email"), data.get("Rep_PhoneNumber"), data.get("Rep_FaxNumber"));
 
 					// New Rep successfully added message
+					verifyNewlyAddedRepo();
 					verifySuccessRepMsg();
 
 					// Verify the Rep has been added and check product Exp and
@@ -79,7 +80,7 @@ public class WGP04_NewRepTest extends CMTLib {
 
 					// Verify and Delete the newly added Rep
 					deleteNewRepAdded();
-
+					verifyNewlyAddedRepoAfterDelete();
 					// Verify Rep deleted successfully message
 					verifySuccessDeleteMsg();
 
