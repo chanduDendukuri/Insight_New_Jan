@@ -83,6 +83,7 @@ public class SER06_KeywordSearchTest extends SearchLib {
 					verifyTheResultsForSearchTerm(data.get("SearchText4"));
 					removeTheFilter(data.get("Approved_Items_Remove_Filter"));
 					verifyTheResultsForSearchTerm(data.get("SearchText4"));
+					verifyFilterBreadCrumb(data.get("In_Stock_Only"));
 					
 					// High performance
 					searchInHomePage(data.get("SearchText5"));
@@ -94,18 +95,26 @@ public class SER06_KeywordSearchTest extends SearchLib {
 					removeTheFilter(data.get("Approved_Items_Remove_Filter"));
 					verifyBreadCrumbInSearchResultsPage(data.get("SearchText5"));
 					verifyFilterBreadCrumb(data.get("In_Stock_Only"));
+					
 					// Printers
 					searchInHomePage(data.get("SearchText6"));
 					verifyTheResultsForSearchTerm(data.get("SearchText6"));
-					
 					// Stock only
 					removeTheFilter(data.get("In_Stock_Only"));
-					getProductCount();
 					filterSelectionInProductsSearchPage(data.get("filter"));
+					// get product count
+					getProductCount();
+					removeTheFilter(data.get("In_Stock_Only"));
 					getProductCount();
 					//removeTheFilter(data.get("Approved_Items_Remove_Filter"));
 					// Manufacturers :HONEYWELL
 					filterSelectionInProductsSearchPage(data.get("Manufacturer"));
+					// Stock only
+					removeTheFilter(data.get("In_Stock_Only"));
+					filterSelectionInProductsSearchPage(data.get("filter"));
+					verifyFilterBreadCrumb(data.get("In_Stock_Only"));
+					verifyFilterBreadCrumb(data.get("Manufacturer"));
+					verifyFilterBreadCrumb(data.get("SearchText6"));
 					// Min price and Max price
 					prodInfoLib.verifyListPrice();
 					prodInfoLib.enterPriceDetailsFilters(data.get("Min_Price"), data.get("Max_Price"));
@@ -113,6 +122,7 @@ public class SER06_KeywordSearchTest extends SearchLib {
 					scrollUp();
 					removeTheFilter(data.get("price_Filter"));
 					verifyFilterSelected(data.get("Manufacturer"));
+					verifyFilterBreadCrumb(data.get("In_Stock_Only"));
 					prodInfoLib.verifyListPrice();
 					// LogOut
 					commonLib.clickLogOutLink(data.get("Logout"));

@@ -67,10 +67,18 @@ public class SER16_SearchResultsPermissionsAndContractsIPSTest extends SearchLib
 					searchInHomePage(data.get("SearchText"));
 					verifyTheResultsForSearchTerm(data.get("SearchText"));
 					prodInfoLib.getPartNumberInSearchResultsPage();
+					clickOnMorePrices(data.get("ItemNumber"));
+					allContractPricesPopup();
 					
 					
 					
-					clickMorePricesAndViewContracts();
+					
+					clickMorePricesAndViewContracts(data.get("ItemNumber"));
+					
+					
+					
+					
+					
 					Thread.sleep(3000);
 					VerifyDefaultUSDContractPrice();
 					selectNewcontract(data.get("Contract_Name"));
@@ -96,7 +104,7 @@ public class SER16_SearchResultsPermissionsAndContractsIPSTest extends SearchLib
 					verifyTheResultsForSearchTerm(data.get("SearchText"));
 					Thread.sleep(3000);
 					verifyUSCcontractNotPresent();
-					clickMorePricesAndViewContracts();
+					clickMorePricesAndViewContracts(data.get("ItemNumber"));
 					cmtLib.navigateBackToCMT();
 
 					// Navigate back to CMT and Disable Open Market
