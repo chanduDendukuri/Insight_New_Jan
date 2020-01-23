@@ -628,9 +628,9 @@ public class SearchLib extends CommonObj {
 	 */
 	public void verifyContractAllDisplayed() throws Throwable{
 		if(isVisible(CONTRACT_DD, "Contract drop -down in Home page")){
-			reporter.SuccessReport("Verify the contract drop down displayed","Contract drop down displayed in the home page","");
+			reporter.SuccessReport("Verify the contract drop down displayed","Default Contract: Contract – All","Default Contract: Contract – All");
 		}else{
-			reporter.failureReport("Verify the contract drop down displayed","Contract drop down is not displayed in the home page","");
+			reporter.failureReport("Verify the contract drop down displayed","Default Contract: Contract – All is not displayed in the home page","");
 		}
 	}
 	

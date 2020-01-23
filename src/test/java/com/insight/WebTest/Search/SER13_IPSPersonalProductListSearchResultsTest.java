@@ -47,10 +47,10 @@ public class SER13_IPSPersonalProductListSearchResultsTest extends SearchLib {
 					TestEngineWeb.reporter.initTestCaseDescription("IPSPersonalProductListSearchResults");
 				
 					fnOpenTest();
-					clickOnSecondaryHeaderAndNavigate(data.get("HeaderName"), data.get("HeaderList"));
-					selectTheProductByTypeAndVerifyNavigation(data.get("ProductType"));
+					/*clickOnSecondaryHeaderAndNavigate(data.get("HeaderName"), data.get("HeaderList"));
+					selectTheProductByTypeAndVerifyNavigation(data.get("ProductType"));*/
+					searchInHomePage(data.get("ProductType"));
 					verifyBreadCrumbInSearchResultsPage(data.get("ProductType"));
-					//searchInHomePage(data.get("ProductType"));
 					// Add to Personal product list link should not display.
 					cartLib.selectFirstProductDisplay();
 					prodInfoLib.verifyPersonalProductListLinkNotPresent();
