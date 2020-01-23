@@ -3822,7 +3822,7 @@ public float getSellPriceFromInlineItemsContract(String contractid) throws Throw
 			 * }
 			 */
 		//}
-		
+		label2:
 		if(all_elements_pricevalue.size()!=expecetedTypeCode.length) {
 			//elem.get(1).click();
 			click(txtPricingIDValue(0),"");
@@ -3837,7 +3837,7 @@ public float getSellPriceFromInlineItemsContract(String contractid) throws Throw
 				click(txtPricingIDValue(i),"");
 				else {
 					reporter.failureReport("Pricing Id", "Pricing value is not displaying", "", driver);
-					break;
+					break label2;
 				}
 				action.sendKeys(Keys.ARROW_DOWN).perform();
 				
