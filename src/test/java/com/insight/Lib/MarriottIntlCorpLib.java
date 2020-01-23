@@ -74,9 +74,9 @@ public class MarriottIntlCorpLib extends MarriottIntlCorpObj {
 	public void CompanystandardslinkandProductGrp(String productGroup, String productName) throws Throwable {
 		click(COMPANYSTANDARDS_PAGELINK, "Company Standards PageLink");
 		isElementPresent(CartObj.Current_product_groups, " Current Product Groups page is opened");
-		click(getcompanystandardsproductgroup(productGroup), "Product Group");
+		click(getcompanystandardsproductgroup(productGroup), "Product Group"+productGroup);
 		click(CommonObj.getCompanyStandardsProductGroup(productGroup, productName),
-				"select product from product group");
+				"select product from product group"+productName);
 	}
 
 	/**
@@ -331,9 +331,9 @@ public class MarriottIntlCorpLib extends MarriottIntlCorpObj {
 		click(CommonObj.getAccountToolsMenu(toolsMenuName), "Account tools menu");
 		click(CommonObj.getAccountToolsDD(toolsMenuName, dropDown), "Select account tools");
 		isElementPresent(CartObj.Current_product_groups, " Current Product Groups page is opened");
-		click(getcompanystandardsproductgroup(productGroup), "Product Group");
+		click(getcompanystandardsproductgroup(productGroup), "Product Group"+productGroup);
 		click(CommonObj.getCompanyStandardsProductGroup(productGroup, productName),
-				"select product from product group");
+				"select product from product group"+productName);
 
 	}
 
@@ -519,18 +519,14 @@ public class MarriottIntlCorpLib extends MarriottIntlCorpObj {
 		}
             click(CommonObj.ACCOUNT_TOOLS, "Account tools menu icon");
 
-		click(CommonObj.getAccountToolsMenu(toolsMenuName), "Account tools menu");
+		click(CommonObj.getAccountToolsMenu(toolsMenuName), "Account tools menu:"+toolsMenuName);
 
-		click(CommonObj.getAccountToolsDD(toolsMenuName, dropDown), "Select account tools");
+		click(CommonObj.getAccountToolsDD(toolsMenuName, dropDown), "Select account tools:"+dropDown);
 	}
 	
 	public void clickAccountTools(String toolsMenuName, String dropDown) throws Throwable {
-
-		
-
-		click(CommonObj.getAccountToolsMenu(toolsMenuName), "Account tools menu");
-
-		click(CommonObj.getAccountToolsDD(toolsMenuName, dropDown), "Select account tools");
+		click(CommonObj.getAccountToolsMenu(toolsMenuName), "Account tools menu:"+toolsMenuName);
+		click(CommonObj.getAccountToolsDD(toolsMenuName, dropDown), "Select account tools:"+dropDown);
 	}
 	
 
@@ -773,19 +769,25 @@ public class MarriottIntlCorpLib extends MarriottIntlCorpObj {
 	public void verifyPayementInfo(String paymentType)
 
 			throws Throwable {
-
 		String ActualText;
-
 		ActualText = getText(PAYMENT_INFO, "Payment type ").trim();
-
-		if (ActualText.equalsIgnoreCase(paymentType))
-			;
-
+		if (ActualText.equalsIgnoreCase(paymentType)) {
 		reporter.SuccessReport("Verify Payment type Terms on Place Order Page ",
-				"Payment type is loacated in Order page", "");
+				"Payment type is loacated in Order page",ActualText);
 
 	}
-
+	}
+	public void termsInPaymentInfo() throws Throwable {
+		click(OrderObj.PAYMENT_METHOD_DD, "payment method drop down");
+		if (isElementPresent(OrderObj.PAYMENT_METHOD_TERM, "Terms is selected in dropdown")) {
+			click(OrderObj.PAYMENT_METHOD_TERM, "payment method drop down");
+			reporter.SuccessReport("Verify Payment type Terms on Place Order Page ",
+					"Payment type is Terms Exists and Selected","Only Terms Exists");
+			
+		}else {
+		   reporter.failureReport("Verify payment info term", "paymanet info term is visible ", "",driver);
+	   }
+	}
 	public void additionalinfo(String Brand_Identifier, String PC_Laptop, String Notes, String PC_User_Name,
 			String PC_End_User_MARSHA, String MARSHA_of_Approver, String name, String phone, String email)
 			throws Throwable {
