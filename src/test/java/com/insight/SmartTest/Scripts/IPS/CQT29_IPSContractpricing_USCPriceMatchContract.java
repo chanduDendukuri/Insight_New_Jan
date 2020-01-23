@@ -55,21 +55,21 @@ public class CQT29_IPSContractpricing_USCPriceMatchContract extends HomeLib {
 					AddMaterialOnLineItem(data.get("MaterialID2"));// PWR-400W-AC
 					AddMaterialOnLineItem(data.get("MaterialID3"));// WS-C2960X-24PS-L
 					clickOnCOntractIDinLineItemsList();
-					selectCOntractID(data.get("ContractId"), data.get("contactTabName"));
+					selectCOntractID(data.get("ContractId"), data.get("ContractTabName"));
 					copyAllContractstoAllLines();
 					clickDoneButton();
 					clickUpdateCosting();
 					driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 					clickOnCOntractIDinLineItemsList();
-					selectCOntractSubTabName(data.get("contactTabName"));// Contracts
+					selectCOntractSubTabName(data.get("ContractTabName"));// Contracts
 					// Need to verify reporting field6
-					String strRepfld6contract= VerifyReportingField6(data.get("contactid"));
+					String strRepfld6contract= VerifyReportingField6(data.get("ContractId"));
 					float strRepfld6 = Float.valueOf(strRepfld6contract);
 					String contractid2SellPrice = VerifyReportingField6SellPriceValue();
 					float field6Sellprice = Float.valueOf(contractid2SellPrice);
-					float sellprice1 =getSellPriceFromContract(data.get("contactid"));
+					float sellprice1 =getSellPriceFromContract(data.get("ContractId"));
 					//float sellprice1 = Float.valueOf(contract1);
-					selectCOntractSubTabName(data.get("contactTabName1"));// Pricing
+					selectCOntractSubTabName(data.get("ContractTabName1"));// Pricing
 					// Get data from the pricing tab
 					List<String> Price = new ArrayList<>();
 					int a = Integer.parseInt(data.get("Value"));
@@ -97,12 +97,12 @@ public class CQT29_IPSContractpricing_USCPriceMatchContract extends HomeLib {
 					clickSideBarSmart();
 					clickonSaveasQuote();
 				
-				SelectAdherencetoflooroption("Client Satisfaction", "UFT Test");
+				SelectAdherencetoflooroption("Client Satisfaction", data.get("AdherenceFloorReason"));
 				
 				
 					String QuoteNum1= GetQuoteNumber();
 					clickOnCOntractIDinLineItemsList();
-					selectCOntractSubTabName(data.get("contactTabName1"));// Pricing
+					selectCOntractSubTabName(data.get("ContractTabName1"));// Pricing
 					// Get data from the pricing tab
 					List<String> Price12 = new ArrayList<>();
 					int b = Integer.parseInt(data.get("Value"));
