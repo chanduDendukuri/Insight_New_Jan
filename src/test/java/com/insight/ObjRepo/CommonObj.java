@@ -33,6 +33,8 @@ public class CommonObj extends ActionEngine{
     public static By getShopAllBtnsFromMenuList(String shopall){
     	return By.xpath("//div[@class='o-grid  o-grid--gutters']//div//a//span[contains(text(),'"+shopall+"')]");
     }
+    
+    public static By EXPLORE_ALL_BRANDS_LABEL=By.xpath("//h2[contains(text(),'Explore all the brands Insight has to offer.')]");
 	
     // Home Page Login
     public static By USER_NAME = By.id("username");
