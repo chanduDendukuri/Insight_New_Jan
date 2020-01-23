@@ -743,7 +743,7 @@ public class ProductDetailLib extends ProductDetailObj {
 		for (int i = 0; i < myList2.size(); i++) {
 		if (myList2.get(i).isDisplayed()) {
 			myList2.get(i).click();
-				reporter.SuccessReport("Reviews", "Clicked on Reviews", "");
+				reporter.SuccessReport("Verify Review Symbols Exists and ", "Clicked on Review Symbol", "");
 			} else {
 				reporter.failureReport("Reviews ",
 						"Reviews Not Clicked", "");

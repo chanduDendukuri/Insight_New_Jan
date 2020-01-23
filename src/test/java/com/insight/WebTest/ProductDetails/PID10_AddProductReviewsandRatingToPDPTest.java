@@ -26,6 +26,8 @@ public class PID10_AddProductReviewsandRatingToPDPTest extends ActionEngine{
 	CMTLib cmtLib = new CMTLib();
 	CartLib cartLib = new CartLib();
 	ProductDetailLib productDetailLib = new ProductDetailLib();
+	SearchLib searchLib=new SearchLib();
+
 	// #############################################################################################################
 		// # Name of the Test : PID10_AddProductReviewsandRatingToPDP
 		// # Migration Author : Cigniti Technologies
@@ -65,6 +67,7 @@ public class PID10_AddProductReviewsandRatingToPDPTest extends ActionEngine{
 					cmtLib.loginToCMTSearchWebGrpAndUser(data.get("Header"), data.get("WebGrp"), data.get("LnameEmailUname"),data.get("Contact_Name"));
 					cmtLib.loginAsAdminCMT();
 					commonLib.searchProduct(data.get("Search_Item"));
+					searchLib.verifyBreadCrumbInSearchResultsPage(data.get("Search_Item"));
 					cartLib.selectFirstProductDisplay();
 					productdetLib.verifyReviewtab();
 					productdetLib.FillReviewsubmissionform(data.get("title"),data.get("Text"),data.get("Nickname"));
