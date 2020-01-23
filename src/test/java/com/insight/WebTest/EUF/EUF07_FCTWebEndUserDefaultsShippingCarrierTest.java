@@ -62,15 +62,29 @@ public class EUF07_FCTWebEndUserDefaultsShippingCarrierTest extends EndUserFeatu
 						cmtLib.selectOptionInCheckoutSettings(data.get("Shipping_Options"));
 						cmtLib.selectDefaultShippingOptionInCheckoutSettings(data.get("SLS_Shipping_Option"));
 						commonLib.clickOnUpdateButtonInUserSettings();
-
+						cmtLib.verifyUpdateSuccessMessages();
+//retrive success message and displaye in the report after clicking on update
 						cmtLib.clickOnloginAs();
 						switchToChildWindow();
 						
 						canadaLib.clickOnSideMenuSelectAccountToolOptions(data.get("Tools_Menu"),
-								data.get("Tools_Menu_DD"));
+						data.get("Tools_Menu_DD"));
 						clickOnTabInUserProfile(data.get("Tab_Name"));
 						selectedShippingMethod(data.get("SLS_Shipping_Option"));
+//Select SLS Next Day AM 						
 						clickUpdateButtonInCheckoutDefaults();
+						cmtLib.verifyUpdateSuccessMessage();
+						
+						cmtLib.selectShippingOptions(data.get("Shipping_Options2"));
+						clickUpdateButtonInCheckoutDefaults();
+						cmtLib.verifyUpdateSuccessMessage();
+//capture the successful message
+
+						cmtLib.selectShippingOptions(data.get("Shipping_Option_None"));
+						clickUpdateButtonInCheckoutDefaults();
+						cmtLib.verifyUpdateSuccessMessage();
+//Select Non from the dropdown 
+//capture Successreport
 						cmtLib.navigateBackToCMT();
 						// navigate to checkout settings >>  payment options
 						

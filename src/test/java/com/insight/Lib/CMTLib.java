@@ -706,6 +706,13 @@ public class CMTLib extends CMTObj {
 			reporter.failureReport("Verify the sucess message", "Permissions are not Updated Succesfully", "", driver);
 		}
 	}
+	public void verifyUpdateSuccessMessages() throws Throwable {
+		if (isVisibleOnly(SUCCESS_UPDATE_MSG, "update sucessful message")) {
+			reporter.SuccessReport("Verify the Sucess message ", "Permissions Updated Succesfully", getText(SUCCESS_UPDATE_MSG, "update sucessful message"));
+		} else {
+			reporter.failureReport("Verify the sucess message", "Permissions are not Updated Succesfully", getText(SUCCESS_UPDATE_MSG, "update sucessful message"), driver);
+		}
+	}
 
 	/**
 	 * This method is to click on add new user link
@@ -1078,6 +1085,13 @@ public class CMTLib extends CMTObj {
 			click(USER_SERVICE_LEVEL_SHIPPING, "user service level shipping");
 			selectByVisibleText(CMTObj.DEFAULT_SHIPPING_OPTION, optionToSelect, "Click on" + optionToSelect);
 		}
+	}
+	public void selectShippingOptions(String optionToSelect) throws Throwable {
+			// waitForVisibilityOfElement(CMTObj.DEFAULT_SHIPPING_OPTION, "Wait
+			// for" + optionToSelect);
+		click(CMTObj.defaultShippingCarrier,"Shipping carrier");
+			click(CMTObj.defaultshippingCarrier(optionToSelect), optionToSelect, "Click on" + optionToSelect);
+		
 	}
 
 	/**
@@ -2668,6 +2682,16 @@ public class CMTLib extends CMTObj {
 					errorMessage, driver);
 		}else{
 			reporter.SuccessReport("Availability of new user", "The given User ID "+userName+ "is", "Available");
+		}
+	}
+	
+	public void verifyUpdateSuccessMessage() throws Throwable {
+		if(isVisibleOnly(CMTObj.lblSuccessMessage,"Success Message"))
+		{
+			reporter.SuccessReport("Update status", "Update status is " , getText(CMTObj.lblSuccessMessage,"Success Message"));
+			
+		}else{
+			reporter.failureReport("Update status", "Update status is " , getText(CMTObj.lblSuccessMessage,"Success Message"), driver);
 		}
 	}
 
