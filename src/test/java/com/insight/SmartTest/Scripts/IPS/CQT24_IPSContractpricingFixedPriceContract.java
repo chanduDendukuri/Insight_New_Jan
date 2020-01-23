@@ -54,7 +54,7 @@ public class CQT24_IPSContractpricingFixedPriceContract extends ActionEngine {
 					//Home Page
 					home.clickCreateQuoteButton();
 					home.clickSideBarSmart();
-					home.enterSoldTo("0010529929");
+					home.enterSoldTo(data.get("SoldtoValue"));
 					//home.clickAdvancedHeader();
 					//home.clickAdvancedHeaderTab(data.get("contracts"));
 					home.clickOnProductSearchButton();
@@ -62,7 +62,7 @@ public class CQT24_IPSContractpricingFixedPriceContract extends ActionEngine {
 					if(object.verifyAvailabilityOfProductSearchPopup())
 					{
 
-						String inputValue = data.get("keyword");
+						String inputValue = data.get("Keyword");
 						String facilityCodeValue[] = inputValue.split("#");
 						for(int i=0;i<facilityCodeValue.length;i++) {
 							if(!object.verifyAvailabilityOfKeywordSearchTextField()){
@@ -88,7 +88,7 @@ public class CQT24_IPSContractpricingFixedPriceContract extends ActionEngine {
 									object.clickOnCrossiConUnderConColSingleRow();
 									if(object.availabilityOfItemDetailsPopup())
 									{
-										home.clickOnTabsInLineItemDetailsPopUp(data.get("Contracts"));
+										home.clickOnTabsInLineItemDetailsPopUp(data.get("ContractTab"));
 										object.clickOnContactIDByPassingValueFromExcel(data.get("ContractID"));
 										home.clickOnCopyContarctToallLineItems();
 										home.clickYesButtontocloseDocument();
@@ -122,7 +122,7 @@ public class CQT24_IPSContractpricingFixedPriceContract extends ActionEngine {
 					                    	 priceValue = Float.parseFloat(P1);
 					                    	}
 					                    }
-					                    home.clickOnTabsInLineItemDetailsPopUp("Contracts");
+					                    home.clickOnTabsInLineItemDetailsPopUp(data.get("ContractTab"));
 					                    home.clickOnTabsInLineItemDetailsPopUp("Pricing");
 					                    List<String> Price11 = new ArrayList<>();
 										

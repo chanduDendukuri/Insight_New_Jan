@@ -44,9 +44,9 @@ public class ProductDetailLib extends ProductDetailObj {
 	 */
 	public String getMFRNumberInProductInfopage() throws Throwable {
 		waitForVisibilityOfElement(productsDisplayInfoObj.MFR_NUMBER_PRODUCT_DETAILS_PAGE,
-				"MFR_NUMBER_PRODUCT_DETAILS_PAGE");
+				"Part Num in Product Deatils Page");
 		String prodMfrNumber = getText(productsDisplayInfoObj.MFR_NUMBER_PRODUCT_DETAILS_PAGE,
-				"MFR_NUMBER_PRODUCT_DETAILS_PAGE").replace("\"", "").replace("Mfr. #", "").trim();
+				"MFR_NUMBER_PRODUCT_DETAILS_PAGE Exists").replace("\"", "").replace("Mfr. #", "").trim();
 		return prodMfrNumber;
 	}
 	
@@ -113,7 +113,7 @@ public class ProductDetailLib extends ProductDetailObj {
 				all_elements_text.add(myList.get(i).getText());
 				result = myList.get(i).getText();
 				if (result.contains(partNo)) {
-					reporter.SuccessReport("Verify the part number", "Part number verification is sucessful", result);
+					reporter.SuccessReport("Verify and click on Add to Personal products List", "Part number verification is sucessful", result);
 				}
 			}
 		} else {
@@ -133,7 +133,7 @@ public class ProductDetailLib extends ProductDetailObj {
 	public void deletePersonalProductList(String partNo) throws Throwable {
 		if (isElementPresent(deleteProduct(partNo), "Delete button")) {
 			System.out.println("Inside if ======");
-			click(deleteProduct(partNo), "Delete button");
+			click(deleteProduct(partNo), "Delete button on Expected product on Personal products List");
 		}
 
 		if (isElementPresent(DLETED_MESSAGE, "Deleted message")) {
@@ -157,7 +157,7 @@ public class ProductDetailLib extends ProductDetailObj {
 		boolean flag = true;
 
 		type(productsDisplayInfoObj.ADD_ITEMS_TEXTBOX, partNo, "part number");
-		click(productsDisplayInfoObj.ADD_BTN, "Add button");
+		click(productsDisplayInfoObj.ADD_BTN, "Add New Product");
 
 		if (flag) {
 			List<WebElement> myList = driver.findElements(productsDisplayInfoObj.MFR_PART);
@@ -431,7 +431,7 @@ public class ProductDetailLib extends ProductDetailObj {
 		waitForVisibilityOfElement(NUMBERPICKER, "Number Picker");
 		if (isElementPresent(UPDATEQUNTITY, "Update Quantity")) {
 			click(UPDATEQUNTITY, "Update Quantity");
-			reporter.SuccessReport("Update Quantity", "Quantity is updated", "");
+			reporter.SuccessReport("Update Quantity", "Quantity is updated", "2");
 
 		} else {
 			reporter.failureReport("Update Quantity", "Quantity is Not updated", "");
@@ -448,9 +448,8 @@ public class ProductDetailLib extends ProductDetailObj {
 	 * @throws Throwable
 	 */
 	public void verifyAvailability( ) throws Throwable {
-		
 		List<WebElement> mylist=driver.findElements(STOCK);
-		for (int i = 0; i < mylist.size(); i++) {
+		for (int i = 0; i <1; i++) {
 		if(isElementPresent(STOCK, "Stock")) {
 			reporter.SuccessReport("Verify the Stock/Availability on Search Results page","Stock and Avaialbility exists " , "");
 		}
@@ -467,13 +466,11 @@ public class ProductDetailLib extends ProductDetailObj {
 	 * @throws Throwable
 	 */
 	public void verifyAvailabilityInProductDetailPage( ) throws Throwable {
-		
-		
 		if(isElementPresent(STOCK_PRODUCT_DETAIL_PAGE, "Stock in product detail page")) {
-			reporter.SuccessReport("Verify the Stock/Availability on product Results page","Stock and Avaialbility exists " , "");
+			reporter.SuccessReport("Verify the Stock/Availability on product Results page","Stock and Avaialbility exists " , "Unlimited Availablity");
 		}
 		else {
-			reporter.failureReport("Verify the Stock/Availability on product Results page","Stock and Avaialbility does not exist  " , "");
+			reporter.failureReport("Verify the Stock/Availability on product Results page","Stock and Avaialbility does not exist" , "");
 		}
 		
 	}
@@ -484,7 +481,7 @@ public class ProductDetailLib extends ProductDetailObj {
 	 * @throws Throwable
 	 */
 	public void narrowDownFilters(String category, String option) throws Throwable {
-		mouseClick(narrowDown(category,option), "");
+		mouseClick(narrowDown(category,option), "Narrow down by"+category+option+"Exists");
 //		if(isElementNotPresent(narrowDown(category,option),"")) {
 //			reporter.SuccessReport("Narrow down by License", "'License' Option exists and selected",option);
 //		}
@@ -518,15 +515,13 @@ public class ProductDetailLib extends ProductDetailObj {
 		click(InvoiceHistoryObj.COSE_ACCOUNT_TOOLS, "close account tools");
 		}
 		   click(CommonObj.ACCOUNT_TOOLS, "Account tools menu icon");
-		   click(CommonObj.getAccountToolsMenu(toolsMenuName), "Account tools menu");
-		   click(CommonObj.getAccountToolsDD(toolsMenuName, dropDown), "Select account tools");
+		   click(CommonObj.getAccountToolsMenu(toolsMenuName), "Account tools menu"+toolsMenuName);
+		   click(CommonObj.getAccountToolsDD(toolsMenuName, dropDown), "Select account tools DropDown"+dropDown);
 		   click(CommonObj.getCompanyStandardsProductGroup(productGroup, productName), "select product from product group");
 		   Thread.sleep(1000);
 		   String prodDesc=getText(STOCK_ACCOUNT_TOOLS, "product description account tools");
 		   clickUntil(PRODUCT_GROUP_COI_CSI_RESERVED, CommonObj.MINI_WINDOW, "product description account tools");
-		   
 		   Thread.sleep(10000);
-		   
 		   Set<String> handle=driver.getWindowHandles();
 		   if (handle.size()>2) {
 			   switchToChildWindow();
@@ -587,10 +582,11 @@ public class ProductDetailLib extends ProductDetailObj {
 		waitForVisibilityOfElement(ESTIMATEDTAX_LABEL, "Estimated Tax");
 		if (isElementPresent(ESTIMATEDTAX_LABEL, "Estimated Tax")) {
 			String EstimatedTax = getText(ESTIMATEDTAX, "Estimated Tax").trim();
-			reporter.SuccessReport("Estimated Tax", "USD " + EstimatedTax + "", "");
+			reporter.SuccessReport("Verify Tax onTotal Price Estimation POPUP", "Estimation Taxes Field Exists::USD " + EstimatedTax + "", "Estimated Tax:"+EstimatedTax);
 		} else {
 			reporter.failureReport("Estimated Tax", "Estimated Tax is not visible", "");
 		}
+		click(PRICEESTIMATOR_POPUPCLOSE, "Close Popup");
 	}
 	/**
 	 * This method is to verify Estimated Shipping
@@ -598,9 +594,9 @@ public class ProductDetailLib extends ProductDetailObj {
 	 * @throws Throwable
 	 */
 	public void verifyEstimatedshipping() throws Throwable {
-		if (isElementPresent(ESTIMATEDSHIPPING_LABEL, "Estimated Shipping")) {
-			String Estimatedshipping = getText(ESTIMATEDSHIPPING, "Estimated Tax").trim();
-			reporter.SuccessReport("Estimated Shipping", "USD " + Estimatedshipping + "", "");
+		if (isElementPresent(ESTIMATEDSHIPPING_LABEL, "Estimated Shipping Charges")) {
+			String Estimatedshipping = getText(ESTIMATEDSHIPPING, "Estimated Shipping Charges").trim();
+			reporter.SuccessReport("Verify Shipping Charges", "Shipping Charges Exists", Estimatedshipping);
 		} else {
 			reporter.failureReport("Estimated Shipping", "Estimated Shipping is not visible", "");
 		}
@@ -612,14 +608,12 @@ public class ProductDetailLib extends ProductDetailObj {
 	 * @throws Throwable
 	 */
 	public void verifyEstimatedPrice() throws Throwable {
-		if (isElementPresent(ESTIMATEDPRICE, "Estimated Price")) {
-			String EstimatedPrice = getText(ESTIMATEDPRICE, "Estimated Price").trim();
-			reporter.SuccessReport("Estimated Price", "USD " + EstimatedPrice + "", "");
+		if (isElementPresent(ESTIMATEDPRICE, "Toatal Estimated Price")) {
+			String EstimatedPrice = getText(ESTIMATEDPRICE, "Total Estimated Price").trim();
+			reporter.SuccessReport("Veriy Total Price Estimation POPUP", "USD " + EstimatedPrice + "", "");
 		} else {
 			reporter.failureReport("Estimated Price", "Estimated Price is not visible", "");
 		}
-		click(PRICEESTIMATOR_POPUPCLOSE, "Close Popup");
-
 	}
 
 	/**
@@ -749,7 +743,7 @@ public class ProductDetailLib extends ProductDetailObj {
 		for (int i = 0; i < myList2.size(); i++) {
 		if (myList2.get(i).isDisplayed()) {
 			myList2.get(i).click();
-				reporter.SuccessReport("Reviews", "Clicked on Reviews", "");
+				reporter.SuccessReport("Verify Review Symbols Exists and ", "Clicked on Review Symbol", "");
 			} else {
 				reporter.failureReport("Reviews ",
 						"Reviews Not Clicked", "");
@@ -902,11 +896,62 @@ public class ProductDetailLib extends ProductDetailObj {
 		}
 	}
 	
-	public String getProductNameInProductDetailPage(String Product)throws Throwable {
+	public String getProductNameInProductDetailPage(String ProductName)throws Throwable {
 		waitForVisibilityOfElement(productsDisplayInfoObj.PRODUCT_NAME, "Product name");
-		String productName = getText(productsDisplayInfoObj.PRODUCT_NAME, "Product  name - product details page::"+Product+"");
+		String productName = getText(productsDisplayInfoObj.PRODUCT_NAME, "Product  name - product details page::");
 		return productName;
 	}
+	/**
+	 * Method is to get the first product Description in the search results page
+	 * @return
+	 * @throws Throwable
+	 */
+	public void getFirstProdDescription() throws Throwable{
+		String prodDesc=null;
+		waitForVisibilityOfElement(ProductDisplayInfoLib.FIRST_PROD_NAME, "First product description");
+		if(isVisibleOnly(ProductDisplayInfoLib.FIRST_PROD_NAME, "First product description")) {
+			prodDesc=getText(ProductDisplayInfoLib.FIRST_PROD_NAME, "First prod Description");
+			reporter.SuccessReport("1st product in Products List Page", "Product exists", prodDesc);
+		}else {
+			reporter.failureReport("1st product in Products List Page", "Product does not exists", prodDesc,driver);
+		}
+	}
+	/**
+	 * This method is to verify Estimated Shipping
+	 * 
+	 * @throws Throwable
+	 */
+	public void verifyEstimatedshippingOption() throws Throwable {
+		if (isElementPresent(ESTIMATEDSHIPPING_LABEL, "Estimated Shipping")) {
+			String Estimatedshipping = getText(ESTIMATEDSHIPPING, "Shipping Option").trim();
+			reporter.SuccessReport("Verify Shipping Option", "Shipping Option Exists", Estimatedshipping);
+		} else {
+			reporter.failureReport("Estimated Shipping Option", "Estimated Shipping is not visible", "");
+		}
+	}
+	/**
+	 * This method is to verify Bread crumb
+	 * 
+	 * @throws Throwable
+	 */
+	public void verifySpecifications(String Tab) throws Throwable {
+		click(SPECIFICATIONS_TAB,"Specification Tab");
+		if (isVisibleOnly(SPECTIFICATIONS(Tab), "Specifications")) {
+			reporter.SuccessReport("Verify Technical Specifications on specifications Tab", "Technical specification on specifications Tab exists", "Tech Spec"+Tab);
+		} else {
+			reporter.failureReport("Verify Technical Specifications on specifications Tab", "Technical specification on specifications Tab Does not exists","Tech Spec"+Tab);
+		}
+	}
+	/**
+	 * Method is used to verify WelcomePage
+	 */
+	public void verifyWelcomePage() throws Throwable {		
+		if (isVisibleOnly(HEADER_LOGO, "WelcomePage")) {	
+			reporter.SuccessReport("Insight Home Page", "Insight Home Page Exists","");
+		} else {
+			reporter.failureReport("Insight Home Page", "Insight Home does Page Exists","");
+		}	
+			}
 }
 
 

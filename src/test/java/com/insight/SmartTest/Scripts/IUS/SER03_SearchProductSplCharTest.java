@@ -68,10 +68,10 @@ public class SER03_SearchProductSplCharTest  extends HomeLib{
 					clickonHomeButtonInProductSearchPopup();
 					enterSearchValue(data.get("KeyWord2"));
 					clickOnSearchButtonInSearchWindow();
-					Thread.sleep(2000);
+					
 					verifyResultsofMaterailIdofKeyWordSearch(data.get("KeyWord2"));
 					clickCloseButtonProductSearch();
-					Thread.sleep(3000);
+					
 					clickClosthedocument(data.get("Doctype"));
 					clickYesButtontocloseDocument();
 					System.out.println("Testcase completed");

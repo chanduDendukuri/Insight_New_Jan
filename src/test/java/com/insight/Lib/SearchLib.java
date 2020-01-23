@@ -249,10 +249,14 @@ public class SearchLib extends CommonObj {
 	public void filterSelectionInProductsSearchPage(String filter) throws Throwable {
 
 		String result = null;
+		JSClick(productsDisplayInfoObj.getFilterSelection(filter), "filter Name : "+filter);
 		//clickUntil(productsDisplayInfoObj.getFilterSelection(filter),productsDisplayInfoObj.FILTER_ITEM, "filter Name");
-		click(productsDisplayInfoObj.getFilterSelection(filter), "filter Name : "+filter);
+		/*scrollBottom();
+		scrollToBottom();
+		click(productsDisplayInfoObj.getFilterSelection(filter), "filter Name : "+filter);*/
 		Thread.sleep(3000);
 		waitForVisibilityOfElement(productsDisplayInfoObj.FILTER_ITEM, "filter item");
+		
 		boolean flag = true;
 		if (flag) {
 
@@ -280,7 +284,25 @@ public class SearchLib extends CommonObj {
 		}
 	}
 
-	
+	/**
+	 * Method is to select the filter by clicking on more drop down
+	 * @param filter
+	 * @param filterHeading
+	 * @throws Throwable
+	 */
+	public void selectManufacturerFiter(String filter,String filterHeading) throws Throwable {
+		if(isVisibleOnly(productsDisplayInfoObj.getFilterSelection(filter),"filter")) {
+			JSClick(productsDisplayInfoObj.getFilterSelection(filter), "filter Name : "+filter);
+		}else {
+			//clickUntil(productsDisplayInfoObj.filterSeeMoreDD(filterHeading), productsDisplayInfoObj.getFilterSelection(filter),"show more", "");
+			JSClick(productsDisplayInfoObj.filterSeeMoreDD(filterHeading), "show more");
+			if(isVisibleOnly(productsDisplayInfoObj.getFilterSelection(filter),"filter")) {
+				JSClick(productsDisplayInfoObj.getFilterSelection(filter), "filter Name : "+filter);
+		}else {
+			reporter.failureReport("Verify filter ", filter+" is not visible", "", driver);
+		   }
+		}
+	}
 
 	/**
 	 * Method is to navigate to the Custom catalog in the CMT tool and Include
@@ -375,15 +397,19 @@ public class SearchLib extends CommonObj {
 	 * @throws Throwable
 	 */
 	public void selectTopBrandsInShopAllBrandsPage(String brand, String url) throws Throwable {
-		
+		Boolean flag=false;
 		if(isElementPresent(getTopBrands(brand), "Top brands")){
 			Thread.sleep(2000);
 			click(getTopBrands(brand), "Top Brands: "+brand);
 			Thread.sleep(2000);
-			verify_url(driver, url);
-			reporter.SuccessReport("Verify top brand logos are displayed", "Logo is displayed and clicked", brand);
+			flag=verify_url(driver, url);
+			if(flag=true) {
+				reporter.SuccessReport("Verify results are displayed", brand+" page is displayed", brand);
+			}else {
+				reporter.failureReport("Verify results are displayed", brand+" page is not displayed", brand,driver);
+			}
 		}else{
-			reporter.failureReport("Verify top brand logos are displayed", "Logo is not displayed", brand);
+			reporter.failureReport("Verify top brands are displayed", brand+" is not present to select ", brand);
 		}
 		
 	}

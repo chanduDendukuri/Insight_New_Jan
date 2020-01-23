@@ -55,7 +55,7 @@ public class CQT29_IPSContractpricing_USCPriceMatchContract extends HomeLib {
 					AddMaterialOnLineItem(data.get("MaterialID2"));// PWR-400W-AC
 					AddMaterialOnLineItem(data.get("MaterialID3"));// WS-C2960X-24PS-L
 					clickOnCOntractIDinLineItemsList();
-					selectCOntractID(data.get("contactid"), data.get("contactTabName"));
+					selectCOntractID(data.get("ContractId"), data.get("contactTabName"));
 					copyAllContractstoAllLines();
 					clickDoneButton();
 					clickUpdateCosting();

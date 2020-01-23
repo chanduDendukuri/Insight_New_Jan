@@ -63,7 +63,7 @@ public class CQT19_IPSCiscoIDRefreshIconTest extends HomeLib {
 					doubleclickOnLineItem("000010");
 					clickOnVCTab("Contracts");
 					clickOnrefreshContracts();
-					selectContractIdwithDesc("STATE OF TEXAS");
+					selectContractIdwithDesc(data.get("ContractIdDesc"));
 					ClickOnCopyContracttoallLines();
 					SearchButton();
 					clickDoneButton();

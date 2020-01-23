@@ -51,7 +51,7 @@ public class CQT23_IPSContractpricing_CostplusContract extends HomeLib {
 							AddMaterialOnLineItem(data.get("MaterialID2"));
 							AddMaterialOnLineItem(data.get("MaterialID3"));
 							clickOnCOntractIDinLineItemsList();
-							selectCOntractID(data.get("contactid"),data.get("contactTabName"));
+							selectCOntractID(data.get("ContractId"),data.get("ContractTabName"));
 							copyAllContractstoAllLines();
 							clickDoneButton();
 							clickUpdateCosting();
@@ -61,7 +61,7 @@ public class CQT23_IPSContractpricing_CostplusContract extends HomeLib {
 							enterCancelButtonInPoupHdr();
 							String QuoteNum= GetQuoteNumber();
 							clickOnCOntractIDinLineItemsList();
-							selectCOntractSubTabName(data.get("contactTab2"));//Pricing
+							selectCOntractSubTabName(data.get("ContractTab2"));//Pricing
 							
 							//Get data from the pricing tab
 							List<String> Price = new ArrayList<>();
@@ -95,14 +95,14 @@ public class CQT23_IPSContractpricing_CostplusContract extends HomeLib {
 			                           price4value = Float.parseFloat(P4);
 			                    	}
 			                    }
-							selectCOntractID(data.get("contactid"),data.get("contactTabName"));
+							selectCOntractID(data.get("ContractId"),data.get("ContractTabName"));
 							clickDoneButton();
 							//Need to compare pricing
 							VerifyZ0RCPlusYMSMequalstheYP00andZP00( price2value, price4value, price3value );
 							VerifyZPOOShouldbeEqualToYPOO(price1value,price3value);
 							clickOnCOntractIDinLineItemsList();
-							selectCOntractSubTabName(data.get("contactTabName"));
-							VerifyContractPriceShouldbeEqualToYPOO(price3value,data.get("contactid"));
+							selectCOntractSubTabName(data.get("ContractTabName"));
+							VerifyContractPriceShouldbeEqualToYPOO(price3value,data.get("ContractId"));
 							clickDoneButton();
 							clickSideBarSmart();
 							clickClosthedocument(QuoteNum);

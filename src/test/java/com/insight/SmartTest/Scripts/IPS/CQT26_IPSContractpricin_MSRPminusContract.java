@@ -54,18 +54,18 @@ public class CQT26_IPSContractpricin_MSRPminusContract extends HomeLib {
 					AddMaterialOnLineItem(data.get("MaterialID2"));//WS-C2960X-24PS-L
 					AddMaterialOnLineItem(data.get("MaterialID3"));//CON-NSNT-C881WACC
 					clickOnCOntractIDinLineItemsList();
-					selectCOntractID(data.get("contactid"), data.get("contactTabName"));
+					selectCOntractID(data.get("ContractId"), data.get("ContractTabName"));
 					copyAllContractstoAllLines();
 					clickDoneButton();
 					clickUpdateCosting();
-					driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+					
 					clickSideBarSmart();
 					clickonSaveasQuote();
-					driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+					
 					enterCancelButtonInPoupHdr();
 					String QuoteNum1 = GetQuoteNumber();
 					clickOnCOntractIDinLineItemsList();
-					selectCOntractSubTabName(data.get("contractTab1"));// Pricing
+					selectCOntractSubTabName(data.get("ContractTab1"));// Pricing
 
 					// Get data from the pricing tab
 					List<String> Price = new ArrayList<>();
@@ -99,8 +99,8 @@ public class CQT26_IPSContractpricin_MSRPminusContract extends HomeLib {
                            price4value = Float.parseFloat(P4);
                     	}
                     }
-                    selectCOntractSubTabName(data.get("contractTab2"));// Contracts
-                    VerifyContractPriceShouldbeEqualToYPOO(price4value, data.get("contactid"));	
+                    selectCOntractSubTabName(data.get("ContractTab2"));// Contracts
+                    VerifyContractPriceShouldbeEqualToYPOO(price4value, data.get("ContractId"));	
 					clickDoneButton();
 					// Need to compare pricing
 					verifyZPOOequalstheYDLPandZPLS(price2value, price1value, price3value);//ZP00=ZPML-ZDML

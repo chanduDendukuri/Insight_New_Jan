@@ -26,6 +26,8 @@ public class PID01_AddandDeleteToPersonalProductsListTest extends ActionEngine {
 	CMTLib cmtLib = new CMTLib();
 	CartLib cartLib = new CartLib();
 	ProductDetailLib productDetailLib = new ProductDetailLib();
+	SearchLib searchLib=new SearchLib();
+
 // #############################################################################################################
 // # Name of the Test : PID01_AddandDeleteToPersonalProductsList
 // # Migration Author : Cigniti Technologies
@@ -59,7 +61,10 @@ public class PID01_AddandDeleteToPersonalProductsListTest extends ActionEngine {
 					cmtLib.clickOnloginAs();
 					switchToChildWindow();
 					commonLib.searchProduct(data.get("Search_Item"));
+					searchLib.verifyBreadCrumbInSearchResultsPage(data.get("Search_Item"));
+					productDetailLib.getFirstProdDescription();
 					cartLib.selectFirstProductDisplay();
+					productDetailLib.getProductNameInProductDetailPage(data.get("Search_Item"));
 					String partNumber = productDetailLib.getMFRNumberInProductInfopage();
 					productDetailLib.selectProductAndAddToPersonalProductList();
 					productDetailLib.verifyPersonalProductList(partNumber);
