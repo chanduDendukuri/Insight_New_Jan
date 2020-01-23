@@ -54,7 +54,8 @@ public class CQT01_SoftwareContractPartsTest extends HomeLib {
 					clickAdvancedHeaderTab(data.get("Tab1"));//programs Tab
 					Productsearch(data.get("ContractId"));//0040049088
 					SearchButton();
-					verifyResultsofMaterailIdofKeyWordSearch(data.get("MaterialId"));//6529107
+					clickOnMaterialID();
+					//verifyResultsofMaterailIdofKeyWordSearch(data.get("MaterialId"));//6529107
 					clickOnAddToOrderButton();
 					clickCloseButton();
 					clickonConXSystem(data.get("ItemNum1"));// 000010

@@ -83,8 +83,9 @@ public class CQT06_LABCANCanada extends HomeLib {
 					Thread.sleep(3000);
 					ClickOnSendbutton();
 					clickOkButton();
-					//clickClosthedocument(data.get("Doctype"));
-					//clickYesButtontocloseDocument();
+					String QuoteNumber = GetQuoteNumber();
+					clickClosthedocument(QuoteNumber);
+					clickYesButtontocloseDocument();
 
 					System.out.println("Test completed");
 

@@ -47,7 +47,7 @@ public class CQT48_SWEPQuoteTest extends HomeLib {
 				        AddLineItems("material",data.get("Material"),0);
 				        
 				        ClickOnXsymbolunderCon();
-				        SelectContractId(3);
+				        selectContractID(data.get("ContractId"));
 				        clickOnCopyContarctToallLineItems();
 				        SearchButton();
 				        EnterUSCOMMember("SPREADSHEET QUOTE USED? (Y/N):",data.get("SPREADSHEETQUOTE"));

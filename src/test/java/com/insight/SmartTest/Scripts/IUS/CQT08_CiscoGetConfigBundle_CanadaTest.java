@@ -65,8 +65,9 @@ public class CQT08_CiscoGetConfigBundle_CanadaTest extends ActionEngine {
 									home.clickonSaveasQuote();
 									home.enterNewEmailIDandclickOKBtn(data.get("emailid"));
 									home.clickSideBarSmart();
-									//home.clickClosthedocument(data.get("Doctype"));
-								//	home.clickYesButtontocloseDocument();
+									String Qn= home.GetQuoteNumber();
+									home.clickClosthedocument(Qn);
+								      home.clickYesButtontocloseDocument();
 
 								} else {
 									// Acquire and quote window is not opened

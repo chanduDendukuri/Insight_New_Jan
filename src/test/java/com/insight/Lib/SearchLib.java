@@ -284,9 +284,24 @@ public class SearchLib extends CommonObj {
 		}
 	}
 
-	
-	public void selectManufacturerFiter(String Filter) {
-		
+	/**
+	 * Method is to select the filter by clicking on more drop down
+	 * @param filter
+	 * @param filterHeading
+	 * @throws Throwable
+	 */
+	public void selectManufacturerFiter(String filter,String filterHeading) throws Throwable {
+		if(isVisibleOnly(productsDisplayInfoObj.getFilterSelection(filter),"filter")) {
+			JSClick(productsDisplayInfoObj.getFilterSelection(filter), "filter Name : "+filter);
+		}else {
+			//clickUntil(productsDisplayInfoObj.filterSeeMoreDD(filterHeading), productsDisplayInfoObj.getFilterSelection(filter),"show more", "");
+			JSClick(productsDisplayInfoObj.filterSeeMoreDD(filterHeading), "show more");
+			if(isVisibleOnly(productsDisplayInfoObj.getFilterSelection(filter),"filter")) {
+				JSClick(productsDisplayInfoObj.getFilterSelection(filter), "filter Name : "+filter);
+		}else {
+			reporter.failureReport("Verify filter ", filter+" is not visible", "", driver);
+		   }
+		}
 	}
 
 	/**

@@ -64,7 +64,8 @@ public class CQT16_IPSCopyLinksTest extends HomeLib {
 		        driver.switchTo().defaultContent();
 		        SearchButton();
 		        
-		        SelectContractId(2);
+		        //SelectContractId(2);
+		        selectContractID(data.get("ContractId"));
 		        EnterDatainDivercityPartner(data.get("DivercityPartner"));
 		        SearchButtonOfDivercityPartner();
 		        ClickOndivercityPartnerResult();

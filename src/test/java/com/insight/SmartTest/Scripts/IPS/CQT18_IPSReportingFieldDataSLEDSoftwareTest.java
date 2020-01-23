@@ -80,7 +80,8 @@ public class CQT18_IPSReportingFieldDataSLEDSoftwareTest extends HomeLib {
 		        loadingSymbol();
 		        closebuttonInProductSearch();
 		        ClickOnXsymbolunderCon();
-		        reportingFiledData();
+		        validatetheLineitemfiledsaftersaving();
+		       // reportingFiledData();
 		        ClickonArrowNextToLineitem();
 		        //reportingFiledData();
 		        ClickonArrowNextToLineitem();

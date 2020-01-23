@@ -50,10 +50,10 @@ public class CQT15_IPSContractPricingError extends HomeLib {
 					// 10529929
 					AddMaterialOnLineItem(data.get("MaterialID"));// D4Q72US#ABA
 					clickOnCOntractIDinLineItemsList();
-					selectCOntractID(data.get("contactid"), data.get("contactTabName")); //Contracts
+					selectCOntractID(data.get("ContractId"), data.get("ContractTabName")); //Contracts
 					clickDoneButton();
 					clickUpdateCosting();
-					driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+					
 					enterRepMarginPercent(data.get("RepPercentage"),0);
 					clickUpdateCosting();
 					clickSideBarSmart();
