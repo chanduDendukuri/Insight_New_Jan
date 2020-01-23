@@ -262,7 +262,7 @@ public class CMTLib extends CMTObj {
 				LOG.info(userPermission + " check box already checked.");
 				reporter.SuccessReport(permissions[i]+" Permissions on WebGroup Management Page", "Check Box Field Exists and Enabled", permissions[i]);
 			} else {
-				click(getUserPermission(permissions[i]), "set user permissions ON" , permissions[i]);
+				click(getUserPermission(permissions[i]), "set user permission "+permissions[i]+" is ON " , permissions[i],permissions[i]);
 			}
 		}
 
@@ -533,7 +533,7 @@ public class CMTLib extends CMTObj {
 	public void setPermissionsToDisable(String menuName, String userPermissions) throws Throwable {
 		click(getUsersTabMenus(menuName), "Roles And Permissions");
 		if (isCheckBoxSelected(getUserPermission(userPermissions))) {
-			click(getUserPermission(userPermissions), "User permissions : " + userPermissions + "is OFF");
+			click(getUserPermission(userPermissions), "User permissions : " + userPermissions + " is OFF");
 			click(UPDATE_USER_BTN, "Update user button");
 			if (isElementPresent(PERMISSION_UPDATE_MSG, "update sucessful message")) {
 				reporter.SuccessReport("Verify the Sucess message ", "Permissions disabled Succesfully", "");
@@ -1765,25 +1765,27 @@ public class CMTLib extends CMTObj {
 	}
 
 	public void addNewRepDetails(String Email, String Phone, String Fax) throws Throwable {
-		if (isElementPresent(ADD_NEW_REP, "Add New Rep Details")) {
+		if (isVisibleOnly(ADD_NEW_REP, "Add New Rep Details")) {
 			reporter.SuccessReport("Click on Add New Rep Link", "Add New Rep Link is available", "");
 			click(ADD_NEW_REP, "Click on add new rep");
-			if (isElementPresent(ADD_NEW_REP_POPUP, "Add New Rep popup")) {
+			if (isVisibleOnly(ADD_NEW_REP_POPUP, "Add New Rep popup")) {
 				// Enter Email Address,Name,Title,Phone NUmber,Fax Number,
 				// Photo, Information about Rep info in the Pop Up
-				if (isElementPresent(EMAIL_ADDRESS, "Email address")) {
+				if (isVisibleOnly(EMAIL_ADDRESS, "Email address")) {
 					type(EMAIL_ADDRESS, Email, "Email Address");
 				}
 				Thread.sleep(5000);
-				if (isElementPresent(PHONE_NUMBER, "New Rep Phone Number")) {
+				if (isVisibleOnly(PHONE_NUMBER, "New Rep Phone Number")) {
 					click(PHONE_NUMBER, "Phone Number Text Field");
 					String getPhone = driver.findElement(PHONE_NUMBER).getText();
 					if (getPhone == null) {
 						type(PHONE_NUMBER, Phone, "New Rep Phone Number::" + Phone + "");
-					}
+					}/*else{
+						reporter.SuccessReport("Phone number", " Repo Phone number ", getPhone);
+					}*/
 				}
 				Thread.sleep(5000);
-				if (isElementPresent(FAX_NUMBER, "Fax Number")) {
+				if (isVisibleOnly(FAX_NUMBER, "Fax Number")) {
 					click(FAX_NUMBER, "Fax Number");
 					String getFaxNum = driver.findElement(FAX_NUMBER).getText();
 					if (getFaxNum == null) {
@@ -1792,7 +1794,7 @@ public class CMTLib extends CMTObj {
 					type(FAX_NUMBER, Fax, "Fax Number");
 				}
 
-				if (isElementPresent(REP_UPDATE, "Update button")) {
+				if (isVisibleOnly(REP_UPDATE, "Update button")) {
 					click(REP_UPDATE, "Click Update button");
 				}
 			}
@@ -2676,7 +2678,7 @@ public class CMTLib extends CMTObj {
 	 * @throws Throwable
 	 */
 	public void verifyUserNotExistMessage(String userName) throws Throwable {
-		if (isVisibleOnly(CMTObj.ERRORMSG_CREATEUSER, "Error message")) {
+		if (isVisibleOnly(CMTObj.ERRORMSG_CREATEUSER, "Error message")){
 			String errorMessage = getText(CMTObj.ERRORMSG_CREATEUSER, "Error message");
 			reporter.failureReport("New User Creation Error Message", "Your given User id " + userName + "is",
 					errorMessage, driver);

@@ -63,7 +63,7 @@ public class SBP08_SaveOrderTemplateIPSTest extends ShipBillPayLib{
 				cmtLib.setPermissions(data.get("Menu_Name"), data.get("Set_Permission"));
 				cmtLib.loginAsAdminCMT();
 				canadaLib.clickOnSideMenuSelectAccountToolOptions(data.get("toolsMenuName"),data.get("dropDown"));	
-				//deleteCart(data.get("cartname"));
+				deleteCart(data.get("cartname"));
 				commonLib.searchProduct(data.get("Search_Item1"));
 				verifyPartNumInProductDetailPage(data.get("Search_Item1"));
 				VerifyQuantity();

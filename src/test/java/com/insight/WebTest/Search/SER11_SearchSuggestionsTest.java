@@ -64,14 +64,13 @@ public class SER11_SearchSuggestionsTest extends SearchLib {
 					verifyBreadCrumbInSearchResultsPage(data.get("SearchText"));
 					
 					// Disable Show search Suggestions and verify
-					
 					selectAccountTools(data.get("FavoritesTabName"), data.get("FavoritesTabName1"));
 					// Enable search Suggestions
 					disableSearchSuggestions();
 					updateSuggessions();
 					verifySearchSuggestionsareNotDisplayed(data.get("SearchText"));
 					// Enable search Suggestions
-					selectAccountTools(data.get("FavoritesTabName"), data.get("FavoritesTabName1"));
+					// selectAccountTools(data.get("FavoritesTabName"), data.get("FavoritesTabName1"));
 					enableSearchSuggestions();
 					commonLib.clickLogOutLink(data.get("Logout"));
 

@@ -76,22 +76,26 @@ public class SER06_KeywordSearchTest extends SearchLib {
 					//clickShopAllTypesButton();
 					verifyTheResultsForSearchTerm(data.get("SearchText4"));
 					// in-stock filter verification
-					verifyFilterBreadCrumb(data.get("filter"));
+					verifyFilterBreadCrumb(data.get("In_Stock_Only"));
 					// Approve items only
+					scrollBottom();
+					scrollBottom();
 					filterSelectionInProductsSearchPage(data.get("Approved_Items"));
-					verifyBreadCrumbInSearchResultsPage(data.get("Approved_Items"));
+					verifyBreadCrumbInSearchResultsPage(data.get("Approved_Items_Remove_Filter"));
 					verifyTheResultsForSearchTerm(data.get("SearchText4"));
-					removeTheFilter(data.get("Approved_Items"));
+					removeTheFilter(data.get("Approved_Items_Remove_Filter"));
 					verifyTheResultsForSearchTerm(data.get("SearchText4"));
 					
 					// High performance
 					searchInHomePage(data.get("SearchText5"));
 					verifyTheResultsForSearchTerm(data.get("SearchText5"));
 					// in stock verification
-					verifyFilterBreadCrumb(data.get("filter"));
+					verifyFilterBreadCrumb(data.get("In_Stock_Only"));
 					// Approve items only
+					scrollBottom();
+					scrollBottom();
 				    filterSelectionInProductsSearchPage(data.get("Approved_Items"));
-					removeTheFilter(data.get("Approved_Items"));
+					removeTheFilter(data.get("Approved_Items_Remove_Filter"));
 					verifyTheResultsForSearchTerm(data.get("SearchText4"));
 					
 					// Printers
@@ -119,7 +123,6 @@ public class SER06_KeywordSearchTest extends SearchLib {
 					//gErrorMessage = e.getMessage();
 					gTestStatus = false;
 				}
-			
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

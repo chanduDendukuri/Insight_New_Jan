@@ -26,6 +26,9 @@ public class PID08_TotalPriceEstimateTest extends ActionEngine{
 	CMTLib cmtLib = new CMTLib();
 	CartLib cartLib = new CartLib();
 	ProductDetailLib productdetLib = new ProductDetailLib();
+	ShipBillPayLib shipBillpayLib=new ShipBillPayLib();
+	SearchLib searchLib=new SearchLib();
+	
 	// #############################################################################################################
 		// # Name of the Test : PID08_TotalPriceEstimate
 		// # Migration Author : Cigniti Technologies
@@ -63,25 +66,20 @@ public class PID08_TotalPriceEstimateTest extends ActionEngine{
 					cmtLib.loginAsAdminCMT();
 					productdetLib.verifytheLoginUser(data.get("LnameEmailUname"));
 					commonLib.searchProduct(data.get("Search_Item"));
+					searchLib.verifyBreadCrumbInSearchResultsPage(data.get("Search_Item"));
+					productdetLib.getFirstProdDescription();
 					cartLib.selectFirstProductDisplay();
+					productdetLib.getProductNameInProductDetailPage(data.get("Search_Item"));
+					productdetLib.getMFRNumberInProductInfopage();
 					// verif estimated Price
 					productdetLib.Estimatetotalprice(data.get("ZIPcode"));
-					productdetLib.verifyEstimatedtax();
+					Thread.sleep(5000);
 					productdetLib.verifyEstimatedshipping();
 					productdetLib.verifyEstimatedPrice();
+					productdetLib.verifyEstimatedshippingOption();
+					productdetLib.verifyEstimatedtax();
+					Thread.sleep(5000);
 					commonLib.clickLogOutLink(data.get("Logout_Header"));
-					cmtLib.navigateBackToCMT();
-					cmtLib.hoverOverMasterGroupAndSelectChangeGrp();
-					cmtLib.searchForWebGroup(data.get("WebGrp"));
-					cmtLib.clickOnTheWebGroup(data.get("WebGrp_Name"));
-					cmtLib.hoverOnManageWebGroupsAndSelectOptions(data.get("ManageWebGrpOptions"));
-					cmtLib.searchForaUserAndSelect(data.get("LnameEmailUname"), data.get("ContactName"));
-					cmtLib.clickCheckOutSettings(data.get("Check_out_Settings"));
-					cmtLib.selectOptionInCheckoutSettings(data.get("Shipping_Options"));
-					// disable permissions
-					cmtLib.selectDefaultShippingOptionInCheckoutSettings(data.get("Default_Shipping_Option1"));
-					cmtLib.clickupdateatDefaultShippingOption();
-					// End
 					System.out.println("Test completed");
 					} catch (Exception e) {
 						ReportStatus.blnStatus = false;

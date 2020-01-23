@@ -26,6 +26,8 @@ public class PID06_StockLocationsTest extends ActionEngine{
 	CMTLib cmtLib = new CMTLib();
 	CartLib cartLib = new CartLib();
 	ProductDetailLib productDetailLib = new ProductDetailLib();
+	SearchLib searchLib=new SearchLib();
+	
 	// #############################################################################################################
 		// # Name of the Test : PID06_StockLocations
 		// # Migration Author : Cigniti Technologies
@@ -56,10 +58,13 @@ public class PID06_StockLocationsTest extends ActionEngine{
 
 		
 				commonLib.searchProduct(data.get("Search_Item"));
+				searchLib.verifyBreadCrumbInSearchResultsPage(data.get("Search_Item"));
 				productDetailLib.verifyAvailability();
+				productDetailLib.getFirstProdDescription();
 				cartLib.selectFirstProductDisplay();
 				productDetailLib.verifyAvailabilityInProductDetailPage();
 				commonLib.searchProduct(data.get("Search_Item1"));
+				searchLib.verifyBreadCrumbInSearchResultsPage(data.get("Search_Item1"));
 				productDetailLib.narrowDownFilters(data.get("Category"), data.get("Option"));
 				commonLib.spinnerImage();
 				productDetailLib.selectUnlimetedAvailabilityProduct();
@@ -70,7 +75,6 @@ public class PID06_StockLocationsTest extends ActionEngine{
 				cmtLib.setPermissions(data.get("Menu_Name"), data.get("Set_Permission"));
 				cmtLib.clickOnloginAs();
 				switchToChildWindow();
-
 				productDetailLib.selectAccountToolsFromSideMenuAndClickOnProductGrp(data.get("Tools_Menu"),
 						data.get("Tools_Menu_DD"), data.get("Product_Group"), data.get("Product_Name"));
 

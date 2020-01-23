@@ -57,6 +57,9 @@ public class SER08_ProductResearchRequestTest extends SearchLib {
                      // Search            
 					searchInHomePage(data.get("SearchText"));
 					verifyTheResultsForSearchTerm(data.get("SearchText"));
+					// in-stock filter verification
+					verifyFilterBreadCrumb(data.get("In_Stock_Only"));
+					
 					prodInfoLib.clickProductResearchRequest();
 					prodInfoLib.verifyProductResearchRequestPopupFields();
 					prodInfoLib.clickSendWithoutFillingRequestProductAndVerify(data.get("SearchText"));
@@ -75,7 +78,7 @@ public class SER08_ProductResearchRequestTest extends SearchLib {
 					cmtLib.hoverOnManageWebGroupsAndSelectOptions(data.get("Manage_Web_Grp_Options"));
 					cmtLib.searchForaUserAndSelect(data.get("LnameEmailUname1"), data.get("ContactName1"));
 					cmtLib.loginAsAdminCMT();
-					cmtLib.loginVerification( data.get("ContactName"));
+					cmtLib.loginVerification( data.get("ContactName1"));
 					
 					searchInHomePage(data.get("SearchText"));
 					verifyTheResultsForSearchTerm(data.get("SearchText"));
@@ -86,7 +89,6 @@ public class SER08_ProductResearchRequestTest extends SearchLib {
 							data.get("Prod_Desc"));
 					
 					commonLib.clickLogOutLink(data.get("Logout"));
-
 				}
 
 				catch (Exception e) {

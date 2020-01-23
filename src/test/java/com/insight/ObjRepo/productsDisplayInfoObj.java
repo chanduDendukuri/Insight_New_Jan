@@ -244,5 +244,10 @@ public class productsDisplayInfoObj extends CommonObj{
     public static By URCOMPARELIST(String itemNo ){
     return	By.xpath("//div[@id='search-item-"+itemNo+"']//div[@class='columns medium-7']/a[@class='add-to-compare js-add-to-compare  checked']");
     }
+    // Filters
+    public static By filterSeeMoreDD(String filterHeading) {
+    	return By.xpath("//p[@class='title filter-title'][contains(text(),'"+filterHeading+"')]//following-sibling::div//a[@class='more-checkbox-button']");
+     }
+  
 
 }
