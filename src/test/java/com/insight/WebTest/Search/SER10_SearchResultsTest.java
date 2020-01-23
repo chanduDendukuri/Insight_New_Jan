@@ -14,6 +14,7 @@ public class SER10_SearchResultsTest extends SearchLib {
 
 	ProductDisplayInfoLib prodInfoLib = new ProductDisplayInfoLib();
 	CMTLib cmtLib = new CMTLib();
+	CanadaLib canadaLib=new CanadaLib();
 	
 
 	    // #############################################################################################################
@@ -43,57 +44,65 @@ public class SER10_SearchResultsTest extends SearchLib {
 				
 					// Test Steps execution
 					fnOpenTest();
-					searchInHomePage(data.get("SearchText"));
-					verifyTheResultsForSearchTerm(data.get("SearchText"));
+					// Multifunction Printer
+					searchInHomePage(data.get("SearchItem"));
+					verifyTheResultsForSearchTerm(data.get("SearchItem"));
+					canadaLib.verifySortOption(data.get("Sort_By")); // Best Match
+					
+					// Servers
 					searchInHomePage(data.get("SearchText2"));
 					verifyTheResultsForSearchTerm(data.get("SearchText2"));
-					int searchCount =getSearchResultsCount();
+					String initialCount=getProductCount();
+					
+					// Apply in stock filter
 					filterSelectionInProductsSearchPage(data.get("StockFilter"));
-					int in_stockCount=getSearchResultsCount();
-					assertTrue(searchCount>=in_stockCount, "Stock filter Search Results count less than Pervious count");
-					///	Remove the In-stock option from Breadcrumb
+					String stockFilterCount=getProductCount();
+                    if(Integer.valueOf(stockFilterCount)<Integer.valueOf(initialCount)) {
+                    	reporter.SuccessReport("Verify product count", "Search Results count less than initial count", "Count: "+stockFilterCount);
+					}else {
+						reporter.failureReport("Verify product count", "Search Results count not less than initial count", "Count: "+stockFilterCount, driver);
+					}
+					
 					removeTheFilterForInStockOnly(data.get("In_Stock"));
-					int in_stock_Removed=getSearchResultsCount();
-					assertTrue(searchCount==in_stock_Removed, "Search Results count same as initial count");
+					String finalCount=getProductCount();
 					
-					// Narrow Down by  Manufacture
-					filterSelectionInProductsSearchPage(data.get("MnfrFilter"));
-					int mfr_Count=getSearchResultsCount();
-					assertTrue(searchCount>=mfr_Count, "manufacturer filter Search Results count less than Pervious count");
+					if(initialCount.equals(finalCount)) {
+						reporter.SuccessReport("Verify product count", "Search Results count same as initial count", "Count: "+finalCount);
+					}else {
+						reporter.failureReport("Verify product count", "Search Results count not same as initial count", "Count: "+finalCount, driver);
+					}
+					// select manufacturer - HP INC
+					filterSelectionInProductsSearchPage(data.get("Manufacturer1"));
+					String mfrCount=getProductCount();
+					// narrow by keyword -- core
+					searchProductInProductDisplayPage(data.get("Manufacturer2"));  //- lenovo
+					searchProductInProductDisplayPage(data.get("Keyword_Search"));
+					String coreProductsCount=getProductCount();
+					 if(Integer.valueOf(coreProductsCount)<Integer.valueOf(initialCount)) {
+	                    	reporter.SuccessReport("Verify product count", "Search Results count less than initial count", "Count: "+coreProductsCount);
+						}else {
+							reporter.failureReport("Verify product count", "Search Results count not less than initial count", "Count: "+coreProductsCount, driver);
+						}
+					 removeTheFilter(data.get("Core"));
+					 String coreRemovedProductsCount=getProductCount();
 					
-					// Remove manufacturer option from Breadcrumb
-					removeTheFilter(data.get("MnfrFilter"));
+					 if(coreRemovedProductsCount.equals(mfrCount)) {
+							reporter.SuccessReport("Verify product count", "Search Results count same as as the Pervious count", "Count: "+mfrCount);
+						}else {
+							reporter.failureReport("Verify product count", "Search Results count not same as as the Pervious count", "Count: "+mfrCount, driver);
+						}
+					 removeTheFilter(data.get("Manufacturer2"));
+					 String mfr2ProductsCount=getProductCount();
+					 
+					 if(mfr2ProductsCount.equals(initialCount)) {
+							reporter.SuccessReport("Verify product count", "Search Results count same as as the Pervious count", "Count: "+initialCount);
+						}else {
+							reporter.failureReport("Verify product count", "Search Results count not same as as the Pervious count", "Count: "+initialCount, driver);
+						}
+					 
+					 searchInHomePage(data.get("part_Number"));
+					 prodInfoLib.verifyTheManufacturerNumberInProductDetailsPage(data.get("part_Number"));
 					
-					///	Narrow Down by  Keyword
-					searchProductInProductDisplayPage(data.get("Search_Item"));
-					int keyword_search_Count=getSearchResultsCount();
-					assertTrue(searchCount>=keyword_search_Count, "keyword Search Results count less than Pervious count");
-					
-					// Remove keyword search from Breadcrumb and compare results
-					removeTheFilter(data.get("Search_Item"));
-					int keywordSearch_Removed=getSearchResultsCount();
-					assertTrue(searchCount==keywordSearch_Removed, "Search Results count same as initial count");
-					
-					// prodInfoLib.enterPriceDetailsFilters(data.get("Min_Price"), data.get("Max_Price"));
-
-					/*
-					 * searchProductInProductDisplayPage(data.get("ProductName"));
-					 * removeTheFilter(data.get("ProductName"));
-					 */
-
-					/*
-					 * searchInHomePage(data.get("SearchText_adobe"));
-					 * verifyTheResultsForSearchTerm(data.get("SearchText_adobe"));
-					 * prodInfoLib.selectFirstProductAndReturnBack();
-					 * prodInfoLib.selectFirstProductImageAndReturnBack();
-					 * prodInfoLib.verifyTheSearchResultsDisplayed();
-					 * prodInfoLib.selectSortByOptions(data.get("Sort_By"));
-					 */
-					
-					/// 	Search - special character search validation - While logged out, search on a part that has a "?" in it. Added as part of US324
-					Thread.sleep(2000);
-					searchInHomePage(data.get("Search_Number"));
-					prodInfoLib.verifyTheManufacturerNumberInProductDetailsPage(data.get("Search_Number"));
 				}
 
 				catch (Exception e) {
