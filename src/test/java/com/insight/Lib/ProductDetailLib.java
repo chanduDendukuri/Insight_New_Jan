@@ -113,7 +113,7 @@ public class ProductDetailLib extends ProductDetailObj {
 				all_elements_text.add(myList.get(i).getText());
 				result = myList.get(i).getText();
 				if (result.contains(partNo)) {
-					reporter.SuccessReport("Verify the part number", "Part number verification is sucessful", result);
+					reporter.SuccessReport("Verify and click on Add to Personal products List", "Part number verification is sucessful", result);
 				}
 			}
 		} else {
@@ -133,7 +133,7 @@ public class ProductDetailLib extends ProductDetailObj {
 	public void deletePersonalProductList(String partNo) throws Throwable {
 		if (isElementPresent(deleteProduct(partNo), "Delete button")) {
 			System.out.println("Inside if ======");
-			click(deleteProduct(partNo), "Delete button");
+			click(deleteProduct(partNo), "Delete button on Expected product on Personal products List");
 		}
 
 		if (isElementPresent(DLETED_MESSAGE, "Deleted message")) {
@@ -157,7 +157,7 @@ public class ProductDetailLib extends ProductDetailObj {
 		boolean flag = true;
 
 		type(productsDisplayInfoObj.ADD_ITEMS_TEXTBOX, partNo, "part number");
-		click(productsDisplayInfoObj.ADD_BTN, "Add button");
+		click(productsDisplayInfoObj.ADD_BTN, "Add New Product");
 
 		if (flag) {
 			List<WebElement> myList = driver.findElements(productsDisplayInfoObj.MFR_PART);
@@ -466,13 +466,11 @@ public class ProductDetailLib extends ProductDetailObj {
 	 * @throws Throwable
 	 */
 	public void verifyAvailabilityInProductDetailPage( ) throws Throwable {
-		
-		
 		if(isElementPresent(STOCK_PRODUCT_DETAIL_PAGE, "Stock in product detail page")) {
-			reporter.SuccessReport("Verify the Stock/Availability on product Results page","Stock and Avaialbility exists " , "");
+			reporter.SuccessReport("Verify the Stock/Availability on product Results page","Stock and Avaialbility exists " , "Unlimited Availablity");
 		}
 		else {
-			reporter.failureReport("Verify the Stock/Availability on product Results page","Stock and Avaialbility does not exist  " , "");
+			reporter.failureReport("Verify the Stock/Availability on product Results page","Stock and Avaialbility does not exist" , "");
 		}
 		
 	}
@@ -483,7 +481,7 @@ public class ProductDetailLib extends ProductDetailObj {
 	 * @throws Throwable
 	 */
 	public void narrowDownFilters(String category, String option) throws Throwable {
-		mouseClick(narrowDown(category,option), "");
+		mouseClick(narrowDown(category,option), "Narrow down by"+category+option+"Exists");
 //		if(isElementNotPresent(narrowDown(category,option),"")) {
 //			reporter.SuccessReport("Narrow down by License", "'License' Option exists and selected",option);
 //		}
@@ -517,15 +515,13 @@ public class ProductDetailLib extends ProductDetailObj {
 		click(InvoiceHistoryObj.COSE_ACCOUNT_TOOLS, "close account tools");
 		}
 		   click(CommonObj.ACCOUNT_TOOLS, "Account tools menu icon");
-		   click(CommonObj.getAccountToolsMenu(toolsMenuName), "Account tools menu");
-		   click(CommonObj.getAccountToolsDD(toolsMenuName, dropDown), "Select account tools");
+		   click(CommonObj.getAccountToolsMenu(toolsMenuName), "Account tools menu"+toolsMenuName);
+		   click(CommonObj.getAccountToolsDD(toolsMenuName, dropDown), "Select account tools DropDown"+dropDown);
 		   click(CommonObj.getCompanyStandardsProductGroup(productGroup, productName), "select product from product group");
 		   Thread.sleep(1000);
 		   String prodDesc=getText(STOCK_ACCOUNT_TOOLS, "product description account tools");
 		   clickUntil(PRODUCT_GROUP_COI_CSI_RESERVED, CommonObj.MINI_WINDOW, "product description account tools");
-		   
 		   Thread.sleep(10000);
-		   
 		   Set<String> handle=driver.getWindowHandles();
 		   if (handle.size()>2) {
 			   switchToChildWindow();
@@ -747,7 +743,7 @@ public class ProductDetailLib extends ProductDetailObj {
 		for (int i = 0; i < myList2.size(); i++) {
 		if (myList2.get(i).isDisplayed()) {
 			myList2.get(i).click();
-				reporter.SuccessReport("Reviews", "Clicked on Reviews", "");
+				reporter.SuccessReport("Verify Review Symbols Exists and ", "Clicked on Review Symbol", "");
 			} else {
 				reporter.failureReport("Reviews ",
 						"Reviews Not Clicked", "");
@@ -946,7 +942,16 @@ public class ProductDetailLib extends ProductDetailObj {
 			reporter.failureReport("Verify Technical Specifications on specifications Tab", "Technical specification on specifications Tab Does not exists","Tech Spec"+Tab);
 		}
 	}
-
+	/**
+	 * Method is used to verify WelcomePage
+	 */
+	public void verifyWelcomePage() throws Throwable {		
+		if (isVisibleOnly(HEADER_LOGO, "WelcomePage")) {	
+			reporter.SuccessReport("Insight Home Page", "Insight Home Page Exists","");
+		} else {
+			reporter.failureReport("Insight Home Page", "Insight Home does Page Exists","");
+		}	
+			}
 }
 
 

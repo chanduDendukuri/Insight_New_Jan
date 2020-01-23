@@ -56,7 +56,7 @@ public class CQT20_IPSCiscoIDSmartnetCoverageValidationTest extends HomeLib {
 		        loadingSymbol();
 		        ClickOnXsymbolunderCon();
 		        //SelectContractId(2);
-		        selectCOntractID(data.get("contactid"), data.get("contactTabName"));
+		        selectCOntractID(data.get("ContractId"), data.get("ContractTabName"));
 		        ClickOnCopyContracttoallLines();
 		        SearchButton();
 		        clickDoneButton(); 

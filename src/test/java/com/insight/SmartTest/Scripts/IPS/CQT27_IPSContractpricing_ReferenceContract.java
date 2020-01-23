@@ -53,19 +53,19 @@ public class CQT27_IPSContractpricing_ReferenceContract extends HomeLib {
 					AddMaterialOnLineItem(data.get("MaterialID1"));// C7974A
 					AddMaterialOnLineItem(data.get("MaterialID1"));// C7974A
 					ClickOnXsymbolunderCon();
-					selectCOntractSubTabName(data.get("contactTabName"));// Contracts
-					clickOnContractId(data.get("contractid1"));
+					selectCOntractSubTabName(data.get("ContractTabName"));// Contracts
+					clickOnContractId(data.get("ContractId1"));
 					clickDoneButton();
 					
 					clickOnLItem00020CON("000020", "con");
-					selectCOntractSubTabName(data.get("contactTabName"));// Contracts
-					clickOnContractId(data.get("contractid2"));
+					selectCOntractSubTabName(data.get("ContractTabName"));// Contracts
+					clickOnContractId(data.get("ContractId2"));
 					clickDoneButton();
 					comparePriceValuesInLineitems(data.get("value1"),data.get("value2"));
 					clickUpdateCosting();
 					ClickOnsideViewBar();
 					clickonSaveasQuote();
-					SelectAdherencetoflooroption("Client Satisfaction","uft TEST");
+					SelectAdherencetoflooroption("Client Satisfaction",data.get("AdheranceFloorreason"));
 					String QuoteNumber = GetQuoteNumber();
 					if(QuoteNumber!=null) {
 						reporter.SuccessReport("QuoteNumber:", "Quotenumber is displayed", "");
@@ -74,7 +74,7 @@ public class CQT27_IPSContractpricing_ReferenceContract extends HomeLib {
 						reporter.failureReport("QuoteNumber:", "Quotenumber is not displayed", "",driver);
 					}
 					clickOnCOntractIDinLineItemsList();
-					selectCOntractSubTabName(data.get("contractTab1"));// Pricing
+					selectCOntractSubTabName(data.get("ContractTab1"));// Pricing
 					// Get data from the pricing tab
 					List<String> Price = new ArrayList<>();
 					int a = Integer.parseInt(data.get("Value"));
@@ -106,11 +106,11 @@ public class CQT27_IPSContractpricing_ReferenceContract extends HomeLib {
 					}
 					clickDoneButton();
 					clickOnCOntractIDinLineItemsList();
-					selectCOntractSubTabName(data.get("contactTabName"));// Contracts
-					float sellprice1 =getSellPriceFromContract(data.get("contractid1"));
+					selectCOntractSubTabName(data.get("ContractTabName"));// Contracts
+					float sellprice1 =getSellPriceFromContract(data.get("ContractId1"));
 					//float sellprice1 =  (float) contract1;
 					clickonRightArrowforLineItem();
-					float sellprice2 =getSellPriceFromContract(data.get("contractid2"));
+					float sellprice2 =getSellPriceFromContract(data.get("ContractId2"));
 					//float sellprice2 = (float) contract2;				
 					clickDoneButton(); 
 					if(price1value==price2value){

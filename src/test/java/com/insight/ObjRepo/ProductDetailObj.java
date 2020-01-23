@@ -20,7 +20,7 @@ public class ProductDetailObj extends ActionEngine {
 		return By.xpath("//div[@class='c-item-card__details o-grid__item u-1/1 u-1/2@tablet'][contains(.,'" + partNumber
 				+ "')]/following-sibling::div//span[contains(text(),'Delete')]");
 	}
-
+	public static By HEADER_LOGO=By.xpath("//div[@class='c-header-logo']");
 	public static By ACCOUNT_TOOLS = By.xpath(
 			"//button[@class='c-button  c-button--none c-header-account-menu__btn  c-header-account-menu__btn--logged-in  c-header-nav__link']");
 

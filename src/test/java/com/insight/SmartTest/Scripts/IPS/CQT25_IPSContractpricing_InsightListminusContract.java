@@ -50,7 +50,7 @@ public class CQT25_IPSContractpricing_InsightListminusContract extends HomeLib {
 					AddMaterialOnLineItem(data.get("MaterialID2"));
 					//Addmaterail(data.get("MaterialID3"));
 					clickOnCOntractIDinLineItemsList();
-					selectCOntractID(data.get("contactid"), data.get("contactTabName"));
+					selectCOntractID(data.get("ContractId"), data.get("ContractTabName"));
 					copyAllContractstoAllLines();
 					clickDoneButton();
 					clickUpdateCosting();
@@ -61,7 +61,7 @@ public class CQT25_IPSContractpricing_InsightListminusContract extends HomeLib {
 					enterCancelButtonInPoupHdr();
 					String QuoteNum1 = GetQuoteNumber();
 					clickOnCOntractIDinLineItemsList();
-					selectCOntractSubTabName(data.get("contractTab1"));// Pricing
+					selectCOntractSubTabName(data.get("ContractTab1"));// Pricing
 
 					// Get data from the pricing tab
 					List<String> Price = new ArrayList<>();
@@ -105,8 +105,8 @@ public class CQT25_IPSContractpricing_InsightListminusContract extends HomeLib {
 				reporter.failureReport("Price value comparision", data.get("text3") + "Value is " + price4value
 				+ " and  " + data.get("text4") + "Value is " + Price4 + "both are same", "", driver);
 				}
-					selectCOntractSubTabName(data.get("contractTab2"));// Contracts
-					VerifyContractPriceShouldbeEqualToYPOO(price4value, data.get("contactid"));
+					selectCOntractSubTabName(data.get("ContractTab2"));// Contracts
+					VerifyContractPriceShouldbeEqualToYPOO(price4value, data.get("ContractId"));
 					clickDoneButton();
 
 					clickSideBarSmart();

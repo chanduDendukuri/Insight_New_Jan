@@ -54,13 +54,13 @@ public class CQT22_IPSContractpricing_ContractReviewContract extends HomeLib {
 					AddMaterialOnLineItem(data.get("MaterialID3"));// 4X90F84315
 					//clickOnCOntractIDinLineItemsList();
 					ClickOnXsymbolunderCon();
-					selectCOntractID(data.get("contactid"), data.get("contactTabName"));
+					selectCOntractID(data.get("ContractId"), data.get("ContractTabName"));
 					copyAllContractstoAllLines();
 					clickDoneButton();
 					clickUpdateCosting();
 					
 					clickOnCOntractIDinLineItemsList();
-					selectCOntractSubTabName(data.get("contractTab"));// General
+					selectCOntractSubTabName(data.get("ContractTab"));// General
 					selectReasonforRejectionDD(data.get("DropdownValue"));
 					selectReasonforRejectionDD(data.get("DropdownValue"));
 					selectReasonforRejectionDD(data.get("DropdownValue"));
@@ -70,14 +70,14 @@ public class CQT22_IPSContractpricing_ContractReviewContract extends HomeLib {
 					enterRepMarginPercentinLineItem("000020", "repMargin",  "10");
 					enterRepMarginPercentinLineItem("000030", "repMargin",  "10");
 					clickUpdateCosting();
-					driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+					
 					clickSideBarSmart();
 					clickonSaveasQuote();
-					driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+					
 					enterCancelButtonInPoupHdr();
 					String QuoteNum1 = GetQuoteNumber();
 					clickOnCOntractIDinLineItemsList();
-					selectCOntractSubTabName(data.get("contractTab1"));// Pricing
+					selectCOntractSubTabName(data.get("ContractTab1"));// Pricing
 					// Get data from the pricing tab
 					List<String> Price = new ArrayList<>();
 					int a = Integer.parseInt(data.get("Value"));
@@ -111,8 +111,8 @@ public class CQT22_IPSContractpricing_ContractReviewContract extends HomeLib {
 	                    	}
 	                    }
 	                 VerifyZPFXvalue(Price1);
-					selectCOntractSubTabName(data.get("contactTabName"));// Contracts
-					VerifyContractPriceShouldbeEqualToYPOO(price1value, data.get("contactid"));// ZPFX
+					selectCOntractSubTabName(data.get("ContractTabName"));// Contracts
+					VerifyContractPriceShouldbeEqualToYPOO(price1value, data.get("ContractId"));// ZPFX
 																							// equals
 																							// to
 																							// contract

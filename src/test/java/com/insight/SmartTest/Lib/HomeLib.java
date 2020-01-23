@@ -126,6 +126,7 @@ public class HomeLib extends HomePage {
 
 	public void clickOnSearchButtonInSearchWindow() throws Throwable {
 		click(SEARCHBUTTONKEYWORDSEARCH, "Search Button Keyword Search");
+		loadingSymbol();
 	}
 
 	public void enterSearchValue(String search) throws Throwable {
@@ -1474,6 +1475,7 @@ else {
 
 	public void clickCloseButtonProductSearch() throws Throwable {
 		click(CLOSEBTN_PRODUCTSEARCH, "Close Button");
+		loadingSymbol();
 	}
 
 	/**
@@ -3820,28 +3822,41 @@ public float getSellPriceFromInlineItemsContract(String contractid) throws Throw
 			 * }
 			 */
 		//}
-		
+		label2:
 		if(all_elements_pricevalue.size()!=expecetedTypeCode.length) {
-			elem.get(1).click();
+			//elem.get(1).click();
+			click(txtPricingIDValue(0),"");
 			label1:
 			for(int j=0;j<expecetedTypeCode.length;j++) {
 				label:
-			for (i = size; i != 0; i++) {
+			//for (i = size; i != 0; i++)
+					for (i = 1; i != 0; i++)
+			{
+				String pricevalue =  getText(txtPricingIDValue(i-1), "Pricing value");
+				if(isVisibleOnly(txtPricingIDValue(i), ""))
+				click(txtPricingIDValue(i),"");
+				else {
+					reporter.failureReport("Pricing Id", "Pricing value is not displaying", "", driver);
+					break label2;
+				}
 				action.sendKeys(Keys.ARROW_DOWN).perform();
 				
 				
-					
+			//	action.moveToElement(elem.get(i-1)).perform();
+					//String pricevalue1 = getText(txtPricingIDValue(i-1), "Pricing value");
 					
 					  if (isVisibleOnly(PRICINGID_VALUE(expecetedTypeCode[j]), "Pricing ID")) 
 					  {
 					  action.moveToElement(driver.findElement(PRICINGID_VALUE(expecetedTypeCode[j]))).perform(); 
 					  Price =  getText(HomePage.pricing_ValueClmn(expecetedTypeCode[j]), "Pricing value");
 					  all_elements_pricevalue.add(Price);
-					 if(getText(PRICINGID_VALUE(expecetedTypeCode[j]),"").equals("ZFSS")) {
-						 reporter.failureReport("PricingID", ""+expecetedTypeCode[j]+" is not displaying in the grid", "", driver);
-						 break label1;
-					 }
-						  
+						/*
+						 * if(getText(PRICINGID_VALUE(expecetedTypeCode[j]),"").equals("ZFSS")) {
+						 * reporter.failureReport("PricingID",
+						 * ""+expecetedTypeCode[j]+" is not displaying in the grid", "", driver); break
+						 * label1; }
+						 */
+						
 						  break label; 
 						 
 					  }

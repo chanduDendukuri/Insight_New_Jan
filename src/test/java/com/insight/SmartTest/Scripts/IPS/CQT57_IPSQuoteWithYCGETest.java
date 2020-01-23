@@ -63,7 +63,7 @@ public class CQT57_IPSQuoteWithYCGETest extends HomeLib{
 					// Get data from the pricing tab
 					List<String> Price = new ArrayList<>();
 					int a= Integer.parseInt(data.get("Value"));
-					Price = getPriceValueFromPricingTab(data.get("idValue"), data.get("expValue"),a);// ZPLS--0
+					Price = getPriceValueFromPricingTab(data.get("idValue"), data.get("expValue"),a);// 
                     System.out.println(Price.size());
                   
                     String	Price1="";

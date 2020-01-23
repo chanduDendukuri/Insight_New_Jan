@@ -1233,7 +1233,7 @@ public class ProductDisplayInfoLib extends productsDisplayInfoObj {
      */
     public void verifyWelcomePage() throws Throwable {
     	waitForVisibilityOfElement(ShipBillPayObj.WELCOMEMSG_DASHBOARD, "Welcome to Insight");
-    	if(isElementPresent(ShipBillPayObj.WELCOMEMSG_DASHBOARD,"welcome dashboard")) {
+    	if(isVisibleOnly(ShipBillPayObj.WELCOMEMSG_DASHBOARD,"welcome dashboard")) {
     		reporter.SuccessReport("Verify welcome page ", "Welcome page is visible", "Welcome Home page");
     	}else {
     		reporter.failureReport("Verify welcome page","Welcome page is not visible", "", driver);
