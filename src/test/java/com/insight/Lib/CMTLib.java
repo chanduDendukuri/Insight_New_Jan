@@ -280,6 +280,9 @@ public class CMTLib extends CMTObj {
 			reporter.failureReport("Verify the sucess message", "Permissions are not Updated Succesfully", "", driver);
 		}
 	}
+	public void clickOnRolesandPermissionTab(String menuName) throws Throwable{
+		click(getUsersTabMenus(menuName), "Roles And Permissions");
+	}
 
 	/**
 	 * Method is to login as admin from the CMT tool.
@@ -822,7 +825,7 @@ public class CMTLib extends CMTObj {
 	 *
 	 */
 	public void clickOnUserURL() throws Throwable {
-		click(USER_URL, "User url");
+		click(USER_URL, "User url",getText(USER_URL,"User Link"));
 	}
 
 	/**
@@ -846,6 +849,11 @@ public class CMTLib extends CMTObj {
 	 */
 	public void enterEmailInCreateAnAccount(String email) throws Throwable {
 		type(EMAIL, email, "email");
+	}
+	public void verifyuserNotAvailabilityMessage() throws Throwable {
+		if(isVisibleOnly(userNotAvailabilityMessage,"User not availabile")){
+			reporter.SuccessReport("User Availability", " User available status", getText(userNotAvailabilityMessage,"User availabile status"));
+		}
 	}
 
 	/**
@@ -938,6 +946,11 @@ public class CMTLib extends CMTObj {
 			return userName;
 		}
 	}
+	
+	public void enterUserNameToValidate(String userName) throws Throwable{
+		type(USER_NAME, userName, "user Name");
+		click(CHECK_AVAILABILITY, "Check availability");
+	}
 
 	/**
 	 * This method is to enter password in create an account page
@@ -1009,7 +1022,8 @@ public class CMTLib extends CMTObj {
 	}
 
 	public void selectFirstUser() throws Throwable {
-		click(FIRST_USER_LINK, "First user link");
+		
+		click(FIRST_USER_LINK, "First user link",getText(FIRST_USER_LINK,"First user Name"));
 	}
 
 	/*
@@ -3041,4 +3055,137 @@ public class CMTLib extends CMTObj {
 					driver);
 		}
 	}
+	 
+	
+	 
+	
+	 
+	
+
+	
+	public void verifyEnabledPermissions() throws Throwable{
+		boolean status = false;
+		String s1=null;
+		if(isCheckBoxSelected(lblEnable_Change_Login_Password)){
+			status=true;
+			 s1=Boolean.toString(status);
+			reporter.SuccessReport("Enable_Change_Login_Password", "Enable Change Login Password ", s1);
+		}else{
+			status=false;
+			reporter.failureReport("Enable_Change_Login_Password", "Enable Change Login Password ", s1,driver);	
+		}
+		
+		if(isCheckBoxSelected(lblEdit_Contact_Information)){
+			status=true;
+			 s1=Boolean.toString(status);
+			reporter.SuccessReport("lblEdit_Contact_Information", "lblEdit_Contact_Information ", s1);
+		}else{
+			status=false;
+			reporter.failureReport("lblEdit_Contact_Information", "lblEdit_Contact_Information ", s1,driver);	
+		}
+		
+		if(isCheckBoxSelected(lblEnable_Edit_My_Account)){
+			status=true;
+			 s1=Boolean.toString(status);
+			reporter.SuccessReport("lblEnable_Edit_My_Account", "lblEnable_Edit_My_Account ", s1);
+		}else{
+			status=false;
+			reporter.failureReport("lblEnable_Edit_My_Account", "lblEnable_Edit_My_Account ", s1,driver);	
+		}
+		
+		if(isCheckBoxSelected(lblEnable_Edit_Checkout_Defaults_and_Favorites)){
+			status=true;
+			 s1=Boolean.toString(status);
+			reporter.SuccessReport("lblEnable_Edit_Checkout_Defaults_and_Favorites", "lblEnable_Edit_Checkout_Defaults_and_Favorites ", s1);
+		}else{
+			status=false;
+			reporter.failureReport("lblEnable_Edit_Checkout_Defaults_and_Favorites", "lblEnable_Edit_Checkout_Defaults_and_Favorites ", s1,driver);	
+		}
+		
+		if(isCheckBoxSelected(lblEnable_Allow_Access_to_Customer_Documents)){
+			status=true;
+			 s1=Boolean.toString(status);
+			reporter.SuccessReport("lblEnable_Allow_Access_to_Customer_Documents", "lblEnable_Allow_Access_to_Customer_Documents ", s1);
+		}else{
+			status=false;
+			reporter.failureReport("lblEnable_Allow_Access_to_Customer_Documents", "lblEnable_Allow_Access_to_Customer_Documents ", s1,driver);	
+		}
+		
+		if(isCheckBoxSelected(lblEnable_RMA)){
+			status=true;
+			 s1=Boolean.toString(status);
+			reporter.SuccessReport("lblEnable_RMA", "lblEnable_RMA ", s1);
+		}else{
+			status=false;
+			reporter.failureReport("lblEnable_RMA", "lblEnable_RMA ", s1,driver);	
+		}
+		
+
+		if(isCheckBoxSelected(lblEnable_Invoicing)){
+			status=true;
+			 s1=Boolean.toString(status);
+			reporter.SuccessReport("lblEnable_Invoicing", "lblEnable_Invoicing ", s1);
+		}else{
+			status=false;
+			reporter.failureReport("lblEnable_Invoicing", "lblEnable_Invoicing ", s1,driver);	
+		}
+		
+		if(isCheckBoxSelected(lblEnable_Standard_Reports)){
+			status=true;
+			 s1=Boolean.toString(status);
+			reporter.SuccessReport("lblEnable_Standard_Reports", "lblEnable_Standard_Reports ", s1);
+		}else{
+			status=false;
+			reporter.failureReport("lblEnable_Standard_Reports", "lblEnable_Standard_Reports ", s1,driver);	
+		}
+		if(isCheckBoxSelected(lblEnable_Order_Tracking)){
+			status=true;
+			 s1=Boolean.toString(status);
+			reporter.SuccessReport("lblEnable_Order_Tracking", "lblEnable_Order_Tracking ", s1);
+		}else{
+			status=false;
+			reporter.failureReport("lblEnable_Order_Tracking", "lblEnable_Order_Tracking ", s1,driver);	
+		}
+		if(isCheckBoxSelected(lblMy_Orders_Only)){
+			status=true;
+			 s1=Boolean.toString(status);
+			reporter.SuccessReport("lblMy_Orders_Only", "lblMy_Orders_Only ", s1);
+		}else{
+			status=false;
+			reporter.failureReport("lblMy_Orders_Only", "lblMy_Orders_Only ", s1,driver);	
+		}
+		if(isCheckBoxSelected(lblEnable_Webinars)){
+			status=true;
+			 s1=Boolean.toString(status);
+			reporter.SuccessReport("lblEnable_Webinars", "lblEnable_Webinars ", s1);
+		}else{
+			status=false;
+			reporter.failureReport("lblEnable_Webinars", "lblEnable_Webinars ", s1,driver);	
+		}
+		if(isCheckBoxSelected(lblEnable_Company_Standards_Product_Groups)){
+			status=true;
+			 s1=Boolean.toString(status);
+			reporter.SuccessReport("lblEnable_Company_Standards_Product_Groups", "lblEnable_Company_Standards_Product_Groups ", s1);
+		}else{
+			status=false;
+			reporter.failureReport("lblEnable_Company_Standards_Product_Groups", "lblEnable_Company_Standards_Product_Groups ", s1,driver);	
+		}
+		if(isCheckBoxSelected(lblEnable_Product_Compare)){
+			status=true;
+			 s1=Boolean.toString(status);
+			reporter.SuccessReport("lblEnable_Product_Compare", "lblEnable_Product_Compare ", s1);
+		}else{
+			status=false;
+			reporter.failureReport("lblEnable_Product_Compare", "lblEnable_Product_Compare ", s1,driver);	
+		}
+		
+	}
+	
+	
+	
+	
+	
+	
+	
+	
 }
