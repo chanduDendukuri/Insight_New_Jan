@@ -49,13 +49,15 @@ public class CQT18_IPSReportingFieldDataSLEDSoftwareTest extends HomeLib {
 				String array[] =  keywords.split(",");				
 				clickOnQuoteandAddlineitemsfromProductSearch(array,data.get("SoldToAcct"));
 				VerifyXconsymbolispresentforallthematerials(data.get("ItemNum1"));
+				VerifyXconsymbolispresentforallthematerials(data.get("ItemNum2"));
+				VerifyXconsymbolispresentforallthematerials(data.get("ItemNum3"));
 				
 				ClickOnXsymbolunderCon();
 		        driver.switchTo().defaultContent();
 		        selectCOntractID(data.get("ContractId1"),data.get("ContractTabName"));
-		        VerifyLineItems("000010");
+		        VerifyLineItems("000010");selectCOntractID(data.get("ContractId1"),data.get("ContractTabName"));
 		        VerifyLineItems("000020");
-		        VerifyLineItems("000030");
+		        
 		        
 		        
 					/*
@@ -68,8 +70,8 @@ public class CQT18_IPSReportingFieldDataSLEDSoftwareTest extends HomeLib {
 					 * if(lineitemvalue1.equals("000030"))
 					 * System.out.println("LineItem 000030 is displayed");
 					 * ClickonArrowNextToLineitem();
-					 */
-		        selectCOntractID(data.get("ContractId3"),data.get("ContractTabName"));
+sa					 */
+		        selectCOntractID(data.get("ContractId3"),data.get("ContractTabName")); VerifyLineItems("000030");
 				EnterUSCOMMember("MICROSOFT GOVERNMENT:",data.get("MICROSOFTGOVERNMENT"));
 				EnterUSCOMMember("AUTO-SCRIPT TEST:",data.get("AUTOSCRIPTTEST"));
 				clickonCopyreportingfieldstoallthelines();
@@ -84,7 +86,7 @@ public class CQT18_IPSReportingFieldDataSLEDSoftwareTest extends HomeLib {
 		        validatetheLineitemfiledsaftersaveasquote(data.get("MICROSOFTGOVERNMENT"),data.get("AUTOSCRIPTTEST"));
 		      
 		        ClickonArrowNextToLineitem();
-		        
+		        validatetheLineitemfiledsaftersaveasquote(data.get("MICROSOFTGOVERNMENT"),data.get("AUTOSCRIPTTEST"));
 		        ClickonArrowNextToLineitem();
 		        validatetheLineitemfiledsaftersaveasquote(data.get("MICROSOFTGOVERNMENT"),data.get("AUTOSCRIPTTEST"));
 		        clickDoneButton();

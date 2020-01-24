@@ -1852,7 +1852,7 @@ else {
 
 		
 		if (MICROSOFTGOVERNMENT.equals(Reportingfield0) && AUTOSCRIPTTEST.equals(Reportingfield1) ) {
-			reporter.SuccessReport("Reporting fileds","data is  displaying","");
+			reporter.SuccessReport("Reporting fileds","data is  displaying in MICROSOFTGOVERNMENT & AUTOSCRIPTTEST",MICROSOFTGOVERNMENT+" : "+AUTOSCRIPTTEST);
 			
 		} else {
 			reporter.failureReport("Reporting fileds","data is not displaying","");
