@@ -52,6 +52,7 @@ public class CQT21_IPSContractpricing_CapatListPrice extends HomeLib {
 					 * ; clickOnCreateQuoteLink(); enterSoldToValue(data.get("SoldToValue"));
 					 * clickOnSoldToSearchIcon();//10529929
 					 */		AddMaterialOnLineItem(data.get("MaterialID"));	
+					 VerifyXconsymbolispresentforallthematerials(data.get("ItemNum1"));
 							clickOnCOntractIDinLineItemsList();
 							selectCOntractID(data.get("ContractId"),data.get("ContractTab"));
 							clickDoneButton();

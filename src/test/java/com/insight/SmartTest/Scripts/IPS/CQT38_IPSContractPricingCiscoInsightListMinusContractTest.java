@@ -136,7 +136,7 @@ public class CQT38_IPSContractPricingCiscoInsightListMinusContractTest extends H
 					}
 					clickSideBarSmart();
 					clickClosthedocument(QuoteNum1);
-					//clickYesButtontocloseDocument();				
+					clickYesButtontocloseDocument();				
 					System.out.println("Test completed");
 				} catch (Exception e) {
 					ReportStatus.blnStatus = false;

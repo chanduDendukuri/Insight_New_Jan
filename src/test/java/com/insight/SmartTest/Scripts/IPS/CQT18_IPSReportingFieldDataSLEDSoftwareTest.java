@@ -48,13 +48,16 @@ public class CQT18_IPSReportingFieldDataSLEDSoftwareTest extends HomeLib {
 				String keywords = data.get("Keyword1");
 				String array[] =  keywords.split(",");				
 				clickOnQuoteandAddlineitemsfromProductSearch(array,data.get("SoldToAcct"));
+				VerifyXconsymbolispresentforallthematerials(data.get("ItemNum1"));
+				VerifyXconsymbolispresentforallthematerials(data.get("ItemNum2"));
+				VerifyXconsymbolispresentforallthematerials(data.get("ItemNum3"));
+				
 				ClickOnXsymbolunderCon();
 		        driver.switchTo().defaultContent();
-		        selectContractID(data.get("ContractId1"));
-		        VerifyLineItems("000010");
+		        selectCOntractID(data.get("ContractId1"),data.get("ContractTabName"));
+		        VerifyLineItems("000010");selectCOntractID(data.get("ContractId1"),data.get("ContractTabName"));
 		        VerifyLineItems("000020");
-		        selectContractID(data.get("ContractId2"));
-		        VerifyLineItems("000030");
+		        
 		        
 		        
 					/*
@@ -67,35 +70,35 @@ public class CQT18_IPSReportingFieldDataSLEDSoftwareTest extends HomeLib {
 					 * if(lineitemvalue1.equals("000030"))
 					 * System.out.println("LineItem 000030 is displayed");
 					 * ClickonArrowNextToLineitem();
-					 */
-		        selectContractID(data.get("ContractId3"));	
+sa					 */
+		        selectCOntractID(data.get("ContractId3"),data.get("ContractTabName")); VerifyLineItems("000030");
 				EnterUSCOMMember("MICROSOFT GOVERNMENT:",data.get("MICROSOFTGOVERNMENT"));
 				EnterUSCOMMember("AUTO-SCRIPT TEST:",data.get("AUTOSCRIPTTEST"));
 				clickonCopyreportingfieldstoallthelines();
 				SearchButton();
 		        clickDoneButton();
-		        clickLineItemHeaderTab("Update Costing");
-		        loadingSymbol();
-		        ClickOnSaveAsQuoteButton();
-		        loadingSymbol();
-		        closebuttonInProductSearch();
+		        clickUpdateCosting();
+		        
+		        clickonSaveasQuote();
+		        CloseButtonofOutputform();
+		       // closebuttonInProductSearch();
 		        ClickOnXsymbolunderCon();
-		        validatetheLineitemfiledsaftersaving();
-		       // reportingFiledData();
+		        validatetheLineitemfiledsaftersaveasquote(data.get("MICROSOFTGOVERNMENT"),data.get("AUTOSCRIPTTEST"));
+		      
 		        ClickonArrowNextToLineitem();
-		        //reportingFiledData();
+		        validatetheLineitemfiledsaftersaveasquote(data.get("MICROSOFTGOVERNMENT"),data.get("AUTOSCRIPTTEST"));
 		        ClickonArrowNextToLineitem();
-		        //reportingFiledData();
+		        validatetheLineitemfiledsaftersaveasquote(data.get("MICROSOFTGOVERNMENT"),data.get("AUTOSCRIPTTEST"));
 		        clickDoneButton();
 		        ClickOnDisplayMode();
 		        
 		        ClickOnXsymbolunderCon();
-		        reportingFiledData();
+		        validatetheLineitemfiledsaftersaveasquote(data.get("MICROSOFTGOVERNMENT"),data.get("AUTOSCRIPTTEST"));
 		        clickDoneButton();
 		        ClickOnConverToOrder();
 		        
 		        SwipeUpapplication();
-		        enterPONumber("Test1");
+		        enterPONumber(data.get("PONumber"));
 		        ClickOkInPoNumberPopup();
 		        
 		        
@@ -104,7 +107,7 @@ public class CQT18_IPSReportingFieldDataSLEDSoftwareTest extends HomeLib {
 		        clickOnSaveorderwithoutAttchment();
 		       
 		        String OrderNumber = GetSubjectlinevalue();
-		        closebuttonInProductSearch();
+		        CloseButtonofOutputform(); 
 		        String QN =GetQuoteNumber();
 		        if(OrderNumber.contains(QN))
 		        	System.out.println("OrderNumber displayed");

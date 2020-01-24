@@ -79,26 +79,30 @@ public class EUF14_FCTWebEndUserPartnerProgramCEPPTest extends EndUserFeaturesLi
 						cmtLib.clickCreateButtonInCreateAnAccount();
 						cmtLib.verifyErrorMessageICrateAccount();
 						//create an account
-						String email="QTPTest"+getRandomNumeric(4)+"@test.com";
+						String val=getRandomNumeric(4);
+						String email="QTPTest"+val+"@test.com";
 						cmtLib.enterEmailInCreateAnAccount(email);
-						String firstName="QTPTest"+getRandomNumeric(4);
+						String firstName="QTPTest"+val;
 						cmtLib.enterFirstNameInCreateAnAccount(firstName);
 						String lastName="QTPTest";
 						cmtLib.enterLastNameInCreateAnAccount(lastName);
 						cmtLib.enterPhoneNumberInCreateAnAccount(data.get("Phone_Number"));
 						
 						//Billing addresses
-						String billingAccountName="QTPTest"+getRandomNumeric(4);
+						String billingAccountName="QTPTest"+val;
 						cmtLib.enterBillingAccountNameInCreateAnAccount(billingAccountName);
 						cmtLib.enterAdressesInCreateAnAccount(data.get("Adressess1"));
 						cmtLib.enterCityInCreateAnAccount(data.get("City"));
 						cmtLib.selectStateInCreateAnAccount(data.get("State"));
 						cmtLib.enterZipCodeInCreateAnAccount(data.get("ZipCode"));
 						//Login info
-						String userNameCreateAccount="QTPTest"+getRandomNumeric(4);
-						String userName1CreateAccount="QTPTest"+getRandomNumeric(4);
+						cmtLib.enterUserNameToValidate("TU_IUSAdmin");
+						cmtLib.verifyuserNotAvailabilityMessage(); 
+						
+						String userNameCreateAccount="QTPTest"+val;
+						String userName1CreateAccount="QTPTest"+val;
 						String userNameEntered=cmtLib.verifyAvailabilityCreateAccount(userNameCreateAccount,userName1CreateAccount);
-						String password="QTPTest"+getRandomNumeric(4);
+						String password="QTPTest"+val;
 						cmtLib.enterPasswordInCreateAnAccount(password);
 						cmtLib.enterConfirmPasswordInCreateAnAccount(password);
 						cmtLib.clickCreateButtonInCreateAnAccount();
@@ -111,8 +115,11 @@ public class EUF14_FCTWebEndUserPartnerProgramCEPPTest extends EndUserFeaturesLi
 						cmtLib.manageUsers();
 						cmtLib.searchUsers(userNameEntered);
 						cmtLib.verifyUserandClick(firstName+" "+lastName);
-						cmtLib.clickOnRolesAndPermissionsAndSetPermission(data.get("Menu_Name"), data.get("Set_Permission"));
-						//cmtLib.logoutSite();
+						//cmtLib.clickOnRolesAndPermissionsAndSetPermission(data.get("Menu_Name"), data.get("Set_Permission"));
+						cmtLib.clickOnRolesandPermissionTab(data.get("Menu_Name"));
+						cmtLib.verifyEnabledPermissions();
+
+						cmtLib.logoutSite();
 						System.out.println("Test completed");
 					} catch (Exception e) {
 						ReportStatus.blnStatus = false;
