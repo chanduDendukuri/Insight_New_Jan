@@ -233,7 +233,12 @@ public class productsDisplayInfoObj extends CommonObj{
     public static By OPEN_MARKET_PRICE_PRODUCT_LIST=By.xpath("//div[@id='search-item-0']//div/p[contains(text(),'Open Market Price')]/following-sibling::p");
     public static By OPEN_MARKET_PRICE_ON_PROD_DETAILS=By.xpath("//p[contains(text(),'Open Market Price')]/following-sibling::p[@class='prod-price']");
     public static By US_CONTRACTS_RADIO_BTN=By.xpath("//label[contains(.,'- U.S. COMMUNITIES IT PRODUCTS & SERVICES # 4400006644')]//input[@type='radio']");
+    public static By CONTRACT_IN_SEARCH_RESULTS=By.xpath("//div[@id='search-item-0']//div/p[@class='sewp-prices']");
     
+    public static By defaultContractRadioButton(String contract) {
+		return By.xpath("//label[contains(.,'"+contract+"')]//input[@type='radio']");
+    }
+    public static By QUANTITY_CONTRACT_ALL=By.xpath("//input[@id='qty-3']");
     //cart page Contract details
     public static By CART_CONTRACT_NAME=By.xpath("//div[@class='cart__table-block']//div[@class='columns']//strong");
     

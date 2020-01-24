@@ -270,7 +270,7 @@ public class ProductDisplayInfoLib extends productsDisplayInfoObj {
 				if (result.replace(".00", "").contains(priceFilter)) {
 					Thread.sleep(2000);
 					reporter.SuccessReport("Verify the results for search term in products display page ",
-							"Verification is sucessfull. Expected filter is:", result);
+							"Verification is sucessfull. Expected filter is:", "price filter : "+result);
 				}
 			}
 		} else {
@@ -535,9 +535,9 @@ public class ProductDisplayInfoLib extends productsDisplayInfoObj {
 	public void verifyContractInCartScreen(String contractName) throws Throwable {
 		String actualcontractName = getText(CART_CONTRACT_NAME, "contract name");
 		if (contractName.contains(actualcontractName)) {
-			reporter.SuccessReport("Verify the contract name", " Contract name verified successfully ", "");
+			reporter.SuccessReport("Verify the contract name", " Contract name verified successfully in cart page and is same as selected", actualcontractName);
 		} else {
-			reporter.failureReport("Verify the contract name", " Contract name not displayed correctly", "");
+			reporter.failureReport("Verify the contract name", " Contract name not displayed correctly in cart page", actualcontractName,driver);
 		}
 	}
 
@@ -1250,7 +1250,36 @@ public class ProductDisplayInfoLib extends productsDisplayInfoObj {
     				}
         	}
 
-
+	public void verifyCartPageAndPartDetails() throws Throwable {
+		List<String> prodDesc1 = orderLib.getProductDescriptionOfCartProduct();
+		List<String> totalPrice1 = orderLib.getCartProductTotalPrice();
+		List<String> unitPrice1=orderLib.getCartProductUnitPrice();
+		List<String> quantity=orderLib.getCartProductQuantity();
+		List<String> stock=orderLib.getCartProductStock();
+		if (prodDesc1.get(0)!=null && totalPrice1!=null) {
+			reporter.SuccessReport("Verify the part added to cart ", "Contract in Cart is the one selected in pop-up Exists and Value Returned ",
+					 "  prod Description : " + prodDesc1.get(0) + " Quantity : 2"
+							+ "Total Price: " + totalPrice1.get(0)+ " Unit price: "+unitPrice1+ "Stock :"+stock);
+		} else {
+			reporter.failureReport("Verify the part added to cart ", "Part is not added to cart.", "", driver);
+		}
+   }
+	
+	
+	public void contractNameOfFirstproduct() throws Throwable {
+		Thread.sleep(3000);
+		if(isVisibleOnly(CONTRACT_IN_SEARCH_RESULTS, "contract in search results")) {
+			String contract=getText(CONTRACT_IN_SEARCH_RESULTS, "contract");
+			if(contract.startsWith("US ")) {
+				reporter.failureReport("Contract of the first part in Search Result Exists and Value Returned", "USD is default contract", "", driver);
+			}else {
+				reporter.SuccessReport("Contract of the first part in Search Result Exists and Value Returned", "Contract of the first part in Search Result Exists and Value Returned", "contract of first product: "+contract);
+			}
+			
+		}else {
+			reporter.failureReport("Contract of the first part in Search Result Exists not viible", "Contract not visisble", "", driver);
+		}
+	}
 }
   
 	
