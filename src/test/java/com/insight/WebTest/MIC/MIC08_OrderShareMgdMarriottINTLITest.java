@@ -114,15 +114,6 @@ public class MIC08_OrderShareMgdMarriottINTLITest extends MarriottIntlCorpLib {
 					verifybillingattention(data.get("Bill_Attention"));
 					verifyPayementInfo(data.get("PAYMENT_TYPE"));
 					commonLib.clickLogOutLink(data.get("Logout_Header"));
-					Thread.sleep(5000);
-					//permissions Update
-					cmtLib.navigateBackToCMT();				
-					cmtLib.hoverOverMasterGroupAndSelectChangeGrp();
-					cmtLib.searchForWebGroup(data.get("WebGrp"));
-					Thread.sleep(5000);
-					cmtLib.manageUsers();
-					cmtLib.searchForaUserAndSelect(data.get("LnameEmailUname"), data.get("Contact_Name"));
-					cmtLib.setPermissionsToDisable(data.get("Menu_Name"), data.get("Set_Permission"));
 					System.out.println("Test completed");
 				} catch (Exception e) {
 					ReportStatus.blnStatus = false;

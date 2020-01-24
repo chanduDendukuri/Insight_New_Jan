@@ -49,9 +49,13 @@ public class MIC06_SharedMgdServicesOrderTest extends MarriottIntlCorpLib {// MI
 					Hashtable<String, String> data = TestUtil.getDataByRowNo("MIC06_SharedMgdServicesOrder",
 							TestDataInsight, "MarriottIntl_Corp", intCounter);
 					TestEngineWeb.reporter.initTestCaseDescription("SharedMgdServicesOrder");
-
-					cmtLib.loginToCMTSearchWebGrpAndUser(data.get("Header"), data.get("WebGrp"),
-							data.get("LnameEmailUname"), data.get("Contact_Name"));
+					cmtLib.loginToCMT(data.get("Header"));
+					cmtLib.searchForWebGroup(data.get("WebGrp"));
+					cmtLib.clickOnTheWebGroup(data.get("WebGrp_Name"));
+					cmtLib.setCustomerLevelPermissionsOFF(data.get("Customer_Permissions_OFF"));
+					// reference num creation---TU_StoredcardtestUser
+					cmtLib.hoverOnManageWebGroupsAndSelectOptions(data.get("ManageWebGrpOptions"));
+					cmtLib.searchForaUserAndSelect(data.get("LnameEmailUname"), data.get("Contact_Name"));
 					cmtLib.clickOnRolesAndPermissionsAndSetPermission(data.get("Menu_Name"),
 							data.get("Set_Permission"));// Enable Purchasing Popup
 					cmtLib.loginAsAdminCMT();
@@ -83,6 +87,7 @@ public class MIC06_SharedMgdServicesOrderTest extends MarriottIntlCorpLib {// MI
 					addShippingInfo(data.get("Ship_Attention"), data.get("Ship_Suite"), data.get("Ship_Phone"));
 					orderLib.shippingBillPayContinueButton();
 					addBillingInfo(data.get("Bill_Attention"), data.get("Bill_Suite"), data.get("Bill_Phone"));
+					termsInPaymentInfo();
 					orderLib.clickOnReviewOrderButton();
 					Thread.sleep(5000);
 					VerifyBrandidentifier(data.get("Brand_Identifier"));
@@ -97,13 +102,6 @@ public class MIC06_SharedMgdServicesOrderTest extends MarriottIntlCorpLib {// MI
 					verifyPayementInfo(data.get("PAYMENT_TYPE"));
 					Thread.sleep(5000);
 					commonLib.clickLogOutLink(data.get("Logout_Header"));
-					cmtLib.navigateBackToCMT();
-					cmtLib.hoverOverMasterGroupAndSelectChangeGrp();
-					cmtLib.searchForWebGroup(data.get("WebGrp"));
-					cmtLib.clickOnTheWebGroup(data.get("WebGrp_Name"));
-					cmtLib.hoverOnManageWebGroupsAndSelectOptions(data.get("ManageWebGrpOptions"));
-					cmtLib.searchForaUserAndSelect(data.get("LnameEmailUname"), data.get("Contact_Name"));
-					cmtLib.setPermissionsToDisable(data.get("Menu_Name"), data.get("Set_Permission"));
 					System.out.println("Test completed");
 
 				} catch (Exception e) {
