@@ -270,7 +270,7 @@ public class ProductDisplayInfoLib extends productsDisplayInfoObj {
 				if (result.replace(".00", "").contains(priceFilter)) {
 					Thread.sleep(2000);
 					reporter.SuccessReport("Verify the results for search term in products display page ",
-							"Verification is sucessfull. Expected filter is:", result);
+							"Verification is sucessfull. Expected filter is:", "price filter : "+result);
 				}
 			}
 		} else {
@@ -1267,6 +1267,7 @@ public class ProductDisplayInfoLib extends productsDisplayInfoObj {
 	
 	
 	public void contractNameOfFirstproduct() throws Throwable {
+		Thread.sleep(3000);
 		if(isVisibleOnly(CONTRACT_IN_SEARCH_RESULTS, "contract in search results")) {
 			String contract=getText(CONTRACT_IN_SEARCH_RESULTS, "contract");
 			if(contract.startsWith("US ")) {
