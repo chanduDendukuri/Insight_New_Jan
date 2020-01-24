@@ -3806,7 +3806,7 @@ public float getSellPriceFromInlineItemsContract(String contractid) throws Throw
 		Actions action = new Actions(driver);
 		String Price = "";
 		String expecetedTypeCode[] = expValue.split("#");
-		int count =0;
+		int count =1;
 		List<String> all_elements_pricevalue = new ArrayList<>();
 		List<WebElement> elem = getWebElementList(HomePage.PricingTabTable, "Pricing List");
 		int size = elem.size();
@@ -3830,26 +3830,23 @@ public float getSellPriceFromInlineItemsContract(String contractid) throws Throw
 		
 			
 			for(int j=0;j<expecetedTypeCode.length;j++) {
-			label:
+			label :
 			//for (i = size; i != 0; i++)
 					for (i = count; i != 0; i++)
 			{
 						action.sendKeys(Keys.ARROW_DOWN).perform();
 						
-				String pricevalue =  getText(txtPricingIDValue(i-1), "Pricing value");
+				
 				if(isVisibleOnly(txtPricingIDValue(i), "")) {
-				click(txtPricingIDValue(i),"");
+					driver.findElement(txtPricingIDValue(i)).click();
+				//(txtPricingIDValue(i),"");
 				count++;
 			}
 				else {
 					reporter.failureReport("Pricing Id", "Pricing value is not displaying", "", driver);
 					break label2;
 				}
-				//action.sendKeys(Keys.ARROW_DOWN).perform();
 				
-				
-			//	action.moveToElement(elem.get(i-1)).perform();
-					//String pricevalue1 = getText(txtPricingIDValue(i-1), "Pricing value");
 					
 					  if (isVisibleOnly(PRICINGID_VALUE(expecetedTypeCode[j]), "Pricing ID")) 
 					  {
@@ -3857,19 +3854,9 @@ public float getSellPriceFromInlineItemsContract(String contractid) throws Throw
 					  Price =  getText(HomePage.pricing_ValueClmn(expecetedTypeCode[j]), "Pricing value");
 					  all_elements_pricevalue.add(Price);
 					
-					
+					break label;
 						
-						/*
-						 * if(getText(PRICINGID_VALUE(expecetedTypeCode[j]),"").equals("ZFSS")) {
-						 * reporter.failureReport("PricingID",
-						 * ""+expecetedTypeCode[j]+" is not displaying in the grid", "", driver); break
-						 * label1; }
-						 */
-					  if(all_elements_pricevalue.size()==val) {
-							
-							reporter.SuccessReport("Price values:", "Found all the price values", "");
-							break;
-						}
+						
 										 
 					  }
 					  

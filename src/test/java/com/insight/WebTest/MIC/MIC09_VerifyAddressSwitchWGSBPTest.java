@@ -71,6 +71,7 @@ public class MIC09_VerifyAddressSwitchWGSBPTest extends MarriottIntlCorpLib {
 					cartLib.selectFirstProductDisplay();
 					productDetailLib.getProductNameInProductDetailPage(data.get("Search_Item"));
 					String partNumber = productDetailLib.getMFRNumberInProductInfopage();
+					commonLib.addToCartAndVerify();
 					canadaLib.continueToCheckout();
 					// proceed to checkout
 					proceedToCheckout();
@@ -81,7 +82,7 @@ public class MIC09_VerifyAddressSwitchWGSBPTest extends MarriottIntlCorpLib {
 					orderLib.shippingBillPayContinueButton();
 					scrollToBottomWithCordinate("200");
 					orderLib.shippingOptionsCarrierSelection();
-					orderLib.shippingBillPayContinueButton();
+					orderLib.billingAddressContinueButton();
 					Thread.sleep(3000);
 					String CompanyName1 = TakeshippingaddressCompany();
 					Thread.sleep(1000);
@@ -89,8 +90,8 @@ public class MIC09_VerifyAddressSwitchWGSBPTest extends MarriottIntlCorpLib {
 					SwitchWebGroup(data.get("webgrp"));
 					commonLib.searchProduct(data.get("Search_Item"));
 					commonLib.addFirstDisplyedItemToCartAndVerify();
-					commonLib.continueToShopping();
-					commonLib.clickCart();
+					canadaLib.continueToCheckout();
+					//commonLib.clickCart();
 					commonLib.clickCart();
 					// proceed to checkout
 					proceedToCheckout();
@@ -99,7 +100,7 @@ public class MIC09_VerifyAddressSwitchWGSBPTest extends MarriottIntlCorpLib {
 					cartLib.clickOnContinueButtonInAddInformtion();
 					orderLib.shippingBillPayContinueButton();
 					orderLib.shippingOptionsCarrierSelection();
-					orderLib.shippingBillPayContinueButton();
+					orderLib.billingAddressContinueButton();
 					Thread.sleep(2000);
 					String CompanyName2 = TakeshippingaddressCompany();
 					Thread.sleep(1000);

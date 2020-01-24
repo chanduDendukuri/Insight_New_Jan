@@ -507,8 +507,7 @@ public class CMTLib extends CMTObj {
 			click(UPDATE_USER_BTN, "Update user button");
 			waitForVisibilityOfElement(PERMISSION_UPDATE_MSG, "PERMISSION UPDATE MSG");
 			if (isElementPresent(PERMISSION_UPDATE_MSG, "update sucessful message")) {
-				reporter.SuccessReport("Verify the Sucess message ", "Permissions Updated Succesfully",
-						"ON" + userPermissions + "");
+				reporter.SuccessReport("Verify the Sucess message ", "Permissions Updated Succesfully",userPermissions + "");
 			} else {
 				reporter.failureReport("Verify the sucess message", "Permissions are not Updated Succesfully", "",
 						driver);
@@ -2987,6 +2986,18 @@ public class CMTLib extends CMTObj {
 			click(lnkDeleteProductGroups, "Delete product group", "Delete Product group");
 			acceptAlert();
 			Thread.sleep(4000);
+		}
+	}
+	public void setPermissionsToDisableWithoutReport(String userPermissions) throws Throwable {
+		if (isCheckBoxSelected(getUserPermission(userPermissions))) {
+			click(getUserPermission(userPermissions), "User permissions : " + userPermissions + " is OFF");
+			click(UPDATE_USER_BTN, "Update user button");
+			if (isElementPresent(PERMISSION_UPDATE_MSG, "update sucessful message")) {
+				LOG.info(userPermissions + " updated Permssions");
+			} else {
+			}
+		} else {
+			LOG.info(userPermissions + " check box already checked.");
 		}
 
 	}

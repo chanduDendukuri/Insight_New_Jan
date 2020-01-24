@@ -41,8 +41,8 @@ public class ProductDisplayInfoLib extends productsDisplayInfoObj {
 		type(productsDisplayInfoObj.PROD_RESEARCH_PARTNO_TXT_BOX, partNo, "Part number text box");
 		type(productsDisplayInfoObj.PROD_RESEARCH_MANFR_TXT_BOX, mnfr, "Manufacturer text box");
 		type(productsDisplayInfoObj.PROD_RESEARCH_PROD_DESC_TXT_BOX, prodDesc, "Product description text box");
-		click(productsDisplayInfoObj.PRODUCT_REQ_SEND_BTN, "Product Research request screen send button");
-
+		clickUntil(productsDisplayInfoObj.PRODUCT_REQ_SEND_BTN,productsDisplayInfoObj.PROD_REQ_SENT_MSG ,"Product Research request screen send button");
+        //JSClick(productsDisplayInfoObj.PRODUCT_REQ_SEND_BTN, "send button");
 		if (isElementPresent(productsDisplayInfoObj.PROD_REQ_SENT_MSG, "Success message")) {
 
 			reporter.SuccessReport("Verify the success message", "Product Research Request sent successfully", "");
@@ -191,13 +191,13 @@ public class ProductDisplayInfoLib extends productsDisplayInfoObj {
 	public void clickSendWithoutFillingRequestProductAndVerify(String productName) throws Throwable {
 		Thread.sleep(2000);
 		click(productsDisplayInfoObj.PRODUCT_REQ_SEND_BTN, "Product Research request screen send button","Send button");
+		//JSClick(productsDisplayInfoObj.PRODUCT_REQ_SEND_BTN, "send button");
 		if(isElementPresent(productsDisplayInfoObj.ERROR_MSG, "Error message in Product Research Request screen exists")){
 		reporter.SuccessReport("Verify Error Message", "Error message displayed", "Please enter the fields error message");	
 		}else {
 			reporter.failureReport("Verify Error Message", "Error message not displayed","", driver);
 		}
 		click(productsDisplayInfoObj.PRODUCT_REQ_CANCEL_BTN, "Product Research request screen CANCEL button");
-		searchLib.verifyTheResultsForSearchTerm(productName);
 	}
 
 	/**
@@ -1254,7 +1254,7 @@ public class ProductDisplayInfoLib extends productsDisplayInfoObj {
 		List<String> prodDesc1 = orderLib.getProductDescriptionOfCartProduct();
 		List<String> totalPrice1 = orderLib.getCartProductTotalPrice();
 		List<String> unitPrice1=orderLib.getCartProductUnitPrice();
-		List<String> quantity=orderLib.getCartProductQuantity();
+		//List<String> quantity=orderLib.getCartProductQuantity();
 		List<String> stock=orderLib.getCartProductStock();
 		if (prodDesc1.get(0)!=null && totalPrice1!=null) {
 			reporter.SuccessReport("Verify the part added to cart ", "Contract in Cart is the one selected in pop-up Exists and Value Returned ",
@@ -1280,6 +1280,27 @@ public class ProductDisplayInfoLib extends productsDisplayInfoObj {
 			reporter.failureReport("Contract of the first part in Search Result Exists not viible", "Contract not visisble", "", driver);
 		}
 	}
+	
+	/**
+	 * Method is to verify the open market price in search results page
+	 * @throws Throwable
+	 */
+	public void verifyOpenMarketOnSearchResultsPage() throws Throwable {
+		if(isVisibleOnly(LIST_OF_ITEMS_SEARCH_RESULTS, "search results")) {
+			List<WebElement> myList = driver.findElements(LIST_OF_ITEMS_SEARCH_RESULTS);
+			  for (int i = 0; i < myList.size(); i++) {
+			String partNumber = getText(productsDisplayInfoObj.getPartNumber(i), "get product number");
+			String openMarketLabel=getText(openMarketLabelSearchResults(i), "open market");
+			String price = getText(productsDisplayInfoObj.getProductPrice(i), "get product price");
+			if (!partNumber.isEmpty()&& openMarketLabel.equals("Open Market Price")) {
+				reporter.SuccessReport("Verify Open Market Price", "Open Market Price exists",partNumber +", "+openMarketLabel+ "Price : "+price);
+			} else {
+				reporter.failureReport("Verify Open Market Price", "Open Market Price does not exists", "",driver);
+			}
+		}
+	 }
+ }
+		
 }
   
 	

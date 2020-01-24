@@ -55,7 +55,7 @@ public class SER16_SearchResultsPermissionsAndContractsIPSTest extends SearchLib
 					cmtLib.searchForaUserAndSelect(data.get("LnameEmailUname"), data.get("ContactName"));
 					String[] permissions1=data.get("Set_Permission1").split(",");
 					for (i = 0; i < permissions1.length; i++) { 
-					cmtLib.setPermissions(data.get("Menu_Name"),data.get("Set_Permission1") );
+					cmtLib.setPermissions(data.get("Menu_Name"),permissions1[i]);
 					}
 					cmtLib.permissionFromDD(data.get("Set_Permission3"), data.get("Permission_Drop_Down"));
 					// Remove us comm default OFF
@@ -75,7 +75,8 @@ public class SER16_SearchResultsPermissionsAndContractsIPSTest extends SearchLib
 					verifyDefaultUSContractInAllContractPricesPopup("checked");
 					// STATE OF MINNESOTA - PC HARDWARE, & SERVICES-
 					selectContractOnAllContractPricesPopup(data.get("Contarct_Name1"));
-					increaseQuantity(data.get("Contract_Quantity"));
+					
+					increaseQuantity(data.get("Quantity"));
 					cartLib.clickOnAddToCartInAllContractPrices();
 					orderLib.continueToCheckOutOnAddCart();
 					// contract verification in cart page
@@ -87,6 +88,7 @@ public class SER16_SearchResultsPermissionsAndContractsIPSTest extends SearchLib
 					// Remove us comm default ON
 					// navigate back to cmt
 					cmtLib.navigateBackToCMT();
+					cmtLib.clickBackToUserSearch();
 					cmtLib.searchForaUserAndSelect(data.get("LnameEmailUname"), data.get("ContactName"));
 					for (i = 0; i < permissions1.length; i++) { 
 						cmtLib.setPermissions(data.get("Menu_Name"),permissions1[i] );
@@ -107,18 +109,19 @@ public class SER16_SearchResultsPermissionsAndContractsIPSTest extends SearchLib
 					prodInfoLib.contractNameOfFirstproduct();
 					// more prices
 					clickOnMorePrices();
-					
-					verifyDefaultUSContractInAllContractPricesPopup("unchecked");
 					allContractPricesPopup();
-					// your price in popup should print seperately   --- pending lakshmi  ##########################
-					
-					
+					verifyDefaultUSContractInAllContractPricesPopup("unchecked");
 					verifydefaultcontractonAllcontractpopup(data.get("Contarct_Name1"));
-					commonLib.clickLogOutLink(data.get("Logout"));
 					
+					// your price verification
+					verifyYourPriceInAllcontractPopup(data.get("YOUR PRICE"));
+					//  your price in popup should print seperately   --- pending lakshmi  ##########################
+					
+					commonLib.clickLogOutLink(data.get("Logout"));
 					
 					// navigate back to cmt
 					cmtLib.navigateBackToCMT();
+					cmtLib.clickBackToUserSearch();
 					cmtLib.searchForaUserAndSelect(data.get("LnameEmailUname"), data.get("ContactName"));
 					// Open market - OFF
 					cmtLib.setPermissionsToDisable(data.get("Menu_Name"), data.get("Permission"));
@@ -136,13 +139,15 @@ public class SER16_SearchResultsPermissionsAndContractsIPSTest extends SearchLib
 					prodInfoLib.contractNameOfFirstproduct();
 					// more prices
 					clickOnMorePrices();
-					
+					// Verify your price not available
+					verifyYourPriceDoesNotExists(data.get("YOUR PRICE"));
 					// verify Your price is not available in popup -- pending       ##########################
 					commonLib.clickLogOutLink(data.get("Logout"));
 					
 					
 					// navigate back to cmt
 					cmtLib.navigateBackToCMT();
+					cmtLib.clickBackToUserSearch();
 					cmtLib.searchForaUserAndSelect(data.get("LnameEmailUname"), data.get("ContactName"));
 					// open mark on
 					cmtLib.setPermissions(data.get("Menu_Name"), data.get("Permission"));
@@ -160,16 +165,16 @@ public class SER16_SearchResultsPermissionsAndContractsIPSTest extends SearchLib
 					
 					// open market price label and part number verification in search results page for all the products in search results page
 					
-					
+					prodInfoLib.verifyOpenMarketOnSearchResultsPage();
 					commonLib.clickLogOutLink(data.get("Logout"));
 					
 					// navigate back to cmt
 					cmtLib.navigateBackToCMT();
+					cmtLib.clickBackToUserSearch();
 					cmtLib.searchForaUserAndSelect(data.get("LnameEmailUname"), data.get("ContactName"));
 					// open mark , contract agencies ON
 					cmtLib.setPermissions(data.get("Menu_Name"), data.get("Permission"));
 					cmtLib.setPermissions(data.get("Menu_Name"), data.get("Set_Permission4"));
-					
 
 				}
 
