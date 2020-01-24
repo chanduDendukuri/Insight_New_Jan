@@ -759,6 +759,7 @@ public class CMTLib extends CMTObj {
 			type(USER_NAME_FIELD, text, "user name");
 		} else {
 			Log.info("user name is available");
+			reporter.SuccessReport("Availability Message ", "User availability message", getText(AVAILABLE_MESSAGE, "error message"));
 		}
 	}
 
@@ -3002,5 +3003,42 @@ public class CMTLib extends CMTObj {
 	}
 	public void clickOnLogout() throws Throwable{
 		click(lnkLogout,"logout","logout link");
+	}
+	
+	public void selectUseTheCustomizedPermissionBelowRadioButton() throws Throwable{
+		click(rbtnUsetheCustomizedPermissionBelow,"User The customized Permission Below","User The customized Permission Below");
+	}
+	
+	public void unCheckEditContactInformationCheckBox() throws Throwable {
+		boolean status = false;
+		if(isCheckBoxSelected(chbxEditContactInformation)){
+			status = true;
+			click(chbxEditContactInformation,"Edit Contact Information","Edit contact information check box");
+		}else{
+			status = false;
+			String s1=Boolean.toString(status);
+			reporter.SuccessReport("Edit contact Information Check box", "Edit contact information check box was checked", s1);
+		}
+	}
+	public void verifyUncheckedEditContactInformation() throws Throwable {
+		boolean status = false;
+		if(!isCheckBoxSelected(chbxEditContactInformation)){
+			status = true;
+			click(chbxEditContactInformation,"Edit Contact Information","Edit contact information check box was un checked");
+		}else{
+			status = false;
+			String s1=Boolean.toString(status);
+			reporter.failureReport("Edit contact Information Check box", "Edit contact information check box was checked", s1);
+		}
+	}
+	public void clickOnUpdateUser() throws Throwable{
+		click(btnUpdateUser,"Update user button","Update user button");
+		if (isElementPresent(CMTObj.PERMISSION_UPDATE_MSG, "update sucessful message")) {
+			reporter.SuccessReport("Verify the Sucess message ", "Permissions Updated Succesfully",
+					getText(CMTObj.PERMISSION_UPDATE_MSG, "update sucessful message") );
+		} else {
+			reporter.failureReport("Verify the sucess message", "Permissions are not Updated Succesfully", "",
+					driver);
+		}
 	}
 }
