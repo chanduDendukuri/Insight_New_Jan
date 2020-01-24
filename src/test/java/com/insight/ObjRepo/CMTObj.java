@@ -590,6 +590,8 @@ public static By lnkDeleteProductGroups=By.xpath("//*[text()=' Delete Product Gr
 	public static By ERROR_MESSAGE_CREATE_ACCOUNT = By.xpath("//div[contains( text(),'Please')]");
 	public static By USER_TYPE = By.xpath("//select[@id='userUserType']");
 	public static By FIRST_USER_LINK = By.xpath("//td[@id='userName']//a");
+	
+	public static By userNotAvailabilityMessage = By.id("username-message");
 
 	public static By PAGINATION = By.xpath("//a[contains(text(),'>>')]");
 
@@ -629,4 +631,34 @@ public static By lnkDeleteProductGroups=By.xpath("//*[text()=' Delete Product Gr
 			.cssSelector("div [class*='cs-sortImage ']+div img[id='CompStandardPlusImage']");
 	public static By lnkAddProductGroup = By.xpath("//*[text()='Add Product Group ']");
 	public static By lnkLogout=By.xpath("//*[contains(text(),'Logout - Qtpsvc')]");
+	
+	
+	//permissions
+	public static By lblEnable_Change_Login_Password =By.xpath("//*[@name='change_password']");
+	public static By lblEdit_Contact_Information=By.xpath("//*[@name='edit_contact_info']");
+	public static By lblEnable_Edit_My_Account =By.xpath("//*[@name='edit_my_acc']");
+	public static By lblEnable_Edit_Checkout_Defaults_and_Favorites=By.xpath("//*[@name='edit_chkout_default_favs']");
+	public static By lblEnable_Allow_Access_to_Customer_Documents =By.xpath("//*[@name='view_doc']");
+	public static By lblEnable_RMA =By.xpath("//*[@name='rma']");
+	public static By lblEnable_Invoicing=By.xpath("//*[@name='enable_invoicing']");
+	public static By lblEnable_Standard_Reports=By.xpath("//*[@name='enable_standard_reports']");
+	public static By lblEnable_Order_Tracking=By.xpath("//*[@name='enable_order_tracking']");
+	public static By lblMy_Orders_Only=By.xpath("//*[@name='my_orders']");
+	public static By lblEnable_Webinars=By.xpath("//*[@name='webinar']");
+	public static By lblEnable_Company_Standards_Product_Groups=By.xpath("//*[@name='quick_forms']");
+	public static By lblEnable_Product_Compare=By.xpath("//*[@name='product_compare']");
+	public static By Enable_Resource_Centers = 		By.xpath("//*[@name='enable_resource_centers']");
+	public static By Enable_Shop_By_Brand = 		By.xpath("//*[@name='shop_by_brand']");
+	public static By Enable_menu_for_products = 	By.xpath("//*[@name='product_menu']");
+	public static By Enable_Configurators = 		By.xpath("//*[@name='configurator']");
+	public static By Enable_Inventory_Blowout = 	By.xpath("//*[@name='inventory_blowout']");
+	public static By Enable_Personal_Product_List = By.xpath("//*[@name='ppc']");
+	public static By Enable_menu_for_solutions= 	By.xpath("//*[@name='services']");
+	public static By Enable_Accessories = 			By.xpath("//*[@name='accessories']");
+	public static By Enable_Search = 				By.xpath("///*[@name='search']']");
+
+	
+	
+	
+	
 }

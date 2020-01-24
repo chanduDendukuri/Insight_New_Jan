@@ -49,6 +49,7 @@ public class CQT15_IPSContractPricingError extends HomeLib {
 					enterSoldTo(data.get("SoldToValue"));
 					// 10529929
 					AddMaterialOnLineItem(data.get("MaterialID"));// D4Q72US#ABA
+					VerifyXconsymbolispresentforallthematerials("000010");
 					clickOnCOntractIDinLineItemsList();
 					selectCOntractID(data.get("ContractId"), data.get("ContractTabName")); //Contracts
 					clickDoneButton();

@@ -467,11 +467,11 @@ public class HomePage extends ActionEngine
 		 public static By txtPricingIDValue(int i) {
 			 return By.xpath("//div[@row='"+i+"']//div[@colid='id']");
 		 }
-
+		 public static By QuantityInItemdetails = By.xpath("//input[@name='qty']");
 		 public static By MATERIALID_VCTAB(String value){
 			 return By.xpath("(//div[@class='ag-body-container']/div/div[@colid='material'])["+value+"]");
 		 }
-		 
+		 public static By RefreshIconInItemdetails = By.xpath("//button[@type='button']//i[@class='fa fa-refresh']");
 		 public static By PRICEVALUE_INLINEITEMS(String value){
 			 return By.xpath("//div[@row='"+value+"']//div[@colid='price']");
 		 }

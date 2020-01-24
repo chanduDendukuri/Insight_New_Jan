@@ -125,7 +125,9 @@ public class CommonObj extends ActionEngine{
 	public static By getCompanyStandardsProductGroup(String productGroup,String productName){
 		return By.xpath("//div//td[contains(text(),'"+productGroup+"')]/following::div[@class='csProductGroupMemberDiv']//td//a[contains(text(),'"+productName+"')]");
 	}
-	
+	public static By getCompanyStandardsProductGroupWithBtag(String productGroup,String productName){
+		return By.xpath("//div//td[contains(text(),'"+productGroup+"')]/following::div[@class='csProductGroupMemberDiv']//td//a/b[contains(text(),'"+productName+"')]");
+	}
 	/* ******************************************************************************************************************
 	 * >>>>>>>>>>>>>>>> LOCATORS TO VERIFY WHETHER CORRECT PRODUCT GROUP IS SELECTED<<<<<<<<<<<<<<<<<<
 	 * ******************************************************************************************************************/
