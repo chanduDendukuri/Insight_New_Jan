@@ -91,11 +91,11 @@ public class SBP04_AvilableShippingAddressTest extends ShipBillPayLib{
 				commonLib.clickLogOutLink(data.get("Logout_Header"));
 				// login-2
 				cmtLib.navigateBackToCMT();
-				cmtLib.hoverOverMasterGroupAndSelectChangeGrp();
-				cmtLib.searchForWebGroup(data.get("WebGrp"));
-				cmtLib.clickOnTheWebGroup(data.get("WebGrp_Name"));
-				cmtLib.hoverOnManageWebGroupsAndSelectOptions(data.get("Manage_Web_Grp_Options"));
-				cmtLib.searchForaUserAndSelect(data.get("LnameEmailUname"), data.get("ContactName"));
+				//cmtLib.hoverOverMasterGroupAndSelectChangeGrp();
+				//cmtLib.searchForWebGroup(data.get("WebGrp"));
+				//cmtLib.clickOnTheWebGroup(data.get("WebGrp_Name"));
+				//cmtLib.hoverOnManageWebGroupsAndSelectOptions(data.get("Manage_Web_Grp_Options"));
+				//cmtLib.searchForaUserAndSelect(data.get("LnameEmailUname"), data.get("ContactName"));
 				cmtLib.clickCheckOutSettings(data.get("Check_out_Settings"));
 				cmtLib.selectOptionInCheckoutSettings(data.get("Shipping Addresses"));
 				shipbLib.SelectAllLinkedaddresses(data.get("Linkuseraddresses"));
@@ -119,11 +119,11 @@ public class SBP04_AvilableShippingAddressTest extends ShipBillPayLib{
 				commonLib.clickLogOutLink(data.get("Logout_Header"));
 				// login-3
 				cmtLib.navigateBackToCMT();
-				cmtLib.hoverOverMasterGroupAndSelectChangeGrp();
+				/*cmtLib.hoverOverMasterGroupAndSelectChangeGrp();
 				cmtLib.searchForWebGroup(data.get("WebGrp"));
 				cmtLib.clickOnTheWebGroup(data.get("WebGrp_Name"));
 				cmtLib.hoverOnManageWebGroupsAndSelectOptions(data.get("Manage_Web_Grp_Options"));
-				cmtLib.searchForaUserAndSelect(data.get("LnameEmailUname"), data.get("ContactName"));
+				cmtLib.searchForaUserAndSelect(data.get("LnameEmailUname"), data.get("ContactName"));*/
 				cmtLib.setPermissions(data.get("Menu_Name"), data.get("Set_Permission2"));
 				cmtLib.setPermissions(data.get("Menu_Name"), data.get("Set_Permission3"));
 				cmtLib.setPermissions(data.get("Menu_Name"), data.get("Set_Permission4"));
@@ -149,12 +149,12 @@ public class SBP04_AvilableShippingAddressTest extends ShipBillPayLib{
 				commonLib.clickLogOutLink(data.get("Logout_Header"));
 				// login-4
 				cmtLib.navigateBackToCMT();
-				cmtLib.hoverOverMasterGroupAndSelectChangeGrp();
+				/*cmtLib.hoverOverMasterGroupAndSelectChangeGrp();
 				cmtLib.searchForWebGroup(data.get("WebGrp"));
 				cmtLib.clickOnTheWebGroup(data.get("WebGrp_Name"));
 				cmtLib.hoverOnManageWebGroupsAndSelectOptions(data.get("Manage_Web_Grp_Options"));
 				cmtLib.searchForaUserAndSelect(data.get("LnameEmailUname"), data.get("ContactName"));
-				cmtLib.setPermissions(data.get("Menu_Name"), data.get("Set_Permission3"));
+				*/cmtLib.setPermissions(data.get("Menu_Name"), data.get("Set_Permission3"));
 				cmtLib.loginAsAdminCMT();
 				// add to cart
 				commonLib.searchProduct(data.get("Search_Item"));

@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 
@@ -1147,6 +1148,20 @@ public class ShipBillPayLib extends ShipBillPayObj {
 			click(SEARCH_FIELD,"Link:SEARCH AVAILABLE ADDRESSES");
 			type(SEARCH_FIELD,Text,"Search Field");
 			click(search_Button,"Search Button");
+			
+			List<WebElement> salesRep = driver.findElements(searchResults);
+
+			for (i = 0; i <= salesRep.size()-1; i++) {
+				// salesRep.get(1).click();
+			String searchResult=	salesRep.get(i).getText();
+			if(Text.contains(searchResult))
+			{
+				reporter.SuccessReport("Verify Search Results", "Given search value "+ Text + " and results "+searchResult+" Both are matched" , searchResult);
+			}
+				Thread.sleep(4000);
+			}
+			
+			
 			Thread.sleep(3000);
 			if (driver.findElement(RADIOBUTTON).isSelected()) {
 				reporter.SuccessReport("Stored address is selected", "Stored Address is selected", "Search By Account Type");

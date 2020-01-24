@@ -189,6 +189,8 @@ public class ShipBillPayObj extends ActionEngine{
  		return By.xpath("//td[contains(text(),'"+PartNum+"')]");
  		
      } 	
+     
+     public static By searchResults = By.xpath("//*[@class='stored-address__label']");
 
      public static By CALANDER = By.xpath("//span[@class='ion ion-calendar ion--right date-picker__icon']");
      public static By SEARCH_FIELD = By.xpath("//input[@id='storedAddress-search']");
