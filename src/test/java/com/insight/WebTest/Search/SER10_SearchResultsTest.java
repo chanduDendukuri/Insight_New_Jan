@@ -84,18 +84,25 @@ public class SER10_SearchResultsTest extends SearchLib {
 					}else {
 						reporter.failureReport("Verify product count", "Search Results count not less than previous count", "Count: "+mfrCount, driver);
 					}
+					// removeHP INC filter
+					Thread.sleep(2000); 
+					scrollUp();
+					 Thread.sleep(3000);
+					 removeTheFilter(data.get("Manufacturer1"));
+					 String mfr1_RemovedCount=getProductCount();
 					
-					// Core  - Processor / Type
-					/*//selectManufacturerFiter(data.get("Processor"),data.get("Heading2"));
-					searchProductInProductDisplayPage(data.get("Processor"));
-					verifyFilterBreadCrumb(data.get("Processor"));*/
+					 if(mfr1_RemovedCount.equals(initialCount)) {
+							reporter.SuccessReport("Verify product count", "Search Results count same as as the initial count", "Count: "+initialCount);
+						}else {
+							reporter.failureReport("Verify product count", "Search Results count not same as as the initial count", "Count: "+initialCount, driver);
+						}
 					
 					// select manufacturer -LENOVO
 					selectManufacturerFiter(data.get("Manufacturer2"),data.get("Mfr_Heading1"));
 					verifyFilterBreadCrumb(data.get("Manufacturer2"));
 					String Mfr2ProductsCount=getProductCount();
 					// have to verify again -- Lakshmi ----###############
-					if(Integer.valueOf(Mfr2ProductsCount)<Integer.valueOf(mfrCount)) {
+					if(Integer.valueOf(Mfr2ProductsCount)<Integer.valueOf(initialCount)) {
                     	reporter.SuccessReport("Verify product count", "Search Results count less than previous count", "Count: "+Mfr2ProductsCount);
 					}else {
 						reporter.failureReport("Verify product count", "Search Results count not less than previous count", "Count: "+Mfr2ProductsCount, driver);
@@ -116,9 +123,9 @@ public class SER10_SearchResultsTest extends SearchLib {
 					 String coreRemovedProductsCount=getProductCount();
 					
 					 if(coreRemovedProductsCount.equals(Mfr2ProductsCount)) {
-							reporter.SuccessReport("Verify product count", "Search Results count same as as the Pervious count", "Count: "+mfrCount);
+							reporter.SuccessReport("Verify product count", "Search Results count same as as the Pervious count", "Count: "+coreRemovedProductsCount);
 						}else {
-							reporter.failureReport("Verify product count", "Search Results count not same as as the Pervious count", "Count: "+mfrCount, driver);
+							reporter.failureReport("Verify product count", "Search Results count not same as as the Pervious count", "Count: "+coreRemovedProductsCount, driver);
 						}
 					 // remove lenovo
 					 removeTheFilter(data.get("Manufacturer2"));
@@ -130,8 +137,8 @@ public class SER10_SearchResultsTest extends SearchLib {
 							reporter.failureReport("Verify product count", "Search Results count not same as as the initial count", "Count: "+initialCount, driver);
 						}
 					 
-					 searchInHomePage(data.get("part_Number"));
-					 prodInfoLib.verifyTheManufacturerNumberInProductDetailsPage(data.get("part_Number"));
+					 searchInHomePage(data.get("Partnumber"));
+					 prodInfoLib.verifyTheManufacturerNumberInProductDetailsPage(data.get("Partnumber"));
 				}
 
 				catch (Exception e) {

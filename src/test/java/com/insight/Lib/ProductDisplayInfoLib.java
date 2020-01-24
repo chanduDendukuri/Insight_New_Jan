@@ -1267,6 +1267,7 @@ public class ProductDisplayInfoLib extends productsDisplayInfoObj {
 	
 	
 	public void contractNameOfFirstproduct() throws Throwable {
+		Thread.sleep(3000);
 		if(isVisibleOnly(CONTRACT_IN_SEARCH_RESULTS, "contract in search results")) {
 			String contract=getText(CONTRACT_IN_SEARCH_RESULTS, "contract");
 			if(contract.startsWith("US ")) {

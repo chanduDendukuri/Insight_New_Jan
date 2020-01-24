@@ -48,17 +48,17 @@ public class SER16_SearchResultsPermissionsAndContractsIPSTest extends SearchLib
 					
 					// Test Steps execution
 					fnOpenTest();
-
 					cmtLib.loginToCMT(data.get("Login"));
 					cmtLib.searchForWebGroup(data.get("WebGrp"));
 					cmtLib.clickOnTheWebGroup(data.get("WebGrp_Name"));
 					cmtLib.hoverOnManageWebGroupsAndSelectOptions(data.get("Manage_Web_Grp_Options"));
 					cmtLib.searchForaUserAndSelect(data.get("LnameEmailUname"), data.get("ContactName"));
-					cmtLib.permissionFromDD(data.get("Set_Permission3"), data.get("Permission_Drop_Down"));
 					String[] permissions1=data.get("Set_Permission1").split(",");
 					for (i = 0; i < permissions1.length; i++) { 
-					cmtLib.setPermissions(data.get("Menu_Name"),permissions1[i] );
+					cmtLib.setPermissions(data.get("Menu_Name"),data.get("Set_Permission1") );
 					}
+					cmtLib.permissionFromDD(data.get("Set_Permission3"), data.get("Permission_Drop_Down"));
+					// Remove us comm default OFF
 					cmtLib.setPermissionsToDisable(data.get("Menu_Name"), data.get("Set_Permission2"));
 					// Login to CMT
 					cmtLib.loginAsAdminCMT();
@@ -66,6 +66,7 @@ public class SER16_SearchResultsPermissionsAndContractsIPSTest extends SearchLib
 
 					// Back to UAT and verify the above enabled settings
 					verifyContractAllDisplayed();
+					// workstations
 					searchInHomePage(data.get("SearchText"));
 					verifyTheResultsForSearchTerm(data.get("SearchText"));
 					prodInfoLib.getPartNumberInSearchResultsPage();
@@ -83,13 +84,14 @@ public class SER16_SearchResultsPermissionsAndContractsIPSTest extends SearchLib
 					prodInfoLib.verifyContractInCartScreen(data.get("Contarct_Name1"));
 					commonLib.clickLogOutLink(data.get("Logout"));
 					
+					// Remove us comm default ON
 					// navigate back to cmt
 					cmtLib.navigateBackToCMT();
 					cmtLib.searchForaUserAndSelect(data.get("LnameEmailUname"), data.get("ContactName"));
-					cmtLib.permissionFromDD(data.get("Set_Permission3"), data.get("Permission_Drop_Down"));
 					for (i = 0; i < permissions1.length; i++) { 
 						cmtLib.setPermissions(data.get("Menu_Name"),permissions1[i] );
 						}
+					cmtLib.permissionFromDD(data.get("Set_Permission3"), data.get("Permission_Drop_Down2"));
 					cmtLib.setPermissions(data.get("Menu_Name"), data.get("Set_Permission2"));
 					
 					// Login to CMT
@@ -98,15 +100,19 @@ public class SER16_SearchResultsPermissionsAndContractsIPSTest extends SearchLib
 
 					// Back to UAT and verify the above enabled settings
 					verifyContractAllDisplayed();
+					// Workstation
 					searchInHomePage(data.get("SearchText"));
-					verifyTheResultsForSearchTerm(data.get("SearchText"));
 					verifyTheResultsForSearchTerm(data.get("SearchText"));
 					prodInfoLib.getPartNumberInSearchResultsPage();
 					prodInfoLib.contractNameOfFirstproduct();
 					// more prices
 					clickOnMorePrices();
-					allContractPricesPopup();
+					
 					verifyDefaultUSContractInAllContractPricesPopup("unchecked");
+					allContractPricesPopup();
+					// your price in popup should print seperately   --- pending lakshmi  ##########################
+					
+					
 					verifydefaultcontractonAllcontractpopup(data.get("Contarct_Name1"));
 					commonLib.clickLogOutLink(data.get("Logout"));
 					
@@ -114,39 +120,55 @@ public class SER16_SearchResultsPermissionsAndContractsIPSTest extends SearchLib
 					// navigate back to cmt
 					cmtLib.navigateBackToCMT();
 					cmtLib.searchForaUserAndSelect(data.get("LnameEmailUname"), data.get("ContactName"));
-					cmtLib.setPermissionsToDisable(data.get("Menu_Name"), data.get("Set_Permission4"));
-					cmtLib.setPermissions(data.get("Menu_Name"), data.get("Set_Permission1"));
+					// Open market - OFF
+					cmtLib.setPermissionsToDisable(data.get("Menu_Name"), data.get("Permission"));
+					//cmtLib.setPermissions(data.get("Menu_Name"), data.get("Set_Permission1"));
 					// Login to CMT
 					cmtLib.loginAsAdminCMT();
 					cmtLib.loginVerification(data.get("ContactName"));
 					
 					// Back to UAT and verify the above enabled settings
 					verifyContractAllDisplayed();
+					// workstation
 					searchInHomePage(data.get("SearchText"));
-					verifyTheResultsForSearchTerm(data.get("SearchText"));
 					verifyTheResultsForSearchTerm(data.get("SearchText"));
 					prodInfoLib.getPartNumberInSearchResultsPage();
 					prodInfoLib.contractNameOfFirstproduct();
+					// more prices
+					clickOnMorePrices();
+					
+					// verify Your price is not available in popup -- pending       ##########################
+					commonLib.clickLogOutLink(data.get("Logout"));
 					
 					
+					// navigate back to cmt
+					cmtLib.navigateBackToCMT();
+					cmtLib.searchForaUserAndSelect(data.get("LnameEmailUname"), data.get("ContactName"));
+					// open mark on
+					cmtLib.setPermissions(data.get("Menu_Name"), data.get("Permission"));
+					cmtLib.setPermissionsToDisable(data.get("Menu_Name"), data.get("Set_Permission4"));
+					
+					// Login to CMT
+					cmtLib.loginAsAdminCMT();
+					cmtLib.loginVerification(data.get("ContactName"));
+
+					// Back to UAT and verify the above enabled settings
+					// Workstation
+					searchInHomePage(data.get("SearchText"));
+					verifyTheResultsForSearchTerm(data.get("SearchText"));
+					prodInfoLib.getPartNumberInSearchResultsPage();
+					
+					// open market price label and part number verification in search results page for all the products in search results page
 					
 					
+					commonLib.clickLogOutLink(data.get("Logout"));
 					
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
+					// navigate back to cmt
+					cmtLib.navigateBackToCMT();
+					cmtLib.searchForaUserAndSelect(data.get("LnameEmailUname"), data.get("ContactName"));
+					// open mark , contract agencies ON
+					cmtLib.setPermissions(data.get("Menu_Name"), data.get("Permission"));
+					cmtLib.setPermissions(data.get("Menu_Name"), data.get("Set_Permission4"));
 					
 
 				}
