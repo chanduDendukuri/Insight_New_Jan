@@ -681,10 +681,12 @@ public class SearchLib extends CommonObj {
 	 * @throws Throwable 
 	 */
 	public void clickOnMorePrices() throws Throwable {
+		Thread.sleep(4000);
 		List<WebElement> myList1 = driver.findElements(productsDisplayInfoObj.LIST_OF_ITEMS_SEARCH_RESULTS);
 		for (int i = 0; i < myList1.size(); i++) {
-			if(isVisible(productsDisplayInfoObj.more_Prices(Integer.toString(i)), "More prices link")) {
+			if(isVisibleOnly(productsDisplayInfoObj.more_Prices(Integer.toString(i)), "More prices link")) {
 				click(productsDisplayInfoObj.more_Prices(Integer.toString(i)), "More prices available link");
+			break;
 			}else {
 				// do nothing
 			}
@@ -719,15 +721,19 @@ public class SearchLib extends CommonObj {
 		}else {
 			reporter.failureReport("Verify Defaulted Contract", "Defaulted Contract is not USC", "",driver);
 		}
-	
+		break;
 	case "unchecked":
 		if(!isCheckBoxSelected(productsDisplayInfoObj.US_CONTRACTS_RADIO_BTN)) {
-			reporter.SuccessReport("Verify Defaulted Contract", "Defaulted Contract is not USC", "");
+			
+			reporter.SuccessReport("Verify Defaulted Contract", "Defaulted Contract is not  U.S. COMMUNITIES", "");
 		}else {
 			reporter.failureReport("Verify Defaulted Contract", "Defaulted Contract is USC", "",driver);
 		}
+	default:
+		break;
 	}
-	}
+	  }
+	
 	/**
 	 * 
 	 * @param contract
@@ -743,7 +749,7 @@ public class SearchLib extends CommonObj {
 	public void increaseQuantity(String quantity) throws Throwable {
 		if(isVisibleOnly(productsDisplayInfoObj.QUANTITY_CONTRACT_ALL, "quantity")){
 			clearData(productsDisplayInfoObj.QUANTITY_CONTRACT_ALL);
-			type(productsDisplayInfoObj.QUANTITY_CONTRACT_ALL,"Increase the Quantity : "+quantity,"NUMBER OF ITEMS");
+			type(productsDisplayInfoObj.QUANTITY_CONTRACT_ALL,quantity,"quantity");
 		}else {
 			reporter.failureReport("verify quantity exists", "Quantity field does not exists", "", driver);
 		}
@@ -1425,6 +1431,32 @@ public class SearchLib extends CommonObj {
 		}else {
 			reporter.failureReport("verify contract present", contract+" is not default contract", "", driver);
 		}
+	}
+	/**
+	 * method  is to verify Open market and your price in contract all popup
+	 * @param contract
+	 * @throws Throwable
+	 */
+	public void verifyYourPriceInAllcontractPopup(String contract) throws Throwable {
+		
+		if(isElementPresent(productsDisplayInfoObj.defaultContractRadioButton(contract),"contract label")) {
+			reporter.SuccessReport("Verify that "+contract+" exists", contract+ " Exists", contract);
+		}else{
+			reporter.failureReport("Verify that "+contract+" exists", contract+ " does not exists", "",driver);
+		}
+	}
+	
+	/**
+	 * Method is to verify your price not available
+	 * @param contract
+	 * @throws Throwable
+	 */
+	public void verifyYourPriceDoesNotExists(String contract) throws Throwable {
+		if(!isElementPresent(productsDisplayInfoObj.defaultContractRadioButton(contract),"contract label")) {
+				reporter.SuccessReport("Verify that "+contract+" does not exists", contract+ " does not exists", "");
+			}else{
+				reporter.failureReport("Verify that "+contract+" exists", contract+ " Exists","",driver);
+			}
 	}
 }
  

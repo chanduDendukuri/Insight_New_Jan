@@ -40,6 +40,10 @@ public class CMTObj extends ActionEngine {
 		return By.xpath("//div[@class='c-header__middle']//span[contains(text(),'User - " + contactName + "')]");
 	}
 
+	
+	public static By rbtnUsetheCustomizedPermissionBelow = By.id("permissionGroup2");
+	public static By chbxEditContactInformation = By.xpath("//*[@name='edit_contact_info']");
+	public static By btnUpdateUser = By.xpath("//*[@title='Update User']");
 	/*
 	 * public static By getLoginVerficationByContactNameOnHeader(String
 	 * contactName) {
@@ -362,6 +366,7 @@ public class CMTObj extends ActionEngine {
 		return By.xpath("//*[@class='cs-editProdGroup row']//div//a[text()='" + qtpCategoryName + "']");
 	}
 
+	public static By icnSaveButtonForFourthRecord = By.xpath("(//*[@alt='Save'])[4]");
 	public static By lnkProductGroupToDelete = By.xpath("//*[@class='cs-editProdGroup row']");
 public static By lnkDeleteProductGroups=By.xpath("//*[text()=' Delete Product Group']");
 	public static By PRD_GRP_TO_MODIFY = By
