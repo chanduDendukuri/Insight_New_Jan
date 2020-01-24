@@ -49,14 +49,12 @@ public class CQT18_IPSReportingFieldDataSLEDSoftwareTest extends HomeLib {
 				String array[] =  keywords.split(",");				
 				clickOnQuoteandAddlineitemsfromProductSearch(array,data.get("SoldToAcct"));
 				VerifyXconsymbolispresentforallthematerials(data.get("ItemNum1"));
-				VerifyXconsymbolispresentforallthematerials(data.get("ItemNum2"));
-				VerifyXconsymbolispresentforallthematerials(data.get("ItemNum3"));
+				
 				ClickOnXsymbolunderCon();
 		        driver.switchTo().defaultContent();
 		        selectCOntractID(data.get("ContractId1"),data.get("ContractTabName"));
 		        VerifyLineItems("000010");
 		        VerifyLineItems("000020");
-		        selectCOntractID(data.get("ContractId2"),data.get("ContractTabName"));
 		        VerifyLineItems("000030");
 		        
 		        
@@ -86,7 +84,7 @@ public class CQT18_IPSReportingFieldDataSLEDSoftwareTest extends HomeLib {
 		        validatetheLineitemfiledsaftersaveasquote(data.get("MICROSOFTGOVERNMENT"),data.get("AUTOSCRIPTTEST"));
 		      
 		        ClickonArrowNextToLineitem();
-		        validatetheLineitemfiledsaftersaveasquote(data.get("MICROSOFTGOVERNMENT"),data.get("AUTOSCRIPTTEST"));
+		        
 		        ClickonArrowNextToLineitem();
 		        validatetheLineitemfiledsaftersaveasquote(data.get("MICROSOFTGOVERNMENT"),data.get("AUTOSCRIPTTEST"));
 		        clickDoneButton();
