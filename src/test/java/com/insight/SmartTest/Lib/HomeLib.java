@@ -2253,8 +2253,9 @@ else {
 	}
 
 	public void VerifyContractPriceShouldbeEqualToYPOO(String contractid, float YP00) throws Throwable {
-		String ContractPrice = getText(getcontractsellingPrice(contractid), "get sell price");
-		if (ContractPrice.equals(YP00)) {
+		String ContractPrice1 = getText(getcontractsellingPrice(contractid), "get sell price");
+		float ContractPrice = Float.parseFloat(ContractPrice1);
+		if (ContractPrice==YP00) {
 			reporter.SuccessReport("Verify that YP00 should equal to contractid",
 					"YP00" + YP00 + " equals to contractid" + ContractPrice + "", "");
 		} else {
