@@ -100,8 +100,8 @@ public class CanadaLib extends CanadaObj {
 	 */
 	public void verifyPlaceCartLabel() throws Throwable {
 		if (isElementPresent(CART_LABEL, "Cart header label displayed")) {
-			reporter.SuccessReport("Verify wether user navigates to cart page or not",
-					"User successfully navigated to cart page", "");
+			reporter.SuccessReport("Verify wether user navigates to cart page ",
+					"User successfully navigated to cart page", "PageDetails : Cart");
 		} else {
 			reporter.failureReport("Verify wether user navigates to cart page or not",
 					"User not navigated to cart page", "",driver);

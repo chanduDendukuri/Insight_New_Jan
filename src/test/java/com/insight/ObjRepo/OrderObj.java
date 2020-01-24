@@ -15,12 +15,14 @@ public class OrderObj extends ActionEngine{
 	public static By warrantyItemsRadioButton(String partNumber) {
 		return By.xpath("//p[contains(.,'"+partNumber+"')]//ancestor::div[@class='row warranties-container__item-row']//input");
 	}
+	public static By ADD_FIRST_WARRANTY=By.xpath("//ul[@class='warranties-container__items-list']//li//div//input");
 	public static By ADD_TO_CART_IN_WARRANTY_POPUP=By.xpath("//button[@class='button expanded no-margin-bot' and contains(text(),'Add to cart')]");
 	public static By FIRST_WARRANTY_ITEM=By.xpath("//li[@class='warranties-container__item'][2]//div//label[@class='warranties-container__item-label']");
 	public static By warrentyItemDescription(String partNumber) {
 		return By.xpath("//li[@class='warranties-container__item']//div//label[@class='warranties-container__item-label' and @for='"+partNumber+"']");
 	}
 	public static By WARRANTY_ITEM_DESC_ON_CART_SCREEN=By.xpath("//p[@class='selected-warranty__item-desc']");
+	public static By FIRST_WARRANTY_DESC_ON_POPUP=By.xpath("//li[@class='warranties-container__item']//div//label[@class='warranties-container__item-label']");
 	public static By warrentyItemDescOnCartScreen(String partNumber) {
 		return By.xpath("//p[text()='"+partNumber+"']//ancestor::div[@class='columns medium-flex-child-grow cart__table-col--item']//p[@class='selected-warranty__item-desc']");
 	}
@@ -202,8 +204,8 @@ public class OrderObj extends ActionEngine{
 	public static By ADDRESS_VALIDATION_WINDOW_HDR = By.xpath("//h3[@class='iw-modal__heading']");
 	public static By SAVE_ADDRESS_BTN = By.xpath("//button[contains(text(),'Save address')]");
 	public static By SHIPPING_OPTIONS_CONTINUE_BTN = By.xpath("//div[@class='column small-12 medium-shrink']/BUTTON");
-	
-
+	public static By ATTENTION=By.xpath("//input[@name='existingAddressAttention.attentionLine']");
+   
 	// Recent Orders page
 	public static By RECENT_ORDERS_LABEL=By.xpath("//div//h1[@class='orders-search__title'][contains(text(),'Recent Orders')]");
 	public static By ADVANCED_ORDER_SEARCH=By.xpath("//select[@class='form__field form__select ']");
