@@ -1,7 +1,5 @@
 package com.insight.ObjRepo;
 
-
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
@@ -11,7 +9,8 @@ public class CMTObj extends ActionEngine {
 
 	// ****************** CMT tool **************************** //
 	public static By WEB_GROUP = By.id("webGroupInput");
-	public static By CLIENT_SEARCH_LABEL=By.xpath("//div[@id='searchCriteriaMain']//h1[contains(text(),'Client Search')]");
+	public static By CLIENT_SEARCH_LABEL = By
+			.xpath("//div[@id='searchCriteriaMain']//h1[contains(text(),'Client Search')]");
 	public static By SEARCH_BUTTON_CMT_TOOL = By.id("eAdminCustomerSearchButton");
 	public static By MANAGE_USERS_BUTTON = By.id("manageUsersButton");
 	public static By LNAME_EMAIL_USERNAME = By.id("userSearchText");
@@ -26,23 +25,24 @@ public class CMTObj extends ActionEngine {
 	public static By MASTER_GROUP = By.xpath("//div[@id='masterGroupSale']");
 	public static By CHANGE_MASTER_GRP = By
 			.xpath("//div[@id='differentMasterGroup']//a[contains(text(),'Change Master Group')]");
-	
-	public static By USER_INPUT=By.xpath("//input[@id='userInput']");
-	public static By WEB_GRP_LINK=By.xpath("//a[@id='webGroupId1']");
-	public static By USER_MANAGEMENT_LABEL=By.xpath("//div[@id='userSearchTitle']//h1[contains(text(),'Manage Web Groups:')]");
-	public static By USER_CONTACT_PAGE=By.xpath("//div[@id='createNewUserContainer']//h1[contains(text(),'Web Group Management: Users')]");
-	public static By lblSuccessMessage=By.id("chkDefaultMessage");
+
+	public static By USER_INPUT = By.xpath("//input[@id='userInput']");
+	public static By WEB_GRP_LINK = By.xpath("//a[@id='webGroupId1']");
+	public static By USER_MANAGEMENT_LABEL = By
+			.xpath("//div[@id='userSearchTitle']//h1[contains(text(),'Manage Web Groups:')]");
+	public static By USER_CONTACT_PAGE = By
+			.xpath("//div[@id='createNewUserContainer']//h1[contains(text(),'Web Group Management: Users')]");
+	public static By lblSuccessMessage = By.id("chkDefaultMessage");
 	// This method is to get the Logged in user to Verify the Same User Logged
 	// into Insight from CMT
-	
-	  public static By getLoginVerficationByContactNameOnHeader(String contactName)
-	  { return
-	  By.xpath("//div[@class='c-header__middle']//span[contains(text(),'User - " +
-	  contactName + "')]"); }
-	 
+
+	public static By getLoginVerficationByContactNameOnHeader(String contactName) {
+		return By.xpath("//div[@class='c-header__middle']//span[contains(text(),'User - " + contactName + "')]");
+	}
+
 	/*
-	 * public static By getLoginVerficationByContactNameOnHeader(String contactName)
-	 * {
+	 * public static By getLoginVerficationByContactNameOnHeader(String
+	 * contactName) {
 	 * 
 	 * return By.xpath("//p[contains(text(),'"+contactName+"')]"); }
 	 */
@@ -96,7 +96,8 @@ public class CMTObj extends ActionEngine {
 	 * ***************************
 	 */
 	public static By getUser(String contactName) {
-		return By.xpath("//table[@id='userSearchResultsTable']/tbody/tr/td[@id='userName']/a[contains(text(),'"+ contactName + "')]");
+		return By.xpath("//table[@id='userSearchResultsTable']/tbody/tr/td[@id='userName']/a[contains(text(),'"
+				+ contactName + "')]");
 	}
 
 	/*
@@ -135,7 +136,7 @@ public class CMTObj extends ActionEngine {
 	 * ***************************
 	 */
 	public static By getUsersTabMenus(String menuName) {
-		return By.xpath("//div//ul[@id='tabMenuContainer']//li//a[contains(text(),'"+menuName+"')]");
+		return By.xpath("//div//ul[@id='tabMenuContainer']//li//a[contains(text(),'" + menuName + "')]");
 	}
 
 	/*
@@ -161,17 +162,23 @@ public class CMTObj extends ActionEngine {
 	public static By optionsInCheckOutSettings(String optionToSelect) {
 		return By.xpath("//span[text()='" + optionToSelect + "']//parent::div//a");
 	}
-	public static By defaultShippingCarrier=By.xpath("//*[@id='defaultShippingCarrier']//following-sibling::div//span");
-			public static By defaultshippingCarrier(String optionToSelect) {
-				return By.xpath("//*[@id='defaultShippingCarrier']//following-sibling::div//ul//li[text()='"+optionToSelect+"']");
-			}
+
+	public static By defaultShippingCarrier = By
+			.xpath("//*[@id='defaultShippingCarrier']//following-sibling::div//span");
+
+	public static By defaultshippingCarrier(String optionToSelect) {
+		return By.xpath(
+				"//*[@id='defaultShippingCarrier']//following-sibling::div//ul//li[text()='" + optionToSelect + "']");
+	}
 
 	public static By DEFAULT_SHIPPING_OPTION = By.xpath("//select[@id='defaultShipTypeSelID1']");
 
 	public static By UPDATE_BUTTON = By.xpath("//span[text()='Update']//parent::a");
+
 	public static By defaultShippingOption(String text) {
-		return By.xpath("//select[@id='defaultShipTypeSelID1']//option[text()='"+text+"']");
+		return By.xpath("//select[@id='defaultShipTypeSelID1']//option[text()='" + text + "']");
 	}
+
 	public static By getOptionsunderCkeckoutsettings(String user_Permissions) {
 		return By.xpath("//span[@id='" + user_Permissions + "']");
 	}
@@ -341,11 +348,22 @@ public class CMTObj extends ActionEngine {
 	public static By CHECK_COLLAPSE = By.xpath("//input[@type='checkbox'][@id='displayCollapsed']");
 	public static By UPDT_BTN = By.xpath("//div[@class='buttons ']//a[@id='csUpdateButton']");
 
+	public static By lnkCatLink(String val) {
+
+		return By.xpath("(//div[@class='column medium-10']//a[contains(text(), '" + val + "')])[1]");
+	}
+
 	public static By PRD_GRP_NAME(String QTPCategoryTest1, String QTPProductGroup) {
 		return By.xpath("//div[@class='column medium-10']//a[text()='" + QTPCategoryTest1
 				+ "']/following::div[@class='column medium-10']//a[text()='" + QTPProductGroup + "']");
 	}
 
+	public static By lblProductGroupNamelink(String qtpCategoryName) {
+		return By.xpath("//*[@class='cs-editProdGroup row']//div//a[text()='" + qtpCategoryName + "']");
+	}
+
+	public static By lnkProductGroupToDelete = By.xpath("//*[@class='cs-editProdGroup row']");
+public static By lnkDeleteProductGroups=By.xpath("//*[text()=' Delete Product Group']");
 	public static By PRD_GRP_TO_MODIFY = By
 			.xpath("//div[@class='categoryNameInput']//span[2]//input[@id='msCategoryName']");
 
@@ -380,199 +398,230 @@ public class CMTObj extends ActionEngine {
 			"(//td[@class='webNotificationsAccountHeadercolCandN']//following-sibling::td//a[contains(@href,'Rachel')])[1]/..//following-sibling::td//img[contains(@alt,'Delete')]");
 	public static By REP_DELETE_SUCCESS_MESSAGE = By.xpath(
 			"//div[@id='addRepSuccessOrError']//div[@class='successUpdated' and text()='The rep has been removed successfully ']");
-public static By lblNewRepoText=By.xpath("//*[@class='webNotificationsAccountHeadercolCandN']//following-sibling::td//a[contains(text(),'Rachel')]");
-	/** To get the hosted licensing permissions**/
-	public static By getHostedLicensingPermissions(String permissions){
-		return By.xpath("//div[@id='hostedLicensingDashboardPermissionView']//a[contains(text(),'"+permissions+"')]/parent::div/preceding-sibling::div//input");
+	public static By lblNewRepoText = By.xpath(
+			"//*[@class='webNotificationsAccountHeadercolCandN']//following-sibling::td//a[contains(text(),'Rachel')]");
+
+	/** To get the hosted licensing permissions **/
+	public static By getHostedLicensingPermissions(String permissions) {
+		return By.xpath("//div[@id='hostedLicensingDashboardPermissionView']//a[contains(text(),'" + permissions
+				+ "')]/parent::div/preceding-sibling::div//input");
 	}
-	
+
 	public static By CREATE_NEW_PROD_GROUP = By.xpath(
 			"//div[@class='cs-LeftTemp']//img[@class='frameworkIcons' and @id='CompStandardPlusImage' and @title='Add Category']");
-	
+
 	public static By NEW_CATEGORY_NAME = By.xpath("//input[@id='msCategoryName']");
 	public static By CREATE_BUTTON = By.xpath("//a[@id='csCreateButton']");
-	
+
 	public static By categoryLink(String categoryName) {
 		return By.xpath("//div[@class='column medium-10']//a[text()='" + categoryName + "']");
 	}
-	
+
+	public static By selectCategorydrp = By.id("csSelectCateg");
+
+	public static By selectCatDrpValue(String val) {
+		return By.xpath("//*[@id='csSelectCateg']//option[text()='" + val + "']");
+	}
+
 	public static By CLICK_CATEGORY = By.xpath("//div[@class='column medium-10']//a[text()='TestCategory']");
-	
-	public static By DELETE_CATEGORY_LINK = By.xpath("//div[@class='cs-editDeleteButton']//a[contains(text(),' Delete this Category')]");
-	public static By CONFIRM_DELETE_CHKBOX = By.xpath("//div[@class='deleteContainer']//input[@class='csDeleteCatCheckbox']");
-	public static By UPDATE_TODEL_BTN = By.xpath("//div[@class='buttons']//a[@class='orange']//span[contains(text(),'UPDATE')]");
+
+	public static By DELETE_CATEGORY_LINK = By
+			.xpath("//div[@class='cs-editDeleteButton']//a[contains(text(),' Delete this Category')]");
+	public static By CONFIRM_DELETE_CHKBOX = By
+			.xpath("//div[@class='deleteContainer']//input[@class='csDeleteCatCheckbox']");
+	public static By UPDATE_TODEL_BTN = By
+			.xpath("//div[@class='buttons']//a[@class='orange']//span[contains(text(),'UPDATE')]");
 	public static By PRD_GRP_NEW = By.xpath("//div[@class='cs-ProductNameRight']//span//input[@id='csGroupName']");
-	public static By PROD_GRPS_COLLAPSE = By.xpath("//div[@id='CompStandardRightTemplate']//span//h5[contains(text(),'Tips')]");
-	
-	// Manage current web Group >> Hosted Licensing Administration 
-	public static By ADD_MONTH_RADIO_BTN=By.xpath("//div[@id='splaradioButtons']//input[@id='addMonth']");
-	public static By MONTH=By.xpath("//select[@id='splaMonth']");
-	public static By YEAR=By.xpath("//select[@id='splaYear']");
-	public static By TYPE=By.xpath("//select[@id='splaType']");
-	public static By ADD_MONTH_BTN=By.xpath("//span[@id='splaUpdateId']");
-	public static By USAGE_PERIOD_ADDED_MSG=By.xpath("//div[@id='splaMessage'][contains(text(),'Added a usage period for the soldto.')]");
-	public static By SOLD_TO_TXT_BOX=By.xpath("//input[@id='splaSolto']");
-	public static By SALES_ORG_TXT_BOX=By.xpath("//input[@id='splaSalesOrg']");
-		
-		
+	public static By PROD_GRPS_COLLAPSE = By
+			.xpath("//div[@id='CompStandardRightTemplate']//span//h5[contains(text(),'Tips')]");
+
+	// Manage current web Group >> Hosted Licensing Administration
+	public static By ADD_MONTH_RADIO_BTN = By.xpath("//div[@id='splaradioButtons']//input[@id='addMonth']");
+	public static By MONTH = By.xpath("//select[@id='splaMonth']");
+	public static By YEAR = By.xpath("//select[@id='splaYear']");
+	public static By TYPE = By.xpath("//select[@id='splaType']");
+	public static By ADD_MONTH_BTN = By.xpath("//span[@id='splaUpdateId']");
+	public static By USAGE_PERIOD_ADDED_MSG = By
+			.xpath("//div[@id='splaMessage'][contains(text(),'Added a usage period for the soldto.')]");
+	public static By SOLD_TO_TXT_BOX = By.xpath("//input[@id='splaSolto']");
+	public static By SALES_ORG_TXT_BOX = By.xpath("//input[@id='splaSalesOrg']");
+
 	// smart trackers
-	public static By SMART_TRACKER_LABEL=By.xpath("//div[@id='smartTrackerCoverDiv']//h1[contains(text(),'Manage SmartTrackers')]");
-	public static By ADD_A_SMART_TRACKER=By.xpath("//a[@id='SmartTrackAddHeaderP']");
-	public static By FIELD_LABEL=By.xpath("//input[@id='fieldName']");
-	public static By SAVE_SMART_TRACKER=By.xpath("//a[@id='SmartTrackSaveChangesHeaderP']");
-	public static By EDIT_SMART_TRACKER=By.xpath("//a[@id='SmartTrackEditHeaderP']");
-	public static By MAKE_INACTIVE_CHECK_BOX=By.xpath("//input[@name='makeInactive']");
-	public static By INACTIVE_SMART_TRACKER_ERROR=By.xpath("//span[@class='alertError'][contains(text(),'Inactive SmartTracker')]");
-	public static By SMART_TRACKER_FIELD_TYPE_DD=By.xpath("//select[@id='fieldTypeId']");
-	public static By SAVE_EDIT_SMARTTRACKER=By.xpath("//a//span[contains(text(),'Save Changes')]");
-	public static By getSmartTrackerstabs(String tabName){
-		return By.xpath("//div[@class='manageMenulabels']//b[contains(text(),'"+tabName+"')]");
+	public static By SMART_TRACKER_LABEL = By
+			.xpath("//div[@id='smartTrackerCoverDiv']//h1[contains(text(),'Manage SmartTrackers')]");
+	public static By ADD_A_SMART_TRACKER = By.xpath("//a[@id='SmartTrackAddHeaderP']");
+	public static By FIELD_LABEL = By.xpath("//input[@id='fieldName']");
+	public static By SAVE_SMART_TRACKER = By.xpath("//a[@id='SmartTrackSaveChangesHeaderP']");
+	public static By EDIT_SMART_TRACKER = By.xpath("//a[@id='SmartTrackEditHeaderP']");
+	public static By MAKE_INACTIVE_CHECK_BOX = By.xpath("//input[@name='makeInactive']");
+	public static By INACTIVE_SMART_TRACKER_ERROR = By
+			.xpath("//span[@class='alertError'][contains(text(),'Inactive SmartTracker')]");
+	public static By SMART_TRACKER_FIELD_TYPE_DD = By.xpath("//select[@id='fieldTypeId']");
+	public static By SAVE_EDIT_SMARTTRACKER = By.xpath("//a//span[contains(text(),'Save Changes')]");
+
+	public static By getSmartTrackerstabs(String tabName) {
+		return By.xpath("//div[@class='manageMenulabels']//b[contains(text(),'" + tabName + "')]");
 	}
+
 	// smart trackers headers
-	public static By getManageSmartTrackersHeaders(String headerName){
-		return By.xpath("(//li//a[contains(text(),'"+headerName+"')])[1]");
+	public static By getManageSmartTrackersHeaders(String headerName) {
+		return By.xpath("(//li//a[contains(text(),'" + headerName + "')])[1]");
 	}
-			
-	public static By getSmartTrackerLabel(String label){
-		return By.xpath("//span[@class='STSpans'][contains(text(),'"+label+"')]");
+
+	public static By getSmartTrackerLabel(String label) {
+		return By.xpath("//span[@class='STSpans'][contains(text(),'" + label + "')]");
 	}
-	
-	public static By SMART_TRACKER_EXPEND=By.xpath("//span[@id='expandSpan']");
-	
+
+	public static By SMART_TRACKER_EXPEND = By.xpath("//span[@id='expandSpan']");
+
 	// Linked Accounts
-	public static By LINKED_ACCOUNTS_SEARCH=By.xpath("//input[@id='linkedAccountsSearchInput']");
-	public static By SEARCH_ICON=By.xpath("//a[@title='Go']//img[@class='imageLocation frameworkIcons']");
-	public static By LINKED_ACCOUNT_DD=By.xpath("//select[@id='LinkedAccountSelectOption']");
-	public static By ACCOUNT_NAME=By.xpath("//tr[@id='linkedAccountsResultsResultsRow']//td[2]");
-	public static By REMOVE_DEFAULT_LINK=By.xpath("//a[contains(text(),'Remove Default')]");
-	public static By NO_DEFAULT_ACCOUNT_DETAILS=By.xpath("//div[@class='linkedAccountsDefaultSoldToDetails'][contains(.,' No Default Account set for this User')]");
-	public static By DEFAULT_ACCOUNT_ADDRESS=By.xpath("//div[@id='defaultSoldToDetailsDivId']");
-	public static By LEFT_PAGING=By.xpath("//a[contains(text(),' |<')]");
-	public static By END_PAGE=By.xpath("//span[@id='showingEnd']");
-	public static By SELECTED_RESULTS_PER_PAGE=By.xpath("//select[@id='shownRecords']//option[@selected='selected']");
-		
-	public static By getLinkedAccountsCheckBox(String accountNum){
-		return By.xpath("//input[@id='"+accountNum+"_linkedAccountCheckBox']");
-	}
-	
-	public static By getLinkedAccountCheckBoxByIndex(String i){
-		return By.xpath("(//table[@id='linkedAccountsResults']//td//input[@type='checkbox'])["+i+"]");
-	}
-	
-	public static By getDefaultLoginByIndex(String i){
-		return By.xpath("(//input[@name='defaultLogin'])["+i+"]");
-	}
-	
-	public static By LINKED_ACCOUNT_CHECKBOX=By.xpath("//table[@id='linkedAccountsResults']//td//input[@type='checkbox']");
-	
-	public static By LinkedAccountHeaders(String header){
-		return By.xpath("//div[@class='linkedAccountsResultsDiv']//tr//th[contains(text(),'"+header+"')]");
-	}
-	
-	public static By getDefaultLoginRadioButton(String accountNum){
-		return By.xpath("//input[@id='"+accountNum+"_linkedAccountRadioButton']");
-	}
-	
-	public static By UPDATEUSER_BTN=By.xpath("//a[@title='Update User']");
-	public static By LINKED_ACCOUNT_UPADTE_MSG=By.xpath("//span[@id='linkedAccountsUpdateMessageText']");
-	//payment options
-	public static By SUCESS_MESSAGE_PAYMENT_OPTIONS=By.xpath("//div[@id='checkoutSettUpdateMsg'][contains(.,'Payment options updated successfully.')]");
-    public static By paymentAllowedOption(String option) {
-	return By.xpath("//select[@id='payAllowedSel']//option[contains(text(),'"+option+"')]");		
-    }
-    public static By ALL_PAYMENT_OPTIONS=By.xpath("//select[@id='payAllowedSel']//option");
-    public static By ALLOWED_OPTION=By.xpath("//select[@id='payAllowedSel']");
-    public static By PAYMENTS_LEFT_ARROW_BUTTON=By.xpath("//a[@id='paymentOptionsLeftArrowButton']");
-    public static By DEFAULT_PAYMENT_OPTION=By.xpath("//select[@id='defaultPayTypeSelID']");
-    
-    public static By FORGET_PASSWORD_LINK=By.xpath("//a[@id='show-forgot-password']");
-    public static By FORGET_PASSWORD_MAIL_ENTER_TEXTFIELD=By.xpath("//input[@id='forgot-password-email']");
-    public static By FORGET_PASSWORD_SUBMIT_BUTTON=By.xpath("//a[@id='forgot-password-submit']");
-    public static By FOGET_PASSWORD_ERROR_MESSAGE=By.xpath("//span[@class='input-error']");
-    public static By FORGET_PASSWORD_RESET_SUCESS_MESSAGE=By.xpath("//span[@class='successUpdated']");
-    
-    public static By SALES_REP_NAMES=By.xpath("//table[@id='webNotificationsAccount']//tbody//tr//td[2]//a");	
-    public static By clientNotifiationDeleteIcon(String repMail) {
-    	return By.xpath("//b[text()='"+repMail+"']//ancestor::td[contains(@class,'accRepSecondEmail')]//..//a");
-    }
-    
-    public static By RESET_PASSWORD_LINK=By.xpath("//a//span[text()='Reset Password']");
-    
-    public static By DEFAULT_LOGIN_LINKED_ACCOUNTS=By.xpath("//table[@id='linkedAccountsResults']//tbody//tr[3]//td[6]//input");
-   public static By ADD_NEW_USER_LINK=By.xpath("//div[@id='addNewUserButton']//a");
-   public static By USER_TYPE_DROPDOWN=By.xpath("//select[@id='userTypeSelectId']");
-   public static By USER_NAME_FIELD=By.xpath("//input[@id='userName']");
-   public static By CHECK_AVAILABLITY_BUTTON=By.xpath("//a[@id='checkBtn']");
-   public static By CREATE_USER_BUTTON=By.xpath("//a[@title='Create']");
-   public static By ERROR_MESSAGE=By.xpath("//div[@id='ErrorMsg']");
-   public static By USER_URL=By.xpath("//div[@id='UserURLUrl']//a");
-   public static By CREATE_AN_ACCOUNT_PAGE=By.xpath("//h1[text()='Create an Account']");
-   public static By EMAIL=By.xpath("//input[@id='email']");
-   public static By FIRST_NAME=By.xpath("//input[@id='firstName']");
-   public static By LAST_NAME=By.xpath("//input[@id='lastName']");
-   public static By PHONE_NUMBER_CREATE_ACC=By.xpath("//input[@id='phoneNumber']");
-   public static By USER_NAME=By.xpath("//input[@id='userName']");
-   public static By CHECK_AVAILABILITY=By.xpath("//a[@id='check-username']");
-   public static By PASSWORD=By.xpath("//input[@id='password']");
-   public static By CONFIRM_PASSWORD=By.xpath("//input[@id='confirmPassword']");
-   public static By CREATE=By.xpath("//a[@id='create']");
-   public static By WELCOME_PAGE=By.xpath("//div[@class='welcomePageUserInfoDivStyle']");
-   public static By USER_NAME_MESSAGE=By.xpath("//span[@id='username-message' and text()='Username Not Available']");
-   public static By SEARCH_USER_BY_EMAIL=By.xpath("//input[@id='userInput']");
-   public static By AVAILABLE_MESSAGE=By.xpath("//div[@id='loginAvailable' and text()='Available']");
-   public static By BILLING_ACCOUNT_NAME=By.xpath("//input[@id='companyName']");
-   public static By ADRESSES=By.xpath("//input[@id='addressOne']");
-   public static By CITY=By.xpath("//input[@id='city']");
-   public static By selectState() {
-	   return By.xpath("//select[@id='state']");
-   }
-   public static By ZIP_CODE=By.xpath("//input[@id='zipCode']");
-   public static By SAVE_AND_CONTNUE=By.xpath("//a[@title='CONTINUE']");
-   
-    // Linked Accounts Link
-	public static By LINKED_ACCOUNTS_SEARCH_FIELD=By.xpath("//input[@id='soldToManagementSearchInput']");
-	public static By SEARCH_ICON_LINKED_ACC=By.xpath("//div[@class='soldToManagementSearchCriteria ']//a");
-	
-	
-	
-	public static By getDefaultLoginRadioButtonInLinkedAccounts(String accountNum){
-		return By.xpath("//input[@id='"+accountNum+"_radioButton']");
-	}
-	
-	public static By UPDATE_USER_BTN_LINKED_ACCOUNT=By.xpath("//a[@title='UPDATE']");
-	public static By ERROR_MESSAGE_CREATE_ACCOUNT=By.xpath("//div[contains( text(),'Please')]");
-	public static By USER_TYPE=By.xpath("//select[@id='userUserType']");
-	public static By FIRST_USER_LINK=By.xpath("//td[@id='userName']//a");
-	
-	public static By PAGINATION=By.xpath("//a[contains(text(),'>>')]");
+	public static By LINKED_ACCOUNTS_SEARCH = By.xpath("//input[@id='linkedAccountsSearchInput']");
+	public static By SEARCH_ICON = By.xpath("//a[@title='Go']//img[@class='imageLocation frameworkIcons']");
+	public static By LINKED_ACCOUNT_DD = By.xpath("//select[@id='LinkedAccountSelectOption']");
+	public static By ACCOUNT_NAME = By.xpath("//tr[@id='linkedAccountsResultsResultsRow']//td[2]");
+	public static By REMOVE_DEFAULT_LINK = By.xpath("//a[contains(text(),'Remove Default')]");
+	public static By NO_DEFAULT_ACCOUNT_DETAILS = By.xpath(
+			"//div[@class='linkedAccountsDefaultSoldToDetails'][contains(.,' No Default Account set for this User')]");
+	public static By DEFAULT_ACCOUNT_ADDRESS = By.xpath("//div[@id='defaultSoldToDetailsDivId']");
+	public static By LEFT_PAGING = By.xpath("//a[contains(text(),' |<')]");
+	public static By END_PAGE = By.xpath("//span[@id='showingEnd']");
+	public static By SELECTED_RESULTS_PER_PAGE = By.xpath("//select[@id='shownRecords']//option[@selected='selected']");
 
-	
-	public static By ERR_MSG=By.xpath("//div[@id='ErrorMsg']");
-	public static By ALERTERORRR_MSG=By.xpath("//p[@class='alertError']");
+	public static By getLinkedAccountsCheckBox(String accountNum) {
+		return By.xpath("//input[@id='" + accountNum + "_linkedAccountCheckBox']");
+	}
 
-	
-	public static By EMAILFORMAT_DD=By.xpath("//select[@id='emailFormat']");
-	public static By TEXTAREA=By.xpath("//textarea[@id='notesAboutUserID']");
-    public static By BACKTOUSERSEARCH_LINK=By.xpath("//div[@id='createNewUserContainer']//span/a");
-	public static By emailSearchResultOfCreatedUser(String Email){
-		return By.xpath("//td[@id='login']//div[contains(text(),'"+Email+"')]");
+	public static By getLinkedAccountCheckBoxByIndex(String i) {
+		return By.xpath("(//table[@id='linkedAccountsResults']//td//input[@type='checkbox'])[" + i + "]");
 	}
-	public static By EMAILADDRESS=By.xpath("//input[@id='emailAddress']");
-	public static By SHAREDUSERURL=By.xpath("//div[@id='sharedUserUrl']/a");
-	public static By ERRORMSG_CREATEUSER=By.xpath("//div[@id='ErrorMsg']");
-	public static By ORDERSPLACED_CHECKBOX=By.xpath("//input[@id='receiveEmailonOrders']");
-	public static By QUOTESPLACED_CHECKEDBOX=By.xpath("//input[@id='receiveEmailonQuotes']");
-	public static By EMAILINADDTIONALNOTIFICATION_CHECKOUTSETTINGS= By.xpath("//div[@id='emailAddress1']/input");
-	public static By DEFAULTBILLING_ADDRESS= By.xpath("//div[@id='defaultBillingAddrDiv']");
-	public static By ACTION_DD_WEBLIST=By.xpath("//select[@id='userActionSelectOption']");
-	public static By SELECT_USERUPDATE_STATUS=By.xpath("//select[@id='userSelectedStatus']");
-	public static By UPDATE_BTN_INPOPUP=By.xpath("//span[contains(text(),'update')]/parent::a");
-	public static By USERUPDATED_SUCCESS_MSG=By.xpath("//div[@id='usersUpdateMessageDiv']");
-	public static By userCheckBox(String Email){
-		return By.xpath("//table[@id='userSearchResultsTable']/tbody/tr/td[@id='login']/div[contains(text(),'"+Email+"')]/parent::td/parent::tr/td[@id='userCheckbox']/input");
+
+	public static By getDefaultLoginByIndex(String i) {
+		return By.xpath("(//input[@name='defaultLogin'])[" + i + "]");
 	}
-	public static By available_Option(String Option){
-		return By.xpath("//select[@id='shipAvailableSel']//option[contains(text(),'"+Option+"')]");
+
+	public static By LINKED_ACCOUNT_CHECKBOX = By
+			.xpath("//table[@id='linkedAccountsResults']//td//input[@type='checkbox']");
+
+	public static By LinkedAccountHeaders(String header) {
+		return By.xpath("//div[@class='linkedAccountsResultsDiv']//tr//th[contains(text(),'" + header + "')]");
 	}
-}    
-   
+
+	public static By getDefaultLoginRadioButton(String accountNum) {
+		return By.xpath("//input[@id='" + accountNum + "_linkedAccountRadioButton']");
+	}
+
+	public static By UPDATEUSER_BTN = By.xpath("//a[@title='Update User']");
+	public static By LINKED_ACCOUNT_UPADTE_MSG = By.xpath("//span[@id='linkedAccountsUpdateMessageText']");
+	// payment options
+	public static By SUCESS_MESSAGE_PAYMENT_OPTIONS = By
+			.xpath("//div[@id='checkoutSettUpdateMsg'][contains(.,'Payment options updated successfully.')]");
+
+	public static By paymentAllowedOption(String option) {
+		return By.xpath("//select[@id='payAllowedSel']//option[contains(text(),'" + option + "')]");
+	}
+
+	public static By ALL_PAYMENT_OPTIONS = By.xpath("//select[@id='payAllowedSel']//option");
+	public static By ALLOWED_OPTION = By.xpath("//select[@id='payAllowedSel']");
+	public static By PAYMENTS_LEFT_ARROW_BUTTON = By.xpath("//a[@id='paymentOptionsLeftArrowButton']");
+	public static By DEFAULT_PAYMENT_OPTION = By.xpath("//select[@id='defaultPayTypeSelID']");
+
+	public static By FORGET_PASSWORD_LINK = By.xpath("//a[@id='show-forgot-password']");
+	public static By FORGET_PASSWORD_MAIL_ENTER_TEXTFIELD = By.xpath("//input[@id='forgot-password-email']");
+	public static By FORGET_PASSWORD_SUBMIT_BUTTON = By.xpath("//a[@id='forgot-password-submit']");
+	public static By FOGET_PASSWORD_ERROR_MESSAGE = By.xpath("//span[@class='input-error']");
+	public static By FORGET_PASSWORD_RESET_SUCESS_MESSAGE = By.xpath("//span[@class='successUpdated']");
+
+	public static By SALES_REP_NAMES = By.xpath("//table[@id='webNotificationsAccount']//tbody//tr//td[2]//a");
+
+	public static By clientNotifiationDeleteIcon(String repMail) {
+		return By.xpath("//b[text()='" + repMail + "']//ancestor::td[contains(@class,'accRepSecondEmail')]//..//a");
+	}
+
+	public static By RESET_PASSWORD_LINK = By.xpath("//a//span[text()='Reset Password']");
+
+	public static By DEFAULT_LOGIN_LINKED_ACCOUNTS = By
+			.xpath("//table[@id='linkedAccountsResults']//tbody//tr[3]//td[6]//input");
+	public static By ADD_NEW_USER_LINK = By.xpath("//div[@id='addNewUserButton']//a");
+	public static By USER_TYPE_DROPDOWN = By.xpath("//select[@id='userTypeSelectId']");
+	public static By USER_NAME_FIELD = By.xpath("//input[@id='userName']");
+	public static By CHECK_AVAILABLITY_BUTTON = By.xpath("//a[@id='checkBtn']");
+	public static By CREATE_USER_BUTTON = By.xpath("//a[@title='Create']");
+	public static By ERROR_MESSAGE = By.xpath("//div[@id='ErrorMsg']");
+	public static By USER_URL = By.xpath("//div[@id='UserURLUrl']//a");
+	public static By CREATE_AN_ACCOUNT_PAGE = By.xpath("//h1[text()='Create an Account']");
+	public static By EMAIL = By.xpath("//input[@id='email']");
+	public static By FIRST_NAME = By.xpath("//input[@id='firstName']");
+	public static By LAST_NAME = By.xpath("//input[@id='lastName']");
+	public static By PHONE_NUMBER_CREATE_ACC = By.xpath("//input[@id='phoneNumber']");
+	public static By USER_NAME = By.xpath("//input[@id='userName']");
+	public static By CHECK_AVAILABILITY = By.xpath("//a[@id='check-username']");
+	public static By PASSWORD = By.xpath("//input[@id='password']");
+	public static By CONFIRM_PASSWORD = By.xpath("//input[@id='confirmPassword']");
+	public static By CREATE = By.xpath("//a[@id='create']");
+	public static By WELCOME_PAGE = By.xpath("//div[@class='welcomePageUserInfoDivStyle']");
+	public static By USER_NAME_MESSAGE = By.xpath("//span[@id='username-message' and text()='Username Not Available']");
+	public static By SEARCH_USER_BY_EMAIL = By.xpath("//input[@id='userInput']");
+	public static By AVAILABLE_MESSAGE = By.xpath("//div[@id='loginAvailable' and text()='Available']");
+	public static By BILLING_ACCOUNT_NAME = By.xpath("//input[@id='companyName']");
+	public static By ADRESSES = By.xpath("//input[@id='addressOne']");
+	public static By CITY = By.xpath("//input[@id='city']");
+
+	public static By selectState() {
+		return By.xpath("//select[@id='state']");
+	}
+
+	public static By ZIP_CODE = By.xpath("//input[@id='zipCode']");
+	public static By SAVE_AND_CONTNUE = By.xpath("//a[@title='CONTINUE']");
+
+	// Linked Accounts Link
+	public static By LINKED_ACCOUNTS_SEARCH_FIELD = By.xpath("//input[@id='soldToManagementSearchInput']");
+	public static By SEARCH_ICON_LINKED_ACC = By.xpath("//div[@class='soldToManagementSearchCriteria ']//a");
+
+	public static By getDefaultLoginRadioButtonInLinkedAccounts(String accountNum) {
+		return By.xpath("//input[@id='" + accountNum + "_radioButton']");
+	}
+
+	public static By UPDATE_USER_BTN_LINKED_ACCOUNT = By.xpath("//a[@title='UPDATE']");
+	public static By ERROR_MESSAGE_CREATE_ACCOUNT = By.xpath("//div[contains( text(),'Please')]");
+	public static By USER_TYPE = By.xpath("//select[@id='userUserType']");
+	public static By FIRST_USER_LINK = By.xpath("//td[@id='userName']//a");
+
+	public static By PAGINATION = By.xpath("//a[contains(text(),'>>')]");
+
+	public static By ERR_MSG = By.xpath("//div[@id='ErrorMsg']");
+	public static By ALERTERORRR_MSG = By.xpath("//p[@class='alertError']");
+
+	public static By EMAILFORMAT_DD = By.xpath("//select[@id='emailFormat']");
+	public static By TEXTAREA = By.xpath("//textarea[@id='notesAboutUserID']");
+	public static By BACKTOUSERSEARCH_LINK = By.xpath("//div[@id='createNewUserContainer']//span/a");
+
+	public static By emailSearchResultOfCreatedUser(String Email) {
+		return By.xpath("//td[@id='login']//div[contains(text(),'" + Email + "')]");
+	}
+
+	public static By EMAILADDRESS = By.xpath("//input[@id='emailAddress']");
+	public static By SHAREDUSERURL = By.xpath("//div[@id='sharedUserUrl']/a");
+	public static By ERRORMSG_CREATEUSER = By.xpath("//div[@id='ErrorMsg']");
+	public static By ORDERSPLACED_CHECKBOX = By.xpath("//input[@id='receiveEmailonOrders']");
+	public static By QUOTESPLACED_CHECKEDBOX = By.xpath("//input[@id='receiveEmailonQuotes']");
+	public static By EMAILINADDTIONALNOTIFICATION_CHECKOUTSETTINGS = By.xpath("//div[@id='emailAddress1']/input");
+	public static By DEFAULTBILLING_ADDRESS = By.xpath("//div[@id='defaultBillingAddrDiv']");
+	public static By ACTION_DD_WEBLIST = By.xpath("//select[@id='userActionSelectOption']");
+	public static By SELECT_USERUPDATE_STATUS = By.xpath("//select[@id='userSelectedStatus']");
+	public static By UPDATE_BTN_INPOPUP = By.xpath("//span[contains(text(),'update')]/parent::a");
+	public static By USERUPDATED_SUCCESS_MSG = By.xpath("//div[@id='usersUpdateMessageDiv']");
+
+	public static By userCheckBox(String Email) {
+		return By.xpath("//table[@id='userSearchResultsTable']/tbody/tr/td[@id='login']/div[contains(text(),'" + Email
+				+ "')]/parent::td/parent::tr/td[@id='userCheckbox']/input");
+	}
+
+	public static By available_Option(String Option) {
+		return By.xpath("//select[@id='shipAvailableSel']//option[contains(text(),'" + Option + "')]");
+	}
+
+	public static By addCategoryPlusButton = By
+			.cssSelector("div [class*='cs-sortImage ']+div img[id='CompStandardPlusImage']");
+	public static By lnkAddProductGroup = By.xpath("//*[text()='Add Product Group ']");
+	public static By lnkLogout=By.xpath("//*[contains(text(),'Logout - Qtpsvc')]");
+}
