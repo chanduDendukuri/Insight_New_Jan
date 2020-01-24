@@ -44,7 +44,6 @@ public class SER06_KeywordSearchTest extends SearchLib {
 					TestEngineWeb.reporter.initTestCaseDescription("KeywordSearch");
 				
 					// Test Steps execution
-
 					fnOpenTest();
 					
 					// lexmark printers
@@ -92,6 +91,7 @@ public class SER06_KeywordSearchTest extends SearchLib {
 					verifyFilterBreadCrumb(data.get("In_Stock_Only"));
 					// Approve items only
 				    filterSelectionInProductsSearchPage(data.get("Approved_Items"));
+				    verifyBreadCrumbInSearchResultsPage(data.get("Approved_Items_Remove_Filter"));
 					removeTheFilter(data.get("Approved_Items_Remove_Filter"));
 					verifyBreadCrumbInSearchResultsPage(data.get("SearchText5"));
 					verifyFilterBreadCrumb(data.get("In_Stock_Only"));
@@ -101,10 +101,15 @@ public class SER06_KeywordSearchTest extends SearchLib {
 					verifyTheResultsForSearchTerm(data.get("SearchText6"));
 					// Stock only
 					removeTheFilter(data.get("In_Stock_Only"));
+					// stock filter selection
 					filterSelectionInProductsSearchPage(data.get("filter"));
-					// get product count
+					verifyTheResultsForSearchTerm(data.get("SearchText6"));
+					verifyFilterBreadCrumb(data.get("In_Stock_Only"));
+					// get product count - with stock
 					getProductCount();
 					removeTheFilter(data.get("In_Stock_Only"));
+					// get product count - with out stock
+					Thread.sleep(3000);
 					getProductCount();
 					//removeTheFilter(data.get("Approved_Items_Remove_Filter"));
 					// Manufacturers :HONEYWELL
@@ -123,6 +128,7 @@ public class SER06_KeywordSearchTest extends SearchLib {
 					removeTheFilter(data.get("price_Filter"));
 					verifyFilterSelected(data.get("Manufacturer"));
 					verifyFilterBreadCrumb(data.get("In_Stock_Only"));
+					verifyFilterBreadCrumb(data.get("SearchText6"));
 					prodInfoLib.verifyListPrice();
 					// LogOut
 					commonLib.clickLogOutLink(data.get("Logout"));

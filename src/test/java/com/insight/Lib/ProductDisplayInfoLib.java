@@ -270,7 +270,7 @@ public class ProductDisplayInfoLib extends productsDisplayInfoObj {
 				if (result.replace(".00", "").contains(priceFilter)) {
 					Thread.sleep(2000);
 					reporter.SuccessReport("Verify the results for search term in products display page ",
-							"Verification is sucessfull. Expected filter is:", result);
+							"Verification is sucessfull. Expected filter is:", "price filter : "+result);
 				}
 			}
 		} else {

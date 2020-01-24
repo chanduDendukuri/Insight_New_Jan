@@ -275,7 +275,7 @@ public class SearchLib extends CommonObj {
 							"Verification is sucessfull. Expected filter is:" , result);
 				} else if (filter.equals("Show only in-stock items") && result.equals("In Stock Only")) {
 					reporter.SuccessReport("Verify the results for search term in products display page ",
-							"Verification is sucessfull. Expected filter is:" , result);
+							"Verification is sucessfull. Expected filter is:" , "filter : "+result);
 				}
 			}
 		} else {
