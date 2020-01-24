@@ -22,7 +22,8 @@ public class MIC03_PAAPPNMITest extends MarriottIntlCorpLib{
 	CMTLib cmtLib = new CMTLib();					
 	OrderLib orderLib = new OrderLib();
 	ShipBillPayLib shipbLib = new ShipBillPayLib();
-	
+	CartLib cartLib = new CartLib();
+
 	// #############################################################################################################
 	// # Name of the Test : MIC06_SharedMgdServicesOrder
 	// # Migration Author : Cigniti Technologies
@@ -60,22 +61,23 @@ public class MIC03_PAAPPNMITest extends MarriottIntlCorpLib{
 					// WELCOME TO E PROCUREMNET PAGE
 					VerifyWelcometoeProcurementpage();
 					// COMPANY STATNDARDS LINK
-					CompanystandardslinkandProductGrpWithbtg(data.get("CPG"), data.get("SelectCP"));
+					CompanystandardslinkandProductGrp(data.get("CPG"), data.get("SelectCP"));
 					handleinsightpopup();
 					// verify qunatitiy price partnum
-					setQuantityForLenovo(data.get("VerifyQty"));
 					Verifypartnum(data.get("Verifypart"));
+					setQuantityAddProductMIC03(data.get("VerifyQty"),data.get("Verifypart"));
 					clickOnViewCart();	
 					Thread.sleep(3000);
-					Verifypartnum(data.get("Verifypart"));
+					//Verifypartnum(data.get("Verifypart"));
+					cartLib.verifyItemInCart(data.get("Verifypart"));
 					Thread.sleep(3000);
-					verifyPartInCartQuickShop(data.get("QuickShop_Part"));
-					SelectCPPFRomAccounttools(data.get("Tools_Menu"),data.get("Tools_Menu_DD"),data.get("CPG"), data.get("SelectCP"));
-					Verifypartnum(data.get("Verifypart"));
-					setQuantityAddProduct(data.get("VerifyQty"), data.get("Verifypart"));
+					SelectCPPFRomAccounttools(data.get("Tools_Menu"),data.get("Tools_Menu_DD"),data.get("CPG2"), data.get("SelectCP2"));
+					Verifypartnum(data.get("Verifypart2"));
+					setQuantityAddProductMIC03(data.get("VerifyQty2"), data.get("Verifypart2"));
 					Thread.sleep(5000);
 					clickOnViewCart();
-					Verifypartnum(data.get("Verifypart"));
+					cartLib.verifyItemInCart(data.get("Verifypart2"));
+					verifyPartInCartQuickShop(data.get("QuickShop_Part"));
 					orderLib.proceedToCheckout();
 					addAdditionalInfoOfProduct(data.get("Brand_Identifier"), data.get("Requester_Name"),
 							data.get("EndUser_PeopleSoftNumber"), data.get("Notes"), data.get("Customer_Reference_Number"),
