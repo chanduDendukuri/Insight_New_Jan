@@ -5,7 +5,9 @@ import java.util.List;
 
 import org.mortbay.log.Log;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -206,6 +208,9 @@ public class CMTLib extends CMTObj {
 		} else {
 			reporter.failureReport("Verify web group displayed", "searched Web group is not displayed", "", driver);
 		}
+	}
+	public void clickOnLogoutlink() throws Throwable{
+		click(lnklogout,"Logout");
 	}
 
 	/**
@@ -1926,6 +1931,10 @@ public class CMTLib extends CMTObj {
 		} else {
 			reporter.failureReport("Clicking on prodcut group", "clicking on product group", productGroupName, driver);
 		}
+		if(isVisibleOnly(UPDT_BTN,"Update button")){
+			click(UPDT_BTN,"Update button");
+		}
+		
 		if (isElementPresent(PRD_GRP_TO_MODIFY, "Prod group to modify")) {
 			// type(PRD_GRP_TO_MODIFY, "TestProdGroupCategory", "Product Group
 			// Category Name");
@@ -1935,9 +1944,9 @@ public class CMTLib extends CMTObj {
 				click(UPDT_BTN, "Click Update button");
 				reporter.SuccessReport("Click Update on Company Standards Management",
 						"Update Link  is Exists and Clicked", "");
-			} else
+			} /*else
 				reporter.failureReport("Click Update on Company Standards Management", "Update Link is Not Exists", "",
-						driver);
+						driver);*/
 		}
 	}
 
@@ -2960,7 +2969,11 @@ public class CMTLib extends CMTObj {
 
 	public void selectCategoryFromDropDown(String val) throws Throwable {
 		click(selectCategorydrp, "Select drop down list", "select category");
-		click(selectCatDrpValue(val), "Select category", val);
+		//click(selectCatDrpValue(val), "Select category", val);
+		Actions action = new Actions(driver);
+		action.sendKeys(Keys.ARROW_UP).perform();
+		action.sendKeys(Keys.ENTER).perform();
+
 	}
 
 	public void deleteProductGroup() throws Throwable {
@@ -2968,9 +2981,11 @@ public class CMTLib extends CMTObj {
 		List<WebElement> salesRep = driver.findElements(lnkProductGroupToDelete);
 
 		for (i = 1; i <= salesRep.size(); i++) {
-			salesRep.get(i).click();
+			//salesRep.get(1).click();
+			driver.findElement(By.xpath("(//*[@class='cs-editProdGroup row'])[1]")).click();
 			click(lnkDeleteProductGroups, "Delete product group", "Delete Product group");
 			acceptAlert();
+			Thread.sleep(4000);
 		}
 
 	}

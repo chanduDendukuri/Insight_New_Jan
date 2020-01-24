@@ -124,7 +124,9 @@ public class SER06_KeywordSearchTest extends SearchLib {
 					prodInfoLib.verifyListPrice();
 					prodInfoLib.enterPriceDetailsFilters(data.get("Min_Price"), data.get("Max_Price"));
 					// Remove price filter
+					Thread.sleep(3000);
 					scrollUp();
+					Thread.sleep(3000);
 					removeTheFilter(data.get("price_Filter"));
 					verifyFilterSelected(data.get("Manufacturer"));
 					verifyFilterBreadCrumb(data.get("In_Stock_Only"));

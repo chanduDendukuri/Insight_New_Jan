@@ -598,7 +598,7 @@ public static By lnkDeleteProductGroups=By.xpath("//*[text()=' Delete Product Gr
 	public static By emailSearchResultOfCreatedUser(String Email) {
 		return By.xpath("//td[@id='login']//div[contains(text(),'" + Email + "')]");
 	}
-
+	public static By lnklogout = By.xpath("//*[contains(@class,'c-header-top__link') and text()='Logout']");
 	public static By EMAILADDRESS = By.xpath("//input[@id='emailAddress']");
 	public static By SHAREDUSERURL = By.xpath("//div[@id='sharedUserUrl']/a");
 	public static By ERRORMSG_CREATEUSER = By.xpath("//div[@id='ErrorMsg']");

@@ -119,8 +119,8 @@ public class WGP02_CompanyStandardCategoriesTest extends CMTLib {
 					VerifyICompanyStandards();
 
 					// Logout and Close Insight Browser
-					commonLib.clickLogOutLink(data.get("Logout "));
-					
+					//commonLib.clickLogOutLink(data.get("Logout "));
+					clickOnLogoutlink();
 					driver.switchTo().window(parent);
 					
 					hoverOnManageWebGroupsAndSelectOptions(data.get("Manage_Web_Grp_Options"));
@@ -137,7 +137,11 @@ public class WGP02_CompanyStandardCategoriesTest extends CMTLib {
 					VerifyUpdateMsg();
 					
 					clickOnAddCategoryPlusIcon();
-					enterNewCategory(proGrp);
+					enterNewCategory(pro);
+					clickOnCreateButton();
+					clickOnAddCategoryPlusIcon();
+					enterNewCategory(pro);
+					clickOnCreateButton();
 					acceptAlert();
 					deleteProductGroup();
 					clickOnLogout();
