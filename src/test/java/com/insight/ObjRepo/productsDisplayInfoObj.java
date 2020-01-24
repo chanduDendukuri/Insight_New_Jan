@@ -167,6 +167,10 @@ public class productsDisplayInfoObj extends CommonObj{
     	return By.xpath("//div[@id='search-item-"+itemno+"']//p[@class='prod-stock'][contains(.,'in stock')]");
     }
     
+    public static By openMarketLabelSearchResults(int itemNo) {
+    	return By.xpath("//div[@id='search-item-"+itemNo+"']//p[@class='ips-price-contract']");
+    }
+    
     public static By LIST_OF_ITEMS_SEARCH_RESULTS=By.xpath("//div[@class='result-item-wrapper result-item-list']");
     public static By IMG_PRODUCT_DETAILS_FRONT=By.xpath("//div[@class='ccs-fancybox-gallery ccs-slick-slide ccs-slick-current ccs-slick-active']//img[@alt='Front']");
     public static By IMG_LEFT_ANGLE=By.xpath("//div[@class='ccs-cc-thumbnail-wrapper ccs-slick-slide ccs-slick-active']//img[@alt='Left-angle']");
