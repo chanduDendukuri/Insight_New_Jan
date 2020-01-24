@@ -647,6 +647,15 @@ public static By lnkDeleteProductGroups=By.xpath("//*[text()=' Delete Product Gr
 	public static By lblEnable_Webinars=By.xpath("//*[@name='webinar']");
 	public static By lblEnable_Company_Standards_Product_Groups=By.xpath("//*[@name='quick_forms']");
 	public static By lblEnable_Product_Compare=By.xpath("//*[@name='product_compare']");
+	public static By Enable_Resource_Centers = 		By.xpath("//*[@name='enable_resource_centers']");
+	public static By Enable_Shop_By_Brand = 		By.xpath("//*[@name='shop_by_brand']");
+	public static By Enable_menu_for_products = 	By.xpath("//*[@name='product_menu']");
+	public static By Enable_Configurators = 		By.xpath("//*[@name='configurator']");
+	public static By Enable_Inventory_Blowout = 	By.xpath("//*[@name='inventory_blowout']");
+	public static By Enable_Personal_Product_List = By.xpath("//*[@name='ppc']");
+	public static By Enable_menu_for_solutions= 	By.xpath("//*[@name='services']");
+	public static By Enable_Accessories = 			By.xpath("//*[@name='accessories']");
+	public static By Enable_Search = 				By.xpath("///*[@name='search']']");
 
 	
 	

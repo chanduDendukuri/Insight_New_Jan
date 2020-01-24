@@ -21,6 +21,8 @@ public class OrderLib extends OrderObj{
 	CommonLib commonLib = new CommonLib();
 	CMTLib cmtLib = new CMTLib();
 	ShipBillPayObj shipBillPayObj=new ShipBillPayObj();
+	CartLib cartlib=new CartLib();
+	CanadaLib canadaLib=new CanadaLib();
 	String expectedWarrantyItemDec;
 	String expectedSummaryTotalAmount;
 	String referenceNumber;
@@ -31,6 +33,8 @@ public class OrderLib extends OrderObj{
 	public void continueToCheckOutAddWarrantyAndVerifyTheCart(String partNumber) throws Throwable{
 		
 		click(CONTINUE_TO_CHECKOUT, "Continue to checkout");
+		canadaLib.verifyPlaceCartLabel();
+		
 		if(isElementPresent(ADD_WARRANTY_LINK,"Warranty link" )){
 			click(ADD_WARRANTY_LINK, "Warranty link");
 			Thread.sleep(10000);
@@ -53,6 +57,28 @@ public class OrderLib extends OrderObj{
 		}else{
 			reporter.failureReport("Verify the warranty link.","Warranty Link is not displayed","",driver);
 		}
+	}
+	
+	public void addWarrantyInCartPage() throws Throwable {
+		if(isElementPresent(ADD_WARRANTY_LINK,"Warranty link" )){
+			click(ADD_WARRANTY_LINK, "Warranty link");
+			waitForVisibilityOfElement(ADD_FIRST_WARRANTY, "warranty", driver);
+			click(ADD_FIRST_WARRANTY," Warranty item");
+			Thread.sleep(2000);
+			String expectedWarrantyItemDec=driver.findElement(FIRST_WARRANTY_DESC_ON_POPUP).getAttribute("innerText");
+			click(ADD_TO_CART_IN_WARRANTY_POPUP, "Add to cart in warranty screen");
+			Thread.sleep(2000);
+			String actaulWarrantyItemDec=getText(WARRANTY_ITEM_DESC_ON_CART_SCREEN, "item description");
+			if (expectedWarrantyItemDec.equals(actaulWarrantyItemDec)) {
+				reporter.SuccessReport("Verify the warranty item added.","Warranty added successfully",actaulWarrantyItemDec);
+			}else{
+				reporter.failureReport("Verify the warranty item added.","Warranty not added successfully.Expected warranty is : ",actaulWarrantyItemDec,driver);
+			}
+			
+		}else {
+			reporter.failureReport("Warranty link in add to cart", "Warranty link is not visible in cart page", "", driver);
+		}
+			
 	}
 	
 	/**
@@ -1858,7 +1884,32 @@ public class OrderLib extends OrderObj{
 	}
 	
 	public void clickContinueOnShippingAddress() throws Throwable {
-		
-		click(SHIPPING_ADDRESS_CONTINUE_BTN,"Continue button","Shipping address continue button");
+		click(SHIPPING_ADDRESS_CONTINUE_BTN," Shipping address Continue button","Shipping address continue button");
 	}
+	
+	public void verifyCartPageAndPartDetails(int itemNum) throws Throwable {
+		List<String> prodDesc1 = getProductDescriptionOfCartProduct();
+		List<String> totalPrice1 = getCartProductTotalPrice();
+		List<String> unitPrice1=getCartProductUnitPrice();
+		List<String> quantity=getCartProductQuantity();
+		List<String> stock=getCartProductStock();
+		if (prodDesc1.get(itemNum)!=null && totalPrice1!=null) {
+			reporter.SuccessReport("Verify the part added to cart ", "Contract in Cart is the one selected in pop-up Exists and Value Returned ",
+					 "  prod Description : " + prodDesc1.get(itemNum) + " Quantity : "+quantity.get(itemNum)
+							+ "Total Price: " + totalPrice1.get(itemNum)+ " Unit price: "+unitPrice1.get(itemNum)+ "Stock :"+stock);
+		} else {
+			reporter.failureReport("Verify the part added to cart ", "Part is not added to cart.", "", driver);
+		}
+   }
+	
+	public void enterAttentionField(String text) throws Throwable {
+		if(isVisibleOnly(ATTENTION, "Attention")) {
+			type(ATTENTION, text, "ATTENTION", driver);;
+			click(SHIPPING_ADDRESS_CONTINUE_BTN," Shipping address Continue button","Shipping address continue button");
+		}else {
+			// do nothing
+		}
+		
+	}
+	
 }
