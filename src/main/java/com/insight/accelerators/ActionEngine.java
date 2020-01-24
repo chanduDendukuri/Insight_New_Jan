@@ -1374,7 +1374,7 @@ public class ActionEngine extends TestEngineWeb {
 				reporter.SuccessReport("GetAttribute :: ", "Locator is Visible and attribute value of:: " + locatorName+" is Null","NA");
 				LOG.info("GetAttribute :: Unable to get Attribute value from :: " + locatorName);
 			} else {
-				reporter.SuccessReport("GetAttribute :: ", "" + locatorName + " is " + text,"NA");
+				reporter.SuccessReport("GetAttribute :: ", "" + locatorName + " is "  ,text);
 				LOG.info("Locator is Visible and attribute value is retrieved :: " + text);
 			}
 		}

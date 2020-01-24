@@ -60,14 +60,22 @@ public class MIC03_PAAPPNMITest extends MarriottIntlCorpLib{
 					// WELCOME TO E PROCUREMNET PAGE
 					VerifyWelcometoeProcurementpage();
 					// COMPANY STATNDARDS LINK
-					CompanystandardslinkandProductGrp(data.get("CPG"), data.get("SelectCP"));
+					CompanystandardslinkandProductGrpWithbtg(data.get("CPG"), data.get("SelectCP"));
 					handleinsightpopup();
 					// verify qunatitiy price partnum
 					setQuantityForLenovo(data.get("VerifyQty"));
 					Verifypartnum(data.get("Verifypart"));
 					clickOnViewCart();	
 					Thread.sleep(3000);
+					Verifypartnum(data.get("Verifypart"));
+					Thread.sleep(3000);
 					verifyPartInCartQuickShop(data.get("QuickShop_Part"));
+					SelectCPPFRomAccounttools(data.get("Tools_Menu"),data.get("Tools_Menu_DD"),data.get("CPG"), data.get("SelectCP"));
+					Verifypartnum(data.get("Verifypart"));
+					setQuantityAddProduct(data.get("VerifyQty"), data.get("Verifypart"));
+					Thread.sleep(5000);
+					clickOnViewCart();
+					Verifypartnum(data.get("Verifypart"));
 					orderLib.proceedToCheckout();
 					addAdditionalInfoOfProduct(data.get("Brand_Identifier"), data.get("Requester_Name"),
 							data.get("EndUser_PeopleSoftNumber"), data.get("Notes"), data.get("Customer_Reference_Number"),
