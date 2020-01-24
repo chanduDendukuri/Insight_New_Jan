@@ -78,7 +78,19 @@ public class MarriottIntlCorpLib extends MarriottIntlCorpObj {
 		click(CommonObj.getCompanyStandardsProductGroup(productGroup, productName),
 				"select product from product group"+productName);
 	}
-
+	/**
+	 * This method is to verify Company standards link
+	 * 
+	 * 
+	 * @throws Throwable
+	 */
+	public void CompanystandardslinkandProductGrpWithbtg(String productGroup, String productName) throws Throwable {
+		click(COMPANYSTANDARDS_PAGELINK, "Company Standards PageLink");
+		isElementPresent(CartObj.Current_product_groups, " Current Product Groups page is opened");
+		click(getcompanystandardsproductgroup(productGroup), "Product Group"+productGroup);
+		click(CommonObj.getCompanyStandardsProductGroupWithBtag(productGroup, productName),
+				"select product from product group"+productName);
+	}
 	/**
 	 * This method is to verify pratNum in Company standards Page
 	 * 
@@ -441,9 +453,9 @@ public class MarriottIntlCorpLib extends MarriottIntlCorpObj {
 
 	public void setQuantityForLenovo(String value) throws Throwable {
 
-		waitForVisibilityOfElement(PRODUCTQTY_LENOVO, " Quantity");
+		waitForVisibilityOfElement(PRODUCTQTY_LENOVO, " Quantity of Product 20LAS0E900-MI");
 
-		if (isElementPresent(PRODUCTQTY_LENOVO, "Quantity")) {
+		if (isElementPresent(PRODUCTQTY_LENOVO, "Quantity of Product 20LAS0E900-MI")) {
 
 			click(PRODUCTQTY_LENOVO, "Qunatity");
 
@@ -710,7 +722,7 @@ public class MarriottIntlCorpLib extends MarriottIntlCorpObj {
 
 			type(BILLING_LOCATION, billSuite, "Location");
 
-			click(CONTINUE, "Continue button of Review Order");
+			click(CONTINUE, "Continue button of Billing address");
 
 			reporter.SuccessReport("Enter billing Information ", "Successfully entered billing Information ", " ");
 
@@ -823,7 +835,7 @@ public class MarriottIntlCorpLib extends MarriottIntlCorpObj {
 	 */
 	public void VerifyBrandidentifier(String Brand_Identifier) throws Throwable {
 		if (isElementPresent(verifybrandidentifiertext(Brand_Identifier), "Brand_Identifier")) {
-			reporter.SuccessReport("Brand_Identifier::", "" + Brand_Identifier + "- Is visible", "");
+			reporter.SuccessReport("Brand_Identifier::", "" + Brand_Identifier + "- Is visible",Brand_Identifier);
 		} else {
 			reporter.failureReport("Brand_Identifier::", "Brand_Identifier is Not Visible", "");
 		}
@@ -867,7 +879,7 @@ public class MarriottIntlCorpLib extends MarriottIntlCorpObj {
 	 */
 	public void verifypcusername(String PC_User_Name) throws Throwable {
 		if (isElementPresent(verifypcusernametext(PC_User_Name), "PC_User_Name")) {
-			reporter.SuccessReport("PC UserName::", "" + PC_User_Name + " Is visible On Place Order Page", "");
+			reporter.SuccessReport("PC UserName::", "" + PC_User_Name + " Is visible On Place Order Page", PC_User_Name);
 		} else {
 			reporter.failureReport("PC UserName::", "PC_User_Name is Not Visible", "");
 		}
@@ -895,7 +907,7 @@ public class MarriottIntlCorpLib extends MarriottIntlCorpObj {
 	 */
 	public void Verifynotes(String Notes) throws Throwable {
 		if (isElementPresent(verifynotestext(Notes), "Notes")) {
-			reporter.SuccessReport("Notes::", "" + Notes + " Is visible On Place Order Page", "");
+			reporter.SuccessReport("Notes::", "" + Notes + " Is visible On Place Order Page",Notes);
 		} else {
 			reporter.failureReport("Notes::", "Notes is Not Visible", "");
 		}
@@ -963,12 +975,11 @@ public class MarriottIntlCorpLib extends MarriottIntlCorpObj {
 	 * @throws Throwable
 	 */
 	public void CompanystandardsSelectProductGrp(String productGroup, String productName) throws Throwable {
-
 		isElementPresent(CartObj.Current_product_groups, " Current Product Groups page is opened");
-		click(getcompanystandardsproductgroup(productGroup), "Product Group");
+		click(getcompanystandardsproductgroup(productGroup), "Product Group::"+productGroup);
 		if (productName.equals("Field Only")) {
 			click(getCompanyStandardsProductGroupforField(productGroup, productName),
-					"select product from product group");
+					"select product from product group::"+productName);
 		} else {
 
 			click(CommonObj.getCompanyStandardsProductGroup(productGroup, productName),
@@ -1000,7 +1011,7 @@ public class MarriottIntlCorpLib extends MarriottIntlCorpObj {
 	 */
 	public void verifyrequestorname(String Requester_Name) throws Throwable {
 		if (isElementPresent(verifyRequisitortext(Requester_Name), "Requester_Name")) {
-			reporter.SuccessReport("Requester Name::", "" + Requester_Name + " -Is visible On Place Order Page", "");
+			reporter.SuccessReport("Requester Name::", "" + Requester_Name + " -Is visible On Place Order Page", Requester_Name);
 		} else {
 			reporter.failureReport("Requester Name::", "Requester Name is Not Visible", "");
 		}
@@ -1014,8 +1025,7 @@ public class MarriottIntlCorpLib extends MarriottIntlCorpObj {
 	 */
 	public void Verifycustomerreference(String Customer_Reference) throws Throwable {
 		if (isElementPresent(Costumerrefernce(Customer_Reference), "Customer_Reference")) {
-			reporter.SuccessReport("Customer Reference::", "" + Customer_Reference + " -Is visible On Place Order Page",
-					"");
+			reporter.SuccessReport("Customer Reference::", "" + Customer_Reference + " -Is visible On Place Order Page",Customer_Reference);
 		} else {
 			reporter.failureReport("Customer Reference::", "Customer_Reference is Not Visible", "");
 		}
@@ -1029,7 +1039,7 @@ public class MarriottIntlCorpLib extends MarriottIntlCorpObj {
 	 */
 	public void VerifyEnduserText(String End_User_People) throws Throwable {
 		if (isElementPresent(verifyEndusertext(End_User_People), "End_User_People")) {
-			reporter.SuccessReport("End_User_People::", "" + End_User_People + " -Is visible On Place Order Page", "");
+			reporter.SuccessReport("End_User_People::", "" + End_User_People + " -Is visible On Place Order Page",End_User_People);
 		} else {
 			reporter.failureReport("End_User_People::", "End_User_People is Not Visible", "");
 		}
@@ -1044,7 +1054,7 @@ public class MarriottIntlCorpLib extends MarriottIntlCorpObj {
 	public void verifyapprovingmanageremail(String Approving_Manager) throws Throwable {
 		if (isElementPresent(Approvingmanagermeail(Approving_Manager), "Approving_Manager_Email")) {
 			reporter.SuccessReport("Approving_Manager_Email::",
-					"" + Approving_Manager + " - Is visible On Place Order Page", "");
+					"" + Approving_Manager + " - Is visible On Place Order Page", Approving_Manager);
 		} else {
 			reporter.failureReport("Approving_Manager_Email::", "Approving_Manager_Email is Not Visible", "");
 		}
@@ -1058,7 +1068,7 @@ public class MarriottIntlCorpLib extends MarriottIntlCorpObj {
 	 */
 	public void verifyEnduseremail(String End_User_Email) throws Throwable {
 		if (isElementPresent(Enduseremail(End_User_Email), "End_User_Email")) {
-			reporter.SuccessReport("End_User_Email::", "" + End_User_Email + " - Is visible On Place Order Page", "");
+			reporter.SuccessReport("End_User_Email::", "" + End_User_Email + " - Is visible On Place Order Page", End_User_Email);
 		} else {
 			reporter.failureReport("End_User_Email::", "End_User_Email is Not Visible", "");
 		}
@@ -1072,7 +1082,7 @@ public class MarriottIntlCorpLib extends MarriottIntlCorpObj {
 	 */
 	public void verifynonirfapc(String Non_IRFA_PC) throws Throwable {
 		if (isElementPresent(nonirfapc(Non_IRFA_PC), "Non_IRFA_PC")) {
-			reporter.SuccessReport("Non_IRFA_PC::", "" + Non_IRFA_PC + " - Is visible On Place Order Page", "");
+			reporter.SuccessReport("Non_IRFA_PC::", "" + Non_IRFA_PC + " - Is visible On Place Order Page",Non_IRFA_PC);
 		} else {
 			reporter.failureReport("Non_IRFA_PC::", "Non_IRFA_PC is Not Visible", "");
 		}
@@ -1087,7 +1097,7 @@ public class MarriottIntlCorpLib extends MarriottIntlCorpObj {
 	public void verifyenduserdiv(String PC_End_User_Div_Unit_Dept) throws Throwable {
 		if (isElementPresent(enduserdiv(PC_End_User_Div_Unit_Dept), "End_User_Div_Unit_Dept")) {
 			reporter.SuccessReport("End_User_Div_Unit_Dept::",
-					"" + PC_End_User_Div_Unit_Dept + " - Is visible On Place Order Page", "");
+					"" + PC_End_User_Div_Unit_Dept + " - Is visible On Place Order Page",PC_End_User_Div_Unit_Dept);
 		} else {
 			reporter.failureReport("End_User_Div_Unit_Dept::", "End_User_Div_Unit_Dept is Not Visible", "");
 		}

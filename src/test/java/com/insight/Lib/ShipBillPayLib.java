@@ -541,8 +541,6 @@ public class ShipBillPayLib extends ShipBillPayObj {
 		if(isElementPresent(OrderObj.ADDRESS_VALIDATION_WINDOW_HDR, "Address validation popup")){
 			click(OrderObj.SAVE_ADDRESS_BTN, "Save address button");
 			Thread.sleep(2000);
-			click(OrderObj.CONTINUE_BTN, "Continue button of Shipping options");// clicking continue in Shipping options
-
 			}
 		}
 	}
@@ -551,19 +549,21 @@ public class ShipBillPayLib extends ShipBillPayObj {
 		isVisibleOnly(OrderObj.SHIPPING_ADDRESS, "Shipping Address");
 		if (isElementPresent(CREATEDADDRES(Company), "Created Address")) {
 			String Addres=getText(SHIPPING_ADDRES,"Shiping address").trim();
-			String Addres1=getText(SHIPPING_ADDRESES,"Shiping address").trim();
-			String Addres2=getText(SHIPPING_ADDRESESSECONDLINE,"Shiping address").trim();
-			reporter.SuccessReport("Verify created address ", "Creted Address Is Verified successfully", Company+Addres+Addres1+Addres2);
+			//String Addres1=getText(SHIPPING_ADDRESES,"Shiping address").trim();
+			//String Addres2=getText(SHIPPING_ADDRESESSECONDLINE,"Shiping address").trim();
+			reporter.SuccessReport("Verify created address ", "Creted Address Is Verified successfully", Company+ Addres);
 		} else {
 			reporter.failureReport("New Address Is Not Created", "New Address Is Not Created", "");
 		}
 	}
 	public void VerifyDefualtSoldtoAddress(String Company) throws Throwable {
+		Thread.sleep(4000);
 		if (isVisibleOnly(CREATEDADDRES(Company), "Sold-To Shipping Address")) {
+			Thread.sleep(4000);
 			String Addres=getText(SHIPPING_ADDRES,"Shiping address").trim();
-			String Addres1=getText(SHIPPING_ADDRESES,"Shiping address").trim();
-			String Addres2=getText(SHIPPING_ADDRESESSECONDLINE,"Shiping address").trim();
-			reporter.SuccessReport("Verify Sold-To Shipping Address", "Sold-To Shipping Address", "COMPANY::"+Company+Addres+Addres1+Addres2);
+			//String Addres1=getText(SHIPPING_ADDRESES,"Shiping address").trim();
+			//String Addres2=getText(SHIPPING_ADDRESESSECONDLINE,"Shiping address").trim();
+			reporter.SuccessReport("Verify Sold-To Shipping Address", "Sold-To Shipping Address", "ADDRESS ::"+Company +Addres);
 		} else {
 			reporter.failureReport("Verify Sold-To Shipping Address", "Sold-To Shipping Address", "");
 		}
@@ -1172,6 +1172,8 @@ public class ShipBillPayLib extends ShipBillPayObj {
 			click(search_Button,"Search Button");
 			Thread.sleep(3000);
 			click(CANCELBUTTON_STOREDADDRESS, "Cancle Button on search shipping address page");
-
+		}
+		public void clickStockOnly()throws Throwable{
+			click(STOCKONLY_SEARCHRESULTS,"Stock Only");
 		}
 }

@@ -64,6 +64,10 @@ public class EUF05_FCTWebEndUserCreateCoPassEndUserTest extends EndUserFeaturesL
 						cmtLib.manageUsers();
 						cmtLib.clickAddNewUserLink();
 						cmtLib.selectUserTypeDropdown(data.get("User_Type"));
+						
+						cmtLib.enterUserName("TU_IUSAdmin");
+						cmtLib.verifyAvailabiltyOfUserName("TU_IUSAdmin");
+						
 						String userName=getRandomNumeric(4);
 						cmtLib.enterUserName("QTPTest"+userName);
 						String userName1=getRandomNumeric(4);
@@ -71,8 +75,12 @@ public class EUF05_FCTWebEndUserCreateCoPassEndUserTest extends EndUserFeaturesL
 						cmtLib.verifyAvailabiltyOfUserName(userID);
 						cmtLib.clickCreateUserButton();
 //This Method is to validate existing user error message
-
-						cmtLib.verifyUserNotExistMessage(userID);
+						
+						cmtLib.selectUseTheCustomizedPermissionBelowRadioButton();
+						cmtLib.unCheckEditContactInformationCheckBox();
+						cmtLib.clickOnUpdateUser();
+						
+						//cmtLib.verifyUserNotExistMessage(userID);
 						
 						cmtLib.setPermissions(data.get("Menu_Name"),data.get("Set_Permission"));
 						cmtLib.clickInformationTab(data.get("Information_Tab"));
@@ -102,6 +110,8 @@ public class EUF05_FCTWebEndUserCreateCoPassEndUserTest extends EndUserFeaturesL
 						cmtLib.searchUsers(userNameEntered);
 						cmtLib.verifyUserandClick(firstName+" "+lastName);
 						cmtLib.verifyPermissions(data.get("Menu_Name"), data.get("Set_Permission"));
+						cmtLib.unCheckEditContactInformationCheckBox();
+
 						cmtLib.logoutSite();
 					} catch (Exception e) {
 						ReportStatus.blnStatus = false;

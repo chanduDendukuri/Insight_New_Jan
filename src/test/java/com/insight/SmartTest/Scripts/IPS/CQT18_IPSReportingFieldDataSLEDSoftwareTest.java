@@ -107,7 +107,7 @@ public class CQT18_IPSReportingFieldDataSLEDSoftwareTest extends HomeLib {
 		        clickOnSaveorderwithoutAttchment();
 		       
 		        String OrderNumber = GetSubjectlinevalue();
-		        CloseButtonofOutputform();
+		        CloseButtonofOutputform(); 
 		        String QN =GetQuoteNumber();
 		        if(OrderNumber.contains(QN))
 		        	System.out.println("OrderNumber displayed");

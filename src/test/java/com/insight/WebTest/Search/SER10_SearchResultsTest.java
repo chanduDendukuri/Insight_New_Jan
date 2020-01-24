@@ -101,7 +101,7 @@ public class SER10_SearchResultsTest extends SearchLib {
 					selectManufacturerFiter(data.get("Manufacturer2"),data.get("Mfr_Heading1"));
 					verifyFilterBreadCrumb(data.get("Manufacturer2"));
 					String Mfr2ProductsCount=getProductCount();
-					// have to verify again -- Lakshmi ----###############
+					
 					if(Integer.valueOf(Mfr2ProductsCount)<Integer.valueOf(initialCount)) {
                     	reporter.SuccessReport("Verify product count", "Search Results count less than previous count", "Count: "+Mfr2ProductsCount);
 					}else {

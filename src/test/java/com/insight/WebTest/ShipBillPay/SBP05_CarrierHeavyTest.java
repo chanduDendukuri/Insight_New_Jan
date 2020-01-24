@@ -86,29 +86,34 @@ public class SBP05_CarrierHeavyTest extends ShipBillPayLib{
 				orderLib.shippingOptionsCarrierSelection();
 				orderLib.billingAddressContinueButton();
 				orderLib.selectPaymentMethod(data.get("Payment_method"));
-				shipbLib.verifyShippingCarrierAFterReviewOrder(data.get("Shiping_Carrier_Verify"));
+				shipbLib.verifyShippingCarrierAFterReviewOrder(data.get("Shiping_Carrier_Verify1"));
 				String summaryAmount = cartLib.getSummaryAmountInCart();
 				orderLib.placeOrderAndVerifyReceiptOrderAndDate(summaryAmount);
 				shipbLib.clickOrderDetailsButtonInREceipt();
-				shipbLib.verifyShippingCarrierAFterReviewOrder(data.get("Shiping_Carrier_Verify"));
 				commonLib.clickLogOutLink(data.get("Logout_Header"));
 				//Login 
 				cmtLib.navigateBackToCMT();
 				commonLib.clickCheckOutSettings(data.get("Check_out_Settings"));
 				commonLib.selectOptionInCheckoutSettings(data.get("Shipping_Options"));
 				//CESV 
-				cmtLib.selectParticularDesignatedShippingOption(data.get("Carrier2"));
+				//String[] carriers2 = data.get("Carrier2").split(",");
+				//for (i = 0; i < permissions.length; i++) {
+					//cmtLib.verifySetPermissions( carriers2[i]);
+				//}
+				cmtLib.selectParticularDesignatedShippingOption(data.get("UPS"));
 				commonLib.clickOnUpdateButtonInUserSettings();
 				cmtLib.clickOnloginAs();
 				switchToChildWindow();
 				commonLib.searchProduct(data.get("Search_Item1"));
+				clickStockOnly();
 				commonLib.addToCartAndVerify();
 				canadaLib.continueToCheckout();
 				orderLib.proceedToCheckout();
 				cartLib.clickOnContinueButtonInAddInformtion();
 				orderLib.clickContinueOnLineLevelInfo();
 				orderLib.shippingBillPayContinueButton();
-				cartLib.verifyCarriers(data.get("Carrier2"),data.get("UPS"));
+				Thread.sleep(4000);
+				cartLib.verifyCarriers(data.get("Carriers1"),data.get("UPS"));
 				cartLib.selectCarrier(data.get("PGL"));
 				orderLib.shippingOptionsCarrierSelection();
 				orderLib.billingAddressContinueButton();
