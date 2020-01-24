@@ -3830,7 +3830,7 @@ public float getSellPriceFromInlineItemsContract(String contractid) throws Throw
 		
 			
 			for(int j=0;j<expecetedTypeCode.length;j++) {
-			label:
+			label :
 			//for (i = size; i != 0; i++)
 					for (i = count; i != 0; i++)
 			{
@@ -3844,7 +3844,7 @@ public float getSellPriceFromInlineItemsContract(String contractid) throws Throw
 			}
 				else {
 					reporter.failureReport("Pricing Id", "Pricing value is not displaying", "", driver);
-					break;
+					break label2;
 				}
 				
 					
