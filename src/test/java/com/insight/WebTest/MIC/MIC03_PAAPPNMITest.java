@@ -65,10 +65,10 @@ public class MIC03_PAAPPNMITest extends MarriottIntlCorpLib{
 					handleinsightpopup();
 					// verify qunatitiy price partnum
 					Verifypartnum(data.get("Verifypart"));
-				//	setQuantityAddProductMIC03(data.get("VerifyQty"),data.get("Verifypart"));
+					setQuantityAddProductMIC03(data.get("VerifyQty"),data.get("Verifypart"));
 					clickOnViewCart();	
 					Thread.sleep(3000);
-					//Verifypartnum(data.get("Verifypart"));
+					Verifypartnum(data.get("Verifypart"));
 					cartLib.verifyItemInCart(data.get("Verifypart"));
 					Thread.sleep(3000);
 					SelectCPPFRomAccounttools(data.get("Tools_Menu"),data.get("Tools_Menu_DD"),data.get("CPG2"), data.get("SelectCP2"));
