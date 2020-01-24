@@ -78,7 +78,19 @@ public class MarriottIntlCorpLib extends MarriottIntlCorpObj {
 		click(CommonObj.getCompanyStandardsProductGroup(productGroup, productName),
 				"select product from product group"+productName);
 	}
-
+	/**
+	 * This method is to verify Company standards link
+	 * 
+	 * 
+	 * @throws Throwable
+	 */
+	public void CompanystandardslinkandProductGrpWithbtg(String productGroup, String productName) throws Throwable {
+		click(COMPANYSTANDARDS_PAGELINK, "Company Standards PageLink");
+		isElementPresent(CartObj.Current_product_groups, " Current Product Groups page is opened");
+		click(getcompanystandardsproductgroup(productGroup), "Product Group"+productGroup);
+		click(CommonObj.getCompanyStandardsProductGroupWithBtag(productGroup, productName),
+				"select product from product group"+productName);
+	}
 	/**
 	 * This method is to verify pratNum in Company standards Page
 	 * 
@@ -441,9 +453,9 @@ public class MarriottIntlCorpLib extends MarriottIntlCorpObj {
 
 	public void setQuantityForLenovo(String value) throws Throwable {
 
-		waitForVisibilityOfElement(PRODUCTQTY_LENOVO, " Quantity");
+		waitForVisibilityOfElement(PRODUCTQTY_LENOVO, " Quantity of Product 20LAS0E900-MI");
 
-		if (isElementPresent(PRODUCTQTY_LENOVO, "Quantity")) {
+		if (isElementPresent(PRODUCTQTY_LENOVO, "Quantity of Product 20LAS0E900-MI")) {
 
 			click(PRODUCTQTY_LENOVO, "Qunatity");
 
@@ -963,7 +975,6 @@ public class MarriottIntlCorpLib extends MarriottIntlCorpObj {
 	 * @throws Throwable
 	 */
 	public void CompanystandardsSelectProductGrp(String productGroup, String productName) throws Throwable {
-
 		isElementPresent(CartObj.Current_product_groups, " Current Product Groups page is opened");
 		click(getcompanystandardsproductgroup(productGroup), "Product Group::"+productGroup);
 		if (productName.equals("Field Only")) {

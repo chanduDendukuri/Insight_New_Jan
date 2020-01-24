@@ -214,6 +214,7 @@ public static By EDIT_LINK=By.xpath("//h3[contains(text(),'Shipping address')]/f
 public static By SHIPPING_ADDRES=By.xpath("//p[@id='iw-checkout__address-section-selected-address']");
 public static By SHIPPING_ADDRESES=By.xpath("//p[@id='iw-checkout__address-section-selected-address']/br[1]");
 public static By SHIPPING_ADDRESESSECONDLINE=By.xpath("//p[@id='iw-checkout__address-section-selected-address']/br[2]");
+public static By STOCKONLY_SEARCHRESULTS=By.xpath("//div[@class='filter-item js-filter-item']/a[@class='button call-to-action']");
 
 
 
