@@ -16,7 +16,7 @@ public class ProductDisplayInfoLib extends productsDisplayInfoObj {
 	CommonLib commonLib = new CommonLib();
 	CartLib cartLib = new CartLib();
 	OrderLib orderLib = new OrderLib();
-
+    CanadaLib canadaLib=new CanadaLib();
 	/**
 	 * This method is to fill the Product Research Request details and submit it
 	 * and verify the success message.
@@ -568,6 +568,7 @@ public class ProductDisplayInfoLib extends productsDisplayInfoObj {
 				.replace("\"", "").replace("Mfr. #", "").trim();
 		commonLib.addToCartAndVerify();
 		orderLib.continueToCheckOutOnAddCart();
+		canadaLib.verifyPlaceCartLabel();
 		cartLib.verifyItemInCartByInsightPart(prodMfrNumber);
 	}
 	
@@ -1300,6 +1301,20 @@ public class ProductDisplayInfoLib extends productsDisplayInfoObj {
 		}
 	 }
  }
+	
+	/**
+	 * Method is to enter quantity
+	 * @param quantity
+	 * @throws Throwable
+	 */
+	public void enterQuantityOnProductDetailsPage(String quantity) throws Throwable {
+		if(isVisibleOnly(QUANTITY, "QUANTITY")) {
+			typeOnly(QUANTITY, quantity, "quantity");
+		}else {
+			reporter.failureReport("verify quantity exists", "Quantity field does not exists", "", driver);
+		}
+		
+	}
 		
 }
   

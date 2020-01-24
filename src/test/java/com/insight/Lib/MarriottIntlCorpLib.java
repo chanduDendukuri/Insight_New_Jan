@@ -116,7 +116,7 @@ public class MarriottIntlCorpLib extends MarriottIntlCorpObj {
 	public void VerifypartPrice(String partprice) throws Throwable {
 		waitForVisibilityOfElement(VERIFYPRICE(partprice), "Price of Partnum in Selected Product group");
 		if (isElementPresent(VERIFYPRICE(partprice), "PartPrice")) {
-			reporter.SuccessReport("Price::", "Price of PartNum in Selected Product group " + partprice + "", "");
+			reporter.SuccessReport("Price::", "Price of PartNum in Selected Product group " + partprice + "", partprice);
 
 		} else {
 			reporter.failureReport("Price of PartNum in Selected Product group",
@@ -133,10 +133,10 @@ public class MarriottIntlCorpLib extends MarriottIntlCorpObj {
 	 */
 	public void Setquantity( String PartNum,String value) throws Throwable {
 		if (isElementPresent(getQuantityOfPart(PartNum), "Part Quantity")) {
-			click(getQuantityOfPart(PartNum), "Qunatity");
+			click(getQuantityOfPart(PartNum), "Qunatity of "+PartNum);
 			type(getQuantityOfPart(PartNum), value, "Qunatity");
 			reporter.SuccessReport("Quantity of PartNum in Selected Product group",
-					"Qunatity of PartNum in Selected Product group Is updated to::" + value + "", "");
+					"Qunatity of "+PartNum+" in Selected Product group Is updated to::" + value + "", "");
 
 		} else {
 			reporter.failureReport("Quantity of  PartNum in Selected Product group",
@@ -706,7 +706,7 @@ public class MarriottIntlCorpLib extends MarriottIntlCorpObj {
 
 		if (isElementPresent(BILLING_ATTENTION, "Bill Attention")) {
 
-			click(BILLING_ATTENTION, "Quickshop");
+			click(BILLING_ATTENTION, "Bill Attention");
 
 			type(BILLING_ATTENTION, billAttention, "Billing Attention");
 
@@ -1227,5 +1227,22 @@ public class MarriottIntlCorpLib extends MarriottIntlCorpObj {
 		} else {
 			reporter.failureReport("Switch to Account", "Unable to Switch To Gitve Account", "");
 		}
+	}
+	public void setQuantityAddProductMIC03(String value, String PartNum) throws Throwable {
+		if (isElementPresent(getQuantityOfPart(PartNum), "Part Quantity "+PartNum)) {
+			click(getQuantityOfPart(PartNum), "Qunatity");
+			type(getQuantityOfPart(PartNum), value, "Qunatity");
+			reporter.SuccessReport("Quantity of PartNum in Selected Product group",
+					"Qunatity of "+PartNum+" in Selected Product group Is updated to" + value + "", "");
+
+		} else {
+			reporter.failureReport("Quantity of  PartNum in Selected Product group",
+					"PartNum in Selected Product group is Not Visible", "");
+		}
+		click(ADDPMI(PartNum), "Check BoX to Add Product");
+		waitForVisibilityOfElement(CommonObj.ADD_TO_ORDER, "ADD To Order Button is Clicked");
+		click(CommonObj.ADD_TO_ORDER, "ADD To Order Button is Clicked");
+
+		waitForVisibilityOfElement(ADDTOCARTDAILOGUE_BOX, "Item Added To cart");
 	}
 }

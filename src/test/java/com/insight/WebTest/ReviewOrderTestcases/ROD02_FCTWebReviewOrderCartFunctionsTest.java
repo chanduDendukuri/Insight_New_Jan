@@ -18,6 +18,8 @@ public class ROD02_FCTWebReviewOrderCartFunctionsTest extends OrderLib{
 	CommonLib commonLib=new CommonLib();
 	CartLib cartLib=new CartLib();
 	ProductDisplayInfoLib prodLib=new ProductDisplayInfoLib();
+	CanadaLib canadaLib=new CanadaLib();
+
 
 	// #############################################################################################################
 	// #    Name of the Test         : ROD02_FCTWebReviewOrderCartFunctions
@@ -45,34 +47,58 @@ public class ROD02_FCTWebReviewOrderCartFunctionsTest extends OrderLib{
 								.initTestCaseDescription("FCTWebReviewOrderCartFunctions");
 						reporter.SuccessReport("Iteration Number : ",
 								"**************Iteration Number::  " + intCounter + " For:: " + data.get("LoginName") + " ::and:: "
-										+ data.get("Password") + " To Validate::" + data.get("errorMessage") + "  **************",
-								"");
-
+										+ data.get("Password") + " To Validate::" + data.get("errorMessage") + "  **************","");
 
 						// Login to CMT tool and enable permission : Enable Crosssell
 						cmtLib.loginToCMTSetPermissions(data.get("Header"), data.get("WebGrp"), data.get("WebGrp_Name"), data.get("Manage_Web_Grp_Options"), data.get("LnameEmailUname"), data.get("ContactName"),data.get("Menu_Name"), data.get("Set_Permission"));
 
 						// Login As To UAT Web
 						searchLib.searchInHomePage(data.get("SearchText1"));
+						// Stock only
+						searchLib.removeTheFilterForInStockOnly(data.get("In_Stock_Only"));
+						prodInfoLib.verifyTheManufacturerNumberInProductDetailsPage(data.get("SearchText1"));
+						prodInfoLib.enterQuantityOnProductDetailsPage(data.get("Quantity"));
 						commonLib.addToCartAndVerify();
-						continueToCheckOutAddWarrantyAndVerifyTheCart(data.get("Warrenty_Part_Number"));
-						cartLib.verifyItemAddedInCartByMfrNumber(data.get("SearchText1"));
-
-						// Searching for second item
-						searchLib.searchInHomePage(data.get("SearchText2"));
-						searchLib.verifyTheResultsForSearchTerm(data.get("SearchText2"));
-						commonLib.addFirstDisplyedItemToCartAndVerify();
 						continueToCheckOutOnAddCart();
-						proceedToCheckout();
-						addAdditionalInformation(data.get("Url"), data.get("RP_HDL_Txt"), data.get("WG_HDL_Txt"), data.get("Additional_Notes"), data.get("Invoice_Notes"));
-						addLineLevelInformation(data.get("RP_LNL_Txt"), data.get("WG_LNL_Txt"));
-						shippingBillPay(data.get("Card_Number").toString(), data.get("Card_Name"), data.get("Month"), data.get("Year"),data.get("PONumber"),data.get("POReleaseNumber"));
+						canadaLib.verifyPlaceCartLabel();
+						cartLib.verifyItemAddedInCartByMfrNumber(data.get("SearchText1"));
+						prodInfoLib.verifyCartPageAndPartDetails();
+						addWarrantyInCartPage();
 
-						//Navigate Back To CMT >>  Disable Crosssell and Enable Insight License View .
-						cmtLib.navigateBackToCMT();
-						cmtLib.setPermissionsToDisable(data.get("Menu_Name"), data.get("Set_Permission")); // Disable Crosssell
-						//fnCloseTest();
-						System.out.println("Test completed");
+						// Searching for second item  -- 20HD0068US
+						searchLib.searchInHomePage(data.get("SearchText2"));
+						// Stock only
+						searchLib.removeTheFilterForInStockOnly(data.get("In_Stock_Only"));
+						prodInfoLib.verifyTheManufacturerNumberInProductDetailsPage(data.get("SearchText2"));
+						prodInfoLib.enterQuantityOnProductDetailsPage(data.get("Quantity"));
+						commonLib.addToCartAndVerify();
+						continueToCheckOutOnAddCart();
+						canadaLib.verifyPlaceCartLabel();
+						cartLib.verifyItemAddedInCartByMfrNumber(data.get("SearchText1"));
+						int itemnumber1=Integer.valueOf(data.get("Item_Number1"));
+						verifyCartPageAndPartDetails(itemnumber1);
+						
+						// Think pads
+						searchLib.searchInHomePage(data.get("SearchText3"));
+						searchLib.verifyTheResultsForSearchTerm(data.get("SearchText3"));
+						// in-stock filter verification
+						searchLib.verifyFilterBreadCrumb(data.get("In_Stock_Only"));
+						prodInfoLib.getFirstProdDescription();
+						prodInfoLib.selectFirstProductAddToCartAndVerifyCart();
+						int itemnumber2=Integer.valueOf(data.get("Item_Number2"));
+						verifyCartPageAndPartDetails(itemnumber2);
+						proceedToCheckout();
+						cartLib.clickOnContinueButtonInAddInformtion();
+						clickContinueOnLineLevelInfo();
+						clickContinueOnShippingAddress();
+						enterAttentionField( data.get("Card_Name"));
+						shippingOptionsCarrierSelection();
+						billingAddressContinueButton();
+						selectPaymentInfoMethodCreditCard(data.get("Card_Number").toString(), data.get("Card_Name"), data.get("Month"), data.get("Year"),data.get("PONumber"),data.get("POReleaseNumber"));
+						clickOnReviewOrderButton();
+						verifyPlaceOrderLabel();
+						// LogOut
+						commonLib.clickLogOutLink(data.get("Logout"));
 					} catch (Exception e) {
 						ReportStatus.blnStatus = false;
 						//gErrorMessage = e.getMessage();

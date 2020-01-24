@@ -72,7 +72,6 @@ public class SER06_KeywordSearchTest extends SearchLib {
 					
 					// Monitors
 					searchInHomePage(data.get("SearchText4"));
-					//clickShopAllTypesButton();
 					verifyTheResultsForSearchTerm(data.get("SearchText4"));
 					// in-stock filter verification
 					verifyFilterBreadCrumb(data.get("In_Stock_Only"));

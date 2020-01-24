@@ -372,8 +372,11 @@ public class CartLib extends ActionEngine {
 	 */
 	public void clickOnContinueButtonInAddInformtion() throws Throwable {
 		if (isElementPresent(OrderObj.ORDER_ITEM_INFO_LABEl, "order and inforamtion page")) {
+			reporter.SuccessReport("Verify Line Level/Ship Bill & Pay/Line Level/Place Requisition/Place Order Page", "Order and item information Page loaded", "PageDetails : Order and item information");
 			click(OrderObj.CONTINUE_BTN, "Additional information section Continue button");
 			Thread.sleep(2000);
+		}else {
+			reporter.failureReport("Verify Line Level/Ship Bill & Pay/Line Level/Place Requisition/Place Order Page", "Order and item information Page not loaded", "", driver);
 		}
 	}
 
@@ -1133,7 +1136,7 @@ public class CartLib extends ActionEngine {
 	public void verifyItemInCartByInsightPart(String itemInCart) throws Throwable {
 		waitForVisibilityOfElement(CartObj.getItemIncartByInsightPartNumber(itemInCart), "Item in cart");
 		if (isElementPresent(CartObj.getItemIncartByInsightPartNumber(itemInCart), "part number")) {
-			reporter.SuccessReport("verifying item added to cart :: ", " ITEM ADDED TO CART IS :", itemInCart);
+			reporter.SuccessReport("verifying item added to cart :: ", " Item added to cart Mfr number # is :", itemInCart);
 		} else {
 			reporter.failureReport("verifying item added to cart :: ", "ITEM " + itemInCart + "is not ADDED TO CART",
 					itemInCart, driver);

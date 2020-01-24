@@ -58,6 +58,7 @@ public class MIC01_MIntlUserTest extends MarriottIntlCorpLib {
 					cmtLib.loginToCMT(data.get("Header"));
 					cmtLib.searchForWebGroup(data.get("WebGrp"));
 					cmtLib.clickOnTheWebGroup(data.get("WebGrp_Name"));
+					cmtLib.setCustomerLevelPermissionsOFF(data.get("Customer_Permissions_OFF"));
 					cmtLib.hoverOnManageWebGroupsAndSelectOptions(data.get("Manage_Web_Grp_Options"));
 					cmtLib.searchForaUserAndSelect(data.get("LnameEmailUname"), data.get("ContactName"));
 					cmtLib.clickOnRolesAndPermissionsAndSetPermission(data.get("Menu_Name"),
@@ -86,8 +87,6 @@ public class MIC01_MIntlUserTest extends MarriottIntlCorpLib {
 					orderLib.shippingOptionsCarrierSelection();
 					addBillingInfo(data.get("Bill_Attention"), data.get("Bill_Suite"), data.get("Bill_Phone"));
 					Thread.sleep(3000);
-					orderLib.addNewCardInPayment(data.get("cardNumber"), data.get("cardName"), data.get("month"), data.get("year"),data.get("poNumber"),data.get("POReleaseNumber"));
-					Thread.sleep(8000);
 					termsInPaymentInfo();
 					clickReviewOrder();
 					Thread.sleep(5000);
@@ -106,14 +105,6 @@ public class MIC01_MIntlUserTest extends MarriottIntlCorpLib {
 					verifyPayementInfo(data.get("PAYMENT_TYPE"));
 					Thread.sleep(3000);
 					commonLib.clickLogOutLink(data.get("Logout_Header"));
-					cmtLib.navigateBackToCMT();
-					cmtLib.hoverOverMasterGroupAndSelectChangeGrp();
-					cmtLib.searchForWebGroup(data.get("WebGrp"));
-					cmtLib.clickOnTheWebGroup(data.get("WebGrp_Name"));
-					cmtLib.hoverOnManageWebGroupsAndSelectOptions(data.get("ManageWebGrpOptions"));
-					Thread.sleep(3000);
-					cmtLib.searchForaUserAndSelect(data.get("LnameEmailUname"), data.get("ContactName"));
-					cmtLib.setPermissionsToDisable(data.get("Menu_Name"), data.get("Set_Permission"));
 					System.out.println("Test completed");
 
 				} catch (Exception e) {
