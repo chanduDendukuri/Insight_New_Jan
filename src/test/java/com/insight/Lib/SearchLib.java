@@ -1440,8 +1440,7 @@ public class SearchLib extends CommonObj {
 	public void verifyYourPriceInAllcontractPopup(String contract) throws Throwable {
 		
 		if(isElementPresent(productsDisplayInfoObj.defaultContractRadioButton(contract),"contract label")) {
-		  String label=getText(productsDisplayInfoObj.defaultContractRadioButton(contract),"contract label");
-			reporter.SuccessReport("Verify that "+contract+" exists", contract+ " Exists", label);
+			reporter.SuccessReport("Verify that "+contract+" exists", contract+ " Exists", contract);
 		}else{
 			reporter.failureReport("Verify that "+contract+" exists", contract+ " does not exists", "",driver);
 		}
