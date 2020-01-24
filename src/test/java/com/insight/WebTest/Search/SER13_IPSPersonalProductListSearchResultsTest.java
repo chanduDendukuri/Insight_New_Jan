@@ -70,7 +70,7 @@ public class SER13_IPSPersonalProductListSearchResultsTest extends SearchLib {
 
 					// Back to UAT
 					searchInHomePage(data.get("SearchText"));
-					
+					verifyBreadCrumbInSearchResultsPage(data.get("SearchText"));
 					String prodDesc=prodInfoLib.getFirstProdDescription();
 					Thread.sleep(3000);
 					cartLib.selectFirstProductDisplay();

@@ -52,6 +52,7 @@ public class SER10_SearchResultsTest extends SearchLib {
 					// Servers
 					searchInHomePage(data.get("SearchText2"));
 					verifyTheResultsForSearchTerm(data.get("SearchText2"));
+					removeTheFilterForInStockOnly(data.get("In_Stock"));
 					String initialCount=getProductCount();
 					
 					// Apply in stock filter
@@ -81,15 +82,19 @@ public class SER10_SearchResultsTest extends SearchLib {
 						reporter.failureReport("Verify product count", "Search Results count not less than previous count", "Count: "+mfrCount, driver);
 					}
 					// Core  - Processor / Type
-					selectManufacturerFiter(data.get("Processor"),data.get("Heading2"));
-					verifyFilterBreadCrumb(data.get("Processor"));
+					/*//selectManufacturerFiter(data.get("Processor"),data.get("Heading2"));
+					searchProductInProductDisplayPage(data.get("Processor"));
+					verifyFilterBreadCrumb(data.get("Processor"));*/
+					
+					searchProductInProductDisplayPage(data.get("Keyword_Search"));  // core 
+					verifyFilterBreadCrumb(data.get("Keyword_Search"));
+					
 					
 					// select manufacturer -LENOVO
 					selectManufacturerFiter(data.get("Manufacturer2"),data.get("Mfr_Heading1"));
 					verifyFilterBreadCrumb(data.get("Manufacturer2"));
 					
-					searchProductInProductDisplayPage(data.get("Keyword_Search"));  // core 
-					verifyFilterBreadCrumb(data.get("Keyword_Search"));
+					
 					
 					String coreProductsCount=getProductCount();
 					 if(Integer.valueOf(coreProductsCount)<Integer.valueOf(mfrCount)) {
