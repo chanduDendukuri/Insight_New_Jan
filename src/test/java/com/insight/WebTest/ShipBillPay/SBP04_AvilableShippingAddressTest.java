@@ -65,7 +65,7 @@ public class SBP04_AvilableShippingAddressTest extends ShipBillPayLib{
 				cmtLib.setPermissions(data.get("Menu_Name"), data.get("Set_Permission"));
 				cmtLib.setPermissions(data.get("Menu_Name"), data.get("Set_Permission5"));
 				cmtLib.setPermissions(data.get("Menu_Name"), data.get("Set_Permission6"));
-				//cmtLib.setPermissionsToDisableWithousReport(data.get("Set_Permission2"));
+				cmtLib.setPermissionsToDisableWithoutReport(data.get("Set_Permission2"));
 				// Uncheck all shipping options
 				cmtLib.clickCheckOutSettings(data.get("Check_out_Settings"));
 				cmtLib.selectOptionInCheckoutSettings(data.get("Shipping Addresses"));
@@ -83,6 +83,7 @@ public class SBP04_AvilableShippingAddressTest extends ShipBillPayLib{
 				orderLib.proceedToCheckout();
 				cartLib.clickOnContinueButtonInAddInformtion();
 				orderLib.clickContinueOnLineLevelInfo();
+				Thread.sleep(5000);
 				// verify shipping address
 				VerifyDefualtSoldtoAddress(data.get("SoldToAddress"));
 				clickstoredAddressandVerify(data.get("storedaddress"),data.get("storedaddress"));
@@ -138,11 +139,12 @@ public class SBP04_AvilableShippingAddressTest extends ShipBillPayLib{
 				String companyname3="IUS Created Shipping Adress Canada"+"_"+getRandomNumeric(4);
 				shipbLib.AddNewshippingAddressWithcountry(data.get("link"),companyname3, data.get("street"),
 						data.get("city"), data.get("zipcode"), data.get("state"), data.get("Country"),data.get("Attention"));
-				shipbLib.VerifyCreatedAddress(companyname3);
+				Thread.sleep(5000);
 				Thread.sleep(3000);
 				scrollUp();
 				clickEdit();
 				// Search for the Account Name
+				shipbLib.VerifyCreatedAddress(companyname3);
 				clickstoredAddressandCancle(companyname3);
 				commonLib.clickLogOutLink(data.get("Logout_Header"));
 				// login-4
@@ -165,18 +167,18 @@ public class SBP04_AvilableShippingAddressTest extends ShipBillPayLib{
 				String companyname="IUS Created Shipping Adress Canada"+"_"+getRandomNumeric(4);
 				shipbLib.AddNewshippingAddressWithcountry(data.get("link"),companyname, data.get("street2"),
 						data.get("city2"), data.get("zipcode2"), data.get("state2"), data.get("Country2"),data.get("Attention"));
-				Thread.sleep(3000);
-				shipbLib.VerifyCreatedAddress(companyname);
+				Thread.sleep(5000);
 				scrollUp();
 				clickEdit();
+				shipbLib.VerifyCreatedAddress(companyname);
 				clickstoredAddressandCancle(companyname);
 				String companyname1="IUS Created Shipping Adress Canada"+"_"+getRandomNumeric(4);
 				shipbLib.AddNewshippingAddressWithcountry(data.get("link"),companyname1, data.get("street2"),
 						data.get("city2"), data.get("zipcode2"), data.get("state2"), data.get("Country2"),data.get("Attention"));
-				shipbLib.VerifyCreatedAddress(companyname1);
-				Thread.sleep(3000);
+				Thread.sleep(5000);
 				scrollUp();
 				clickEdit();
+				shipbLib.VerifyCreatedAddress(companyname1);
 				clickstoredAddressandCancle(companyname1);
 				commonLib.clickLogOutLink(data.get("Logout_Header"));
 				// permissions unchek

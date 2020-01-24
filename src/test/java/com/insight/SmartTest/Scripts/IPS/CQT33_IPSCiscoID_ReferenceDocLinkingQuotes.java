@@ -54,7 +54,7 @@ public class CQT33_IPSCiscoID_ReferenceDocLinkingQuotes extends HomeLib {
 						copyAllContractstoAllLines();
 						clickDoneButton();
 						clickUpdateCosting();
-						driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+				
 						//clickSideBarSmart();
 						clickonSaveasQuote();
 						enterCancelButtonInPoupHdr();
@@ -68,13 +68,13 @@ public class CQT33_IPSCiscoID_ReferenceDocLinkingQuotes extends HomeLib {
 						selectDDoptionFromHistoryDD(data.get("HistoryOption"));
 						String QuoteNumberDisplayed= getQuoteNUmFromDocumentFlowPopup(QuoteNum1);
 						String ReferenceNumberDisplayed = getReferenceNUmFromDocumentFlowPopup(data.get("RefNUmber"));
-						if(data.get("RefNUmber")==ReferenceNumberDisplayed){
+						if(data.get("RefNUmber").equals(ReferenceNumberDisplayed)){
 							 reporter.SuccessReport("Doc Ref number in History Document Flow'", "Exists as Expected","");
 						} else {
 							reporter.failureReport("Doc Ref number in History Document Flow'", "Does not Match with Expected", "Actual Doc Ref #:"+data.get("RefNUmber")+"-- Expected Doc Ref#: "+ReferenceNumberDisplayed,driver);
 						
 						}
-						if(QuoteNum1==QuoteNumberDisplayed){
+						if(QuoteNum1.equals(QuoteNumberDisplayed)){
 							 reporter.SuccessReport("Quote number in History Document Flow'", "Exists as Expected","");
 						} else {
 							reporter.failureReport("Quote number in History Document Flow'", "Does not Exist", "Actual Quote #:"+QuoteNum1+"Expected Quote#:"+QuoteNumberDisplayed,driver);
