@@ -100,6 +100,7 @@ public class MIC08_OrderShareMgdMarriottINTLITest extends MarriottIntlCorpLib {
 					addShippingInfo(data.get("Ship_Attention"), data.get("Ship_Suite"), data.get("Ship_Phone"));
 					shippingOptionContinueButton();
 					addBillingInfo(data.get("Bill_Attention"), data.get("Bill_Suite"), data.get("Bill_Phone"));
+					termsInPaymentInfo();
 					orderLib.clickOnReviewOrderButton();
 					Thread.sleep(2000);
 					VerifyBrandidentifier(data.get("Brand_Identifier"));
