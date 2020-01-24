@@ -52,7 +52,7 @@ public class CQT34_IPSBearNonTaxTest extends HomeLib{
 					clickonConXSystem(data.get("ItemNum"));// 000010
 					clickOnContractId(data.get("contactid"));
 					enterTestinReportingField0(data.get("Reprotingfield0text"));
-					enterTestinReportingField1(data.get("Reprotingfield1text"));
+					//enterTestinReportingField1(data.get("Reprotingfield1text"));
 					enterTestinReportingField4(data.get("Reprotingfield4text"));
 				    enterTestinReportingField3(data.get("Reprotingfield3text"));
 					clickDoneButton();
@@ -73,10 +73,26 @@ public class CQT34_IPSBearNonTaxTest extends HomeLib{
 					else {
 						reporter.failureReport("QuoteNumber:", "Quotenumber is not displayed", "",driver);
 					}
+					SwipeUpapplication();
+					clickAdvancedHeaderTab("General");
+					getSpecialOrderType(data.get("TSName"));
+					GetandVerifyQuoteName();
+					clickAdvancedHeaderTab(data.get("Tab"));// Partners
+					String ErateLocationAftersavng = getErateLocation();
+					if(ErateLocationAftersavng.equals(data.get("location"))) {
+						reporter.SuccessReport("ErateLocation", "E-Rate Site Location didn't disappear", "Exists as Expected");
+					}
+					else {
+						reporter.failureReport("ErateLocation", "E-Rate Site Location didn't disappear", "doesn't Exists as Expected");
+							
+					}
+					SwipeUpapplication();
+					clickAdvancedHeader();
+					
 					ClickOnDisplayMode();
 					SwipeUpapplication();
 					SwipeUpapplication();
-					SwipeUpapplication();
+					
 					typePONumber(data.get("PONumber"));// 12345
 					okPopUp();
 					ClickOnConverToOrder();
@@ -85,12 +101,31 @@ public class CQT34_IPSBearNonTaxTest extends HomeLib{
 					clickSaveorderwithoutAttachment();
 					getOrderNum();
 					clickCancel();
+					
+					
+					
+					clickAdvancedHeader();
+					clickAdvancedHeaderTab("General");
+					getSpecialOrderType(data.get("TSName"));
+					GetandVerifyQuoteName();
+					clickAdvancedHeaderTab(data.get("Tab"));// Partners
+					String ErateLocationAftersaveasorder = getErateLocation();
+					if(ErateLocationAftersaveasorder.equals(data.get("location"))) {
+						reporter.SuccessReport("ErateLocation", "E-Rate Site Location didn't disappear", "Exists as Expected");
+					}
+					else {
+						reporter.failureReport("ErateLocation", "E-Rate Site Location didn't disappear", "doesn't Exists as Expected");
+							
+					}
+					SwipeUpapplication();
+					clickAdvancedHeader();
 					// total tax
 					VerifySummaryDataisPresentequaltoZero(data.get("Tax"));
 					
+					clickAdvancedHeader();
 					clickAdvancedHeaderTab("General");
-					verifySpecialOrdertypeisdisabled();
-					String QuoteName = GetQuoteName();
+					getSpecialOrderType(data.get("TSName"));
+					String QuoteName = GetandVerifyQuoteName();
 					if(QuoteName.equals(data.get("Quotename"))) {
 						reporter.SuccessReport("Quote name:", "Quote name is as expected", "");
 					}
@@ -103,8 +138,8 @@ public class CQT34_IPSBearNonTaxTest extends HomeLib{
 					String QuoteNum1 = GetQuoteNumber();
 					clickSideBarSmart();
 					clickClosthedocument(QuoteNum1);
-					//clickYesButtontocloseDocument();				
-					System.out.println("Test completed");
+					clickYesButtontocloseDocument();				
+					System.out.println("Testcase completed");
 					} catch (Exception e) {
 						ReportStatus.blnStatus = false;
 						//gErrorMessage = e.getMessage();

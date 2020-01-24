@@ -47,7 +47,7 @@ public class CQT48_SWEPQuoteTest extends HomeLib {
 				        AddLineItems("material",data.get("Material"),0);
 				        
 				        ClickOnXsymbolunderCon();
-				        selectContractID(data.get("ContractId"));
+				        selectCOntractID(data.get("ContractId"),"");
 				        clickOnCopyContarctToallLineItems();
 				        SearchButton();
 				        EnterUSCOMMember("SPREADSHEET QUOTE USED? (Y/N):",data.get("SPREADSHEETQUOTE"));
@@ -110,7 +110,7 @@ public class CQT48_SWEPQuoteTest extends HomeLib {
 				       System.out.println(Quotnumbr);
 				       clickAdvancedHeader();
 				       Swipedownapplication();
-				       String ActualQuotename = GetQuoteName();
+				       String ActualQuotename = GetandVerifyQuoteName();
 				       getSpecialOrderType(data.get("SpecialOrderType"));
 				       if(ActualQuotename.equals(data.get("QuoteName")))
 				    	   reporter.SuccessReport("QuoteName::","Quotename is displaying as expected","");

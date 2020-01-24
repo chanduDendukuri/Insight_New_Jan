@@ -57,13 +57,13 @@ public class CQT36_IPSContractPricingCiscoCostPlusContractTest extends HomeLib{
 					clickonRightArrowforLineItem();
 					clickonRightArrowforLineItem();
 					getDurationTime(data.get("LineItem4"),data.get("Duration3"));
-					clickOnTabsInLineItemDetailsPopUp(data.get("Tab2"));//Contracts
-					clickOnContractId(data.get("contactid"));
+					clickOnTabsInLineItemDetailsPopUp(data.get("ContractsTab"));//Contracts
+					clickOnContractId(data.get("ContractId"));
 					clickOnCopyContarctToallLineItems();
 					clickYesButtontocloseDocument();
 					clickDoneButton();
 					clickUpdateCosting();
-					driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+					
 					//clickSideBarSmart();
 					clickonSaveasQuote();
 					enterCancelButtonInPoupHdr();
@@ -76,55 +76,74 @@ public class CQT36_IPSContractPricingCiscoCostPlusContractTest extends HomeLib{
 					}
 					clickonConXSystem(data.get("LineItem1"));//000010
 					clickOnTabsInLineItemDetailsPopUp(data.get("Tab3"));//Pricing
+					String Quantity = getQuantityfromItemDetails();
+					float qty = Float.parseFloat(Quantity);
+					
+					List<String> Rate = new ArrayList<>();
+					int a = Integer.parseInt(data.get("Value2"));
+					Rate = getRateValueFromPricingTab(data.get("idValue"), data.get("ExpRate"), a);
+					System.out.println(Rate.size());
+					 String	Rate1="";
+					 String	Rate2="";
+					 String	Rate3="";
+	                   
+	                    float Rate1value = 0,Rate2value =0,Rate3value=0;
+	                    for(int b =0;b<Rate.size();b++){
+	                    	if(b==0){ //ZP00--0
+	                    		Rate1 = Rate.get(b);
+	                    	 String R1 = Rate1.replace(",", "");
+	                    	 Rate1value = Float.parseFloat(R1);
+	                         
+	                    	}
+	                    	if(b==1){  // Z0RC--1
+	                    		Rate2 = Rate.get(b);
+	                            String R2 = Rate2.replace(",", "");
+	                            Rate2value = Float.parseFloat(R2);
+	                    	}
+	                    	if(b==2){   // YP00--2
+	                    		Rate3 = Rate.get(b);
+	                            String R3 = Rate3.replace(",", "");
+	                            Rate3value = Float.parseFloat(R3);
+	                    	}
+	                    	
+	                    }
+	                    ClickonRefreshbuttonInItemdetails();
+	                    clickDoneButton();
+	                    clickonConXSystem(data.get("LineItem1"));//000010
+						clickOnTabsInLineItemDetailsPopUp(data.get("Tab3"));//Pricing
 					// Get data from the pricing tab
 					List<String> Price = new ArrayList<>();
-					int a= Integer.parseInt(data.get("Value"));
-					//Price = getPriceValueFromPricingTab(data.get("idValue"), data.get("expValue"),a);// ZPLS--0
+					int a1= Integer.parseInt(data.get("Value1"));
+					Price = getPriceValueFromPricingTab(data.get("idValue"), data.get("expValue"),a1);// YMSM--0
                     System.out.println(Price.size());
                     String	Price1="";
-                    String	Price2="";
-                    String	Price3="";
-                    String	Price4="";
                    
-                    float price1value = 0, price2value =0,price3value =0,price4value = 0;
-                    for(int b =0;b<Price.size();b++){
-                    	if(b==0){ //YIPR--0
-                    	 Price1 = Price.get(b);
+                    float price1value = 0;
+                    for(int b1 =0;b1<Price.size();b1++){
+                    	if(b1==0){ //YMSM--0
+                    	 Price1 = Price.get(b1);
                     	 String P1 = Price1.replace(",", "");
                          price1value = Float.parseFloat(P1);
                          
                     	}
-                    	if(b==1){  // ZPFX--1
-                            Price2 = Price.get(b);
-                            String P2 = Price2.replace(",", "");
-                            price2value = Float.parseFloat(P2);
-                    	}
-                    	if(b==2){   // YP00--2
-                            Price3 = Price.get(b);
-                            String P3 = Price3.replace(",", "");
-                            price3value = Float.parseFloat(P3);
-                    	}
-                    	if(b==3){    // ZP00--3
-                           Price4 = Price.get(b);
-                           String P4 = Price4.replace(",", "");
-                           price4value = Float.parseFloat(P4);
-                    	}
-                    	
-                    }
+                    }	
 					// Need to compare pricing
 					clickDoneButton();
-					VerifyZ0RCPlusYMSMShouldbeEqualToZP00(price1value,price2value,price3value);
-					VerifyZ0RCPlusYMSMShouldbeEqualToYP00(price1value,price2value,price4value);
+					float expectedvalue = getexpectedvalue(Rate2value,price1value,qty);
+					VerifyZP00equalToExpectedval(Rate1value,expectedvalue);
+					VerifyYP00equalToExpectedval(Rate3value,expectedvalue);
 					clickSideBarSmart();
 					clickClosthedocument(QuoteNum);
-					System.out.println("Test completed");
+					System.out.println("Testcase completed");
+					
 				} catch (Exception e) {
 					ReportStatus.blnStatus = false;
 					//gErrorMessage = e.getMessage();
 					gTestStatus = false;
 				}
 			}
-		} catch (Exception e) {
+		} 
+			catch (Exception e) {
 			e.printStackTrace();
 			ReportStatus.blnStatus = false;
 			//gErrorMessage = e.toString();
@@ -139,6 +158,5 @@ public class CQT36_IPSContractPricingCiscoCostPlusContractTest extends HomeLib{
 			ReportControl.fnNextTestJoin(nextTestJoin);
 		}
 	}
+}	
 
-
-}

@@ -69,7 +69,9 @@ public class CQT33_IPSCiscoID_ReferenceDocLinkingQuotes extends HomeLib {
 						String QuoteNumberDisplayed= getQuoteNUmFromDocumentFlowPopup(QuoteNum1);
 						String ReferenceNumberDisplayed = getReferenceNUmFromDocumentFlowPopup(data.get("RefNUmber"));
 						if(data.get("RefNUmber").equals(ReferenceNumberDisplayed)){
-							 reporter.SuccessReport("Doc Ref number in History Document Flow'", "Exists as Expected","");
+							 reporter.SuccessReport("Actual Doc Ref number", "Actual Doc",data.get("RefNUmber"));
+								
+							 reporter.SuccessReport("Doc Ref number in History Document Flow'", "Exists as Expected",ReferenceNumberDisplayed);
 						} else {
 							reporter.failureReport("Doc Ref number in History Document Flow'", "Does not Match with Expected", "Actual Doc Ref #:"+data.get("RefNUmber")+"-- Expected Doc Ref#: "+ReferenceNumberDisplayed,driver);
 						
@@ -83,7 +85,7 @@ public class CQT33_IPSCiscoID_ReferenceDocLinkingQuotes extends HomeLib {
 						closeDocumenflowpopup();
 						clickSideBarSmart();
 						clickClosthedocument(QuoteNum1);
-						//clickYesButtontocloseDocument();	
+						clickYesButtontocloseDocument();	
 						System.out.println("Test completed");
 					}  catch (Exception e) {
 						ReportStatus.blnStatus = false;

@@ -133,7 +133,7 @@ public class CQT32_IPSERateTaxTest extends HomeLib {
 						System.out.println("Special oprdert type is as expected");
 					else
 						System.out.println("Special oprdert type is not as expected");
-					String QuoteName = GetQuoteName();
+					String QuoteName = GetandVerifyQuoteName();
 					if (QuoteName.equals(Eratevalues[1]))
 						System.out.println("QuoteName is as expected");
 					else

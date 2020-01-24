@@ -53,7 +53,7 @@ public class CQT20_IPSCiscoIDSmartnetCoverageValidationTest extends HomeLib {
 		        clickLineItemHeaderTab("Acquire Estimate/Quote");
 		        enterEstimateId(data.get("Material"));
 		        SearchButton();
-		        loadingSymbol();
+		        VerifyXconsymbolispresentforallthematerials(data.get("ItemNum1"));
 		        ClickOnXsymbolunderCon();
 		        //SelectContractId(2);
 		        selectCOntractID(data.get("ContractId"), data.get("ContractTabName"));
