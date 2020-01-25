@@ -1076,8 +1076,14 @@ public class CartLib extends ActionEngine {
 	 */
 	public void ClickExportCartAndVerify(String orderUtilities,String sheetName,String rownum,String headers) throws Throwable {
 		scrollUp();
-		mouseClick(CartObj.getShoppingCartOrderUtilities(orderUtilities), "Export as a file");
-		verifyExportFile(sheetName,rownum,headers);
+		if(isVisibleOnly(CartObj.getShoppingCartOrderUtilities(orderUtilities), "order utilities")) {
+			reporter.SuccessReport("Verify order utilities exists", "order utilities exits", "Order Utilities List");
+			mouseClick(CartObj.getShoppingCartOrderUtilities(orderUtilities), "Export as a file");
+			verifyExportFile(sheetName,rownum,headers);
+		}else {
+			reporter.failureReport("Verify order utilities exists", "order utilities does not exits", "", driver);
+		}
+		
 
 	}
 
@@ -1837,7 +1843,7 @@ public class CartLib extends ActionEngine {
 		List<String> acutalContent = Arrays.asList(columnHeaders.split(","));
 		System.out.println("Compare content" + downloadedExcelContent.equals(acutalContent));
 		if (downloadedExcelContent.equals(acutalContent)) {
-			reporter.SuccessReport(columnHeaders, columnHeaders+ " are avilable", "");
+			reporter.SuccessReport(columnHeaders,  "columns are avilable in exportCart.xls", "columns: "+columnHeaders);
 		} else {
 			reporter.failureReport(columnHeaders, columnHeaders+ " are not avilable", "", driver);
 		}

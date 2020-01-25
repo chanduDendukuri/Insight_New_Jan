@@ -18,6 +18,7 @@ public class ROD04_FCTWebReviewOrderOrderUtilitiesTest extends OrderLib{
 	CommonLib commonLib=new CommonLib();
 	CartLib cartLib=new CartLib();
 	ProductDisplayInfoLib prodLib=new ProductDisplayInfoLib();
+	CanadaLib canadaLib=new CanadaLib();
 
 	// #############################################################################################################
 	// #    Name of the Test         : ROD04_FCTWebReviewOrderOrderUtilities
@@ -45,85 +46,84 @@ public class ROD04_FCTWebReviewOrderOrderUtilitiesTest extends OrderLib{
 								.initTestCaseDescription("FCTWebReviewOrderOrderUtilities");
 						reporter.SuccessReport("Iteration Number : ",
 								"**************Iteration Number::  " + intCounter + " For:: " + data.get("LoginName") + " ::and:: "
-										+ data.get("Password") + " To Validate::" + data.get("errorMessage") + "  **************",
-								"");
+										+ data.get("Password") + " To Validate::" + data.get("errorMessage") + "  **************","");
 
 
 						// Login to CMT  >>  Enable Saved Carts / Order Templates and Enable Quotes
 						cmtLib.loginToCMTSearchForUserAndSelect(data.get("Header"), data.get("WebGrp"), data.get("WebGrp_Name"), data.get("Manage_Web_Grp_Options"), data.get("LnameEmailUname"), data.get("ContactName"));
 						String[] permissions = data.get("Set_Permission").split(",");
 						for (i = 0; i < permissions.length; i++) {
-							cmtLib.setPermissions(data.get("Menu_Name"), permissions[i]);
+							cmtLib.setPermissionsToDisable(data.get("Menu_Name"), permissions[i]);
 						}
 						// Login As to Web UAT
 						cmtLib.loginAsAdminCMT();
 						searchLib.searchInHomePage(data.get("SearchText1"));
+						searchLib.removeTheFilterForInStockOnly(data.get("In_Stock_Only"));
 						commonLib.verifyDisplayedProductDetails(data.get("SearchText1"));
 
 						// Cart verification
 						commonLib.addToCartAndVerify();
 						continueToCheckOutOnAddCart();
+						canadaLib.verifyPlaceCartLabel();
 						cartLib.verifyItemAddedInCartByMfrNumber(data.get("SearchText1"));
 
 						// proceed To Checkout >> Fill Additional Information section >>>
 						// Fill Line level Information >>> Fill Order and Item Info page -
 						// Review Order
 						proceedToCheckout();
-						continueButtonOnAdditionalInformationSection();
-						addLineLevelInformation(data.get("RP_LNL_Txt"), data.get("WG_LNL_Txt"));
-						//clickContinueOnLineLevelInfo();
-						shippingBillPayContinueButton();
-						Thread.sleep(2000);
+						cartLib.clickOnContinueButtonInAddInformtion();
+						clickContinueOnLineLevelInfo();
+						canadaLib.verifySBP();
+						clickContinueOnShippingAddress();
+						enterAttentionField( data.get("Card_Name"));
 						shippingOptionsCarrierSelection();
-						Thread.sleep(2000);
-						shippingBillPayContinueButton();
+						billingAddressContinueButton();
 						selectPaymentInfoMethodCreditCard(data.get("Card_Number").toString(), data.get("Card_Name"), data.get("Month"), data.get("Year"),data.get("PO_Number"),data.get("POReleaseNumber"));
 						clickOnReviewOrderButton();
 						cartLib.ClickExportCartAndVerify(data.get("Order_Utilities"),data.get("Sheet_Name"),data.get("Row_number"),data.get("Column_Headers"));
-						//cartLib.clickAndVerifyExportCart(data.get("Order_Utilities"));
-						//cartLib.verifyExportFile(d);
-						verifySaveOrderTemplateExistsOnPlaceOrderPage(data.get("Permission_Status1")); //save  Order Template, Save cart contents links should display
-
+						verifySaveOrderTemplateExistsOnPlaceOrderPage(data.get("Permission_Status1")); //save  Order Template, Save cart contents links should not display
+						
+						// logout
+						commonLib.clickLogOutLink(data.get("Logout"));
+						
 						// Navigate back to CMT
 						cmtLib.navigateBackToCMT();
 
-						// Disable Saved Carts / Order Templates and Enable Quotes.
-
+						// Enable Saved Carts / Order Templates and Enable Quotes.
 						for (i = 0; i < permissions.length; i++) {
-							cmtLib.setPermissionsToDisable(data.get("Menu_Name"), permissions[i]);
+							cmtLib.setPermissions(data.get("Menu_Name"), permissions[i]);
 						}
-
 						// Login As to Web UAT
 						cmtLib.loginAsAdminCMT();
 						searchLib.searchInHomePage(data.get("SearchText2"));
+						searchLib.removeTheFilterForInStockOnly(data.get("In_Stock_Only"));
 						commonLib.verifyDisplayedProductDetails(data.get("SearchText2"));
-
 						// Cart verification
 						commonLib.addToCartAndVerify();
 						continueToCheckOutOnAddCart();
+						canadaLib.verifyPlaceCartLabel();
 						cartLib.verifyItemAddedInCartByMfrNumber(data.get("SearchText2"));
-
-						// proceed To Checkout >> Fill Additional Information section >>>
-						// Fill Line level Information >>> Fill Order and Item Info page -
-						// Review Order
+						
 						proceedToCheckout();
-						continueButtonOnAdditionalInformationSection();
-						addLineLevelInformation(data.get("RP_LNL_Txt"), data.get("WG_LNL_Txt"));
-						shippingBillPayContinueButton();
-						Thread.sleep(2000);
+						cartLib.clickOnContinueButtonInAddInformtion();
+						clickContinueOnLineLevelInfo();
+						canadaLib.verifySBP();
+						clickContinueOnShippingAddress();
+						enterAttentionField( data.get("Card_Name"));
 						shippingOptionsCarrierSelection();
-						Thread.sleep(2000);
-						shippingBillPayContinueButton();
+						billingAddressContinueButton();
 						selectPaymentInfoMethodCreditCard(data.get("Card_Number").toString(), data.get("Card_Name"), data.get("Month"), data.get("Year"),data.get("PO_Number"),data.get("POReleaseNumber"));
 						clickOnReviewOrderButton();
 						verifySaveOrderTemplateExistsOnPlaceOrderPage(data.get("Permission_Status2")); // save  Order Template, Save cart contents links should not exist						//fnCloseTest();
-						System.out.println("Test completed");
+						
+						// Logout 
+						commonLib.clickLogOutLink(data.get("Logout"));
+						
 					} catch (Exception e) {
 						ReportStatus.blnStatus = false;
 						//gErrorMessage = e.getMessage();
 						gTestStatus = false;
 					}
-					
 				}
 			} catch (Exception e) {
 				e.printStackTrace();
