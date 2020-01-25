@@ -22,6 +22,8 @@ import com.insight.ObjRepo.ShipBillPayObj;
 import com.insight.ObjRepo.productsDisplayInfoObj;
 import com.insight.accelerators.ActionEngine;
 
+import static com.insight.ObjRepo.CartObj.lblCartLebel;
+
 public class CartLib extends ActionEngine {
 
 	CommonLib commonLib = new CommonLib();
@@ -1943,5 +1945,9 @@ public class CartLib extends ActionEngine {
 			}
 		}
 			
+		}
+
+		public boolean verifyCartPageAvailablity() throws Throwable{
+		return isVisibleOnly(lblCartLebel,"Cart Header");
 		}
 }

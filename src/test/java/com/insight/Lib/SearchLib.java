@@ -675,11 +675,7 @@ public class SearchLib extends CommonObj {
 		}
 	}
 	
-	/**
-	 * 
-	 * @param itemNumber
-	 * @throws Throwable 
-	 */
+
 	public void clickOnMorePrices() throws Throwable {
 		Thread.sleep(4000);
 		List<WebElement> myList1 = driver.findElements(productsDisplayInfoObj.LIST_OF_ITEMS_SEARCH_RESULTS);
@@ -751,7 +747,7 @@ public class SearchLib extends CommonObj {
 			clearData(productsDisplayInfoObj.QUANTITY_CONTRACT_ALL);
 			type(productsDisplayInfoObj.QUANTITY_CONTRACT_ALL,quantity,"quantity");
 		}else {
-			reporter.failureReport("verify quantity exists", "Quantity field does not exists", "", driver);
+			reporter.failureReport("verify quantity exists", "Quantity field does not exists", quantity, driver);
 		}
 	}
 	 

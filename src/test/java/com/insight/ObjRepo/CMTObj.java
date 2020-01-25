@@ -655,7 +655,8 @@ public static By lnkDeleteProductGroups=By.xpath("//*[text()=' Delete Product Gr
 	public static By Enable_Personal_Product_List = By.xpath("//*[@name='ppc']");
 	public static By Enable_menu_for_solutions= 	By.xpath("//*[@name='services']");
 	public static By Enable_Accessories = 			By.xpath("//*[@name='accessories']");
-	public static By Enable_Search = 				By.xpath("///*[@name='search']']");
+	public static By Enable_Search = 				By.xpath("//*[@name='search']']");
+	public static By overRidePaymentOption = 				By.xpath("//*[@name='override_payment_options']");
 
 	
 	

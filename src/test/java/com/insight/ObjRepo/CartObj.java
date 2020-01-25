@@ -230,7 +230,8 @@ public class CartObj extends CommonObj{
 	public static By PART_NUMBER_IN_ADDED_TO_YOUR_CART_POPUP=By.xpath("//div[@id='buy-modal']//div//ul//li[contains(.,'Mfr #:')]");
 	public static By SUMMARY_TOTAL=By.xpath("//section/following::div[@class='columns small-12 large-3 print-5 print-offset-7']//div[text()='Total']//parent::div//span[@class='iw-currency__amount']");
 
-    
+	public static By lblCartLebel=By.xpath("//*[@class='shopping-cart__header-title']");
+
     ///NViDiA Screen
     
 	public static By WELCOME_MESSAGE = By.xpath("//div[@id='welcomePageHeading']/h1[contains(text(),'Welcome to your Punchout Site')]");

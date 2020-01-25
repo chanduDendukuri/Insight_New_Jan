@@ -625,8 +625,8 @@ public class MarriottIntlCorpLib extends MarriottIntlCorpObj {
 			click(CONTINUE, "Continue button of Shipping address");
 		}
 
-		reporter.SuccessReport("Verify  added additional information of the product ", "Added Part through Quick Shop",
-				"");
+		/*reporter.SuccessReport("Verify  added additional information of the product ", "Added Part through Quick Shop",
+				"");*/
 	}
 
 	public void addAdditionalInfo(String name, String phone, String email)throws Throwable {
@@ -997,10 +997,11 @@ public class MarriottIntlCorpLib extends MarriottIntlCorpObj {
 	public void CompanystandardslinkandProductGrpWithbtag(String productGroup, String productName, String FieldOnly)
 			throws Throwable {
 		click(COMPANYSTANDARDS_PAGELINK, "Company Standards PageLink");
-		isElementPresent(CartObj.Current_product_groups, " Current Product Groups page is opened");
-		click(getcompanystandardsproductgroup(productGroup), "Product Group");
+		isVisibleOnly(CartObj.Current_product_groups, " Current Product Groups page is opened");
+		click(getcompanystandardsproductgroup(productGroup), "Product Group",productGroup);
 		click(getCompanyStandardsProductGroupwithbtext(productGroup, productName, FieldOnly),
-				"select product from product group");
+				"select product from product group",getText(getCompanyStandardsProductGroupwithbtext(productGroup, productName, FieldOnly),
+				"select product from product group"));
 	}
 
 	/**

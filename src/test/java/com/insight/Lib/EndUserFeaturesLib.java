@@ -311,7 +311,9 @@ public class EndUserFeaturesLib extends EndUserFeaturesObj{
  * @throws Throwable
  */
 	public void verifyupdateSuccessMessage() throws Throwable {
-		isElementPresent(UPDATE_SUCCESSMESG, "Update Success Message");
+		if(isVisibleOnly(UPDATE_SUCCESSMESG, "Update Success Message")){
+			reporter.SuccessReport("Update Message","Permissions Update message",getText(UPDATE_SUCCESSMESG, "Update Success Message"));
+		}
 	}
 	/**
 	 * 
