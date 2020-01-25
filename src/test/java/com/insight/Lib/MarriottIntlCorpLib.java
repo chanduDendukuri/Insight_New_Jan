@@ -662,13 +662,13 @@ public class MarriottIntlCorpLib extends MarriottIntlCorpObj {
 
 			click(SHIP_ATTENTION, "Ship Attention");
 
-			type(SHIP_ATTENTION, shipAttention, "Ship Attention");
+			type(SHIP_ATTENTION, shipAttention, "Ship Attention"+shipAttention);
 
 			clearData(SHIP_PHONE);
 
 			click(SHIP_PHONE, "Phone Number ");
 
-			type(SHIP_PHONE, phoneNumber, "Phone Number");
+			type(SHIP_PHONE, phoneNumber, "Phone Number"+phoneNumber);
 
 			clearData(SHIP_LOCATION_ID);
 
@@ -708,13 +708,13 @@ public class MarriottIntlCorpLib extends MarriottIntlCorpObj {
 
 			click(BILLING_ATTENTION, "Bill Attention");
 
-			type(BILLING_ATTENTION, billAttention, "Billing Attention");
+			type(BILLING_ATTENTION, billAttention, "Billing Attention"+billAttention);
 
 			clearData(BILLING_PHONE);
 
 			click(BILLING_PHONE, "Phone Number ");
 
-			type(BILLING_PHONE, billphoneNumber, "Phone Number");
+			type(BILLING_PHONE, billphoneNumber, "Phone Number"+billphoneNumber);
 
 			clearData(BILLING_LOCATION);
 
