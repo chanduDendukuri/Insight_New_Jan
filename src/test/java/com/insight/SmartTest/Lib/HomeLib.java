@@ -2131,8 +2131,9 @@ else {
 		if (waitForVisibilityOfElement(txtErrorpopup, "Errorpopup"))
 		{ 
 			String Errormesage = getText(txtErrorMesage, "ErrorMessage");
+			System.out.println(Errormesage);
 			if(Errormesage!=null) {
-				reporter.SuccessReport("Error Message: ", "Error messages displayed as ", Errormesage);
+				reporter.SuccessReport("Error Message: ", "Error messages displayed as ", "");
 			}
 			else {
 				reporter.failureReport("Error Message: ", "Error messages not displayed ","");
@@ -4375,7 +4376,7 @@ public void VerifyZPFXvalue(String ZPFXvalue)throws Throwable{
 	 */
 	public void verifyReportingFieldsix() throws Throwable {
 		if (isElementPresent(REPORTINGFIELD6, "Reporting Field-06")) {
-			reporter.SuccessReport("IPS Report Field 6::", "IPS Report Field 6 value Does not exist as expected", "");
+			reporter.SuccessReport("IPS Report Field 6::", "IPS Report Field 6 value is not equal to ContractId", "");
 		} else {
 			reporter.failureReport("IPS Report Field 6::", "IPS Report Field 6 value exists", "", driver);
 		}
@@ -4384,9 +4385,9 @@ public void VerifyZPFXvalue(String ZPFXvalue)throws Throwable{
 	public void verifyReportingFieldsixpriceandZP00(float ZP00, float reportingfieldprice) throws Throwable {
 		
 		if (reportingfieldprice == ZP00) {
-			reporter.SuccessReport("IPS Report Field 6::", "IPS Report Field 6 value Does not exist as expected", "");
+			reporter.SuccessReport("Validation", "Contract price equals to ZP00", "");
 		} else {
-			reporter.failureReport("IPS Report Field 6::", "IPS Report Field 6 value exists", "", driver);
+			reporter.failureReport("Validation", "Contract price not equals to ZP00", "", driver);
 		}
 	}
 
