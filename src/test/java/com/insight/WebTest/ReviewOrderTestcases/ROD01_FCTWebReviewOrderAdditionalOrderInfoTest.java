@@ -19,6 +19,7 @@ public class ROD01_FCTWebReviewOrderAdditionalOrderInfoTest extends OrderLib{
 	CartLib cartLib=new CartLib();
 	ProductDisplayInfoLib prodLib=new ProductDisplayInfoLib();
 	LineLevelInfoLib lineLevel=new LineLevelInfoLib();
+	CanadaLib canadaLib=new CanadaLib();
 
 	// #############################################################################################################
 	// #    Name of the Test         : ROD01_FCTWebReviewOrderAdditionalOrderInfo
@@ -63,39 +64,65 @@ public class ROD01_FCTWebReviewOrderAdditionalOrderInfoTest extends OrderLib{
 						// Back to UAT
 						searchLib.searchInHomePage(data.get("IPP_API_Part"));
 						// Add a item & warranty to cart >>  proceed To Checkout >> place order >> Verify the review order details,Receipt Order And Date
+						searchLib.removeTheFilterForInStockOnly(data.get("In_Stock_Only"));
+						prodInfoLib.verifyTheManufacturerNumberInProductDetailsPage(data.get("IPP_API_Part"));
+						prodInfoLib.enterQuantityOnProductDetailsPage(data.get("Quantity"));
 						commonLib.addToCartAndVerify();
-						continueToCheckOutAddWarrantyAndVerifyTheCart(data.get("Warrenty_Part_Number"));
+						continueToCheckOutOnAddCart();
+						canadaLib.verifyPlaceCartLabel();
+						cartLib.verifyItemAddedInCartByMfrNumber(data.get("IPP_API_Part"));
+						prodInfoLib.verifyCartPageAndPartDetails();
+						addWarrantyInCartPage();
 						proceedToCheckout();
+						// Enter Smart trackers info
 						addRPandWGinfoInAddAdditionalInfo(data.get("RP_HDL_Txt"), data.get("WG_HDL_Txt"), data.get("Additional_Notes"), data.get("Invoice_Notes"));
-						addLineLevelInformation(data.get("RP_LNL_Txt"), data.get("WG_LNL_Txt"));
-						shippingBillPayContinueButton();  // continue button on Shipping address
-						shippingOptionsCarrierSelection();  // carrier selection or continue in shipping options
-						shippingBillPayContinueButton();  // Continue on billing address section
+						clickOnLinelevelInfoOptionalLink();
+						enterRP_WP_Info_lineLevel(data.get("RP_LNL_Txt"), data.get("WG_LNL_Txt"));
+						canadaLib.verifySBP();
+						clickContinueOnShippingAddress();
+						enterAttentionField( data.get("Card_Name"));
+						shippingOptionsCarrierSelection();
+						billingAddressContinueButton();
+						//**************************** Enter payment Info *****************************************//
 						selectPaymentInfoMethodCreditCard(data.get("Card_Number").toString(), data.get("Card_Name"), data.get("Month"), data.get("Year"),data.get("PO_Number"),data.get("POReleaseNumber"));
 						clickOnReviewOrderButton();
+						verifyPlaceOrderLabel();
+						verifyReviewOrderPageDetails(data.get("Additional_Notes"), data.get("Invoice_Notes"));
+						verifyRP_HDL_TxtOnPlaceOrderPage(data.get("RP_HDL_Txt"));
+						verifyWG_HDL_TxtOnPlaceOrderPage(data.get("WG_HDL_Txt"));
+						verifyRP_LNL_TxtOnPlaceOrderPage(data.get("IPP_API_Part"), data.get("RP_LNL_Txt"));
+						verifyWG_LNL_TxtOnPlaceOrderPage(data.get("IPP_API_Part"), data.get("WG_LNL_Txt"));
 						String summaryAmount1=cartLib.getSummaryAmountInCart();
 						placeOrderAndVerifyReceiptOrderAndDate(summaryAmount1);
+						
 						// Click company standards and add a bundle of items
 						commonLib.clickAccountToolsFromSideMenuAndClickOnProductGrp(data.get("Tools_Menu"), data.get("Tools_Menu_DD"),data.get("Product_Group"),data.get("Product_Name"));
 						commonLib.addToOrderAndViewCart();
 						cartLib.verifyProductGroupBundleAddedToCart(data.get("Product_Name"));
+						lineLevel.verifyBundleIsAddedToCart(data.get("Bundle_Name"));
 						proceedToCheckout();
-						addAdditionalInformation(data.get("Url"), data.get("RP_HDL_Txt"), data.get("WG_HDL_Txt"), data.get("Additional_Notes"), data.get("Invoice_Notes"));
+						addRPandWGinfoInAddAdditionalInfo(data.get("RP_HDL_Txt2"), data.get("WG_HDL_Txt2"), data.get("Additional_Notes2"), data.get("Invoice_Notes2"));
 						clickOnLinelevelInfoOptionalLink();
-						enterRP_WP_Info_lineLevel(data.get("RP_LNL_Txt"), data.get("WG_LNL_Txt"));
-						shippingBillPay(data.get("Card_Number").toString(), data.get("Card_Name"), data.get("Month"), data.get("Year"),data.get("PONumber"),data.get("POReleaseNumber"));
+						lineLevel.verifyBundleIsAddedToCart(data.get("Bundle_Name"));
+						enterRP_WP_Info_lineLevel(data.get("RP_LNL_Txt2"), data.get("WG_LNL_Txt2"));
+						canadaLib.verifySBP();
+						clickContinueOnShippingAddress();
+						enterAttentionField( data.get("Card_Name"));
+						shippingOptionsCarrierSelection();
+						billingAddressContinueButton();
+						selectPaymentInfoMethodCreditCard(data.get("Card_Number").toString(), data.get("Card_Name"), data.get("Month"), data.get("Year"),data.get("PO_Number"),data.get("POReleaseNumber"));
+						clickOnReviewOrderButton();
+						verifyPlaceOrderLabel();
+						verifyReviewOrderPageDetails(data.get("Additional_Notes2"), data.get("Invoice_Notes2"));
+						verifyRP_HDL_TxtOnPlaceOrderPage(data.get("RP_HDL_Txt2"));
+						verifyWG_HDL_TxtOnPlaceOrderPage(data.get("WG_HDL_Txt2"));
+						verifyRP_LNL_TxtOnPlaceOrderPageForBundles(data.get("Bundle_Name"), data.get("RP_LNL_Txt2"));
+						verifyWG_LNL_TxtOnPlaceOrderPageForBundles(data.get("Bundle_Name"), data.get("WG_LNL_Txt2"));
+						
 						String summaryAmount2=cartLib.getSummaryAmountInCart();
 						placeOrderAndVerifyReceiptOrderAndDate(summaryAmount2);
-						// Navigate back to CMT and Un-check the above checked Customer permissions.
-						cmtLib.navigateBackToCMT();
-						cmtLib.hoverOverMasterGroupAndSelectChangeGrp();
-						cmtLib.searchForWebGroup( data.get("WebGrp"));
-						cmtLib.clickOnTheWebGroup(data.get("WebGrp_Name"));
-						for(i=0;i<permissions.length;i++){
-							cmtLib.setCustomerLevelPermissionsOFF(permissions[i]);
-						}
-
-						//fnCloseTest();
+						commonLib.clickLogOutLink(data.get("Logout"));
+						
 						System.out.println("Test completed");
 					} catch (Exception e) {
 						ReportStatus.blnStatus = false;

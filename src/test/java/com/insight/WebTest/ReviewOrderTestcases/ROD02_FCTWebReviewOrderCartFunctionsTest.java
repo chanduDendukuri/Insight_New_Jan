@@ -90,6 +90,7 @@ public class ROD02_FCTWebReviewOrderCartFunctionsTest extends OrderLib{
 						proceedToCheckout();
 						cartLib.clickOnContinueButtonInAddInformtion();
 						clickContinueOnLineLevelInfo();
+						canadaLib.verifySBP();
 						clickContinueOnShippingAddress();
 						enterAttentionField( data.get("Card_Name"));
 						shippingOptionsCarrierSelection();

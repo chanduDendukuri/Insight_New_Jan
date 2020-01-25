@@ -15,7 +15,7 @@ public class ShipBillPayObj extends ActionEngine{
     public static By STOREDCARDS=By.xpath("//select[@id='insightPaymentStoreCards']//option");
     public static By APPROVEREQUISITOR_UPDATEBUTTON=By.xpath("//div[@id='rsUpdatebuttons']//a/span[contains(text(),'UPDATE ')]");
     public static By verifyShippingCarrier(String shippingCarrier) {
-    	return By.xpath("//label[text()='Shipping carrier:']//parent::div//p[text()='"+shippingCarrier+"']");
+    	return By.xpath("//label[text()='Shipping carrier:']//parent::div//p[contains(text(),'"+shippingCarrier+"')]");
     }
     public static By PAYMENTINFO_LABEL=By.xpath("//div[@id='bodyContent']//h2[contains(text(),'Payment Information')]");
     public static By ORDER_DETAILS_BUTTON=By.xpath("//strong[text()='Order details']//parent::a");

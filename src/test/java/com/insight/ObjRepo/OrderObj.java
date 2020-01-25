@@ -317,5 +317,28 @@ public class OrderObj extends ActionEngine{
 	 public static By STORED_ADDRESS_RADIOBTN=By.xpath("(//div//label[@class='stored-address__label'])[1]");
 	 public static By COMPANY_NAME_IN_SHIPPING_ADDRESS=By.xpath("//p[@id='iw-checkout__address-section-company-name']");
 	 
+	 // place order
+	 public static By getRP_HDL_TxtInPlaceOrderPage(String RP_HDL_Txt_Text) {
+		 return By.xpath("//span[contains(text(),'RP_HDL_Txt')]//following::p[contains(text(),'"+RP_HDL_Txt_Text+"')]");
+	 }
+	 public static By getWG_HDL_TxtInPlaceOrderPage(String WG_HDL_Txt_Text) {
+		 return By.xpath("//span[contains(text(),'WG_HDL_Txt')]//following::p[contains(text(),'"+WG_HDL_Txt_Text+"')]");
+	 }
+	 
+	 public static By getgetRP_LNL_TxtByPartNum(String partNum){
+		 return By.xpath("//p[contains(.,'Mfr Part #: "+partNum+"')]/following::div[@class='row expanded is-collapse-child'][1]//label[contains(text(),'RP_LNL_Txt:')]//p");
+	 }
+	 
+	 public static By getgetWG_LNL_TxtByPartNum(String partNum){
+		 return By.xpath("//p[contains(.,'Mfr Part #: "+partNum+"')]/following::div[@class='row expanded is-collapse-child'][1]//label[contains(text(),'WG_LNL_Txt:')]//p");
+	 }
+	 
+	 public static By getgetRP_LNL_TxtByBundles(String bundleName) {
+		 return By.xpath("//div[@class='cart__item-bundle'][contains(.,'Insight Part #: "+bundleName+"')]/following::div[@class='row expanded is-collapse-child'][1]//label[contains(text(),'RP_LNL_Txt:')]//p");
+	 }
+	 
+	 public static By getgetWG_LNL_TxtByBundles(String bundleName) {
+		 return By.xpath("//div[@class='cart__item-bundle'][contains(.,'Insight Part #: "+bundleName+"')]/following::div[@class='row expanded is-collapse-child'][1]//label[contains(text(),'WG_LNL_Txt:')]//p");
+	 }
 }
 

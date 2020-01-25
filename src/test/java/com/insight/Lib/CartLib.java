@@ -1932,16 +1932,18 @@ public class CartLib extends ActionEngine {
 							driver);
 				}
 			}
-			reporter.SuccessReport("verify carrier options::", "Selected Options::"+Text+"", "Available carriers"+carrier);
-		} 
-		else if(isVisibleOnly(OrderObj.SELECTARRIER,"Carrier DropDown")){
-			click(OrderObj.SELECTARRIER, "carrier Drop down");
-			if (isVisibleOnly(OrderObj.selectCarrier(UPS),"UPS")) {
-				reporter.failureReport("verify carrier options::", " Expected Carrier Exist","UPS  Exits in Available Carriers List",driver);
-			} else {
-				reporter.SuccessReport("verify carrier options::", " Expected Carrier Does Not Exist","UPS Not Exits in Available Carriers List");
-			}
+			reporter.SuccessReport("verify carrier options::", "Selected Options::"+carrier+"", "Available carriers::"+carrier);
+			if(isElementNotPresent(OrderObj.verifyCarrier(UPS),"Verify UPS")){
+			reporter.SuccessReport("verify carrier options::", " Expected Carrier Exist","UPS  Does not Exits in Available Carriers List");
+		}else {
+			reporter.SuccessReport("verify carrier options::", " Expected Carrier Exist","UPS Exits in Available Carriers List");
 		}
-			
+	}
+		else {
+			reporter.SuccessReport("verify carrier options::", " Expected Carrier Exist","UPS Exits in Available Carriers List");
+
 		}
+		
+	}		
+		
 }
