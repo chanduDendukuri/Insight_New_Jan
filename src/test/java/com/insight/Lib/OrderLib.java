@@ -615,7 +615,7 @@ public class OrderLib extends OrderObj{
 	 */
 	public void selectPaymentMethod(String paymentMethod) throws Throwable {
 		 click(PAYMENT_METHOD_DD, "payment method drop down");
-		  click(paymentSelection(paymentMethod), "payment method selection");
+		  click(paymentSelection(paymentMethod), "payment method selection:"+paymentMethod);
 		  click(REVIEW_ORDER_BTN, "review order button of payment Info"); 
 	}
 	

@@ -59,13 +59,13 @@ public class ShipBillPayLib extends ShipBillPayObj {
 	 * 
 	 * @throws Throwable
 	 */
-	public void verifyShippingCarrierAFterReviewOrder(String shippingCarrier) throws Throwable {
+	public void verifyShippingCarrierAFterReviewOrder(String shippingCarrier,String Shippingcarrie2) throws Throwable {
 		if (isElementPresent(ShipBillPayObj.verifyShippingCarrier(shippingCarrier), "Shipping carrier")) {
 			reporter.SuccessReport("Verify shipping carrier is present", "shipping carrier is present ",
-					shippingCarrier);
+					Shippingcarrie2);
 		} else {
 			reporter.failureReport("Verify shipping carrier is not present", "shipping carrier is not present ",
-					shippingCarrier);
+					Shippingcarrie2);
 		}
 
 	}
@@ -1192,7 +1192,7 @@ public class ShipBillPayLib extends ShipBillPayObj {
 			click(STOCKONLY_SEARCHRESULTS,"Stock Only");
 		}
 		public void selectCarrier(String carrier) throws Throwable {
-			click(OrderObj.SELECTARRIER, "carrier Drop down");
+			clickUntil(OrderObj.SELECTARRIER,OrderObj.verifyCarrier(carrier), "carrier Drop down");
 			if (isElementPresent(OrderObj.verifyCarrier(carrier), "shipping carrier in Dropdown"+carrier)) {
 				click(OrderObj.verifyCarrier(carrier), "Carrier From Drop down"+carrier);
 			}
