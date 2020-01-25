@@ -97,6 +97,8 @@ public class CQT16_IPSCopyLinksTest extends HomeLib {
 		        ClickOnXsymbolunderCon();
 		        validatetheLineitemfiledsaftersaving();
 		        clickDoneButton();
+		        clickClosthedocument(QuoteNum1);
+				clickYesButtontocloseDocument();
 		        System.out.println("testcase completed");
 
 			}  catch (Exception e) {

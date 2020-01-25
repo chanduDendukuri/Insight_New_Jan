@@ -115,6 +115,12 @@ public class CQT40_IPSContractPricingCiscoUSCPriceMatchContractTest extends Home
 						reporter.failureReport("QuoteNumber:", "Quotenumber is not displayed", "",driver);
 					}
 					clickonConXSystem(data.get("LineItem1"));// 000010
+					
+					
+					clickOnTabsInLineItemDetailsPopUp(data.get("Tab2"));// Contracts
+					verifyReportingFieldsix();
+					float Sellpriceaftersaveasquote = getSellPriceFromInlineItemsContract(data.get("contactid"));
+					
 					clickOnTabsInLineItemDetailsPopUp(data.get("Tab3"));// Pricing
 					// Get data from the pricing tab
 					List<String> Rate1 = new ArrayList<>();
@@ -136,7 +142,7 @@ public class CQT40_IPSContractPricingCiscoUSCPriceMatchContractTest extends Home
 	                    }
 					// comparision of retraived price values
 	                    clickDoneButton();
-					verifyReportingFieldsixpriceandZP00(Rate2value,Sellprice1);
+					verifyReportingFieldsixpriceandZP00(Rate2value,Sellpriceaftersaveasquote);
 					verifyReportingFieldsixpriceandZP00( Rate2value,Sellprice2);
 					verifyReportingFieldsixpriceandZP00( Rate2value,Sellprice3);
 					clickSideBarSmart();
