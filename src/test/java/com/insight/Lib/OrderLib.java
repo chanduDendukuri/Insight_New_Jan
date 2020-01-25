@@ -456,10 +456,11 @@ public class OrderLib extends OrderObj{
 		switch(permissionStatus){
 		case "ON": 
 			if(isElementPresent(CartObj.SAVE_ORDER_TEMPLATE, "Save Order template link") && isElementPresent(CartObj.SAVE_CART_CONTENTS, "Saved Cart Contents")){
+				reporter.SuccessReport("Order Utilities on Product Review Page", "Saved Carts and Order Templates Page Exists", "");
 				click(CartObj.SAVE_CART_CONTENTS, "Saved Cart Contents");
 				Thread.sleep(2000);
 				if(isElementPresent(CartObj.SAVE_CART_CONTENTS_POPUP, "Saved Cart Contents popup")){
-					reporter.SuccessReport("Verify saved cart contents popup in Review Order page", " Save order Template link exists in Review Order page","");
+					reporter.SuccessReport("Verify saved cart contents popup in Review Order page", " Save order Template link exists in Review Order page","saved cart contents ");
 					click(CartObj.SAVED_CART_CANCEL_BTN, "Saved cart popup cancel button");
 				}else{
 					reporter.failureReport("Verify saved cart contents popup in Review Order page", " Save cart contents popup does not exist in Review Order page","",driver);
@@ -468,7 +469,7 @@ public class OrderLib extends OrderObj{
 				click(CartObj.SAVE_ORDER_TEMPLATE, "Saved order template");
 				Thread.sleep(2000);
 				if(isElementPresent(CartObj.SAVE_ORDER_TEMPLATE_POPUP, "Saved order template popup")){
-					reporter.SuccessReport("Verify Saved order template popup in Review Order page", " Saved order template popup exists in Review Order page","");
+					reporter.SuccessReport("Verify Saved order template popup in Review Order page", " Saved order template popup exists in Review Order page","Link : Save order template");
 					click(CartObj.SAVED_CART_CANCEL_BTN, "Saved cart popup cancel button");
 				}else{
 					reporter.failureReport("Verify Saved order template popup in Review Order page", " Saved order template popup  does not exist in Review Order page","",driver);
