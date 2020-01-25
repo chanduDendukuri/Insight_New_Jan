@@ -32,7 +32,7 @@ public class CQT40_IPSContractPricingCiscoUSCPriceMatchContractTest extends Home
 
 	@Parameters({ "StartRow", "EndRow", "nextTestJoin" })
 	@Test
-	public void TC_CQT40(int StartRow, String EndRow, boolean nextTestJoin)
+	public void TC_CQT40(int StartRow, String EndRow, boolean nextTestJoin) 
 			throws Throwable {
 		int counter = 0;
 		try {

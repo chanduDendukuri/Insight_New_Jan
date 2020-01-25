@@ -129,7 +129,7 @@ public class SBP05_CarrierHeavyTest extends ShipBillPayLib{
 				commonLib.clickCheckOutSettings(data.get("Check_out_Settings"));
 				commonLib.selectOptionInCheckoutSettings(data.get("Shipping_Options"));
 				cmtLib.DeselectAllDesignatedShippingOptions();
-				commonLib.selectDefaultShippingOptionInCheckoutSettings(data.get("Shiping_Carrier_Checkout"));
+				commonLib.selectDefaultShippingOptionInCheckoutSettings(data.get("Shiping_Carrier"));
 				commonLib.clickOnUpdateButtonInUserSettings();
 
 			} catch (Exception e) {
