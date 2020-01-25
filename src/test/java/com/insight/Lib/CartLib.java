@@ -1920,7 +1920,7 @@ public class CartLib extends ActionEngine {
 	 * 
 	 * @throws Throwable
 	 */
-	public void verifyCarriers(String carrier,String UPS) throws Throwable {
+	public void verifyCarriers(String carrier) throws Throwable {
 		if (isVisibleOnly(OrderObj.SELECTARRIER, "carrier Drop down")) {
 		String Text=getText(OrderObj.SELECTARRIER,"carrier Drop down");
 		click(OrderObj.SELECTARRIER, "carrier Drop down");
@@ -1933,10 +1933,12 @@ public class CartLib extends ActionEngine {
 				}
 			}
 			reporter.SuccessReport("verify carrier options::", "Selected Options::"+Text+"", "Available carriers"+carrier);
-		} 
-		else if(isVisibleOnly(OrderObj.SELECTARRIER,"Carrier DropDown")){
+		}
+	}
+		public void verifyNotUPS(String UPS) throws Throwable {
+		 if(isVisibleOnly(OrderObj.SELECTARRIER,"Carrier DropDown")){
 			click(OrderObj.SELECTARRIER, "carrier Drop down");
-			if (isVisibleOnly(OrderObj.selectCarrier(UPS),"UPS")) {
+			if (isVisibleOnly(OrderObj.verifyCarrier(UPS),"UPS")) {
 				reporter.failureReport("verify carrier options::", " Expected Carrier Exist","UPS  Exits in Available Carriers List",driver);
 			} else {
 				reporter.SuccessReport("verify carrier options::", " Expected Carrier Does Not Exist","UPS Not Exits in Available Carriers List");
