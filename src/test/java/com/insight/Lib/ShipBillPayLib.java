@@ -59,13 +59,13 @@ public class ShipBillPayLib extends ShipBillPayObj {
 	 * 
 	 * @throws Throwable
 	 */
-	public void verifyShippingCarrierAFterReviewOrder(String shippingCarrier) throws Throwable {
+	public void verifyShippingCarrierAFterReviewOrder(String shippingCarrier,String Shippingcarrie2) throws Throwable {
 		if (isElementPresent(ShipBillPayObj.verifyShippingCarrier(shippingCarrier), "Shipping carrier")) {
 			reporter.SuccessReport("Verify shipping carrier is present", "shipping carrier is present ",
-					shippingCarrier);
+					Shippingcarrie2);
 		} else {
 			reporter.failureReport("Verify shipping carrier is not present", "shipping carrier is not present ",
-					shippingCarrier);
+					Shippingcarrie2);
 		}
 
 	}
@@ -1190,5 +1190,21 @@ public class ShipBillPayLib extends ShipBillPayObj {
 		}
 		public void clickStockOnly()throws Throwable{
 			click(STOCKONLY_SEARCHRESULTS,"Stock Only");
+		}
+		public void selectCarrier(String carrier) throws Throwable {
+			clickUntil(OrderObj.SELECTARRIER,OrderObj.verifyCarrier(carrier), "carrier Drop down");
+			if (isElementPresent(OrderObj.verifyCarrier(carrier), "shipping carrier in Dropdown"+carrier)) {
+				click(OrderObj.verifyCarrier(carrier), "Carrier From Drop down"+carrier);
+			}
+		}
+		public void shippingOptionsCarrierSelection() throws Throwable{
+			click(CONTINUE_BTN, "Continue button of Shipping Options");
+			if(isElementPresent(OrderObj.SHIPPING_CARRIER_REQUIRED_MSG, "A shipping carrier is required message")){
+				 click(OrderObj.CARRIER_PRICE_RADIO_BTN, "carrier price - days");
+				 click(CONTINUE_BTN, "Continue button of Shipping Options");
+			 }else{
+				 
+				 //do nothing
+			 }
 		}
 }
