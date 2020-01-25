@@ -1191,4 +1191,20 @@ public class ShipBillPayLib extends ShipBillPayObj {
 		public void clickStockOnly()throws Throwable{
 			click(STOCKONLY_SEARCHRESULTS,"Stock Only");
 		}
+		public void selectCarrier(String carrier) throws Throwable {
+			click(OrderObj.SELECTARRIER, "carrier Drop down");
+			if (isElementPresent(OrderObj.verifyCarrier(carrier), "shipping carrier in Dropdown"+carrier)) {
+				click(OrderObj.verifyCarrier(carrier), "Carrier From Drop down"+carrier);
+			}
+		}
+		public void shippingOptionsCarrierSelection() throws Throwable{
+			click(CONTINUE_BTN, "Continue button of Shipping Options");
+			if(isElementPresent(OrderObj.SHIPPING_CARRIER_REQUIRED_MSG, "A shipping carrier is required message")){
+				 click(OrderObj.CARRIER_PRICE_RADIO_BTN, "carrier price - days");
+				 click(CONTINUE_BTN, "Continue button of Shipping Options");
+			 }else{
+				 
+				 //do nothing
+			 }
+		}
 }
