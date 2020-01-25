@@ -1202,7 +1202,7 @@ public class ProductDisplayInfoLib extends productsDisplayInfoObj {
      * @throws Throwable
      */
     public String getPartNumberInSearchResultsPage() throws Throwable {
-    	String partNumber = getText(productsDisplayInfoObj.getPartNumber(1), "get product number");
+    	String partNumber = getText(productsDisplayInfoObj.getPartNumber(0), "get product number");
 		System.out.println(partNumber);
 		if (!partNumber.isEmpty()) {
 			reporter.SuccessReport("Verify the product part Number", "Product part Number is displayed as : ",

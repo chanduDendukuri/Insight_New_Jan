@@ -17,7 +17,8 @@ public class ROD03_FCTWebReviewOrderEditTest extends OrderLib{
 	SearchLib searchLib=new SearchLib();
 	CommonLib commonLib=new CommonLib();
 	CartLib cartLib=new CartLib();
-	ProductDisplayInfoLib prodLib=new ProductDisplayInfoLib();
+	ProductDetailLib prodLib=new ProductDetailLib();
+	CanadaLib canadaLib=new CanadaLib();
 
 	// #############################################################################################################
 	// #    Name of the Test         : ROD03_FCTWebReviewOrderEdit
@@ -60,24 +61,29 @@ public class ROD03_FCTWebReviewOrderEditTest extends OrderLib{
 						cmtLib.hoverOnManageWebGroupsAndSelectOptions(data.get("Manage_Web_Grp_Options"));
 						cmtLib.searchForaUserAndSelect(data.get("LnameEmailUname"), data.get("ContactName"));
 						cmtLib.loginAsAdminCMT();
+						
 						//************* Login As to UAT web ******************************//
 						searchLib.searchInHomePage(data.get("SearchText"));
-						//***** Add a item to cart >> proceed To Checkout >> Review Order****//
-						commonLib.addToCartAndVerify();
-						continueToCheckOutOnAddCart();
+						searchLib.verifyTheResultsForSearchTerm(data.get("SearchText"));
+						// in-stock filter verification
+						searchLib.verifyFilterBreadCrumb(data.get("In_Stock_Only"));
+						//***** Add a item to cart >> proceed To Checkout ****//
+						prodInfoLib.getFirstProdDescription();
+						String partNumber=prodInfoLib.getPartNumberInSearchResultsPage();
+						prodInfoLib.selectFirstProductAddToCartAndVerifyCart();
 						proceedToCheckout();
+						cartLib.clickOnContinueButtonInAddInformtion();
 						//******** Click continue on Line level Info, Ship and Bill pay sections ********************//
-						continueButtonOnAdditionalInformationSection();
 						clickContinueOnLineLevelInfo();
-						shippingBillPayContinueButton();
-						Thread.sleep(3000);
+						canadaLib.verifySBP();
+						clickContinueOnShippingAddress();
+						enterAttentionField( data.get("Card_Name"));
 						shippingOptionsCarrierSelection();
-						Thread.sleep(3000);
-						shippingBillPayContinueButton();
+						billingAddressContinueButton();
 						//**************************** Enter payment Info *****************************************//
 						selectPaymentInfoMethodCreditCard(data.get("Card_Number1").toString(), data.get("Card_Name"),data.get("Month"), data.get("Year"),data.get("PO_Number"),data.get("POReleaseNumber"));
 						clickOnReviewOrderButton();
-						//******************************* Click on Edit link on Payment info section****************//
+						// edit payments section
 						editOrderInfo(data.get("Section_Name"));
 						//******************************* Verify card Number Ending with the given details***********//
 						verifyCardNumberOnEditPaymentInfoSection(data.get("Card_Ending_Digits1"));
@@ -85,31 +91,30 @@ public class ROD03_FCTWebReviewOrderEditTest extends OrderLib{
 						addNewCardInPaymentInfoSection(data.get("Card_Number2").toString(), data.get("Card_Name"),data.get("Month"), data.get("Year"), data.get("PO_Number"),data.get("POReleaseNumber"));
 						//********************** Verify the newly added card ending digits***********************//
 						editOrderInfo(data.get("Section_Name"));
+						//******************************* Verify card Number Ending with the given details***********//
 						verifyCardNumberOnEditPaymentInfoSection(data.get("Card_Ending_Digits2"));
 						//*********************** Review order **************************************//
 						clickOnReviewOrderButton();
 						//*************verify product description in place order screen*************//
 						clickOnProdDescOnPlaceOrderScreen();
-						commonLib.verifyDisplayedProductDetails(data.get("SearchText"));
+						prodInfoLib.verifyTheManufacturerNumberInProductDetailsPage(partNumber);
 						commonLib.addToCartAndVerify();
 						continueToCheckOutOnAddCart();
+						canadaLib.verifyPlaceCartLabel();
 						//*****Proceed to check out and fill all the ship / Bill details and click review Order*****//
 						proceedToCheckout();
 						continueButtonOnAdditionalInformationSection();
 						clickContinueOnLineLevelInfo();
-						Thread.sleep(3000);
-						shippingBillPayContinueButton();
-						Thread.sleep(3000);
+						clickContinueOnShippingAddress();
 						shippingOptionsCarrierSelection();
-						Thread.sleep(3000);
-						shippingBillPayContinueButton();
+						billingAddressContinueButton();
 						addNewCardInPaymentInfoSection(data.get("Card_Number3").toString(), data.get("Card_Name"),data.get("Month"), data.get("Year"), data.get("PO_Number"),data.get("POReleaseNumber"));
+						
 						//*************Verify card ending details of third card *********************************//
 						editOrderInfo(data.get("Section_Name"));
 						verifyCardNumberOnEditPaymentInfoSection(data.get("Card_Ending_Digits3"));
 						commonLib.clickLogOutLink(data.get("Logout"));
-						//fnCloseTest();
-						System.out.println("Test completed");
+						
 					} catch (Exception e) {
 						ReportStatus.blnStatus = false;
 						//gErrorMessage = e.getMessage();
@@ -122,13 +127,13 @@ public class ROD03_FCTWebReviewOrderEditTest extends OrderLib{
 				ReportStatus.blnStatus = false;
 				//gErrorMessage = e.getMessage();
 				gTestStatus = false;
-				ReportStatus.fnUpdateResultStatus("ROD", "ROD03", ReportStatus.strMethodName, 1, browser);
+				ReportStatus.fnUpdateResultStatus("FCTWebReviewOrderEdit", "ROD03", ReportStatus.strMethodName, 1, browser);
 				throw new RuntimeException(e);
 			}
 
 			finally {
 	        	ReportControl.fnEnableJoin();
-				ReportStatus.fnUpdateResultStatus("ROD", "ROD03", ReportStatus.strMethodName, counter, browser);
+				ReportStatus.fnUpdateResultStatus("FCTWebReviewOrderEdit", "ROD03", ReportStatus.strMethodName, counter, browser);
 				fnCloseTest();
 				ReportControl.fnNextTestJoin(nextTestJoin);
 			}

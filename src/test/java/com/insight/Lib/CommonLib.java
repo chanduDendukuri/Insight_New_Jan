@@ -226,9 +226,9 @@ public class CommonLib extends ActionEngine{
 			String productNo = getText(CartObj.INSIGHT_NUMBER_IN_PRODUCT_DISPLAY,"INSIGHT NUMBER IN PRODUCT DISPLAY");
 			 String[] actualProduct=productNo.replace("\"", "").split("# ");
 			if(actualProduct[1].equals(SearchItem)) {
-				reporter.SuccessReport("Verifying Displayed Product Details :", "Actual and expected product details are verified and the Product is : ", SearchItem );
+				reporter.SuccessReport("Verifying Displayed Product Details :", "Mfr Part# is Exists and Same  ", "Mfr number # :"+SearchItem );
 			}else{
-				reporter.failureReport("Verifying Displayed Product Details :", "Actual and Expected missmatch.Expected is: " ,SearchItem);
+				reporter.failureReport("Verifying Displayed Product Details :", "Actual and Expected missmatch.Expected is: " ,SearchItem,driver);
 			}
 				
 		}
