@@ -58,6 +58,7 @@ public class CQT53_IPSOpenMarketExclusion  extends HomeLib {
 					selectCOntractID(data.get("contactid"),data.get("Tab1"));//contracts					
 					// Verify Enrollment Code//
 					
+					
 					clickonRightArrowforLineItem();
 					selectCOntractID(data.get("contactid"),data.get("Tab1"));					
 					// Verify Enrollment Code//

@@ -115,8 +115,8 @@ public class SBP05_CarrierHeavyTest extends ShipBillPayLib{
 				orderLib.shippingBillPayContinueButton();
 				Thread.sleep(4000);
 				cartLib.verifyCarriers(data.get("Carriers1"),data.get("UPS"));
-				cartLib.selectCarrier(data.get("PGL"));
-				orderLib.shippingOptionsCarrierSelection();
+				selectCarrier(data.get("PGL"));
+				shippingOptionsCarrierSelection();
 				orderLib.billingAddressContinueButton();
 				orderLib.selectPaymentMethod(data.get("Payment_method"));
 				shipbLib.verifyShippingCarrierAFterReviewOrder(data.get("Shiping_Carrier_Verify3"));
