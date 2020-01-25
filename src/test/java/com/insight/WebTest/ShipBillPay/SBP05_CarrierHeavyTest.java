@@ -68,7 +68,7 @@ public class SBP05_CarrierHeavyTest extends ShipBillPayLib{
 				}
 				commonLib.clickCheckOutSettings(data.get("Check_out_Settings"));
 				commonLib.selectOptionInCheckoutSettings(data.get("Shipping_Options"));
-				commonLib.selectDefaultShippingOptionInCheckoutSettings(data.get("Default_Shipping_Option"));
+				commonLib.selectDefaultShippingOptionInCheckoutSettings(data.get("Shiping_Carrier"));
 				commonLib.clickOnUpdateButtonInUserSettings();
 				cmtLib.clickOnloginAs();
 				switchToChildWindow();
@@ -86,11 +86,11 @@ public class SBP05_CarrierHeavyTest extends ShipBillPayLib{
 				orderLib.shippingOptionsCarrierSelection();
 				orderLib.billingAddressContinueButton();
 				orderLib.selectPaymentMethod(data.get("Payment_method"));
-				shipbLib.verifyShippingCarrierAFterReviewOrder(data.get("Carrier_Verify"));
+				shipbLib.verifyShippingCarrierAFterReviewOrder(data.get("Carrier_Verify"),data.get("Carrier_Verify"));
 				String summaryAmount = cartLib.getSummaryAmountInCart();
 				orderLib.placeOrderAndVerifyReceiptOrderAndDate(summaryAmount);
 				shipbLib.clickOrderDetailsButtonInREceipt();
-				shipbLib.verifyShippingCarrierAFterReviewOrder(data.get("Carrier_Verify2"));
+				shipbLib.verifyShippingCarrierAFterReviewOrder(data.get("Carrier_Verify2"),data.get("Carrier_Verify"));
 				commonLib.clickLogOutLink(data.get("Logout_Header"));
 				//Login 
 				cmtLib.navigateBackToCMT();
@@ -119,11 +119,11 @@ public class SBP05_CarrierHeavyTest extends ShipBillPayLib{
 				shippingOptionsCarrierSelection();
 				orderLib.billingAddressContinueButton();
 				orderLib.selectPaymentMethod(data.get("Payment_method"));
-				shipbLib.verifyShippingCarrierAFterReviewOrder(data.get("Shiping_Carrier_Verify3"));
+				shipbLib.verifyShippingCarrierAFterReviewOrder(data.get("Shiping_Carrier_Verify3"),data.get("Shiping_Carrier_Verify3"));
 				String summaryAmount1 = cartLib.getSummaryAmountInCart();
 				orderLib.placeOrderAndVerifyReceiptOrderAndDate(summaryAmount1);
 				shipbLib.clickOrderDetailsButtonInREceipt();
-				shipbLib.verifyShippingCarrierAFterReviewOrder(data.get("Shiping_Carrier_Verify3"));
+				shipbLib.verifyShippingCarrierAFterReviewOrder(data.get("Shiping_Carrier_Verify3"),data.get("Shiping_Carrier_Verify3"));
 				commonLib.clickLogOutLink(data.get("Logout_Header"));
 				cmtLib.navigateBackToCMT();
 				commonLib.clickCheckOutSettings(data.get("Check_out_Settings"));
