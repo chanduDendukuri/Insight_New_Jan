@@ -6,6 +6,7 @@ import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 import com.insight.Lib.CMTLib;
+import com.insight.Lib.CanadaLib;
 import com.insight.Lib.CartLib;
 import com.insight.Lib.CommonLib;
 import com.insight.Lib.MarriottIntlCorpLib;
@@ -23,6 +24,8 @@ public class MIC07_PAAprovalMIGobalTest extends MarriottIntlCorpLib {
 	CartLib cartLib = new CartLib();
 	OrderLib orderLib = new OrderLib();
 	ShipBillPayLib shipbLib = new ShipBillPayLib();
+	CanadaLib canadaLib = new CanadaLib(); 
+
 	
 	// #############################################################################################################
 	// # Name of the Test : MIC07_PAAprovalMIGobal
@@ -82,6 +85,7 @@ public class MIC07_PAAprovalMIGobalTest extends MarriottIntlCorpLib {
 			Verifypartnum(data.get("PartNum2"));
 			commonLib.searchProduct(data.get("PartNum3"));
 			commonLib.addToCartAndVerify();
+			canadaLib.continueToCheckout();
 			Thread.sleep(2000);
 			Verifypartnum(data.get("PartNum3"));
 			orderLib.proceedToCheckout();
