@@ -2066,7 +2066,7 @@ else {
 	public void AddMaterialOnLineItem(String MaterialID) throws Throwable {
 
 		isElementClickable(AddMeterialInLineItems, 3, "Material Line item");
-		isElementType(AddMeterialInLineItems, MaterialID, 2, "MaterialID");
+		isElementType(AddMeterialInLineItems, MaterialID, 2, MaterialID);
 		// driver.findElement(AddMeterialInLineItems).sendKeys(MaterialID);
 		driver.findElement(AddMeterialInLineItems).sendKeys(Keys.ENTER);
 		loadingSymbol();
