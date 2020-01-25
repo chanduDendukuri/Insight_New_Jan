@@ -998,9 +998,9 @@ public class MarriottIntlCorpLib extends MarriottIntlCorpObj {
 			throws Throwable {
 		click(COMPANYSTANDARDS_PAGELINK, "Company Standards PageLink");
 		isElementPresent(CartObj.Current_product_groups, " Current Product Groups page is opened");
-		click(getcompanystandardsproductgroup(productGroup), "Product Group");
+		click(getcompanystandardsproductgroup(productGroup), "Product Group::"+productGroup);
 		click(getCompanyStandardsProductGroupwithbtext(productGroup, productName, FieldOnly),
-				"select product from product group");
+				"select product from product group:"+productName);
 	}
 
 	/**
