@@ -1272,12 +1272,20 @@ public class CMTLib extends CMTObj {
 
 	public void deleteClientNotification(String repMail) throws Throwable {
 		if (isVisibleOnly(clientNotifiationDeleteIcon(repMail), "Repo Email")) {
-			reporter.SuccessReport("Verifying newly added Sales repo", "Newly added sales repo is reflected ", repMail);
+
 			click(clientNotifiationDeleteIcon(repMail), "Delete client notification ");
 
 		} else {
 			reporter.failureReport("Verifying newly added Sales repo", "Newly added sales repo is not reflected ",
 					repMail, driver);
+		}
+	}
+	public void deleteClientNotificationBeforeAdd(String repMail) throws Throwable {
+		if (isVisibleOnly(clientNotifiationDeleteIcon(repMail), "Repo Email")) {
+
+			click(clientNotifiationDeleteIcon(repMail), "Delete client notification ");
+			reporter.SuccessReport("Delete client notification","Deleting client notifications", repMail);
+
 		}
 	}
 
@@ -3287,6 +3295,35 @@ public class CMTLib extends CMTObj {
 			reporter.failureReport("Enable_Search", "Enable_Search ", s1, driver);
 		}
 
+		if(getText(allMyAccountsForEnableInvoice,"All my Accounts").equalsIgnoreCase("All My Accounts"))
+		{
+			status = true;
+			s1 = Boolean.toString(status);
+			reporter.SuccessReport("All my accounts", "All my accounts is default value ","Select All My Account in Enable Invoicing Under Account History Exists and Selected is " +s1);
+		}else{
+			reporter.SuccessReport("All my accounts", "All my accounts is default value ","Select All My Account in Enable Invoicing Under Account History Exists and Selected is"+ s1);
+		}
+
+		if(getText(allMyAccountsForEnableStandardReports,"All my Accounts").equalsIgnoreCase("All My Accounts"))
+		{
+			status = true;
+			s1 = Boolean.toString(status);
+				reporter.SuccessReport("All my accounts", "All my accounts is default value ","Select All My Account in Enable Standard Reports Under Account History Exists and Selected is " +s1);
+		}else{
+			reporter.SuccessReport("All my accounts", "All my accounts is default value ","Select All My Account in Enable Standard Reports under Account History Exists and Selected is"+ s1);
+		}
+
+		if(getText(allMyAccountsForEnableOrderTracking,"All my Accounts").equalsIgnoreCase("All My Accounts"))
+		{
+			status = true;
+			s1 = Boolean.toString(status);
+			reporter.SuccessReport("All my accounts", "All my accounts is default value ","Select All My Account in Enable Order tracking Under Account History Exists and Selected is " +s1);
+		}else{
+			reporter.SuccessReport("All my accounts", "All my accounts is default value ","Select All My Account in Enable Order tracking under Account History Exists and Selected is"+ s1);
+		}
+
+
+
 	}
 
 	public void disbaleOverRidePaymentOption() throws Throwable{
@@ -3303,4 +3340,20 @@ public class CMTLib extends CMTObj {
 		}
 	}
 
-}
+	public void verifyRepEmailInSalesPage(String email) throws Throwable{
+		boolean status = false;
+			List<WebElement> fieldsList=driver.findElements(repUserVerificationInSalesTeamPage);
+			for (int i = 0; i < fieldsList.size(); i++) {
+				if(fieldsList.get(i).getText().equalsIgnoreCase(email)){
+					status=true;
+					reporter.SuccessReport("Verify Repo email availability","Repo name availability",email + " is available in sales team page");
+				break;
+				}else
+					status=false;
+			}
+			if(!status) {
+				reporter.failureReport("Verify Repo email availability", "Repo name availability", email + " is not available in sales team page", driver);
+			}
+	}
+	}
+

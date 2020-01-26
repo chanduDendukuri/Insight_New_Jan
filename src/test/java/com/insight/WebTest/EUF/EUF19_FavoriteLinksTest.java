@@ -65,6 +65,8 @@ public class EUF19_FavoriteLinksTest extends EndUserFeaturesLib{
 						canadaLib.clickOnSideMenuSelectAccountToolOptions(data.get("Tools_Menu"),
 								data.get("Tools_Menu_DD"));
 						clickOnTabInUserProfile(data.get("Tab_Name"));
+						Thread.sleep(14000);
+						commonLib.spinnerImage();
 						deleteAllFavouriteLinks();
 						clickAvailableLink(data.get("Available_Link"));
 						selectFavourite(data.get("Available_Item1"));
@@ -72,20 +74,22 @@ public class EUF19_FavoriteLinksTest extends EndUserFeaturesLib{
 						clickUpdateButtonInFavouritesLinks();
 						//Verifying 1st favourite link
 						selectToolsDropDownInHomepage(data.get("Order_Tracking"));
-						orderHistoryLib.verifyOrderHistoryPage();
+					//	orderHistoryLib.verifyOrderHistoryPage();
 						//Verifying 1st favourite link
+						Thread.sleep(7000);
 						selectToolsDropDownInHomepage(data.get("Invoice_History"));
-						canadaLib.verifyInvoiceHistoryPageOpened();
-						canadaLib.clickOnSideMenuSelectAccountToolOptions(data.get("Tools_Menu"),
-								data.get("Tools_Menu_DD"));
-						clickOnTabInUserProfile(data.get("Tab_Name"));
+						//canadaLib.verifyInvoiceHistoryPageOpened();
+						//manage fav link
+						clickSettingsIconInToolsDD();
+
+						Thread.sleep(5000);
+						verifyFavouritesLinksPageOpened();
 						deleteAllFavouriteLinks();
 						clickUpdateButtonInFavouritesLinks();
 						selectToolsDropdownAndVerifyFavouriteLinkIsNotPresent(data.get("Order_Tracking"));
 						selectToolsDropdownAndVerifyFavouriteLinkIsNotPresent(data.get("Invoice_History"));
-						//manage fav link
-						clickSettingsIconInToolsDD();
-						verifyFavouritesLinksPageOpened();
+
+
 						commonLib.clickLogOutLink(data.get("Logout_Header"));
 						System.out.println("Test completed");
 					} catch (Exception e) {

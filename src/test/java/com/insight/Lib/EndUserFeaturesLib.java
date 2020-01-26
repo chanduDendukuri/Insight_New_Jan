@@ -10,6 +10,8 @@ import com.insight.ObjRepo.EndUserFeaturesObj;
 import com.insight.ObjRepo.MarriottIntlCorpObj;
 import com.insight.ObjRepo.ShipBillPayObj;
 
+import static com.insight.ObjRepo.CMTObj.noFavLinksAvailable;
+
 
 public class EndUserFeaturesLib extends EndUserFeaturesObj{
 	/**
@@ -199,14 +201,17 @@ public class EndUserFeaturesLib extends EndUserFeaturesObj{
 	public void deleteAllFavouriteLinks() throws Throwable {
 		Thread.sleep(5000);
 		
-		if(isElementPresent(DELETE_FAVOURITE_LINK, "Delete favourite link")) {
+		if(!isVisibleOnly(noFavLinksAvailable, "No fav link")) {
 			List<WebElement> myList=driver.findElements(DELETE_FAVOURITE_LINK);
 		for (int i=0; i<myList.size();i++) {
 			click(DELETE_FAVOURITE_LINK,"delete favourite");
+			if(isVisibleOnly(noFavLinksAvailable,"No Fav links ")){
+				reporter.SuccessReport(" Favorite  links ","No Favorite  links are available",getText(noFavLinksAvailable,"No Fav link data"));
+			}
 		 }
 		}
 		else {
-			LOG.info("No favourites links");
+			reporter.SuccessReport(" Favorite  links ","No Favorite  links are available",getText(noFavLinksAvailable,"No Fav link data"));
 		}
 		
 	}
@@ -231,9 +236,9 @@ public class EndUserFeaturesLib extends EndUserFeaturesObj{
 	
 	public void selectFavourite(String item) throws Throwable {
 		
-		click(availableItem(item),"Hover on item");
-		click(availableItem(item),"Hover on item");
-		click(rightArrow(item),"Right arrow");
+		click(availableItem(item),"Hover on "+item);
+		click(availableItem(item),"clicked on "+ item);
+		click(rightArrow(item),"Added "+item+ " as favourite");
 		if(isElementPresent(favouriteLink(item), "favourite link")) {
 			reporter.SuccessReport("Verifying favourite links", "Favourite link is added","");
 		}
@@ -348,7 +353,12 @@ public class EndUserFeaturesLib extends EndUserFeaturesObj{
 	 */
 	public void selectToolsDropDownInHomepage(String favLink) throws Throwable {
 		click(CommonObj.TOOLS_DD_HEADER, "tools drop down");
-		click(toolsDropDownOptions(favLink), favLink);
+		if(isVisibleOnly(toolsDropDownOptions(favLink), favLink)){
+			reporter.SuccessReport("Verifying Fav links under Tools", " Verifying Fav links under Tools",favLink + " is Available" );
+		}else{
+			reporter.failureReport("Verifying Fav links under Tools", " Verifying Fav links under Tools",favLink + " is not Available",driver );
+
+		}
 	}
 	/**
 	 * PURPOSE: This method is to click on tools link in top navigation and verify fav links
