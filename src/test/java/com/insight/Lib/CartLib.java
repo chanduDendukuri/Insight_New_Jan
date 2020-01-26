@@ -29,6 +29,7 @@ public class CartLib extends ActionEngine {
 	OrderObj orderObj = new OrderObj();
 	ShipBillPayLib shipbLib = new ShipBillPayLib();
 	InvoiceHistoryLib ivhLib=new InvoiceHistoryLib();
+	CanadaLib canadaLib=new CanadaLib();
 	String openMarketPrice;
 
 	/**
@@ -1129,6 +1130,7 @@ public class CartLib extends ActionEngine {
 	 * @customization author : CIGNITI
 	 */
 	public void verifyItemInCart(String itemInCart) throws Throwable {
+		canadaLib.verifyPlaceCartLabel();
 		waitForVisibilityOfElement(CartObj.getItemInCart(itemInCart), "Item in cart");
 		if (driver.findElement(CartObj.getItemInCart(itemInCart)).isDisplayed()) {
 			reporter.SuccessReport("verifying item added to cart :: ", " item added to cart is verified and it is same as product details page.ITEM IS :", itemInCart);
@@ -1292,6 +1294,7 @@ public class CartLib extends ActionEngine {
 	 * @throws Throwable
 	 */
 	public void verifyProductGroupBundleAddedToCart(String productName) throws Throwable {
+		canadaLib.verifyPlaceCartLabel();
 		String actualprodGroupName = getText(CartObj.PROD_GROUP_NAME_IN_CART, "Product group name in cart");
 		if (actualprodGroupName.equals(productName) && isElementPresent(CartObj.BUNDLEONE, "Bundle one in cart")) {
 			reporter.SuccessReport("Verify product group displayed in the cart screen",
@@ -1839,6 +1842,7 @@ public class CartLib extends ActionEngine {
 		Thread.sleep(10000);
 		String sfile = System.getProperty("user.dir") + "\\" + "DownloadedFiles" + "\\" + "exportCart.xls";
 		File file = new File(sfile);
+		if (file.exists()) {
 		List<String> downloadedExcelContent = CommonLib.readRowFromExcel(sfile, sheetName, Integer.parseInt(rowNumber));
 		List<String> acutalContent = Arrays.asList(columnHeaders.split(","));
 		System.out.println("Compare content" + downloadedExcelContent.equals(acutalContent));
@@ -1846,10 +1850,16 @@ public class CartLib extends ActionEngine {
 			reporter.SuccessReport(columnHeaders,  "columns are avilable in exportCart.xls", "columns: "+columnHeaders);
 		} else {
 			reporter.failureReport(columnHeaders, columnHeaders+ " are not avilable", "", driver);
+		 }
+		}else {
+			reporter.failureReport("ExportCart Excel File", "File dose not exists", "", driver);
 		}
 		System.out.println("File Deletion :" + file.delete());
 		if (file.exists()) {
 			file.delete();
+			reporter.SuccessReport("ExportCart Excel File", "File closed", "");
+		}else {
+			// do nothing
 		}
 	}
 

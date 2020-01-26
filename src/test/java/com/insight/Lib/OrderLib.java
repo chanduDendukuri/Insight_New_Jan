@@ -134,6 +134,7 @@ public class OrderLib extends OrderObj{
 		}
 		if(isElementPresent(PROCEED_TO_CHECKOUT, "Proceed to checkout") && isEnabled(PROCEED_TO_CHECKOUT, "Proceed to checkout")){
 			clickUntil(PROCEED_TO_CHECKOUT, ORDER_ITEM_INFO_LABEl, "Proceed to checkout");
+			Thread.sleep(3000);
 		}else{
 			reporter.failureReport("Verify the Proceed to checkout button visibility","Proceed to checkout is not visible or disabled","",driver);
 		}
@@ -626,7 +627,8 @@ public class OrderLib extends OrderObj{
 	 */
 	public void clickContinueOnLLIAndShipBillPaySections() throws Throwable{
 		 clickContinueOnLineLevelInfo();   // Click continue on Line level Info
-         shippingBillPayContinueButton();  // Click continue on  shipping address 
+		 canadaLib.verifySBP();
+		 shippingBillPayContinueButton();  // Click continue on  shipping address 
          shippingOptionsCarrierSelection();  // Click continue on shipping options
          billingAddressContinueButton();  // Billing address continue button
 	}

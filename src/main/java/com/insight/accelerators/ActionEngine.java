@@ -1597,7 +1597,7 @@ public class ActionEngine extends TestEngineWeb {
 
 			LOG.info("identified the element :: " + locator);
 			LOG.info("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
-			reporter.SuccessReport("Click : " + locatorName, msgClickSuccess + locatorName,"NA");
+			reporter.SuccessReport("Click : " + locatorName, "Successfully Clicked On " ,locatorName);
 		} catch (Exception e) {
 			flag = false;
 			LOG.info(e.getMessage());
