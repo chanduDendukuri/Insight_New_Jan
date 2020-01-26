@@ -1290,7 +1290,7 @@ public class ActionEngine extends TestEngineWeb {
 			throw new RuntimeException(e);
 		} finally {
 			if (!flag) {
-				reporter.warningReport("GetText :: ", "Unable to get Text from :: " + locatorName);
+				//reporter.warningReport("GetText :: ", "Unable to get Text from :: " + locatorName);
 				LOG.info("GetText :: Unable to get Text from :: " + locatorName);
 			} else {
 				reporter.SuccessReport("GetText :: " + locatorName, "" + locatorName + " is :" ,text);

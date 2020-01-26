@@ -36,10 +36,12 @@ public class CMTLib extends CMTObj {
 	public void loginToCMT(String login) throws Throwable {
 		click(CommonObj.getPrimaryNavLink(login), "Login link");
 		Thread.sleep(3000);
-		if (isElementPresent(CommonObj.CLOSE, "Close icon")) {
-			click(CommonObj.CLOSE, "Close icon");
+		if (isVisibleOnly(CommonObj.CLOSE, "Close icon")) {
+			if (isVisibleOnly(CommonObj.CLOSE, "Close icon")) {
+				click(CommonObj.CLOSE, "Close icon");
+			}
 		}
-		if (isElementPresent(CommonObj.CLOSEBUTTON_COOKIES, "close cookie")) {
+		if (isVisibleOnly(CommonObj.CLOSEBUTTON_COOKIES, "close cookie")) {
 			click(CommonObj.CLOSEBUTTON_COOKIES, "close cookie");
 		}
 		typeText(CommonObj.LOGIN_USER, CMT_ADMIN_USERNAME, "User Name");
@@ -276,9 +278,9 @@ public class CMTLib extends CMTObj {
 
 		click(UPDATE_USER_BTN, "Update user button");
 		if (isElementPresent(PERMISSION_UPDATE_MSG, "update sucessful message")) {
-			reporter.SuccessReport("Verify the Sucess message ", "Permissions Updated Succesfully", "");
+			reporter.SuccessReport("Verify the Sucess message ", "Permissions Updated Succesfully", getText(PERMISSION_UPDATE_MSG, "update sucessful message"));
 		} else {
-			reporter.failureReport("Verify the sucess message", "Permissions are not Updated Succesfully", "", driver);
+			reporter.failureReport("Verify the sucess message", "Permissions are not Updated Succesfully", getText(PERMISSION_UPDATE_MSG, "update sucessful message"), driver);
 		}
 	}
 
@@ -310,7 +312,8 @@ public class CMTLib extends CMTObj {
 	public void loginVerification(String contactName) throws Throwable {
 		waitForVisibilityOfElement(CMTObj.getLoginVerficationByContactNameOnHeader(contactName),
 				"contact Name is " + contactName);
-		if (isVisibleOnly(CMTObj.getLoginVerficationByContactNameOnHeader(contactName), "contact Name")) {
+		if(getText(CMTObj.getLoginVerficationByContactNameOnHeader(contactName),"LoginName").contains(contactName)){
+		//if (isVisibleOnly(CMTObj.getLoginVerficationByContactNameOnHeader(contactName), "contact Name")) {
 			reporter.SuccessReport("Verify the Same User Logged into Insight from CMT",
 					"User login verification is successfull. User is : ", contactName);
 		} else {
@@ -551,9 +554,27 @@ public class CMTLib extends CMTObj {
 			click(getUserPermission(userPermissions), "User permissions : " + userPermissions + " is OFF");
 			click(UPDATE_USER_BTN, "Update user button");
 			if (isElementPresent(PERMISSION_UPDATE_MSG, "update sucessful message")) {
-				reporter.SuccessReport("Verify the Sucess message ", "Permissions disabled Succesfully", "");
+				reporter.SuccessReport("Verify the Sucess message ", "Permissions disabled Succesfully", getText(PERMISSION_UPDATE_MSG, "update sucessful message"));
 			} else {
-				reporter.failureReport("Verify the sucess message", "Permissions are not disabled Succesfully", "",
+				reporter.failureReport("Verify the sucess message", "Permissions are not disabled Succesfully", getText(PERMISSION_UPDATE_MSG, "update sucessful message"),
+						driver);
+			}
+		} else {
+			LOG.info(userPermissions + " check box already checked.");
+			reporter.SuccessReport("Verify Customer Level Permissions",
+					"User permissions :" + userPermissions + "check box already Disabled",
+					"" + userPermissions + " OFF");
+		}
+	}
+	public void setPermissionsToDisableOnly( String userPermissions) throws Throwable {
+		//click(getUsersTabMenus(menuName), "Roles And Permissions");
+		if (isCheckBoxSelected(getUserPermission(userPermissions))) {
+			click(getUserPermission(userPermissions), "User permissions : " + userPermissions + " is OFF");
+			click(UPDATE_USER_BTN, "Update user button");
+			if (isElementPresent(PERMISSION_UPDATE_MSG, "update sucessful message")) {
+				reporter.SuccessReport("Verify the Sucess message ", "Permissions disabled Succesfully", getText(PERMISSION_UPDATE_MSG, "update sucessful message"));
+			} else {
+				reporter.failureReport("Verify the sucess message", "Permissions are not disabled Succesfully", getText(PERMISSION_UPDATE_MSG, "update sucessful message"),
 						driver);
 			}
 		} else {
@@ -1253,12 +1274,20 @@ public class CMTLib extends CMTObj {
 
 	public void deleteClientNotification(String repMail) throws Throwable {
 		if (isVisibleOnly(clientNotifiationDeleteIcon(repMail), "Repo Email")) {
-			reporter.SuccessReport("Verifying newly added Sales repo", "Newly added sales repo is reflected ", repMail);
+
 			click(clientNotifiationDeleteIcon(repMail), "Delete client notification ");
 
 		} else {
 			reporter.failureReport("Verifying newly added Sales repo", "Newly added sales repo is not reflected ",
 					repMail, driver);
+		}
+	}
+	public void deleteClientNotificationBeforeAdd(String repMail) throws Throwable {
+		if (isVisibleOnly(clientNotifiationDeleteIcon(repMail), "Repo Email")) {
+
+			click(clientNotifiationDeleteIcon(repMail), "Delete client notification ");
+			reporter.SuccessReport("Delete client notification","Deleting client notifications", repMail);
+
 		}
 	}
 
@@ -3268,6 +3297,65 @@ public class CMTLib extends CMTObj {
 			reporter.failureReport("Enable_Search", "Enable_Search ", s1, driver);
 		}
 
+		if(getText(allMyAccountsForEnableInvoice,"All my Accounts").equalsIgnoreCase("All My Accounts"))
+		{
+			status = true;
+			s1 = Boolean.toString(status);
+			reporter.SuccessReport("All my accounts", "All my accounts is default value ","Select All My Account in Enable Invoicing Under Account History Exists and Selected is " +s1);
+		}else{
+			reporter.SuccessReport("All my accounts", "All my accounts is default value ","Select All My Account in Enable Invoicing Under Account History Exists and Selected is"+ s1);
+		}
+
+		if(getText(allMyAccountsForEnableStandardReports,"All my Accounts").equalsIgnoreCase("All My Accounts"))
+		{
+			status = true;
+			s1 = Boolean.toString(status);
+				reporter.SuccessReport("All my accounts", "All my accounts is default value ","Select All My Account in Enable Standard Reports Under Account History Exists and Selected is " +s1);
+		}else{
+			reporter.SuccessReport("All my accounts", "All my accounts is default value ","Select All My Account in Enable Standard Reports under Account History Exists and Selected is"+ s1);
+		}
+
+		if(getText(allMyAccountsForEnableOrderTracking,"All my Accounts").equalsIgnoreCase("All My Accounts"))
+		{
+			status = true;
+			s1 = Boolean.toString(status);
+			reporter.SuccessReport("All my accounts", "All my accounts is default value ","Select All My Account in Enable Order tracking Under Account History Exists and Selected is " +s1);
+		}else{
+			reporter.SuccessReport("All my accounts", "All my accounts is default value ","Select All My Account in Enable Order tracking under Account History Exists and Selected is"+ s1);
+		}
+
+
+
 	}
 
-}
+	public void disbaleOverRidePaymentOption() throws Throwable{
+		boolean status=false;
+		String s1=null;
+		if (isCheckBoxSelected(overRidePaymentOption)) {
+			status = true;
+			s1 = Boolean.toString(status);
+			click(overRidePaymentOption,"overRidePaymentOption","overRidePaymentOption");
+			reporter.SuccessReport("overRidePaymentOption", "overRidePaymentOption is ", "OFF");
+		} else {
+			status = false;
+			reporter.SuccessReport("overRidePaymentOption", "overRidePaymentOption is ", "OFF");
+		}
+	}
+
+	public void verifyRepEmailInSalesPage(String email) throws Throwable{
+		boolean status = false;
+			List<WebElement> fieldsList=driver.findElements(repUserVerificationInSalesTeamPage);
+			for (int i = 0; i < fieldsList.size(); i++) {
+				if(fieldsList.get(i).getText().equalsIgnoreCase(email)){
+					status=true;
+					reporter.SuccessReport("Verify Repo email availability","Repo name availability",email + " is available in sales team page");
+				break;
+				}else
+					status=false;
+			}
+			if(!status) {
+				reporter.failureReport("Verify Repo email availability", "Repo name availability", email + " is not available in sales team page", driver);
+			}
+	}
+	}
+

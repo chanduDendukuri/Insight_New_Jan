@@ -1517,6 +1517,8 @@ public class OrderLib extends OrderObj{
 			}
 	}
 
+
+
 	/**
 	 * 
 	 * @param toolsMenuName
@@ -1584,9 +1586,11 @@ public class OrderLib extends OrderObj{
 	public void clickOnAdditionalInfoContinueButton() throws Throwable {
 		if(isElementPresent(CONTINUE_BTN,"Continue Button Additional info Section")) {
 		click(CONTINUE_BTN, "Continue Button of Additional info Section");
+		reporter.SuccessReport("Continue button in Additional info page","Clicking on continue button","Continue button in additional info");
 	}else {
-		//do nothing
-	}
+			reporter.failureReport("Continue button in Additional info page","Clicking on continue button","Continue button in additional info",driver);
+
+		}
 	}
 
 	/**

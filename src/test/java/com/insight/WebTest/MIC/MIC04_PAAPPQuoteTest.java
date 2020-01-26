@@ -72,8 +72,9 @@ public class MIC04_PAAPPQuoteTest extends MarriottIntlCorpLib{//MIC04_PAAPPQuote
 				// cart
 				handleinsightpopup();
 				// VERIFY ITEM IN CART
-				Clickoncart();
-				commonLib.spinnerImage();
+				Thread.sleep(5000);
+				clickOnViewCart();
+				//commonLib.spinnerImage();
 				handleinsightpopup();
 				Thread.sleep(4000);
 				//cartLib.verifyItemInCart(data.get("partnum1"));
@@ -92,7 +93,8 @@ public class MIC04_PAAPPQuoteTest extends MarriottIntlCorpLib{//MIC04_PAAPPQuote
 				// cart
 				handleinsightpopup();
 				// VERIFY ITEM IN CART
-				Clickoncart();
+				Thread.sleep(5000);
+				clickOnViewCart();
 				Thread.sleep(4000);
 				Verifypartnum(data.get("partnum2"));
 				Thread.sleep(4000);

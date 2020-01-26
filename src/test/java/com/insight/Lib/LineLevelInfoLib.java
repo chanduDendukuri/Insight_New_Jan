@@ -740,6 +740,8 @@ public class LineLevelInfoLib extends LineLevelInfoObj{
 		commonLib.spinnerImage();
 		if(isElementPresent(OrderObj.PROCEED_TO_CHECKOUT, "Proceed to checkout") && isEnabled(OrderObj.PROCEED_TO_CHECKOUT, "Proceed to checkout")){
 			clickUntil(OrderObj.PROCEED_TO_CHECKOUT, OrderObj.ORDER_ITEM_INFO_LABEl, "Proceed to checkout");
+			reporter.failureReport("Verify the Proceed to checkout button visibility","Proceed to checkout is visible and clicked","Clicked on Proceed to checkout ",driver);
+
 		}else{
 			reporter.failureReport("Verify the Proceed to checkout button visibility","Proceed to checkout is not visible or disabled","",driver);
 		}

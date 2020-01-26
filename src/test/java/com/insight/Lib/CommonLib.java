@@ -19,6 +19,7 @@ import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.omg.PortableServer.THREAD_POLICY_ID;
 import org.testng.Reporter;
 
 public class CommonLib extends ActionEngine{
@@ -91,7 +92,7 @@ public class CommonLib extends ActionEngine{
 	public void clickRolesAndPermissionsAtUserLevel() throws Throwable
 	{	
 		waitForVisibilityOfElement(CartObj.ROLES_AND_PERMISSIONS_USER_LEVEL,"ROLES AND PERMISSIONS AT USER LEVEL");
-		click(CartObj.ROLES_AND_PERMISSIONS_USER_LEVEL,"ROLES AND PERMISSIONS AT USER LEVEL");
+		click(CartObj.ROLES_AND_PERMISSIONS_USER_LEVEL,"ROLES AND PERMISSIONS AT USER LEVEL","ROLES AND PERMISSIONS AT USER LEVEL");
 	}
 	
 
@@ -208,7 +209,7 @@ public class CommonLib extends ActionEngine{
 			//typeUsingJavaScriptExecutor(CartObj.SEARCH,SearchItem,"SEARCHFIELD");
 
 			//Thread.sleep(20000);
-			typeForSearchingProduct(CartObj.SEARCH,SearchItem,"SEARCHFIELD");
+			typeForSearchingProduct(CartObj.SEARCH,SearchItem,SearchItem);
 
 			//click(CartObj.SEARCH_BUTTON," SEARCH BUTTON");
 			sendKeysActionsEnter(CartObj.SEARCH);
@@ -318,6 +319,16 @@ public class CommonLib extends ActionEngine{
 			type(CartObj.QUANTITY,quantity,"NUMBER OF ITEMS");
 			click(CartObj.UPDATE,"UPDATE");
 			
+		}
+		public boolean clickOnUpdateLinkInViewCartPage(String quan) throws Throwable{
+			boolean status=false;
+			if(isVisibleOnly(CartObj.UPDATE,"UPDATE")) {
+				status =true;
+				click(CartObj.UPDATE, "UPDATE","Updated to " + quan);
+			}else{
+				status=false;
+			}
+			return status;
 		}
 		
 		public void updateCartQuantityByZero(String quantity) throws Throwable

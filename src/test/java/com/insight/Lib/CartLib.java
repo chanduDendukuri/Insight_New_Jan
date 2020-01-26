@@ -22,6 +22,8 @@ import com.insight.ObjRepo.ShipBillPayObj;
 import com.insight.ObjRepo.productsDisplayInfoObj;
 import com.insight.accelerators.ActionEngine;
 
+import static com.insight.ObjRepo.CartObj.lblCartLebel;
+
 public class CartLib extends ActionEngine {
 
 	CommonLib commonLib = new CommonLib();
@@ -1959,7 +1961,14 @@ public class CartLib extends ActionEngine {
 			reporter.SuccessReport("verify carrier options::", " Expected Carrier Exist","UPS Exits in Available Carriers List");
 
 		}
+
+
+		
+
 		
 	}		
-		
+	public boolean verifyCartPageAvailablity() throws Throwable{
+		return isVisibleOnly(lblCartLebel,"Cart Header");
+		}
+
 }

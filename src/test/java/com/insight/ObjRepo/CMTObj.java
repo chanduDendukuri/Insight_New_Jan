@@ -44,6 +44,7 @@ public class CMTObj extends ActionEngine {
 	public static By rbtnUsetheCustomizedPermissionBelow = By.id("permissionGroup2");
 	public static By chbxEditContactInformation = By.xpath("//*[@name='edit_contact_info']");
 	public static By btnUpdateUser = By.xpath("//*[@title='Update User']");
+	public static By repUserVerificationInSalesTeamPage = By.xpath("//*[@id='SalesRep']//td//div//a");
 	/*
 	 * public static By getLoginVerficationByContactNameOnHeader(String
 	 * contactName) {
@@ -655,7 +656,12 @@ public static By lnkDeleteProductGroups=By.xpath("//*[text()=' Delete Product Gr
 	public static By Enable_Personal_Product_List = By.xpath("//*[@name='ppc']");
 	public static By Enable_menu_for_solutions= 	By.xpath("//*[@name='services']");
 	public static By Enable_Accessories = 			By.xpath("//*[@name='accessories']");
-	public static By Enable_Search = 				By.xpath("///*[@name='search']']");
+	public static By Enable_Search = 				By.xpath("//*[@name='search']");
+	public static By overRidePaymentOption = 		By.xpath("//*[@name='override_payment_options']");
+	public static By allMyAccountsForEnableInvoice = By.xpath("//input[@name='enable_invoicing']//..//following-sibling::div//select//option[@selected='selected']");
+	public static By allMyAccountsForEnableStandardReports = By.xpath("//input[@name='enable_standard_reports']//..//following-sibling::div//select//option[@selected='selected']");
+	public static By allMyAccountsForEnableOrderTracking = By.xpath("//input[@name='enable_order_tracking']//..//following-sibling::div//select//option[@selected='selected']");
+	public static By noFavLinksAvailable = By.xpath("(//*[@id='QuickLinks__favorites']//*[@class='iw-accordion__emptytext muted']//p)[1]");
 
 	
 	
