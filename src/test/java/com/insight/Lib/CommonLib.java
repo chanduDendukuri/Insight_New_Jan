@@ -311,14 +311,12 @@ public class CommonLib extends ActionEngine{
 		 *  
 		 *  @author : 
 		 */
-		public void updateCartQuantity(String quantity) throws Throwable
-		{	
+		public void updateCartQuantity(String quantity) throws Throwable{	
 			waitForVisibilityOfElement(CartObj.QUANTITY,"QUANTITY");
 			Thread.sleep(2000);
 			clearData(CartObj.QUANTITY);
 			type(CartObj.QUANTITY,quantity,"NUMBER OF ITEMS");
 			click(CartObj.UPDATE,"UPDATE");
-			
 		}
 		public boolean clickOnUpdateLinkInViewCartPage(String quan) throws Throwable{
 			boolean status=false;
