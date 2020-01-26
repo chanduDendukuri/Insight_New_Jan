@@ -441,7 +441,7 @@ public class OrderLib extends OrderObj{
 	public void clickOnReviewOrderButton() throws Throwable{
 		Thread.sleep(5000);
 		clickUntil(REVIEW_ORDER_BTN,PLACEORDER_LABL, "review order button of Payment info Section");
-		
+		verifyPlaceOrderLabel();
 	}
 	
 	public void continueButtonOnAdditionalInformationSection() throws Throwable{
@@ -642,14 +642,14 @@ public class OrderLib extends OrderObj{
 	 * @throws Throwable
 	 */
 	public void enterReportingDetailsInLineLevelInfoSection(String reportingField4,String reportingField5,String reportingField6) throws Throwable{
-		if(isElementPresent(REPORTING_FIELD_4, "Reporting Field 4")){
+		if(isElementPresent(OrderObj.ORDER_ITEM_INFO_LABEl, "order and inforamtion page")){
 		type(REPORTING_FIELD_4, reportingField4, "Reporting Field 4");
 		type(REPORTING_FIELD_5, reportingField5, "Reporting Field 5");
 		type(REPORTING_FIELD_6, reportingField6, "Reporting Field 6");
 		click(LLI_CONTINUE_BTN, "Continue button");
 		
 		}else{
-			reporter.failureReport("Verify reporting fields displayed in the Line level information section","Reporting fields are not displayed Line level information","");
+			reporter.failureReport("Verify Line Level/Ship Bill & Pay/Line Level/Place Requisition/Place Order Page", "Order and item information Page not loaded", "", driver);
 		}
 	}
 

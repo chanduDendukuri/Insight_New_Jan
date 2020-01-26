@@ -294,12 +294,13 @@ public class CMTLib extends CMTObj {
 	 * @throws Throwable
 	 */
 	public void loginAsAdminCMT() throws Throwable {
-		if (isElementPresent(CMTObj.LOGIN_AS_REPORTING_ADMIN, "LOGIN AS REPORTING ADMIN")) {
-			click(CMTObj.LOGIN_AS_REPORTING_ADMIN, "Login as reporting admin");
-		} else if (isElementPresent(CMTObj.LOGIN_AS, "Login as")) {
+		if (isElementPresent(CMTObj.LOGIN_AS, "Login as")) {
 			click(CMTObj.LOGIN_AS, "Login as", "Link: Login As");
+			switchToChildWindow();
+		}else {
+			reporter.failureReport("Verify LoginAs exists", "Login as does not exists", "", driver);
 		}
-		switchToChildWindow();
+		
 	}
 
 	/**
