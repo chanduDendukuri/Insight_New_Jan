@@ -62,11 +62,18 @@ public class USM02_FCTWebCreateCEPPuserTest extends UserManagementLib {
 							CommonLib commonLib = new CommonLib();
 							ShipBillPayLib sbp=new ShipBillPayLib();
 							//Login
-							cmtLib.clickLoginLink(data.get("Header"));
-							cmtLib.handleWelcomeToInsightBetaPopUp();
-							cmtLib.loginAsAdmin();
+							cmtLib.loginToCMT(data.get("Header"));
 							cmtLib.searchForWebGroup(data.get("WebGrp"));
 							cmtLib.manageUsers();
+							cmtLib.hoverOnManageWebGroupsAndSelectOptions(data.get("Manage_Web_Grp_Options"));
+							cmtLib.hoverOnManageWebGroupsAndSelectOptions(data.get("Manage_Web_Grp_Options1"));
+							//New User Link
+							cmtLib.clickAddNewUserLink();
+							//User Name
+							cmtLib.enterUserName(data.get("ExistingUserName"));
+							cmtLib.checkAvailability();
+							
+							
 							cmtLib.clickAddNewUserLink();
 							Thread.sleep(3000);
 							cmtLib.selectUserTypeDropdown(data.get("User_Type"));
