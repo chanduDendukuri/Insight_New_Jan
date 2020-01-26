@@ -98,7 +98,9 @@ public class ROD06_FCTWebReviewExportTest extends OrderLib{
 						// ******** verify Export Excel ***************//   -- Verify items added
 					   	cartLib.ClickExportCartAndVerify(data.get("Order_Utilities"),data.get("Sheet_Name"),data.get("Row_number"),data.get("Column_Headers"));
 						// Navigate to Account tools >> Company Standards
-						searchLib.selectAccountToolsFromSideMenuAndClickOnProductGrp(data.get("Tools_Menu"), data.get("Tools_Menu_DD"),data.get("Product_Group"),data.get("Product_Name"));
+						clickOnSideMenuSelectAccountToolOptions(data.get("Tools_Menu"), data.get("Tools_Menu_DD"));
+						commonLib.clickOnProductGrpInCompanyStandard( data.get("Product_Group"), data.get("Product_Name"));
+						
 						searchLib.clickAddToOrderOnCompanyStandardsScreen();
 
 						// Verifying Bundle added to cart
