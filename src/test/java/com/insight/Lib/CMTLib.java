@@ -294,12 +294,13 @@ public class CMTLib extends CMTObj {
 	 * @throws Throwable
 	 */
 	public void loginAsAdminCMT() throws Throwable {
-		if (isElementPresent(CMTObj.LOGIN_AS_REPORTING_ADMIN, "LOGIN AS REPORTING ADMIN")) {
-			click(CMTObj.LOGIN_AS_REPORTING_ADMIN, "Login as reporting admin");
-		} else if (isElementPresent(CMTObj.LOGIN_AS, "Login as")) {
+		if (isElementPresent(CMTObj.LOGIN_AS, "Login as")) {
 			click(CMTObj.LOGIN_AS, "Login as", "Link: Login As");
+			switchToChildWindow();
+		}else {
+			reporter.failureReport("Verify LoginAs exists", "Login as does not exists", "", driver);
 		}
-		switchToChildWindow();
+		
 	}
 
 	/**
@@ -775,6 +776,7 @@ public class CMTLib extends CMTObj {
 	 *
 	 */
 	public void enterUserName(String text) throws Throwable {
+		clearData(USER_NAME_FIELD);
 		type(USER_NAME_FIELD, text, "user name");
 		click(CHECK_AVAILABLITY_BUTTON, "check availability");
 
@@ -788,6 +790,7 @@ public class CMTLib extends CMTObj {
 		if (isElementNotPresent(AVAILABLE_MESSAGE, "error message")) {
 			clearData(USER_NAME_FIELD);
 			type(USER_NAME_FIELD, text, "user name");
+			
 		} else {
 			Log.info("user name is available");
 			reporter.SuccessReport("Availability Message ", "User availability message",
@@ -2723,11 +2726,7 @@ public class CMTLib extends CMTObj {
 	 * @throws Throwable
 	 */
 	public void checkAvailability() throws Throwable {
-		if (isElementPresent(CHECK_AVAILABLITY_BUTTON, "Check Availability")) {
-			click(CHECK_AVAILABLITY_BUTTON, "check availability");
-		} else {
-			reporter.failureReport("Verify availability of userName", "User name is not available", "", driver);
-		}
+			click(CHECK_AVAILABLITY_BUTTON, "check availability Button");
 	}
 
 	/**

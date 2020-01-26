@@ -1,4 +1,4 @@
-package com.insight.accelerators;
+﻿package com.insight.accelerators;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -89,7 +89,7 @@ public class ActionEngine extends TestEngineWeb {
 	protected boolean selectByIndex(By locator, int index, String locatorName) throws Throwable {
 		boolean flag = false;
 		try {
-			LOG.info("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
+			LOG.info("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
 			LOG.info("Class name" + getCallerClassName() + "Method name : " + getCallerMethodName());
 			LOG.info("Method : " + getCallerMethodName() + "  ::  Locator : " + locatorName);
 			Select s = new Select(driver.findElement(locator));
@@ -1597,7 +1597,7 @@ public class ActionEngine extends TestEngineWeb {
 
 			LOG.info("identified the element :: " + locator);
 			LOG.info("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
-			reporter.SuccessReport("Click : " + locatorName, msgClickSuccess + locatorName,"NA");
+			reporter.SuccessReport("Click : " + locatorName, "Successfully Clicked On " ,locatorName);
 		} catch (Exception e) {
 			flag = false;
 			LOG.info(e.getMessage());
