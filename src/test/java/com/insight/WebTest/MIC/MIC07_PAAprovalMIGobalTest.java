@@ -6,6 +6,7 @@ import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 import com.insight.Lib.CMTLib;
+import com.insight.Lib.CanadaLib;
 import com.insight.Lib.CartLib;
 import com.insight.Lib.CommonLib;
 import com.insight.Lib.MarriottIntlCorpLib;
@@ -23,6 +24,8 @@ public class MIC07_PAAprovalMIGobalTest extends MarriottIntlCorpLib {
 	CartLib cartLib = new CartLib();
 	OrderLib orderLib = new OrderLib();
 	ShipBillPayLib shipbLib = new ShipBillPayLib();
+	CanadaLib canadaLib = new CanadaLib(); 
+
 	
 	// #############################################################################################################
 	// # Name of the Test : MIC07_PAAprovalMIGobal
@@ -80,7 +83,9 @@ public class MIC07_PAAprovalMIGobalTest extends MarriottIntlCorpLib {
 			shipbLib.AdditemsbyQuickshop(data.get("PartNum2"));
 			Thread.sleep(2000);
 			Verifypartnum(data.get("PartNum2"));
-			shipbLib.AdditemsbyQuickshop(data.get("PartNum3"));
+			commonLib.searchProduct(data.get("PartNum3"));
+			commonLib.addToCartAndVerify();
+			canadaLib.continueToCheckout();
 			Thread.sleep(2000);
 			Verifypartnum(data.get("PartNum3"));
 			orderLib.proceedToCheckout();
@@ -94,6 +99,7 @@ public class MIC07_PAAprovalMIGobalTest extends MarriottIntlCorpLib {
 			shippingOptionContinueButton();
 			addBillingInfo(data.get("Bill_Attention"), data.get("Bill_Suite"), data.get("Bill_Phone"));
 			Thread.sleep(5000);
+			termsInPaymentInfo();
 			shipbLib.ClickRviewrequesition();
 			Thread.sleep(3000);
 			VerifyBrandidentifier(data.get("Brand_Identifier"));

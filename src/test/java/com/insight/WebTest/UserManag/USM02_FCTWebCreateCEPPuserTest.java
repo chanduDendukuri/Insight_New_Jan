@@ -132,7 +132,7 @@ public class USM02_FCTWebCreateCEPPuserTest extends UserManagementLib {
 							orderLib.placeOrderAndVerifyReceiptOrderAndDate(summaryAmount);
 							sbp.clickOrderDetailsButtonInREceipt();
 							Thread.sleep(3000);
-							sbp.verifyShippingCarrierAFterReviewOrder(data.get("shippingCarrier"));
+							sbp.verifyShippingCarrierAFterReviewOrder(data.get("shippingCarrier"),data.get("shippingCarrier"));
 							commonLib.clickLogOutLink(data.get("Logout_Header"));
 						} catch (Exception e) {
 							ReportStatus.blnStatus = false;

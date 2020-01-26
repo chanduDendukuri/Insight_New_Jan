@@ -101,7 +101,7 @@ public class MIC01_MIntlUserTest extends MarriottIntlCorpLib {
 					verifynonirfapc(data.get("Non_IRFA_PC"));
 					verifyenduserdiv(data.get("PC_End_User_Div_Unit_Dept"));
 					verifyShippingattention(data.get("Ship_Attention"));
-					verifybillingattention(data.get("Bill_Attention"));
+					//verifybillingattention(data.get("Bill_Attention"));
 					verifyPayementInfo(data.get("PAYMENT_TYPE"));
 					Thread.sleep(3000);
 					commonLib.clickLogOutLink(data.get("Logout_Header"));

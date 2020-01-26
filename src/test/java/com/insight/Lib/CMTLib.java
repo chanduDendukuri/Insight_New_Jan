@@ -677,12 +677,14 @@ public class CMTLib extends CMTObj {
 
 		if (isCheckBoxSelected(getCustomerLevelPermissionsForWebGrp(customerPermissions))) {
 			LOG.info(customerPermissions + " check box already checked.");
+			reporter.SuccessReport("Verify the Success message ", "Permissions Updated Succesfully.",
+					customerPermissions +" ON");
 		} else {
 			click(getCustomerLevelPermissionsForWebGrp(customerPermissions), "Customer level permissions");
 			click(UPDATE_CUSTOMER_PERMISSIONS_BTN, "Update button");
 			if (isElementPresent(CUSTOMER_PERMISSION_UPDATE_MSG, "update sucessful message")) {
 				reporter.SuccessReport("Verify the Success message ", "Permissions Updated Succesfully.",
-						customerPermissions);
+						customerPermissions+" ON");
 			} else {
 				reporter.failureReport("Verify the sucess message", "Permissions are not Updated Succesfully", "",
 						driver);
@@ -704,7 +706,7 @@ public class CMTLib extends CMTObj {
 			click(UPDATE_CUSTOMER_PERMISSIONS_BTN, "Update button");
 			if (isElementPresent(CUSTOMER_PERMISSION_UPDATE_MSG, "update sucessful message")) {
 				reporter.SuccessReport("Verify the Success message ", "Permissions Updated Succesfully",
-						"" + customerPermissions + "");
+						"" + customerPermissions + " OFF");
 			} else {
 				reporter.failureReport("Verify the sucess message", "Permissions are not Updated Succesfully", "",
 						driver);
@@ -712,7 +714,7 @@ public class CMTLib extends CMTObj {
 		} else {
 			LOG.info(customerPermissions + " check box already Unchecked.");
 			reporter.SuccessReport("Verify Web Group Level Permissions ",
-					"Web Group level permissions::" + customerPermissions + " is OFF", "" + customerPermissions + "");
+					"Web Group level permissions::" + customerPermissions + " is OFF", "" + customerPermissions + " OFF");
 		}
 	}
 

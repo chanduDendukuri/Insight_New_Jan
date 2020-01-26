@@ -70,7 +70,7 @@ public class OrderLib extends OrderObj{
 			Thread.sleep(2000);
 			String actaulWarrantyItemDec=getText(WARRANTY_ITEM_DESC_ON_CART_SCREEN, "item description");
 			if (expectedWarrantyItemDec.equals(actaulWarrantyItemDec)) {
-				reporter.SuccessReport("Verify the warranty item added.","Warranty added successfully",actaulWarrantyItemDec);
+				reporter.SuccessReport("Verify the warranty item added.","Warranty added successfully","Warranty: "+actaulWarrantyItemDec);
 			}else{
 				reporter.failureReport("Verify the warranty item added.","Warranty not added successfully.Expected warranty is : ",actaulWarrantyItemDec,driver);
 			}
@@ -296,14 +296,19 @@ public class OrderLib extends OrderObj{
 				reporter.failureReport("Verify the Invoice Notes in Review order page.","Invoice Notes verification is not successfull.","");
 			}
 			
-			String actaulWarrantyItemDec=getText(WARRANTY_ITEM_DESC_ON_CART_SCREEN, "item description");
-			if(expectedWarrantyItemDec.equals(actaulWarrantyItemDec)){
-				reporter.SuccessReport("Verify the warranty info in Review order page.","warranty info verification is successfull.","Warranty Description : "+actaulWarrantyItemDec);
-			}else{
-				reporter.failureReport("Verify the warranty info in Review order page.","warranty info verification is not successfull.","");
-			}
-			click(PLACE_ORDER_BTN, "place order button");
 		 }
+	}
+	/**
+	 * Method is to verify the warranties on the place order page
+	 * @throws Throwable
+	 */
+	public void verifyWarrantiesOnPlaceOrderPage() throws Throwable {
+		String actaulWarrantyItemDec=getText(WARRANTY_ITEM_DESC_ON_CART_SCREEN, "item description");
+		if(expectedWarrantyItemDec.equals(actaulWarrantyItemDec)){
+			reporter.SuccessReport("Verify the warranty info in Review order page.","warranty info verification is successfull.","Warranty Description : "+actaulWarrantyItemDec);
+		}else{
+			reporter.failureReport("Verify the warranty info in Review order page.","warranty info verification is not successfull.","");
+		}
 	}
 	
 	/**
@@ -361,7 +366,13 @@ public class OrderLib extends OrderObj{
 	 * @throws Throwable
 	 */
 	public void editOrderInfo(String sectionName) throws Throwable{
-		JSClick(getEditOnReviewOrderPage(sectionName), "Edit link of "+sectionName);
+		if(isVisibleOnly(getEditOnReviewOrderPage(sectionName), "edit button")) {
+			reporter.SuccessReport("Verify edit button in "+sectionName+" section", "Edit link exists in "+sectionName, "");
+			JSClick(getEditOnReviewOrderPage(sectionName), "Edit link of "+sectionName);
+		}else {
+			reporter.failureReport("Verify edit button in "+sectionName+" section", "Edit link does not exists in "+sectionName, "",driver);
+		}
+		
 	}
 	
 	/**
@@ -372,7 +383,7 @@ public class OrderLib extends OrderObj{
 	public void verifyCardNumberOnEditPaymentInfoSection(String endingDigits) throws Throwable{
 		
 		if (isElementPresent(getCardNumberEndingvalue(endingDigits), "Card Ending digits")) {
-			reporter.SuccessReport("Verify card ending digits ", " Card ending digits verification is successfull","");
+			reporter.SuccessReport("Verify card ending digits ", " Card ending digits verification is successfull","Ending digits: "+endingDigits);
 		} else {
 			reporter.failureReport("Verify card ending digits ",
 					"  Card ending digits verification is not successfull","",driver);
@@ -389,19 +400,24 @@ public class OrderLib extends OrderObj{
 	 * @throws Throwable
 	 */
 	public void addNewCardInPaymentInfoSection(String cardNumber,String cardName,String month,String year, String poNumebr,String PORealeseNumber) throws Throwable{
-		click(ADD_NEW_CARD, "Add new card link");
-		type(CARD_NUMBER_TEXTBX, cardNumber, "Card number"); // Entering details in payment info
-		type(CARD_NAME_TEXTBOX, cardName, "Card name");
-		click(EXPIRATION_MONTH, "Expiration month");
-		selectByValue(EXPIRATION_MONTH,month , "Expiration month");
-		click(EXPIRATION_YEAR, "Expiration year");
-		selectByValue(EXPIRATION_YEAR,year , "Expiration year");
-		type(PO_NUMBER, poNumebr, "P.O. Number");
-		if(isElementPresent(PO_REALESE_NUMBER,"PO Realese Number")){
-			  typeText(PO_REALESE_NUMBER, PORealeseNumber, "PO number");
+		if(isVisibleOnly(ADD_NEW_CARD, "add new card link")) {
+			click(ADD_NEW_CARD, "Add new card link");
+			type(CARD_NUMBER_TEXTBX, cardNumber, "Card number"); // Entering details in payment info
+			type(CARD_NAME_TEXTBOX, cardName, "Card name");
+			click(EXPIRATION_MONTH, "Expiration month");
+			selectByValue(EXPIRATION_MONTH,month , "Expiration month");
+			click(EXPIRATION_YEAR, "Expiration year");
+			selectByValue(EXPIRATION_YEAR,year , "Expiration year");
+			type(PO_NUMBER, poNumebr, "P.O. Number");
+			if(isElementPresent(PO_REALESE_NUMBER,"PO Realese Number")){
+				  typeText(PO_REALESE_NUMBER, PORealeseNumber, "PO number");
+			  }
+			click(REVIEW_ORDER_BTN, "review order button","review order button");
+		  }else {
+			  reporter.failureReport("verify add new link exists", "add new link does not exists", "", driver);
 		  }
-		click(REVIEW_ORDER_BTN, "review order button");
-	  }
+		}
+		
 	
 	/**
 	 * This method is to click on the product description on the place order page.
@@ -409,7 +425,12 @@ public class OrderLib extends OrderObj{
 	 */
 	public void clickOnProdDescOnPlaceOrderScreen() throws Throwable{
 		Thread.sleep(2000);
-		clickUntil(PROD_DESC_PLACE_ORDER_PAGE, CartObj.INSIGHT_NUMBER_IN_PRODUCT_DISPLAY, "Product description");
+		if(isVisibleOnly(PROD_DESC_PLACE_ORDER_PAGE, "Product description")) {
+			clickUntil(PROD_DESC_PLACE_ORDER_PAGE, CartObj.INSIGHT_NUMBER_IN_PRODUCT_DISPLAY, "Product description");
+		}else {
+			reporter.failureReport("verify product description exists", "Product description does not exists", "", driver);
+		}
+		
 	}
 	
 	/**
@@ -435,10 +456,11 @@ public class OrderLib extends OrderObj{
 		switch(permissionStatus){
 		case "ON": 
 			if(isElementPresent(CartObj.SAVE_ORDER_TEMPLATE, "Save Order template link") && isElementPresent(CartObj.SAVE_CART_CONTENTS, "Saved Cart Contents")){
+				reporter.SuccessReport("Order Utilities on Product Review Page", "Saved Carts and Order Templates Page Exists", "");
 				click(CartObj.SAVE_CART_CONTENTS, "Saved Cart Contents");
 				Thread.sleep(2000);
 				if(isElementPresent(CartObj.SAVE_CART_CONTENTS_POPUP, "Saved Cart Contents popup")){
-					reporter.SuccessReport("Verify saved cart contents popup in Review Order page", " Save order Template link exists in Review Order page","");
+					reporter.SuccessReport("Verify saved cart contents popup in Review Order page", " Save order Template link exists in Review Order page","saved cart contents ");
 					click(CartObj.SAVED_CART_CANCEL_BTN, "Saved cart popup cancel button");
 				}else{
 					reporter.failureReport("Verify saved cart contents popup in Review Order page", " Save cart contents popup does not exist in Review Order page","",driver);
@@ -447,7 +469,7 @@ public class OrderLib extends OrderObj{
 				click(CartObj.SAVE_ORDER_TEMPLATE, "Saved order template");
 				Thread.sleep(2000);
 				if(isElementPresent(CartObj.SAVE_ORDER_TEMPLATE_POPUP, "Saved order template popup")){
-					reporter.SuccessReport("Verify Saved order template popup in Review Order page", " Saved order template popup exists in Review Order page","");
+					reporter.SuccessReport("Verify Saved order template popup in Review Order page", " Saved order template popup exists in Review Order page","Link : Save order template");
 					click(CartObj.SAVED_CART_CANCEL_BTN, "Saved cart popup cancel button");
 				}else{
 					reporter.failureReport("Verify Saved order template popup in Review Order page", " Saved order template popup  does not exist in Review Order page","",driver);
@@ -594,7 +616,7 @@ public class OrderLib extends OrderObj{
 	 */
 	public void selectPaymentMethod(String paymentMethod) throws Throwable {
 		 click(PAYMENT_METHOD_DD, "payment method drop down");
-		  click(paymentSelection(paymentMethod), "payment method selection");
+		  click(paymentSelection(paymentMethod), "payment method selection:"+paymentMethod);
 		  click(REVIEW_ORDER_BTN, "review order button of payment Info"); 
 	}
 	
@@ -1916,4 +1938,107 @@ public class OrderLib extends OrderObj{
 		
 	}
 	
+	/**
+	 * This method is to verify the RP_HDL_Txt entered on PO page
+	 * @param RP_HDL_Txt
+	 * @throws Throwable
+	 */
+	public void verifyRP_HDL_TxtOnPlaceOrderPage(String RP_HDL_Txt) throws Throwable{
+		if(isElementPresent(getRP_HDL_TxtInPlaceOrderPage(RP_HDL_Txt),"RP_HDL_Txt")){
+			reporter.SuccessReport("Verify RP_HDL_Txt On Place Order Page", "RP_HDL_Txt On Place Order Page is present and same as input given in Additional info section", "RP_HDL_Txt : "+RP_HDL_Txt);
+			
+		}else{
+			reporter.failureReport("Verify RP_HDL_Txt On Place Order Page", "RP_HDL_Txt On Place Order Page is not present", "",driver);
+		}
+	}
+	
+	/**
+	 * This method is to verify the WG_HDL_Txt entered on PO page
+	 * @param RP_HDL_Txt
+	 * @throws Throwable
+	 */
+	public void verifyWG_HDL_TxtOnPlaceOrderPage(String WG_HDL_Txt) throws Throwable{
+		Thread.sleep(3000);
+		if(isElementPresent(getWG_HDL_TxtInPlaceOrderPage(WG_HDL_Txt),"WG_HDL_Txt")){
+			reporter.SuccessReport("Verify WG_HDL_Txt On Place Order Page", "WG_HDL_Txt On Place Order Page is present and same as input given in Additional info section", "WG_HDL_Txt : "+WG_HDL_Txt);
+			
+		}else{
+			reporter.failureReport("Verify WG_HDL_Txt On Place Order Page", "WG_HDL_Txt On Place Order Page is not present", "",driver);
+		}
+	}
+	/**
+	 * This method is to verify the RP_LNL_Txt entered on PO page
+	 * @param RP_HDL_Txt
+	 * @throws Throwable
+	 */
+	public void verifyRP_LNL_TxtOnPlaceOrderPage(String partNumber,String input) throws Throwable{
+		if(isElementPresent(getgetRP_LNL_TxtByPartNum(partNumber),"RP_LNL_Txt")){
+			String RP_LNL_Txt=getText(getgetRP_LNL_TxtByPartNum(partNumber), "RP_LNL_Txt");
+			if(input.equals(RP_LNL_Txt)) {
+				reporter.SuccessReport("Verify RP_LNL_Txt On Place Order Page", "RP_LNL_Txt On Place Order Page is present", "RP_LNL_Txt : "+RP_LNL_Txt);
+			}else {
+				reporter.failureReport("Verify RP_LNL_Txt On Place Order Page", "RP_LNL_Txt On Place Order Page is not same as input given in LNL section", "",driver);
+			}
+			
+			
+		}else{
+			reporter.failureReport("Verify RP_LNL_Txt On Place Order Page", "RP_LNL_Txt On Place Order Page is not present", "",driver);
+		}
+	}
+	
+	/**
+	 * This method is to verify the WG_LNL_Txt entered on PO page
+	 * @param WG_LNL_Txt
+	 * @throws Throwable
+	 */
+	public void verifyWG_LNL_TxtOnPlaceOrderPage(String partNumber,String input) throws Throwable{
+		if(isElementPresent(getgetWG_LNL_TxtByPartNum(partNumber),"WG_LNL_Txt")){
+			String WG_LNL_Txt=getText(getgetWG_LNL_TxtByPartNum(partNumber), "WG_LNL_Lst").trim();
+			if(input.equals(WG_LNL_Txt)) {
+				reporter.SuccessReport("Verify WG_LNL_Txt On Place Order Page", "WG_LNL_Txt On Place Order Page is present", "WG_LNL_Txt : "+WG_LNL_Txt);
+			}else {
+				reporter.failureReport("Verify WG_LNL_Txt On Place Order Page", "WG_LNL_Txt On Place Order Page is not same as input given in LNL section", "",driver);
+			}
+			
+			
+		}else{
+			reporter.failureReport("Verify WG_LNL_Lst On Place Order Page", "WG_LNL_Lst On Place Order Page is not present", "",driver);
+		}
+	}
+	
+	/**
+	 * This method is to verify the RP_LNL_Txt entered on PO page for bundle of products
+	 * @param RP_HDL_Txt
+	 * @throws Throwable
+	 */
+	public void verifyRP_LNL_TxtOnPlaceOrderPageForBundles(String bundle,String input) throws Throwable{
+		if(isElementPresent(getgetRP_LNL_TxtByBundles(bundle),"RP_LNL_Txt")){
+			String RP_LNL_Txt=getText(getgetRP_LNL_TxtByBundles(bundle), "RP_LNL_Txt");
+			if(input.equals(RP_LNL_Txt)) {
+				reporter.SuccessReport("Verify RP_LNL_Txt On Place Order Page", "RP_LNL_Txt On Place Order Page is present", "RP_LNL_Txt : "+RP_LNL_Txt);
+			}else {
+				reporter.failureReport("Verify RP_LNL_Txt On Place Order Page", "RP_LNL_Txt On Place Order Page is not same as input given in LNL section", "",driver);
+			}
+		}else{
+			reporter.failureReport("Verify RP_LNL_Txt On Place Order Page", "RP_LNL_Txt On Place Order Page is not present", "",driver);
+		}
+	}
+	
+	/**
+	 * This method is to verify the WG_LNL_Txt entered on PO page  for bundle of products
+	 * @param WG_LNL_Txt
+	 * @throws Throwable
+	 */
+	public void verifyWG_LNL_TxtOnPlaceOrderPageForBundles(String bundle,String input) throws Throwable{
+		if(isElementPresent(getgetWG_LNL_TxtByBundles(bundle),"WG_LNL_Txt")){
+			String WG_LNL_Txt=getText(getgetWG_LNL_TxtByBundles(bundle), "WG_LNL_Txt");
+			if(input.equals(WG_LNL_Txt)) {
+				reporter.SuccessReport("Verify WG_LNL_Txt On Place Order Page", "WG_LNL_Txt On Place Order Page is present", "WG_LNL_Txt : "+WG_LNL_Txt);
+			}else {
+				reporter.failureReport("Verify WG_LNL_Txt On Place Order Page", "WG_LNL_Txt On Place Order Page is not same as input given in LNL section", "",driver);
+			}
+		}else{
+			reporter.failureReport("Verify WG_LNL_Txt On Place Order Page", "WG_LNL_Lst On Place Order Page is not present", "",driver);
+		}
+	}
 }

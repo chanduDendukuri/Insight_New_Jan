@@ -58,6 +58,7 @@ public class CQT53_IPSOpenMarketExclusion  extends HomeLib {
 					selectCOntractID(data.get("contactid"),data.get("Tab1"));//contracts					
 					// Verify Enrollment Code//
 					
+					
 					clickonRightArrowforLineItem();
 					selectCOntractID(data.get("contactid"),data.get("Tab1"));					
 					// Verify Enrollment Code//
@@ -66,7 +67,7 @@ public class CQT53_IPSOpenMarketExclusion  extends HomeLib {
 					selectCOntractID(data.get("contactid"),data.get("Tab1"));
 					// Verify Enrollment Code//
 					clickonRightArrowforLineItem();
-					//selectCOntractID(data.get("contactid"),data.get("Tab1"));
+					
 					clickDoneButton();					 
 					clickUpdateCosting();
 					
@@ -81,61 +82,23 @@ public class CQT53_IPSOpenMarketExclusion  extends HomeLib {
 					else {
 						reporter.failureReport("QuoteNumber:", "Quotenumber is not displayed", "",driver);
 					}
-					ClickOnDisplayMode();
+					
 					clickonConXSystem("000040");
-					copyAllContractstoAllLines();
-					clickonRightArrowforLineItem();//Line2
-					clickonRightArrowforLineItem();//Line3
-					clickDoneButton();
-					clickUpdateCosting();
-					clickonConXSystem(data.get("LineItem1"));
-					selectCOntractSubTabName(data.get("contactTabName1"));// Pricing		
-					// Get data from the pricing tab
-					List<String> Price = new ArrayList<>();
-					int a= Integer.parseInt(data.get("Value"));
-					Price = getPriceValueFromPricingTab(data.get("idValue"), data.get("expValue"),a);// Z0RC--0
-                    System.out.println(Price.size());
-                    String	Price1="";
-                    String	Price2="";
-                    String	Price3="";
-                    String	Price4="";
-                    
-                    float price1value = 0, price2value =0,price3value =0,price4value = 0;
-                    for(int b1 =0;b1<Price.size();b1++){
-                    	if(b1==0){ //YMSM--0
-                    		Price1 = Price.get(b1);
-                    	 String P4 = Price1.replace(",", "");
-                    	 price1value = Float.parseFloat(P4);
-                         
-                    	}
-                    	if(b1==1){  // YP00--1
-                    		Price2 = Price.get(b1);
-                            String P5 = Price2.replace(",", "");
-                            price2value = Float.parseFloat(P5);
-                    	}
-                    	if(b1==2){   // ZP00--2
-                    		Price3 = Price.get(b1);
-                            String P6 = Price3.replace(",", "");
-                            price3value = Float.parseFloat(P6);
-                    	}
-                    	if(b1==3){   // ZORC--2
-                    		Price4 = Price.get(b1);
-                            String P7 = Price4.replace(",", "");
-                            price4value = Float.parseFloat(P7);
-                    	}
-                    	
-                    	
-                    }
 					selectCOntractID(data.get("contactid"),data.get("Tab1"));
 					clickDoneButton();
-					//Need to compare pricing
-					VerifyZ0RCPlusYMSMequalstheYP00andZP00( price4value, price1value, price2value );
-					VerifyZPOOShouldbeEqualToYPOO(price3value,price2value);
-					VerifyContractPriceShouldbeEqualToYPOO(price2value,data.get("contractid"));
+					clickUpdateCosting();
+					clickonSaveasQuote();
+					enterCancelButtonInPoupHdr();
+					String QuoteNum1= GetQuoteNumber();	
+					if(QuoteNum1!=null) {
+						reporter.SuccessReport("QuoteNumber:", "Quotenumber is displayed", "");
+					}
+					else {
+						reporter.failureReport("QuoteNumber:", "Quotenumber is not displayed", "",driver);
+					}
+					clickClosthedocument(QuoteNum1);
 					
-					clickSideBarSmart();
-					clickClosthedocument(QuoteNum);
-					clickYesButtontocloseDocument();
+					
 					System.out.println("Test completed");
 
 				} catch (Exception e) {
