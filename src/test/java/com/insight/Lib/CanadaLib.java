@@ -50,9 +50,9 @@ public class CanadaLib extends CanadaObj {
 	 */
 	public void verifySBP() throws Throwable {
 		if (isElementPresent(SHIP_BILL, "Ship bill")) {
-			reporter.SuccessReport("Verify ship bill pay section", "Ship bill section is present ", "");
+			reporter.SuccessReport("Verify ship bill pay section", "Ship bill section is present ", "PageDetails : Ship bill section");
 		} else {
-			reporter.failureReport("Verify ship bill pay section", "Ship bill section is not present", "",driver);
+			reporter.failureReport("Verify ship bill pay section", "Ship bill section is not present", "Ship bill section",driver);
 		}
 	}
 
@@ -156,10 +156,10 @@ public class CanadaLib extends CanadaObj {
 	public void verifyGSTAmonunts(String gstAmount, String GstAmount1) throws Throwable {
 		if (!gstAmount.equals(GstAmount1)) {
 			reporter.SuccessReport("Verify GST ,PST and QST Taxes in the Place Order Page",
-					"Cart GST, PST and QST Taxes are Verified", "");
+					"Cart GST, PST and QST Taxes are Verified", "Place order page:GST,PST and QST taxes verification");
 		} else {
 			reporter.failureReport("Verify GST ,PST and QST Taxes in the Place Order Page",
-					"Cart GST, PST and QST Taxes are Not Verified", "",driver);
+					"Cart GST, PST and QST Taxes are Not Verified", "Place order page:GST,PST and QST taxes verification",driver);
 		}
 	}
 

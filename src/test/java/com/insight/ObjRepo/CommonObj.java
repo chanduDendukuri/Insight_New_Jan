@@ -196,5 +196,8 @@ public class CommonObj extends ActionEngine{
     public static By CLOSEBUTTON_COOKIES=By.xpath("//div[@id='onetrust-close-btn-container']/a");
     public static By defaultShippingOptionSelected= By.xpath("//select[@id='defaultShipTypeSelID1']//option[text()='SLS Ground' and @selected]");
 
-
+    public static By lblDescription=By.xpath("//*[text()='Description']");
+    public static By FirstProductDescription=By.xpath("(//*[text()='Description']/following::a)[1]");
+    public static By btnAddToOrder=By.xpath("//*[text()='ADD TO ORDER']");
+    public static By lnkViewCart=By.xpath("//*[text()='View Cart >>']");
 }

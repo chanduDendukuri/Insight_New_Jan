@@ -1363,7 +1363,22 @@ public void getSummaryCartDetails() throws Throwable{
 		}
 		
 	}
-		
+	
+	public void verifyCartPageAndPartDetailsForRecentlyItem() throws Throwable {
+		String prodDesc1 = orderLib.getProductDescriptionOfCartProductForRecentlyAddedItem();
+		String totalPrice1 = orderLib.getCartProductTotalPriceForRecentlyAddedItem();
+		String unitPrice1=orderLib.getCartProductUnitPriceForRecentlyAddedItem();
+		String quantity=orderLib.getCartProductQuantityForRecentlyAddedItem();
+		String stock=orderLib.getCartProductStockForRecentlyAddedItem();
+		if (prodDesc1!=null && totalPrice1!=null) {
+			reporter.SuccessReport("Verify the part added to cart ", "Part added to cart and cart details are: ",
+					 "  prod Description : " + prodDesc1 + " Quantity : "+quantity
+							+ "Total Price: " + totalPrice1+ " Unit price: "+unitPrice1+ "Stock :"+stock);
+		} else {
+			reporter.failureReport("Verify the part added to cart ", "Part is not added to cart.", "", driver);
+		}
+   }
+	
 }
   
 	
