@@ -66,13 +66,13 @@ public class USM03_FCTWebCreateCoPassUserIPSTest  extends UserManagementLib {
 							cmtLib.selectUserTypeDropdown(data.get("User_Type"));
 							cmtLib.clickCreateUserButton();
 							cmtLib.verifyErrorMessage();
-							cmtLib.verifyAvailabiltyOfUserName(data.get("UserName"));
+							//cmtLib.verifyAvailabiltyOfUserName(data.get("UserName"));
 							cmtLib.checkAvailability();	
 							Thread.sleep(3000);
 							String userName=getRandomNumeric(4);
 							cmtLib.enterUserName("QTPTest"+userName);
 							String userName1=getRandomNumeric(4);
-							cmtLib.verifyAvailabiltyOfUserName("QTPTest"+userName1);
+							//cmtLib.verifyAvailabiltyOfUserName("QTPTest"+userName1);
 							cmtLib.clickCreateUserButton();
 							Thread.sleep(3000);
 							List<String> permissions = Arrays.asList(data.get("Set_Permission").split(","));
