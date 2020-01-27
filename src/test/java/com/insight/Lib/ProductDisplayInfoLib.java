@@ -871,7 +871,7 @@ public void getSummaryCartDetails() throws Throwable{
 		String prodPrice=null;
 		if(isElementVisible(FIRST_PRODUCT_PRICE, 3, "Product price")) {
 			prodPrice= getText(FIRST_PRODUCT_PRICE, "List price");
-			reporter.SuccessReport("Verify the List Price on Search Results Page", "Product list Price exists", prodPrice);
+			reporter.SuccessReport("Verify the List Price on Search Results Page", "Product list Price exists", "Price for 1st Product: "+prodPrice);
 		}else {
 			reporter.failureReport("Verify the List Price on Search Results Page", "Product price does not exists", prodPrice, driver);
 		}

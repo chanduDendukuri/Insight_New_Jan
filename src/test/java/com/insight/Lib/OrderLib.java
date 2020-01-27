@@ -2107,4 +2107,5 @@ public class OrderLib extends OrderObj{
 
 		return getText(CartObj.CART_PROD_STOCK_RECENTLYADDEDTEM,"CartProductStockForRecentlyAddedItem");
 		}
+
 }

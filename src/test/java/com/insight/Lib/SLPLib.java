@@ -20,7 +20,7 @@ public class SLPLib extends SLPObj {
 	String expectedWarrantyItemDec;
 	String expectedSummaryTotalAmount;
 	String referenceNumber;
-
+    OrderLib orderLib=new OrderLib();
 	/**
 	 * Method is used to get price from Product detail page
 	 * 
@@ -95,8 +95,7 @@ public class SLPLib extends SLPObj {
 			reporter.failureReport("Prorartion::", "ProratedPrice Matches With Actual Price:"+ totalAmount,"");
 		} else {
 			reporter.SuccessReport("Prorartion::",
-					"ProratedPrice Matches does not With Actual Price. Proratedprice-" + totalAmount + "",
-					"Actualprice:: " + Actualprice + "");
+					"Prorated Price is displayed. ","Proratedprice- $" + totalAmount + "  Actualprice: $" + Actualprice + "");
 		}
 	}
 	
@@ -117,6 +116,7 @@ public class SLPLib extends SLPObj {
 	public void selectApproveRadioButtonOnApprovalManagementPage() throws Throwable{
 		if(isCheckBoxSelected(APPROVE_RADIO_BTN)){
 			LOG.info("Radio button alreaded selected");
+			reporter.SuccessReport("Verify Approval Management Page", "Approval Management Page Exists", "");
 			
 		}else{
 			click(APPROVE_RADIO_BTN, "update approval status - Approve radio button");
@@ -131,9 +131,9 @@ public class SLPLib extends SLPObj {
 	public void updateRequisitionAndVerify(String refNum) throws Throwable{
 		click(ShipBillPayObj.APPROVEREQUISITOR_UPDATEBUTTON, "Update button");
 		if(isElementPresent(getRequisitionApprovedMsg(refNum),"Requisition approval message")){
-			reporter.SuccessReport("Verify requisition success message", "Requisition has been approved for ref num"+refNum, "");
+			reporter.SuccessReport("Verify requisition success message", "Requisition has been approved for ref number "+refNum, "");
 		}else{
-			reporter.failureReport("Verify requisition success message", "Requisition has not approved for ref num"+refNum, "");
+			reporter.failureReport("Verify requisition success message", "Requisition has not approved for ref number  "+refNum, "");
 		}
 	}
 	
@@ -474,7 +474,7 @@ public class SLPLib extends SLPObj {
 		  Workbook wb=WorkbookFactory.create(file);
 		  String sheetName=wb.getSheetName(0);
 		  if(sheetName.equals("send_cart")){
-			  reporter.SuccessReport("Verify send_cart in Export Cart Excel File", "send_cart Exists", "");
+			  reporter.SuccessReport("Verify send_cart in Export Cart Excel File", "send_cart Exists", "Sheet Name: send_cart");
 			  
 		  }else{
 			  reporter.failureReport("Verify send_cart in Export Cart Excel File", "send_cart does not Exists", "");
@@ -503,7 +503,7 @@ public class SLPLib extends SLPObj {
 		 */
 		public void verifyUserRequiresApprovelAlertMessage() throws Throwable{
 			if(isElementPresent(USER_REQUIRES_APPROVAL_MSG, "user requires alert message")){
-				reporter.SuccessReport("Verify Alert message displayed on CART Page", "Alert Exists", "");
+				reporter.SuccessReport("Verify Alert message displayed on CART Page", "Alert Exists", getText(USER_REQUIRES_APPROVAL_MSG, "approvel message"));
 			}else{
 				reporter.failureReport("Verify Alert message displayed on CART Page", "Alert does not Exists", "");
 			}
@@ -741,5 +741,23 @@ public class SLPLib extends SLPObj {
 				reporter.failureReport("Verify PA# Field in Place Order Page", "PA# Field does not exist" , "");
 				}
 		}
+		
+		
+		public void verifyCartPageAndPartDetails(int itemNum) throws Throwable {
+			List<String> prodDesc1 = orderLib.getProductDescriptionOfCartProduct();
+			List<String> totalPrice1 = orderLib.getCartProductTotalPrice();
+			List<String> unitPrice1=orderLib.getCartProductUnitPrice();
+			List<String> quantity=orderLib.getCartProductQuantity();
+			
+			Thread.sleep(3000);
+			if (prodDesc1.get(itemNum)!=null && totalPrice1!=null) {
+				Thread.sleep(3000);
+				reporter.SuccessReport("Verify the part added to cart ", "cart details ",
+						 "  prod Description : " + prodDesc1.get(itemNum) + "   Quantity : "+quantity.get(itemNum)
+								+ "  Total Price: " + totalPrice1.get(itemNum)+ "   Unit price: "+unitPrice1.get(itemNum));
+			} else {
+				reporter.failureReport("Verify the part added to cart ", "Part is not added to cart.", "", driver);
+			}
+	   }
 }
 

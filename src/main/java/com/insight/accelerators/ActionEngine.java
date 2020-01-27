@@ -1,4 +1,4 @@
-﻿package com.insight.accelerators;
+package com.insight.accelerators;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -89,7 +89,7 @@ public class ActionEngine extends TestEngineWeb {
 	protected boolean selectByIndex(By locator, int index, String locatorName) throws Throwable {
 		boolean flag = false;
 		try {
-			LOG.info("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
+			LOG.info("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
 			LOG.info("Class name" + getCallerClassName() + "Method name : " + getCallerMethodName());
 			LOG.info("Method : " + getCallerMethodName() + "  ::  Locator : " + locatorName);
 			Select s = new Select(driver.findElement(locator));
@@ -440,9 +440,9 @@ public class ActionEngine extends TestEngineWeb {
 			throw new RuntimeException(e);
 		} finally {
 			if (!flag) {
-				reporter.failureReport("Select", visibleText + " is Not Select from the DropDown" + locatorName,visibleText, driver);
+				reporter.failureReport("Select", visibleText + " is Not Selected" + locatorName,visibleText, driver);
 			} else {
-				reporter.SuccessReport("Select", visibleText + "  is Selected from the DropDown" + locatorName,visibleText);
+				reporter.SuccessReport("Select", visibleText + "  is Selected " + locatorName,visibleText);
 			}
 		}
 	}
@@ -1597,7 +1597,7 @@ public class ActionEngine extends TestEngineWeb {
 
 			LOG.info("identified the element :: " + locator);
 			LOG.info("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
-			reporter.SuccessReport("Click : " + locatorName, "Successfully Clicked On " ,locatorName);
+			reporter.SuccessReport("Click : " + locatorName, msgClickSuccess + locatorName,"NA");
 		} catch (Exception e) {
 			flag = false;
 			LOG.info(e.getMessage());

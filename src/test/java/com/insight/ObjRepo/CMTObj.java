@@ -37,7 +37,7 @@ public class CMTObj extends ActionEngine {
 	// into Insight from CMT
 
 	public static By getLoginVerficationByContactNameOnHeader(String contactName) {
-		return By.xpath("//div[@class='c-header__middle']//span[contains(text(),"+contactName+")]");
+		return By.xpath("//div[@class='c-header__middle']//span[contains(text(),'"+contactName+"')]");
 	}
 
 	
