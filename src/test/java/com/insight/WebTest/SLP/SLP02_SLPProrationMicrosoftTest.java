@@ -125,6 +125,7 @@ public class SLP02_SLPProrationMicrosoftTest extends SLPLib{
 						cmtLib.searchForaUserAndSelect(data.get("LnameEmailUname1"), data.get("ContactName1"));
 						cmtLib.loginAsAdminCMT(); // login to Uat1
 						
+						commonLib.clickOnInsightLogoOnHomePage();
 						// Select my requisition history from account tools
 						commonLib.clickOnAccountToolsAndClickOnProductGrp(data.get("Tools_Menu1"), data.get("Tools_Menu_DD1"));
 						selectReferenceNumFromRequisitionSearchResults(ReferenceNumber);
@@ -136,9 +137,6 @@ public class SLP02_SLPProrationMicrosoftTest extends SLPLib{
 						ReqLib.enterNewcarDetails(data.get("cardtype"), data.get("cardNum"), data.get("cardName"));
 						ReqLib.continuebutton();
 						ReqLib.verifyApproveRequisitionStatus();
-						
-						
-						
 						
 						// updateRequisitionAndVerify(ReferenceNumber);
 						commonLib.clickLogOutLink(data.get("LogOut"));  // Logout End of test
