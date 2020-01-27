@@ -37,7 +37,7 @@ public class CMTObj extends ActionEngine {
 	// into Insight from CMT
 
 	public static By getLoginVerficationByContactNameOnHeader(String contactName) {
-		return By.xpath("//div[@class='c-header__middle']//span[contains(text(),'User - " + contactName + "')]");
+		return By.xpath("//div[@class='c-header__middle']//span[contains(text(),"+contactName+")]");
 	}
 
 	
@@ -60,8 +60,9 @@ public class CMTObj extends ActionEngine {
 	// public String
 	// MANAGE_WEBGRP_DD="//div[@id='manageWebGroupDiv']//a[contains(text(),'#')]";
 
-	public static By getWebGroupName(String webGrpName) {
-		return By.xpath("//td[@id='webGroupName']//a[contains(text(),'" + webGrpName + "')]");
+	public static By getWebGroupName(String... webGrpName) {
+		//return By.xpath("//td[@id='webGroupName']//a[contains(text(),'" + webGrpName + "')]");
+		return By.xpath("//a[@id='webGroupId']");
 	}
 
 	public static By getManageWebGroupDDLinks(String links) {
@@ -663,6 +664,9 @@ public static By lnkDeleteProductGroups=By.xpath("//*[text()=' Delete Product Gr
 	public static By allMyAccountsForEnableStandardReports = By.xpath("//input[@name='enable_standard_reports']//..//following-sibling::div//select//option[@selected='selected']");
 	public static By allMyAccountsForEnableOrderTracking = By.xpath("//input[@name='enable_order_tracking']//..//following-sibling::div//select//option[@selected='selected']");
 	public static By noFavLinksAvailable = By.xpath("(//*[@id='QuickLinks__favorites']//*[@class='iw-accordion__emptytext muted']//p)[1]");
+
+	public static By lblManageWebGroups=By.xpath("//*[text()='Manage Web Groups:  Settings']");
+	public static By lblManageWebGroupsUserManagement=By.xpath("//*[contains(text(),'User Management')]");
 	public static By Account_DD_Permission(String permission,String Option) {
 		return By.xpath("//a[contains(text(),'"+permission+"')]/parent::div/following-sibling::div/select/option[@selected and contains(text(),'"+Option+"')]");
 	}
