@@ -20,6 +20,7 @@ import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.omg.PortableServer.THREAD_POLICY_ID;
+import org.openqa.selenium.By;
 import org.testng.Reporter;
 
 public class CommonLib extends ActionEngine{
@@ -299,10 +300,10 @@ public class CommonLib extends ActionEngine{
 		{	
 			waitForVisibilityOfElement(CartObj.BUNDLE,"Bundle");
 			if(isElementPresent(CartObj.BUNDLE,"Bundle",true)) {
-				reporter.SuccessReport("Verify the Bundle  on Cart", "Bundle Field Exists", "");
+				reporter.SuccessReport("Verify the Bundle  on Cart", "Bundle Field Exists", "Bundle-1");
 			}
 			else {
-				reporter.failureReport("Verify the Bundle  on Cart", "Bundle Field Does Not Exist", "");
+				reporter.failureReport("Verify the Bundle  on Cart", "Bundle Field Does Not Exist", "Bundle-1");
 			}
 			
 				
@@ -619,7 +620,7 @@ public class CommonLib extends ActionEngine{
 			if(isVisibleOnly(CommonObj.SPINNER_IMAGE, "spinner image")) {
 				LOG.info("spinner image disapperaed");
 			}else {
-				reporter.failureReport("spinner image","spinner image not disapperaed","");
+				//reporter.failureReport("spinner image","spinner image not disapperaed","");
 			}
 			}
 			else {
@@ -791,12 +792,44 @@ public class CommonLib extends ActionEngine{
 		}
 		}
 	
+
+	public void verifyDefualtShippingSelectedOption() throws Throwable {
+		if (isVisibleOnly(CommonObj.defaultShippingOptionSelected, "Shipping Option")) {
+			reporter.SuccessReport("Verify Default Shipping options to SLS Ground in Shipping Options in the Checkout Settings Tab on Manage Web groups: Create User Page", "SLS Ground is Default Shipping Oprion Exists in Shipping Options","");
+		}else{
+			reporter.failureReport("Verify Default Shipping options to SLS Ground in Shipping Options in the Checkout Settings Tab on Manage Web groups: Create User Page", "SLS Ground is Default Shipping Oprion Exists in Shipping Options Not Exists","",driver);
+		}
+		}
+
 	public void updateCartQuantityInProductDetailsPage(String Quantity) throws Throwable
 	{
 		waitForVisibilityOfElement(CartObj.QUANTITY,"QUANTITY");
 		Thread.sleep(2000);
 		clearData(CartObj.QUANTITY);
 		type(CartObj.QUANTITY,Quantity,"NUMBER OF ITEMS");
+	}
+	
+	public void clickOnBundle(String productGroup,String productName) throws Throwable
+	{
+		click(CommonObj.getCompanyStandardsProductGroup(productGroup, productName), "select product from product group");
+	}
+	
+	public void verifyDescription() throws Throwable
+	{
+		isVisible(CommonObj.lblDescription, "Description title exists");
+	}
+	
+	public void getFirstProductDescription() throws Throwable
+	{
+		getText(CommonObj.FirstProductDescription, "ProductDescription");
+	}
+	public void clickOnAddToOrder() throws Throwable
+	{
+		click(CommonObj.btnAddToOrder, "Add to cart button exists and is selected","");
+	}
+	public void clickOnViewCart() throws Throwable
+	{
+		click(CommonObj.lnkViewCart, "view cart link exists and is selected");
 	}
 
 }

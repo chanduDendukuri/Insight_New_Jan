@@ -101,10 +101,16 @@ public class USM02_FCTWebCreateCEPPuserTest extends UserManagementLib {
 							cmtLib.selectStateInCreateAnAccount(data.get("State2"));
 							cmtLib.enterZipCodeInCreateAnAccount(data.get("ZipCode2"));
 							cmtLib.clickCreateButtonInCreateAnAccount();
+							//Verify Error Msg
 							verifyErorrMsgOfFirstName();
 							verifyErorrMsgOfLastName();
 							verifyErorrMsgOfPhoneNumber();
-							//Verify Error Msg
+							//User Name
+							String userName="QTPTest"+getRandomNumeric(4);
+							cmtLib.verifyAvailabilityCreateAccount(data.get("CreateacUserName5"),userName);
+							String password="QTPTest"+getRandomNumeric(4);
+							cmtLib.enterPasswordInCreateAnAccount(password);
+							cmtLib.enterConfirmPasswordInCreateAnAccount(password);
 							String email="QTPTest"+getRandomNumeric(4)+"@test.com";
 							cmtLib.enterEmailInCreateAnAccount(email);
 							String firstName="QTPTest"+getRandomNumeric(4);
@@ -112,19 +118,13 @@ public class USM02_FCTWebCreateCEPPuserTest extends UserManagementLib {
 							String lastName="QTPTest"+getRandomNumeric(4);
 							cmtLib.enterLastNameInCreateAnAccount(lastName);
 							cmtLib.enterPhoneNumberInCreateAnAccount(data.get("Phone_Number"));
-							//Billing addresses
-							String billingAccountName="QTPTest"+getRandomNumeric(4);
-							cmtLib.enterBillingAccountNameInCreateAnAccount(billingAccountName);
+							//Address
 							cmtLib.enterAdressesInCreateAnAccount(data.get("Adressess1"));
 							cmtLib.enterCityInCreateAnAccount(data.get("City"));
 							cmtLib.selectStateInCreateAnAccount(data.get("State"));
 							cmtLib.enterZipCodeInCreateAnAccount(data.get("ZipCode"));
-							String userNameCreateAccount="QTPTest"+getRandomNumeric(4);
-							String userName1CreateAccount="QTPTest"+getRandomNumeric(4);
-							String userNameEntered=cmtLib.verifyAvailabilityCreateAccount(userNameCreateAccount,userName1CreateAccount);
-							String password="QTPTest"+getRandomNumeric(4);
-							cmtLib.enterPasswordInCreateAnAccount(password);
-							cmtLib.enterConfirmPasswordInCreateAnAccount(password);
+							String billingAccountName="QTPTest"+getRandomNumeric(4);
+							cmtLib.enterBillingAccountNameInCreateAnAccount(billingAccountName);
 							cmtLib.clickCreateButtonInCreateAnAccount();
 							cmtLib.clickContinueButtonInCreateAnAccount();
 							mic.handleinsightpopup();

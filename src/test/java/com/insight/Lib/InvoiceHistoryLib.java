@@ -28,9 +28,9 @@ public class InvoiceHistoryLib extends InvoiceHistoryObj {
 		Thread.sleep(10000);
 
 		waitForVisibilityOfElement(CanadaObj.SEARCHBY_DROPDOWN, "Quick Search");
-		if (isElementPresent(CanadaObj.SEARCHBY_DROPDOWN, "Quick Search")) {
+		if (isVisibleOnly(CanadaObj.SEARCHBY_DROPDOWN, "Quick Search")) {
 
-			click(CanadaObj.SEARCHBY_DROPDOWN, "SearchBy");
+			//click(CanadaObj.SEARCHBY_DROPDOWN, "SearchBy");
 
 			click(CanadaObj.getSearchByTextOrder(searchBy), "Search By");
 			click(CanadaObj.QUICK_SEARCH_TEXT, "Click on Text");
@@ -39,7 +39,7 @@ public class InvoiceHistoryLib extends InvoiceHistoryObj {
 			click(CanadaObj.SEARCH, "Search");
 
 			waitForVisibilityOfElement(searchResultsTable, "search results table");
-			if (isElementPresent(searchResultsTable, "search results table")) {
+			if (isVisibleOnly(searchResultsTable, "search results table")) {
 					reporter.SuccessReport("Verify search results in Invoice hisory page  ",
 							" search results are displayed",searchBy);
 			}else {
@@ -76,14 +76,16 @@ public class InvoiceHistoryLib extends InvoiceHistoryObj {
 	 */
 	public void verifySearchResultsAreDisplayed() throws Throwable {
 		Thread.sleep(10000);
+		boolean status = false;
 		waitForVisibilityOfElement(searchResultsTable, "search results table");
-		if (isElementPresent(searchResultsTable, "search results table")) {
+		if (isVisibleOnly(searchResultsTable, "search results table")) {
+			status= true;
 				reporter.SuccessReport("Verify search results in Invoice hisory page  ",
-						" search results are displayed","");
+						" search results are displayed",Boolean.toString(status));
 		}else {
-			
+			status = false;
 				reporter.failureReport("Verify search results in Invoice hisory page   ",
-						" search results are not displayed", "",driver);
+						" search results are not displayed", Boolean.toString(status),driver);
 			}
 	}
 	/**
@@ -96,13 +98,19 @@ public class InvoiceHistoryLib extends InvoiceHistoryObj {
 		String day=date.split(" ")[0];
 		String month=date.split(" ")[1];
 		String year=date.split(" ")[2];
-		 System.out.println("day"+day);
-		 System.out.println("month"+month);
+		 System.out.println("day : "+day);
+		 System.out.println("month : "+month);
 		 Thread.sleep(5000);
+		reporter.SuccessReport("Selected Date ", "Selected Date is ",date);
 		 JavascriptExecutor js = (JavascriptExecutor) driver;
 		 js.executeScript("window.scrollTo(0, -document.body.scrollHeight);");
-		 click(START_DATE_CALENDER, "Start date calender");
-		 click(MONTH_AND_YEAR_START_DATE_CALENDER,"month and year");
+		if(click(START_DATE_CALENDER, "Start date calender",day)) {
+			reporter.SuccessReport("Selected Date ", "Selected Date is ","");
+		}
+		if(click(MONTH_AND_YEAR_START_DATE_CALENDER,"month and year","")){
+			reporter.SuccessReport("Selected Month and Year  ", "Selected Month and Year is is ","");
+
+		}
 		 
 		
 		              Thread.sleep(2000);
@@ -116,10 +124,15 @@ public class InvoiceHistoryLib extends InvoiceHistoryObj {
 		                     if(text.equals(year))
 		                     {
 		                    	 Thread.sleep(5000);
-		                           click(monthInStartDateCalnder(month),"month");
+		                          if( click(monthInStartDateCalnder(month),"month",month))
+								  {
+									  reporter.SuccessReport("Start Month ", "Selected Start Month  is ", "");
+								  }
 		                    	 //driver.findElement(monthInStartDateCalnder(month)).click();
 		                           Thread.sleep(5000);
-		                           click(dayInStartDayCalender(day),"Day");
+		                           if(click(dayInStartDayCalender(day),"Day",day)) {
+									   reporter.SuccessReport("Start Date ", "Selected Start date  is ", "");
+								   }
 		                           break;
 		                     }
 		                     else
@@ -149,8 +162,17 @@ public class InvoiceHistoryLib extends InvoiceHistoryObj {
 		 Thread.sleep(5000);
 		 //JavascriptExecutor js = (JavascriptExecutor) driver;
 		 //js.executeScript("window.scrollTo(0, -document.body.scrollHeight);");
-		 click(END_DATE_CALENDER, "Start date calender");
-		 click(MONTH_AND_YEAR_END_DATE_CALENDER,"month and year");
+		//reporter.SuccessReport("Selected Date ", "Selected Date is ","");
+		 /*click(END_DATE_CALENDER, "Start date calender",date);
+		 click(MONTH_AND_YEAR_END_DATE_CALENDER,"month and year",month + year);*/
+		if( click(END_DATE_CALENDER, "Start date calender",date)){
+			reporter.SuccessReport("Selected Date ", "Selected Date is ",date );
+
+		}
+		if(click(MONTH_AND_YEAR_END_DATE_CALENDER,"month and year",""))
+		{
+			reporter.SuccessReport("Selected Month and Year  ", "Selected Month and Year is  ","" );
+		}
 		 
 		
 		              Thread.sleep(2000);
@@ -164,10 +186,17 @@ public class InvoiceHistoryLib extends InvoiceHistoryObj {
 		                     if(text.equals(year))
 		                     {
 		                    	 Thread.sleep(5000);
-		                           click(monthInEndDateCalnder(month),"month");
+		                           if(click(monthInEndDateCalnder(month),"month",""))
+								   {
+									   reporter.SuccessReport("Selected Month ", "Selected Month is ", "" );
+
+								   }
 		                    	 //driver.findElement(monthInStartDateCalnder(month)).click();
 		                           Thread.sleep(5000);
-		                           click(dayInEndDayCalender(day),"Day");
+		                          if( click(dayInEndDayCalender(day),"Day",date)){
+									  reporter.SuccessReport("Selected Date ", "Selected Date is ","" );
+
+								  }
 		                           break;
 		                     }
 		                     else
@@ -232,7 +261,7 @@ public class InvoiceHistoryLib extends InvoiceHistoryObj {
 	 * @throws Throwable
 	 */
 	public void verifyHeaderLevelInfo() throws Throwable{
-		if(isElementPresent(HEADER_LEVEL_INFO, "Header level info")) {
+		if(isVisibleOnly(HEADER_LEVEL_INFO, "Header level info")) {
 			reporter.SuccessReport("Verify Hedder Level Smart Trackers on Account Management - Invoice History Page", "Hedder Level Smart Trackers Exist", "");
 		}
 		else {
@@ -247,7 +276,7 @@ public class InvoiceHistoryLib extends InvoiceHistoryObj {
 	 * @throws Throwable
 	 */
 	public void verifyLineLevelInfo() throws Throwable{
-		if(isElementPresent(LINE_LEVEL_INFO, "Header level info")) {
+		if(isVisibleOnly(LINE_LEVEL_INFO, "Header level info")) {
 			reporter.SuccessReport("Verify Line Level Smart Trackers on Account Management - Invoice History Page", "Line Level Smart Trackers Exist", "");
 		}
 		else {
@@ -261,7 +290,7 @@ public class InvoiceHistoryLib extends InvoiceHistoryObj {
 	 * @throws Throwable
 	 */
 	public void verifyLicenseProofLinkAndClick() throws Throwable{
-		if(isElementPresent(LICENSE_PROOF_LINK, "License proof link")) {
+		if(isVisibleOnly(LICENSE_PROOF_LINK, "License proof link")) {
 			reporter.SuccessReport("Verify LicenceProof Link Exist", "LicenceProof Link Exist", "");
 		}
 		else {
@@ -276,7 +305,7 @@ public class InvoiceHistoryLib extends InvoiceHistoryObj {
 	 * @throws Throwable
 	 */
 	public void verifyLicenseProofPopUp() throws Throwable{
-		if(isElementPresent(LICENSE_PROOF_POP_UP, "License proof link")) {
+		if(isVisibleOnly(LICENSE_PROOF_POP_UP, "License proof link")) {
 			reporter.SuccessReport("Verify Invoice License Proof", "Invoice License Proof Information POPUP Exist", "");
 		}
 		else {
@@ -290,28 +319,28 @@ public class InvoiceHistoryLib extends InvoiceHistoryObj {
 	 * @throws Throwable
 	 */
 	public void verifyLicenseProofPopUpDetails(String invoiceNumber,String invoicedate, String salesOrderNumber,String customerPONumber) throws Throwable{
-		if(isElementPresent(licensePopUpDetails(invoiceNumber), "invoice Number")) {
+		if(isVisibleOnly(licensePopUpDetails(invoiceNumber), "invoice Number")) {
 			reporter.SuccessReport("Verify Invoice number", "Invoice number in License Proof Information POPUP Exist", "Invoice number");
 		}
 		else {
 			reporter.failureReport("Verify Invoice number", "Invoice number in License Proof Information POPUP Exist", "Invoice number",driver);
 		}
 		
-		if(isElementPresent(licensePopUpDetails(invoicedate), "invoice date")) {
+		if(isVisibleOnly(licensePopUpDetails(invoicedate), "invoice date")) {
 			reporter.SuccessReport("Verify Invoice date", "Invoice date in License Proof Information POPUP Exist", "Invoice date");
 		}
 		else {
 			reporter.failureReport("Verify Invoice date", "Invoice date in License Proof Information POPUP Exist", "Invoice date",driver);
 		}
 		
-		if(isElementPresent(licensePopUpDetails(salesOrderNumber), "sales Order Number")) {
+		if(isVisibleOnly(licensePopUpDetails(salesOrderNumber), "sales Order Number")) {
 			reporter.SuccessReport("Verify sales Order Number", "sales Order Number in License Proof Information POPUP Exist", "sales Order Number");
 		}
 		else {
 			reporter.failureReport("Verify sales Order Number", "sales Order Number in License Proof Information POPUP Exist", "sales Order Number",driver);
 		}
 		
-		if(isElementPresent(licensePopUpDetails(customerPONumber), "customer PO Number")) {
+		if(isVisibleOnly(licensePopUpDetails(customerPONumber), "customer PO Number")) {
 			reporter.SuccessReport("Verify customer PO Number", "customer PO Number in License Proof Information POPUP Exist", "customer PO Number");
 		}
 		else {
@@ -333,7 +362,9 @@ public class InvoiceHistoryLib extends InvoiceHistoryObj {
 	 * @throws Throwable
 	 */
 	public void clickEmailLink() throws Throwable {
-		click(EMAIL_LINK,"email link");
+		if(click(EMAIL_LINK,"email link")){
+			reporter.SuccessReport("Click on Email", "Clicking on ",getText(EMAIL_LINK,"email link") + " Email link");
+		}
 	}
 	/**
 	 * Method is used to send mail to colleauge
@@ -341,27 +372,27 @@ public class InvoiceHistoryLib extends InvoiceHistoryObj {
 	 * @throws Throwable
 	 */
 	public void sendToColleauge(String name,String email, String emailReceipents, String comments) throws Throwable {
-		if(isElementPresent(SEND_TO_COLLEAUGE, "Send to colleauge")) {
+		if(isVisibleOnly(SEND_TO_COLLEAUGE, "Send to colleauge")) {
 			reporter.SuccessReport("Verifying email pop", "Email pop is exists and opened", "");
 		}
 		else {
 			reporter.failureReport("Verifying email pop", "Email pop is not exists", "");
 		}
-		if(isElementPresent(YOUR_NAME, "Your name")) {
+		if(isVisibleOnly(YOUR_NAME, "Your name")) {
 			type(YOUR_NAME, name, "Your name");
 		}
-		if(isElementPresent(YOUR_EMAIL, "Your email")) {
+		if(isVisibleOnly(YOUR_EMAIL, "Your email")) {
 			type(YOUR_EMAIL, email, "Your email");
 		}
-		if(isElementPresent(YOUR_RECEIPENT_EMAIL, " email Receipents")) {
+		if(isVisibleOnly(YOUR_RECEIPENT_EMAIL, " email Receipents")) {
 			type(YOUR_RECEIPENT_EMAIL, emailReceipents, " email Receipents");
 		}
-		if(isElementPresent(YOUR_COMMENTS, "comments")) {
+		if(isVisibleOnly(YOUR_COMMENTS, "comments")) {
 			type(YOUR_COMMENTS, comments, "comments");
 		}
 		click(SEND_EMAIL, "send email");
 		waitForVisibilityOfElement(EMAIL_SENT_MESSAGE, "email sent message");
-		if(isElementPresent(EMAIL_SENT_MESSAGE, "email sent message")) {
+		if(isVisibleOnly(EMAIL_SENT_MESSAGE, "email sent message")) {
 			reporter.SuccessReport("Verify email is sent", "Email was sucessfully sent", "");
 		}
 		else {
@@ -376,7 +407,7 @@ public class InvoiceHistoryLib extends InvoiceHistoryObj {
 	 * @throws Throwable
 	 */
 	public void verifyPrintPopUp() throws Throwable{
-		if(isElementPresent(PRINT_POP_UP, "print pop up")) {
+		if(isVisibleOnly(PRINT_POP_UP, "print pop up")) {
 			reporter.SuccessReport("Verify print pop up", "print pop up Exist", "");
 		}
 		else {
@@ -402,7 +433,7 @@ public class InvoiceHistoryLib extends InvoiceHistoryObj {
 	 * @throws Throwable
 	 */
 	public void verifyInvoicePreviewPopUp() throws Throwable {
-		if(isElementPresent(INVOICE_PREVIEW_POP_UP, "invoice preview pop up")) {
+		if(isVisibleOnly(INVOICE_PREVIEW_POP_UP, "invoice preview pop up")) {
 			reporter.SuccessReport("Verifying invoice preview pop up", "invoice preview pop up is opened", "");
 		}
 		else {
@@ -416,18 +447,23 @@ public class InvoiceHistoryLib extends InvoiceHistoryObj {
 	 */
 	public void verifyInvoicePreviewDetails(String details) throws Throwable {
 		String result = null;
+		String resultOut = null;
 		List<WebElement> myList = driver.findElements(INVOICE_PREVIEW_DETAILS);
+		List<WebElement> myListOutput = driver.findElements(INVOICE_PREVIEW_DETAILSOutput);
 		List<String> all_elements_text = new ArrayList<>();
 		for (int i = 0; i < myList.size(); i++) {
 			// loading text of each element in to array all_elements_text
 			all_elements_text.add(myList.get(i).getText());
+			all_elements_text.add(myListOutput.get(i).getText());
 			result = myList.get(i).getText();
+			resultOut = myListOutput.get(i).getText();
+
 		String strArray[] = details.split(","); 
 		if(result.equals(strArray[i])) {
-			reporter.SuccessReport("Verfying invoice preview details", strArray[i]+" "+"is avilable", strArray[i]);
+			reporter.SuccessReport("Verfying invoice preview details", strArray[i]+" "+"is avilable", strArray[i] + "and the value is "  +resultOut);
 		}
 		else {
-			reporter.failureReport("Verfying invoice preview details", strArray[i]+" "+"is not avilable", "",driver);
+			reporter.failureReport("Verfying invoice preview details", strArray[i]+" "+"is not avilable", strArray[i],driver);
 		}
 		}
 		
@@ -452,7 +488,7 @@ public class InvoiceHistoryLib extends InvoiceHistoryObj {
 			reporter.SuccessReport("Verfying invoice preview details", strArray[i]+" "+"is avilable", strArray[i]);
 		}
 		else {
-			reporter.failureReport("Verfying invoice preview details", strArray[i]+" "+"is not avilable", "",driver);
+			reporter.failureReport("Verfying invoice preview details", strArray[i]+" "+"is not avilable", strArray[i],driver);
 		}
 		}
 		
@@ -476,7 +512,7 @@ public class InvoiceHistoryLib extends InvoiceHistoryObj {
 			reporter.SuccessReport("Verfying invoice preview details", strArray[i]+" "+"is avilable", strArray[i]);
 		}
 		else {
-			reporter.failureReport("Verfying invoice preview details", strArray[i]+" "+"is not avilable", "",driver);
+			reporter.failureReport("Verfying invoice preview details", strArray[i]+" "+"is not avilable", strArray[i],driver);
 		}
 		}
 		
@@ -505,18 +541,27 @@ public class InvoiceHistoryLib extends InvoiceHistoryObj {
 	 * @throws Throwable
 	 */
 	public void verifyInvoicePreviewShipToAndBillTo() throws Throwable {
-		if(isElementPresent(INVOICE_PREVIEW_SHIP_TO, "Ship to")) {
-			reporter.SuccessReport("Verifying invoice preview ship to", "Ship to in invoice pop up is available", "");
+		boolean status = false;
+		if(isVisibleOnly(INVOICE_PREVIEW_SHIP_TO, "Ship to")) {
+			status = true;
+			String s1 = Boolean.toString(status);
+			reporter.SuccessReport("Verifying invoice preview ship to", "Ship to in invoice pop up is available", s1);
 		}
 		else {
-			reporter.failureReport("Verifying invoice preview ship to", "Ship to in invoice pop up is not available", "",driver);
+			status = false;
+			String s1 = Boolean.toString(status);
+			reporter.failureReport("Verifying invoice preview ship to", "Ship to in invoice pop up is not available", s1,driver);
 		}
 		
-		if(isElementPresent(INVOICE_PREVIEW_BILL_TO, "bill to")) {
-			reporter.SuccessReport("Verifying invoice preview bill to", "Bill to in invoice pop up is available", "");
+		if(isVisibleOnly(INVOICE_PREVIEW_BILL_TO, "bill to")) {
+			status = true;
+			String s1 = Boolean.toString(status);
+			reporter.SuccessReport("Verifying invoice preview bill to", "Bill to in invoice pop up is available", s1);
 		}
 		else {
-			reporter.failureReport("Verifying invoice preview bill to", "Bill to in invoice pop up is not available", "",driver);
+			status = false;
+			String s1 = Boolean.toString(status);
+			reporter.failureReport("Verifying invoice preview bill to", "Bill to in invoice pop up is not available", s1,driver);
 		}
 	}
 	
@@ -541,7 +586,7 @@ public class InvoiceHistoryLib extends InvoiceHistoryObj {
 			reporter.SuccessReport("Verfying invoice preview details", strArray[i]+" "+"is avilable", strArray[i]);
 		}
 		else {
-			reporter.failureReport("Verfying invoice preview details", strArray[i]+" "+"is not avilable", "",driver);
+			reporter.failureReport("Verfying invoice preview details", strArray[i]+" "+"is not avilable", strArray[i],driver);
 		}
 		}
 		
@@ -553,11 +598,16 @@ public class InvoiceHistoryLib extends InvoiceHistoryObj {
 	 * @throws Throwable
 	 */
 	public void verifyAdvancedSearch() throws Throwable {
-		if(isElementPresent(ADVANCED_SEARCH, "Advanced search")) {
-			reporter.SuccessReport("Verify Advaced Search on Invoice History Page", "Advanced Search Link is Exists", "");
+		boolean status = false;
+		if(isVisibleOnly(ADVANCED_SEARCH, "Advanced search")) {
+			status = true;
+			String s1 = Boolean.toString(status);
+			reporter.SuccessReport("Verify Advaced Search on Invoice History Page", "Advanced Search Link is Exists", s1);
 		}
 		else {
-			reporter.failureReport("Verify Advaced Search on Invoice History Page", "Advanced Search Link is not Exists", "",driver);
+			status = false;
+			String s1 = Boolean.toString(status);
+			reporter.failureReport("Verify Advaced Search on Invoice History Page", "Advanced Search Link is not Exists", s1,driver);
 		}
 	}
 	
@@ -567,11 +617,17 @@ public class InvoiceHistoryLib extends InvoiceHistoryObj {
 	 * @throws Throwable
 	 */
 	public void verifyQuickSearch() throws Throwable {
-		if(isElementPresent(QUICK_SEARCH, "Quick search")) {
-			reporter.SuccessReport("Verify Quick Search on Invoice History Page", "Quick Search Link is Exists", "");
+		boolean status = false;
+
+		if(isVisibleOnly(QUICK_SEARCH, "Quick search")) {
+			status = true;
+			String s1 = Boolean.toString(status);
+			reporter.SuccessReport("Verify Quick Search on Invoice History Page", "Quick Search Link is Exists", s1);
 		}
 		else {
-			reporter.failureReport("Verify Quick Search on Invoice History Page", "Quick Search Link is not Exists", "");
+			status = false;
+			String s1 = Boolean.toString(status);
+			reporter.failureReport("Verify Quick Search on Invoice History Page", "Quick Search Link is not Exists", s1,driver);
 		}
 	}
 	
@@ -622,10 +678,10 @@ public class InvoiceHistoryLib extends InvoiceHistoryObj {
 	public void verifyResultsPerPage(String resultsPerPage) throws Throwable {
 		String actualText=getText(RESULTS_PER_PAGE, "Results per page");
 		if(actualText.contains(resultsPerPage)) {
-			reporter.SuccessReport("Verify Sort By Fields on Invoice SearchPage", "SortBy Web List Exist", "");
+			reporter.SuccessReport("Verify Sort By Fields on Invoice SearchPage", "SortBy Web List Exist", actualText);
 		}
 		else {
-			reporter.failureReport("Verify Sort By Fields on Invoice SearchPage", "SortBy Web List not Exist", "",driver);
+			reporter.failureReport("Verify Sort By Fields on Invoice SearchPage", "SortBy Web List not Exist", actualText,driver);
 		}
 	}
 	/**
@@ -643,11 +699,17 @@ public class InvoiceHistoryLib extends InvoiceHistoryObj {
 	 * @throws Throwable
 	 */
 	public void verifyBackToSearchLink() throws Throwable {
-		if(isElementPresent(BACK_BUTTON_IN_SEARCH_RESULTS,"Back to search results")) {
-			reporter.SuccessReport("Back to Search Results on  Invoice History Page", "Back To Search Link Exist", "");
+		boolean status = false;
+		if(isVisibleOnly(BACK_BUTTON_IN_SEARCH_RESULTS,"Back to search results")) {
+			status = true;
+			String s1 = Boolean.toString(status);
+
+			reporter.SuccessReport("Back to Search Results on  Invoice History Page", "Back To Search Link Exist", s1);
 		}
 		else {
-			reporter.failureReport("Back to Search Results on  Invoice History Page", "Back To Search Link Not Exist", "",driver);
+			status = false;
+			String s1 = Boolean.toString(status);
+			reporter.failureReport("Back to Search Results on  Invoice History Page", "Back To Search Link Not Exist", s1,driver);
 		}
 	}
 	
@@ -657,11 +719,16 @@ public class InvoiceHistoryLib extends InvoiceHistoryObj {
 	 * @throws Throwable
 	 */
 	public void verifyExportToExcelLink() throws Throwable {
-		if(isElementPresent(EXPORT_TO_EXCEL,"Export to excel")) {
-			reporter.SuccessReport("Verify Export to Excell on Invoice History Pagee", "Export To Excel Link Exist", "");
+		boolean status = false;
+		if(isVisibleOnly(EXPORT_TO_EXCEL,"Export to excel")) {
+			status = false;
+			String s1 = Boolean.toString(status);
+			reporter.SuccessReport("Verify Export to Excell on Invoice History Pagee", "Export To Excel Link Exist", s1);
 		}
 		else {
-			reporter.failureReport("Verify Export to Excell on Invoice History Page", "Export To Excel Link Not Exist", "",driver);
+			status = false;
+			String s1 = Boolean.toString(status);
+			reporter.failureReport("Verify Export to Excell on Invoice History Page", "Export To Excel Link Not Exist", s1,driver);
 		}
 	}
 	
@@ -683,10 +750,10 @@ public class InvoiceHistoryLib extends InvoiceHistoryObj {
 		System.out.println("result"+result);
 		System.out.println("all_elements_text"+all_elements_text);
 		if(result.equals(strArray[i])) {
-			reporter.SuccessReport("Verify Invoice Fields on Invoice History Page", strArray[i]+" "+"Invoice History Records is Exists", "");
+			reporter.SuccessReport("Verify Invoice Fields on Invoice History Page", strArray[i]+" "+"Invoice History Records is Exists", strArray[i]);
 		}
 		else {
-			reporter.failureReport("Verify Invoice Fields on Invoice History Page", strArray[i]+" "+"Invoice History Records is Not Exists", "",driver);
+			reporter.failureReport("Verify Invoice Fields on Invoice History Page", strArray[i]+" "+"Invoice History Records is Not Exists", strArray[i],driver);
 		}
 		}
 		
@@ -698,11 +765,16 @@ public class InvoiceHistoryLib extends InvoiceHistoryObj {
 	 * @throws Throwable
 	 */
 	public void verifyPagination() throws Throwable {
-		if(isElementPresent(PAGINATION,"Pagination")) {
-			reporter.SuccessReport("Verify Pagination on  Invoice History Page", "Paginations are Exist", "");
+		boolean status = false;
+		if(isVisibleOnly(PAGINATION,"Pagination")) {
+			status = true;
+			String s1 = Boolean.toString(status);
+			reporter.SuccessReport("Verify Pagination on  Invoice History Page", "Paginations are Exist", s1);
 		}
 		else {
-			reporter.failureReport("Verify Pagination on  Invoice History Page", "Paginations are Not Exist", "",driver);
+			status = false;
+			String s1 = Boolean.toString(status);
+			reporter.failureReport("Verify Pagination on  Invoice History Page", "Paginations are Not Exist", s1,driver);
 		}
 	}
 	/**
@@ -720,12 +792,18 @@ public class InvoiceHistoryLib extends InvoiceHistoryObj {
 	 * @throws Throwable
 	 */
 	public void verifyOrderDetailsPage() throws Throwable {
+		boolean status = false;
 		waitForVisibilityOfElement(ORDER_DETAILS_PAGE_HEADER,"Order details page");
-		if(isElementPresent(ORDER_DETAILS_PAGE_HEADER,"Order details page")) {
-			reporter.SuccessReport("Verify  Account Management - Order Tracking/HistoryPage Loads", "Order Details Loaded", "");
+
+		if(isVisibleOnly(ORDER_DETAILS_PAGE_HEADER,"Order details page")) {
+			status = true;
+			String s1 = Boolean.toString(status);
+			reporter.SuccessReport("Verify  Account Management - Order Tracking/HistoryPage Loads", "Order Details Loaded", s1);
 		}
 		else {
-			reporter.failureReport("Verify  Account Management - Order Tracking/HistoryPage Loads", "Order Details Not Loaded", "",driver);
+			status = false;
+			String s1 = Boolean.toString(status);
+			reporter.failureReport("Verify  Account Management - Order Tracking/HistoryPage Loads", "Order Details Not Loaded", s1,driver);
 		}
 	}
 	/**
@@ -742,12 +820,17 @@ public class InvoiceHistoryLib extends InvoiceHistoryObj {
 	 * @throws Throwable
 	 */
 	public void verifyContactName() throws Throwable {
-		if(isElementPresent(CONTACT_NAME, "Contact name")) {
-			reporter.SuccessReport("Verifying contact name in order details page", "Contact name exists", "");
+		boolean status = false;
+		if(isVisibleOnly(CONTACT_NAME, "Contact name")) {
+			status = true;
+			String s1 = Boolean.toString(status);
+			reporter.SuccessReport("Verifying contact name in order details page", "Contact name exists", s1);
 		}
 		else
 		{
-			reporter.failureReport("Verifying contact name in order details page", "Contact name exists", "",driver);
+			status = false;
+			String s1 = Boolean.toString(status);
+			reporter.failureReport("Verifying contact name in order details page", "Contact name exists", s1,driver);
 		}
 	}
 	/**
@@ -773,12 +856,17 @@ public class InvoiceHistoryLib extends InvoiceHistoryObj {
 	 * @throws Throwable
 	 */
 	public void verifyAccountHirearchyPopUp() throws Throwable {
-		if(isElementPresent(ACCOUNT_HIERARCHY_POP_UP, "Account hirearchy pop up")) {
-			reporter.SuccessReport("Verify the Account Hierarchy Tree Popup on ", "Account Hierarchy Tree Popup Exists", "");
+		boolean status = false;
+		if(isVisibleOnly(ACCOUNT_HIERARCHY_POP_UP, "Account hirearchy pop up")) {
+			status = false;
+			String s1 = Boolean.toString(status);
+			reporter.SuccessReport("Verify the Account Hierarchy Tree Popup on ", "Account Hierarchy Tree Popup Exists", s1);
 		}
 		else
 		{
-			reporter.failureReport("Verify the Account Hierarchy Tree Popup on ", "Account Hierarchy Tree Popup Does Not Exists", "",driver);
+			status = false;
+			String s1 = Boolean.toString(status);
+			reporter.failureReport("Verify the Account Hierarchy Tree Popup on ", "Account Hierarchy Tree Popup Does Not Exists", s1,driver);
 		}
 		
 	}
@@ -793,22 +881,22 @@ public class InvoiceHistoryLib extends InvoiceHistoryObj {
 		System.out.println("tree"+tree);
 		
 			if(tree.contains("c0")) {
-				reporter.SuccessReport("Verify Tree Fields on Insight Invoice or Order History Page ", "Tree Level Displays with Great Grand Parent", "");
+				reporter.SuccessReport("Verify Tree Fields on Insight Invoice or Order History Page ", "Tree Level Displays with Great Grand Parent", tree);
 			}
 			
 			else if(tree.contains("c1")) {
-				reporter.SuccessReport("Verify Tree Fields on Insight Invoice or Order History Page ", "Tree Level Displays with  Grand Parent", "");
+				reporter.SuccessReport("Verify Tree Fields on Insight Invoice or Order History Page ", "Tree Level Displays with  Grand Parent", tree);
 			}
 			
 			else if(tree.contains("c2")) {
-				reporter.SuccessReport("Verify Tree Fields on Insight Invoice or Order History Page ", "Tree Level Displays with reporting Parent", "");
+				reporter.SuccessReport("Verify Tree Fields on Insight Invoice or Order History Page ", "Tree Level Displays with reporting Parent", tree);
 			}
 			
 			else if(tree.contains("c3")) {
-				reporter.SuccessReport("Verify Tree Fields on Insight Invoice or Order History Page ", "Tree Level Displays with All my accounts", "");
+				reporter.SuccessReport("Verify Tree Fields on Insight Invoice or Order History Page ", "Tree Level Displays with All my accounts", tree);
 			}
 			else {
-				reporter.failureReport("Verify Tree Fields on Insight Invoice or Order History Page ", "Tree Does Not Exist", "",driver);
+				reporter.failureReport("Verify Tree Fields on Insight Invoice or Order History Page ", "Tree Does Not Exist", tree,driver);
 			}
 			
 			

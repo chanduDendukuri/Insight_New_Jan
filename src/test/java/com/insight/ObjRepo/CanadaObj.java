@@ -24,7 +24,7 @@ public class CanadaObj extends ActionEngine {
 
 	public static By PRINTICON = By.xpath("//div[@class='medium-3 columns']//div/a[2]");
 	public static By SEARCHBY_ORDER = By.xpath("//div[@class='medium-4 columns']//div[@class='nice-select ']");
-	public static By SEARCHBY_DROPDOWN = By.xpath("//div[@class='medium-4 columns']//div[@class='nice-select ']");
+	public static By SEARCHBY_DROPDOWN = By.xpath("//div[@class='medium-4 columns']//div[@class='nice-select '] | //div[@class='medium-4 columns']//div[contains(@class,'nice-select ')]");
 
 	public static By QUICKSEARCH_DROPDOWN = By.xpath("//div[@class='column']//h2");
 

@@ -1,20 +1,15 @@
 package com.insight.WebTest.UserManag;
 
-import java.util.Arrays;
 import java.util.Hashtable;
-import java.util.List;
 
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 import com.insight.Lib.CMTLib;
-import com.insight.Lib.CanadaLib;
-import com.insight.Lib.CartLib;
 import com.insight.Lib.CommonLib;
-import com.insight.Lib.InvoiceHistoryLib;
+import com.insight.Lib.EndUserFeaturesLib;
 import com.insight.Lib.MarriottIntlCorpLib;
-import com.insight.Lib.OrderLib;
-import com.insight.Lib.SearchLib;
+import com.insight.Lib.ProductDetailLib;
 import com.insight.Lib.ShipBillPayLib;
 import com.insight.Lib.UserManagementLib;
 import com.insight.accelerators.ReportControl;
@@ -53,48 +48,102 @@ public class USM03_FCTWebCreateCoPassUserIPSTest  extends UserManagementLib {
 							TestEngineWeb.reporter.initTestCaseDescription("FCTWebCreateCoPassUserIP");
 										 
 							CMTLib cmtLib = new CMTLib();
+							MarriottIntlCorpLib mic=new MarriottIntlCorpLib();
+							ProductDetailLib productdetLib = new ProductDetailLib();
+							CommonLib commonLib = new CommonLib(); 
+							EndUserFeaturesLib eufLib=new EndUserFeaturesLib();
+							ShipBillPayLib shipbilllib=new ShipBillPayLib();
 							
 							//Login
-							cmtLib.clickLoginLink(data.get("Header"));
-							cmtLib.handleWelcomeToInsightBetaPopUp();
-							cmtLib.loginAsAdmin();
-							Thread.sleep(3000);
+							cmtLib.loginToCMT(data.get("Header"));
 							cmtLib.searchForWebGroup(data.get("WebGrp"));
 							cmtLib.manageUsers();
+							cmtLib.hoverOnManageWebGroupsAndSelectOptions(data.get("Manage_Web_Grp_Options"));
+							//New User Link
 							cmtLib.clickAddNewUserLink();
-							Thread.sleep(3000);
 							cmtLib.selectUserTypeDropdown(data.get("User_Type"));
 							cmtLib.clickCreateUserButton();
 							cmtLib.verifyErrorMessage();
-							//cmtLib.verifyAvailabiltyOfUserName(data.get("UserName"));
-							cmtLib.checkAvailability();	
-							Thread.sleep(3000);
+							cmtLib.enterUserName(data.get("Name1"));
+							cmtLib.checkAvailability();
+							cmtLib.verifyAvailabiltyOfUserNameExists();
+							cmtLib.enterUserName(data.get("Name2"));
+							cmtLib.checkAvailability();
+							cmtLib.verifyAvailabiltyOfUserNameExists();
 							String userName=getRandomNumeric(4);
 							cmtLib.enterUserName("QTPTest"+userName);
-							String userName1=getRandomNumeric(4);
-							//cmtLib.verifyAvailabiltyOfUserName("QTPTest"+userName1);
 							cmtLib.clickCreateUserButton();
-							Thread.sleep(3000);
-							List<String> permissions = Arrays.asList(data.get("Set_Permission").split(","));
-							for (int i= 0 ; i<permissions.size();i++){
-								cmtLib.setPermissions(data.get("Menu_Name"),permissions.get(i));
+							//Permissions
+							cmtLib.clickOnRolesAndPermissionsTab(data.get("Menu_Name"));
+							String[] permissions = data.get("Set_Permission").split(",");
+							for (i = 0; i < permissions.length; i++) {
+								cmtLib.verifySetPermissions( permissions[i]);
 							}
-							cmtLib.clickCheckOutSettings(data.get("Linked_Accounts"));
+							cmtLib.verifyDDPermission(data.get("Permision4"),data.get("Option"));
+							cmtLib.verifyDDPermission(data.get("Permision5"),data.get("Option"));
+							//cmtLib.verifyDDPermission(data.get("Permision6"),data.get("Option"));
+							cmtLib.verifyDDPermission(data.get("Permision7"),data.get("Option2"));
+							cmtLib.updateUser();
+							cmtLib.clickCheckOutSettings(data.get("Check_out_Settings"));
+							cmtLib.selectOptionInCheckoutSettings(data.get("Payment_Options"));
+							// navigate to checkout settings >>  payment options
+							cmtLib.verifyPaymentOptionsInCheckOutSettings(data.get("Options"));
+							//cmtLib.selectedOptionPaymentMethod(data.get("SelectedOption"));
+							commonLib.selectOptionInCheckoutSettings(data.get("Shipping_Options"));
+							cmtLib.verifyShippingOptions();
+							commonLib.verifyDefualtShippingSelectedOption();
+							cmtLib.selectDefaultPaymentOption(data.get("Default_Payment_Option1"));
+							scrollUp();
+							cmtLib.hoverOnManageWebGroupsAndSelectOptions(data.get("Manage_Web_Grp_Options1"));
 							cmtLib.enterLinkedAccountSearch(data.get("Account_Number"));
 							cmtLib.checkLinkedAccountCheckBox(data.get("Account_Number"));
 							cmtLib.clickRadioDefaultAtLogin(data.get("Account_Number"));
 							cmtLib.clickUpdateButtonOnLinkedAccountsScreen();
-							Thread.sleep(3000);
+							cmtLib.clickInformationTab(data.get("Information_Tab"));
+							cmtLib.clickOnUserURL();
+							cmtLib.verifyCreateAnAccountPage();
+							String email="QTPTest"+getRandomNumeric(4)+"@test.com";
+							cmtLib.enterEmailInCreateAnAccount(email);
+							String firstName="QTPTest"+getRandomNumeric(4);
+							cmtLib.enterFirstNameInCreateAnAccount(firstName);
+							String lastName="QTPTest"+getRandomNumeric(4);
+							cmtLib.enterLastNameInCreateAnAccount(lastName);
+							cmtLib.enterPhoneNumberInCreateAnAccount(data.get("Phone_Number"));
+							String userName2="QTPTest"+getRandomNumeric(4);
+							cmtLib.verifyAvailabilityCreateAccount(data.get("CreateacUserName5"),userName2);
+							String password="QTPTest"+getRandomNumeric(4);
+							cmtLib.enterPasswordInCreateAnAccount(password);
+							cmtLib.enterConfirmPasswordInCreateAnAccount(password);
+							cmtLib.clickCreateButtonInCreateAnAccount();
+							cmtLib.clickContinueButtonInCreateAnAccount();
+							mic.handleinsightpopup();
+							cmtLib.verifyWelcomePage();
+							productdetLib.verifytheLoginUser(data.get("LnameEmailUname"));
+							commonLib.clickLogOutLink(data.get("Header"));
+							cmtLib.loginToCMT(data.get("Header"));
+							cmtLib.searchForWebGroup(data.get("WebGrp"));
+							cmtLib.manageUsers();
+							cmtLib.hoverOnManageWebGroupsAndSelectOptions(data.get("Manage_Web_Grp_Options"));
+							cmtLib.searchForaUserAndSelect(email,firstName+" "+lastName);
+							cmtLib.clickOnRolesAndPermissionsTab(data.get("Menu_Name"));
+							String[] permissions2 = data.get("Set_Permission").split(",");
+							for (i = 0; i < permissions2.length; i++) {
+								cmtLib.verifySetPermissions( permissions2[i]);
+							}
+							cmtLib.verifyDDPermission(data.get("Permision4"),data.get("Option"));
+							cmtLib.verifyDDPermission(data.get("Permision5"),data.get("Option"));
+							cmtLib.verifyDDPermission(data.get("Permision6"),data.get("Option"));
+							cmtLib.updateUser();
 							cmtLib.clickCheckOutSettings(data.get("Check_out_Settings"));
-							// navigate to checkout settings >>  payment options
+							cmtLib.selectOptionInCheckoutSettings(data.get("Linked_Accounts"));
+							cmtLib.enterLinkedAccountSearch(data.get("Account_Number"));
+							cmtLib.checkLinkedAccountCheckBox(data.get("Account_Number"));
+							cmtLib.clickRadioDefaultAtLogin(data.get("Account_Number"));
 							cmtLib.selectOptionInCheckoutSettings(data.get("Payment_Options"));
-							cmtLib.clearPaymentOptionsInCheckoutSettings();
 							Thread.sleep(3000);
-							cmtLib.selectpaymentOptionsInCheckOutSettings(data.get("Options"));
-							Thread.sleep(3000);
-							cmtLib.selectDefaultPaymentOption(data.get("Default_Payment_Option"));					
+							cmtLib.selectDefaultPaymentOption(data.get("Default_Payment_Option1"));					
 							cmtLib.logoutSite();
-							//commonLib.clickLogOutLink(data.get("Header"));
+							
 						} catch (Exception e) {
 							ReportStatus.blnStatus = false;
 							//gErrorMessage = e.getMessage();

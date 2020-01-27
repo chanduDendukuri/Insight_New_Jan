@@ -671,7 +671,9 @@ public static By lnkDeleteProductGroups=By.xpath("//*[text()=' Delete Product Gr
 		return By.xpath("//a[contains(text(),'"+permission+"')]/parent::div/following-sibling::div/select/option[@selected and contains(text(),'"+Option+"')]");
 	}
 	public static By CREATE_AN_ACCOUNT =By.xpath("//a[contains(text(),'Create an account') and @href]");
-	
+
+	public static By lblClientSearch=By.xpath("//*[text()='Client Search']");
+	public static By lblProductStandards=By.xpath("//*[text()='Product Standards']");
 	
 	
 }

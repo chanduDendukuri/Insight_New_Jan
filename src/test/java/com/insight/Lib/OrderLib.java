@@ -834,10 +834,10 @@ public class OrderLib extends OrderObj{
 	public void verifyPlaceOrderLabel() throws Throwable {
 		if (isElementPresent(PLACEORDER_LABL, "Cart header label displayed")) {
 			reporter.SuccessReport("Verify wether user navigates to cart page or not",
-					"User successfully navigated to Place order page","");
+					"User successfully navigated to Place order page","PageDetails : Place order");
 		} else {
 			reporter.failureReport("Verify wether user navigates to cart page or not",
-					"User not navigated to Place Order page","",driver);
+					"User not navigated to Place Order page","PageDetails :Place order",driver);
 		}
 	}
 
@@ -2058,4 +2058,54 @@ public class OrderLib extends OrderObj{
 		}
 	}
 	
+	/**
+	 * 
+	 * @return
+	 * @throws Throwable 
+	 */
+	public String  getProductDescriptionOfCartProductForRecentlyAddedItem() throws Throwable{
+		
+		return getText(CartObj.CART_PROD_DESC_RECENTLYADDEDTEM,"Product description of recently added item");
+	}
+	
+	/**
+	 * 
+	 * @return
+	 * @throws Throwable 
+	 */
+	public String getCartProductTotalPriceForRecentlyAddedItem() throws Throwable {
+		
+		return getText(CartObj.CART_PROD_TOTAL_PRICE,"ProductTotalPriceForRecentlyAddedItem");
+		}
+	
+	/**
+	 * 
+	 * @return
+	 * @throws Throwable 
+	 */
+	public String getCartProductUnitPriceForRecentlyAddedItem() throws Throwable {
+		
+		return getText(CartObj.CART_PROD_UNIT_PRICE_RECENTLYADDEDTEM,"CartProductUnitPriceForRecentlyAddedItem");
+}
+	
+	/**
+	 * 
+	 * @return
+	 * @throws Throwable 
+	 */
+	public String getCartProductQuantityForRecentlyAddedItem() throws Throwable {
+		return getText(CartObj.CART_PROD_QTY_RECENTLYADDEDTEM,"CartProductQuantityForRecentlyAddedItem");
+		
+	}
+	
+	/**
+	 * 
+	 * @return
+	 * @throws Throwable 
+	 */
+	public String getCartProductStockForRecentlyAddedItem() throws Throwable {
+
+		return getText(CartObj.CART_PROD_STOCK_RECENTLYADDEDTEM,"CartProductStockForRecentlyAddedItem");
+		}
+
 }
