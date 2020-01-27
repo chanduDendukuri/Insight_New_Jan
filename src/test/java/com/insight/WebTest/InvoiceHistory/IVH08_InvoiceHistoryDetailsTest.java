@@ -48,14 +48,14 @@ public class IVH08_InvoiceHistoryDetailsTest extends InvoiceHistoryLib {
 					InvoiceHistoryLib invoiceHistoryLib = new InvoiceHistoryLib();
 					CommonLib commonLib = new CommonLib();
 
-					/*cmtLib.loginToCMTSearchWebGrpAndUser(data.get("Header"), data.get("WebGrp"),
-							data.get("LnameEmailUname"), data.get("ContactName"));*/
+					cmtLib.loginToCMTSearchWebGrpAndUser(data.get("Header"), data.get("WebGrp"),
+							data.get("LnameEmailUname"), data.get("ContactName"));
 
-								cmtLib.loginToCMT(data.get("Header"));
+								/*cmtLib.loginToCMT(data.get("Header"));
 								cmtLib.searchForWebGroup(data.get("WebGrp"));
 								cmtLib.clickOnTheWebGroup(data.get("WebGrp_Name"));
 								cmtLib.hoverOnManageWebGroupsAndSelectOptions(data.get("Manage_Web_Grp_Options"));
-								cmtLib.searchForaUserAndSelect(data.get("LnameEmailUname"), data.get("ContactName"));
+								cmtLib.searchForaUserAndSelect(data.get("LnameEmailUname"), data.get("ContactName"));*/
 
 					cmtLib.setPermissions(data.get("Menu_Name"), data.get("Set_Permission"));
 					cmtLib.permissionFromDD(data.get("Set_Permission"), data.get("Permission_Dropdown_Option"));
