@@ -792,6 +792,15 @@ public class CommonLib extends ActionEngine{
 		}
 		}
 	
+
+	public void verifyDefualtShippingSelectedOption() throws Throwable {
+		if (isVisibleOnly(CommonObj.defaultShippingOptionSelected, "Shipping Option")) {
+			reporter.SuccessReport("Verify Default Shipping options to SLS Ground in Shipping Options in the Checkout Settings Tab on Manage Web groups: Create User Page", "SLS Ground is Default Shipping Oprion Exists in Shipping Options","");
+		}else{
+			reporter.failureReport("Verify Default Shipping options to SLS Ground in Shipping Options in the Checkout Settings Tab on Manage Web groups: Create User Page", "SLS Ground is Default Shipping Oprion Exists in Shipping Options Not Exists","",driver);
+		}
+		}
+
 	public void updateCartQuantityInProductDetailsPage(String Quantity) throws Throwable
 	{
 		waitForVisibilityOfElement(CartObj.QUANTITY,"QUANTITY");

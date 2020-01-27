@@ -134,6 +134,8 @@ public class SBP04_AvilableShippingAddressTest extends ShipBillPayLib{
 				clickEdit();
 				// Search for the Account Name
 				shipbLib.VerifyCreatedAddress(companyname1);
+				Thread.sleep(5000);
+				Thread.sleep(15000);
 				clickstoredAddressandVerify(companyname1,companyname1);
 				commonLib.clickLogOutLink(data.get("Logout_Header"));
 				// login-4

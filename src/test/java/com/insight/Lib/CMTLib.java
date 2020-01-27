@@ -771,7 +771,7 @@ public class CMTLib extends CMTObj {
 	 * This method is to select user type dropdown @ option to select
 	 */
 	public void selectUserTypeDropdown(String text) throws Throwable {
-		selectByVisibleText(USER_TYPE_DROPDOWN, text, "User type dropdown");
+		selectByVisibleText(USER_TYPE_DROPDOWN, text, "User type dropdown::"+text);
 	}
 
 	/**
@@ -780,7 +780,7 @@ public class CMTLib extends CMTObj {
 	 */
 	public void enterUserName(String text) throws Throwable {
 		clearData(USER_NAME_FIELD);
-		type(USER_NAME_FIELD, text, "user name");
+		type(USER_NAME_FIELD, text, "user name"+text);
 		click(CHECK_AVAILABLITY_BUTTON, "check availability");
 
 	}
@@ -1411,6 +1411,7 @@ public class CMTLib extends CMTObj {
 				click(PAYMENTS_INFO_LEFT_TO_RIGHT_ARROW, "left to right arrow ");
 			}
 		}
+		
 		click(PAYMENTS_OPTION_UPDATE_BTN, "update button");
 		if (isElementPresent(SUCESS_MESSAGE_PAYMENT_OPTIONS, "Updated message")) {
 			reporter.SuccessReport("Verify the Sucess message ", "Permissions Updated Succesfully", "");
@@ -2509,7 +2510,7 @@ public class CMTLib extends CMTObj {
 	 */
 	public void clickRadioDefaultAtLogin(String accountNum) throws Throwable {
 		if (isCheckBoxSelected(getDefaultLoginRadioButton(accountNum))) {
-			Log.info(" radio button already selected");
+			reporter.SuccessReport("Verify radio button already selected","radio button already selected",accountNum);
 		} else {
 			click(getDefaultLoginRadioButton(accountNum), "Account linked check box");
 		}
@@ -3389,9 +3390,9 @@ public class CMTLib extends CMTObj {
 	}
 	public void verifyDDPermission(String Permission,String Option)throws Throwable{
 		if(isVisibleOnly(Account_DD_Permission(Permission,Option),"Persission")) {
-			reporter.SuccessReport("Verify Select "+Option+" in "+Permission+" Under Account History in Roles and Permissions Tab on Manage Web groups: Create User Page","Select "+Option+" in "+Permission+" Under Account History Exists and Selected" ,Permission+"::"+Option);
+			reporter.SuccessReport("Verify Select "+Option+" in "+Permission+" Under in Roles and Permissions Tab on Manage Web groups: Create User Page","Select "+Option+" in "+Permission+" Under Account History Exists and Selected" ,Permission+"::"+Option);
 		}else {
-			reporter.failureReport("Verify Select "+Option+" in "+Permission+" Under Account History in Roles and Permissions Tab on Manage Web groups: Create User Page","Permission not Exists" ,"",driver);
+			reporter.failureReport("Verify Select "+Option+" in "+Permission+" Under  in Roles and Permissions Tab on Manage Web groups: Create User Page","Permission not Exists" ,"",driver);
 		}
 	}
 /**
@@ -3399,18 +3400,54 @@ public class CMTLib extends CMTObj {
  *
  */
 public void verifyAvailabiltyOfUserName(String Option) throws Throwable {
-	if (isElementPresent(AVAILABLE_MESSAGE, "User Available message")) {
-		reporter.SuccessReport("Availability Message ", "User availability message",
-				getText(AVAILABLE_MESSAGE, "error message"));
+	if (isElementNotPresent(AVAILABLE_MESSAGE, "error message")) {
+	clearData(USER_NAME_FIELD);
+	type(USER_NAME_FIELD, Option, "user name");
+
 	} else {
-		Log.info("user name is available");
-		reporter.failureReport("Availability Message ", "User availability message Not Exists",
-				"",driver);
-	}
+	Log.info("user name is available");
+	reporter.SuccessReport("Availability Message ", "User availability message",
+	getText(AVAILABLE_MESSAGE, "error message"));
+	    }
 }
 public void clickOnCreateanacccount() throws Throwable {
 	click(CREATE_AN_ACCOUNT, "Create an account", getText(CREATE_AN_ACCOUNT, "Create an account"));
 }
+
+public void verifyPaymentOptionsInCheckOutSettings(String option) throws Throwable {
+	String strArray[] = option.split(",");
+	for (int i = 0; i < strArray.length; i++) {
+		if (isElementPresent(paymentAllowedOption(strArray[i]), "payment options in Allowed Options")) {
+			reporter.SuccessReport("Verify Payment Options ",strArray[i]+ "Allowed Options in Payment Options on Checkout Settings Tab", "");
+		} else {
+			reporter.failureReport("Verify Payment Options ",strArray[i]+ "Allowed Options in Payment Options on Checkout Settings Tab", "");
+
+		}
+		}
+	}
+
+
+         public static void verifyShippingOptions()throws Throwable{
+	if( driver.findElement(CMTObj.User_service_levelshipping).isSelected()) {
+		reporter.SuccessReport("User Service level Shipping Selected in Shipping Options in the Checkout Settings Tab on Manage Web groups: Create User Page","User Service level Shipping Selected in Shipping Options on Checkout Settings Tab","");
+	}else {
+		reporter.failureReport("verify User Service level Shipping Selected in Shipping Options in the Checkout Settings Tab on Manage Web groups: Create User Page","User Service level Shipping Not Selected","",driver);
+	}
+	
+}
+         public void selectedOptionPaymentMethod(String option) throws Throwable {
+     		String selectedOption=getText(DEFAULT_PAYMENT_OPTION, "selected option");
+     		System.out.println("selectedOption"+selectedOption);
+     		if(selectedOption.equalsIgnoreCase(option)) {
+     			reporter.SuccessReport("Verifyig default selected option", "Default selected option is "+option, option);
+     		}
+     		else {
+     			reporter.failureReport("Verifyig default selected option", "Default selected option is not "+option, selectedOption,driver);
+     		}
+     	}
+      
+
+
 public void verifyClientSearchTitle() throws Throwable
 {
 	isVisible(lblClientSearch, "client search title verification");
