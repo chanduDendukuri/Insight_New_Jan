@@ -194,6 +194,7 @@ public class CommonObj extends ActionEngine{
 	   return By.xpath("//ul[@class='metismenu']//a[contains(text(),'"+toolsMenuName+"')]/following::ul//li//a[contains(text(),'"+dropDown+"')]");
 	}
     public static By CLOSEBUTTON_COOKIES=By.xpath("//div[@id='onetrust-close-btn-container']/a");
+    public static By defaultShippingOptionSelected= By.xpath("//select[@id='defaultShipTypeSelID1']//option[text()='SLS Ground' and @selected]");
 
 
 }

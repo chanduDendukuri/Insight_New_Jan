@@ -790,5 +790,13 @@ public class CommonLib extends ActionEngine{
 			reporter.failureReport("Verify Message in Product Details Page", "The price displayed will be prorated in the Cart based on the remaining agreement period. is Not Exists","");
 		}
 		}
+	
+	public void verifyDefualtShippingSelectedOption() throws Throwable {
+		if (isVisibleOnly(CommonObj.defaultShippingOptionSelected, "Shipping Option")) {
+			reporter.SuccessReport("Verify Default Shipping options to SLS Ground in Shipping Options in the Checkout Settings Tab on Manage Web groups: Create User Page", "SLS Ground is Default Shipping Oprion Exists in Shipping Options","");
+		}else{
+			reporter.failureReport("Verify Default Shipping options to SLS Ground in Shipping Options in the Checkout Settings Tab on Manage Web groups: Create User Page", "SLS Ground is Default Shipping Oprion Exists in Shipping Options Not Exists","",driver);
+		}
+		}
 
 }
