@@ -625,8 +625,8 @@ public class MarriottIntlCorpLib extends MarriottIntlCorpObj {
 			click(CONTINUE, "Continue button of Shipping address");
 		}
 
-		reporter.SuccessReport("Verify  added additional information of the product ", "Added Part through Quick Shop",
-				"");
+		/*reporter.SuccessReport("Verify  added additional information of the product ", "Added Part through Quick Shop",
+				"");*/
 	}
 
 	public void addAdditionalInfo(String name, String phone, String email)throws Throwable {
@@ -662,13 +662,13 @@ public class MarriottIntlCorpLib extends MarriottIntlCorpObj {
 
 			click(SHIP_ATTENTION, "Ship Attention");
 
-			type(SHIP_ATTENTION, shipAttention, "Ship Attention");
+			type(SHIP_ATTENTION, shipAttention, "Ship Attention"+shipAttention);
 
 			clearData(SHIP_PHONE);
 
 			click(SHIP_PHONE, "Phone Number ");
 
-			type(SHIP_PHONE, phoneNumber, "Phone Number");
+			type(SHIP_PHONE, phoneNumber, "Phone Number"+phoneNumber);
 
 			clearData(SHIP_LOCATION_ID);
 
@@ -708,13 +708,13 @@ public class MarriottIntlCorpLib extends MarriottIntlCorpObj {
 
 			click(BILLING_ATTENTION, "Bill Attention");
 
-			type(BILLING_ATTENTION, billAttention, "Billing Attention");
+			type(BILLING_ATTENTION, billAttention, "Billing Attention"+billAttention);
 
 			clearData(BILLING_PHONE);
 
 			click(BILLING_PHONE, "Phone Number ");
 
-			type(BILLING_PHONE, billphoneNumber, "Phone Number");
+			type(BILLING_PHONE, billphoneNumber, "Phone Number"+billphoneNumber);
 
 			clearData(BILLING_LOCATION);
 
@@ -997,10 +997,13 @@ public class MarriottIntlCorpLib extends MarriottIntlCorpObj {
 	public void CompanystandardslinkandProductGrpWithbtag(String productGroup, String productName, String FieldOnly)
 			throws Throwable {
 		click(COMPANYSTANDARDS_PAGELINK, "Company Standards PageLink");
-		isElementPresent(CartObj.Current_product_groups, " Current Product Groups page is opened");
-		click(getcompanystandardsproductgroup(productGroup), "Product Group::"+productGroup);
+
+		isVisibleOnly(CartObj.Current_product_groups, " Current Product Groups page is opened");
+		click(getcompanystandardsproductgroup(productGroup), "Product Group",productGroup);
 		click(getCompanyStandardsProductGroupwithbtext(productGroup, productName, FieldOnly),
-				"select product from product group:"+productName);
+				"select product from product group",getText(getCompanyStandardsProductGroupwithbtext(productGroup, productName, FieldOnly),
+				"select product from product group"));
+
 	}
 
 	/**

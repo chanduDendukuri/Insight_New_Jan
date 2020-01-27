@@ -119,11 +119,11 @@ public class SBP05_CarrierHeavyTest extends ShipBillPayLib{
 				shippingOptionsCarrierSelection();
 				orderLib.billingAddressContinueButton();
 				orderLib.selectPaymentMethod(data.get("Payment_method"));
-				shipbLib.verifyShippingCarrierAFterReviewOrder(data.get("Shiping_Carrier_Verify3"),data.get("Shiping_Carrier_Verify3"));
+				shipbLib.verifyShippingCarrierAFterReviewOrder(data.get("Shiping_Carrier_Verify3"),data.get("Shiping_Carrier_Verify4"));
 				String summaryAmount1 = cartLib.getSummaryAmountInCart();
 				orderLib.placeOrderAndVerifyReceiptOrderAndDate(summaryAmount1);
 				shipbLib.clickOrderDetailsButtonInREceipt();
-				shipbLib.verifyShippingCarrierAFterReviewOrder(data.get("Shiping_Carrier_Verify3"),data.get("Shiping_Carrier_Verify3"));
+				shipbLib.verifyShippingCarrierAFterReviewOrder(data.get("Shiping_Carrier_Verify3"),data.get("Shiping_Carrier_Verify4"));
 				commonLib.clickLogOutLink(data.get("Logout_Header"));
 				cmtLib.navigateBackToCMT();
 				commonLib.clickCheckOutSettings(data.get("Check_out_Settings"));

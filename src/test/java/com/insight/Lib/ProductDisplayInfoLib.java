@@ -695,7 +695,51 @@ public class ProductDisplayInfoLib extends productsDisplayInfoObj {
 			reporter.failureReport("Verify manufacturer number in product details page", "Manufacturer number is not displayed correctly", mnfNumber,driver);
 		}
 	}
-	
+
+	public void deleteSelectedProducts() throws Throwable{
+		List<WebElement> deleteIcon = driver.findElements(deleteProductInfo);
+		List<WebElement> prodDetails = driver.findElements(ProductCompleteDetailsInViewCart);
+		for (int i = 0; i < deleteIcon.size(); i++) {
+			deleteIcon.get(i).click();
+			reporter.SuccessReport("Delete product","Deleted product",prodDetails.get(i).getText()+"Selected product was deleted successfully");
+			if(isVisibleOnly(emptyShoppingCart,"Empty cart")){
+				reporter.SuccessReport("Empty Cart"," All the products are deleted", getText(emptyShoppingCart,"Empty cart"));
+			}
+		}
+
+	}
+
+	public void getProductManfNumber(String mfn) throws Throwable{
+
+		List<WebElement> mylist = driver.findElements(MFR_NUMBER_Cart_DETAILS_PAGE);
+		List<WebElement> prodDetails = driver.findElements(ProductCompleteDetailsInViewCart);
+		List<WebElement> prodPrice = driver.findElements(productTotalPrice);
+		for (int i = 0; i < mylist.size(); i++) {
+			//String mfName = getText(MFR_NUMBER_Cart_DETAILS_PAGE, "EWR Fees");
+			String mfName =	mylist.get(i).getText();
+			String prodName =	prodDetails.get(i).getText();
+			String prodPriceVal =	prodPrice.get(i).getText();
+			reporter.SuccessReport("Product Manufacturer ", "Selected item is added to cart", prodName +" and its total price value is " +prodPriceVal);
+			}
+		}
+public void getSummaryCartDetails() throws Throwable{
+		reporter.SuccessReport("Cart Summary details ","Selected product summary details are ",getText(viewSummaryDetails,"Summary Details"));
+}
+
+	public void enterQuantityForProductsInViewCartPage(String data) throws Throwable{
+		//driver.findElement(txtQuanityNumberInWarrentyPage).clear();
+		/*clearData(txtQuanityNumberInWarrentyPage);
+		type(txtQuanityNumberInWarrentyPage,data,"Quanity");*/
+
+		clearData(productsDisplayInfoObj.txtQuanityNumberInWarrentyPage);
+		type(productsDisplayInfoObj.txtQuanityNumberInWarrentyPage,data,"Quantity");
+
+	}
+
+	public String getManfNumberFromWarrentiesPage(String index) throws Throwable{
+		return getText(MFR_NUMBER_warrenty_PAGE(index),"Manufacturer Number");
+	}
+
 	/**
 	 * Method is to verify the manufacturer number in the overview tab of product details page.
 	 * @param mfrNumber
@@ -903,6 +947,9 @@ public class ProductDisplayInfoLib extends productsDisplayInfoObj {
 	 */
 	public void clickOnWarrantiesTabOnProductDetailsPage() throws Throwable{
 		click(WARRANTIES_PROD_DETAILS, "warranties");
+	}
+	public void clickOnAddToCartButtonInWarrentiesPage(String index ) throws Throwable{
+		click(btnAddToCartinWarrentiesPage(index),"Add to cart","Clicked on "+index +" Add to cart button");
 	}
 	
 	/**
@@ -1255,11 +1302,11 @@ public class ProductDisplayInfoLib extends productsDisplayInfoObj {
 		List<String> prodDesc1 = orderLib.getProductDescriptionOfCartProduct();
 		List<String> totalPrice1 = orderLib.getCartProductTotalPrice();
 		List<String> unitPrice1=orderLib.getCartProductUnitPrice();
-		//List<String> quantity=orderLib.getCartProductQuantity();
+		List<String> quantity=orderLib.getCartProductQuantity();
 		List<String> stock=orderLib.getCartProductStock();
 		if (prodDesc1.get(0)!=null && totalPrice1!=null) {
-			reporter.SuccessReport("Verify the part added to cart ", "Contract in Cart is the one selected in pop-up Exists and Value Returned ",
-					 "  prod Description : " + prodDesc1.get(0) + " Quantity : 2"
+			reporter.SuccessReport("Verify the part added to cart ", "Part added to cart and cart details are: ",
+					 "  prod Description : " + prodDesc1.get(0) + " Quantity : "+quantity
 							+ "Total Price: " + totalPrice1.get(0)+ " Unit price: "+unitPrice1+ "Stock :"+stock);
 		} else {
 			reporter.failureReport("Verify the part added to cart ", "Part is not added to cart.", "", driver);

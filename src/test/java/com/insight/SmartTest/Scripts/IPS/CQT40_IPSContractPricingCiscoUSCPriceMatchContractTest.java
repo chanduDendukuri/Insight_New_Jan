@@ -120,7 +120,7 @@ public class CQT40_IPSContractPricingCiscoUSCPriceMatchContractTest extends Home
 					clickOnTabsInLineItemDetailsPopUp(data.get("Tab2"));// Contracts
 					
 					float Sellpriceaftersaveasquote = getSellPriceFromInlineItemsContract(data.get("contactid"));
-					
+					     
 					clickOnTabsInLineItemDetailsPopUp(data.get("Tab3"));// Pricing
 					// Get data from the pricing tab
 					List<String> Rate1 = new ArrayList<>();

@@ -63,8 +63,8 @@ public class SBP04_AvilableShippingAddressTest extends ShipBillPayLib{
 				cmtLib.searchForaUserAndSelect(data.get("LnameEmailUname"), data.get("ContactName"));
 				// --------RoleandPermission "change_ship_to;ON"
 				cmtLib.setPermissions(data.get("Menu_Name"), data.get("Set_Permission"));
-				cmtLib.setPermissions(data.get("Menu_Name"), data.get("Set_Permission5"));
-				cmtLib.setPermissions(data.get("Menu_Name"), data.get("Set_Permission6"));
+				//cmtLib.setPermissions(data.get("Menu_Name"), data.get("Set_Permission5"));
+				//cmtLib.setPermissions(data.get("Menu_Name"), data.get("Set_Permission6"));
 				cmtLib.setPermissionsToDisableWithoutReport(data.get("Set_Permission2"));
 				// Uncheck all shipping options
 				cmtLib.clickCheckOutSettings(data.get("Check_out_Settings"));

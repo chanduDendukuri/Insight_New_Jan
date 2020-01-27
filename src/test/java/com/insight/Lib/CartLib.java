@@ -22,6 +22,8 @@ import com.insight.ObjRepo.ShipBillPayObj;
 import com.insight.ObjRepo.productsDisplayInfoObj;
 import com.insight.accelerators.ActionEngine;
 
+import static com.insight.ObjRepo.CartObj.lblCartLebel;
+
 public class CartLib extends ActionEngine {
 
 	CommonLib commonLib = new CommonLib();
@@ -29,6 +31,7 @@ public class CartLib extends ActionEngine {
 	OrderObj orderObj = new OrderObj();
 	ShipBillPayLib shipbLib = new ShipBillPayLib();
 	InvoiceHistoryLib ivhLib=new InvoiceHistoryLib();
+	CanadaLib canadaLib=new CanadaLib();
 	String openMarketPrice;
 
 	/**
@@ -1076,8 +1079,14 @@ public class CartLib extends ActionEngine {
 	 */
 	public void ClickExportCartAndVerify(String orderUtilities,String sheetName,String rownum,String headers) throws Throwable {
 		scrollUp();
-		mouseClick(CartObj.getShoppingCartOrderUtilities(orderUtilities), "Export as a file");
-		verifyExportFile(sheetName,rownum,headers);
+		if(isVisibleOnly(CartObj.getShoppingCartOrderUtilities(orderUtilities), "order utilities")) {
+			reporter.SuccessReport("Verify order utilities exists", "order utilities exits", "Order Utilities List");
+			mouseClick(CartObj.getShoppingCartOrderUtilities(orderUtilities), "Export as a file");
+			verifyExportFile(sheetName,rownum,headers);
+		}else {
+			reporter.failureReport("Verify order utilities exists", "order utilities does not exits", "", driver);
+		}
+		
 
 	}
 
@@ -1123,6 +1132,7 @@ public class CartLib extends ActionEngine {
 	 * @customization author : CIGNITI
 	 */
 	public void verifyItemInCart(String itemInCart) throws Throwable {
+		canadaLib.verifyPlaceCartLabel();
 		waitForVisibilityOfElement(CartObj.getItemInCart(itemInCart), "Item in cart");
 		if (driver.findElement(CartObj.getItemInCart(itemInCart)).isDisplayed()) {
 			reporter.SuccessReport("verifying item added to cart :: ", " item added to cart is verified and it is same as product details page.ITEM IS :", itemInCart);
@@ -1286,6 +1296,7 @@ public class CartLib extends ActionEngine {
 	 * @throws Throwable
 	 */
 	public void verifyProductGroupBundleAddedToCart(String productName) throws Throwable {
+		canadaLib.verifyPlaceCartLabel();
 		String actualprodGroupName = getText(CartObj.PROD_GROUP_NAME_IN_CART, "Product group name in cart");
 		if (actualprodGroupName.equals(productName) && isElementPresent(CartObj.BUNDLEONE, "Bundle one in cart")) {
 			reporter.SuccessReport("Verify product group displayed in the cart screen",
@@ -1833,17 +1844,24 @@ public class CartLib extends ActionEngine {
 		Thread.sleep(10000);
 		String sfile = System.getProperty("user.dir") + "\\" + "DownloadedFiles" + "\\" + "exportCart.xls";
 		File file = new File(sfile);
+		if (file.exists()) {
 		List<String> downloadedExcelContent = CommonLib.readRowFromExcel(sfile, sheetName, Integer.parseInt(rowNumber));
 		List<String> acutalContent = Arrays.asList(columnHeaders.split(","));
 		System.out.println("Compare content" + downloadedExcelContent.equals(acutalContent));
 		if (downloadedExcelContent.equals(acutalContent)) {
-			reporter.SuccessReport(columnHeaders, columnHeaders+ " are avilable", "");
+			reporter.SuccessReport(columnHeaders,  "columns are avilable in exportCart.xls", "columns: "+columnHeaders);
 		} else {
 			reporter.failureReport(columnHeaders, columnHeaders+ " are not avilable", "", driver);
+		 }
+		}else {
+			reporter.failureReport("ExportCart Excel File", "File dose not exists", "", driver);
 		}
 		System.out.println("File Deletion :" + file.delete());
 		if (file.exists()) {
 			file.delete();
+			reporter.SuccessReport("ExportCart Excel File", "File closed", "");
+		}else {
+			// do nothing
 		}
 	}
 
@@ -1943,7 +1961,10 @@ public class CartLib extends ActionEngine {
 			reporter.SuccessReport("verify carrier options::", " Expected Carrier Exist","UPS Exits in Available Carriers List");
 
 		}
-		
+
 	}		
-		
+	public boolean verifyCartPageAvailablity() throws Throwable{
+		return isVisibleOnly(lblCartLebel,"Cart Header");
+		}
+
 }

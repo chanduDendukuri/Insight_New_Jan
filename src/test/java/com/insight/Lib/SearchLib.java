@@ -675,11 +675,7 @@ public class SearchLib extends CommonObj {
 		}
 	}
 	
-	/**
-	 * 
-	 * @param itemNumber
-	 * @throws Throwable 
-	 */
+
 	public void clickOnMorePrices() throws Throwable {
 		Thread.sleep(4000);
 		List<WebElement> myList1 = driver.findElements(productsDisplayInfoObj.LIST_OF_ITEMS_SEARCH_RESULTS);
@@ -751,7 +747,7 @@ public class SearchLib extends CommonObj {
 			clearData(productsDisplayInfoObj.QUANTITY_CONTRACT_ALL);
 			type(productsDisplayInfoObj.QUANTITY_CONTRACT_ALL,quantity,"quantity");
 		}else {
-			reporter.failureReport("verify quantity exists", "Quantity field does not exists", "", driver);
+			reporter.failureReport("verify quantity exists", "Quantity field does not exists", quantity, driver);
 		}
 	}
 	 
@@ -1037,7 +1033,7 @@ public class SearchLib extends CommonObj {
 			click(ADD_TO_ORDER, "Add to oreder button","ADD TO ORDER");
 		}
 		
-		if(isElementPresent(VIEW_CART_PRODUCT_GROUP, "View cart Link")){
+		if(isVisibleOnly(VIEW_CART_PRODUCT_GROUP, "View cart Link")){
 			click(VIEW_CART_PRODUCT_GROUP, "View cart Link","View cart Link");
 			reporter.SuccessReport("verify View cart Link on Items added to cart Popup on Company standards", "View cart Link is visible and clicked","");
 		}else{

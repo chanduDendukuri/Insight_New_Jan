@@ -61,6 +61,8 @@ public class EUF09_FCTWebEndDisplayMyContactNotificationsTest extends EndUserFea
 						cmtLib.clickOnTheWebGroup(data.get("WebGrp_Name"));
 						// select Contacts and Notifications
 						cmtLib.hoverOnManageWebGroupsAndSelectOptions(data.get("Manage_Web_Grp_Options"));
+						cmtLib.deleteClientNotificationBeforeAdd(data.get("Rep_Email"));
+
 						cmtLib.verifySalesRepAreDisplayed();
 						cmtLib.addNewSalesRep(data.get("Rep_Email"));
 						cmtLib.verifyNewSalesRepAdded(data.get("Rep_Name"));
@@ -86,7 +88,7 @@ public class EUF09_FCTWebEndDisplayMyContactNotificationsTest extends EndUserFea
 						canadaLib.clickOnSideMenuSelectAccountToolOptions(data.get("Tools_Menu"),
 								data.get("Tools_Menu_DD"));
 						cmtLib.loginVerification(data.get("ContactName"));
-						
+						cmtLib.verifyRepEmailInSalesPage(data.get("Rep_Email"));
 						commonLib.clickLogOutLink(data.get("Logout_Header"));
 						cmtLib.navigateBackToCMT();
 						cmtLib.hoverOnManageWebGroupsAndSelectOptions(data.get("Manage_Web_Grp_Options"));

@@ -19,10 +19,10 @@ public class EndUserFeaturesObj extends ActionEngine{
 	public static By AVAILABLEACC_LIST_FIRSTACCOUNT=By.xpath("//div[@id='availableAccountsSearchResults']/div/div/div[@class='favoriteAccountsAddressDiv']");	
 	public static By RIGHT_TO_LEFT_ARROWBTN=By.xpath("//a[@id='moveToAvailable']/span");	
 	public static By LEFT_TO_RIGHT_ARROWBTN=By.xpath("//a[@id='moveToFavorite']/span");
-	public static By UPDATE_BTN=By.xpath("//input[@id='updateAcctFav']");
+	public static By UPDATE_BTN=By.xpath("//input[@id='updateAcctFav'] | //*[text()='update']");
 	public static By FAVACC_LIST_FIRSTACCOUNT=By.xpath("//div[@id='myFavoriteAccountsResults']/div/div/div[@class='favoriteAccountsAddressDiv']");	
 	public static By CLEAR_FAV_ACCOUNTLIST= By.xpath("//div[@id='myFavoriteAccountsResults']/div");
-	public static By UPDATE_SUCCESSMESG = By.xpath("//div[@id='acctFavMessage']");
+	public static By UPDATE_SUCCESSMESG = By.xpath("//div[@id='acctFavMessage'] | //div[@id='webGroupUpdateMessageText']");
 	public static By ACCOUNT_SEARCHBOX = By.xpath("//input[@class='acctFavSearch']");
 	public static By ACCOUNT_SEARCHICON = By.xpath("//span[@class='ion-search']");
 	public static By ACCOUNT_FAVLINK = By.xpath("//h3[contains(text(),'Account Favorites')]");
