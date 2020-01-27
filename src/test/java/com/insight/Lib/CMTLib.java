@@ -638,7 +638,7 @@ public class CMTLib extends CMTObj {
 		loginAsAdmin();
 		
 		searchForWebGroup(webGrp);
-		//manageUsers();
+		manageUsers();
 		searchUsers(lnameEmailUname);
 		verifyUserandClick(contactName);
 	}

@@ -51,6 +51,12 @@ public class IVH08_InvoiceHistoryDetailsTest extends InvoiceHistoryLib {
 					cmtLib.loginToCMTSearchWebGrpAndUser(data.get("Header"), data.get("WebGrp"),
 							data.get("LnameEmailUname"), data.get("ContactName"));
 
+								/*cmtLib.loginToCMT(data.get("Header"));
+								cmtLib.searchForWebGroup(data.get("WebGrp"));
+								cmtLib.clickOnTheWebGroup(data.get("WebGrp_Name"));
+								cmtLib.hoverOnManageWebGroupsAndSelectOptions(data.get("Manage_Web_Grp_Options"));
+								cmtLib.searchForaUserAndSelect(data.get("LnameEmailUname"), data.get("ContactName"));*/
+
 					cmtLib.setPermissions(data.get("Menu_Name"), data.get("Set_Permission"));
 					cmtLib.permissionFromDD(data.get("Set_Permission"), data.get("Permission_Dropdown_Option"));
 					cmtLib.clickOnloginAs();
@@ -67,11 +73,10 @@ public class IVH08_InvoiceHistoryDetailsTest extends InvoiceHistoryLib {
 					 canadaLib.verifyInvoiceHistoryPageOpened();
 					 verifyHeaderLevelInfo();
 					 verifyLineLevelInfo();
-					 verifyLicenseProofLinkAndClick();
-					 verifyLicenseProofPopUp();
-
-					// verifyLicenseProofPopUpDetails(data.get("Invoice_Number"),data.get("Inovice_date"),data.get("Sales_Order_Number"),data.get("Customer_PO_Number"));
-					
+					 if(verifyLicenseProofLinkAndClick()) {
+						 verifyLicenseProofPopUp();
+						 verifyLicenseProofPopUpDetails(data.get("Invoice_Number"), data.get("Inovice_date"), data.get("Sales_Order_Number"), data.get("Customer_PO_Number"));
+					 }
 					// Quick search
 					 canadaLib.clickOnSideMenuSelectAccountToolOptions(data.get("Tools_Menu"),
 					 data.get("Tools_Menu_DD"));

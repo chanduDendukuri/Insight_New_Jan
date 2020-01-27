@@ -322,7 +322,7 @@ public class CanadaLib extends CanadaObj {
 		}
 		click(CommonObj.ACCOUNT_TOOLS, "Account tools menu icon");
 		//WebElement element = driver.findElement(by);
-		scrollToBottomWithCordinate("800");
+		scrollToBottomWithCordinate("150");
 
 		//((JavascriptExecutor) WebDriver).executeAsyncScript(100,1000);
 		click(getAccountToolsMenu(toolsMenuName), "Account tools menu::"+toolsMenuName+"");
