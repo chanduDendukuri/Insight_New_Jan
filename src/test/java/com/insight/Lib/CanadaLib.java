@@ -590,6 +590,7 @@ public class CanadaLib extends CanadaObj {
 		if (isElementPresent(SPLA_LABEL, "SPLA LABEL")) {
 			if (!isCheckBoxSelected(getMySoftwareLicenseAgreementscheckBoxes(spla))) {
 				click(getMySoftwareLicenseAgreementscheckBoxes(spla),"SPLA Details Product CheckBox : "+spla);
+				Thread.sleep(3000);
 				click(SELECT_PRODUCT, "Link: View Products For Selected Agreements");
 			} else {
 				LOG.info("Checkbox already selected");
