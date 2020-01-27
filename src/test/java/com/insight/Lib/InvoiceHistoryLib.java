@@ -101,13 +101,14 @@ public class InvoiceHistoryLib extends InvoiceHistoryObj {
 		 System.out.println("day : "+day);
 		 System.out.println("month : "+month);
 		 Thread.sleep(5000);
+		reporter.SuccessReport("Selected Date ", "Selected Date is ",date);
 		 JavascriptExecutor js = (JavascriptExecutor) driver;
 		 js.executeScript("window.scrollTo(0, -document.body.scrollHeight);");
 		if(click(START_DATE_CALENDER, "Start date calender",day)) {
-			reporter.SuccessReport("Selected Date ", "Selected Date is ", date);
+			reporter.SuccessReport("Selected Date ", "Selected Date is ","");
 		}
-		if(click(MONTH_AND_YEAR_START_DATE_CALENDER,"month and year","Month "+ month + " Year: "+year)){
-			reporter.SuccessReport("Selected Month and Year  ", "Selected Month and Year is is ","Month "+ month + " Year: "+year );
+		if(click(MONTH_AND_YEAR_START_DATE_CALENDER,"month and year","")){
+			reporter.SuccessReport("Selected Month and Year  ", "Selected Month and Year is is ","");
 
 		}
 		 
@@ -125,12 +126,12 @@ public class InvoiceHistoryLib extends InvoiceHistoryObj {
 		                    	 Thread.sleep(5000);
 		                          if( click(monthInStartDateCalnder(month),"month",month))
 								  {
-									  reporter.SuccessReport("Start Month ", "Selected Start Month  is ", month);
+									  reporter.SuccessReport("Start Month ", "Selected Start Month  is ", "");
 								  }
 		                    	 //driver.findElement(monthInStartDateCalnder(month)).click();
 		                           Thread.sleep(5000);
 		                           if(click(dayInStartDayCalender(day),"Day",day)) {
-									   reporter.SuccessReport("Start Date ", "Selected Start date  is ", day);
+									   reporter.SuccessReport("Start Date ", "Selected Start date  is ", "");
 								   }
 		                           break;
 		                     }
@@ -161,16 +162,16 @@ public class InvoiceHistoryLib extends InvoiceHistoryObj {
 		 Thread.sleep(5000);
 		 //JavascriptExecutor js = (JavascriptExecutor) driver;
 		 //js.executeScript("window.scrollTo(0, -document.body.scrollHeight);");
-
+		//reporter.SuccessReport("Selected Date ", "Selected Date is ","");
 		 /*click(END_DATE_CALENDER, "Start date calender",date);
 		 click(MONTH_AND_YEAR_END_DATE_CALENDER,"month and year",month + year);*/
 		if( click(END_DATE_CALENDER, "Start date calender",date)){
 			reporter.SuccessReport("Selected Date ", "Selected Date is ",date );
 
 		}
-		if(click(MONTH_AND_YEAR_END_DATE_CALENDER,"month and year",month + year))
+		if(click(MONTH_AND_YEAR_END_DATE_CALENDER,"month and year",""))
 		{
-			reporter.SuccessReport("Selected Month and Year  ", "Selected Month and Year is  ",month + year );
+			reporter.SuccessReport("Selected Month and Year  ", "Selected Month and Year is  ","" );
 		}
 		 
 		
@@ -185,15 +186,15 @@ public class InvoiceHistoryLib extends InvoiceHistoryObj {
 		                     if(text.equals(year))
 		                     {
 		                    	 Thread.sleep(5000);
-		                           if(click(monthInEndDateCalnder(month),"month",month))
+		                           if(click(monthInEndDateCalnder(month),"month",""))
 								   {
-									   reporter.SuccessReport("Selected Month ", "Selected Month is ", month );
+									   reporter.SuccessReport("Selected Month ", "Selected Month is ", "" );
 
 								   }
 		                    	 //driver.findElement(monthInStartDateCalnder(month)).click();
 		                           Thread.sleep(5000);
 		                          if( click(dayInEndDayCalender(day),"Day",date)){
-									  reporter.SuccessReport("Selected Date ", "Selected Date is ",date );
+									  reporter.SuccessReport("Selected Date ", "Selected Date is ","" );
 
 								  }
 		                           break;
