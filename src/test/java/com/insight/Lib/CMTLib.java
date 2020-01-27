@@ -636,6 +636,7 @@ public class CMTLib extends CMTObj {
 			// do nothing
 		}
 		loginAsAdmin();
+		
 		searchForWebGroup(webGrp);
 		//manageUsers();
 		searchUsers(lnameEmailUname);
@@ -3410,5 +3411,15 @@ public void verifyAvailabiltyOfUserName(String Option) throws Throwable {
 public void clickOnCreateanacccount() throws Throwable {
 	click(CREATE_AN_ACCOUNT, "Create an account", getText(CREATE_AN_ACCOUNT, "Create an account"));
 }
+public void verifyClientSearchTitle() throws Throwable
+{
+	isVisible(lblClientSearch, "client search title verification");
+}
+
+public void verifyProductStandardsTitle() throws Throwable
+{
+	isVisible(lblProductStandards, "ProductStandardsTitle verification");
+}
+
 }
 

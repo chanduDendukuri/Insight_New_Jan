@@ -101,7 +101,7 @@ public class CAN01_ShipBillPayTaxTest extends CanadaLib{
 						
 						canadaLib.continueToCheckout();
 						cartLib.verifyCartPageAvailablity();
-						prodinfo.verifyCartPageAndPartDetails();
+						prodinfo.verifyCartPageAndPartDetailsForRecentlyItem();
 
 						shipbLib.verifyPriceIsCAD(data.get("CANDAIAN_DOLLAR"));
 						shipbLib.getSummaryAmountsInCart(data.get("SubTotal"), data.get("Total"));
@@ -110,9 +110,9 @@ public class CAN01_ShipBillPayTaxTest extends CanadaLib{
 						cartLib.clickOnContinueButtonInAddInformtion();
 						canadaLib.verifySBP();
 						orderLib.shippingBillPayContinueButton();
-						//orderLib.shippingOptionsCarrierSelection(); // Click continue on shipping options
-						orderLib.shippingBillPayContinueButton();
-						orderLib.termsInPaymentInfo(data.get("PONumber"));
+						orderLib.shippingOptionsCarrierSelection(); // Click continue on shipping options
+						orderLib.billingAddressContinueButton();
+						orderLib.termsInPaymentInfo(data.get("PONumber"), data.get("POReleaseNumber"));
 						orderLib.verifyPlaceOrderLabel();
 						String PSTAMOUNT = canadaLib.getPSTInSummary(data.get("PST"));
 						String GSTAMOUNT = canadaLib.getGSTInSummary(data.get("GST"));
@@ -129,7 +129,7 @@ public class CAN01_ShipBillPayTaxTest extends CanadaLib{
 						orderLib.shippingBillPayContinueButton();
 
 						canadaLib.verifyGSTAndPSTInCartPage(data.get("PST"), data.get("GST"));
-						orderLib.termsInPaymentInfo(data.get("PONumber"));
+						orderLib.termsInPaymentInfo(data.get("PONumber"), data.get("POReleaseNumber"));
 						canadaLib.verifyGSTAndPSTInCartPage(data.get("PST"), data.get("GST"));
 						String PSTAMOUNT1 = canadaLib.getPSTInSummary(data.get("PST"));
 						String GSTAMOUNT1 = canadaLib.getGSTInSummary(data.get("GST"));
