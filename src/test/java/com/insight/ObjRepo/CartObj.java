@@ -34,7 +34,7 @@ public class CartObj extends CommonObj{
 	//UAT1
 	public static By SEARCH_BUTTON = By.id("searchbutton");
 	public static By INSIGHT_NUMBER_IN_PRODUCT_DISPLAY = By.xpath("//span[contains(.,' Insight ')]/parent::td");
-	public static By ADD_TO_CART_IN_PRODUCT_DISPLAY = By.xpath("//*[@id='tpl-product-detail-order-target']/div/div[contains(.,'Add to Cart')]") ; 
+	public static By ADD_TO_CART_IN_PRODUCT_DISPLAY = By.xpath("//*[@id='tpl-product-detail-order-target']/div/div[contains(.,'Add to Cart')]|(//*[text()='Add to Cart'])[2]") ; 
 	public static By NUMBER_PICKER_IN_PRODUCT_DISPLAY = By.xpath("//input[@id='product-detail-order-number-picker']/parent::div/button[@class='number-picker-up ion-arrow-up-b']");    
 	public static By ADD_TO_CART_SUCCESS_MESSAGE = By.xpath("//div[text()='Added to Your Cart']");		
 	public static By CONTINUE_TO_SHOPPING = By.xpath("//a[@id='buy-add-item-modal-continue']");		
@@ -43,7 +43,7 @@ public class CartObj extends CommonObj{
 	public static By ADD_WARRANTY = By.xpath("//section[@id='addon-warranties']/p/a[contains(.,'Add Warranty')]");
 	public static By CLOSE_POPUP = By.xpath("//div[@id='buy-modal']/a");
 	public static By CART = By.xpath("//div[@class='o-grid__item  o-grid__item--shrink  u-push-auto@desktop']/nav/ul/li[6]/a");
-	public static By QUANTITY = By.xpath("//label[text()='Item quantity']/following-sibling::input");
+	public static By QUANTITY = By.xpath("//label[text()='Item quantity']/following-sibling::input | //*[@id='product-detail-order-number-picker']");
 	public static By UPDATE = By.xpath("//a[text()='Update']");
 	public static By DELETE = By.xpath("//*[@class='ion-trash-a cart__trash-icon']");
 	public static By EMPTY_CART = By.xpath("//a[text()='Empty cart']");

@@ -686,7 +686,7 @@ public class ProductDisplayInfoLib extends productsDisplayInfoObj {
 	 * @param mnfNumber
 	 * @throws Throwable
 	 */
-	public void verifyTheManufacturerNumberInProductDetailsPage(String mnfNumber) throws Throwable{
+	public String verifyTheManufacturerNumberInProductDetailsPage(String mnfNumber) throws Throwable{
 		String prodMfrNumber = getText(MFR_NUMBER_PRODUCT_DETAILS_PAGE, "MFR_NUMBER_PRODUCT_DETAILS_PAGE")
 				.replace("\"", "").replace("Mfr. #", "").trim();
 		if(mnfNumber.contains(prodMfrNumber)){
@@ -694,6 +694,7 @@ public class ProductDisplayInfoLib extends productsDisplayInfoObj {
 		}else{
 			reporter.failureReport("Verify manufacturer number in product details page", "Manufacturer number is not displayed correctly", mnfNumber,driver);
 		}
+		return prodMfrNumber;
 	}
 
 	public void deleteSelectedProducts() throws Throwable{

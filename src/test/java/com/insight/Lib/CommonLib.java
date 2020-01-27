@@ -792,5 +792,13 @@ public class CommonLib extends ActionEngine{
 			reporter.failureReport("Verify Message in Product Details Page", "The price displayed will be prorated in the Cart based on the remaining agreement period. is Not Exists","");
 		}
 		}
+	
+	public void updateCartQuantityInProductDetailsPage(String Quantity) throws Throwable
+	{
+		waitForVisibilityOfElement(CartObj.QUANTITY,"QUANTITY");
+		Thread.sleep(2000);
+		clearData(CartObj.QUANTITY);
+		type(CartObj.QUANTITY,Quantity,"NUMBER OF ITEMS");
+	}
 
 }
