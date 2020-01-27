@@ -294,12 +294,13 @@ public class CMTLib extends CMTObj {
 	 * @throws Throwable
 	 */
 	public void loginAsAdminCMT() throws Throwable {
-		if (isElementPresent(CMTObj.LOGIN_AS_REPORTING_ADMIN, "LOGIN AS REPORTING ADMIN")) {
-			click(CMTObj.LOGIN_AS_REPORTING_ADMIN, "Login as reporting admin");
-		} else if (isElementPresent(CMTObj.LOGIN_AS, "Login as")) {
+		if (isElementPresent(CMTObj.LOGIN_AS, "Login as")) {
 			click(CMTObj.LOGIN_AS, "Login as", "Link: Login As");
+			switchToChildWindow();
+		}else {
+			reporter.failureReport("Verify LoginAs exists", "Login as does not exists", "", driver);
 		}
-		switchToChildWindow();
+		
 	}
 
 	/**
@@ -787,15 +788,14 @@ public class CMTLib extends CMTObj {
 	 * This method is to verify the availability of user name
 	 *
 	 */
-	public void verifyAvailabiltyOfUserName(String text) throws Throwable {
-		if (isElementNotPresent(AVAILABLE_MESSAGE, "error message")) {
-			clearData(USER_NAME_FIELD);
-			type(USER_NAME_FIELD, text, "user name");
-			
-		} else {
-			Log.info("user name is available");
+	public void verifyAvailabiltyOfUserNameNotExists() throws Throwable {
+		if (isElementPresent(AVAILABLE_MESSAGE, "User Available message")) {
 			reporter.SuccessReport("Availability Message ", "User availability message",
 					getText(AVAILABLE_MESSAGE, "error message"));
+		} else {
+			Log.info("user name is available");
+			reporter.failureReport("Availability Message ", "User availability message Not Exists",
+					"",driver);
 		}
 	}
 
@@ -3358,6 +3358,7 @@ public class CMTLib extends CMTObj {
 			}
 	}
 	
+
 	public void verifyManageWebGroupSettings() throws Throwable
 	{
 		isVisible(lblManageWebGroups, "manage web groups title verification");
@@ -3367,5 +3368,47 @@ public class CMTLib extends CMTObj {
 	{
 		isVisible(lblManageWebGroupsUserManagement, "ManageWebGroupsUserManagement title verification");
 	}
+
+	/**
+	 * This method is to verify the availability of user name
+	 *
+	 */
+	public void verifyAvailabiltyOfUserNameExists() throws Throwable {
+		if (isVisibleOnly(NOTAVAILABLE_MESSAGE, "error message")) {
+			String MSG=getText(NOTAVAILABLE_MESSAGE, "error message");
+	reporter.SuccessReport("Verify UserName availability","User Name Already Exists" ,"UserName::Not Available");
+		} else {
+			reporter.failureReport("Verify UserName availability","User Name not Exists" ,"UserName:: Available");
+
+		}
 	}
+	public void updateUser()throws Throwable{
+		click(UPDATE_USER_BTN, "Update user button");
+		waitForVisibilityOfElement(PERMISSION_UPDATE_MSG, "PERMISSION UPDATE MSG");
+	}
+	public void verifyDDPermission(String Permission,String Option)throws Throwable{
+		if(isVisibleOnly(Account_DD_Permission(Permission,Option),"Persission")) {
+			reporter.SuccessReport("Verify Select "+Option+" in "+Permission+" Under Account History in Roles and Permissions Tab on Manage Web groups: Create User Page","Select "+Option+" in "+Permission+" Under Account History Exists and Selected" ,Permission+"::"+Option);
+		}else {
+			reporter.failureReport("Verify Select "+Option+" in "+Permission+" Under Account History in Roles and Permissions Tab on Manage Web groups: Create User Page","Permission not Exists" ,"",driver);
+		}
+	}
+/**
+ * This method is to verify the availability of user name
+ *
+ */
+public void verifyAvailabiltyOfUserName(String Option) throws Throwable {
+	if (isElementPresent(AVAILABLE_MESSAGE, "User Available message")) {
+		reporter.SuccessReport("Availability Message ", "User availability message",
+				getText(AVAILABLE_MESSAGE, "error message"));
+	} else {
+		Log.info("user name is available");
+		reporter.failureReport("Availability Message ", "User availability message Not Exists",
+				"",driver);
+	}
+}
+public void clickOnCreateanacccount() throws Throwable {
+	click(CREATE_AN_ACCOUNT, "Create an account", getText(CREATE_AN_ACCOUNT, "Create an account"));
+}
+}
 

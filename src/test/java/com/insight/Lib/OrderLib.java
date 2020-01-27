@@ -441,7 +441,7 @@ public class OrderLib extends OrderObj{
 	public void clickOnReviewOrderButton() throws Throwable{
 		Thread.sleep(5000);
 		clickUntil(REVIEW_ORDER_BTN,PLACEORDER_LABL, "review order button of Payment info Section");
-		
+		verifyPlaceOrderLabel();
 	}
 	
 	public void continueButtonOnAdditionalInformationSection() throws Throwable{
@@ -642,14 +642,14 @@ public class OrderLib extends OrderObj{
 	 * @throws Throwable
 	 */
 	public void enterReportingDetailsInLineLevelInfoSection(String reportingField4,String reportingField5,String reportingField6) throws Throwable{
-		if(isElementPresent(REPORTING_FIELD_4, "Reporting Field 4")){
+		if(isElementPresent(OrderObj.ORDER_ITEM_INFO_LABEl, "order and inforamtion page")){
 		type(REPORTING_FIELD_4, reportingField4, "Reporting Field 4");
 		type(REPORTING_FIELD_5, reportingField5, "Reporting Field 5");
 		type(REPORTING_FIELD_6, reportingField6, "Reporting Field 6");
 		click(LLI_CONTINUE_BTN, "Continue button");
 		
 		}else{
-			reporter.failureReport("Verify reporting fields displayed in the Line level information section","Reporting fields are not displayed Line level information","");
+			reporter.failureReport("Verify Line Level/Ship Bill & Pay/Line Level/Place Requisition/Place Order Page", "Order and item information Page not loaded", "", driver);
 		}
 	}
 
@@ -713,6 +713,18 @@ public class OrderLib extends OrderObj{
 		   reporter.failureReport("Verify payment info term", "paymanet info term is visible ", "",driver);
 	   }
 	}
+	
+	public void termsInPaymentInfo(String PONumber,String POReleaseNumber) throws Throwable {
+		if (isElementPresent(PAYMENT_METHOD_TERM, "Terms is selected in dropdown")) {
+			type(PO_NUMBER, PONumber, "PO number");
+			if(isElementPresent(PO_REALESE_NUMBER,"PO Realese Number")){
+				  typeText(PO_REALESE_NUMBER, POReleaseNumber, "PO number");
+			  }
+			click(REVIEW_ORDER_BTN, "review order button of payment Info"); // Clicking Review order button in Payment Info
+	   }else {
+		   reporter.failureReport("Verify payment info term", "paymanet info term is visible ", "",driver);
+	   }
+	}
 	/**
 	 * 
 	 * @param ActualTax
@@ -761,7 +773,7 @@ public class OrderLib extends OrderObj{
 	
 
 	/**
-	 * Method is to check the tax exemption check box
+	 * Method is to check the tax Exemption  check box
 	 * @throws Throwable
 	 * 
 	 */
@@ -769,12 +781,12 @@ public class OrderLib extends OrderObj{
 		if (isElementPresent(TAXDECLERATION_MESSAGE, "Tax Exemption Message displayed")) {
 			if (isCheckBoxSelected(TAX_CHECKBOX)) {
 				reporter.SuccessReport("Verify the tax check box is checked or not",
-						"Tax Exemption Field Exists and checked","");
+						"Tax Exemption Field Exists and checked","Tax Exemption CheckBox ON");
 			} else {
 				click(TAX_CHECKBOX, "tax check box");
 			}
 		} else
-			reporter.failureReport("VerifyTax Exemption Field on Ship Bill Pay Place Order Page",
+			reporter.failureReport("Verify Tax Exemption Field on Ship Bill Pay Place Order Page",
 					"Tax Exemption Field doesn't Exists","",driver);
 	}
 
@@ -794,7 +806,7 @@ public class OrderLib extends OrderObj{
 	public void verifyCartHeaderLabel() throws Throwable {
 		if (isElementPresent(CART_LABL, "Cart header label displayed")) {
 			reporter.SuccessReport("Verify wether user navigates to cart page or not",
-					"User successfully navigated to cart page","");
+					"User successfully navigated to cart page","PageDetails : Cart");
 		} else {
 			reporter.failureReport("Verify wether user navigates to cart page or not",
 					"User not navigated to cart page","",driver);
@@ -812,7 +824,7 @@ public class OrderLib extends OrderObj{
 		clearData(itemPartNumber_Qty(partNumber));
 		Thread.sleep(2000);
 		type(itemPartNumber_Qty(partNumber), qntyNo, "Update Quantity number");
-		click(item_Qty_Update(partNumber), "Updated" + partNumber + " Quantity to:" + qntyNo);
+		click(item_Qty_Update(partNumber), "Updated " + partNumber + " Quantity to: " + qntyNo);
 	}
 
 	/**
@@ -863,7 +875,7 @@ public class OrderLib extends OrderObj{
 				click(TAX_CHECKBOX, "Tax exemption checkbox");
 				if (!isCheckBoxSelected(TAX_CHECKBOX)) {
 					reporter.SuccessReport("Verify checkbox is unchecked or not",
-							"Tax exemption checkbox unchecked successfully","");
+							"Tax exemption checkbox unchecked successfully","Tax Exemption  CheckBox OFF");
 				}
 			}
 		} else
@@ -871,7 +883,7 @@ public class OrderLib extends OrderObj{
 					"Tax Exemption Field doesn't Exists","");
 	}
     /**
-     * Method is to chek the 
+     * Method is to check the 
      * @throws Throwable
      */
 	public void taxDeclerationON() throws Throwable {
@@ -892,9 +904,9 @@ public class OrderLib extends OrderObj{
 	 */
 	public void verifyTheTaxAfterUncheckingTaxExemptionCheckbox() throws Throwable {
 		Thread.sleep(3000);
-		String result = getText(ADDLICENCE_TAX_AMOUNT, "Tax displayed after adding LICENCE").replace("$", "");
+		String result = getText(ADDLICENCE_TAX_AMOUNT, "Tax displayed after adding LICENCE").replace("$", "").replace(",", "");
 		if (isElementPresent(ADDLICENCE_TAX_AMOUNT, "Tax displayed", true) && (Float.valueOf(result)) > 0) {
-			reporter.SuccessReport("Verify Taxes on Place Order Page", "Taxes Exist and shows:" , result);
+			reporter.SuccessReport("Verify Taxes on Place Order Page", "Taxes Exist and shows:" , "Tax estimate USD $ "+result);
 		} else
 			reporter.failureReport("Verify Taxes on Place Order Page", "Place Order Page Shows Tax as 0.00","",driver);
 	}
@@ -906,7 +918,7 @@ public class OrderLib extends OrderObj{
 		Thread.sleep(3000);
 		String result = getText(ADDLICENCE_TAX_AMOUNT, "Tax displayed after adding LICENCE").replace("$", "");
 		if (isElementPresent(ADDLICENCE_TAX_AMOUNT, "Tax displayed", true) ) {
-			reporter.SuccessReport("Verify Taxes on Place Order Page", "Taxes Exist and shows:" , result);
+			reporter.SuccessReport("Verify Taxes on Place Order Page", "Taxes Exist and shows as :" , "Tax estimate USD "+result);
 		} else
 			reporter.failureReport("Verify Taxes on Place Order Page", "Place Order Page Shows Tax as 0.00","",driver);
 	}
@@ -917,9 +929,9 @@ public class OrderLib extends OrderObj{
 	public void verifyEWRFeeAndTax() throws Throwable {
 		Thread.sleep(3000);
 		// Verify EWR Fee
-		String result=getText(EWR_FEE_AMOUNT, "EWR Fee displayed after checking the tax checkbox").replace("$", "");
+		String result=getText(EWR_FEE_AMOUNT, "EWR Fee displayed after checking the tax checkbox");
 		if (isElementPresent(EWR_FEE_AMOUNT, "Tax displayed", true)) {
-			reporter.SuccessReport("Verify Total EWR Fee on Pace Order Page", "Total EWR Fee exists ",result);
+			reporter.SuccessReport("Verify Total EWR Fee on Pace Order Page", "Total EWR Fee exists ","Total EWR Fee USD "+result);
 	    }else {
 	    	reporter.failureReport("Verify Total EWR Fee on Pace Order Page", "Total EWR Fee does not exists ","",driver);
 	    }
@@ -927,7 +939,7 @@ public class OrderLib extends OrderObj{
 		String tax = getText(ADDLICENCE_TAX_AMOUNT, "Tax displayed").replace("$", "");
 		if (isElementPresent(ADDLICENCE_TAX_AMOUNT, "Tax displayed", true)) {
 			if (isElementPresent(ADDLICENCE_TAX_AMOUNT, "Tax displayed", true) && Float.valueOf(tax) == 0) {
-				reporter.SuccessReport("Verify Taxes on Place Order Page", "Place Order Page Shows Tax as : " +tax,"");
+				reporter.SuccessReport("Verify Taxe estimate on Place Order Page", "Tax estimate Exists and Value Returned and is shown as 0.00","Tax estimate USD "+tax);
 		} else {
 			reporter.failureReport("Verify Taxes on Place Order Page", "Place Order Page does not show tax as 0.00","",driver);
 		  }
@@ -1894,7 +1906,7 @@ public class OrderLib extends OrderObj{
 	public String clickStoredAddressRadioButton() throws Throwable {
 		Thread.sleep(2000);
 		String addressSelected=getText(STORED_ADDRESS_RADIOBTN, "STORED ADDRESS RADIOBTN");
-		click(STORED_ADDRESS_RADIOBTN, "STORED ADDRESS RADIO BUTTON", addressSelected);
+		click(STORED_ADDRESS_RADIOBTN, "STORED ADDRESS RADIO BUTTON", "First CA address :"+addressSelected);
 		return addressSelected;
 		
 	}
@@ -1921,10 +1933,12 @@ public class OrderLib extends OrderObj{
 		List<String> unitPrice1=getCartProductUnitPrice();
 		List<String> quantity=getCartProductQuantity();
 		List<String> stock=getCartProductStock();
+		Thread.sleep(3000);
 		if (prodDesc1.get(itemNum)!=null && totalPrice1!=null) {
-			reporter.SuccessReport("Verify the part added to cart ", "Contract in Cart is the one selected in pop-up Exists and Value Returned ",
-					 "  prod Description : " + prodDesc1.get(itemNum) + " Quantity : "+quantity.get(itemNum)
-							+ "Total Price: " + totalPrice1.get(itemNum)+ " Unit price: "+unitPrice1.get(itemNum)+ "Stock :"+stock);
+			Thread.sleep(3000);
+			reporter.SuccessReport("Verify the part added to cart ", "cart details ",
+					 "  prod Description : " + prodDesc1.get(itemNum) + "   Quantity : "+quantity.get(itemNum)
+							+ "  Total Price: " + totalPrice1.get(itemNum)+ "   Unit price: "+unitPrice1.get(itemNum)+ "   "+stock.get(itemNum));
 		} else {
 			reporter.failureReport("Verify the part added to cart ", "Part is not added to cart.", "", driver);
 		}

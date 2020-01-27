@@ -11,6 +11,7 @@ import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 
 import com.insight.ObjRepo.CMTObj;
@@ -259,4 +260,38 @@ public class UserManagementLib extends UserManagementObj {
 			reporter.failureReport("Verify User Permission", " Select Reporting Parent in Enable Order Tracking Under Account History exists But Not Selected", "",driver);
 		}
 	}
+	
+	public void verifyErorrMsgOfFirstName()throws Throwable {
+		if(isVisibleOnly(FERROR_MSG,"Error Msg")){
+		reporter.SuccessReport("Verify Error Msg", "Error Message Exists", getText(FERROR_MSG,"Error Msg"));
+		}
+		else {
+			reporter.failureReport("Verify Error Msg", "Error Message Not Exists", getText(FERROR_MSG,"Error Msg"));
+	
+		}
+	}
+	
+	public void verifyErorrMsgOfLastName()throws Throwable {
+		if(isVisibleOnly(FERROR_MSG,"Error Msg")){
+		reporter.SuccessReport("Verify Error Msg", "Error Message Exists", getText(FERROR_MSG,"Error Msg"));
+		}
+		else {
+			reporter.failureReport("Verify Error Msg", "Error Message Not Exists", getText(FERROR_MSG,"Error Msg"));
+	
+		}
+	}
+	public void verifyErorrMsgOfPhoneNumber()throws Throwable {
+		if(isVisibleOnly(FERROR_MSG,"Error Msg")){
+		reporter.SuccessReport("Verify Error Msg", "Error Message Exists", getText(FERROR_MSG,"Error Msg"));
+		}
+		else {
+			reporter.failureReport("Verify Error Msg", "Error Message Not Exists", getText(FERROR_MSG,"Error Msg"));
+	
+		}
+	}
+	
+	
+	
+	
+	
 }

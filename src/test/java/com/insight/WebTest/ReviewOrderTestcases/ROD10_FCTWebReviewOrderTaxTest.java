@@ -18,6 +18,7 @@ public class ROD10_FCTWebReviewOrderTaxTest extends OrderLib{
 	CommonLib commonLib=new CommonLib();
 	CartLib cartLib=new CartLib();
 	ProductDisplayInfoLib prodLib=new ProductDisplayInfoLib();
+	CanadaLib canadaLib =new CanadaLib();
 
 	// #############################################################################################################
 	// #    Name of the Test         : ROD10_FCTWebReviewOrderTax
@@ -57,24 +58,22 @@ public class ROD10_FCTWebReviewOrderTaxTest extends OrderLib{
 						cmtLib.searchForaUserAndSelect(data.get("lnameEmailUname"),data.get("ContactName"));
 						cmtLib.setPermissions(data.get("menuName"),data.get("userPermissions"));
 						cmtLib.loginAsAdminCMT();
-
-
+						
 						// Login As to UAT web
-
 						searchLib.searchInHomePage(data.get("SearchText"));
-						// Add a item  >>  proceed To Checkout >> place order >> Review Order
-						commonLib.addToCartAndVerify();
-						continueToCheckOutOnAddCart();
-
+						searchLib.verifyBreadCrumbInSearchResultsPage(data.get("SearchText"));
+						String partNumber=prodInfoLib.getPartNumberInSearchResultsPage();
+						prodInfoLib.selectFirstProductAddToCartAndVerifyCart();
+						prodInfoLib.verifyCartPageAndPartDetails();
 						proceedToCheckout();
-						addAdditionalInformation(data.get("Url"), data.get("RP_HDL_Txt"), data.get("WG_HDL_Txt"), data.get("Additional_Notes"), data.get("Invoice_Notes"));
+						cartLib.clickOnContinueButtonInAddInformtion();
+						//******** Click continue on Line level Info, Ship and Bill pay sections ********************//
 						clickContinueOnLineLevelInfo();
-						shippingBillPayContinueButton();
-						shippingBillPayContinueButton();
-						shippingBillPayContinueButton();
-						AddNewshippingAddress(data.get("link1"),data.get("companyName"),data.get("street"),data.get("city"),data.get("zipcode"),data.get("state"));
-						Thread.sleep(2000);
-						addNewCardInPayment(data.get("cardNumber"),data.get("cardName"),data.get("month"),data.get("year"),data.get("poNumebr"),data.get("POReleaseNumber"));
+						canadaLib.verifySBP();
+						clickContinueOnShippingAddress();
+						shippingOptionsCarrierSelection();
+						billingAddressContinueButton();
+						selectPaymentInfoMethodCreditCard(data.get("cardNumber").toString(), data.get("cardName"), data.get("month"), data.get("year"),data.get("poNumebr"),data.get("POReleaseNumber"));
 
 						// Verify Tax exemption message is displayed or not
 						taxDeclerationCheckBoxON();
@@ -87,43 +86,51 @@ public class ROD10_FCTWebReviewOrderTaxTest extends OrderLib{
 						//Add 1st part which requires EWR fee
 
 						searchLib.searchInHomePage(data.get("SearchText1"));
-						cartLib.selectFirstProductDisplay();
+						searchLib.removeTheFilterForInStockOnly(data.get("In_Stock_Only"));
+						prodInfoLib.verifyTheManufacturerNumberInProductDetailsPage(data.get("SearchText1"));
+						prodInfoLib.enterQuantityOnProductDetailsPage(data.get("Quantity"));
 						commonLib.addToCartAndVerify();
 						continueToCheckOutOnAddCart();
-
+						canadaLib.verifyPlaceCartLabel();
+						int itemnumber1=Integer.valueOf(data.get("Item_Number1"));
+						cartLib.verifyItemInCartByInsightPart(data.get("SearchText1"));
+						verifyCartPageAndPartDetails(itemnumber1);
+						
 						//Add 2nd part which requires EWR fee
 						searchLib.searchInHomePage(data.get("SearchText2"));
+						searchLib.removeTheFilterForInStockOnly(data.get("In_Stock_Only"));
+						prodInfoLib.verifyTheManufacturerNumberInProductDetailsPage(data.get("SearchText2"));
+						prodInfoLib.enterQuantityOnProductDetailsPage(data.get("Quantity"));
 						commonLib.addToCartAndVerify();
 						continueToCheckOutOnAddCart();
-						verifyCartHeaderLabel();
-
-						//verify part items added to cart and update quantity
-
-						cartLib.verifyItemInCart(data.get("SearchText1"));
-						editproductQTY(data.get("partNumber"),data.get("qntyNo"));
-						cartLib.verifyItemInCart(data.get("SearchText2"));
-						editproductQTY(data.get("partNumber1"),data.get("qntyNo1"));
+						canadaLib.verifyPlaceCartLabel();
+						int itemnumber2=Integer.valueOf(data.get("Item_Number2"));
+						cartLib.verifyItemInCartByInsightPart(data.get("SearchText2"));
+						verifyCartPageAndPartDetails(itemnumber2);
+						editproductQTY(data.get("SearchText2"),data.get("Quantity2"));
 						proceedToCheckout();
-						addAdditionalInformation(data.get("Url"), data.get("RP_HDL_Txt"), data.get("WG_HDL_Txt"), data.get("Additional_Notes"), data.get("Invoice_Notes"));
-						addLineLevelInfo();
-						shippingBillPayContinueButton();
-						shippingBillPayContinueButton();
-						shippingBillPayContinueButton();
-						addNewCardInPaymentInfoSection(data.get("cardNumber").toString(),data.get("cardName"), data.get("month"), data.get("year"),data.get("poNumebr"),data.get("POReleaseNumber"));
-						//selectPaymentInfoMethodCreditCard(data.get("cardNumber").toString(),data.get("cardName"), data.get("month"), data.get("year"),data.get("poNumebr"),data.get("POReleaseNumber"));
+						cartLib.clickOnContinueButtonInAddInformtion();
+						//******** Click continue on Line level Info, Ship and Bill pay sections ********************//
+						clickContinueOnLineLevelInfo();
+						canadaLib.verifySBP();
+						clickContinueOnShippingAddress();
+						//enterAttentionField( data.get("Card_Name"));
+						shippingOptionsCarrierSelection();
+						billingAddressContinueButton();
+						
 						taxDeclerationCheckBoxOFF();
 						clickOnReviewOrderButton();
 						verifyPlaceOrderLabel();
 						// Verify tax is greater than zero
 						verifyTheTaxAfterUncheckingTaxExemptionCheckbox();
 						editOrderInfo(data.get("sectionName"));
-
-						//check the tax check box in payment Info
+						canadaLib.verifySBP();
+						// tax declaration ON
 						taxDeclerationCheckBoxON();
 						clickOnReviewOrderButton();
 						// Verify tax equal to zero
 						verifyEWRFeeAndTax();
-						// End of the test
+						commonLib.clickLogOutLink(data.get("Logout"));
 						
 					} catch (Exception e) {
 						ReportStatus.blnStatus = false;

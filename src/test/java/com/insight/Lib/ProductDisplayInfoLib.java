@@ -1303,11 +1303,11 @@ public void getSummaryCartDetails() throws Throwable{
 		List<String> prodDesc1 = orderLib.getProductDescriptionOfCartProduct();
 		List<String> totalPrice1 = orderLib.getCartProductTotalPrice();
 		List<String> unitPrice1=orderLib.getCartProductUnitPrice();
-		//List<String> quantity=orderLib.getCartProductQuantity();
+		List<String> quantity=orderLib.getCartProductQuantity();
 		List<String> stock=orderLib.getCartProductStock();
 		if (prodDesc1.get(0)!=null && totalPrice1!=null) {
-			reporter.SuccessReport("Verify the part added to cart ", "Contract in Cart is the one selected in pop-up Exists and Value Returned ",
-					 "  prod Description : " + prodDesc1.get(0) + " Quantity : 2"
+			reporter.SuccessReport("Verify the part added to cart ", "Part added to cart and cart details are: ",
+					 "  prod Description : " + prodDesc1.get(0) + " Quantity : "+quantity
 							+ "Total Price: " + totalPrice1.get(0)+ " Unit price: "+unitPrice1+ "Stock :"+stock);
 		} else {
 			reporter.failureReport("Verify the part added to cart ", "Part is not added to cart.", "", driver);

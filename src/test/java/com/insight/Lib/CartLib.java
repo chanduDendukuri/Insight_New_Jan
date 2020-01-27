@@ -1962,10 +1962,6 @@ public class CartLib extends ActionEngine {
 
 		}
 
-
-		
-
-		
 	}		
 	public boolean verifyCartPageAvailablity() throws Throwable{
 		return isVisibleOnly(lblCartLebel,"Cart Header");
