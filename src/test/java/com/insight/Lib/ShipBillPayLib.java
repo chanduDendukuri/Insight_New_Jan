@@ -1148,10 +1148,14 @@ public class ShipBillPayLib extends ShipBillPayObj {
 			type(SEARCH_FIELD,Text,"Search Field");
 			click(search_Button,"Search Button");
 			Thread.sleep(3000);
+			if(isVisibleOnly(RADIOBUTTON,"Search Result")) {
 			if (driver.findElement(RADIOBUTTON).isSelected()) {
 				reporter.SuccessReport("Stored address is selected", "Stored Address is visible in Results and Radio Button is selected", "Search By Account Type"+storedaddress);
 			} else {
-				reporter.failureReport("Stored address is Not selected", "Stored address is Not selected", "");
+				reporter.SuccessReport("Stored address is Not selected", "Stored address is Not selected", "");
+			}
+			}else {
+				//do nothing
 			}
 			click(CANCELBUTTON_STOREDADDRESS, "Cancle Button on search shipping address page");
 
