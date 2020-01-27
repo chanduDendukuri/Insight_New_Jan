@@ -204,9 +204,9 @@ public class CMTLib extends CMTObj {
 	 * @param webgrpName
 	 * @throws Throwable
 	 */
-	public void clickOnTheWebGroup(String webgrpName) throws Throwable {
-		if (isElementVisible(getWebGroupName(webgrpName), 3, "Search results are displayed on Client Search Page")) {
-			click(getWebGroupName(webgrpName), "Web Group link exists :" + webgrpName);
+	public void clickOnTheWebGroup(String... webgrpName) throws Throwable {
+		if (isElementVisible(getWebGroupName(), 3, "Search results are displayed on Client Search Page")) {
+			click(getWebGroupName(), "Web Group link exists :" + webgrpName);
 		} else {
 			reporter.failureReport("Verify web group displayed", "searched Web group is not displayed", "", driver);
 		}
@@ -313,8 +313,8 @@ public class CMTLib extends CMTObj {
 	public void loginVerification(String contactName) throws Throwable {
 		waitForVisibilityOfElement(CMTObj.getLoginVerficationByContactNameOnHeader(contactName),
 				"contact Name is " + contactName);
-		if(getText(CMTObj.getLoginVerficationByContactNameOnHeader(contactName),"LoginName").contains(contactName)){
-		//if (isVisibleOnly(CMTObj.getLoginVerficationByContactNameOnHeader(contactName), "contact Name")) {
+		//if(getText(CMTObj.getLoginVerficationByContactNameOnHeader(contactName),"LoginName").contains(contactName)){
+		if (isVisibleOnly(CMTObj.getLoginVerficationByContactNameOnHeader(contactName), "contact Name")) {
 			reporter.SuccessReport("Verify the Same User Logged into Insight from CMT",
 					"User login verification is successfull. User is : ", contactName);
 		} else {
@@ -433,7 +433,9 @@ public class CMTLib extends CMTObj {
 		loginToCMT(login);
 		searchForWebGroup(webGrp);
 		clickOnTheWebGroup(webGrp_Name);
+		verifyManageWebGroupSettings();
 		hoverOnManageWebGroupsAndSelectOptions(manage_Web_Grp_Options);
+		verifyManageWebGroupsUserManagement();
 		searchForaUserAndSelect(lnameEmailUname, contactName);
 		loginAsAdminCMT();
 	}
@@ -635,7 +637,7 @@ public class CMTLib extends CMTObj {
 		}
 		loginAsAdmin();
 		searchForWebGroup(webGrp);
-		manageUsers();
+		//manageUsers();
 		searchUsers(lnameEmailUname);
 		verifyUserandClick(contactName);
 	}
@@ -3357,6 +3359,17 @@ public class CMTLib extends CMTObj {
 			}
 	}
 	
+
+	public void verifyManageWebGroupSettings() throws Throwable
+	{
+		isVisible(lblManageWebGroups, "manage web groups title verification");
+	}
+
+	public void verifyManageWebGroupsUserManagement() throws Throwable
+	{
+		isVisible(lblManageWebGroupsUserManagement, "ManageWebGroupsUserManagement title verification");
+	}
+
 	/**
 	 * This method is to verify the availability of user name
 	 *

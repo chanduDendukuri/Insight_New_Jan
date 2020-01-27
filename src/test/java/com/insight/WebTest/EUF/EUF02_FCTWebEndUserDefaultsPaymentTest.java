@@ -69,7 +69,10 @@ public class EUF02_FCTWebEndUserDefaultsPaymentTest extends EndUserFeaturesLib{
 								data.get("Tools_Menu_DD"));
 						clickOnTabInUserProfile(data.get("Tab_Name"));
 						selectedOptionPaymentMethod(data.get("Default_Payment_Option"));
+						//add condition  to select credit card from dropdown
+						selectPaymentMethodFromDropDown(data.get("cc"));
 						clickUpdateButtonInCheckoutDefaults();
+						commonLib.clickLogOutLink(data.get("Logout_Header"));
 						cmtLib.navigateBackToCMT();
 						// navigate to checkout settings >>  payment options
 						cmtLib.clearPaymentOptionsInCheckoutSettings();

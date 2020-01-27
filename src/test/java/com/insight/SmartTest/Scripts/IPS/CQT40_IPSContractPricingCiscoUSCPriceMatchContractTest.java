@@ -120,7 +120,7 @@ public class CQT40_IPSContractPricingCiscoUSCPriceMatchContractTest extends Home
 					clickOnTabsInLineItemDetailsPopUp(data.get("Tab2"));// Contracts
 					
 					float Sellpriceaftersaveasquote = getSellPriceFromInlineItemsContract(data.get("contactid"));
-					
+					     
 					clickOnTabsInLineItemDetailsPopUp(data.get("Tab3"));// Pricing
 					// Get data from the pricing tab
 					List<String> Rate1 = new ArrayList<>();
@@ -129,7 +129,7 @@ public class CQT40_IPSContractPricingCiscoUSCPriceMatchContractTest extends Home
 					System.out.println(Rate1.size());
 					 String	Rate2="";
 	                   
-	                    float Rate2value = 0;
+	                    float Rate2value = 0;                
 	                    for(int b1 =0;b1<Rate1.size();b1++){
 	                    	if(b1==0){ //ZP00--0
 	                    		Rate2 = Rate1.get(b1);

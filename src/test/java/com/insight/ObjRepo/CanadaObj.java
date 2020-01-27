@@ -24,7 +24,7 @@ public class CanadaObj extends ActionEngine {
 
 	public static By PRINTICON = By.xpath("//div[@class='medium-3 columns']//div/a[2]");
 	public static By SEARCHBY_ORDER = By.xpath("//div[@class='medium-4 columns']//div[@class='nice-select ']");
-	public static By SEARCHBY_DROPDOWN = By.xpath("//div[@class='medium-4 columns']//div[@class='nice-select ']");
+	public static By SEARCHBY_DROPDOWN = By.xpath("//div[@class='medium-4 columns']//div[@class='nice-select '] | //div[@class='medium-4 columns']//div[contains(@class,'nice-select ')]");
 
 	public static By QUICKSEARCH_DROPDOWN = By.xpath("//div[@class='column']//h2");
 
@@ -84,7 +84,8 @@ public class CanadaObj extends ActionEngine {
 	public static By REPORTING_USAGE_PERIOD=By.xpath("//div[@class='usage-reporting__detail row row__gutter--tiny collapse expanded']//span[contains(text(),'Report usage for:')]/following-sibling::span//strong");
     public static By CITRIX_LASTUSAGE_REPORTBTN = By.xpath("//td/strong[contains(text(),'CITRIX SERVICE PROVIDER PROGRAM (CSP)')]/following::div/a/span[contains(.,'Retrieve Last Usage Report')]");
     public static By REPORTING_USAGEINRECEIPT_PAGE= By.xpath("//div[@class='row row__gutter--tiny collapse expanded']//span[contains(text(),'Report usage for:')]/following-sibling::span//strong");
-	// shipping options
+	public static By REPORTING_USAGE_PERIOD_WARNING_MSG=By.xpath("//span[@class='columns usage-reporting__warning-message']");
+    // shipping options
 	public static By DEFAULT_SHIIPING_OPTION_GROUND = By
 			.xpath("//Strong[text()='Ground']//parent::span//parent::label//input");
 

@@ -791,6 +791,7 @@ public class CommonLib extends ActionEngine{
 		}
 		}
 	
+
 	public void verifyDefualtShippingSelectedOption() throws Throwable {
 		if (isVisibleOnly(CommonObj.defaultShippingOptionSelected, "Shipping Option")) {
 			reporter.SuccessReport("Verify Default Shipping options to SLS Ground in Shipping Options in the Checkout Settings Tab on Manage Web groups: Create User Page", "SLS Ground is Default Shipping Oprion Exists in Shipping Options","");
@@ -798,5 +799,13 @@ public class CommonLib extends ActionEngine{
 			reporter.failureReport("Verify Default Shipping options to SLS Ground in Shipping Options in the Checkout Settings Tab on Manage Web groups: Create User Page", "SLS Ground is Default Shipping Oprion Exists in Shipping Options Not Exists","",driver);
 		}
 		}
+
+	public void updateCartQuantityInProductDetailsPage(String Quantity) throws Throwable
+	{
+		waitForVisibilityOfElement(CartObj.QUANTITY,"QUANTITY");
+		Thread.sleep(2000);
+		clearData(CartObj.QUANTITY);
+		type(CartObj.QUANTITY,Quantity,"NUMBER OF ITEMS");
+	}
 
 }

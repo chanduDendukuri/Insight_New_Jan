@@ -36,10 +36,10 @@ public class EndUserFeaturesLib extends EndUserFeaturesObj{
 		String selectedOption=getText(PAYMENT_METHOD_SELECT_OPTION, "selected option");
 		System.out.println("selectedOption"+selectedOption);
 		if(selectedOption.equalsIgnoreCase(option)) {
-			reporter.SuccessReport("Verifyig default selected option", "Default selected option is "+option, option);
+			reporter.SuccessReport("Verifying default selected option", "Default selected option is "+option, option);
 		}
 		else {
-			reporter.failureReport("Verifyig default selected option", "Default selected option is not "+option, selectedOption,driver);
+			reporter.failureReport("Verifying default selected option", "Default selected option is not "+option, selectedOption,driver);
 		}
 	}
 	/**
@@ -785,5 +785,10 @@ public class EndUserFeaturesLib extends EndUserFeaturesObj{
 			reporter.failureReport("Account Management - Account Tools Account Favorites Page",
 					"First Account is Not Added to My Favorite Accounts","");
 		          
+		}
+
+		public void selectPaymentMethodFromDropDown(String option) throws Throwable{
+			click(dropdownPaymentMethod,"Payment Method");
+			click(selectPaymentMethodForBillingPayment(option),"Payment Method");
 		}
 }
