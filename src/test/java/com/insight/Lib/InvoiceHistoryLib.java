@@ -289,14 +289,19 @@ public class InvoiceHistoryLib extends InvoiceHistoryObj {
 	 * 
 	 * @throws Throwable
 	 */
-	public void verifyLicenseProofLinkAndClick() throws Throwable{
+	public boolean verifyLicenseProofLinkAndClick() throws Throwable{
+		boolean status = false;
 		if(isVisibleOnly(LICENSE_PROOF_LINK, "License proof link")) {
+			status = true;
 			reporter.SuccessReport("Verify LicenceProof Link Exist", "LicenceProof Link Exist", "");
+			click(LICENSE_PROOF_LINK, "License proof link");
+
 		}
 		else {
 			reporter.failureReport("Verify LicenceProof Link Exist", "LicenceProof Link Exist", "",driver);
+			status=false;
 		}
-		click(LICENSE_PROOF_LINK, "License proof link");
+return status;
 	}
 	
 	/**
