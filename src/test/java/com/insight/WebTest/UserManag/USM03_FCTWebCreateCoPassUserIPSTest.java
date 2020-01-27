@@ -95,9 +95,7 @@ public class USM03_FCTWebCreateCoPassUserIPSTest  extends UserManagementLib {
 							cmtLib.selectDefaultPaymentOption(data.get("Default_Payment_Option1"));
 							scrollUp();
 							cmtLib.hoverOnManageWebGroupsAndSelectOptions(data.get("Manage_Web_Grp_Options1"));
-							cmtLib.enterLinkedAccountSearch(data.get("Account_Number"));
-							cmtLib.checkLinkedAccountCheckBox(data.get("Account_Number"));
-							cmtLib.clickRadioDefaultAtLogin(data.get("Account_Number"));
+							verifydefualtLinkedAcc();
 							cmtLib.clickUpdateButtonOnLinkedAccountsScreen();
 							cmtLib.clickInformationTab(data.get("Information_Tab"));
 							cmtLib.clickOnUserURL();
@@ -134,11 +132,8 @@ public class USM03_FCTWebCreateCoPassUserIPSTest  extends UserManagementLib {
 							cmtLib.verifyDDPermission(data.get("Permision5"),data.get("Option"));
 							cmtLib.verifyDDPermission(data.get("Permision6"),data.get("Option"));
 							cmtLib.updateUser();
-							cmtLib.clickCheckOutSettings(data.get("Check_out_Settings"));
-							cmtLib.selectOptionInCheckoutSettings(data.get("Linked_Accounts"));
-							cmtLib.enterLinkedAccountSearch(data.get("Account_Number"));
-							cmtLib.checkLinkedAccountCheckBox(data.get("Account_Number"));
-							cmtLib.clickRadioDefaultAtLogin(data.get("Account_Number"));
+							cmtLib.hoverOnManageWebGroupsAndSelectOptions(data.get("Manage_Web_Grp_Options1"));
+							verifydefualtLinkedAcc();
 							cmtLib.selectOptionInCheckoutSettings(data.get("Payment_Options"));
 							Thread.sleep(3000);
 							cmtLib.selectDefaultPaymentOption(data.get("Default_Payment_Option1"));					

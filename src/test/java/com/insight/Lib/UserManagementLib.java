@@ -288,9 +288,18 @@ public class UserManagementLib extends UserManagementObj {
 			reporter.failureReport("Verify Error Msg", "Error Message Not Exists", getText(FERROR_MSG,"Error Msg"));
 	
 		}
+	}//LINKEDACCOUNTS_Defualtac
+	//LINKEDACCOUNTS_Defualtacc
+	
+	public void verifydefualtLinkedAcc()throws Throwable {
+		if(isVisibleOnly(LINKEDACCOUNTS_Defualtacc,"Error Msg")){
+		reporter.SuccessReport("Verify Default Linked to Account# in the Linked Accounts Tab on Manage Web groups: Create User Page", "Default Linked to Account# in Linked Accounts Tab", "Account#"+getText(LINKEDACCOUNTS_Defualtacc,"Defualt Account"));
+		}
+		else {
+			reporter.failureReport("Verify Default Linked to Account# in the Linked Accounts Tab on Manage Web groups: Create User Page", "Default Linked to Account# in Linked Accounts Tab Not Exists", getText(LINKEDACCOUNTS_Defualtacc,"Defualt Account"));
+	
+		}
 	}
-	
-	
 	
 	
 	
