@@ -86,20 +86,24 @@ public class USM02_FCTWebCreateCEPPuserTest extends UserManagementLib {
 							for (i = 0; i < permissions.length; i++) {
 								cmtLib.verifySetPermissions( permissions[i]);
 							}
-							cmtLib.verifyDDPermission(data.get("Persision4"),data.get("Option"));
-							cmtLib.verifyDDPermission(data.get("Persision5"),data.get("Option"));
-							cmtLib.verifyDDPermission(data.get("Persision6"),data.get("Option"));
+							cmtLib.verifyDDPermission(data.get("Permision4"),data.get("Option"));
+							cmtLib.verifyDDPermission(data.get("Permision5"),data.get("Option"));
+							cmtLib.verifyDDPermission(data.get("Permision6"),data.get("Option"));
 							cmtLib.updateUser();
 							cmtLib.clickInformationTab(data.get("Information_Tab"));
 							cmtLib.clickOnUserURL();
 							cmtLib.verifyCreateAnAccountPage();
 							//commonLib.clickLogOutLink(data.get("Logout_Header"));
-							cmtLib.clickOnCreateanacccount();
-							cmtLib.enterAdressesInCreateAnAccount(data.get("Adressess1"));
-							cmtLib.enterCityInCreateAnAccount(data.get("City"));
-							cmtLib.selectStateInCreateAnAccount(data.get("State"));
-							cmtLib.enterZipCodeInCreateAnAccount(data.get("ZipCode"));
+							//cmtLib.clickOnCreateanacccount();
+							mic.handleinsightpopup();
+							cmtLib.enterAdressesInCreateAnAccount(data.get("Adressess2"));
+							cmtLib.enterCityInCreateAnAccount(data.get("City2"));
+							cmtLib.selectStateInCreateAnAccount(data.get("State2"));
+							cmtLib.enterZipCodeInCreateAnAccount(data.get("ZipCode2"));
 							cmtLib.clickCreateButtonInCreateAnAccount();
+							verifyErorrMsgOfFirstName();
+							verifyErorrMsgOfLastName();
+							verifyErorrMsgOfPhoneNumber();
 							//Verify Error Msg
 							String email="QTPTest"+getRandomNumeric(4)+"@test.com";
 							cmtLib.enterEmailInCreateAnAccount(email);
@@ -123,6 +127,7 @@ public class USM02_FCTWebCreateCEPPuserTest extends UserManagementLib {
 							cmtLib.enterConfirmPasswordInCreateAnAccount(password);
 							cmtLib.clickCreateButtonInCreateAnAccount();
 							cmtLib.clickContinueButtonInCreateAnAccount();
+							mic.handleinsightpopup();
 							cmtLib.verifyWelcomePage();
 							searchLib.searchInHomePage(data.get("SearchItem"));
 							commonLib.addToCartAndVerify();

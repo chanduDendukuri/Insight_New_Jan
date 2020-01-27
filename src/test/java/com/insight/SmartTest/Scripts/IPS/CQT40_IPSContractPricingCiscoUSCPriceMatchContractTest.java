@@ -129,7 +129,7 @@ public class CQT40_IPSContractPricingCiscoUSCPriceMatchContractTest extends Home
 					System.out.println(Rate1.size());
 					 String	Rate2="";
 	                   
-	                    float Rate2value = 0;
+	                    float Rate2value = 0;                
 	                    for(int b1 =0;b1<Rate1.size();b1++){
 	                    	if(b1==0){ //ZP00--0
 	                    		Rate2 = Rate1.get(b1);
