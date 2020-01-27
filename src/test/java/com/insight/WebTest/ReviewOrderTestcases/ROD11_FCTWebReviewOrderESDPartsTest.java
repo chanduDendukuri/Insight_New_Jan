@@ -22,6 +22,7 @@ public class ROD11_FCTWebReviewOrderESDPartsTest extends OrderLib{
 	ProductDisplayInfoLib prodLib=new ProductDisplayInfoLib();
 	ShipBillPayLib sbpLib=new ShipBillPayLib();
 	LineLevelInfoLib lineLevelLib=new LineLevelInfoLib();
+	CanadaLib canadaLib=new CanadaLib();
 
 	// #############################################################################################################
 	// #    Name of the Test         : ROD07_FCTWebReviewExportIPS
@@ -63,11 +64,9 @@ public class ROD11_FCTWebReviewOrderESDPartsTest extends OrderLib{
 
 						// Login As to UAT web
 						searchLib.searchInHomePage(data.get("SearchText"));
-						cartLib.selectFirstProductDisplay();
-
-						// Add a item >>  proceed To Checkout >> place order >> Review Order
-						commonLib.addToCartAndVerify();
-						continueToCheckOutOnAddCart();
+						searchLib.verifyBreadCrumbInSearchResultsPage(data.get("SearchText"));
+						String partNumber=prodInfoLib.getPartNumberInSearchResultsPage();
+						prodInfoLib.selectFirstProductAddToCartAndVerifyCart();
 						Thread.sleep(3000);
 						proceedToCheckout();
 						continueButtonOnAdditionalInformationSection();
@@ -77,21 +76,31 @@ public class ROD11_FCTWebReviewOrderESDPartsTest extends OrderLib{
 						verifyStoredAddressAdded(companyName);
 						clickContinueOnShippingAddress();
 						selectShippingOptionsCarrier(); // Shipping options continue button
-						shippingBillPayContinueButton();  //billing address
+						billingAddressContinueButton();  //billing address
 						// payment info
-						termsInPaymentInfo(data.get("PONumber"));
+						termsInPaymentInfo(data.get("PONumber"),data.get("POReleaseNumber"));
 						// verify tax on place order page
 						verifyTheTaxOnPlaceOrderPage();
 						searchLib.searchInHomePage(data.get("SearchText1"));
+						searchLib.removeTheFilterForInStockOnly(data.get("In_Stock_Only"));
+						prodInfoLib.verifyTheManufacturerNumberInProductDetailsPage(data.get("SearchText1"));
+						prodInfoLib.enterQuantityOnProductDetailsPage(data.get("Quantity"));
 						commonLib.addToCartAndVerify();
 						continueToCheckOutOnAddCart();
+						canadaLib.verifyPlaceCartLabel();
+						cartLib.verifyItemInCartByInsightPart(data.get("SearchText1"));
 						proceedToCheckout();
 						lineLevelLib.verifyOrderAndItemInfoBreadCrumb();
 						continueButtonOnAdditionalInformationSection();
 						clickContinueOnLineLevelInfo();
-						shippingBillPay(data.get("Card_Number").toString(), data.get("Card_Name"), data.get("Month"), data.get("Year"), data.get("PONumber1"),data.get("POReleaseNumber"));
+						canadaLib.verifySBP();
+						clickContinueOnShippingAddress();
+						shippingOptionsCarrierSelection();
+						billingAddressContinueButton();
+						clickOnReviewOrderButton();
 						// verify tax on place order page
 						verifyTheTaxOnPlaceOrderPage();
+						commonLib.clickLogOutLink(data.get("Logout"));
 					} catch (Exception e) {
 						ReportStatus.blnStatus = false;
 						//gErrorMessage = e.getMessage();
