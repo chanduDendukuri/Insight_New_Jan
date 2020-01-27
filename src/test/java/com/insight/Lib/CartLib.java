@@ -1966,5 +1966,16 @@ public class CartLib extends ActionEngine {
 	public boolean verifyCartPageAvailablity() throws Throwable{
 		return isVisibleOnly(lblCartLebel,"Cart Header");
 		}
+	
+	public void verifySLPAProductOnCart(String itemInCart) throws Throwable {
+		waitForVisibilityOfElement(CartObj.getItemIncartByInsightPartNumber(itemInCart), "Item in cart");
+		if (isElementPresent(CartObj.getItemIncartByInsightPartNumber(itemInCart), "part number")) {
+			reporter.SuccessReport("Verify SPLA Product on CART Page ", " SPLA Product Exists and Verified", "Insight part: "+itemInCart);
+		} else {
+			reporter.failureReport("Verify SPLA Product on CART Page", "ITEM SLPA " + itemInCart + "is not ADDED TO CART",
+					itemInCart, driver);
+
+		}
+	}
 
 }
