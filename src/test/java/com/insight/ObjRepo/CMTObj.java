@@ -568,6 +568,7 @@ public static By lnkDeleteProductGroups=By.xpath("//*[text()=' Delete Product Gr
 	public static By USER_NAME_MESSAGE = By.xpath("//span[@id='username-message' and text()='Username Not Available']");
 	public static By SEARCH_USER_BY_EMAIL = By.xpath("//input[@id='userInput']");
 	public static By AVAILABLE_MESSAGE = By.xpath("//div[@id='loginAvailable' and text()='Available']");
+	public static By NOTAVAILABLE_MESSAGE = By.xpath("//div[@id='loginAvailable' and text()='Not Available']");
 	public static By BILLING_ACCOUNT_NAME = By.xpath("//input[@id='companyName']");
 	public static By ADRESSES = By.xpath("//input[@id='addressOne']");
 	public static By CITY = By.xpath("//input[@id='city']");
@@ -662,8 +663,10 @@ public static By lnkDeleteProductGroups=By.xpath("//*[text()=' Delete Product Gr
 	public static By allMyAccountsForEnableStandardReports = By.xpath("//input[@name='enable_standard_reports']//..//following-sibling::div//select//option[@selected='selected']");
 	public static By allMyAccountsForEnableOrderTracking = By.xpath("//input[@name='enable_order_tracking']//..//following-sibling::div//select//option[@selected='selected']");
 	public static By noFavLinksAvailable = By.xpath("(//*[@id='QuickLinks__favorites']//*[@class='iw-accordion__emptytext muted']//p)[1]");
-
-	
+	public static By Account_DD_Permission(String permission,String Option) {
+		return By.xpath("//a[contains(text(),'"+permission+"')]/parent::div/following-sibling::div/select/option[@selected and contains(text(),'"+Option+"')]");
+	}
+	public static By CREATE_AN_ACCOUNT =By.xpath("//a[contains(text(),'Create an account') and @href]");
 	
 	
 	

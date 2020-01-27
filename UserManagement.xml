@@ -20,7 +20,7 @@
         <parameter name="seleniumurl" value="local"></parameter>
          <parameter name="executionType" value="Sequential"></parameter>
         <classes>
-            <class name="com.insight.WebTest.UserManag.USM01_FCTWEBClientUserSearchTest">
+            <class name="com.insight.WebTest.UserManag.USM05_FCTWebCreateSharedUserTest">
                 <methods>
                     <parameter name="nextTestJoin" value="false"></parameter>
                     <parameter name="StartRow" value="1"></parameter>
