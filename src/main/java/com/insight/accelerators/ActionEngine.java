@@ -732,11 +732,11 @@ public class ActionEngine extends TestEngineWeb {
 			if (!status) {
 				if (reportIndicator) {
 					LOG.info("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
-					reporter.failureReport("isElementPresent : ", msgIsElementFoundFailure + locatorName, "NA",driver);
+					//reporter.failureReport("isElementPresent : ", msgIsElementFoundFailure + locatorName, "NA",driver);
 				}
 			} else {
 				LOG.info("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
-				TestEngineWeb.reporter.SuccessReport("isElementPresent : " + locatorName, this.msgIsElementFoundSuccess + locatorName,"NA");
+				//TestEngineWeb.reporter.SuccessReport("isElementPresent : " + locatorName, this.msgIsElementFoundSuccess + locatorName,"NA");
 			}
 			reportIndicator = true;
 		}

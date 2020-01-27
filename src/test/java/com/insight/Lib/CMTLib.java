@@ -556,7 +556,7 @@ public class CMTLib extends CMTObj {
 		if (isCheckBoxSelected(getUserPermission(userPermissions))) {
 			click(getUserPermission(userPermissions), "User permissions : " + userPermissions + " is OFF");
 			click(UPDATE_USER_BTN, "Update user button");
-			if (isElementPresent(PERMISSION_UPDATE_MSG, "update sucessful message")) {
+			if (isVisibleOnly(PERMISSION_UPDATE_MSG, "update sucessful message")) {
 				reporter.SuccessReport("Verify the Sucess message ", "Permissions disabled Succesfully", getText(PERMISSION_UPDATE_MSG, "update sucessful message"));
 			} else {
 				reporter.failureReport("Verify the sucess message", "Permissions are not disabled Succesfully", getText(PERMISSION_UPDATE_MSG, "update sucessful message"),
