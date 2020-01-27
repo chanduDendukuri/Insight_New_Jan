@@ -20,7 +20,7 @@ public class SLPLib extends SLPObj {
 	String expectedWarrantyItemDec;
 	String expectedSummaryTotalAmount;
 	String referenceNumber;
-
+    OrderLib orderLib=new OrderLib();
 	/**
 	 * Method is used to get price from Product detail page
 	 * 
@@ -741,5 +741,23 @@ public class SLPLib extends SLPObj {
 				reporter.failureReport("Verify PA# Field in Place Order Page", "PA# Field does not exist" , "");
 				}
 		}
+		
+		
+		public void verifyCartPageAndPartDetails(int itemNum) throws Throwable {
+			List<String> prodDesc1 = orderLib.getProductDescriptionOfCartProduct();
+			List<String> totalPrice1 = orderLib.getCartProductTotalPrice();
+			List<String> unitPrice1=orderLib.getCartProductUnitPrice();
+			List<String> quantity=orderLib.getCartProductQuantity();
+			
+			Thread.sleep(3000);
+			if (prodDesc1.get(itemNum)!=null && totalPrice1!=null) {
+				Thread.sleep(3000);
+				reporter.SuccessReport("Verify the part added to cart ", "cart details ",
+						 "  prod Description : " + prodDesc1.get(itemNum) + "   Quantity : "+quantity.get(itemNum)
+								+ "  Total Price: " + totalPrice1.get(itemNum)+ "   Unit price: "+unitPrice1.get(itemNum));
+			} else {
+				reporter.failureReport("Verify the part added to cart ", "Part is not added to cart.", "", driver);
+			}
+	   }
 }
 

@@ -2057,4 +2057,5 @@ public class OrderLib extends OrderObj{
 			reporter.failureReport("Verify WG_LNL_Txt On Place Order Page", "WG_LNL_Lst On Place Order Page is not present", "",driver);
 		}
 	}
+	
 }

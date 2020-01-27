@@ -589,8 +589,8 @@ public class CanadaLib extends CanadaObj {
 	public void selectSPLADetailsProductCheckBox(String spla) throws Throwable {
 		if (isElementPresent(SPLA_LABEL, "SPLA LABEL")) {
 			if (!isCheckBoxSelected(getMySoftwareLicenseAgreementscheckBoxes(spla))) {
-				click(getMySoftwareLicenseAgreementscheckBoxes(spla),"SPLA Details Product CheckBox");
-				click(SELECT_PRODUCT, "Select product checkbox");
+				click(getMySoftwareLicenseAgreementscheckBoxes(spla),"SPLA Details Product CheckBox : "+spla);
+				click(SELECT_PRODUCT, "Link: View Products For Selected Agreements");
 			} else {
 				LOG.info("Checkbox already selected");
 			}
@@ -689,7 +689,7 @@ public class CanadaLib extends CanadaObj {
 	 */
 	public void VerifyNonSplaItemsMessage() throws Throwable {
 		if (isElementPresent(NON_SPLA_MSG, "NON SPLA MESSASGE")) {
-			reporter.SuccessReport("Verify non SPLA message", "non SPLA message displayed", "");
+			reporter.SuccessReport("Verify non SPLA message", "non SPLA message displayed", "Message : In order to report usage please remove items that do not apply to the selected service provider.");
 		} else {
 			reporter.failureReport("Verify non SPLA message", "non SPLA message is not displayed", "");
 		}
@@ -1642,4 +1642,20 @@ reporter.failureReport("Select  All Fields in the Available Fields on Reports Pa
 
 	}
 	
+	/**
+	 * Method is to verify the reporting usage period
+	 * 
+	 * @throws Throwable
+	 */
+	public String verifyReportingUsagePeriodWarningMessage() throws Throwable {
+		String period = null;
+		if (isElementPresent(REPORTING_USAGE_PERIOD_WARNING_MSG, "reporting usage period")) {
+			 period = getText(REPORTING_USAGE_PERIOD_WARNING_MSG, "reporting usage period");
+			reporter.SuccessReport("verify reporting usage period in cart page",
+					"Usage Field Exists and Verified. " + period, "");
+		} else {
+			reporter.failureReport("verify reporting usage period in cart page", "Usage Field does not Exists. ", "",driver);
+		}
+		return period;
+	}
 }
