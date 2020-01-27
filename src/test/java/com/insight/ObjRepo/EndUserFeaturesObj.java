@@ -108,5 +108,10 @@ public class EndUserFeaturesObj extends ActionEngine{
     	return By.xpath("(//a[contains(text(),'"+list+"')])[1]");
     }
     
+    public static By dropdownPaymentMethod =By.xpath("//*[contains(text(),'Payment Method')]//..//..//div//span");
+    public static By dropdownPaymentMethodValue =By.xpath("//*[contains(text(),'Payment Method')]//..//..//div//ul//li");
 
+    public static By selectPaymentMethodForBillingPayment(String option){
+        return By.xpath("//*[contains(text(),'Payment Method')]//..//..//div//ul//li[text()='"+option+"']");
+    }
 }

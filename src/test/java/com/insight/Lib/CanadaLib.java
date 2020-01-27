@@ -14,6 +14,7 @@ import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.mortbay.log.Log;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
@@ -286,7 +287,7 @@ public class CanadaLib extends CanadaObj {
 		if (isElementPresent(INVOICE_NUMBER, "invoice number ")) {
 
 			click(INVOICE_NUMBER, "Click on invoice number ");
-			reporter.SuccessReport("Verify invoice Details POPUP", " invoice Details POPUP exists", "");
+			reporter.SuccessReport("Verify invoice Details POPUP", " invoice Details POPUP exists", getText(INVOICE_NUMBER, "Click on invoice number "));
 		}
 
 	}
@@ -320,6 +321,10 @@ public class CanadaLib extends CanadaObj {
 			click(InvoiceHistoryLib.COSE_ACCOUNT_TOOLS, "close account tools");
 		}
 		click(CommonObj.ACCOUNT_TOOLS, "Account tools menu icon");
+		//WebElement element = driver.findElement(by);
+		scrollToBottomWithCordinate("800");
+
+		//((JavascriptExecutor) WebDriver).executeAsyncScript(100,1000);
 		click(getAccountToolsMenu(toolsMenuName), "Account tools menu::"+toolsMenuName+"");
 		click(CommonObj.getAccountToolsDD(toolsMenuName, dropDown), "Select account tools::"+dropDown+"");
 	}
@@ -355,11 +360,17 @@ public class CanadaLib extends CanadaObj {
 	 * @throws Throwable
 	 */
 	public void verifyInvoiceHistoryPageOpened() throws Throwable {
+		boolean status=false;
 		if(isElementPresent(QUICKSEARCH_DROPDOWN, "Invoice history header ")) {
-			reporter.SuccessReport("Verify invoice history page is loaded", "Invoice history page is loaded","");
+			status = true;
+			String s1=Boolean.toString(status);
+
+			reporter.SuccessReport("Verify invoice history page is loaded", "Invoice history page is loaded",getText(QUICKSEARCH_DROPDOWN, "Invoice history header ")+"and Status is "+s1);
 		}
 		else {
-			reporter.failureReport("Verify invoice history page is loaded", "Invoice history page is not loaded","",driver);
+			status =false;
+			String s1=Boolean.toString(status);
+			reporter.failureReport("Verify invoice history page is loaded", "Invoice history page is not loaded",getText(QUICKSEARCH_DROPDOWN, "Invoice history header ") +" and Status is "+s1,driver);
 		}
 	}
 
@@ -390,23 +401,28 @@ public class CanadaLib extends CanadaObj {
 	}
 
 	public void verifyDownloadedFile(String filename) throws Throwable {
-
+		boolean status = false;
 		Desktop desktop = Desktop.getDesktop();
 		if (!Desktop.isDesktopSupported()) {
 			System.out.println("Desktop is not supported");
 			return;
 		}
 		//File file = new File("C:\\Users\\e002106\\Downloads\\1100635152.PDF");// CHANGE
+
 		String sfile = System.getProperty("user.dir") + "\\" + "DownloadedFiles" + "\\" + filename+".PDF";																	// PATH
 		File file = new File(sfile);
 		Thread.sleep(5000);																		// ACCORDINGLY
 		if (file.exists()) {
 			System.out.println("file found");
+			status = true;
 			//desktop.open(file);
-			reporter.SuccessReport("Verify the file existance ", "File Found", "");
+			 String s1=Boolean.toString(status);
+			reporter.SuccessReport("Verify the file existance ", "File Found", s1);
 		} else {
 			System.out.println("file not found");
-			reporter.failureReport("Verify the file existance ", "File not Found", "",driver);
+			status = false;
+			String s1=Boolean.toString(status);
+			reporter.failureReport("Verify the file existance ", "File not Found", s1,driver);
 		}
 		file.deleteOnExit();
 	}

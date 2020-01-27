@@ -21,7 +21,7 @@ public class InvoiceHistoryObj extends ActionEngine{
 	
 	public static By START_DATE_CALENDER=By.xpath("//input[@id='startDate']");
 	public static By MONTH_AND_YEAR_START_DATE_CALENDER=By.xpath("//table[@class=' table-condensed']//th[@class='date-switch']");
-	public static By BACK_BUTTON_START_DATE_CALENDER=By.xpath("//div[@class='datepicker-months']//thead//i[@class='fa fa-chevron-left fi-arrow-left']");
+	public static By BACK_BUTTON_START_DATE_CALENDER=By.xpath("//div[@class='datepicker-months']//thead//i[@class='fa fa-chevron-left fi-arrow-left'] | (//div[@class='datepicker-months']//thead//i[@class='fa fa-chevron-left fi-arrow-left'])[1]");
 	public static By YEAR_START_DATE_CALENDER=By.xpath("//div[@class='datepicker-months']//th[@class='date-switch']");
 	public static By dayInStartDayCalender(String date) {
 		return By.xpath("//table[@class=' table-condensed']//tbody//tr//td[text()='"+date+"' and @class='day undefined ']");
@@ -69,6 +69,7 @@ public class InvoiceHistoryObj extends ActionEngine{
 		return By.xpath("//div[@id='previewInvoice']//dl//dt[text()='"+details+"']");
 	}
 	public static By INVOICE_PREVIEW_DETAILS=By.xpath("//div[@id='previewInvoice']//dl//dt");
+	public static By INVOICE_PREVIEW_DETAILSOutput=By.xpath("//div[@id='previewInvoice']//dl//dd");
 	public static By INVOICE_PREVIEW_FOOT_DETAILS=By.xpath("//table[@class='footable dark']//tfoot//tr//tbody//tr//td[1]");
 	public static By INVOICE_PREVIEW_TABLE_HEADER_DETAILS=By.xpath("//table[@class='footable dark']//thead//th");
 	public static By CLOSE_INVOICE_PREVIEW=By.xpath("//a[@class='icon close ']");
