@@ -1455,7 +1455,7 @@ public class OrderLib extends OrderObj{
 	 */
 	
 	public void clickonApprovalManagementTabs(String link) throws Throwable{
-		click(getApprovalmanagementtabs(link), "Approval Management Link");
+		click(getApprovalmanagementtabs(link), "Approval Management Link"+link);
 		}
 	
 	
@@ -1465,7 +1465,7 @@ public class OrderLib extends OrderObj{
 	 * @throws Throwable
 	 */
 	public void clickOnTheEditLinkOfRequestorGroupNameEditLink(String groupName) throws Throwable{
-		click(getRequesterGroupNameEditLink(groupName), "Approval Management Link edit link");
+		click(getRequesterGroupNameEditLink(groupName), "Requestor Group Name::"+groupName);
 	}
 	
 	/**
@@ -1474,7 +1474,7 @@ public class OrderLib extends OrderObj{
 	 * @throws Throwable
 	 */
 	public void clickOnTheRequestorGroupNameTabs(String tabName) throws Throwable{
-		clickUntil(getRequesterGroupNameScreenEditTabs(tabName),PAYMENT_METHOD_CHK_BOX, "Tab name of Requestor group");
+		clickUntil(getRequesterGroupNameScreenEditTabs(tabName),PAYMENT_METHOD_CHK_BOX, "Requestor GroupName"+tabName);
 	}
 /**
  * 
@@ -1830,11 +1830,12 @@ public class OrderLib extends OrderObj{
 	 */
 	public void checkPaymentMethodCheckBox() throws Throwable {
 		if (isCheckBoxSelected(PAYMENT_METHOD_CHK_BOX)) {
-			LOG.info("Checkbox already checked");
+			reporter.SuccessReport("Verify Payment Method Checkbox","Payment Method CheckBox is already checked","Payment Method CheckBox");
 		} else {
 			click(PAYMENT_METHOD_CHK_BOX, "Payment method check box");
 			click(APPROVAL_PATH_SETNGS_SAVE_BTN, "save changes button");
 			isElementPresent(APPROVAL_PATH_SUCCESS_MSG, "success message", true);
+			reporter.SuccessReport("Verify Payment Method Checkbox","Payment Method CheckBox is checked","Payment Method CheckBox");
 		}
 	}
 	

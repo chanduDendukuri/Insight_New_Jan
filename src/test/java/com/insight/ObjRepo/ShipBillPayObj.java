@@ -217,6 +217,7 @@ public static By SHIPPING_ADDRES=By.xpath("//p[@id='iw-checkout__address-section
 public static By SHIPPING_ADDRESES=By.xpath("//p[@id='iw-checkout__address-section-selected-address']/br[1]");
 public static By SHIPPING_ADDRESESSECONDLINE=By.xpath("//p[@id='iw-checkout__address-section-selected-address']/br[2]");
 public static By STOCKONLY_SEARCHRESULTS=By.xpath("//div[@class='filter-item js-filter-item']/a[@class='button call-to-action']");
+public static By PROCUREMENTCARD_OPTION=By.xpath("//select[@id='payAllowedSel']/option[contains(text(),'Procurement Card')]");
 
 
 
