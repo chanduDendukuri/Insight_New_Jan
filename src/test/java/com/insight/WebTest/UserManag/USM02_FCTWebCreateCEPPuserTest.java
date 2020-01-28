@@ -62,31 +62,55 @@ public class USM02_FCTWebCreateCEPPuserTest extends UserManagementLib {
 							CommonLib commonLib = new CommonLib();
 							ShipBillPayLib sbp=new ShipBillPayLib();
 							//Login
-							cmtLib.clickLoginLink(data.get("Header"));
-							cmtLib.handleWelcomeToInsightBetaPopUp();
-							cmtLib.loginAsAdmin();
+							cmtLib.loginToCMT(data.get("Header"));
 							cmtLib.searchForWebGroup(data.get("WebGrp"));
 							cmtLib.manageUsers();
+							cmtLib.hoverOnManageWebGroupsAndSelectOptions(data.get("Manage_Web_Grp_Options"));
+							cmtLib.hoverOnManageWebGroupsAndSelectOptions(data.get("Manage_Web_Grp_Options1"));
+							//New User Link
 							cmtLib.clickAddNewUserLink();
-							Thread.sleep(3000);
-							cmtLib.selectUserTypeDropdown(data.get("User_Type"));
-							cmtLib.verifyAvailabiltyOfUserName(data.get("UserName"));
+							//User Name
+							cmtLib.enterUserName(data.get("ExistingUserName"));
 							cmtLib.checkAvailability();
-							cmtLib.verifyAvailabiltyOfUserName(data.get("UserName1"));
+							cmtLib.verifyAvailabiltyOfUserNameExists();
+							cmtLib.enterUserName(data.get("ExistingUserName2"));
 							cmtLib.checkAvailability();
-							String userName=getRandomNumeric(4);
-							cmtLib.enterUserName("QTPTest"+userName);
-							String userName1=getRandomNumeric(4);
-							cmtLib.verifyAvailabiltyOfUserName("QTPTest"+userName1);
-							cmtLib.clickCreateUserButton();
-							Thread.sleep(3000);
-							cmtLib.setPermissions(data.get("Menu_Name"),data.get("Set_Permission"));
-							cmtLib.setPermissions(data.get("Menu_Name"),data.get("Set_Permission1"));
+							cmtLib.verifyAvailabiltyOfUserNameExists();
+                            String Username="QTPTest"+getRandomNumeric(4);							
+							cmtLib.enterUserName(Username);
+							cmtLib.checkAvailability();
+							cmtLib.verifyAvailabiltyOfUserNameNotExists();
+							cmtLib.clickCreateUserButton();	
+							cmtLib.clickOnRolesAndPermissionsTab(data.get("Menu_Name"));
+							String[] permissions = data.get("Set_Permission1").split(",");
+							for (i = 0; i < permissions.length; i++) {
+								cmtLib.verifySetPermissions( permissions[i]);
+							}
+							cmtLib.verifyDDPermission(data.get("Permision4"),data.get("Option"));
+							cmtLib.verifyDDPermission(data.get("Permision5"),data.get("Option"));
+							cmtLib.verifyDDPermission(data.get("Permision6"),data.get("Option"));
+							cmtLib.updateUser();
 							cmtLib.clickInformationTab(data.get("Information_Tab"));
 							cmtLib.clickOnUserURL();
-							Thread.sleep(3000);
-							//create an account
 							cmtLib.verifyCreateAnAccountPage();
+							//commonLib.clickLogOutLink(data.get("Logout_Header"));
+							//cmtLib.clickOnCreateanacccount();
+							mic.handleinsightpopup();
+							cmtLib.enterAdressesInCreateAnAccount(data.get("Adressess2"));
+							cmtLib.enterCityInCreateAnAccount(data.get("City2"));
+							cmtLib.selectStateInCreateAnAccount(data.get("State2"));
+							cmtLib.enterZipCodeInCreateAnAccount(data.get("ZipCode2"));
+							cmtLib.clickCreateButtonInCreateAnAccount();
+							//Verify Error Msg
+							verifyErorrMsgOfFirstName();
+							verifyErorrMsgOfLastName();
+							verifyErorrMsgOfPhoneNumber();
+							//User Name
+							String userName="QTPTest"+getRandomNumeric(4);
+							cmtLib.verifyAvailabilityCreateAccount(data.get("CreateacUserName5"),userName);
+							String password="QTPTest"+getRandomNumeric(4);
+							cmtLib.enterPasswordInCreateAnAccount(password);
+							cmtLib.enterConfirmPasswordInCreateAnAccount(password);
 							String email="QTPTest"+getRandomNumeric(4)+"@test.com";
 							cmtLib.enterEmailInCreateAnAccount(email);
 							String firstName="QTPTest"+getRandomNumeric(4);
@@ -94,23 +118,17 @@ public class USM02_FCTWebCreateCEPPuserTest extends UserManagementLib {
 							String lastName="QTPTest"+getRandomNumeric(4);
 							cmtLib.enterLastNameInCreateAnAccount(lastName);
 							cmtLib.enterPhoneNumberInCreateAnAccount(data.get("Phone_Number"));
-							//Billing addresses
-							String billingAccountName="QTPTest"+getRandomNumeric(4);
-							cmtLib.enterBillingAccountNameInCreateAnAccount(billingAccountName);
+							//Address
 							cmtLib.enterAdressesInCreateAnAccount(data.get("Adressess1"));
 							cmtLib.enterCityInCreateAnAccount(data.get("City"));
 							cmtLib.selectStateInCreateAnAccount(data.get("State"));
 							cmtLib.enterZipCodeInCreateAnAccount(data.get("ZipCode"));
-							String userNameCreateAccount="QTPTest"+getRandomNumeric(4);
-							String userName1CreateAccount="QTPTest"+getRandomNumeric(4);
-							String userNameEntered=cmtLib.verifyAvailabilityCreateAccount(userNameCreateAccount,userName1CreateAccount);
-							String password="QTPTest"+getRandomNumeric(4);
-							cmtLib.enterPasswordInCreateAnAccount(password);
-							cmtLib.enterConfirmPasswordInCreateAnAccount(password);
+							String billingAccountName="QTPTest"+getRandomNumeric(4);
+							cmtLib.enterBillingAccountNameInCreateAnAccount(billingAccountName);
 							cmtLib.clickCreateButtonInCreateAnAccount();
 							cmtLib.clickContinueButtonInCreateAnAccount();
+							mic.handleinsightpopup();
 							cmtLib.verifyWelcomePage();
-							//  Select First Product and Add to cart
 							searchLib.searchInHomePage(data.get("SearchItem"));
 							commonLib.addToCartAndVerify();
 							orderLib.continueToCheckOutOnAddCart();
@@ -119,21 +137,36 @@ public class USM02_FCTWebCreateCEPPuserTest extends UserManagementLib {
 							mic.proceedToCheckout();
 							Thread.sleep(3000);
 							cartLib.clickOnContinueButtonInAddInformtion();
-							//orderLib.clickContinueOnLineLevelInfo();
 							canadaLib.verifySBP();
 							orderLib.shippingBillPayContinueButton();
-							//cartLib.selectCarrier(data.get("Carrier_Option"));
 							orderLib.shippingOptionsCarrierSelection();
-							orderLib.shippingBillPayContinueButton();
-							orderLib.shippingBillPayContinueButton();
+							orderLib.billingAddressContinueButton();
 							orderLib.selectPaymentInfoMethodCreditCard(data.get("cardNumber"),data.get("cardName"),data.get("month"),data.get("year"),data.get("poNumber"),data.get("POReleaseNumber"));
 							orderLib.clickOnReviewOrderButton();
 							String summaryAmount = cartLib.getSummaryAmountInCart();
 							orderLib.placeOrderAndVerifyReceiptOrderAndDate(summaryAmount);
 							sbp.clickOrderDetailsButtonInREceipt();
 							Thread.sleep(3000);
-							sbp.verifyShippingCarrierAFterReviewOrder(data.get("shippingCarrier"));
+							sbp.verifyShippingCarrierAFterReviewOrder(data.get("shippingCarrier"),data.get("shippingCarrier"));
 							commonLib.clickLogOutLink(data.get("Logout_Header"));
+							
+							cmtLib.loginToCMT(data.get("Header"));
+							cmtLib.searchForWebGroup(data.get("WebGrp"));
+							cmtLib.manageUsers();
+							cmtLib.hoverOnManageWebGroupsAndSelectOptions(data.get("Manage_Web_Grp_Options1"));
+							cmtLib.searchForaUserAndSelect(data.get("LnameEmailUname"), data.get("ContactName"));
+							cmtLib.clickOnRolesAndPermissionsTab(data.get("Menu_Name"));
+							String[] permissions2 = data.get("Set_Permission1").split(",");
+							for (i = 0; i < permissions2.length; i++) {
+								cmtLib.verifySetPermissions( permissions2[i]);
+							}
+							cmtLib.verifyDDPermission(data.get("Persision4"),data.get("Option"));
+							cmtLib.verifyDDPermission(data.get("Persision5"),data.get("Option"));
+							cmtLib.verifyDDPermission(data.get("Persision6"),data.get("Option"));
+							cmtLib.updateUser();
+							cmtLib.hoverOnManageWebGroupsAndSelectOptions(data.get("Manage_Web_Grp_Options"));
+							
+							
 						} catch (Exception e) {
 							ReportStatus.blnStatus = false;
 							//gErrorMessage = e.getMessage();

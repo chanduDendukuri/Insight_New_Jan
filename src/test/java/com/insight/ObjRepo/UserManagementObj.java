@@ -40,5 +40,11 @@ public class UserManagementObj extends ActionEngine{
 	public static By Error_MSG=By.xpath("//div[@id='ErrorMsg']");
 	public static By Reporting_parent_Inbvoicing=By.xpath("//select[@id='1134_permissionLevel']/option[@selected='selected' and contains(text(),'Reporting Parent')]");
 	public static By Reporting_parent_ORDERTRACKING=By.xpath("//select[@id='1139_permissionLevel']/option[@selected='selected' and contains(text(),'Reporting Parent')]");
-	}
+	public static By FERROR_MSG=By.xpath("//div[@class='input-error' and contains(text(),'Please enter First Name')]");
+	public static By LERROR_MSG=By.xpath("//div[@class='input-error' and contains(text(),'Please enter Last Name')]");
+	public static By PhoneError_MSG=By.xpath("//div[@class='input-error' and contains(text(),'Please enter valid Phone Number')]");
+	public static By LINKEDACCOUNTS_Defualtacc=By.xpath("//div[@class='soldToManagementDefaultSoldToDetails']");
+
+
+}
 	

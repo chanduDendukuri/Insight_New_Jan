@@ -57,31 +57,51 @@ public class CAN01_ShipBillPayTaxTest extends CanadaLib{
 						OrderLib orderLib = new OrderLib();
 						ShipBillPayLib shipbLib = new ShipBillPayLib();
 						CanadaLib canadaLib = new CanadaLib();
+						ProductDisplayInfoLib prodinfo=new ProductDisplayInfoLib();
+						ProductDetailLib productdetail=new ProductDetailLib();
 
-						cmtLib.loginToCMTSearchWebGrpAndUser(data.get("Header"), data.get("WebGrp"), data.get("LnameEmailUname"),
-								data.get("ContactName"));
+					
+						cmtLib.loginToCMT(data.get("Header"));
+						cmtLib.searchForWebGroup(data.get("WebGrp"));
+						cmtLib.clickOnTheWebGroup();
+						cmtLib.verifyManageWebGroupSettings();
+						cmtLib.hoverOnManageWebGroupsAndSelectOptions(data.get("ManageWebGrpOptions"));
+						cmtLib.verifyManageWebGroupsUserManagement();
+						cmtLib.searchForaUserAndSelect(data.get("lnameEmailUname"), data.get("contactName"));
 						cmtLib.setPermissions(data.get("Menu_Name"), data.get("Set_Permission"));
-						cmtLib.setPermissions(data.get("Menu_Name"),data.get("Enable_Purchasing_Popup"));
+						//cmtLib.setPermissions(data.get("Menu_Name"),data.get("Enable_Purchasing_Popup"));
 						cmtLib.clickOnloginAs();
+						//cmtLib.loginVerification(data.get("contactName"));
 						switchToChildWindow();
 
 						canadaLib.verifyCanadaWebgroup();
 						// Adding first product to cart
 						commonLib.searchProduct(data.get("Search_Item"));
-						commonLib.addFirstDisplyedItemToCartAndVerify();
-						String partNumber1 = cartLib.getPartNumber();
+						searchLib.verifyTheResultsForSearchTerm(data.get("Search_Item"));
+						searchLib.removeTheFilterForInStockOnly("filter");
+						//commonLib.addFirstDisplyedItemToCartAndVerify();
+						prodinfo.getPartNumberInSearchResultsPage();
+						searchLib.increaseQuantity(data.get("Quantity"));
+						commonLib.addToCartAndVerify();
 //						commonLib.continueToShopping();
 //						commonLib.clickCart();
 						canadaLib.continueToCheckout();
-						cartLib.verifyItemInCart(partNumber1);
+						cartLib.verifyCartPageAvailablity();
+						prodinfo.verifyCartPageAndPartDetails();
+						
 						// Adding second product to cart
-						commonLib.searchProduct(data.get("Search_Item"));
-						commonLib.addSecondDisplyedItemToCartAndVerify();
-						String partNumber2 = cartLib.getPartNumber();
-//						commonLib.continueToShopping();
-//						commonLib.clickCart();
+						commonLib.searchProduct(data.get("Search_Item1"));
+						//should add code to verify product details
+						//productdetail.
+						prodinfo.verifyTheManufacturerNumberInProductDetailsPage(data.get("Search_Item1"));
+						commonLib.updateCartQuantityInProductDetailsPage(data.get("Quantity"));
+						prodinfo.addToCartInProductDetailsPage();
+						//searchLib.removeTheFilterForInStockOnly(data.get("filter"));
+						//commonLib.addFirstDisplyedItemToCartAndVerify();
+						
 						canadaLib.continueToCheckout();
-						cartLib.verifyItemInCart(partNumber2);
+						cartLib.verifyCartPageAvailablity();
+						prodinfo.verifyCartPageAndPartDetailsForRecentlyItem();
 
 						shipbLib.verifyPriceIsCAD(data.get("CANDAIAN_DOLLAR"));
 						shipbLib.getSummaryAmountsInCart(data.get("SubTotal"), data.get("Total"));
@@ -91,8 +111,8 @@ public class CAN01_ShipBillPayTaxTest extends CanadaLib{
 						canadaLib.verifySBP();
 						orderLib.shippingBillPayContinueButton();
 						orderLib.shippingOptionsCarrierSelection(); // Click continue on shipping options
-						orderLib.shippingBillPayContinueButton();
-						orderLib.termsInPaymentInfo(data.get("PONumber"));
+						orderLib.billingAddressContinueButton();
+						orderLib.termsInPaymentInfo(data.get("PONumber"), data.get("POReleaseNumber"));
 						orderLib.verifyPlaceOrderLabel();
 						String PSTAMOUNT = canadaLib.getPSTInSummary(data.get("PST"));
 						String GSTAMOUNT = canadaLib.getGSTInSummary(data.get("GST"));
@@ -109,7 +129,7 @@ public class CAN01_ShipBillPayTaxTest extends CanadaLib{
 						orderLib.shippingBillPayContinueButton();
 
 						canadaLib.verifyGSTAndPSTInCartPage(data.get("PST"), data.get("GST"));
-						orderLib.termsInPaymentInfo(data.get("PONumber"));
+						orderLib.termsInPaymentInfo(data.get("PONumber"), data.get("POReleaseNumber"));
 						canadaLib.verifyGSTAndPSTInCartPage(data.get("PST"), data.get("GST"));
 						String PSTAMOUNT1 = canadaLib.getPSTInSummary(data.get("PST"));
 						String GSTAMOUNT1 = canadaLib.getGSTInSummary(data.get("GST"));

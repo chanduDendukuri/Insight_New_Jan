@@ -15,12 +15,14 @@ public class OrderObj extends ActionEngine{
 	public static By warrantyItemsRadioButton(String partNumber) {
 		return By.xpath("//p[contains(.,'"+partNumber+"')]//ancestor::div[@class='row warranties-container__item-row']//input");
 	}
+	public static By ADD_FIRST_WARRANTY=By.xpath("//ul[@class='warranties-container__items-list']//li//div//input");
 	public static By ADD_TO_CART_IN_WARRANTY_POPUP=By.xpath("//button[@class='button expanded no-margin-bot' and contains(text(),'Add to cart')]");
 	public static By FIRST_WARRANTY_ITEM=By.xpath("//li[@class='warranties-container__item'][2]//div//label[@class='warranties-container__item-label']");
 	public static By warrentyItemDescription(String partNumber) {
 		return By.xpath("//li[@class='warranties-container__item']//div//label[@class='warranties-container__item-label' and @for='"+partNumber+"']");
 	}
 	public static By WARRANTY_ITEM_DESC_ON_CART_SCREEN=By.xpath("//p[@class='selected-warranty__item-desc']");
+	public static By FIRST_WARRANTY_DESC_ON_POPUP=By.xpath("//li[@class='warranties-container__item']//div//label[@class='warranties-container__item-label']");
 	public static By warrentyItemDescOnCartScreen(String partNumber) {
 		return By.xpath("//p[text()='"+partNumber+"']//ancestor::div[@class='columns medium-flex-child-grow cart__table-col--item']//p[@class='selected-warranty__item-desc']");
 	}
@@ -91,7 +93,10 @@ public class OrderObj extends ActionEngine{
 	public static By selectCarrier(String carrier) {
 		return By.xpath("//div[@class='Select-menu-outer']//div[@class='Select-option'][contains(text(),'"+carrier+"')]");
 	}
-	
+	public static By verifyCarrier(String carrier) {
+		return By.xpath("//div[contains(text(),'"+carrier+"')]");
+	}
+	public static By SELECTARRIER=By.xpath("//div[@class='Select-placeholder' and contains(text(),'Select a shipping carrier')]");
 	public static By shippingCarrierCharges(String shippingMethod) {
 		return By.xpath("//strong[text()='"+shippingMethod+"']//parent::span//span[@class='iw-currency__amount']");
 	}
@@ -202,8 +207,8 @@ public class OrderObj extends ActionEngine{
 	public static By ADDRESS_VALIDATION_WINDOW_HDR = By.xpath("//h3[@class='iw-modal__heading']");
 	public static By SAVE_ADDRESS_BTN = By.xpath("//button[contains(text(),'Save address')]");
 	public static By SHIPPING_OPTIONS_CONTINUE_BTN = By.xpath("//div[@class='column small-12 medium-shrink']/BUTTON");
-	
-
+	public static By ATTENTION=By.xpath("//input[@name='existingAddressAttention.attentionLine']");
+   
 	// Recent Orders page
 	public static By RECENT_ORDERS_LABEL=By.xpath("//div//h1[@class='orders-search__title'][contains(text(),'Recent Orders')]");
 	public static By ADVANCED_ORDER_SEARCH=By.xpath("//select[@class='form__field form__select ']");
@@ -309,8 +314,31 @@ public class OrderObj extends ActionEngine{
 
 	 
 	 // Stored address
-	 public static By STORED_ADDRESS_RADIOBTN=By.xpath("(//div//label[@class='stored-address__label'])[1]");
+	 public static By STORED_ADDRESS_RADIOBTN=By.xpath("(//div//label[@class='stored-address__label'])[2]");
 	 public static By COMPANY_NAME_IN_SHIPPING_ADDRESS=By.xpath("//p[@id='iw-checkout__address-section-company-name']");
 	 
+	 // place order
+	 public static By getRP_HDL_TxtInPlaceOrderPage(String RP_HDL_Txt_Text) {
+		 return By.xpath("//span[contains(text(),'RP_HDL_Txt')]//following::p[contains(text(),'"+RP_HDL_Txt_Text+"')]");
+	 }
+	 public static By getWG_HDL_TxtInPlaceOrderPage(String WG_HDL_Txt_Text) {
+		 return By.xpath("//span[contains(text(),'WG_HDL_Txt')]//following::p[contains(text(),'"+WG_HDL_Txt_Text+"')]");
+	 }
+	 
+	 public static By getgetRP_LNL_TxtByPartNum(String partNum){
+		 return By.xpath("//p[contains(.,'Mfr Part #: "+partNum+"')]/following::div[@class='row expanded is-collapse-child'][1]//label[contains(text(),'RP_LNL_Txt:')]//p");
+	 }
+	 
+	 public static By getgetWG_LNL_TxtByPartNum(String partNum){
+		 return By.xpath("//p[contains(.,'Mfr Part #: "+partNum+"')]/following::div[@class='row expanded is-collapse-child'][1]//label[contains(text(),'WG_LNL_Txt:')]//p");
+	 }
+	 
+	 public static By getgetRP_LNL_TxtByBundles(String bundleName) {
+		 return By.xpath("//div[@class='cart__item-bundle'][contains(.,'Insight Part #: "+bundleName+"')]/following::div[@class='row expanded is-collapse-child'][1]//label[contains(text(),'RP_LNL_Txt:')]//p");
+	 }
+	 
+	 public static By getgetWG_LNL_TxtByBundles(String bundleName) {
+		 return By.xpath("//div[@class='cart__item-bundle'][contains(.,'Insight Part #: "+bundleName+"')]/following::div[@class='row expanded is-collapse-child'][1]//label[contains(text(),'WG_LNL_Txt:')]//p");
+	 }
 }
 

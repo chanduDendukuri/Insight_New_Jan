@@ -50,9 +50,10 @@ public class CQT22_IPSContractpricing_ContractReviewContract extends HomeLib {
 					enterSoldTo(data.get("SoldToValue"));
 					// 10529929
 					AddMaterialOnLineItem(data.get("MaterialID1"));// WS-C2960X-24PS-L
-					AddMaterialOnLineItem(data.get("MaterialID2"));// U4414E
-					AddMaterialOnLineItem(data.get("MaterialID3"));// 4X90F84315
+					//AddMaterialOnLineItem(data.get("MaterialID2"));// U4414E
+					//AddMaterialOnLineItem(data.get("MaterialID3"));// 4X90F84315
 					//clickOnCOntractIDinLineItemsList();
+					VerifyXconsymbolispresentforallthematerials(data.get("ItemNum1"));
 					ClickOnXsymbolunderCon();
 					selectCOntractID(data.get("ContractId"), data.get("ContractTabName"));
 					copyAllContractstoAllLines();

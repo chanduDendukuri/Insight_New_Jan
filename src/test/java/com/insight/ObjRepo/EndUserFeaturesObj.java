@@ -12,6 +12,7 @@ public class EndUserFeaturesObj extends ActionEngine{
 	public static By UPDATE_BUTTON_CHECKOUT_DEFAULTS=By.xpath("//input[@id='updateChkoutDef']");
 	public static By CHECK_OUT_DEFAULTS_UPDATE_SUCESS_MESSAGE=By.xpath("//div[@id='chkDefaultMessage']");	
 	public static By SHIPPING_METHOD_SELECTED_OPTION=By.xpath("//*[@id='js-chkoutDefalut-tab']/div/div/div[1]/div/div/div[2]/div");
+	public static By SHIPPING_METHOD_SELECTED_OPTION_Values=By.xpath("//*[@id='js-chkoutDefalut-tab']/div/div/div[1]/div/div/div[2]/div/ul/li[contains(text(),'SLS')]");
 
 		
 	
@@ -19,10 +20,10 @@ public class EndUserFeaturesObj extends ActionEngine{
 	public static By AVAILABLEACC_LIST_FIRSTACCOUNT=By.xpath("//div[@id='availableAccountsSearchResults']/div/div/div[@class='favoriteAccountsAddressDiv']");	
 	public static By RIGHT_TO_LEFT_ARROWBTN=By.xpath("//a[@id='moveToAvailable']/span");	
 	public static By LEFT_TO_RIGHT_ARROWBTN=By.xpath("//a[@id='moveToFavorite']/span");
-	public static By UPDATE_BTN=By.xpath("//input[@id='updateAcctFav']");
+	public static By UPDATE_BTN=By.xpath("//input[@id='updateAcctFav'] | //*[text()='update']");
 	public static By FAVACC_LIST_FIRSTACCOUNT=By.xpath("//div[@id='myFavoriteAccountsResults']/div/div/div[@class='favoriteAccountsAddressDiv']");	
 	public static By CLEAR_FAV_ACCOUNTLIST= By.xpath("//div[@id='myFavoriteAccountsResults']/div");
-	public static By UPDATE_SUCCESSMESG = By.xpath("//div[@id='acctFavMessage']");
+	public static By UPDATE_SUCCESSMESG = By.xpath("//div[@id='acctFavMessage'] | //div[@id='webGroupUpdateMessageText']");
 	public static By ACCOUNT_SEARCHBOX = By.xpath("//input[@class='acctFavSearch']");
 	public static By ACCOUNT_SEARCHICON = By.xpath("//span[@class='ion-search']");
 	public static By ACCOUNT_FAVLINK = By.xpath("//h3[contains(text(),'Account Favorites')]");
@@ -39,6 +40,7 @@ public class EndUserFeaturesObj extends ActionEngine{
    public static By REMOVEDEFUALT=By.xpath("//a[@class='removeDefault']");
    public static By USERNOTLINKEDTOANYWARNING_MSG=By.xpath("//span[@id='linkedAccountWarningText']");
    public static By NODEFUALTACCOUNT=By.xpath("//div[@id='accounToolsErrorMessage']");
+   public static By checkedCheckBoxes=By.cssSelector("[id*='linkedAccountCheckBox']");
 
 
 	//favorite links
@@ -108,5 +110,10 @@ public class EndUserFeaturesObj extends ActionEngine{
     	return By.xpath("(//a[contains(text(),'"+list+"')])[1]");
     }
     
+    public static By dropdownPaymentMethod =By.xpath("//*[contains(text(),'Payment Method')]//..//..//div//span");
+    public static By dropdownPaymentMethodValue =By.xpath("//*[contains(text(),'Payment Method')]//..//..//div//ul//li");
 
+    public static By selectPaymentMethodForBillingPayment(String option){
+        return By.xpath("//*[contains(text(),'Payment Method')]//..//..//div//ul//li[text()='"+option+"']");
+    }
 }

@@ -50,6 +50,9 @@ public class CQT23_IPSContractpricing_CostplusContract extends HomeLib {
 							AddMaterialOnLineItem(data.get("MaterialID1"));
 							AddMaterialOnLineItem(data.get("MaterialID2"));
 							AddMaterialOnLineItem(data.get("MaterialID3"));
+							VerifyXconsymbolispresentforallthematerials(data.get("ItemNum1"));
+							VerifyXconsymbolispresentforallthematerials(data.get("ItemNum1"));
+							VerifyXconsymbolispresentforallthematerials(data.get("ItemNum1"));
 							clickOnCOntractIDinLineItemsList();
 							selectCOntractID(data.get("ContractId"),data.get("ContractTabName"));
 							copyAllContractstoAllLines();

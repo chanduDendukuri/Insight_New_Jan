@@ -51,21 +51,62 @@ public class CAN13_CartBundlesTest extends CanadaLib{
 						OrderLib orderLib = new OrderLib();
 						ShipBillPayLib shipbLib = new ShipBillPayLib();
 						CanadaLib canadaLib = new CanadaLib();
+						ProductDisplayInfoLib productinfo=new ProductDisplayInfoLib();
+							
 
-
-						cmtLib.loginToCMTSearchWebGrpAndUser(data.get("Header"), data.get("WebGrp"), data.get("LnameEmailUname"),
-								data.get("ContactName"));
+						//cmtLib.loginToCMTSearchWebGrpAndUser(data.get("Header"), data.get("WebGrp"), data.get("LnameEmailUname"),
+								//data.get("ContactName"));
+					/*
+					 * cmtLib.clickOnloginAs(); switchToChildWindow();
+					 */
+						cmtLib.loginToCMT(data.get("Header"));
+						cmtLib.verifyClientSearchTitle();
+						//canadaLib.verifyCanadaWebgroup();
+						cmtLib.searchForWebGroup(data.get("WebGrp"));
+						cmtLib.clickOnTheWebGroup();
+						cmtLib.verifyManageWebGroupSettings();
+						cmtLib.hoverOnManageWebGroupsAndSelectOptions(data.get("ManageWebGrpOptions"));
+						cmtLib.verifyManageWebGroupsUserManagement();
+						cmtLib.searchForaUserAndSelect(data.get("LnameEmailUname"), data.get("ContactName"));
+						
+						//cmtLib.setPermissions(data.get("Menu_Name"),data.get("Enable_Purchasing_Popup"));
 						cmtLib.clickOnloginAs();
+						//cmtLib.loginVerification(data.get("contactName"));
 						switchToChildWindow();
-						canadaLib.verifyCanadaWebgroup();
-						commonLib.clickAccountToolsFromSideMenuAndClickOnProductGrp(data.get("Tools_Menu"),
-								data.get("Tools_Menu_DD"), data.get("Product_Group"), data.get("Product_Name"));
-						searchLib.clickAddToOrderOnCompanyStandardsScreen();
-						commonLib.clickCart();
-						commonLib.verifyBundleIsAddedToCart();
-						canadaLib.verifyAvailabilityOfTheProductInCart();
-						shipbLib.verifyPriceIsCAD(data.get("CANDAIAN_DOLLAR"));
-						commonLib.clickLogOutLink(data.get("Logout_Header"));
+
+					
+					
+					/*
+					 * commonLib.clickAccountToolsFromSideMenuAndClickOnProductGrp(data.get(
+					 * "Tools_Menu"), data.get("Tools_Menu_DD"), data.get("Product_Group"),
+					 * data.get("Product_Name"));
+					 */
+					 
+						canadaLib.clickOnSideMenuSelectAccountToolOptions(data.get("Tools_Menu"),
+								data.get("Manage_Web_Grp_Options"));
+						cmtLib.verifyProductStandardsTitle();
+						commonLib.clickOnBundle(data.get("productGroup"), data.get("productName"));
+						commonLib.verifyDescription();
+						commonLib.getFirstProductDescription();
+						commonLib.clickOnAddToOrder();
+						commonLib.clickOnViewCart();
+						
+						if(cartLib.verifyCartPageAvailablity())
+						{
+							reporter.SuccessReport("Cart Landing Page", "Successfully Landed to cart Page is ","Cart Page" );
+							commonLib.verifyBundleIsAddedToCart();
+							canadaLib.verifyAvailabilityOfTheProductInCart();
+							productinfo.verifyCartPageAndPartDetails();
+							//shipbLib.verifyPriceIsCAD(data.get("CANDAIAN_DOLLAR"));
+							commonLib.clickLogOutLink(data.get("Logout_Header"));
+						}
+						else{
+							reporter.failureReport("Cart Landing Page", "Could not land to cart page ","Cart Page",driver );
+						}
+						//searchLib.clickAddToOrderOnCompanyStandardsScreen();
+						//commonLib.clickCart();
+						
+						
 						//fnCloseTest();
 						System.out.println("Test completed");
 						

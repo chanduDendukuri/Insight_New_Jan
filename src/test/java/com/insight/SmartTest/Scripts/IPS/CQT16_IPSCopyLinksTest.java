@@ -58,6 +58,10 @@ public class CQT16_IPSCopyLinksTest extends HomeLib {
 		        AddlineItemFromProductSearch("CON-ISV1-VSSTD1A");
 		        AddlineItemFromProductSearch("B2M-00012");
 		        AddlineItemFromProductSearch("D4Q72US#ABA");*/
+				VerifyXconsymbolispresentforallthematerials(data.get("ItemNum1"));
+				VerifyXconsymbolispresentforallthematerials(data.get("ItemNum1"));
+				VerifyXconsymbolispresentforallthematerials(data.get("ItemNum1"));
+				VerifyXconsymbolispresentforallthematerials(data.get("ItemNum1"));
 		        ClickOnXsymbolunderCon();
 		        driver.switchTo().defaultContent();
 		        ClickOnCopyContracttoallLines();
@@ -65,7 +69,7 @@ public class CQT16_IPSCopyLinksTest extends HomeLib {
 		        SearchButton();
 		        
 		        //SelectContractId(2);
-		        selectContractID(data.get("ContractId"));
+		        selectCOntractID(data.get("ContractId"), data.get("ContractTabName"));
 		        EnterDatainDivercityPartner(data.get("DivercityPartner"));
 		        SearchButtonOfDivercityPartner();
 		        ClickOndivercityPartnerResult();
@@ -93,6 +97,8 @@ public class CQT16_IPSCopyLinksTest extends HomeLib {
 		        ClickOnXsymbolunderCon();
 		        validatetheLineitemfiledsaftersaving();
 		        clickDoneButton();
+		        clickClosthedocument(QuoteNum1);
+				clickYesButtontocloseDocument();
 		        System.out.println("testcase completed");
 
 			}  catch (Exception e) {

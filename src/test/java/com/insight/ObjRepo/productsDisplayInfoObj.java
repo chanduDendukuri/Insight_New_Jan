@@ -16,7 +16,8 @@ public class productsDisplayInfoObj extends CommonObj{
     public static By COMPARE_SIMILAR_LINK(String itemNo) {
     	return By.xpath("//div[@id='search-item-"+itemNo+"']//div[@class='columns medium-5']//a");
     }
-    
+
+
     public static By  NARROW_RESULTS_SEARCH=By.id("narrow-results-txt");
     public static By SHOP_ALL_TYPES_BTN=By.xpath("//a[contains(text(),'Shop all types')]");
     public static By PRODUCT_COUNT=By.xpath("//span[@id='buy-counter']//span");
@@ -119,6 +120,14 @@ public class productsDisplayInfoObj extends CommonObj{
     public static By COMPANY_STANDARDS_ADDED_SET_MSG=By.xpath("//div[@id='nonESD' and contains(.,'was successfully added to the set')]");
     
     public static By MFR_NUMBER_PRODUCT_DETAILS_PAGE=By.xpath("//div[@id='js-product-detail-pricing-target']//td[contains(.,'Mfr. #')]");
+    public static By MFR_NUMBER_Cart_DETAILS_PAGE=By.xpath("//*[@class='columns medium-flex-child-grow cart__table-col--item']//p[contains(text(),'Mfr Part #')]");
+    public static By ProductCompleteDetailsInViewCart=By.xpath("//*[@class='columns flex-child-auto cart__table-col--desc text-left']");
+    public static By productTotalPrice=By.xpath("//*[@class='columns flex-child-auto medium-flex-child-shrink cart__table-col cart__table-col--total medium-text-right']");
+    public static By viewSummaryDetails=By.xpath("(//*[@class='cart-summary'])[2]");
+    public static By deleteProductInfo = By.xpath("//*[@class='ion-trash-a cart__trash-icon']");
+    public static By emptyShoppingCart = By.xpath("//*[text()='Your shopping cart is empty.']");
+
+
     public static By INSIGHT_PART_NUMBER_PROD_DETAILS=By.xpath("//div[@id='js-product-detail-pricing-target']//td[contains(.,' Insight # ')]");
     public static By STOCK_NUMBER_OF_FIRST_PROD=By.xpath("//div[@id='search-item-0']//p[@class='prod-stock']");
     public static By STOCK_IN_SEARCH_RESULTS=By.xpath("//p[@class='prod-stock'][contains(.,'Call for Availability') or contains(.,'in stock')]");
@@ -131,7 +140,8 @@ public class productsDisplayInfoObj extends CommonObj{
     public static By ACCESSORIES_PROD_DETAILS=By.xpath("//section[@id='detail-accessories']//a[contains(text(),'accessories')]");
     public static By MFR_NUM_ACCESSORIES=By.xpath("//div[@class='content-inner']//div[@class='row'][1]//div[@class='product-details'][contains(.,'Mfr Part #:')]");
     public static By LONG_DESC_PROD_DETAILS=By.xpath("//div[@id='tpl-product-detail-order-target']/preceding-sibling::div[1]//p");
-    
+
+
     // Accessories
     public static By ACCESSORIES_DESC=By.xpath("//div[@class='section-inner-accordion']//section[@class='active']//div[@class='row'][1]//div[@class='columns medium-8 large-5']//h4//a");
     public static By SEE_MORE_LINK=By.xpath("//div[@class='section-inner-accordion']//section[@class='active']//div[@class='row'][1]//a[@class='more-link']");
@@ -167,6 +177,20 @@ public class productsDisplayInfoObj extends CommonObj{
     	return By.xpath("//div[@id='search-item-"+itemno+"']//p[@class='prod-stock'][contains(.,'in stock')]");
     }
     
+    public static By openMarketLabelSearchResults(int itemNo) {
+    	return By.xpath("//div[@id='search-item-"+itemNo+"']//p[@class='ips-price-contract']");
+    }
+    public static By btnAddToCartinWarrentiesPage(String index){
+        return By.xpath("(//*[@class='add-to-order-wrapper']//a[text()='Add to Cart'])["+index+"]");
+    }
+    public static By MFR_NUMBER_warrenty_PAGE (String index) {
+        return By.xpath("(//*[@class='product-details'])["+index+"]");
+    }
+     public static By Quantity_NUMBER_warrenty_PAGE (String index) {
+        return By.xpath("(//*[@class=' cart-item__qty align-self-middle text-center'])["+index+"]");
+    }
+public static By txtQuanityNumberInWarrentyPage = By.xpath("(//*[@class=' cart-item__qty align-self-middle text-center'])[1]");
+
     public static By LIST_OF_ITEMS_SEARCH_RESULTS=By.xpath("//div[@class='result-item-wrapper result-item-list']");
     public static By IMG_PRODUCT_DETAILS_FRONT=By.xpath("//div[@class='ccs-fancybox-gallery ccs-slick-slide ccs-slick-current ccs-slick-active']//img[@alt='Front']");
     public static By IMG_LEFT_ANGLE=By.xpath("//div[@class='ccs-cc-thumbnail-wrapper ccs-slick-slide ccs-slick-active']//img[@alt='Left-angle']");
@@ -213,7 +237,12 @@ public class productsDisplayInfoObj extends CommonObj{
     }
     // contract Prices available
     
+    public static By more_Prices(String itemNo) {
+    	return By.xpath("//div[@id='search-item-"+itemNo+"']//p[@class='prod-more-prices']//a");
+    }
+    
     public static By MORE_PRICES=By.xpath("//div[@id='search-item-0']//p[@class='prod-more-prices']//a");
+    
     public static By OPEN_MARKET=By.xpath("//div[@class='large-12 columns js-modal-pick-contract']//label[contains(.,'OPEN MARKET')]");
     public static By YOUR_PRICE=By.xpath("//div[@class='large-12 columns js-modal-pick-contract']//label[contains(.,'YOUR PRICE')]");
     public static By ALL_CONTRACT_PRICES=By.xpath("//div[@class='large-12 columns js-modal-pick-contract']//label");
@@ -227,9 +256,17 @@ public class productsDisplayInfoObj extends CommonObj{
     public static By YOUR_PRICE_ON_PROD_DETAILS=By.xpath("//p[contains(text(),'Your price')]/following-sibling::p[@class='prod-price']");
     public static By OPEN_MARKET_PRICE_PRODUCT_LIST=By.xpath("//div[@id='search-item-0']//div/p[contains(text(),'Open Market Price')]/following-sibling::p");
     public static By OPEN_MARKET_PRICE_ON_PROD_DETAILS=By.xpath("//p[contains(text(),'Open Market Price')]/following-sibling::p[@class='prod-price']");
-   
+    public static By US_CONTRACTS_RADIO_BTN=By.xpath("//label[contains(.,'- U.S. COMMUNITIES IT PRODUCTS & SERVICES # 4400006644')]//input[@type='radio']");
+    public static By CONTRACT_IN_SEARCH_RESULTS=By.xpath("//div[@id='search-item-0']//div/p[@class='sewp-prices']");
+    
+    public static By defaultContractRadioButton(String contract) {
+		return By.xpath("//label[contains(.,'"+contract+"')]//input[@type='radio']");
+    }
+    public static By QUANTITY_CONTRACT_ALL=By.xpath("//input[@id='qty-3'] | //*[@aria-label='Cart Quantity']");
     //cart page Contract details
     public static By CART_CONTRACT_NAME=By.xpath("//div[@class='cart__table-block']//div[@class='columns']//strong");
+    
+    //public static By ALL_CONTRACT_PRICES=By.xpath("//div[@class='large-12 columns js-modal-pick-contract']//label");
     
     // Inventory Blow Out 
  	public static By FEATURED_TECH_DEALS_PRODUCTS=By.xpath("//div[@class='row product-summary-component product-summary-basic']//a[@class='select-prod']");

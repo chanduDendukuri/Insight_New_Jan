@@ -1,6 +1,7 @@
 package com.insight.WebTest.WebGroupManagement;
 
 import java.util.Hashtable;
+import java.util.Set;
 
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
@@ -49,24 +50,26 @@ public class WGP02_CompanyStandardCategoriesTest extends CMTLib {
 					loginToCMT(data.get("Header"));
 					searchForWebGroup(data.get("WebGrp"));
 					clickOnTheWebGroup(data.get("WebGrp_Name"));
-
+					String parent=driver.getWindowHandle();
 					// select Company Standards
 					hoverOnManageWebGroupsAndSelectOptions(data.get("Manage_Web_Grp_Options"));
 
 					// Click on CompStandardWizard
 					selectCompanyStandardsLink();
-
+					String val=getRandomNumeric(4);
+					String proGrp=data.get("Product_Group_Name")+val;
 					// Enter Product Group Name on Product Group Creation Wizard
-					enterProductGrpName(data.get("Product_Group_Name"));
+					enterProductGrpName(proGrp);
 
-					// Enter Create New
-					enterCreateNewValue(data.get("Create_New"));
+			// Enter Create New
+					String createNewValue=data.get("Create_New")+val;
+					enterCreateNewValue(createNewValue);
 
 					// Click Continue
 					clickContinueBtn();
 
 					// Enter Configuration Set Name and Continue
-					enterConfigurationSetName(data.get("Configuration_Set_Name"));
+					enterConfigurationSetName(data.get("Configuration_Set_Name")+val);
 
 					// Search by Key Word
 					searchByKeword(data.get("Search_Keyword"));
@@ -81,7 +84,7 @@ public class WGP02_CompanyStandardCategoriesTest extends CMTLib {
 					VerifyUpdate();
 
 					// Click on Category Link to Edit
-					ClickCategoryLink();
+					ClickCategoryLink(val);
 
 					// Modify the Name
 					ModifyCategory();
@@ -95,7 +98,7 @@ public class WGP02_CompanyStandardCategoriesTest extends CMTLib {
 					// Click on Product Group to Modify
 					// ModifyProdGroup(data.get("Product_Group_Name"),
 					// data.get("Create_New"));
-					ModifyProdGroup(data.get("Product_Group_Name"), "TestCategory");
+					clickOnProductGroup(proGrp);
 
 					// Verify Update
 					VerifyUpdateMsg();
@@ -116,8 +119,32 @@ public class WGP02_CompanyStandardCategoriesTest extends CMTLib {
 					VerifyICompanyStandards();
 
 					// Logout and Close Insight Browser
-					commonLib.clickLogOutLink(data.get("Logout"));
-
+					//commonLib.clickLogOutLink(data.get("Logout "));
+					clickOnLogoutlink();
+					driver.switchTo().window(parent);
+					
+					hoverOnManageWebGroupsAndSelectOptions(data.get("Manage_Web_Grp_Options"));
+					clickOnAddCategoryPlusIcon();
+					String value=getRandomNumeric(4);
+					String cat="QTPCategory"+value;
+					enterNewCategory(cat);
+					clickOnCreateButton();
+					clickOnProductGroupLink();
+					String pro="QTPProductGroup"+value;
+					enterValueToCreateNewProductGroup(pro);
+					selectCategoryFromDropDown(proGrp);
+					clickOnCreateButton();
+					VerifyUpdateMsg();
+					
+					clickOnAddCategoryPlusIcon();
+					enterNewCategory(pro);
+					clickOnCreateButton();
+					clickOnAddCategoryPlusIcon();
+					enterNewCategory(pro);
+					clickOnCreateButton();
+					acceptAlert();
+					deleteProductGroup();
+					clickOnLogout();
 				} catch (Exception e) {
 					ReportStatus.blnStatus = false;
 					//gErrorMessage = e.getMessage();
@@ -140,4 +167,6 @@ public class WGP02_CompanyStandardCategoriesTest extends CMTLib {
 			ReportControl.fnNextTestJoin(nextTestJoin);
 		}
 	}
+
+	
 }

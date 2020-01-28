@@ -52,6 +52,7 @@ public class SER10_SearchResultsTest extends SearchLib {
 					// Servers
 					searchInHomePage(data.get("SearchText2"));
 					verifyTheResultsForSearchTerm(data.get("SearchText2"));
+					removeTheFilterForInStockOnly(data.get("In_Stock"));
 					String initialCount=getProductCount();
 					
 					// Apply in stock filter
@@ -64,6 +65,8 @@ public class SER10_SearchResultsTest extends SearchLib {
 					}
 					
 					removeTheFilterForInStockOnly(data.get("In_Stock"));
+					// servers verification bread crumb
+					verifyBreadCrumbInSearchResultsPage(data.get("SearchText2"));
 					String finalCount=getProductCount();
 					
 					if(initialCount.equals(finalCount)) {
@@ -71,41 +74,71 @@ public class SER10_SearchResultsTest extends SearchLib {
 					}else {
 						reporter.failureReport("Verify product count", "Search Results count not same as initial count", "Count: "+finalCount, driver);
 					}
+					
 					// select manufacturer - HP INC
 					selectManufacturerFiter(data.get("Manufacturer1"),data.get("Mfr_Heading1"));
 					verifyFilterBreadCrumb(data.get("Manufacturer1"));
 					String mfrCount=getProductCount();
-					// narrow by keyword -- core
-					/*searchProductInProductDisplayPage(data.get("Manufacturer2"));  //- lenovo
-					verifyFilterBreadCrumb(data.get("Manufacturer2"));*/
-					searchProductInProductDisplayPage(data.get("Keyword_Search"));  // core
-					verifyFilterBreadCrumb(data.get("Keyword_Search"));
-					String coreProductsCount=getProductCount();
-					 if(Integer.valueOf(coreProductsCount)<Integer.valueOf(initialCount)) {
-	                    	reporter.SuccessReport("Verify product count", "Search Results count less than initial count", "Count: "+coreProductsCount);
+					if(Integer.valueOf(mfrCount)<Integer.valueOf(finalCount)) {
+                    	reporter.SuccessReport("Verify product count", "Search Results count less than previous count", "Count: "+mfrCount);
+					}else {
+						reporter.failureReport("Verify product count", "Search Results count not less than previous count", "Count: "+mfrCount, driver);
+					}
+					// removeHP INC filter
+					Thread.sleep(2000); 
+					scrollUp();
+					 Thread.sleep(3000);
+					 removeTheFilter(data.get("Manufacturer1"));
+					 String mfr1_RemovedCount=getProductCount();
+					
+					 if(mfr1_RemovedCount.equals(initialCount)) {
+							reporter.SuccessReport("Verify product count", "Search Results count same as as the initial count", "Count: "+initialCount);
 						}else {
-							reporter.failureReport("Verify product count", "Search Results count not less than initial count", "Count: "+coreProductsCount, driver);
+							reporter.failureReport("Verify product count", "Search Results count not same as as the initial count", "Count: "+initialCount, driver);
 						}
+					
+					// select manufacturer -LENOVO
+					selectManufacturerFiter(data.get("Manufacturer2"),data.get("Mfr_Heading1"));
+					verifyFilterBreadCrumb(data.get("Manufacturer2"));
+					String Mfr2ProductsCount=getProductCount();
+					
+					if(Integer.valueOf(Mfr2ProductsCount)<Integer.valueOf(initialCount)) {
+                    	reporter.SuccessReport("Verify product count", "Search Results count less than previous count", "Count: "+Mfr2ProductsCount);
+					}else {
+						reporter.failureReport("Verify product count", "Search Results count not less than previous count", "Count: "+Mfr2ProductsCount, driver);
+				 }
+					
+					searchProductInProductDisplayPage(data.get("Keyword_Search"));  // core 
+					verifyFilterBreadCrumb(data.get("Keyword_Search"));
+					String keywordProductsCount=getProductCount();
+					
+					if(Integer.valueOf(keywordProductsCount)<Integer.valueOf(Mfr2ProductsCount)) {
+                    	reporter.SuccessReport("Verify product count", "Search Results count less than previous count", "Count: "+keywordProductsCount);
+					}else {
+						reporter.failureReport("Verify product count", "Search Results count not less than previous count", "Count: "+keywordProductsCount, driver);
+				   }
+					
+					// remove core keyword filter
 					 removeTheFilter(data.get("Keyword_Search"));
 					 String coreRemovedProductsCount=getProductCount();
 					
-					 if(coreRemovedProductsCount.equals(mfrCount)) {
-							reporter.SuccessReport("Verify product count", "Search Results count same as as the Pervious count", "Count: "+mfrCount);
+					 if(coreRemovedProductsCount.equals(Mfr2ProductsCount)) {
+							reporter.SuccessReport("Verify product count", "Search Results count same as as the Pervious count", "Count: "+coreRemovedProductsCount);
 						}else {
-							reporter.failureReport("Verify product count", "Search Results count not same as as the Pervious count", "Count: "+mfrCount, driver);
+							reporter.failureReport("Verify product count", "Search Results count not same as as the Pervious count", "Count: "+coreRemovedProductsCount, driver);
 						}
-					 //removeTheFilter(data.get("Manufacturer2"));
-					 String mfr2ProductsCount=getProductCount();
+					 // remove lenovo
+					 removeTheFilter(data.get("Manufacturer2"));
+					 String Mfr2_ReovedCount=getProductCount();
 					 
-					 if(mfr2ProductsCount.equals(initialCount)) {
-							reporter.SuccessReport("Verify product count", "Search Results count same as as the Pervious count", "Count: "+initialCount);
+					 if(Mfr2_ReovedCount.equals(initialCount)) {
+							reporter.SuccessReport("Verify product count", "Search Results count same as as the Initial count", "Count: "+initialCount);
 						}else {
-							reporter.failureReport("Verify product count", "Search Results count not same as as the Pervious count", "Count: "+initialCount, driver);
+							reporter.failureReport("Verify product count", "Search Results count not same as as the initial count", "Count: "+initialCount, driver);
 						}
 					 
-					 searchInHomePage(data.get("part_Number"));
-					 prodInfoLib.verifyTheManufacturerNumberInProductDetailsPage(data.get("part_Number"));
-					
+					 searchInHomePage(data.get("Partnumber"));
+					 prodInfoLib.verifyTheManufacturerNumberInProductDetailsPage(data.get("Partnumber"));
 				}
 
 				catch (Exception e) {

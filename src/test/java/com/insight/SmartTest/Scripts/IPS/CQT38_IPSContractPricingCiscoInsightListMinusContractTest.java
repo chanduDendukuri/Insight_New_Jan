@@ -112,7 +112,7 @@ public class CQT38_IPSContractPricingCiscoInsightListMinusContractTest extends H
                     }
                     
                    
-                    //comparision of retraived price values
+                    //comparision of retrieved price values
                     VerifyZPLSMinusYDLPShouldbeEqualToZP00(price1value,price4value,price2value);
 					VerifyZPLSMinusYDLPShouldbeEqualToYP00(price1value,price4value,price3value);
 					 clickDoneButton();
@@ -136,7 +136,7 @@ public class CQT38_IPSContractPricingCiscoInsightListMinusContractTest extends H
 					}
 					clickSideBarSmart();
 					clickClosthedocument(QuoteNum1);
-					//clickYesButtontocloseDocument();				
+					clickYesButtontocloseDocument();				
 					System.out.println("Test completed");
 				} catch (Exception e) {
 					ReportStatus.blnStatus = false;

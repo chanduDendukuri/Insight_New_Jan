@@ -22,7 +22,8 @@ public class MIC03_PAAPPNMITest extends MarriottIntlCorpLib{
 	CMTLib cmtLib = new CMTLib();					
 	OrderLib orderLib = new OrderLib();
 	ShipBillPayLib shipbLib = new ShipBillPayLib();
-	
+	CartLib cartLib = new CartLib();
+
 	// #############################################################################################################
 	// # Name of the Test : MIC06_SharedMgdServicesOrder
 	// # Migration Author : Cigniti Technologies
@@ -63,10 +64,19 @@ public class MIC03_PAAPPNMITest extends MarriottIntlCorpLib{
 					CompanystandardslinkandProductGrp(data.get("CPG"), data.get("SelectCP"));
 					handleinsightpopup();
 					// verify qunatitiy price partnum
-					setQuantityForLenovo(data.get("VerifyQty"));
 					Verifypartnum(data.get("Verifypart"));
+					setQuantityAddProductMIC03(data.get("VerifyQty"),data.get("Verifypart"));
 					clickOnViewCart();	
 					Thread.sleep(3000);
+					Verifypartnum(data.get("Verifypart"));
+					cartLib.verifyItemInCart(data.get("Verifypart"));
+					Thread.sleep(3000);
+					SelectCPPFRomAccounttools(data.get("Tools_Menu"),data.get("Tools_Menu_DD"),data.get("CPG2"), data.get("SelectCP2"));
+					Verifypartnum(data.get("Verifypart2"));
+					setQuantityAddProductMIC03(data.get("VerifyQty2"), data.get("Verifypart2"));
+					Thread.sleep(5000);
+					clickOnViewCart();
+					cartLib.verifyItemInCart(data.get("Verifypart2"));
 					verifyPartInCartQuickShop(data.get("QuickShop_Part"));
 					orderLib.proceedToCheckout();
 					addAdditionalInfoOfProduct(data.get("Brand_Identifier"), data.get("Requester_Name"),
@@ -95,13 +105,6 @@ public class MIC03_PAAPPNMITest extends MarriottIntlCorpLib{
 					verifyPayementInfo(data.get("PAYMENT_TYPE"));
 					commonLib.clickLogOutLink(data.get("Logout_Header"));
 					Thread.sleep(5000);
-					cmtLib.navigateBackToCMT();				
-					cmtLib.hoverOverMasterGroupAndSelectChangeGrp();
-					cmtLib.searchForWebGroup(data.get("WebGrp"));
-					Thread.sleep(5000);
-					cmtLib.manageUsers();
-					cmtLib.searchForaUserAndSelect(data.get("LnameEmailUname"), data.get("Contact_Name"));
-					cmtLib.setPermissionsToDisable(data.get("Menu_Name"), data.get("Set_Permission"));
 					System.out.println("Test completed");
 
 				} catch (Exception e) {

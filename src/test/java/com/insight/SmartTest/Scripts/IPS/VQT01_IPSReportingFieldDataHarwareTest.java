@@ -71,7 +71,7 @@ public class VQT01_IPSReportingFieldDataHarwareTest extends HomeLib{
 					
 					clickDoneButton();
 					//Change Mode
-					clickChangeModeIcon();
+					ClickOnDisplayMode();
 					
 					clickonConXSystem(data.get("ItemNum1"));//000010
 					

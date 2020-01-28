@@ -55,8 +55,12 @@ public class EUF02_FCTWebEndUserDefaultsPaymentTest extends EndUserFeaturesLib{
 						Hashtable<String, String> data = TestUtil.getDataByRowNo("EUF02_FCTWebEndUserDefaultsPayment", TestDataInsight, "End_USer", intCounter);
 						TestEngineWeb.reporter.initTestCaseDescription("FCTWebEndUserDefaultsPayment");
                         
-						cmtLib.loginToCMTSearchWebGrpAndUser(data.get("Header"), data.get("WebGrp"), data.get("LnameEmailUname"),
-								data.get("ContactName"));
+					//	cmtLib.loginToCMTSearchWebGrpAndUser(data.get("Header"), data.get("WebGrp"), data.get("LnameEmailUname"),								data.get("ContactName"));
+						cmtLib.loginToCMT(data.get("Header"));
+						cmtLib.searchForWebGroup(data.get("WebGrp"));
+						cmtLib.clickOnTheWebGroup(data.get("WebGrp_Name"));
+						cmtLib.hoverOnManageWebGroupsAndSelectOptions("Users");
+						cmtLib.searchForaUserAndSelect(data.get("LnameEmailUname"), data.get("ContactName"));
 						cmtLib.clickCheckOutSettings(data.get("Check_out_Settings"));
 						// navigate to checkout settings >>  payment options
 						cmtLib.selectOptionInCheckoutSettings(data.get("Payment_Options"));
@@ -69,7 +73,10 @@ public class EUF02_FCTWebEndUserDefaultsPaymentTest extends EndUserFeaturesLib{
 								data.get("Tools_Menu_DD"));
 						clickOnTabInUserProfile(data.get("Tab_Name"));
 						selectedOptionPaymentMethod(data.get("Default_Payment_Option"));
+						//add condition  to select credit card from dropdown
+						selectPaymentMethodFromDropDown(data.get("cc"));
 						clickUpdateButtonInCheckoutDefaults();
+						commonLib.clickLogOutLink(data.get("Logout_Header"));
 						cmtLib.navigateBackToCMT();
 						// navigate to checkout settings >>  payment options
 						cmtLib.clearPaymentOptionsInCheckoutSettings();

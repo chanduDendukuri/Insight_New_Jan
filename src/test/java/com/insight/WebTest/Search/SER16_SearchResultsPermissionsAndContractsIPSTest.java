@@ -15,6 +15,8 @@ public class SER16_SearchResultsPermissionsAndContractsIPSTest extends SearchLib
 	ProductDisplayInfoLib prodInfoLib = new ProductDisplayInfoLib();
 	CMTLib cmtLib = new CMTLib();
 	CommonLib commonLib = new CommonLib();
+	CartLib cartLib=new CartLib();
+	OrderLib orderLib=new OrderLib();
 
 	    // #############################################################################################################
 	 	// #    Name of the Test         : SER16_SearchResults-PermissionsAndContractsIPS
@@ -36,7 +38,7 @@ public class SER16_SearchResultsPermissionsAndContractsIPSTest extends SearchLib
 					TestData, "Web_Search");
 			for (int intCounter = intStartRow; intCounter <= intEndRow; intCounter++) {
 				try {
-					// initilizing libraries and testdata
+					// initializing libraries and testdata
 					ReportStatus.fnDefaultReportStatus();
 					ReportControl.intRowCount = intCounter;
 					Hashtable<String, String> data = TestUtil.getDataByRowNo(
@@ -46,7 +48,6 @@ public class SER16_SearchResultsPermissionsAndContractsIPSTest extends SearchLib
 					
 					// Test Steps execution
 					fnOpenTest();
-
 					cmtLib.loginToCMT(data.get("Login"));
 					cmtLib.searchForWebGroup(data.get("WebGrp"));
 					cmtLib.clickOnTheWebGroup(data.get("WebGrp_Name"));
@@ -54,79 +55,119 @@ public class SER16_SearchResultsPermissionsAndContractsIPSTest extends SearchLib
 					cmtLib.searchForaUserAndSelect(data.get("LnameEmailUname"), data.get("ContactName"));
 					String[] permissions1=data.get("Set_Permission1").split(",");
 					for (i = 0; i < permissions1.length; i++) { 
-					cmtLib.setPermissions(data.get("Menu_Name"),permissions1[i] );
+					cmtLib.setPermissions(data.get("Menu_Name"),permissions1[i]);
 					}
+					cmtLib.permissionFromDD(data.get("Set_Permission3"), data.get("Permission_Drop_Down"));
+					// Remove us comm default OFF
+					cmtLib.setPermissionsToDisable(data.get("Menu_Name"), data.get("Set_Permission2"));
 					// Login to CMT
 					cmtLib.loginAsAdminCMT();
 					cmtLib.loginVerification(data.get("ContactName"));
 
 					// Back to UAT and verify the above enabled settings
 					verifyContractAllDisplayed();
+					// workstations
 					searchInHomePage(data.get("SearchText"));
 					verifyTheResultsForSearchTerm(data.get("SearchText"));
-					clickMorePricesAndViewContracts();
-					Thread.sleep(3000);
-					VerifyDefaultUSDContractPrice();
-					selectNewcontract(data.get("Contract_Name"));
-					searchInHomePage(data.get("SearchText"));
-					verifyTheResultsForSearchTerm(data.get("SearchText"));
-					prodInfoLib.verifyContractNameInProdDetailsPageAndAddToCart(data.get("Contract_Name"),
-							data.get("Quantity"));
-					commonLib.clickCart();
-					Thread.sleep(3000);
-					prodInfoLib.verifyContractInCartScreen(data.get("Contract_Name"));
+					prodInfoLib.getPartNumberInSearchResultsPage();
+					clickOnMorePrices();
+					allContractPricesPopup();
+					verifyDefaultUSContractInAllContractPricesPopup("checked");
+					// STATE OF MINNESOTA - PC HARDWARE, & SERVICES-
+					selectContractOnAllContractPricesPopup(data.get("Contarct_Name1"));
+					
+					increaseQuantity(data.get("Quantity"));
+					cartLib.clickOnAddToCartInAllContractPrices();
+					orderLib.continueToCheckOutOnAddCart();
+					// contract verification in cart page
+					prodInfoLib.verifyContractInCartScreen(data.get("Contarct_Name1"));
+					prodInfoLib.verifyCartPageAndPartDetails();
+					prodInfoLib.verifyContractInCartScreen(data.get("Contarct_Name1"));
+					commonLib.clickLogOutLink(data.get("Logout"));
+					
+					// Remove us comm default ON
+					// navigate back to cmt
 					cmtLib.navigateBackToCMT();
-
-					// Navigate to CMT and Enable "Remove US Communities as
-					// Default Contract" setting
+					cmtLib.clickBackToUserSearch();
+					cmtLib.searchForaUserAndSelect(data.get("LnameEmailUname"), data.get("ContactName"));
+					for (i = 0; i < permissions1.length; i++) { 
+						cmtLib.setPermissions(data.get("Menu_Name"),permissions1[i] );
+						}
+					cmtLib.setPermissions(data.get("Menu_Name"), data.get("Set_Permission3"));
+					cmtLib.permissionFromDD(data.get("Set_Permission3"), data.get("Permission_Drop_Down2"));
 					cmtLib.setPermissions(data.get("Menu_Name"), data.get("Set_Permission2"));
-					cmtLib.permissionFromDD(data.get("Set_Permission3"), data.get("Permission_Drop_Down"));
-
-					// Navigate to UAT and verify the USC price is not displayed
-					// as default for products
+					
+					// Login to CMT
 					cmtLib.loginAsAdminCMT();
+					cmtLib.loginVerification(data.get("ContactName"));
+
+					// Back to UAT and verify the above enabled settings
 					verifyContractAllDisplayed();
+					// Workstation
 					searchInHomePage(data.get("SearchText"));
 					verifyTheResultsForSearchTerm(data.get("SearchText"));
-					Thread.sleep(3000);
-					verifyUSCcontractNotPresent();
-					clickMorePricesAndViewContracts();
+					prodInfoLib.getPartNumberInSearchResultsPage();
+					prodInfoLib.contractNameOfFirstproduct();
+					// more prices
+					clickOnMorePrices();
+					allContractPricesPopup();
+					verifyDefaultUSContractInAllContractPricesPopup("unchecked");
+					verifydefaultcontractonAllcontractpopup(data.get("Contarct_Name1"));
+					
+					// your price verification
+					verifyYourPriceInAllcontractPopup(data.get("YOUR PRICE"));
+					commonLib.clickLogOutLink(data.get("Logout"));
+					
+					// navigate back to cmt
 					cmtLib.navigateBackToCMT();
-
-					// Navigate back to CMT and Disable Open Market
-					cmtLib.setPermissionsToDisable(data.get("Menu_Name"), data.get("Set_Permission"));
-
-					// Verify the changes effected.
+					cmtLib.clickBackToUserSearch();
+					cmtLib.searchForaUserAndSelect(data.get("LnameEmailUname"), data.get("ContactName"));
+					// Open market - OFF
+					cmtLib.setPermissionsToDisable(data.get("Menu_Name"), data.get("Permission"));
+					// Login to CMT
 					cmtLib.loginAsAdminCMT();
+					cmtLib.loginVerification(data.get("ContactName"));
+					
+					// Back to UAT and verify the above enabled settings
 					verifyContractAllDisplayed();
+					// workstation
 					searchInHomePage(data.get("SearchText"));
 					verifyTheResultsForSearchTerm(data.get("SearchText"));
-					verifyUSCcontractNotPresent();
-
-					// Navigate to CMT, enable Open Market - Your Price and
-					// disable fed_view_contracts
+					prodInfoLib.getPartNumberInSearchResultsPage();
+					prodInfoLib.contractNameOfFirstproduct();
+					// more prices
+					clickOnMorePrices();
+					// Verify your price not available
+					verifyYourPriceDoesNotExists(data.get("YOUR PRICE"));
+					commonLib.clickLogOutLink(data.get("Logout"));
+					
+					// navigate back to cmt
 					cmtLib.navigateBackToCMT();
-					cmtLib.setPermissions(data.get("Menu_Name"), data.get("Set_Permission"));
-					cmtLib.permissionFromDD(data.get("Set_Permission3"), data.get("Permission_Drop_Down"));
+					cmtLib.clickBackToUserSearch();
+					cmtLib.searchForaUserAndSelect(data.get("LnameEmailUname"), data.get("ContactName"));
+					// open mark on
+					cmtLib.setPermissions(data.get("Menu_Name"), data.get("Permission"));
 					cmtLib.setPermissionsToDisable(data.get("Menu_Name"), data.get("Set_Permission4"));
-
-					// Verify that "Your Price" for all parts in search results
-					// page
+					
+					// Login to CMT
 					cmtLib.loginAsAdminCMT();
+					cmtLib.loginVerification(data.get("ContactName"));
+
+					// Back to UAT and verify the above enabled settings
+					// Workstation
 					searchInHomePage(data.get("SearchText"));
 					verifyTheResultsForSearchTerm(data.get("SearchText"));
-					prodInfoLib.verifyYourPriceExists();
-
-					// Navigate to CMT, fed_open_market;on and
-					// "fed_view_contracts;on"
+					prodInfoLib.getPartNumberInSearchResultsPage();
+					prodInfoLib.verifyOpenMarketOnSearchResultsPage();
+					commonLib.clickLogOutLink(data.get("Logout"));
+					
+					// navigate back to cmt
 					cmtLib.navigateBackToCMT();
-					String[] permissions = data.get("Set_Permission5").split(",");
-					for (i = 0; i < permissions.length; i++) {
-						cmtLib.setPermissions(data.get("Menu_Name"), permissions[i]);
-					}
-					cmtLib.loginAsAdminCMT();
-					verifyContractAllDisplayed();
-					selectNewcontract(data.get("Contract_Name"));
+					cmtLib.clickBackToUserSearch();
+					cmtLib.searchForaUserAndSelect(data.get("LnameEmailUname"), data.get("ContactName"));
+					// open mark , contract agencies ON
+					cmtLib.setPermissions(data.get("Menu_Name"), data.get("Permission"));
+					cmtLib.setPermissions(data.get("Menu_Name"), data.get("Set_Permission4"));
 
 				}
 

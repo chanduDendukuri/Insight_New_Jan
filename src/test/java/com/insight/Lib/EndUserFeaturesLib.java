@@ -1,5 +1,6 @@
 package com.insight.Lib;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.openqa.selenium.WebElement;
@@ -9,6 +10,8 @@ import com.insight.ObjRepo.CommonObj;
 import com.insight.ObjRepo.EndUserFeaturesObj;
 import com.insight.ObjRepo.MarriottIntlCorpObj;
 import com.insight.ObjRepo.ShipBillPayObj;
+
+import static com.insight.ObjRepo.CMTObj.noFavLinksAvailable;
 
 
 public class EndUserFeaturesLib extends EndUserFeaturesObj{
@@ -20,6 +23,7 @@ public class EndUserFeaturesLib extends EndUserFeaturesObj{
 	 * @customization author : CIGNITI
 	 * **/
 	public void clickOnTabInUserProfile(String tabName) throws Throwable {
+		//scrollToBottomWithCordinate("100");
 		click(CommonObj.getFavoritesTabs(tabName), ""+tabName+" Tab in UserProfile");
 	}
 	/**
@@ -34,10 +38,10 @@ public class EndUserFeaturesLib extends EndUserFeaturesObj{
 		String selectedOption=getText(PAYMENT_METHOD_SELECT_OPTION, "selected option");
 		System.out.println("selectedOption"+selectedOption);
 		if(selectedOption.equalsIgnoreCase(option)) {
-			reporter.SuccessReport("Verifyig default selected option", "Default selected option is "+option, option);
+			reporter.SuccessReport("Verifying default selected option", "Default selected option is "+option, option);
 		}
 		else {
-			reporter.failureReport("Verifyig default selected option", "Default selected option is not "+option, selectedOption,driver);
+			reporter.failureReport("Verifying default selected option", "Default selected option is not "+option, selectedOption,driver);
 		}
 	}
 	/**
@@ -49,7 +53,7 @@ public class EndUserFeaturesLib extends EndUserFeaturesObj{
 	 * **/
 	public void clickUpdateButtonInCheckoutDefaults() throws Throwable{
 		click(UPDATE_BUTTON_CHECKOUT_DEFAULTS,"Update buttton in check out settings");
-		if(isElementPresent(CHECK_OUT_DEFAULTS_UPDATE_SUCESS_MESSAGE, "Sucess message")) {
+		if(isVisibleOnly(CHECK_OUT_DEFAULTS_UPDATE_SUCESS_MESSAGE, "Sucess message")) {
 			reporter.SuccessReport("Verifying update sucess message", "user deafults saved sucessfully ", "");
 		}
 		else {
@@ -84,12 +88,12 @@ public class EndUserFeaturesLib extends EndUserFeaturesObj{
 	 */
 	public void verifyAccountToolsManageCloudDropdownOption(String toolsMenuName, String dropDown) throws Throwable {
 		Thread.sleep(20000);
-		if(isElementPresent(InvoiceHistoryLib.COSE_ACCOUNT_TOOLS, "close account tools")) {
+		if(isVisibleOnly(InvoiceHistoryLib.COSE_ACCOUNT_TOOLS, "close account tools")) {
 			click(InvoiceHistoryLib.COSE_ACCOUNT_TOOLS, "close account tools");
 		}
 		click(CommonObj.ACCOUNT_TOOLS, "Account tools menu icon");
 		click(CanadaObj.getAccountToolsMenu(toolsMenuName), "Account tools menu");
-		if(isElementPresent(CommonObj.getAccountToolsDD(toolsMenuName, dropDown), "Select account tools")) {
+		if(isVisibleOnly(CommonObj.getAccountToolsDD(toolsMenuName, dropDown), "Select account tools")) {
 			reporter.SuccessReport("Verifying manage cloud in account tools", "Manage Cloud Link is Exists",dropDown);
 		}
 		else {
@@ -107,7 +111,7 @@ public class EndUserFeaturesLib extends EndUserFeaturesObj{
 	 */
 	public void verifyAccountToolsManageCloudDropdownOptionIsNotPresent(String toolsMenuName, String dropDown) throws Throwable {
 		Thread.sleep(20000);
-		if(isElementPresent(InvoiceHistoryLib.COSE_ACCOUNT_TOOLS, "close account tools")) {
+		if(isVisibleOnly(InvoiceHistoryLib.COSE_ACCOUNT_TOOLS, "close account tools")) {
 			click(InvoiceHistoryLib.COSE_ACCOUNT_TOOLS, "close account tools");
 		}
 		click(CommonObj.ACCOUNT_TOOLS, "Account tools menu icon");
@@ -152,7 +156,7 @@ public class EndUserFeaturesLib extends EndUserFeaturesObj{
 	 */
 	public String verifyAccountName() throws Throwable {
 		String Accountname = null;
-		if(isElementPresent(ACCOUNTNAME,"Account Name")){
+		if(isVisibleOnly(ACCOUNTNAME,"Account Name")){
 		 Accountname=getText(ACCOUNTNAME,"Account Name").replace("Account –", "").trim();
 			reporter.SuccessReport("Verify Account Name", "Account Name Exists and Displyed correctly","Current Account::"+Accountname+"");
 		}
@@ -167,7 +171,7 @@ public class EndUserFeaturesLib extends EndUserFeaturesObj{
 	 * Method is to verify Account SearchBar from account drop down in Home Page
 	 */
 	public void verifyAccountSearchBar() throws Throwable {
-		if(isElementPresent(ACCOUNTSEARCHFIELD,"Web Account Search Bar")){
+		if(isVisibleOnly(ACCOUNTSEARCHFIELD,"Web Account Search Bar")){
 			reporter.SuccessReport("Verify Web Account Search Bar", "Web Account Search Bar Exists and Displyed ","");
 		}
 		else {
@@ -199,14 +203,17 @@ public class EndUserFeaturesLib extends EndUserFeaturesObj{
 	public void deleteAllFavouriteLinks() throws Throwable {
 		Thread.sleep(5000);
 		
-		if(isElementPresent(DELETE_FAVOURITE_LINK, "Delete favourite link")) {
+		if(!isVisibleOnly(noFavLinksAvailable, "No fav link")) {
 			List<WebElement> myList=driver.findElements(DELETE_FAVOURITE_LINK);
 		for (int i=0; i<myList.size();i++) {
 			click(DELETE_FAVOURITE_LINK,"delete favourite");
+			if(isVisibleOnly(noFavLinksAvailable,"No Fav links ")){
+				reporter.SuccessReport(" Favorite  links ","No Favorite  links are available",getText(noFavLinksAvailable,"No Fav link data"));
+			}
 		 }
 		}
 		else {
-			LOG.info("No favourites links");
+			reporter.SuccessReport(" Favorite  links ","No Favorite  links are available",getText(noFavLinksAvailable,"No Fav link data"));
 		}
 		
 	}
@@ -231,10 +238,10 @@ public class EndUserFeaturesLib extends EndUserFeaturesObj{
 	
 	public void selectFavourite(String item) throws Throwable {
 		
-		click(availableItem(item),"Hover on item");
-		click(availableItem(item),"Hover on item");
-		click(rightArrow(item),"Right arrow");
-		if(isElementPresent(favouriteLink(item), "favourite link")) {
+		click(availableItem(item),"Hover on "+item);
+		click(availableItem(item),"clicked on "+ item);
+		click(rightArrow(item),"Added "+item+ " as favourite");
+		if(isVisibleOnly(favouriteLink(item), "favourite link")) {
 			reporter.SuccessReport("Verifying favourite links", "Favourite link is added","");
 		}
 		else {
@@ -259,7 +266,7 @@ public class EndUserFeaturesLib extends EndUserFeaturesObj{
  * @throws Throwable
  */
 	public void clearMyFavoriteAccountsList()  throws Throwable {
-		if (isElementPresent(CLEAR_FAV_ACCOUNTLIST, "My favorite account list")) {
+		if (isVisibleOnly(CLEAR_FAV_ACCOUNTLIST, "My favorite account list")) {
 			 List<WebElement> myList=driver.findElements(CLEAR_FAV_ACCOUNTLIST);
              for (int i=0; i<myList.size();i++) {
 			click(FAVACC_LIST_FIRSTACCOUNT, "Account selected in favorites list");
@@ -276,11 +283,11 @@ public class EndUserFeaturesLib extends EndUserFeaturesObj{
   * @throws Throwable
   */
 	public void addSearchListtoFavorites()  throws Throwable {
-		if (isElementPresent(AVAILABLEACC_LIST_FIRSTACCOUNT, "My favorite account list in available search")) {
+		if (isVisibleOnly(AVAILABLEACC_LIST_FIRSTACCOUNT, "My favorite account list in available search")) {
 			 List<WebElement> myList=driver.findElements(AVAILABLEACC_LIST_FIRSTACCOUNT);
              for (int i=0; i<myList.size();i++) {
 			click(AVAILABLEACC_LIST_FIRSTACCOUNT, "First Account selected in Available search list");
-			if(isElementPresent(LEFT_TO_RIGHT_ARROWBTN,"Left to Right Button"+ ">")){
+			if(isVisibleOnly(LEFT_TO_RIGHT_ARROWBTN,"Left to Right Button"+ ">")){
 	               click (LEFT_TO_RIGHT_ARROWBTN,"Left to Right Button"+ ">");
 	               reporter.SuccessReport("Click on Move To Favorite Link - Account Tools in Account Favorites Page",
 							"> Link Exists and Clicked","");
@@ -294,7 +301,7 @@ public class EndUserFeaturesLib extends EndUserFeaturesObj{
 			reporter.failureReport("Account Management - Account Tools Account Favorites Page",
 					"First AccountLink Not Exists","");
 	
-	 if(isElementPresent(CLEAR_FAV_ACCOUNTLIST, "My favorite account list")) {
+	 if(isVisibleOnly(CLEAR_FAV_ACCOUNTLIST, "My favorite account list")) {
 		 reporter.SuccessReport("Account Management - Account Tools Account Favorites Page",
 					"First Account is Added to My Favorite Accounts","");
 	}else
@@ -311,7 +318,9 @@ public class EndUserFeaturesLib extends EndUserFeaturesObj{
  * @throws Throwable
  */
 	public void verifyupdateSuccessMessage() throws Throwable {
-		isElementPresent(UPDATE_SUCCESSMESG, "Update Success Message");
+		if(isVisibleOnly(UPDATE_SUCCESSMESG, "Update Success Message")){
+			reporter.SuccessReport("Update Message","Permissions Update message",getText(UPDATE_SUCCESSMESG, "Update Success Message"));
+		}
 	}
 	/**
 	 * 
@@ -319,7 +328,7 @@ public class EndUserFeaturesLib extends EndUserFeaturesObj{
 	 * @throws Throwable
 	 */
 	public void clearAndSearchWithAccountNum(String AccountName) throws Throwable {
-		if(isElementPresent(ACCOUNT_SEARCHBOX, "Account search textbox")){
+		if(isVisibleOnly(ACCOUNT_SEARCHBOX, "Account search textbox")){
 			clearData(ACCOUNT_SEARCHBOX);
 			type(ACCOUNT_SEARCHBOX,AccountName,"Account Name");
 			click(ACCOUNT_SEARCHICON,"Search icon");
@@ -330,7 +339,7 @@ public class EndUserFeaturesLib extends EndUserFeaturesObj{
 	 * @throws Throwable
 	 */
 	public void verifyAccountFavorites() throws Throwable {
-		if(isElementPresent(ACCOUNT_FAVLINK, "Account favorites lInk")){
+		if(isVisibleOnly(ACCOUNT_FAVLINK, "Account favorites lInk")){
 			 reporter.SuccessReport("Account Management - Account Tools Account Favorites Page",
 						"Account Favorites  Link Exist Under Address Book","");
 		}else{
@@ -346,7 +355,12 @@ public class EndUserFeaturesLib extends EndUserFeaturesObj{
 	 */
 	public void selectToolsDropDownInHomepage(String favLink) throws Throwable {
 		click(CommonObj.TOOLS_DD_HEADER, "tools drop down");
-		click(toolsDropDownOptions(favLink), favLink);
+		if(isVisibleOnly(toolsDropDownOptions(favLink), favLink)){
+			reporter.SuccessReport("Verifying Fav links under Tools", " Verifying Fav links under Tools",favLink + " is Available" );
+		}else{
+			reporter.failureReport("Verifying Fav links under Tools", " Verifying Fav links under Tools",favLink + " is not Available",driver );
+
+		}
 	}
 	/**
 	 * PURPOSE: This method is to click on tools link in top navigation and verify fav links
@@ -384,7 +398,7 @@ public class EndUserFeaturesLib extends EndUserFeaturesObj{
 	 * @customization author : CIGNITI
 	 * **/
 	public void verifyFavouritesLinksPageOpened() throws Throwable {
-		if(isElementPresent(FAVOURITE_LINKS_HEADER, "Favourites links header")) {
+		if(isVisibleOnly(FAVOURITE_LINKS_HEADER, "Favourites links header")) {
 			reporter.SuccessReport("Verify Manage Favorite Links Page", "Page Loaded","");
 		}
 		else {
@@ -408,7 +422,7 @@ public class EndUserFeaturesLib extends EndUserFeaturesObj{
 	 * Method is to verify Account SearchBar from account drop down in Home Page
 	 */
 	public void clickonAccountName(String Accountname) throws Throwable {
-		if(isElementPresent(accountNameBtn(Accountname),"Account Name")){
+		if(isVisibleOnly(accountNameBtn(Accountname),"Account Name")){
 			click(accountNameBtn(Accountname),"Default Account Name");
 			reporter.SuccessReport("Select a Same Soldto From Account Name List in Welcome Page", "Previous Solodto's Exists and Selected","");
 		}
@@ -436,7 +450,7 @@ public class EndUserFeaturesLib extends EndUserFeaturesObj{
 	 * Method is to verify and select See all available accounts Link from account drop down in Home Page
 	 */
 	public void verifySeeAllAvailableAccounts() throws Throwable {
-		if(isElementPresent(SEEALLAVAILABLEACCOUNTLINKS,"See all available accounts Link")){
+		if(isVisibleOnly(SEEALLAVAILABLEACCOUNTLINKS,"See all available accounts Link")){
 			click(SEEALLAVAILABLEACCOUNTLINKS,"See all available accounts Link");
 			reporter.SuccessReport("Select a See all Available Accounts Link From Account Name List in Welcome Page", "See all Available Accounts Link Exists and Selected","");
 		}
@@ -449,7 +463,7 @@ public class EndUserFeaturesLib extends EndUserFeaturesObj{
 	 * Method is to verify Current Account on Account Management-Account Tools Page
 	 */
 	public void verifyCurrentaccountPageinAccounttools() throws Throwable {
-		if(isElementPresent(CURRENTACCOUNTPAGE,"Current Account")){
+		if(isVisibleOnly(CURRENTACCOUNTPAGE,"Current Account")){
 			reporter.SuccessReport("Current Account on Account Management-Account Tools Page", "Current Account Page is Exists","");
 		}
 		else {
@@ -462,7 +476,7 @@ public class EndUserFeaturesLib extends EndUserFeaturesObj{
 	 * Method is to verify Current Account on Account Management-Account Tools Page
 	 */
 	public void verifyAccountFavertesTab(String tabName) throws Throwable {
-		if(isElementPresent(CommonObj.getFavoritesTabs(tabName),"Account Favorites Tab")){
+		if(isVisibleOnly(CommonObj.getFavoritesTabs(tabName),"Account Favorites Tab")){
 			click(CommonObj.getFavoritesTabs(tabName),"Account Favorites Tab");
 			reporter.SuccessReport("Select Account Favorites Tab From on Account Management-Account Tools Page", "Account Favorites Tab is Exists and Selected","");
 		}
@@ -491,7 +505,7 @@ public class EndUserFeaturesLib extends EndUserFeaturesObj{
 	 * Method is to verify Remove default account Link Current Account on Account Management-Account Tools Page
 	 */
 	public void verifyRemoveDefualtLink() throws Throwable {
-		if(isElementPresent(REMOVEDEFUALT,"Remove default account")){
+		if(isVisibleOnly(REMOVEDEFUALT,"Remove default account")){
 			reporter.SuccessReport("System displays Remove Link on Current Account Tab in Account Management -Account Tools Page", "Remove Link on Current Account Tab is Existss","");
 		}
 		else {
@@ -503,7 +517,7 @@ public class EndUserFeaturesLib extends EndUserFeaturesObj{
 	 * Method is to verify default account Removed Link Current Account on Account Management-Account Tools Page
 	 */
 	public void verifyDefualtLinkRemovedwarning() throws Throwable {
-		if(isElementPresent(NODEFUALTACCOUNT,"default account Removed")){
+		if(isVisibleOnly(NODEFUALTACCOUNT,"default account Removed")){
 			reporter.SuccessReport("Default Login Account Removed Message on Current Account Tab", "Default Login Account Removed Message on Current Account Tab is Exists","");
 		}
 		else {
@@ -523,7 +537,7 @@ public class EndUserFeaturesLib extends EndUserFeaturesObj{
 	 * Method is to verify User is not linked to any Account
 	 */
 	public void verifyUserisnotlinkedtoanyAccount() throws Throwable {
-		if(isElementPresent(USERNOTLINKEDTOANYWARNING_MSG,"Remove default account")){
+		if(isVisibleOnly(USERNOTLINKEDTOANYWARNING_MSG,"Remove default account")){
 			String Warningsg=getText(USERNOTLINKEDTOANYWARNING_MSG,"Remove default account");
 			reporter.SuccessReport("Verify the user is linked to any Account", "User is not linked to any Account",Warningsg);
 		}
@@ -556,7 +570,7 @@ public class EndUserFeaturesLib extends EndUserFeaturesObj{
 	}
 	
 	public void verifyCurrentAccount() throws Throwable {
-		if(isElementPresent(YOUR_CURRENT_ACCOUNT, "Current account")) {
+		if(isVisibleOnly(YOUR_CURRENT_ACCOUNT, "Current account")) {
 			reporter.SuccessReport("System displays Account Name and Address on Current Account Tab in Account Management -Account Tools Page", "Account Name and Address on Current Account Tab is Exists","");
 		}
 		else {
@@ -602,7 +616,7 @@ public class EndUserFeaturesLib extends EndUserFeaturesObj{
 		
 		switch (status) {
 		case "ON":
-			if (isElementPresent(CommonObj.getContractsFromDD(contractName) ,"Contract name")) {
+			if (isVisibleOnly(CommonObj.getContractsFromDD(contractName) ,"Contract name")) {
 				reporter.SuccessReport("Verify the contracts page displayed ","contract is displayed successfully as : ",contractName );
 			} else {
 				reporter.failureReport("Verify the contracts page displayed ","contract is not displayed successfully",contractName);
@@ -680,7 +694,7 @@ public class EndUserFeaturesLib extends EndUserFeaturesObj{
 	 * @throws Throwable
 	 */
 	public void verifySearchResults() throws Throwable {
-		if(isElementPresent(SEARCH_RESULTS, "Search results")) {
+		if(isVisibleOnly(SEARCH_RESULTS, "Search results")) {
 			reporter.SuccessReport("Verifying search results", "Search results are displayed", "");
 		}
 		else {
@@ -694,7 +708,7 @@ public class EndUserFeaturesLib extends EndUserFeaturesObj{
 	 * @throws Throwable
 	 */
 	public void verifyDefaultAccountIsRemoved() throws Throwable {
-		if(isElementPresent(DEFAULT_ACCOUNT_REMOVED_MESSAGE, "Deafult account removed message")) {
+		if(isVisibleOnly(DEFAULT_ACCOUNT_REMOVED_MESSAGE, "Deafult account removed message")) {
 			reporter.SuccessReport("Verifying default account is removed", "Default account does not exists", "");
 		}
 		else {
@@ -737,7 +751,7 @@ public class EndUserFeaturesLib extends EndUserFeaturesObj{
 	 */
 	public void selectFromDDListAndVerify(String DDName,String list) throws Throwable{
 		click(selectDDList(DDName, list),"Drop down list");
-		if(isElementPresent(verifyDDSelected(list), "selected list")){
+		if(isVisibleOnly(verifyDDSelected(list), "selected list")){
 			reporter.SuccessReport("verify selected DD is displayed", "Selected option is displayed", list);
 		}else{
 			reporter.failureReport("verify selected DD is displayed", "Selected option is not displayed", list,driver);
@@ -748,11 +762,11 @@ public class EndUserFeaturesLib extends EndUserFeaturesObj{
 	  * @throws Throwable
 	  */
 		public void addSearchtoFavorites()  throws Throwable {
-			if (isElementPresent(AVAILABLEACC_LIST_FIRSTACCOUNT, "My favorite account list in available search")) {
+			if (isVisibleOnly(AVAILABLEACC_LIST_FIRSTACCOUNT, "My favorite account list in available search")) {
 				 List<WebElement> myList=driver.findElements(AVAILABLEACC_LIST_FIRSTACCOUNT);
 	             for (int i=0; i<3;i++) {
 				click(AVAILABLEACC_LIST_FIRSTACCOUNT, "First Account selected in Available search list");
-				if(isElementPresent(LEFT_TO_RIGHT_ARROWBTN,"Left to Right Button"+ ">")){
+				if(isVisibleOnly(LEFT_TO_RIGHT_ARROWBTN,"Left to Right Button"+ ">")){
 		               click (LEFT_TO_RIGHT_ARROWBTN,"Left to Right Button"+ ">");
 		               reporter.SuccessReport("Click on Move To Favorite Link - Account Tools in Account Favorites Page",
 								"> Link Exists and Clicked","");
@@ -766,7 +780,7 @@ public class EndUserFeaturesLib extends EndUserFeaturesObj{
 				reporter.failureReport("Account Management - Account Tools Account Favorites Page",
 						"First AccountLink Not Exists","");
 		
-		 if(isElementPresent(CLEAR_FAV_ACCOUNTLIST, "My favorite account list")) {
+		 if(isVisibleOnly(CLEAR_FAV_ACCOUNTLIST, "My favorite account list")) {
 			 reporter.SuccessReport("Account Management - Account Tools Account Favorites Page",
 						"First Account is Added to My Favorite Accounts","");
 		}else
@@ -774,4 +788,54 @@ public class EndUserFeaturesLib extends EndUserFeaturesObj{
 					"First Account is Not Added to My Favorite Accounts","");
 		          
 		}
+
+		public void selectPaymentMethodFromDropDown(String option) throws Throwable{
+			click(dropdownPaymentMethod,"Payment Method");
+			click(selectPaymentMethodForBillingPayment(option),"Payment Method");
+		}
+
+		public void verifyShippingMethodSelectedOptionValues() throws Throwable{
+			boolean status = false;
+			click(SHIPPING_METHOD_SELECTED_OPTION, "selected option");
+			//click(dropdownPaymentMethod,"Payment Method");
+			List<WebElement> myList = driver.findElements(SHIPPING_METHOD_SELECTED_OPTION_Values);
+
+			for (int i=0; i<myList.size();i++) {
+				if(myList.get(i).getText().contains("SLS")) {
+					status = true;
+					reporter.SuccessReport("Shipping Method dropdown value", "Shipping Method dropdown value", myList.get(i).getText());
+
+				}
+				break;
+				}
+			if(!status) {
+				reporter.failureReport("Shipping Method dropdown value", "Shipping Method dropdown value",myList.get(i).getText(),driver);
+
+			}
+		}
+
+
+	public void verifyNumberOfCheckboxesSelected() throws Throwable{
+		boolean status = false;
+		//click(SHIPPING_METHOD_SELECTED_OPTION, "selected option");
+		//click(dropdownPaymentMethod,"Payment Method");
+		List<WebElement> myList = driver.findElements(checkedCheckBoxes);
+		String count=null;
+		int j=0;
+		 List<Integer> iPassCount = new ArrayList<Integer>();
+		for (int i=0; i<myList.size();i++) {
+			if(myList.get(i).isSelected()) {
+			//	int j=0;
+				j=i;
+				 count = Integer.toString(i);
+				iPassCount.add(i);
+
+				//status=true;
+			}
+			//break;
+
+		}
+		reporter.SuccessReport("Selected Permissions"," selected Permission count is " +j+1," selected Permission count is "+j+1);
+
+	}
 }

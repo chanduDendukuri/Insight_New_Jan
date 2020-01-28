@@ -81,32 +81,48 @@ public class SLP01_SPLASearchTest extends SLPLib{
 							
 							// Select Software  Lic Agreements
 					     	canadaLib.selectSPLADetailsProductCheckBox(data.get("SPLA"));
-							
 					     	// verify search results and select first product
 					     	searchLib.verifysearchResultsPage();
-					     
 					     	// Search for part or product and add to cart : part : 7NQ-00302-MSPLA
 					     	searchLib.searchInHomePage(data.get("SearchText1"));
+					        // Stock only
+							searchLib.removeTheFilterForInStockOnly(data.get("In_Stock_Only"));
+							pipLib.verifyTheManufacturerNumberInProductDetailsPage(data.get("SearchText1"));
+							pipLib.enterQuantityOnProductDetailsPage(data.get("Quantity"));
 					     	commonLib.addToCartAndVerify();
 					     	orderLib.continueToCheckOutOnAddCart();
+					    	canadaLib.verifyPlaceCartLabel();
 					     	cartLib.verifyItemInCartByInsightPart(data.get("SearchText1"));
+					     	Thread.sleep(3000);
+					     	int itemnumber=Integer.valueOf(data.get("Item_Number1"));
+					     	verifyCartPageAndPartDetails(itemnumber-1);
 					     	
 					        // search for product and add to cart  : Workstations
 							searchLib.searchInHomePage(data.get("SearchText2"));
+							searchLib.verifyTheResultsForSearchTerm(data.get("SearchText2"));
+							// in-stock filter verification
+							//searchLib.verifyFilterBreadCrumb(data.get("In_Stock_Only"));
+							pipLib.getFirstProdDescription();
 							pipLib.selectFirstProductAddToCartAndVerifyCart();
+							//int itemnumber1=Integer.valueOf(data.get("Item_Number1"));
+							verifyCartPageAndPartDetails(itemnumber);
+							cartLib.verifySLPAProductOnCart(data.get("SearchText1"));
+							
 							// Verify Non Spla Items Message
 							canadaLib.VerifyNonSplaItemsMessage();
 							///	Remove Non Spla Items from the Cart
+							//deleteParticularItemInCart
 							commonLib.deleteItemFromCart();
 							
-							// Verify Usage Period
-							canadaLib.verifyReportingUsagePeriod();
+							canadaLib.verifyReportingUsagePeriodWarningMessage();
 							//Proceed to checkout
 							 orderLib.proceedToCheckout();
 							 orderLib.clickOnAdditionalInfoContinueButton();
 							 orderLib.clickContinueOnLineLevelInfo();   // Click continue on Line level Info
-							 orderLib.shippingBillPayContinueButton();  // Click continue on  shipping address 
-							 orderLib.shippingBillPayContinueButton();  // Billing address continue button
+							 canadaLib.verifySBP();
+							 orderLib.clickContinueOnShippingAddress();
+							 //orderLib.shippingOptionsCarrierSelection();
+							 orderLib.billingAddressContinueButton(); // Billing address continue button
 							 orderLib.addNewCardInPayment(data.get("cardNumber"), data.get("cardName"), data.get("month"), data.get("year"),data.get("poNumebr"),data.get("POReleaseNumber"));
 							 orderLib.clickOnReviewOrderButton();  // Click Review order button
 							// Place Order
@@ -114,7 +130,7 @@ public class SLP01_SPLASearchTest extends SLPLib{
 							orderLib.placeOrderAndVerifyReceiptOrderAndDate(summaryAmount);
 							//Verify Receipt
 							orderLib.verifyReceiptVerbiage();
-							orderLib.clickOrderDetailsLinkOnReceiptPage();
+							//orderLib.clickOrderDetailsLinkOnReceiptPage();
 							// Logout 
 							commonLib.clickLogOutLink(data.get("Logout"));
 							

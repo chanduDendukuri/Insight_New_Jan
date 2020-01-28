@@ -668,7 +668,7 @@ public class LineLevelInfoLib extends LineLevelInfoObj{
 		if(isElementPresent(TWO_LINE_ITEMS_LABEL,"Line items label")){
 			reporter.SuccessReport("Verify line items", "Line itmes exists", "");
 		}else{
-			reporter.failureReport("Verify line items", "Line itmes does exists", "");
+			reporter.failureReport("Verify line items", "Line itmes does exists", "",driver);
 		}
 	}
 	
@@ -681,7 +681,7 @@ public class LineLevelInfoLib extends LineLevelInfoObj{
 		if(element.size()==itemNum){
 			reporter.SuccessReport("Verify Split into individual lines in Order Details Section", " individual lines Exists", "");
 		}else{
-			reporter.failureReport("Verify Split into individual lines in Order Details Section", " individual lines does not Exists", "");
+			reporter.failureReport("Verify Split into individual lines in Order Details Section", " individual lines does not Exists", "",driver);
 		}
 	}
 	
@@ -695,7 +695,7 @@ public class LineLevelInfoLib extends LineLevelInfoObj{
 		if(element.size()==itemNum){
 			reporter.SuccessReport("Verify cart bundles in the order details page", " Bundle items Exists", "");
 		}else{
-			reporter.failureReport("Verify cart bundles in the order details page", " Bundle items does not Exists", "");
+			reporter.failureReport("Verify cart bundles in the order details page", " Bundle items does not Exists", "",driver);
 		}
 	}
 	
@@ -708,10 +708,10 @@ public class LineLevelInfoLib extends LineLevelInfoObj{
 	public void verifyBundleIsAddedToCart(String bundle) throws Throwable{	
 		waitForVisibilityOfElement(getBundlesAdded(bundle),"Bundle");
 		if(isElementPresent(getBundlesAdded(bundle),"Bundle",true)) {
-			reporter.SuccessReport("Verify the Bundle  on Cart", "Bundle Field Exists", "");
+			reporter.SuccessReport("Verify  Bundle ", "Bundle field exists", "Bundle: "+bundle);
 		}
 		else {
-			reporter.failureReport("Verify the Bundle  on Cart", "Bundle Field Does Not Exist", "");
+			reporter.failureReport("Verify  Bundle  on Cart", "Bundle field Not Exist", "",driver);
 		}
 	  }
 	
@@ -740,6 +740,8 @@ public class LineLevelInfoLib extends LineLevelInfoObj{
 		commonLib.spinnerImage();
 		if(isElementPresent(OrderObj.PROCEED_TO_CHECKOUT, "Proceed to checkout") && isEnabled(OrderObj.PROCEED_TO_CHECKOUT, "Proceed to checkout")){
 			clickUntil(OrderObj.PROCEED_TO_CHECKOUT, OrderObj.ORDER_ITEM_INFO_LABEl, "Proceed to checkout");
+			reporter.failureReport("Verify the Proceed to checkout button visibility","Proceed to checkout is visible and clicked","Clicked on Proceed to checkout ",driver);
+
 		}else{
 			reporter.failureReport("Verify the Proceed to checkout button visibility","Proceed to checkout is not visible or disabled","",driver);
 		}

@@ -28,12 +28,12 @@ public class SearchLib extends CommonObj {
 	 */
 	public void clickOnSecondaryHeaderAndNavigate(String header, String headerlist) throws Throwable {
 
-		click(getSecondaryHeaderMenu(header), "Secondary header link");
-		click(getSecondaryMenuListItems(headerlist), "Secondary header links list");
+		click(getSecondaryHeaderMenu(header), "Secondary header link "+header);
+		click(getSecondaryMenuListItems(headerlist), "Secondary header links list "+headerlist);
 		By BreadCrumb = productsDisplayInfoObj.getBreadCrumbs(headerlist);
 
 		if (isElementPresent(BreadCrumb, "Bread Crumb")) {
-			reporter.SuccessReport("Verify the navigation", "Sucessfully Navigated to : " ,headerlist);
+			reporter.SuccessReport("Verify the navigation", "Sucessfully Navigated to : " ,headerlist +" page");
 		} else {
 			reporter.failureReport("Verify the navigation", "Navigation is not Sucessfully : " , headerlist);
 		}
@@ -47,12 +47,12 @@ public class SearchLib extends CommonObj {
 	 * @throws Throwable
 	 */
 	public void selectTheProductByTypeAndVerifyNavigation(String typeOfProduct) throws Throwable {
-		click(productsDisplayInfoObj.getProductByType(typeOfProduct), "Product type ");
+		click(productsDisplayInfoObj.getProductByType(typeOfProduct), "Product type "+typeOfProduct);
 		By BreadCrumb = productsDisplayInfoObj.getBreadCrumbs(typeOfProduct);
 		if (isElementPresent(BreadCrumb, "Bread Crumb")) {
-			reporter.SuccessReport("Verify the navigation", "Sucessfully Navigated to : " , typeOfProduct);
+			reporter.SuccessReport("Verify the navigation", "Sucessfully Navigated to search results page " , typeOfProduct);
 		} else {
-			reporter.failureReport("Verify the navigation", "Navigation is not Sucessfully : " , typeOfProduct);
+			reporter.failureReport("Verify the navigation", "Navigation is not Sucessfull " , typeOfProduct);
 		}
 	}
 
@@ -77,7 +77,7 @@ public class SearchLib extends CommonObj {
 	 * @param ProductName
 	 * @throws Throwable
 	 */
-	public void navigateToProductSearchResultsAndSearchProduct(String header, String headerlist,String typeOfProduct,String ProductName) throws Throwable{
+	public void shopAndSearchProduct(String header, String headerlist,String typeOfProduct,String ProductName) throws Throwable{
 		clickOnSecondaryHeaderAndNavigate(header, headerlist);
 		selectTheProductByTypeAndVerifyNavigation(typeOfProduct);
 		Thread.sleep(3000);
@@ -213,7 +213,7 @@ public class SearchLib extends CommonObj {
 	 * @throws Throwable
 	 */
 	public void searchInHomePage(String productName) throws Throwable {
-		Thread.sleep(5000);
+		Thread.sleep(3000);
 		waitForVisibilityOfElement(SEARCH,"Search Field");
 		typeForSearchingProduct(SEARCH,productName,"Search Text: "+productName);
 		WebElement ele=driver.findElement(SEARCH);
@@ -275,7 +275,7 @@ public class SearchLib extends CommonObj {
 							"Verification is sucessfull. Expected filter is:" , result);
 				} else if (filter.equals("Show only in-stock items") && result.equals("In Stock Only")) {
 					reporter.SuccessReport("Verify the results for search term in products display page ",
-							"Verification is sucessfull. Expected filter is:" , result);
+							"Verification is sucessfull. Expected filter is:" , "filter : "+result);
 				}
 			}
 		} else {
@@ -628,9 +628,9 @@ public class SearchLib extends CommonObj {
 	 */
 	public void verifyContractAllDisplayed() throws Throwable{
 		if(isVisible(CONTRACT_DD, "Contract drop -down in Home page")){
-			reporter.SuccessReport("Verify the contract drop down displayed","Contract drop down displayed in the home page","");
+			reporter.SuccessReport("Verify the contract drop down displayed","Default Contract: Contract – All","Default Contract: Contract – All");
 		}else{
-			reporter.failureReport("Verify the contract drop down displayed","Contract drop down is not displayed in the home page","");
+			reporter.failureReport("Verify the contract drop down displayed","Default Contract: Contract – All is not displayed in the home page","");
 		}
 	}
 	
@@ -639,10 +639,10 @@ public class SearchLib extends CommonObj {
 	 *  Open market price availability and your price availability.
 	 * @throws Throwable
 	 */
-	public void clickMorePricesAndViewContracts() throws Throwable{
+	public void clickMorePricesAndViewContracts(String itemNum) throws Throwable{
 		String result = null;
 		boolean flag = true;
-		click(productsDisplayInfoObj.MORE_PRICES, "More prices available link");
+		
 		
 		if (flag) {
 			List<WebElement> myList = driver.findElements(productsDisplayInfoObj.ALL_CONTRACT_PRICES);
@@ -650,19 +650,17 @@ public class SearchLib extends CommonObj {
 			for (int i = 0; i < myList.size(); i++) {
 				all_elements_text.add(myList.get(i).getText());
 				result = myList.get(i).getText();
+				
 				if(myList.size()<1 ){
-					reporter.failureReport("Verify the contract prices displayed ",
-							"contract price are not displayed ","");
+					reporter.failureReport("Verify the contract prices displayed ","contract price are not displayed ","");
 				}else{
-					reporter.SuccessReport("Verify the contract prices displayed ",
-							"contract price is displayed as : " , result);
+					reporter.SuccessReport("Verify the contract prices displayed ","contract price is displayed as : " , result);
 				}
 				
 				if (isElementPresent(productsDisplayInfoObj.OPEN_MARKET, "Open Market")) {
 					String openMarket = getText(productsDisplayInfoObj.OPEN_MARKET, "Open Market"); // To get the open market price to verify
 					if(result.contains(openMarket)){
-					reporter.SuccessReport("Verify the Open Market price",
-							"Open Market price is displayed as : " , openMarket);
+					reporter.SuccessReport("Verify the Open Market price","Open Market price is displayed as : " , openMarket);
 				   }
 				}
 				else if (isElementPresent(productsDisplayInfoObj.YOUR_PRICE, "Your price")) {   // verifying your price is present 
@@ -676,6 +674,83 @@ public class SearchLib extends CommonObj {
 			reporter.failureReport("Verify the Open Market price", "Open Market price is not displayed","");
 		}
 	}
+	
+
+	public void clickOnMorePrices() throws Throwable {
+		Thread.sleep(4000);
+		List<WebElement> myList1 = driver.findElements(productsDisplayInfoObj.LIST_OF_ITEMS_SEARCH_RESULTS);
+		for (int i = 0; i < myList1.size(); i++) {
+			if(isVisibleOnly(productsDisplayInfoObj.more_Prices(Integer.toString(i)), "More prices link")) {
+				click(productsDisplayInfoObj.more_Prices(Integer.toString(i)), "More prices available link");
+			break;
+			}else {
+				// do nothing
+			}
+		}
+	}
+	/**
+	 * Method is to get all contracts in the contract prices popup
+	 * @throws Throwable
+	 */
+	
+	public void allContractPricesPopup() throws Throwable {
+		String result=null;
+		if(isVisibleOnly(productsDisplayInfoObj.ALL_CONTRACT_PRICES, "contract prices")) {
+			List<WebElement> myList = driver.findElements(productsDisplayInfoObj.ALL_CONTRACT_PRICES);
+			List<String> all_elements_text = new ArrayList<>();
+			reporter.SuccessReport("Verify that there are multiple Contract Prices", "	There are multiple Contract Prices", "Number of contract prices : "+myList.size());
+			for (int i = 0; i < myList.size(); i++) {
+				all_elements_text.add(myList.get(i).getText());
+				result = myList.get(i).getText();
+					reporter.SuccessReport("Available Contracts ","contracts Exists ","Contract: "+result);
+			}	
+		}else {
+			reporter.failureReport("Available contracts", "contracts does not exists", "", driver);
+		}
+	}
+	
+	public void verifyDefaultUSContractInAllContractPricesPopup(String status) throws Throwable {
+		switch (status) {
+		case "checked":
+		if(isCheckBoxSelected(productsDisplayInfoObj.US_CONTRACTS_RADIO_BTN)) {
+			reporter.SuccessReport("Verify Defaulted Contract", "Defaulted Contract is USC", "Defaulted Contract: U.S. COMMUNITIES IT PRODUCTS & SERVICES");
+		}else {
+			reporter.failureReport("Verify Defaulted Contract", "Defaulted Contract is not USC", "",driver);
+		}
+		break;
+	case "unchecked":
+		if(!isCheckBoxSelected(productsDisplayInfoObj.US_CONTRACTS_RADIO_BTN)) {
+			
+			reporter.SuccessReport("Verify Defaulted Contract", "Defaulted Contract is not  U.S. COMMUNITIES", "");
+		}else {
+			reporter.failureReport("Verify Defaulted Contract", "Defaulted Contract is USC", "",driver);
+		}
+	default:
+		break;
+	}
+	  }
+	
+	/**
+	 * 
+	 * @param contract
+	 * @throws Throwable
+	 */
+	public void selectContractOnAllContractPricesPopup(String contract) throws Throwable {
+		if(isVisibleOnly(productsDisplayInfoObj.defaultContractRadioButton(contract), "contract")) {
+			click(productsDisplayInfoObj.defaultContractRadioButton(contract), "Web Radio Filter Option: "+contract, contract);
+		}else {
+			reporter.failureReport("verify contract present", contract+" does not exists", "", driver);
+		}
+	}
+	public void increaseQuantity(String quantity) throws Throwable {
+		if(isVisibleOnly(productsDisplayInfoObj.QUANTITY_CONTRACT_ALL, "quantity")){
+			clearData(productsDisplayInfoObj.QUANTITY_CONTRACT_ALL);
+			type(productsDisplayInfoObj.QUANTITY_CONTRACT_ALL,quantity,"quantity");
+		}else {
+			reporter.failureReport("verify quantity exists", "Quantity field does not exists", quantity, driver);
+		}
+	}
+	 
 	
 	/**
 	 * This method is to verify the default contract price displayed.
@@ -958,7 +1033,7 @@ public class SearchLib extends CommonObj {
 			click(ADD_TO_ORDER, "Add to oreder button","ADD TO ORDER");
 		}
 		
-		if(isElementPresent(VIEW_CART_PRODUCT_GROUP, "View cart Link")){
+		if(isVisibleOnly(VIEW_CART_PRODUCT_GROUP, "View cart Link")){
 			click(VIEW_CART_PRODUCT_GROUP, "View cart Link","View cart Link");
 			reporter.SuccessReport("verify View cart Link on Items added to cart Popup on Company standards", "View cart Link is visible and clicked","");
 		}else{
@@ -1092,7 +1167,7 @@ public class SearchLib extends CommonObj {
 	public void verifysearchResultsPage() throws Throwable {
 		waitForVisibilityOfElement(SEARCH_RESULTS_PAGE,  "Search results");
 		if (isElementPresent(SEARCH_RESULTS_PAGE, "Search results")) {
-			reporter.SuccessReport("Verify search results page", "Search results page verified successfully", "");
+			reporter.SuccessReport("Verify search results page", "Search results page displayed", "Search results ");
 		} else {
 			reporter.failureReport("Verify search results page", "Search results page not verified successfully", "");
 		}
@@ -1338,6 +1413,48 @@ public class SearchLib extends CommonObj {
 		}
 	}
 
+	
+	/**
+	 * 
+	 * @param contract
+	 * @throws Throwable
+	 */
+	public void verifydefaultcontractonAllcontractpopup(String contract) throws Throwable {
+		if(isVisibleOnly(productsDisplayInfoObj.defaultContractRadioButton(contract), "contract")) {
+			if(isCheckBoxSelected(productsDisplayInfoObj.defaultContractRadioButton(contract))) {
+				reporter.SuccessReport("verify default selected contract", "Dfault contract is : ", contract);
+			}
+		}else {
+			reporter.failureReport("verify contract present", contract+" is not default contract", "", driver);
+		}
+	}
+	/**
+	 * method  is to verify Open market and your price in contract all popup
+	 * @param contract
+	 * @throws Throwable
+	 */
+	public void verifyYourPriceInAllcontractPopup(String contract) throws Throwable {
+		
+		if(isElementPresent(productsDisplayInfoObj.defaultContractRadioButton(contract),"contract label")) {
+			reporter.SuccessReport("Verify that "+contract+" exists", contract+ " Exists", contract);
+		}else{
+			reporter.failureReport("Verify that "+contract+" exists", contract+ " does not exists", "",driver);
+		}
+	}
+	
+	/**
+	 * Method is to verify your price not available
+	 * @param contract
+	 * @throws Throwable
+	 */
+	public void verifyYourPriceDoesNotExists(String contract) throws Throwable {
+		if(!isElementPresent(productsDisplayInfoObj.defaultContractRadioButton(contract),"contract label")) {
+				reporter.SuccessReport("Verify that "+contract+" does not exists", contract+ " does not exists", "");
+			}else{
+				reporter.failureReport("Verify that "+contract+" exists", contract+ " Exists","",driver);
+			}
+	}
+	
 }
  
 

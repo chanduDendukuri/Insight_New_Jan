@@ -7,6 +7,7 @@ import java.util.List;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 
 import com.insight.ObjRepo.CanadaObj;
 import com.insight.ObjRepo.CartObj;
@@ -276,7 +277,15 @@ public class QuoteHistoryLib extends QuoteHistoryObj {
 	public void descInAdvSearch() throws Throwable {
 	
 		if (isElementPresent(DESCENDING, "invoice number ")) {
-			click(DESCENDING, "Click on quote number ");			
+			/*
+			 * Actions action = new Actions(driver); WebElement elem =
+			 * driver.findElement(DESCENDING); action.moveToElement(elem).perform();
+			 */
+			
+			((JavascriptExecutor) driver).executeScript("window.scrollBy(0, +420)", "");
+			((JavascriptExecutor) driver).executeScript("window.scrollBy(0, -350)", "");
+			
+			click(radiobutton_descending, "Descending prder radio button");			
 		}
 
 	}

@@ -16,7 +16,7 @@ public class ProductDisplayInfoLib extends productsDisplayInfoObj {
 	CommonLib commonLib = new CommonLib();
 	CartLib cartLib = new CartLib();
 	OrderLib orderLib = new OrderLib();
-
+    CanadaLib canadaLib=new CanadaLib();
 	/**
 	 * This method is to fill the Product Research Request details and submit it
 	 * and verify the success message.
@@ -41,8 +41,8 @@ public class ProductDisplayInfoLib extends productsDisplayInfoObj {
 		type(productsDisplayInfoObj.PROD_RESEARCH_PARTNO_TXT_BOX, partNo, "Part number text box");
 		type(productsDisplayInfoObj.PROD_RESEARCH_MANFR_TXT_BOX, mnfr, "Manufacturer text box");
 		type(productsDisplayInfoObj.PROD_RESEARCH_PROD_DESC_TXT_BOX, prodDesc, "Product description text box");
-		click(productsDisplayInfoObj.PRODUCT_REQ_SEND_BTN, "Product Research request screen send button");
-
+		clickUntil(productsDisplayInfoObj.PRODUCT_REQ_SEND_BTN,productsDisplayInfoObj.PROD_REQ_SENT_MSG ,"Product Research request screen send button");
+        //JSClick(productsDisplayInfoObj.PRODUCT_REQ_SEND_BTN, "send button");
 		if (isElementPresent(productsDisplayInfoObj.PROD_REQ_SENT_MSG, "Success message")) {
 
 			reporter.SuccessReport("Verify the success message", "Product Research Request sent successfully", "");
@@ -191,13 +191,13 @@ public class ProductDisplayInfoLib extends productsDisplayInfoObj {
 	public void clickSendWithoutFillingRequestProductAndVerify(String productName) throws Throwable {
 		Thread.sleep(2000);
 		click(productsDisplayInfoObj.PRODUCT_REQ_SEND_BTN, "Product Research request screen send button","Send button");
+		//JSClick(productsDisplayInfoObj.PRODUCT_REQ_SEND_BTN, "send button");
 		if(isElementPresent(productsDisplayInfoObj.ERROR_MSG, "Error message in Product Research Request screen exists")){
 		reporter.SuccessReport("Verify Error Message", "Error message displayed", "Please enter the fields error message");	
 		}else {
 			reporter.failureReport("Verify Error Message", "Error message not displayed","", driver);
 		}
 		click(productsDisplayInfoObj.PRODUCT_REQ_CANCEL_BTN, "Product Research request screen CANCEL button");
-		searchLib.verifyTheResultsForSearchTerm(productName);
 	}
 
 	/**
@@ -252,9 +252,11 @@ public class ProductDisplayInfoLib extends productsDisplayInfoObj {
 		String priceFilter = null;
 		String result = null;
 		boolean flag = true;
+		
 		type(productsDisplayInfoObj.MIN_PRICE, minPrice, "Minimum price");
 		type(productsDisplayInfoObj.MAX_PRICE, maxPrice, "Maximum price");
 		click(productsDisplayInfoObj.PRICE_SUBMIT, "filter price GO button");
+		//JSClick(productsDisplayInfoObj.PRICE_SUBMIT, "filter price GO button");
 		if (flag) {
 			// adding the filter elements to list
 			List<WebElement> myList = driver.findElements(productsDisplayInfoObj.FILTER_ITEM);
@@ -262,13 +264,13 @@ public class ProductDisplayInfoLib extends productsDisplayInfoObj {
 			for (int i = 0; i < myList.size(); i++) {
 				all_elements_text.add(myList.get(i).getText());
 				result = myList.get(i).getText().replace(",", "");
-
 				Thread.sleep(2000);
+				
 				priceFilter = "$" + minPrice.replace(",", "").replace(".00", "") + "-$" + maxPrice;
 				if (result.replace(".00", "").contains(priceFilter)) {
 					Thread.sleep(2000);
 					reporter.SuccessReport("Verify the results for search term in products display page ",
-							"Verification is sucessfull. Expected filter is:", result);
+							"Verification is sucessfull. Expected filter is:", "price filter : "+result);
 				}
 			}
 		} else {
@@ -277,6 +279,13 @@ public class ProductDisplayInfoLib extends productsDisplayInfoObj {
 		}
 	}
 
+	public void verifyListPrice() throws Throwable {
+		if(isVisibleOnly(productsDisplayInfoObj.MIN_PRICE, "min price")&& isVisibleOnly(productsDisplayInfoObj.MAX_PRICE, "Max price")) {
+			reporter.SuccessReport("List Price Range in Narrow Section on Search Results Page", "List Price Range Exists", "");
+		}else {
+			reporter.failureReport("List Price Range in Narrow Section on Search Results Page", "List Price Range does not Exists", "", driver);
+		}
+	}
 	/**
 	 * This method is to click on pagination numbers.
 	 * 
@@ -406,31 +415,16 @@ public class ProductDisplayInfoLib extends productsDisplayInfoObj {
 	 * @throws Throwable
 	 */
 	public void addItemsToProductList(String partNo) throws Throwable {
-		String result = null;
-		boolean flag = true;
 		//click(ADDED_TO_PERSONAL_PROD_LIST, "ADDED TO PERSONAL PRODUCT LIST");
 		if(isVisibleOnly(ADD_ITEMS_TEXTBOX, "items text box")) {
 			reporter.SuccessReport("Verify Personal Product List Page ", "page Exists", "");
 			type(ADD_ITEMS_TEXTBOX, partNo, "Add item(s) to your list");
 			click(ADD_BTN, "Add button","Add button to Add Part to Personal products list");
+			verifyManufacturerPartInPersonalListPage(partNo);
 		}else {
 			reporter.failureReport("Verify Personal Product List Page ", "page does not Exists", "");
 		}
-		if (flag) {
-			List<WebElement> myList = driver.findElements(MFR_PART);
-			List<String> all_elements_text = new ArrayList<>();
-			for (int i = 0; i < myList.size(); i++) {
-				all_elements_text.add(myList.get(i).getText());
-				result = myList.get(i).getText();
-				if (result.contains(partNo)) {
-					reporter.SuccessReport("Verify the part number", "Product Exists and Added to cart","part Number : "+ result);
-				}
-			}
-		} else {
-			reporter.failureReport("Verify the part number",
-					"Part number verification is not successful. expected is : " + partNo + "Actual is : " + result,
-					"");
-		}
+		
 	}
 	
 	public void ClickAddedItemsToPersonalProductList() throws Throwable {
@@ -471,9 +465,10 @@ public class ProductDisplayInfoLib extends productsDisplayInfoObj {
 		//waitForVisibilityOfElement(ADDED_TO_CART_PPC_PART_NO, "Part number");
 		cartLib.verifyCartBreadCrumb();
 		String partNo = getText(ADDED_TO_CART_PPC_PART_NO, "part number in the personal product list cart");
+		String actualpartNo=partNo.replaceAll("Insight Part #:", "").trim();
 		List<String> prodDesc1=orderLib.getProductDescriptionOfCartProduct();
 		List<String> totalPrice1=orderLib.getCartProductTotalPrice();
-		if (partNo.replace("Insight Part # :", "").equals(partNumber)) {
+		if ((actualpartNo).equals(partNumber)) {
 			reporter.SuccessReport("Verify the part added to cart ", "Part sucessfully added to cart. number is : ","Part Number : "+partNo+ "  prod Description : "+prodDesc1.get(0)+ " Quantity : 1" +"Total Price: "+totalPrice1.get(0));
 		} else {
 			reporter.failureReport("Verify the part added to cart ", "Part is not added to cart.", "",driver);
@@ -540,9 +535,9 @@ public class ProductDisplayInfoLib extends productsDisplayInfoObj {
 	public void verifyContractInCartScreen(String contractName) throws Throwable {
 		String actualcontractName = getText(CART_CONTRACT_NAME, "contract name");
 		if (contractName.contains(actualcontractName)) {
-			reporter.SuccessReport("Verify the contract name", " Contract name verified successfully ", "");
+			reporter.SuccessReport("Verify the contract name", " Contract name verified successfully in cart page and is same as selected", actualcontractName);
 		} else {
-			reporter.failureReport("Verify the contract name", " Contract name not displayed correctly", "");
+			reporter.failureReport("Verify the contract name", " Contract name not displayed correctly in cart page", actualcontractName,driver);
 		}
 	}
 
@@ -573,6 +568,7 @@ public class ProductDisplayInfoLib extends productsDisplayInfoObj {
 				.replace("\"", "").replace("Mfr. #", "").trim();
 		commonLib.addToCartAndVerify();
 		orderLib.continueToCheckOutOnAddCart();
+		canadaLib.verifyPlaceCartLabel();
 		cartLib.verifyItemInCartByInsightPart(prodMfrNumber);
 	}
 	
@@ -690,7 +686,7 @@ public class ProductDisplayInfoLib extends productsDisplayInfoObj {
 	 * @param mnfNumber
 	 * @throws Throwable
 	 */
-	public void verifyTheManufacturerNumberInProductDetailsPage(String mnfNumber) throws Throwable{
+	public String verifyTheManufacturerNumberInProductDetailsPage(String mnfNumber) throws Throwable{
 		String prodMfrNumber = getText(MFR_NUMBER_PRODUCT_DETAILS_PAGE, "MFR_NUMBER_PRODUCT_DETAILS_PAGE")
 				.replace("\"", "").replace("Mfr. #", "").trim();
 		if(mnfNumber.contains(prodMfrNumber)){
@@ -698,8 +694,53 @@ public class ProductDisplayInfoLib extends productsDisplayInfoObj {
 		}else{
 			reporter.failureReport("Verify manufacturer number in product details page", "Manufacturer number is not displayed correctly", mnfNumber,driver);
 		}
+		return prodMfrNumber;
 	}
-	
+
+	public void deleteSelectedProducts() throws Throwable{
+		List<WebElement> deleteIcon = driver.findElements(deleteProductInfo);
+		List<WebElement> prodDetails = driver.findElements(ProductCompleteDetailsInViewCart);
+		for (int i = 0; i < deleteIcon.size(); i++) {
+			deleteIcon.get(i).click();
+			reporter.SuccessReport("Delete product","Deleted product",prodDetails.get(i).getText()+"Selected product was deleted successfully");
+			if(isVisibleOnly(emptyShoppingCart,"Empty cart")){
+				reporter.SuccessReport("Empty Cart"," All the products are deleted", getText(emptyShoppingCart,"Empty cart"));
+			}
+		}
+
+	}
+
+	public void getProductManfNumber(String mfn) throws Throwable{
+
+		List<WebElement> mylist = driver.findElements(MFR_NUMBER_Cart_DETAILS_PAGE);
+		List<WebElement> prodDetails = driver.findElements(ProductCompleteDetailsInViewCart);
+		List<WebElement> prodPrice = driver.findElements(productTotalPrice);
+		for (int i = 0; i < mylist.size(); i++) {
+			//String mfName = getText(MFR_NUMBER_Cart_DETAILS_PAGE, "EWR Fees");
+			String mfName =	mylist.get(i).getText();
+			String prodName =	prodDetails.get(i).getText();
+			String prodPriceVal =	prodPrice.get(i).getText();
+			reporter.SuccessReport("Product Manufacturer ", "Selected item is added to cart", prodName +" and its total price value is " +prodPriceVal);
+			}
+		}
+public void getSummaryCartDetails() throws Throwable{
+		reporter.SuccessReport("Cart Summary details ","Selected product summary details are ",getText(viewSummaryDetails,"Summary Details"));
+}
+
+	public void enterQuantityForProductsInViewCartPage(String data) throws Throwable{
+		//driver.findElement(txtQuanityNumberInWarrentyPage).clear();
+		/*clearData(txtQuanityNumberInWarrentyPage);
+		type(txtQuanityNumberInWarrentyPage,data,"Quanity");*/
+
+		clearData(productsDisplayInfoObj.txtQuanityNumberInWarrentyPage);
+		type(productsDisplayInfoObj.txtQuanityNumberInWarrentyPage,data,"Quantity");
+
+	}
+
+	public String getManfNumberFromWarrentiesPage(String index) throws Throwable{
+		return getText(MFR_NUMBER_warrenty_PAGE(index),"Manufacturer Number");
+	}
+
 	/**
 	 * Method is to verify the manufacturer number in the overview tab of product details page.
 	 * @param mfrNumber
@@ -830,7 +871,7 @@ public class ProductDisplayInfoLib extends productsDisplayInfoObj {
 		String prodPrice=null;
 		if(isElementVisible(FIRST_PRODUCT_PRICE, 3, "Product price")) {
 			prodPrice= getText(FIRST_PRODUCT_PRICE, "List price");
-			reporter.SuccessReport("Verify the List Price on Search Results Page", "Product list Price exists", prodPrice);
+			reporter.SuccessReport("Verify the List Price on Search Results Page", "Product list Price exists", "Price for 1st Product: "+prodPrice);
 		}else {
 			reporter.failureReport("Verify the List Price on Search Results Page", "Product price does not exists", prodPrice, driver);
 		}
@@ -907,6 +948,9 @@ public class ProductDisplayInfoLib extends productsDisplayInfoObj {
 	 */
 	public void clickOnWarrantiesTabOnProductDetailsPage() throws Throwable{
 		click(WARRANTIES_PROD_DETAILS, "warranties");
+	}
+	public void clickOnAddToCartButtonInWarrentiesPage(String index ) throws Throwable{
+		click(btnAddToCartinWarrentiesPage(index),"Add to cart","Clicked on "+index +" Add to cart button");
 	}
 	
 	/**
@@ -1206,7 +1250,7 @@ public class ProductDisplayInfoLib extends productsDisplayInfoObj {
      * @throws Throwable
      */
     public String getPartNumberInSearchResultsPage() throws Throwable {
-    	String partNumber = getText(productsDisplayInfoObj.getPartNumber(1), "get product number");
+    	String partNumber = getText(productsDisplayInfoObj.getPartNumber(0), "get product number");
 		System.out.println(partNumber);
 		if (!partNumber.isEmpty()) {
 			reporter.SuccessReport("Verify the product part Number", "Product part Number is displayed as : ",
@@ -1255,7 +1299,86 @@ public class ProductDisplayInfoLib extends productsDisplayInfoObj {
     				}
         	}
 
-
+	public void verifyCartPageAndPartDetails() throws Throwable {
+		List<String> prodDesc1 = orderLib.getProductDescriptionOfCartProduct();
+		List<String> totalPrice1 = orderLib.getCartProductTotalPrice();
+		List<String> unitPrice1=orderLib.getCartProductUnitPrice();
+		List<String> quantity=orderLib.getCartProductQuantity();
+		List<String> stock=orderLib.getCartProductStock();
+		if (prodDesc1.get(0)!=null && totalPrice1!=null) {
+			reporter.SuccessReport("Verify the part added to cart ", "Part added to cart and cart details are: ",
+					 "  prod Description : " + prodDesc1.get(0) + " Quantity : "+quantity
+							+ "Total Price: " + totalPrice1.get(0)+ " Unit price: "+unitPrice1+ "Stock :"+stock);
+		} else {
+			reporter.failureReport("Verify the part added to cart ", "Part is not added to cart.", "", driver);
+		}
+   }
+	
+	
+	public void contractNameOfFirstproduct() throws Throwable {
+		Thread.sleep(3000);
+		if(isVisibleOnly(CONTRACT_IN_SEARCH_RESULTS, "contract in search results")) {
+			String contract=getText(CONTRACT_IN_SEARCH_RESULTS, "contract");
+			if(contract.startsWith("US ")) {
+				reporter.failureReport("Contract of the first part in Search Result Exists and Value Returned", "USD is default contract", "", driver);
+			}else {
+				reporter.SuccessReport("Contract of the first part in Search Result Exists and Value Returned", "Contract of the first part in Search Result Exists and Value Returned", "contract of first product: "+contract);
+			}
+			
+		}else {
+			reporter.failureReport("Contract of the first part in Search Result Exists not viible", "Contract not visisble", "", driver);
+		}
+	}
+	
+	/**
+	 * Method is to verify the open market price in search results page
+	 * @throws Throwable
+	 */
+	public void verifyOpenMarketOnSearchResultsPage() throws Throwable {
+		if(isVisibleOnly(LIST_OF_ITEMS_SEARCH_RESULTS, "search results")) {
+			List<WebElement> myList = driver.findElements(LIST_OF_ITEMS_SEARCH_RESULTS);
+			  for (int i = 0; i < myList.size(); i++) {
+			String partNumber = getText(productsDisplayInfoObj.getPartNumber(i), "get product number");
+			String openMarketLabel=getText(openMarketLabelSearchResults(i), "open market");
+			String price = getText(productsDisplayInfoObj.getProductPrice(i), "get product price");
+			if (!partNumber.isEmpty()&& openMarketLabel.equals("Open Market Price")) {
+				reporter.SuccessReport("Verify Open Market Price", "Open Market Price exists",partNumber +", "+openMarketLabel+ "Price : "+price);
+			} else {
+				reporter.failureReport("Verify Open Market Price", "Open Market Price does not exists", "",driver);
+			}
+		}
+	 }
+ }
+	
+	/**
+	 * Method is to enter quantity
+	 * @param quantity
+	 * @throws Throwable
+	 */
+	public void enterQuantityOnProductDetailsPage(String quantity) throws Throwable {
+		if(isVisibleOnly(QUANTITY, "QUANTITY")) {
+			typeOnly(QUANTITY, quantity, "quantity");
+		}else {
+			reporter.failureReport("verify quantity exists", "Quantity field does not exists", "", driver);
+		}
+		
+	}
+	
+	public void verifyCartPageAndPartDetailsForRecentlyItem() throws Throwable {
+		String prodDesc1 = orderLib.getProductDescriptionOfCartProductForRecentlyAddedItem();
+		String totalPrice1 = orderLib.getCartProductTotalPriceForRecentlyAddedItem();
+		String unitPrice1=orderLib.getCartProductUnitPriceForRecentlyAddedItem();
+		String quantity=orderLib.getCartProductQuantityForRecentlyAddedItem();
+		String stock=orderLib.getCartProductStockForRecentlyAddedItem();
+		if (prodDesc1!=null && totalPrice1!=null) {
+			reporter.SuccessReport("Verify the part added to cart ", "Part added to cart and cart details are: ",
+					 "  prod Description : " + prodDesc1 + " Quantity : "+quantity
+							+ "Total Price: " + totalPrice1+ " Unit price: "+unitPrice1+ "Stock :"+stock);
+		} else {
+			reporter.failureReport("Verify the part added to cart ", "Part is not added to cart.", "", driver);
+		}
+   }
+	
 }
   
 	

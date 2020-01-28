@@ -15,6 +15,7 @@ import com.insight.Lib.ProductDetailLib;
 import com.insight.Lib.ProductDisplayInfoLib;
 import com.insight.Lib.SearchLib;
 import com.insight.Lib.ShipBillPayLib;
+import com.insight.ObjRepo.CMTObj;
 import com.insight.accelerators.ReportControl;
 import com.insight.accelerators.TestEngineWeb;
 import com.insight.googledrive.ReportStatus;
@@ -60,10 +61,24 @@ public class EUF09_FCTWebEndDisplayMyContactNotificationsTest extends EndUserFea
 						cmtLib.clickOnTheWebGroup(data.get("WebGrp_Name"));
 						// select Contacts and Notifications
 						cmtLib.hoverOnManageWebGroupsAndSelectOptions(data.get("Manage_Web_Grp_Options"));
+						cmtLib.deleteClientNotificationBeforeAdd(data.get("Rep_Email"));
+
 						cmtLib.verifySalesRepAreDisplayed();
 						cmtLib.addNewSalesRep(data.get("Rep_Email"));
 						cmtLib.verifyNewSalesRepAdded(data.get("Rep_Name"));
 						// create client notifications
+						String s1=null;
+						if(cmtLib.verifyCheckBoxSelectedForFourthElement())
+						{
+							boolean a = cmtLib.verifyCheckBoxSelectedForSecondElement();
+							 s1=Boolean.toString(a);
+							reporter.SuccessReport("Display on web check box ", "Display on web check is selected", s1);
+						}else{
+							click(CMTObj.chkBxWebElement4,"Selecting check box","CheckBox Selection");
+							click(CMTObj.icnSaveButtonForFourthRecord,"Save button","Save Button");
+							reporter.SuccessReport("Display on web check box ", "Display on web check is selected", s1);
+						}
+						
 						cmtLib.createClientNotification(data.get("Rep_Email"));
 						// Login as user selected
 						cmtLib.hoverOnManageWebGroupsAndSelectOptions(data.get("Manage_Web_Grp_Options2"));
@@ -73,7 +88,7 @@ public class EUF09_FCTWebEndDisplayMyContactNotificationsTest extends EndUserFea
 						canadaLib.clickOnSideMenuSelectAccountToolOptions(data.get("Tools_Menu"),
 								data.get("Tools_Menu_DD"));
 						cmtLib.loginVerification(data.get("ContactName"));
-						
+						cmtLib.verifyRepEmailInSalesPage(data.get("Rep_Email"));
 						commonLib.clickLogOutLink(data.get("Logout_Header"));
 						cmtLib.navigateBackToCMT();
 						cmtLib.hoverOnManageWebGroupsAndSelectOptions(data.get("Manage_Web_Grp_Options"));

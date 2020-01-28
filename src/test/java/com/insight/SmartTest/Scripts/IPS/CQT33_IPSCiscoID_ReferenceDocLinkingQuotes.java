@@ -54,7 +54,7 @@ public class CQT33_IPSCiscoID_ReferenceDocLinkingQuotes extends HomeLib {
 						copyAllContractstoAllLines();
 						clickDoneButton();
 						clickUpdateCosting();
-						driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+				
 						//clickSideBarSmart();
 						clickonSaveasQuote();
 						enterCancelButtonInPoupHdr();
@@ -68,13 +68,15 @@ public class CQT33_IPSCiscoID_ReferenceDocLinkingQuotes extends HomeLib {
 						selectDDoptionFromHistoryDD(data.get("HistoryOption"));
 						String QuoteNumberDisplayed= getQuoteNUmFromDocumentFlowPopup(QuoteNum1);
 						String ReferenceNumberDisplayed = getReferenceNUmFromDocumentFlowPopup(data.get("RefNUmber"));
-						if(data.get("RefNUmber")==ReferenceNumberDisplayed){
-							 reporter.SuccessReport("Doc Ref number in History Document Flow'", "Exists as Expected","");
+						if(data.get("RefNUmber").equals(ReferenceNumberDisplayed)){
+							 reporter.SuccessReport("Actual Doc Ref number", "Actual Doc",data.get("RefNUmber"));
+								
+							 reporter.SuccessReport("Doc Ref number in History Document Flow'", "Exists as Expected",ReferenceNumberDisplayed);
 						} else {
 							reporter.failureReport("Doc Ref number in History Document Flow'", "Does not Match with Expected", "Actual Doc Ref #:"+data.get("RefNUmber")+"-- Expected Doc Ref#: "+ReferenceNumberDisplayed,driver);
 						
 						}
-						if(QuoteNum1==QuoteNumberDisplayed){
+						if(QuoteNum1.equals(QuoteNumberDisplayed)){
 							 reporter.SuccessReport("Quote number in History Document Flow'", "Exists as Expected","");
 						} else {
 							reporter.failureReport("Quote number in History Document Flow'", "Does not Exist", "Actual Quote #:"+QuoteNum1+"Expected Quote#:"+QuoteNumberDisplayed,driver);
@@ -83,7 +85,7 @@ public class CQT33_IPSCiscoID_ReferenceDocLinkingQuotes extends HomeLib {
 						closeDocumenflowpopup();
 						clickSideBarSmart();
 						clickClosthedocument(QuoteNum1);
-						//clickYesButtontocloseDocument();	
+						clickYesButtontocloseDocument();	
 						System.out.println("Test completed");
 					}  catch (Exception e) {
 						ReportStatus.blnStatus = false;

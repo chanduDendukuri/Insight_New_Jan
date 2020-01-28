@@ -4,6 +4,7 @@ package com.insight.SmartTest.Lib;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -864,6 +865,7 @@ public void deSelectvaluefromotherGroupingDropdown(String option) throws Throwab
 	public void clickSaveorderwithoutAttachment() throws Throwable {
 		waitForVisibilityOfElement(NOPOATTACHEDPOPUP, "No PO Attached POPUP");
 		click(SAVERORDERWITHOUTATTACHMENTBUTTON, "Save Order without Attachment Button");
+		loadingSymbol();
 	}
 
 	/**
@@ -1762,7 +1764,7 @@ else {
 
 	public void clickonCopyreportingfieldstoallthelines() throws Throwable {
 		click(HomePage.btncopyreportingfieldstoallthelines, "Copyreportingfieldstoallthelines");
-		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+		
 	}
 
 	public void SelectAdherencetoflooroption(String radiobutton, String AFReason) throws Throwable {
@@ -1836,9 +1838,24 @@ else {
 		al.add(divercityPartner);
 		System.out.println(al);
 		if (al.size() <= 0) {
-			System.out.println("data is not displaying");
+			reporter.failureReport("Reporting fileds","data is not displaying","");
 		} else {
-			System.out.println("Data displayed");
+			reporter.SuccessReport("Reporting fileds","data is  displaying","");
+		}
+	}
+	public void validatetheLineitemfiledsaftersaveasquote(String Reportingfield0,String Reportingfield1) throws Throwable {
+		
+
+		String MICROSOFTGOVERNMENT = getAttributeValue(HomePage.txtUSCOMMEMBERID, "value");
+		String AUTOSCRIPTTEST = getAttributeValue(HomePage.REPORTINGFIELD1, "value");
+		
+
+		
+		if (MICROSOFTGOVERNMENT.equals(Reportingfield0) && AUTOSCRIPTTEST.equals(Reportingfield1) ) {
+			reporter.SuccessReport("Reporting fileds","data is  displaying in MICROSOFTGOVERNMENT & AUTOSCRIPTTEST",MICROSOFTGOVERNMENT+" : "+AUTOSCRIPTTEST);
+			
+		} else {
+			reporter.failureReport("Reporting fileds","data is not displaying","");
 		}
 	}
 	public void enterUSCOMMmember(String text) throws Throwable {
@@ -1899,15 +1916,7 @@ else {
 		return text;
 	}
 
-	public void reportingFiledData() throws Throwable {
-		String reportingFileddataofLine1 = getAttributeValue(HomePage.txtUSCOMMEMBERID, "value");
-		if (reportingFileddataofLine1.equals("Test")) {
-			System.out.println("Test Dispalyed");
-		} else {
-			System.out.println("Test not displayed");
-		}
-
-	}
+	
 
 	public void ClickOnConverToOrder() throws Throwable {
 		click(HomePage.btnConvertToOrder, "ConverToOrder");
@@ -1998,9 +2007,9 @@ else {
 	 * @throws Throwable
 	 */
 
-	public String GetQuoteName() throws Throwable {
+	public String GetandVerifyQuoteName() throws Throwable {
 		String QuoteName = getAttributeByValue(txtQuoteName, "QuoteName");
-		System.out.println(QuoteName);
+		
 		if (QuoteName != null) {
 			reporter.SuccessReport("QuoteName ::", "QuoteName is displayed", "");
 
@@ -2057,7 +2066,7 @@ else {
 	public void AddMaterialOnLineItem(String MaterialID) throws Throwable {
 
 		isElementClickable(AddMeterialInLineItems, 3, "Material Line item");
-		isElementType(AddMeterialInLineItems, MaterialID, 2, "MaterialID");
+		isElementType(AddMeterialInLineItems, MaterialID, 2, MaterialID);
 		// driver.findElement(AddMeterialInLineItems).sendKeys(MaterialID);
 		driver.findElement(AddMeterialInLineItems).sendKeys(Keys.ENTER);
 		loadingSymbol();
@@ -2122,8 +2131,9 @@ else {
 		if (waitForVisibilityOfElement(txtErrorpopup, "Errorpopup"))
 		{ 
 			String Errormesage = getText(txtErrorMesage, "ErrorMessage");
+			System.out.println(Errormesage);
 			if(Errormesage!=null) {
-				reporter.SuccessReport("Error Message: ", "Error messages displayed as ", Errormesage);
+				reporter.SuccessReport("Error Message: ", "Error messages displayed as ", "");
 			}
 			else {
 				reporter.failureReport("Error Message: ", "Error messages not displayed ","");
@@ -2244,8 +2254,9 @@ else {
 	}
 
 	public void VerifyContractPriceShouldbeEqualToYPOO(String contractid, float YP00) throws Throwable {
-		String ContractPrice = getText(getcontractsellingPrice(contractid), "get sell price");
-		if (ContractPrice.equals(YP00)) {
+		String ContractPrice1 = getText(getcontractsellingPrice(contractid), "get sell price");
+		float ContractPrice = Float.parseFloat(ContractPrice1);
+		if (ContractPrice==YP00) {
 			reporter.SuccessReport("Verify that YP00 should equal to contractid",
 					"YP00" + YP00 + " equals to contractid" + ContractPrice + "", "");
 		} else {
@@ -2775,6 +2786,10 @@ public void CancelButtonInUpdateCosting() throws Throwable {
 	public void clickOnTabsInLineItemDetailsPopUp(String Tab) throws Throwable {
 		click(tabsInItemDetailsPopup(Tab), "Item Details Tab::" + Tab + "");
 	}
+	public String getQuantityfromItemDetails() throws Throwable {
+		String Quantity = getAttributeByValue(QuantityInItemdetails, "Quantity");
+		return Quantity;
+	}
 
 	/*
 	 * This method is to Click on Tabs in ItemDetails PopUp
@@ -3238,7 +3253,46 @@ public float getSellPriceFromInlineItemsContract(String contractid) throws Throw
 				"Enter RP5 Text in the Reporting Field as::" + Reprotingfield0text + "");
 
 	}
-
+	public void getTextInreportingfield0(String Expectedtext) throws Throwable {
+		String Actualvalue = getAttributeByValue(REPORTINGFIELD0, "Reporting field0");
+		if(Actualvalue.equals(Expectedtext)) {
+			reporter.SuccessReport("Reporting Field0", "Reporting Field0 value is as expected", "");
+		}
+		else {
+			reporter.failureReport("Reporting Field0", "Reporting Field0 value is not as expected", "");
+			
+		}
+	}
+	public void getTextInreportingfield1(String Expectedtext) throws Throwable {
+		String Actualvalue = getAttributeByValue(REPORTINGFIELD1, "Reporting field1");
+		if(Actualvalue.equals(Expectedtext)) {
+			reporter.SuccessReport("Reporting Field1", "Reporting Field1 value is as expected","");
+		}
+		else {
+			reporter.failureReport("Reporting Field1", "Reporting Field1 value is not as expected", "");
+			
+		}
+	}
+	public void getTextInreportingfield3(String Expectedtext) throws Throwable {
+		String Actualvalue = getAttributeByValue(REPORTINGFIELD3, "Reporting field3");
+		if(Actualvalue.equals(Expectedtext)) {
+			reporter.SuccessReport("Reporting Field3", "Reporting Field3 value is as expected", "");
+		}
+		else {
+			reporter.failureReport("Reporting Field3", "Reporting Field3 value is not as expected", "");
+			
+		}
+	}
+	public void getTextInreportingfield4(String Expectedtext) throws Throwable {
+		String Actualvalue = getAttributeByValue(REPORTINGFIELD4, "Reporting field4");
+		if(Actualvalue.equals(Expectedtext)) {
+			reporter.SuccessReport("Reporting Field4", "Reporting Field4 value is as expected", "");
+		}
+		else {
+			reporter.failureReport("Reporting Field4", "Reporting Field4 value is not as expected", "");
+			
+		}
+	}
 	/**
 	 * Method is to Type Text in Reporting Field four
 	 * 
@@ -3253,9 +3307,9 @@ public float getSellPriceFromInlineItemsContract(String contractid) throws Throw
 	public void getSpecialOrderType(String value) throws Throwable {
 		String optionvalue = getSelectedDropdownOption(ddspecialordertype);
 		if (optionvalue.equalsIgnoreCase(value))
-			System.out.println(" Selected Special ordertype is :" + optionvalue);
+			reporter.SuccessReport("Special Order Type", "Special order type displayed as expected", optionvalue);
 		else {
-			System.out.println("Special order type is not matching");
+			reporter.failureReport("Special Order Type", "Special order type displayed not as expected", "");
 		}
 	}
 
@@ -3447,6 +3501,30 @@ public float getSellPriceFromInlineItemsContract(String contractid) throws Throw
 					"Z0RC Plus YMSM not equalsl to the YP00 rate", "", driver);
 		}
 	}
+	public void VerifyZP00equalToExpectedval(float ZP00, float expval) throws Throwable {
+		
+		DecimalFormat dtime = new DecimalFormat("#.#"); 
+		Double i2= Double.valueOf(dtime.format(expval));
+		
+		if ((ZP00 == i2)) {
+			reporter.SuccessReport("Verify that ZP00 equal expval",
+					"ZP00: " + ZP00 + " equals the expval :" + expval + "value ", "");
+		} else {
+			reporter.failureReport("Verify that ZP00 not equal to expval",
+					"ZP00 not equal to expval", "", driver);
+		}
+	}
+	public void VerifyYP00equalToExpectedval(float YP00, float expval) throws Throwable {
+		DecimalFormat dtime = new DecimalFormat("#.#"); 
+		Double i2= Double.valueOf(dtime.format(expval));
+		if ((YP00 == i2)) {
+			reporter.SuccessReport("Verify that YP00 equal expval",
+					"YP00: " + YP00 + " equals the expval :" + expval + "value ", "");
+		} else {
+			reporter.failureReport("Verify that YP00 not equal to expval",
+					"YP00 not equal to expval", "", driver);
+		}
+	}
 
 	/**
 	 * 
@@ -3466,7 +3544,8 @@ public float getSellPriceFromInlineItemsContract(String contractid) throws Throw
 		}
 	}
 	public void VerifyZPMLMinusZDMLShouldbeEqualToYP001(float ZPML, float ZDML, float YP00) throws Throwable {
-		float ZpmlminusZdml = ZPML - ZDML;
+		double val = 0.03;
+		float ZpmlminusZdml = (float) (ZPML - ZDML-val);
 		if ((YP00 == ZpmlminusZdml)) {
 			reporter.SuccessReport("Verify that ZPML minus  ZDML equals the YP00 value",
 					"ZPML Minus ZDML::" + ZpmlminusZdml + " equals the YP00 :" + YP00 + "value ", "");
@@ -3694,6 +3773,7 @@ public float getSellPriceFromInlineItemsContract(String contractid) throws Throw
 	 */
 	public void verifySpecialOrdertypeisdisabled() throws Throwable {
 		if (isElementPresent(ddspecialordertypeDisabled, "Special Order Type")) {
+			String SpecialOrderType  = getAttributeByValue(ddspecialordertype, "Special order type");
 			reporter.SuccessReport("Confirm that Special Order Type didn't disappear", "Exists as Expected ", "");
 
 		} else {
@@ -3798,14 +3878,21 @@ public float getSellPriceFromInlineItemsContract(String contractid) throws Throw
 		return Price;
 
 	}
-	
+	public void ClickonRefreshbuttonInItemdetails() throws Throwable {
+		click(RefreshIconInItemdetails, "Refresh Icon", "");
+	}
+	public float getexpectedvalue(float Z0RC,float YMSM,float qty) {
+		
+		float expval = Z0RC+(YMSM/qty);
+		return expval;
+	}
 	
 	//NOTE : Privide expectedvalues in an order ,the way it is displaying on grid.
 	public List<String> getPriceValueFromPricingTab(String idValue, String expValue, int val)throws Throwable {
 		Actions action = new Actions(driver);
 		String Price = "";
 		String expecetedTypeCode[] = expValue.split("#");
-		int count =3;
+		int count =1;
 		List<String> all_elements_pricevalue = new ArrayList<>();
 		List<WebElement> elem = getWebElementList(HomePage.PricingTabTable, "Pricing List");
 		int size = elem.size();
@@ -3822,55 +3909,53 @@ public float getSellPriceFromInlineItemsContract(String contractid) throws Throw
 			 * }
 			 */
 		//}
-		
+		label2:
 		if(all_elements_pricevalue.size()!=expecetedTypeCode.length) {
 			//elem.get(1).click();
 			click(txtPricingIDValue(0),"");
-			label1:
+		
+			
 			for(int j=0;j<expecetedTypeCode.length;j++) {
-				label:
+			label :
 			//for (i = size; i != 0; i++)
-					for (i = 1; i != 0; i++)
+					for (i = count; i != 0; i++)
 			{
-				String pricevalue =  getText(txtPricingIDValue(i-1), "Pricing value");
-				if(isVisibleOnly(txtPricingIDValue(i), ""))
-				click(txtPricingIDValue(i),"");
+						action.sendKeys(Keys.ARROW_DOWN).perform();
+						
+				
+				if(isVisibleOnly(txtPricingIDValue(i), "")) {
+					driver.findElement(txtPricingIDValue(i)).click();
+				//(txtPricingIDValue(i),"");
+				count++;
+			}
 				else {
 					reporter.failureReport("Pricing Id", "Pricing value is not displaying", "", driver);
-					break label1;
+					break label2;
 				}
-				action.sendKeys(Keys.ARROW_DOWN).perform();
 				
-				
-			//	action.moveToElement(elem.get(i-1)).perform();
-					//String pricevalue1 = getText(txtPricingIDValue(i-1), "Pricing value");
 					
 					  if (isVisibleOnly(PRICINGID_VALUE(expecetedTypeCode[j]), "Pricing ID")) 
 					  {
 					  action.moveToElement(driver.findElement(PRICINGID_VALUE(expecetedTypeCode[j]))).perform(); 
 					  Price =  getText(HomePage.pricing_ValueClmn(expecetedTypeCode[j]), "Pricing value");
+					  reporter.SuccessReport("PriceId and value", "PriceId and value ", ""+expecetedTypeCode[j]+ ": "+Price+"");
 					  all_elements_pricevalue.add(Price);
-						/*
-						 * if(getText(PRICINGID_VALUE(expecetedTypeCode[j]),"").equals("ZFSS")) {
-						 * reporter.failureReport("PricingID",
-						 * ""+expecetedTypeCode[j]+" is not displaying in the grid", "", driver); break
-						 * label1; }
-						 */
+					
+					break label;
 						
-						  break label; 
-						 
+						
+										 
 					  }
 					  
 					 
 				}
 			}	
 		}
-		else {
-			
-			reporter.failureReport("Price Id: ", "Price Ids are not displaying", "", driver);
-		}
+		
 		if(all_elements_pricevalue.size()==val) {
+			
 			reporter.SuccessReport("Price values:", "Found all the price values", "");
+			
 		}
 		else {
 			reporter.failureReport("Price value:", "Failed to find the price values", "", driver);
@@ -3881,27 +3966,36 @@ public float getSellPriceFromInlineItemsContract(String contractid) throws Throw
 		Actions action = new Actions(driver);
 		String rate = "";
 		String expecetedTypeCode[] = expValue.split("#");
-		int count =3;
-		List<String> all_elements_pricevalue = new ArrayList<>();
+		int count =1;
+		List<String> all_elements_pricerate = new ArrayList<>();
 		List<WebElement> elem = getWebElementList(HomePage.PricingTabTable, "Pricing List");
 		int size = elem.size();
 		
-		
-		if(all_elements_pricevalue.size()!=expecetedTypeCode.length) {
-			elem.get(1).click();
+		label2:
+		if(all_elements_pricerate.size()!=expecetedTypeCode.length) {
+			click(txtPricingIDValue(0),"");
 			for(int j=0;j<expecetedTypeCode.length;j++) {
 				label:
-			for (i = size; i != 0; i++) {
+			for (i = count; i != 0; i++) {
 				action.sendKeys(Keys.ARROW_DOWN).perform();
 				
+				if(isVisibleOnly(txtPricingIDValue(i), "")) {
+					driver.findElement(txtPricingIDValue(i)).click();
 				
+				count++;
+			}
+				else {
+					reporter.failureReport("Pricing Id", "Pricing value is not displaying", "", driver);
+					break label2;
+				}
 					
 					
 					  if (isVisibleOnly(PRICINGID_VALUE(expecetedTypeCode[j]), "Pricing ID")) 
 					  {
 					  action.moveToElement(driver.findElement(Rate_ValueClmn(expecetedTypeCode[j]))).perform(); 
 					  rate =  getText(HomePage.Rate_ValueClmn(expecetedTypeCode[j]), "Pricing value");
-					  all_elements_pricevalue.add(rate);
+					  reporter.SuccessReport("PriceId and value", "PriceId and value ", ""+expecetedTypeCode[j]+ ": "+rate+"");
+					  all_elements_pricerate.add(rate);
 					 
 						  
 						  break label; 
@@ -3911,16 +4005,14 @@ public float getSellPriceFromInlineItemsContract(String contractid) throws Throw
 				}
 			}	
 		}
-		else {
-			reporter.failureReport("Price Id: ", "Price Ids are not displaying", "", driver);
-		}
-		if(all_elements_pricevalue.size()==val) {
+		
+		if(all_elements_pricerate.size()==val) {
 			reporter.SuccessReport("Price values:", "Found all the price values", "");
 		}
 		else {
 			reporter.failureReport("Price value:", "Failed to find the rate values", "", driver);
 		}
-		return all_elements_pricevalue;
+		return all_elements_pricerate;
 	}
 
 	/*
@@ -4284,7 +4376,7 @@ public void VerifyZPFXvalue(String ZPFXvalue)throws Throwable{
 	 */
 	public void verifyReportingFieldsix() throws Throwable {
 		if (isElementPresent(REPORTINGFIELD6, "Reporting Field-06")) {
-			reporter.SuccessReport("IPS Report Field 6::", "IPS Report Field 6 value Does not exist as expected", "");
+			reporter.SuccessReport("IPS Report Field 6::", "IPS Report Field 6 value is not equal to ContractId", "");
 		} else {
 			reporter.failureReport("IPS Report Field 6::", "IPS Report Field 6 value exists", "", driver);
 		}
@@ -4293,9 +4385,9 @@ public void VerifyZPFXvalue(String ZPFXvalue)throws Throwable{
 	public void verifyReportingFieldsixpriceandZP00(float ZP00, float reportingfieldprice) throws Throwable {
 		
 		if (reportingfieldprice == ZP00) {
-			reporter.SuccessReport("IPS Report Field 6::", "IPS Report Field 6 value Does not exist as expected", "");
+			reporter.SuccessReport("Validation", "Contract price equals to ZP00", "");
 		} else {
-			reporter.failureReport("IPS Report Field 6::", "IPS Report Field 6 value exists", "", driver);
+			reporter.failureReport("Validation", "Contract price not equals to ZP00", "", driver);
 		}
 	}
 

@@ -5,7 +5,9 @@ import java.util.List;
 
 import org.mortbay.log.Log;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -33,11 +35,13 @@ public class CMTLib extends CMTObj {
 	 */
 	public void loginToCMT(String login) throws Throwable {
 		click(CommonObj.getPrimaryNavLink(login), "Login link");
-		Thread.sleep(5000);
-		if (isElementPresent(CommonObj.CLOSE, "Close icon")) {
-			click(CommonObj.CLOSE, "Close icon");
+		Thread.sleep(3000);
+		if (isVisibleOnly(CommonObj.CLOSE, "Close icon")) {
+			if (isVisibleOnly(CommonObj.CLOSE, "Close icon")) {
+				click(CommonObj.CLOSE, "Close icon");
+			}
 		}
-		if (isElementPresent(CommonObj.CLOSEBUTTON_COOKIES, "close cookie")) {
+		if (isVisibleOnly(CommonObj.CLOSEBUTTON_COOKIES, "close cookie")) {
 			click(CommonObj.CLOSEBUTTON_COOKIES, "close cookie");
 		}
 		typeText(CommonObj.LOGIN_USER, CMT_ADMIN_USERNAME, "User Name");
@@ -160,22 +164,22 @@ public class CMTLib extends CMTObj {
 	}
 
 	public void verifyPasswordResetWrongEmailEnteredMessage() throws Throwable {
-		String error=null;
+		String error = null;
 		if (isVisibleOnly(FOGET_PASSWORD_ERROR_MESSAGE, "error message")) {
-			 error = getText(FOGET_PASSWORD_ERROR_MESSAGE, "error message");
-			reporter.SuccessReport("Verifying Success message", "Email Success Message Exists", error );
+			error = getText(FOGET_PASSWORD_ERROR_MESSAGE, "error message");
+			reporter.SuccessReport("Verifying Success message", "Email Success Message Exists", error);
 		} else {
 			reporter.failureReport("Verifying Success message", "Email Success Message does not Exist", error, driver);
 		}
 	}
 
 	public void verifyPasswordResetEmailEnteredSucessMessage(String input) throws Throwable {
-		String error=null;
+		String error = null;
 		if (isVisibleOnly(FORGET_PASSWORD_RESET_SUCESS_MESSAGE, "Success message")) {
-			error=getText(FORGET_PASSWORD_RESET_SUCESS_MESSAGE, "Success message");
+			error = getText(FORGET_PASSWORD_RESET_SUCESS_MESSAGE, "Success message");
 			reporter.SuccessReport("Verifying Success message", "Apperead Success message is ", error);
 		} else {
-			reporter.failureReport("Verifying Success message","Success message is not appeared ", error, driver);
+			reporter.failureReport("Verifying Success message", "Success message is not appeared ", error, driver);
 		}
 	}
 
@@ -200,12 +204,16 @@ public class CMTLib extends CMTObj {
 	 * @param webgrpName
 	 * @throws Throwable
 	 */
-	public void clickOnTheWebGroup(String webgrpName) throws Throwable {
-		if (isElementVisible(getWebGroupName(webgrpName), 3, "Search results are displayed on Client Search Page")) {
-			click(getWebGroupName(webgrpName), "Web Group link exists :" + webgrpName);
+	public void clickOnTheWebGroup(String... webgrpName) throws Throwable {
+		if (isElementVisible(getWebGroupName(), 3, "Search results are displayed on Client Search Page")) {
+			click(getWebGroupName(), "Web Group link exists :" + webgrpName);
 		} else {
 			reporter.failureReport("Verify web group displayed", "searched Web group is not displayed", "", driver);
 		}
+	}
+
+	public void clickOnLogoutlink() throws Throwable {
+		click(lnklogout, "Logout");
 	}
 
 	/**
@@ -260,18 +268,24 @@ public class CMTLib extends CMTObj {
 		for (i = 0; i < permissions.length; i++) {
 			if (isCheckBoxSelected(getUserPermission(permissions[i]))) {
 				LOG.info(userPermission + " check box already checked.");
-				reporter.SuccessReport(permissions[i]+" Permissions on WebGroup Management Page", "Check Box Field Exists and Enabled", permissions[i]);
+				reporter.SuccessReport(permissions[i] + " Permissions on WebGroup Management Page",
+						"Check Box Field Exists and Enabled", permissions[i]);
 			} else {
-				click(getUserPermission(permissions[i]), "set user permission "+permissions[i]+" is ON " , permissions[i],permissions[i]);
+				click(getUserPermission(permissions[i]), "set user permission " + permissions[i] + " is ON ",
+						permissions[i], permissions[i]);
 			}
 		}
 
 		click(UPDATE_USER_BTN, "Update user button");
 		if (isElementPresent(PERMISSION_UPDATE_MSG, "update sucessful message")) {
-			reporter.SuccessReport("Verify the Sucess message ", "Permissions Updated Succesfully", "");
+			reporter.SuccessReport("Verify the Sucess message ", "Permissions Updated Succesfully", getText(PERMISSION_UPDATE_MSG, "update sucessful message"));
 		} else {
-			reporter.failureReport("Verify the sucess message", "Permissions are not Updated Succesfully", "", driver);
+			reporter.failureReport("Verify the sucess message", "Permissions are not Updated Succesfully", getText(PERMISSION_UPDATE_MSG, "update sucessful message"), driver);
 		}
+	}
+
+	public void clickOnRolesandPermissionTab(String menuName) throws Throwable {
+		click(getUsersTabMenus(menuName), "Roles And Permissions");
 	}
 
 	/**
@@ -280,12 +294,13 @@ public class CMTLib extends CMTObj {
 	 * @throws Throwable
 	 */
 	public void loginAsAdminCMT() throws Throwable {
-		if (isElementPresent(CMTObj.LOGIN_AS_REPORTING_ADMIN, "LOGIN AS REPORTING ADMIN")) {
-			click(CMTObj.LOGIN_AS_REPORTING_ADMIN, "Login as reporting admin");
-		} else if (isElementPresent(CMTObj.LOGIN_AS, "Login as")) {
+		if (isElementPresent(CMTObj.LOGIN_AS, "Login as")) {
 			click(CMTObj.LOGIN_AS, "Login as", "Link: Login As");
+			switchToChildWindow();
+		}else {
+			reporter.failureReport("Verify LoginAs exists", "Login as does not exists", "", driver);
 		}
-		switchToChildWindow();
+		
 	}
 
 	/**
@@ -296,7 +311,9 @@ public class CMTLib extends CMTObj {
 	 * @throws Throwable
 	 */
 	public void loginVerification(String contactName) throws Throwable {
-		waitForVisibilityOfElement(CMTObj.getLoginVerficationByContactNameOnHeader(contactName), "contact Name is "+contactName);
+		waitForVisibilityOfElement(CMTObj.getLoginVerficationByContactNameOnHeader(contactName),
+				"contact Name is " + contactName);
+		//if(getText(CMTObj.getLoginVerficationByContactNameOnHeader(contactName),"LoginName").contains(contactName)){
 		if (isVisibleOnly(CMTObj.getLoginVerficationByContactNameOnHeader(contactName), "contact Name")) {
 			reporter.SuccessReport("Verify the Same User Logged into Insight from CMT",
 					"User login verification is successfull. User is : ", contactName);
@@ -312,9 +329,9 @@ public class CMTLib extends CMTObj {
 	 * @param lnameEmailUname
 	 * @throws Throwable
 	 */
-	public void searchUsers(String lnameEmailUname) throws Throwable {
-		waitForVisibilityOfElement(CMTObj.LNAME_EMAIL_USERNAME, "LNAME EMAIL USERNAME: " + lnameEmailUname);
-		type(CMTObj.LNAME_EMAIL_USERNAME, lnameEmailUname, "LNAME EMAIL USERNAME: " + lnameEmailUname);
+	public void searchUsers(String LnameEmailUname) throws Throwable {
+		waitForVisibilityOfElement(CMTObj.LNAME_EMAIL_USERNAME, "LNAME EMAIL USERNAME: " + LnameEmailUname);
+		type(CMTObj.LNAME_EMAIL_USERNAME, LnameEmailUname, "LNAME EMAIL USERNAME: " + LnameEmailUname);
 		click(CMTObj.USERNAME_SEARCH_BUTTON, "Search button Exists and Clicked", "Link: Search");
 	}
 
@@ -416,7 +433,9 @@ public class CMTLib extends CMTObj {
 		loginToCMT(login);
 		searchForWebGroup(webGrp);
 		clickOnTheWebGroup(webGrp_Name);
+		verifyManageWebGroupSettings();
 		hoverOnManageWebGroupsAndSelectOptions(manage_Web_Grp_Options);
+		verifyManageWebGroupsUserManagement();
 		searchForaUserAndSelect(lnameEmailUname, contactName);
 		loginAsAdminCMT();
 	}
@@ -492,15 +511,17 @@ public class CMTLib extends CMTObj {
 		click(getUsersTabMenus(menuName), "Roles And Permissions");
 		if (isCheckBoxSelected(getUserPermission(userPermissions))) {
 			LOG.info(userPermissions + " check box already checked: " + userPermissions);
-			reporter.SuccessReport(userPermissions, "check box already checked::" + userPermissions + "ON",
-					userPermissions);
+			reporter.SuccessReport(userPermissions, "check box already checked::" + userPermissions + " ON",
+					userPermissions + " ON");
 		} else {
 			click(getUserPermission(userPermissions), "User permissions: " + userPermissions);
 			click(UPDATE_USER_BTN, "Update user button");
 			waitForVisibilityOfElement(PERMISSION_UPDATE_MSG, "PERMISSION UPDATE MSG");
 			if (isElementPresent(PERMISSION_UPDATE_MSG, "update sucessful message")) {
-				reporter.SuccessReport("Verify the Sucess message ", "Permissions Updated Succesfully",
-						"OFF" + userPermissions + "");
+				reporter.SuccessReport(userPermissions, "check box already checked::" + userPermissions + " ON",
+						userPermissions + " ON");
+				reporter.SuccessReport("Verify the Sucess message ", "Permissions Updated Succesfully ",
+						"Permissions Updated Succesfully");
 			} else {
 				reporter.failureReport("Verify the sucess message", "Permissions are not Updated Succesfully", "",
 						driver);
@@ -535,17 +556,35 @@ public class CMTLib extends CMTObj {
 		if (isCheckBoxSelected(getUserPermission(userPermissions))) {
 			click(getUserPermission(userPermissions), "User permissions : " + userPermissions + " is OFF");
 			click(UPDATE_USER_BTN, "Update user button");
-			if (isElementPresent(PERMISSION_UPDATE_MSG, "update sucessful message")) {
-				reporter.SuccessReport("Verify the Sucess message ", "Permissions disabled Succesfully", "");
+			if (isVisibleOnly(PERMISSION_UPDATE_MSG, "update sucessful message")) {
+				reporter.SuccessReport("Verify the Sucess message ", "Permissions disabled Succesfully", getText(PERMISSION_UPDATE_MSG, "update sucessful message"));
 			} else {
-				reporter.failureReport("Verify the sucess message", "Permissions are not disabled Succesfully", "",
+				reporter.failureReport("Verify the sucess message", "Permissions are not disabled Succesfully", getText(PERMISSION_UPDATE_MSG, "update sucessful message"),
 						driver);
 			}
-
 		} else {
 			LOG.info(userPermissions + " check box already checked.");
 			reporter.SuccessReport("Verify Customer Level Permissions",
-					"User permissions :" + userPermissions + "check box already Disabled", "" + userPermissions + "OFF");
+					"User permissions :" + userPermissions + "check box already Disabled",
+					"" + userPermissions + " OFF");
+		}
+	}
+	public void setPermissionsToDisableOnly( String userPermissions) throws Throwable {
+		//click(getUsersTabMenus(menuName), "Roles And Permissions");
+		if (isCheckBoxSelected(getUserPermission(userPermissions))) {
+			click(getUserPermission(userPermissions), "User permissions : " + userPermissions + " is OFF");
+			click(UPDATE_USER_BTN, "Update user button");
+			if (isElementPresent(PERMISSION_UPDATE_MSG, "update sucessful message")) {
+				reporter.SuccessReport("Verify the Sucess message ", "Permissions disabled Succesfully", getText(PERMISSION_UPDATE_MSG, "update sucessful message"));
+			} else {
+				reporter.failureReport("Verify the sucess message", "Permissions are not disabled Succesfully", getText(PERMISSION_UPDATE_MSG, "update sucessful message"),
+						driver);
+			}
+		} else {
+			LOG.info(userPermissions + " check box already checked.");
+			reporter.SuccessReport("Verify Customer Level Permissions",
+					"User permissions :" + userPermissions + "check box already Disabled",
+					"" + userPermissions + " OFF");
 		}
 	}
 
@@ -597,6 +636,7 @@ public class CMTLib extends CMTObj {
 			// do nothing
 		}
 		loginAsAdmin();
+		
 		searchForWebGroup(webGrp);
 		manageUsers();
 		searchUsers(lnameEmailUname);
@@ -641,12 +681,14 @@ public class CMTLib extends CMTObj {
 
 		if (isCheckBoxSelected(getCustomerLevelPermissionsForWebGrp(customerPermissions))) {
 			LOG.info(customerPermissions + " check box already checked.");
+			reporter.SuccessReport("Verify the Success message ", "Permissions Updated Succesfully.",
+					customerPermissions +" ON");
 		} else {
 			click(getCustomerLevelPermissionsForWebGrp(customerPermissions), "Customer level permissions");
 			click(UPDATE_CUSTOMER_PERMISSIONS_BTN, "Update button");
 			if (isElementPresent(CUSTOMER_PERMISSION_UPDATE_MSG, "update sucessful message")) {
 				reporter.SuccessReport("Verify the Success message ", "Permissions Updated Succesfully.",
-						customerPermissions);
+						customerPermissions+" ON");
 			} else {
 				reporter.failureReport("Verify the sucess message", "Permissions are not Updated Succesfully", "",
 						driver);
@@ -668,7 +710,7 @@ public class CMTLib extends CMTObj {
 			click(UPDATE_CUSTOMER_PERMISSIONS_BTN, "Update button");
 			if (isElementPresent(CUSTOMER_PERMISSION_UPDATE_MSG, "update sucessful message")) {
 				reporter.SuccessReport("Verify the Success message ", "Permissions Updated Succesfully",
-						"" + customerPermissions + "");
+						"" + customerPermissions + " OFF");
 			} else {
 				reporter.failureReport("Verify the sucess message", "Permissions are not Updated Succesfully", "",
 						driver);
@@ -676,7 +718,7 @@ public class CMTLib extends CMTObj {
 		} else {
 			LOG.info(customerPermissions + " check box already Unchecked.");
 			reporter.SuccessReport("Verify Web Group Level Permissions ",
-					"Web Group level permissions::" + customerPermissions + " is OFF", "" + customerPermissions + "");
+					"Web Group level permissions::" + customerPermissions + " is OFF", "" + customerPermissions + " OFF");
 		}
 	}
 
@@ -706,11 +748,14 @@ public class CMTLib extends CMTObj {
 			reporter.failureReport("Verify the sucess message", "Permissions are not Updated Succesfully", "", driver);
 		}
 	}
+
 	public void verifyUpdateSuccessMessages() throws Throwable {
 		if (isVisibleOnly(SUCCESS_UPDATE_MSG, "update sucessful message")) {
-			reporter.SuccessReport("Verify the Sucess message ", "Permissions Updated Succesfully", getText(SUCCESS_UPDATE_MSG, "update sucessful message"));
+			reporter.SuccessReport("Verify the Sucess message ", "Permissions Updated Succesfully",
+					getText(SUCCESS_UPDATE_MSG, "update sucessful message"));
 		} else {
-			reporter.failureReport("Verify the sucess message", "Permissions are not Updated Succesfully", getText(SUCCESS_UPDATE_MSG, "update sucessful message"), driver);
+			reporter.failureReport("Verify the sucess message", "Permissions are not Updated Succesfully",
+					getText(SUCCESS_UPDATE_MSG, "update sucessful message"), driver);
 		}
 	}
 
@@ -726,7 +771,7 @@ public class CMTLib extends CMTObj {
 	 * This method is to select user type dropdown @ option to select
 	 */
 	public void selectUserTypeDropdown(String text) throws Throwable {
-		selectByVisibleText(USER_TYPE_DROPDOWN, text, "User type dropdown");
+		selectByVisibleText(USER_TYPE_DROPDOWN, text, "User type dropdown::"+text);
 	}
 
 	/**
@@ -734,7 +779,8 @@ public class CMTLib extends CMTObj {
 	 *
 	 */
 	public void enterUserName(String text) throws Throwable {
-		type(USER_NAME_FIELD, text, "user name");
+		clearData(USER_NAME_FIELD);
+		type(USER_NAME_FIELD, text, "user name"+text);
 		click(CHECK_AVAILABLITY_BUTTON, "check availability");
 
 	}
@@ -743,12 +789,14 @@ public class CMTLib extends CMTObj {
 	 * This method is to verify the availability of user name
 	 *
 	 */
-	public void verifyAvailabiltyOfUserName(String text) throws Throwable {
-		if (isElementNotPresent(AVAILABLE_MESSAGE, "error message")) {
-			clearData(USER_NAME_FIELD);
-			type(USER_NAME_FIELD, text, "user name");
+	public void verifyAvailabiltyOfUserNameNotExists() throws Throwable {
+		if (isElementPresent(AVAILABLE_MESSAGE, "User Available message")) {
+			reporter.SuccessReport("Availability Message ", "User availability message",
+					getText(AVAILABLE_MESSAGE, "error message"));
 		} else {
 			Log.info("user name is available");
+			reporter.failureReport("Availability Message ", "User availability message Not Exists",
+					"",driver);
 		}
 	}
 
@@ -811,7 +859,7 @@ public class CMTLib extends CMTObj {
 	 *
 	 */
 	public void clickOnUserURL() throws Throwable {
-		click(USER_URL, "User url");
+		click(USER_URL, "User url", getText(USER_URL, "User Link"));
 	}
 
 	/**
@@ -835,6 +883,13 @@ public class CMTLib extends CMTObj {
 	 */
 	public void enterEmailInCreateAnAccount(String email) throws Throwable {
 		type(EMAIL, email, "email");
+	}
+
+	public void verifyuserNotAvailabilityMessage() throws Throwable {
+		if (isVisibleOnly(userNotAvailabilityMessage, "User not availabile")) {
+			reporter.SuccessReport("User Availability", " User available status",
+					getText(userNotAvailabilityMessage, "User availabile status"));
+		}
 	}
 
 	/**
@@ -928,6 +983,11 @@ public class CMTLib extends CMTObj {
 		}
 	}
 
+	public void enterUserNameToValidate(String userName) throws Throwable {
+		type(USER_NAME, userName, "user Name");
+		click(CHECK_AVAILABILITY, "Check availability");
+	}
+
 	/**
 	 * This method is to enter password in create an account page
 	 *
@@ -972,6 +1032,7 @@ public class CMTLib extends CMTObj {
 		for (int i = 0; i < myList.size(); i++) {
 			if (isElementPresent(ERROR_MESSAGE_CREATE_ACCOUNT, "error message")) {
 				String text = myList.get(i).getText();
+
 				reporter.SuccessReport("verifying error message", "Error message exists: " + text, text);
 			} else {
 				reporter.failureReport("verifying error message", "Error message does not exists: ", "", driver);
@@ -997,7 +1058,8 @@ public class CMTLib extends CMTObj {
 	}
 
 	public void selectFirstUser() throws Throwable {
-		click(FIRST_USER_LINK, "First user link");
+
+		click(FIRST_USER_LINK, "First user link", getText(FIRST_USER_LINK, "First user Name"));
 	}
 
 	/*
@@ -1086,12 +1148,13 @@ public class CMTLib extends CMTObj {
 			selectByVisibleText(CMTObj.DEFAULT_SHIPPING_OPTION, optionToSelect, "Click on" + optionToSelect);
 		}
 	}
+
 	public void selectShippingOptions(String optionToSelect) throws Throwable {
-			// waitForVisibilityOfElement(CMTObj.DEFAULT_SHIPPING_OPTION, "Wait
-			// for" + optionToSelect);
-		click(CMTObj.defaultShippingCarrier,"Shipping carrier");
-			click(CMTObj.defaultshippingCarrier(optionToSelect), optionToSelect, "Click on" + optionToSelect);
-		
+		// waitForVisibilityOfElement(CMTObj.DEFAULT_SHIPPING_OPTION, "Wait
+		// for" + optionToSelect);
+		click(CMTObj.defaultShippingCarrier, "Shipping carrier");
+		click(CMTObj.defaultshippingCarrier(optionToSelect), optionToSelect, "Click on" + optionToSelect);
+
 	}
 
 	/**
@@ -1215,12 +1278,21 @@ public class CMTLib extends CMTObj {
 	}
 
 	public void deleteClientNotification(String repMail) throws Throwable {
-		if(isVisibleOnly(clientNotifiationDeleteIcon(repMail),"Repo Email")){
-			reporter.SuccessReport("Verifying newly added Sales repo", "Newly added sales repo is reflected ", repMail);
+		if (isVisibleOnly(clientNotifiationDeleteIcon(repMail), "Repo Email")) {
+
 			click(clientNotifiationDeleteIcon(repMail), "Delete client notification ");
 
-		}else{
-			reporter.failureReport("Verifying newly added Sales repo", "Newly added sales repo is not reflected ", repMail,driver);
+		} else {
+			reporter.failureReport("Verifying newly added Sales repo", "Newly added sales repo is not reflected ",
+					repMail, driver);
+		}
+	}
+	public void deleteClientNotificationBeforeAdd(String repMail) throws Throwable {
+		if (isVisibleOnly(clientNotifiationDeleteIcon(repMail), "Repo Email")) {
+
+			click(clientNotifiationDeleteIcon(repMail), "Delete client notification ");
+			reporter.SuccessReport("Delete client notification","Deleting client notifications", repMail);
+
 		}
 	}
 
@@ -1339,6 +1411,7 @@ public class CMTLib extends CMTObj {
 				click(PAYMENTS_INFO_LEFT_TO_RIGHT_ARROW, "left to right arrow ");
 			}
 		}
+		
 		click(PAYMENTS_OPTION_UPDATE_BTN, "update button");
 		if (isElementPresent(SUCESS_MESSAGE_PAYMENT_OPTIONS, "Updated message")) {
 			reporter.SuccessReport("Verify the Sucess message ", "Permissions Updated Succesfully", "");
@@ -1375,7 +1448,7 @@ public class CMTLib extends CMTObj {
 	public List<String> verifyDisplayWebIcon() throws Throwable {
 
 		// Verify Display Web Icon visibility
-		if (isElementPresent(DISPLAY_ON_WEB, "Web icon")) {
+		if (isVisibleOnly(DISPLAY_ON_WEB, "Web icon")) {
 			click(DISPLAY_ON_WEB, "Display web icon");
 			reporter.SuccessReport("Click Display  Web Icon on Manage Web Group: Contacts and Notifications Page",
 					"Display on Web Icon Existed and Clicked ", "");
@@ -1398,11 +1471,46 @@ public class CMTLib extends CMTObj {
 				if (salesRep.size() >= 2) {
 
 					if (i == 1) {
-						type(getRepValuesOnDisplayWebPopup(i), Integer.toString(i + 1), "sales rep number text box");
+						String val = Integer.toString(i + 3);
+						type(getRepValuesOnDisplayWebPopup(i), val, "sales rep number text box");
+
+						reporter.SuccessReport("Repo Name and its Value",
+								"Repo Name is "
+										+ getText(getRepNamesOnDisplayWebPopup(i), "Rep Names").replace(",", " ").trim()
+										+ " and order is -->" + val,
+								val);
 					}
 					if (i == 2) {
-						type(getRepValuesOnDisplayWebPopup(i), Integer.toString(i - 1), "sales rep number text box");
+						String val1 = Integer.toString(i + 1);
+						type(getRepValuesOnDisplayWebPopup(i), val1, "sales rep number text box");
+						reporter.SuccessReport("Repo Name and its Value",
+								"Repo Name is "
+										+ getText(getRepNamesOnDisplayWebPopup(i), "Rep Names").replace(",", " ").trim()
+										+ " and order is -->" + val1,
+								val1);
+
 					}
+					if (i == 3) {
+						String val2 = Integer.toString(i - 1);
+						type(getRepValuesOnDisplayWebPopup(i), val2, "sales rep number text box");
+						reporter.SuccessReport("Repo Name and its Value",
+								"Repo Name is "
+										+ getText(getRepNamesOnDisplayWebPopup(i), "Rep Names").replace(",", " ").trim()
+										+ " and order is --> " + val2,
+								val2);
+
+					}
+					if (i == 4) {
+						String val3 = Integer.toString(i - 3);
+						type(getRepValuesOnDisplayWebPopup(i), val3, "sales rep number text box");
+						reporter.SuccessReport("Repo Name and its Value",
+								"Repo Name is "
+										+ getText(getRepNamesOnDisplayWebPopup(i), "Rep Names").replace(",", " ").trim()
+										+ " and order is -->  " + val3,
+								val3);
+
+					}
+
 				}
 
 			}
@@ -1419,16 +1527,145 @@ public class CMTLib extends CMTObj {
 			}
 
 			// JSClick(UPDATE_BUTTN, "Update button");
-		} else
+		} else {
 			reporter.failureReport("Verify Rep Name on Manage Web Group: Contacts and Notifications Page",
 					"POPUP does not Exists ", "");
+		}
 
-		// verify cancel button in Product Exp
-		if (isElementPresent(DISPLAY_ON_WEB_POPUP, "Web icon")) {
-			click(DISPLAY_ON_WEB, "Display web icon");
-			type(getRepValuesOnDisplayWebPopup(1), "abc", "sales rep number text box");
+		if (isVisibleOnly(DISPLAY_ON_WEB, "Web Icon")) {
+			click(DISPLAY_ON_WEB, "Display Web Icon");
+			if (isElementPresent(DISPLAY_ON_WEB_POPUP, "Web icon")) {
+				reporter.SuccessReport("Verify Rep Name on Manage Web Group: Contacts and Notifications Page",
+						"POP Exists with Display Sales Rep Names ", "");
+
+				List<WebElement> salesRep = driver
+						.findElements(By.xpath("//div[@id='webNotificationSortPopUp']//input[@type='textbox']"));
+
+				for (i = 1; i <= salesRep.size(); i++) {
+					if (salesRep.size() >= 2) {
+
+						if (i == 1) {
+							String val = Integer.toString(i + 3);
+							type(getRepValuesOnDisplayWebPopup(i), val, "sales rep number text box");
+
+							reporter.SuccessReport("Repo Name and its Value", "Repo Name is "
+									+ getText(getRepNamesOnDisplayWebPopup(i), "Rep Names").replace(",", " ").trim()
+									+ " and its values is ", val);
+						}
+						/*
+						 * if (i == 2) { String val1=Integer.toString(i + 1);
+						 * type(getRepValuesOnDisplayWebPopup(i), val1,
+						 * "sales rep number text box");
+						 * reporter.SuccessReport("Repo Name and its Value",
+						 * "Repo Name is "+
+						 * getText(getRepNamesOnDisplayWebPopup(i),
+						 * "Rep Names").replace(",", " ").trim() +
+						 * " and its values is ", val1);
+						 * 
+						 * } if (i == 3) { String val2=Integer.toString(i -1);
+						 * type(getRepValuesOnDisplayWebPopup(i), val2,
+						 * "sales rep number text box");
+						 * reporter.SuccessReport("Repo Name and its Value",
+						 * "Repo Name is "+
+						 * getText(getRepNamesOnDisplayWebPopup(i),
+						 * "Rep Names").replace(",", " ").trim() +
+						 * " and its values is ", val2);
+						 * 
+						 * } if (i == 4) { String val3=Integer.toString(i - 3);
+						 * type(getRepValuesOnDisplayWebPopup(i), val3,
+						 * "sales rep number text box");
+						 * reporter.SuccessReport("Repo Name and its Value",
+						 * "Repo Name is "+
+						 * getText(getRepNamesOnDisplayWebPopup(i),
+						 * "Rep Names").replace(",", " ").trim() +
+						 * " and its values is ", val3);
+						 * 
+						 * }
+						 */
+					}
+				}
+			}
+
 			click(UPDATE_BUTTN, "Update button");
 			waitForVisibilityOfElement(ALERTERORRR_MSG, "Error, the rules must numeric.");
+			if (isVisibleOnly(ALERTERORRR_MSG, "Error, the rules must numeric.")) {
+				reporter.SuccessReport("Invalid data Validation",
+						"Error message appeares when user enter invalid input",
+						getText(ALERTERORRR_MSG, "Error, the rules must be unique."));
+			}
+
+		}
+		// verify cancel button in Product Exp
+		if (isElementPresent(DISPLAY_ON_WEB_POPUP, "Web icon")) {
+			// click(DISPLAY_ON_WEB, "Display web icon");
+			// type(getRepValuesOnDisplayWebPopup(1), "abc", "sales rep number
+			// text box");
+
+			List<WebElement> salesRep = driver
+					.findElements(By.xpath("//div[@id='webNotificationSortPopUp']//input[@type='textbox']"));
+
+			for (i = 1; i <= salesRep.size(); i++) {
+				if (salesRep.size() >= 2) {
+
+					if (i == 1) {
+						String val = "a";
+						type(getRepValuesOnDisplayWebPopup(i), val, "sales rep number text box");
+
+						reporter.SuccessReport("Repo Name and its Value",
+								"Repo Name is "
+										+ getText(getRepNamesOnDisplayWebPopup(i), "Rep Names").replace(",", " ").trim()
+										+ " and its values is ",
+								val);
+					}
+					if (i == 2) {
+						String val1 = "b";
+						type(getRepValuesOnDisplayWebPopup(i), val1, "sales rep number text box");
+						reporter.SuccessReport("Repo Name and its Value",
+								"Repo Name is "
+										+ getText(getRepNamesOnDisplayWebPopup(i), "Rep Names").replace(",", " ").trim()
+										+ " and its values is ",
+								val1);
+
+					}
+					if (i == 3) {
+						String val2 = "c";
+						type(getRepValuesOnDisplayWebPopup(i), val2, "sales rep number text box");
+						reporter.SuccessReport("Repo Name and its Value",
+								"Repo Name is "
+										+ getText(getRepNamesOnDisplayWebPopup(i), "Rep Names").replace(",", " ").trim()
+										+ " and its values is ",
+								val2);
+
+					}
+					if (i == 4) {
+						String val3 = "d";
+						type(getRepValuesOnDisplayWebPopup(i), val3, "sales rep number text box");
+						reporter.SuccessReport("Repo Name and its Value", "Repo Name is " + "<b>"
+								+ getText(getRepNamesOnDisplayWebPopup(i), "</b>Rep Names").replace(",", " ").trim()
+								+ " and its values is ", val3);
+
+					}
+
+				}
+
+			}
+
+			click(UPDATE_BUTTN, "Update button");
+			waitForVisibilityOfElement(ALERTERORRR_MSG, "Error, the rules must numeric.");
+			if (isVisibleOnly(ALERTERORRR_MSG, "Error, the rules must numeric.")) {
+				reporter.SuccessReport("Invalid data Validation",
+						"Error message appeares when user enter invalid input",
+						getText(ALERTERORRR_MSG, "Error, the rules must numeric."));
+			}
+
+			// Duplicate input
+
+			/*
+			 * List<WebElement> salesRep = driver .findElements(By.xpath(
+			 * "//div[@id='webNotificationSortPopUp']//input[@type='textbox']"))
+			 * ;
+			 */
+
 			if (isElementPresent(CANCEL_BTN, "Cancel button")) {
 				click(CANCEL_BTN, "Cancel button click");
 				reporter.SuccessReport("Click CANCEL in POPUP on Manage Web Group: Contacts and Notifications Page",
@@ -1531,20 +1768,24 @@ public class CMTLib extends CMTObj {
 	 * @throws Throwable
 	 */
 	public void enterProductGrpName(String ProdGrpName) throws Throwable {
+		String val = null;
 		if (isElementPresent(PROD_WEBGRP_NAME, "Product group")) {
 			// click(getManageWebGroupDDLinks(ProdGrpName), "Product group
 			// option: " + ProdGrpName);
+			val = getRandomNumeric(4);
 			type(PROD_WEBGRP_NAME, ProdGrpName, "Product Group Name");
 			reporter.SuccessReport("Enter Product Group Name on Product Group Creation Wizard",
 					"Product Group Name is Exists and Entered", "");
-		} else
+		} else {
 			reporter.failureReport("Enter Product Group Name on Product Group Creation Wizard",
 					"Product Group Name is Not Exists", "", driver);
+		}
 	}
 
 	public void selectCompanyStandardsLink() throws Throwable {
 		if (isElementPresent(COMP_STAND_WIZARD, "company standards wizard")) {
-			click(COMP_STAND_WIZARD, "company standards wizard");
+
+			click(COMP_STAND_WIZARD, "company standards wizard exists and clicked");
 			reporter.SuccessReport("Click Company Standards Wizard on Company Standards Management Page",
 					"Company Standards Wizard Existed and Clicked", "");
 
@@ -1560,14 +1801,17 @@ public class CMTLib extends CMTObj {
 	 * @throws Throwable
 	 */
 	public void enterCreateNewValue(String CreateNewName) throws Throwable {
-		if (isElementPresent(CATEGORY, "Select Category")) {
-			click(CATEGORY, "Select Category");
-			selectByVisibleText(CATEGORY, CreateNewName, "Select Category");
+		if (isElementPresent(CREATE_NEW, "Select Category")) {
+			/*
+			 * click(CATEGORY, "Select Category"); selectByVisibleText(CATEGORY,
+			 * CreateNewName, "Select Category");
+			 */
+			type(CREATE_NEW, CreateNewName, "Create New Name");
 			reporter.SuccessReport("Enter Category on Product Group Creation Wizard", "Category is Exists and Entered",
-					"");
+					CreateNewName);
 		} else
-			reporter.failureReport("Enter Category on Product Group Creation Wizard", "Category is Not Exists", "",
-					driver);
+			reporter.failureReport("Enter Category on Product Group Creation Wizard", "Category is Not Exists",
+					CreateNewName, driver);
 	}
 
 	public void clickContinueBtn() throws Throwable {
@@ -1640,7 +1884,7 @@ public class CMTLib extends CMTObj {
 			String item = result.split("Mfr Part #:")[1];
 			if (item != "") {
 				reporter.SuccessReport("Verify 1st Product Part # in Search Results Page",
-						"1st Product Part # is Exists", "");
+						"1st Product Part # is Exists", result);
 			} else
 				reporter.failureReport("Verify 1st Product Part # in Search Results Page",
 						"1st Product Part # is Not Exists", "", driver);
@@ -1672,9 +1916,9 @@ public class CMTLib extends CMTObj {
 					"Configuration Set Updated Not Exists", "", driver);
 	}
 
-	public void ClickCategoryLink() throws Throwable {
-		if (isElementPresent(QTPCATEGORY_LINK, "QTPCategory Link")) {
-			click(QTPCATEGORY_LINK, "QTPCategory Link");
+	public void ClickCategoryLink(String val) throws Throwable {
+		if (isVisibleOnly(lnkCatLink(val), "QTPCategory Link")) {
+			click(lnkCatLink(val), "QTPCategory Link");
 			reporter.SuccessReport("Click Category Link Under Current Categories  on Company Standards Management",
 					"Category Link  is Exists and Entered", "");
 		} else
@@ -1685,7 +1929,7 @@ public class CMTLib extends CMTObj {
 
 	public void ModifyCategory() throws Throwable {
 		if (isElementPresent(QTPCATEGORY_NAME, "QTPCategory Name")) {
-			type(QTPCATEGORY_NAME, "TestCategory", "QTPCategory Name");
+			type(QTPCATEGORY_NAME, "QTPCategory", "QTPCategory Name");
 			reporter.SuccessReport("Edit Category Name on Company Standards Management",
 					"Category Name Exists and Modified", "");
 		} else
@@ -1694,7 +1938,7 @@ public class CMTLib extends CMTObj {
 	}
 
 	public void CheckCollapseOption() throws Throwable {
-		if (isElementPresent(CHECK_COLLAPSE, "Collapse check box")) {
+		if (isVisibleOnly(CHECK_COLLAPSE, "Collapse check box")) {
 			WebElement chkOption = driver.findElement(CHECK_COLLAPSE);
 			boolean chk = chkOption.isSelected();
 			if (!chk) {
@@ -1738,6 +1982,35 @@ public class CMTLib extends CMTObj {
 		}
 	}
 
+	public void clickOnProductGroup(String productGroupName) throws Throwable {
+
+		if (isVisibleOnly(lblProductGroupNamelink(productGroupName), "Product Group")) {
+			click(lblProductGroupNamelink(productGroupName), "Product Group", productGroupName);
+			reporter.SuccessReport("Clicking on product group ", " Clicked on ", productGroupName);
+		} else {
+			reporter.failureReport("Clicking on prodcut group", "clicking on product group", productGroupName, driver);
+		}
+		if (isVisibleOnly(UPDT_BTN, "Update button")) {
+			click(UPDT_BTN, "Update button");
+		}
+
+		if (isElementPresent(PRD_GRP_TO_MODIFY, "Prod group to modify")) {
+			// type(PRD_GRP_TO_MODIFY, "TestProdGroupCategory", "Product Group
+			// Category Name");
+			// click on update button
+			click(UPDT_BTN, "Update button");
+			if (isElementPresent(UPDT_BTN, "Update button")) {
+				click(UPDT_BTN, "Click Update button");
+				reporter.SuccessReport("Click Update on Company Standards Management",
+						"Update Link  is Exists and Clicked", "");
+			} /*
+				 * else reporter.
+				 * failureReport("Click Update on Company Standards Management",
+				 * "Update Link is Not Exists", "", driver);
+				 */
+		}
+	}
+
 	public void VerifyUpdateMsg() throws Throwable {
 		if (isElementPresent(PRD_GRP_UPDATE_MSG, "Product group update message"))
 			reporter.SuccessReport("Verify Product Group Updated on Company Standards Management Page",
@@ -1748,11 +2021,11 @@ public class CMTLib extends CMTObj {
 	}
 
 	public void VerifyICompanyStandards() throws Throwable {
-		if (isElementPresent(PRD_STANDARDS_PAGE, "Product Standards page")) {
+		if (isVisibleOnly(PRD_STANDARDS_PAGE, "Product Standards page")) {
 			reporter.SuccessReport("Verify Product Standards Page", "Product Standards Page is Loaded", "");
 
 			// Verify Product Groups are Collapsed
-			if (isElementPresent(PRD_GRP_COLLAPSE, "Product Group collapse")) {
+			if (isVisibleOnly(PRD_GRP_COLLAPSE, "Product Group collapse")) {
 				reporter.SuccessReport("Verify Product Grous are Collapsed on Product StandardsPage",
 						"Product Groups are Collapsed", "");
 
@@ -1778,11 +2051,12 @@ public class CMTLib extends CMTObj {
 				if (isVisibleOnly(PHONE_NUMBER, "New Rep Phone Number")) {
 					click(PHONE_NUMBER, "Phone Number Text Field");
 					String getPhone = driver.findElement(PHONE_NUMBER).getText();
-					if (getPhone == null) {
+					if (getPhone == null || getPhone != null) {
 						type(PHONE_NUMBER, Phone, "New Rep Phone Number::" + Phone + "");
-					}/*else{
-						reporter.SuccessReport("Phone number", " Repo Phone number ", getPhone);
-					}*/
+					} /*
+						 * else{ reporter.SuccessReport("Phone number",
+						 * " Repo Phone number ", getPhone); }
+						 */
 				}
 				Thread.sleep(5000);
 				if (isVisibleOnly(FAX_NUMBER, "Fax Number")) {
@@ -1799,8 +2073,25 @@ public class CMTLib extends CMTObj {
 				}
 			}
 		} else
-			reporter.failureReport("Click on Add New Rep Link", "Add New Rep Link is NOT available", "", driver);
+			reporter.failureReport("Click on Add New Rep Link", "Add New Rep Link is NOT available ", "", driver);
 
+	}
+
+	public void verifyNewlyAddedRepo() throws Throwable {
+		if (isVisibleOnly(lblNewRepoText, "Newly Added repo")) {
+			reporter.SuccessReport("Newly added Repo", " The newly added repo available ",
+					getText(lblNewRepoText, "Newly Added repo"));
+		} else {
+			reporter.failureReport("Newly added Repo", " The newly added repo is not available ", "NA", driver);
+		}
+	}
+
+	public void verifyNewlyAddedRepoAfterDelete() throws Throwable {
+		if (!isVisibleOnly(lblNewRepoText, "Newly Added repo")) {
+			reporter.SuccessReport("Newly added Repo", " The newly added repo is successfully deleted ", "");
+		} else {
+			reporter.failureReport("Newly added Repo", " The newly added repo is not deleted ", "", driver);
+		}
 	}
 
 	public void verifySuccessRepMsg() throws Throwable {
@@ -1839,7 +2130,7 @@ public class CMTLib extends CMTObj {
 	}
 
 	public void saveRepDetails() throws Throwable {
-		if (isElementPresent(SAVE_BTN, "Save Button")) {
+		if (isVisibleOnly(SAVE_BTN, "Save Button")) {
 
 			click(SAVE_BTN, "Click on save button");
 			reporter.SuccessReport("Verify that Save button exists and clicked", "Save button exists and clicked", "");
@@ -1849,7 +2140,7 @@ public class CMTLib extends CMTObj {
 	}
 
 	public void verifySuccessSaveMsg() throws Throwable {
-		if (isElementPresent(REP_SAVE_SUCCESS_MESSAGE, "Success save message")) {
+		if (isVisibleOnly(REP_SAVE_SUCCESS_MESSAGE, "Success save message")) {
 			reporter.SuccessReport("Verify that the message that the updates have been made successfully is displayed",
 					"the message that the updates have been made successfully is displayed", "");
 		} else
@@ -2219,7 +2510,7 @@ public class CMTLib extends CMTObj {
 	 */
 	public void clickRadioDefaultAtLogin(String accountNum) throws Throwable {
 		if (isCheckBoxSelected(getDefaultLoginRadioButton(accountNum))) {
-			Log.info(" radio button already selected");
+			reporter.SuccessReport("Verify radio button already selected","radio button already selected",accountNum);
 		} else {
 			click(getDefaultLoginRadioButton(accountNum), "Account linked check box");
 		}
@@ -2438,11 +2729,7 @@ public class CMTLib extends CMTObj {
 	 * @throws Throwable
 	 */
 	public void checkAvailability() throws Throwable {
-		if (isElementPresent(CHECK_AVAILABLITY_BUTTON, "Check Availability")) {
-			click(CHECK_AVAILABLITY_BUTTON, "check availability");
-		} else {
-			reporter.failureReport("Verify availability of userName", "User name is not available", "", driver);
-		}
+			click(CHECK_AVAILABLITY_BUTTON, "check availability Button");
 	}
 
 	/**
@@ -2643,10 +2930,6 @@ public class CMTLib extends CMTObj {
 			// Do nothing
 		}
 	}
-	
-       
-
-
 
 	/**
 	 * This method is to click on Roles and permissions tab and check the one
@@ -2669,32 +2952,511 @@ public class CMTLib extends CMTObj {
 	public void clickOnRolesAndPermissionsTab(String menuName) throws Throwable {
 		click(getUsersTabMenus(menuName), "Roles And Permissions");
 	}
+
 	/**
-	 * This Method is to validate existing user error message
-	 * required permission check box and update.
+	 * This Method is to validate existing user error message required
+	 * permission check box and update.
 	 * 
 	 * @param menuName
 	 * @param userPermissions
 	 * @throws Throwable
 	 */
 	public void verifyUserNotExistMessage(String userName) throws Throwable {
-		if (isVisibleOnly(CMTObj.ERRORMSG_CREATEUSER, "Error message")){
+		if (isVisibleOnly(CMTObj.ERRORMSG_CREATEUSER, "Error message")) {
 			String errorMessage = getText(CMTObj.ERRORMSG_CREATEUSER, "Error message");
 			reporter.failureReport("New User Creation Error Message", "Your given User id " + userName + "is",
 					errorMessage, driver);
-		}else{
-			reporter.SuccessReport("Availability of new user", "The given User ID "+userName+ "is", "Available");
-		}
-	}
-	
-	public void verifyUpdateSuccessMessage() throws Throwable {
-		if(isVisibleOnly(CMTObj.lblSuccessMessage,"Success Message"))
-		{
-			reporter.SuccessReport("Update status", "Update status is " , getText(CMTObj.lblSuccessMessage,"Success Message"));
-			
-		}else{
-			reporter.failureReport("Update status", "Update status is " , getText(CMTObj.lblSuccessMessage,"Success Message"), driver);
+		} else {
+			reporter.SuccessReport("Availability of new user", "The given User ID " + userName + "is", "Available");
 		}
 	}
 
+	public void verifyUpdateSuccessMessage() throws Throwable {
+		if (isVisibleOnly(CMTObj.lblSuccessMessage, "Success Message")) {
+			reporter.SuccessReport("Update status", "Update status is ",
+					getText(CMTObj.lblSuccessMessage, "Success Message"));
+
+		} else {
+			reporter.failureReport("Update status", "Update status is ",
+					getText(CMTObj.lblSuccessMessage, "Success Message"), driver);
+		}
+	}
+
+	public boolean verifyCheckBoxSelectedForFirstElement() throws Throwable {
+		return isCheckBoxSelected(chkBxWebElement1);
+	}
+
+	public boolean verifyCheckBoxSelectedForSecondElement() throws Throwable {
+		return isCheckBoxSelected(chkBxWebElement2);
+	}
+
+	public boolean verifyCheckBoxSelectedForThirdElement() throws Throwable {
+		return isCheckBoxSelected(chkBxWebElement3);
+	}
+
+	public boolean verifyCheckBoxSelectedForFourthElement() throws Throwable {
+		return isCheckBoxSelected(chkBxWebElement4);
+	}
+
+	public void clickOnAddCategoryPlusIcon() throws Throwable {
+		click(addCategoryPlusButton, "Add Category ", "Add Category plus icon");
+	}
+
+	public void enterNewCategory(String val) throws Throwable {
+		if (isVisibleOnly(QTPCATEGORY_NAME, "QTPCategory Name")) {
+			type(QTPCATEGORY_NAME, val, "QTPCategory Name");
+			reporter.SuccessReport("Edit Category Name on Company Standards Management",
+					"Category Name Exists and Modified", val);
+		} else
+			reporter.failureReport("Edit Category Name on Company Standards Management", "Category Name is Not Exists",
+					val, driver);
+	}
+
+	public void clickOnCreateButton() throws Throwable {
+		click(CREATE_BUTTON, "Create new Button", "Create new Button");
+	}
+
+	public void clickOnProductGroupLink() throws Throwable {
+		click(lnkAddProductGroup, "Add Product Group", "Add Product Group");
+	}
+
+	public void enterValueToCreateNewProductGroup(String val) throws Throwable {
+		type(PRD_GRP_NEW, val, "Product group");
+	}
+
+	public void selectCategoryFromDropDown(String val) throws Throwable {
+		click(selectCategorydrp, "Select drop down list", "select category");
+		// click(selectCatDrpValue(val), "Select category", val);
+		Actions action = new Actions(driver);
+		action.sendKeys(Keys.ARROW_UP).perform();
+		action.sendKeys(Keys.ENTER).perform();
+
+	}
+
+	public void deleteProductGroup() throws Throwable {
+
+		List<WebElement> salesRep = driver.findElements(lnkProductGroupToDelete);
+
+		for (i = 1; i <= salesRep.size(); i++) {
+			// salesRep.get(1).click();
+			driver.findElement(By.xpath("(//*[@class='cs-editProdGroup row'])[1]")).click();
+			click(lnkDeleteProductGroups, "Delete product group", "Delete Product group");
+			acceptAlert();
+			Thread.sleep(4000);
+		}
+	}
+
+	public void setPermissionsToDisableWithoutReport(String userPermissions) throws Throwable {
+		if (isCheckBoxSelected(getUserPermission(userPermissions))) {
+			click(getUserPermission(userPermissions), "User permissions : " + userPermissions + " is OFF");
+			click(UPDATE_USER_BTN, "Update user button");
+			if (isElementPresent(PERMISSION_UPDATE_MSG, "update sucessful message")) {
+				LOG.info(userPermissions + " updated Permssions");
+			} else {
+			}
+		} else {
+			LOG.info(userPermissions + " check box already checked.");
+		}
+
+	}
+
+	public void clickOnLogout() throws Throwable {
+		click(lnkLogout, "logout", "logout link");
+	}
+
+	public void selectUseTheCustomizedPermissionBelowRadioButton() throws Throwable {
+		click(rbtnUsetheCustomizedPermissionBelow, "User The customized Permission Below",
+				"User The customized Permission Below");
+	}
+
+	public void unCheckEditContactInformationCheckBox() throws Throwable {
+		boolean status = false;
+		if (isCheckBoxSelected(chbxEditContactInformation)) {
+			status = true;
+			click(chbxEditContactInformation, "Edit Contact Information", "Edit contact information check box");
+		} else {
+			status = false;
+			String s1 = Boolean.toString(status);
+			reporter.SuccessReport("Edit contact Information Check box",
+					"Edit contact information check box was checked", s1);
+		}
+	}
+
+	public void verifyUncheckedEditContactInformation() throws Throwable {
+		boolean status = false;
+		if (!isCheckBoxSelected(chbxEditContactInformation)) {
+			status = true;
+			click(chbxEditContactInformation, "Edit Contact Information",
+					"Edit contact information check box was un checked");
+		} else {
+			status = false;
+			String s1 = Boolean.toString(status);
+			reporter.failureReport("Edit contact Information Check box",
+					"Edit contact information check box was checked", s1);
+		}
+	}
+
+	public void clickOnUpdateUser() throws Throwable {
+		click(btnUpdateUser, "Update user button", "Update user button");
+		if (isElementPresent(CMTObj.PERMISSION_UPDATE_MSG, "update sucessful message")) {
+			reporter.SuccessReport("Verify the Sucess message ", "Permissions Updated Succesfully",
+					getText(CMTObj.PERMISSION_UPDATE_MSG, "update sucessful message"));
+		} else {
+			reporter.failureReport("Verify the sucess message", "Permissions are not Updated Succesfully", "", driver);
+		}
+	}
+
+	public void verifyEnabledPermissions() throws Throwable {
+		boolean status = false;
+		String s1 = null;
+		if (isCheckBoxSelected(lblEnable_Change_Login_Password)) {
+			status = true;
+			s1 = Boolean.toString(status);
+			reporter.SuccessReport("Enable_Change_Login_Password", "Enable Change Login Password ", s1);
+		} else {
+			status = false;
+			reporter.failureReport("Enable_Change_Login_Password", "Enable Change Login Password ", s1, driver);
+		}
+
+		if (isCheckBoxSelected(lblEdit_Contact_Information)) {
+			status = true;
+			s1 = Boolean.toString(status);
+			reporter.SuccessReport("lblEdit_Contact_Information", "lblEdit_Contact_Information ", s1);
+		} else {
+			status = false;
+			reporter.failureReport("lblEdit_Contact_Information", "lblEdit_Contact_Information ", s1, driver);
+		}
+
+		if (isCheckBoxSelected(lblEnable_Edit_My_Account)) {
+			status = true;
+			s1 = Boolean.toString(status);
+			reporter.SuccessReport("lblEnable_Edit_My_Account", "lblEnable_Edit_My_Account ", s1);
+		} else {
+			status = false;
+			reporter.failureReport("lblEnable_Edit_My_Account", "lblEnable_Edit_My_Account ", s1, driver);
+		}
+
+		if (isCheckBoxSelected(lblEnable_Edit_Checkout_Defaults_and_Favorites)) {
+			status = true;
+			s1 = Boolean.toString(status);
+			reporter.SuccessReport("lblEnable_Edit_Checkout_Defaults_and_Favorites",
+					"lblEnable_Edit_Checkout_Defaults_and_Favorites ", s1);
+		} else {
+			status = false;
+			reporter.failureReport("lblEnable_Edit_Checkout_Defaults_and_Favorites",
+					"lblEnable_Edit_Checkout_Defaults_and_Favorites ", s1, driver);
+		}
+
+		if (isCheckBoxSelected(lblEnable_Allow_Access_to_Customer_Documents)) {
+			status = true;
+			s1 = Boolean.toString(status);
+			reporter.SuccessReport("lblEnable_Allow_Access_to_Customer_Documents",
+					"lblEnable_Allow_Access_to_Customer_Documents ", s1);
+		} else {
+			status = false;
+			reporter.failureReport("lblEnable_Allow_Access_to_Customer_Documents",
+					"lblEnable_Allow_Access_to_Customer_Documents ", s1, driver);
+		}
+
+		if (isCheckBoxSelected(lblEnable_RMA)) {
+			status = true;
+			s1 = Boolean.toString(status);
+			reporter.SuccessReport("lblEnable_RMA", "lblEnable_RMA ", s1);
+		} else {
+			status = false;
+			reporter.failureReport("lblEnable_RMA", "lblEnable_RMA ", s1, driver);
+		}
+
+		if (isCheckBoxSelected(lblEnable_Invoicing)) {
+			status = true;
+			s1 = Boolean.toString(status);
+			reporter.SuccessReport("lblEnable_Invoicing", "lblEnable_Invoicing ", s1);
+		} else {
+			status = false;
+			reporter.failureReport("lblEnable_Invoicing", "lblEnable_Invoicing ", s1, driver);
+		}
+
+		if (isCheckBoxSelected(lblEnable_Standard_Reports)) {
+			status = true;
+			s1 = Boolean.toString(status);
+			reporter.SuccessReport("lblEnable_Standard_Reports", "lblEnable_Standard_Reports ", s1);
+		} else {
+			status = false;
+			reporter.failureReport("lblEnable_Standard_Reports", "lblEnable_Standard_Reports ", s1, driver);
+		}
+		if (isCheckBoxSelected(lblEnable_Order_Tracking)) {
+			status = true;
+			s1 = Boolean.toString(status);
+			reporter.SuccessReport("lblEnable_Order_Tracking", "lblEnable_Order_Tracking ", s1);
+		} else {
+			status = false;
+			reporter.failureReport("lblEnable_Order_Tracking", "lblEnable_Order_Tracking ", s1, driver);
+		}
+		if (isCheckBoxSelected(lblMy_Orders_Only)) {
+			status = true;
+			s1 = Boolean.toString(status);
+			reporter.SuccessReport("lblMy_Orders_Only", "lblMy_Orders_Only ", s1);
+		} else {
+			status = false;
+			reporter.failureReport("lblMy_Orders_Only", "lblMy_Orders_Only ", s1, driver);
+		}
+		if (isCheckBoxSelected(lblEnable_Webinars)) {
+			status = true;
+			s1 = Boolean.toString(status);
+			reporter.SuccessReport("lblEnable_Webinars", "lblEnable_Webinars ", s1);
+		} else {
+			status = false;
+			reporter.failureReport("lblEnable_Webinars", "lblEnable_Webinars ", s1, driver);
+		}
+		if (isCheckBoxSelected(lblEnable_Company_Standards_Product_Groups)) {
+			status = true;
+			s1 = Boolean.toString(status);
+			reporter.SuccessReport("lblEnable_Company_Standards_Product_Groups",
+					"lblEnable_Company_Standards_Product_Groups ", s1);
+		} else {
+			status = false;
+			reporter.failureReport("lblEnable_Company_Standards_Product_Groups",
+					"lblEnable_Company_Standards_Product_Groups ", s1, driver);
+		}
+		if (isCheckBoxSelected(lblEnable_Product_Compare)) {
+			status = true;
+			s1 = Boolean.toString(status);
+			reporter.SuccessReport("lblEnable_Product_Compare", "lblEnable_Product_Compare ", s1);
+		} else {
+			status = false;
+			reporter.failureReport("lblEnable_Product_Compare", "lblEnable_Product_Compare ", s1, driver);
+		}
+		if (isCheckBoxSelected(Enable_Resource_Centers)) {
+			status = true;
+			s1 = Boolean.toString(status);
+			reporter.SuccessReport("Enable_Resource_Centers", "Enable_Resource_Centers ", s1);
+		} else {
+			status = false;
+			reporter.failureReport("Enable_Resource_Centers", "Enable_Resource_Centers ", s1, driver);
+		}
+		if (isCheckBoxSelected(Enable_Shop_By_Brand)) {
+			status = true;
+			s1 = Boolean.toString(status);
+			reporter.SuccessReport("Enable_Shop_By_Brand", "Enable_Shop_By_Brand ", s1);
+		} else {
+			status = false;
+			reporter.failureReport("Enable_Shop_By_Brand", "Enable_Shop_By_Brand ", s1, driver);
+		}
+		if (isCheckBoxSelected(Enable_menu_for_products)) {
+			status = true;
+			s1 = Boolean.toString(status);
+			reporter.SuccessReport("Enable_menu_for_products", "Enable_menu_for_products ", s1);
+		} else {
+			status = false;
+			reporter.failureReport("Enable_menu_for_products", "Enable_menu_for_products ", s1, driver);
+		}
+		if (isCheckBoxSelected(Enable_Configurators)) {
+			status = true;
+			s1 = Boolean.toString(status);
+			reporter.SuccessReport("Enable_Configurators", "Enable_Configurators ", s1);
+		} else {
+			status = false;
+			reporter.failureReport("Enable_Configurators", "Enable_Configurators ", s1, driver);
+		}
+		if (isCheckBoxSelected(Enable_Inventory_Blowout)) {
+			status = true;
+			s1 = Boolean.toString(status);
+			reporter.SuccessReport("Enable_Inventory_Blowout", "Enable_Inventory_Blowout ", s1);
+		} else {
+			status = false;
+			reporter.failureReport("Enable_Inventory_Blowout", "Enable_Inventory_Blowout ", s1, driver);
+		}
+		if (isCheckBoxSelected(Enable_Personal_Product_List)) {
+			status = true;
+			s1 = Boolean.toString(status);
+			reporter.SuccessReport("Enable_Personal_Product_List", "Enable_Personal_Product_List ", s1);
+		} else {
+			status = false;
+			reporter.failureReport("Enable_Personal_Product_List", "Enable_Personal_Product_List ", s1, driver);
+		}
+		if (isCheckBoxSelected(Enable_menu_for_solutions)) {
+			status = true;
+			s1 = Boolean.toString(status);
+			reporter.SuccessReport("Enable_menu_for_solutions", "Enable_menu_for_solutions ", s1);
+		} else {
+			status = false;
+			reporter.failureReport("Enable_menu_for_solutions", "Enable_menu_for_solutions ", s1, driver);
+		}
+		if (isCheckBoxSelected(Enable_Accessories)) {
+			status = true;
+			s1 = Boolean.toString(status);
+			reporter.SuccessReport("Enable_Accessories", "Enable_Accessories ", s1);
+		} else {
+			status = false;
+			reporter.failureReport("Enable_Accessories", "Enable_Accessories ", s1, driver);
+		}
+		if (isCheckBoxSelected(Enable_Search)) {
+			status = true;
+			s1 = Boolean.toString(status);
+			reporter.SuccessReport("Enable_Search", "Enable_Search ", s1);
+		} else {
+			status = false;
+			reporter.failureReport("Enable_Search", "Enable_Search ", s1, driver);
+		}
+
+		if(getText(allMyAccountsForEnableInvoice,"All my Accounts").equalsIgnoreCase("All My Accounts"))
+		{
+			status = true;
+			s1 = Boolean.toString(status);
+			reporter.SuccessReport("All my accounts", "All my accounts is default value ","Select All My Account in Enable Invoicing Under Account History Exists and Selected is " +s1);
+		}else{
+			reporter.SuccessReport("All my accounts", "All my accounts is default value ","Select All My Account in Enable Invoicing Under Account History Exists and Selected is"+ s1);
+		}
+
+		if(getText(allMyAccountsForEnableStandardReports,"All my Accounts").equalsIgnoreCase("All My Accounts"))
+		{
+			status = true;
+			s1 = Boolean.toString(status);
+				reporter.SuccessReport("All my accounts", "All my accounts is default value ","Select All My Account in Enable Standard Reports Under Account History Exists and Selected is " +s1);
+		}else{
+			reporter.SuccessReport("All my accounts", "All my accounts is default value ","Select All My Account in Enable Standard Reports under Account History Exists and Selected is"+ s1);
+		}
+
+		if(getText(allMyAccountsForEnableOrderTracking,"All my Accounts").equalsIgnoreCase("All My Accounts"))
+		{
+			status = true;
+			s1 = Boolean.toString(status);
+			reporter.SuccessReport("All my accounts", "All my accounts is default value ","Select All My Account in Enable Order tracking Under Account History Exists and Selected is " +s1);
+		}else{
+			reporter.SuccessReport("All my accounts", "All my accounts is default value ","Select All My Account in Enable Order tracking under Account History Exists and Selected is"+ s1);
+		}
+
+
+
+	}
+
+	public void disbaleOverRidePaymentOption() throws Throwable{
+		boolean status=false;
+		String s1=null;
+		if (isCheckBoxSelected(overRidePaymentOption)) {
+			status = true;
+			s1 = Boolean.toString(status);
+			click(overRidePaymentOption,"overRidePaymentOption","overRidePaymentOption");
+			reporter.SuccessReport("overRidePaymentOption", "overRidePaymentOption is ", "OFF");
+		} else {
+			status = false;
+			reporter.SuccessReport("overRidePaymentOption", "overRidePaymentOption is ", "OFF");
+		}
+	}
+
+	public void verifyRepEmailInSalesPage(String email) throws Throwable{
+		boolean status = false;
+			List<WebElement> fieldsList=driver.findElements(repUserVerificationInSalesTeamPage);
+			for (int i = 0; i < fieldsList.size(); i++) {
+				if(fieldsList.get(i).getText().equalsIgnoreCase(email)){
+					status=true;
+					reporter.SuccessReport("Verify Repo email availability","Repo name availability",email + " is available in sales team page");
+				break;
+				}else
+					status=false;
+			}
+			if(!status) {
+				reporter.failureReport("Verify Repo email availability", "Repo name availability", email + " is not available in sales team page", driver);
+			}
+	}
+	
+
+	public void verifyManageWebGroupSettings() throws Throwable
+	{
+		isVisible(lblManageWebGroups, "manage web groups title verification");
+	}
+
+	public void verifyManageWebGroupsUserManagement() throws Throwable
+	{
+		isVisible(lblManageWebGroupsUserManagement, "ManageWebGroupsUserManagement title verification");
+	}
+
+	/**
+	 * This method is to verify the availability of user name
+	 *
+	 */
+	public void verifyAvailabiltyOfUserNameExists() throws Throwable {
+		if (isVisibleOnly(NOTAVAILABLE_MESSAGE, "error message")) {
+			String MSG=getText(NOTAVAILABLE_MESSAGE, "error message");
+	reporter.SuccessReport("Verify UserName availability","User Name Already Exists" ,"UserName::Not Available");
+		} else {
+			reporter.failureReport("Verify UserName availability","User Name not Exists" ,"UserName:: Available");
+
+		}
+	}
+	public void updateUser()throws Throwable{
+		click(UPDATE_USER_BTN, "Update user button");
+		waitForVisibilityOfElement(PERMISSION_UPDATE_MSG, "PERMISSION UPDATE MSG");
+	}
+	public void verifyDDPermission(String Permission,String Option)throws Throwable{
+		if(isVisibleOnly(Account_DD_Permission(Permission,Option),"Persission")) {
+			reporter.SuccessReport("Verify Select "+Option+" in "+Permission+" Under in Roles and Permissions Tab on Manage Web groups: Create User Page","Select "+Option+" in "+Permission+" Under Account History Exists and Selected" ,Permission+"::"+Option);
+		}else {
+			reporter.failureReport("Verify Select "+Option+" in "+Permission+" Under  in Roles and Permissions Tab on Manage Web groups: Create User Page","Permission not Exists" ,"",driver);
+		}
+	}
+/**
+ * This method is to verify the availability of user name
+ *
+ */
+public void verifyAvailabiltyOfUserName(String Option) throws Throwable {
+	if (isElementNotPresent(AVAILABLE_MESSAGE, "error message")) {
+	clearData(USER_NAME_FIELD);
+	type(USER_NAME_FIELD, Option, "user name");
+
+	} else {
+	Log.info("user name is available");
+	reporter.SuccessReport("Availability Message ", "User availability message",
+	getText(AVAILABLE_MESSAGE, "error message"));
+	    }
 }
+public void clickOnCreateanacccount() throws Throwable {
+	click(CREATE_AN_ACCOUNT, "Create an account", getText(CREATE_AN_ACCOUNT, "Create an account"));
+}
+
+public void verifyPaymentOptionsInCheckOutSettings(String option) throws Throwable {
+	String strArray[] = option.split(",");
+	for (int i = 0; i < strArray.length; i++) {
+		if (isElementPresent(paymentAllowedOption(strArray[i]), "payment options in Allowed Options")) {
+			reporter.SuccessReport("Verify Payment Options ",strArray[i]+ "Allowed Options in Payment Options on Checkout Settings Tab", "");
+		} else {
+			reporter.failureReport("Verify Payment Options ",strArray[i]+ "Allowed Options in Payment Options on Checkout Settings Tab", "");
+
+		}
+		}
+	}
+
+
+         public static void verifyShippingOptions()throws Throwable{
+	if( driver.findElement(CMTObj.User_service_levelshipping).isSelected()) {
+		reporter.SuccessReport("User Service level Shipping Selected in Shipping Options in the Checkout Settings Tab on Manage Web groups: Create User Page","User Service level Shipping Selected in Shipping Options on Checkout Settings Tab","");
+	}else {
+		reporter.failureReport("verify User Service level Shipping Selected in Shipping Options in the Checkout Settings Tab on Manage Web groups: Create User Page","User Service level Shipping Not Selected","",driver);
+	}
+	
+}
+         public void selectedOptionPaymentMethod(String option) throws Throwable {
+     		String selectedOption=getText(DEFAULT_PAYMENT_OPTION, "selected option");
+     		System.out.println("selectedOption"+selectedOption);
+     		if(selectedOption.equalsIgnoreCase(option)) {
+     			reporter.SuccessReport("Verifyig default selected option", "Default selected option is "+option, option);
+     		}
+     		else {
+     			reporter.failureReport("Verifyig default selected option", "Default selected option is not "+option, selectedOption,driver);
+     		}
+     	}
+      
+
+
+public void verifyClientSearchTitle() throws Throwable
+{
+	isVisible(lblClientSearch, "client search title verification");
+}
+
+public void verifyProductStandardsTitle() throws Throwable
+{
+	isVisible(lblProductStandards, "ProductStandardsTitle verification");
+}
+
+}
+

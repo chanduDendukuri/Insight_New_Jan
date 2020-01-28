@@ -32,8 +32,8 @@ public class CQT40_IPSContractPricingCiscoUSCPriceMatchContractTest extends Home
 
 	@Parameters({ "StartRow", "EndRow", "nextTestJoin" })
 	@Test
-	public void TC_CQT40(int StartRow, String EndRow, boolean nextTestJoin)
-			throws Throwable {
+	public void TC_CQT40(int StartRow, String EndRow, boolean nextTestJoin) 
+			throws Throwable { 
 		int counter = 0;
 		try {
 			int intStartRow = StartRow;
@@ -69,7 +69,7 @@ public class CQT40_IPSContractPricingCiscoUSCPriceMatchContractTest extends Home
 					clickYesButtontocloseDocument();
 					clickDoneButton();
 					clickUpdateCosting();
-					driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+					
 					clickonConXSystem(data.get("LineItem1"));// 000010
 					clickOnTabsInLineItemDetailsPopUp(data.get("Tab2"));// Contracts
 					verifyReportingFieldsix();
@@ -82,7 +82,28 @@ public class CQT40_IPSContractPricingCiscoUSCPriceMatchContractTest extends Home
 					clickonRightArrowforLineItem();
 					clickOnTabsInLineItemDetailsPopUp(data.get("Tab2"));// Contracts
 					float Sellprice3 = getSellPriceFromInlineItemsContract(data.get("contactid"));
+					clickOnTabsInLineItemDetailsPopUp(data.get("Tab3"));// Pricing
+					List<String> Rate = new ArrayList<>();
+					int a = Integer.parseInt(data.get("Value"));
+					Rate = getRateValueFromPricingTab(data.get("idValue"), data.get("expValue"), a);
+					System.out.println(Rate.size());
+					 String	Price1="";
+	                   
+	                    float Rate1value = 0;
+	                    for(int b =0;b<Rate.size();b++){
+	                    	if(b==0){ //ZP00--0
+	                    	 Price1 = Rate.get(b);
+	                    	 String P1 = Price1.replace(",", "");
+	                    	 Rate1value = Float.parseFloat(P1);
+	                         
+	                    	}
+	                    }
+	                    
+	                    
+					
 					clickDoneButton();
+					verifyReportingFieldsixpriceandZP00(Rate1value,Sellprice1);
+					
 					//clickSideBarSmart();
 					clickonSaveasQuote();
 					SelectAdherencetoflooroption("Client Satisfaction","UFT Test");
@@ -94,20 +115,26 @@ public class CQT40_IPSContractPricingCiscoUSCPriceMatchContractTest extends Home
 						reporter.failureReport("QuoteNumber:", "Quotenumber is not displayed", "",driver);
 					}
 					clickonConXSystem(data.get("LineItem1"));// 000010
+					
+					
+					clickOnTabsInLineItemDetailsPopUp(data.get("Tab2"));// Contracts
+					
+					float Sellpriceaftersaveasquote = getSellPriceFromInlineItemsContract(data.get("contactid"));
+					     
 					clickOnTabsInLineItemDetailsPopUp(data.get("Tab3"));// Pricing
 					// Get data from the pricing tab
-					List<String> Price = new ArrayList<>();
-					int a = Integer.parseInt(data.get("Value"));
-					Price = getRateValueFromPricingTab(data.get("idValue"), data.get("expValue"), a);
-					System.out.println(Price.size());
-					 String	Price1="";
+					List<String> Rate1 = new ArrayList<>();
+					int a1 = Integer.parseInt(data.get("Value"));
+					Rate1 = getRateValueFromPricingTab(data.get("idValue"), data.get("expValue"), a1);
+					System.out.println(Rate1.size());
+					 String	Rate2="";
 	                   
-	                    float price1value = 0;
-	                    for(int b =0;b<Price.size();b++){
-	                    	if(b==0){ //ZP00--0
-	                    	 Price1 = Price.get(b);
+	                    float Rate2value = 0;                
+	                    for(int b1 =0;b1<Rate1.size();b1++){
+	                    	if(b1==0){ //ZP00--0
+	                    		Rate2 = Rate1.get(b1);
 	                    	 String P1 = Price1.replace(",", "");
-	                         price1value = Float.parseFloat(P1);
+	                    	 Rate2value = Float.parseFloat(P1);
 	                         
 	                    	}
 	                    	
@@ -115,13 +142,13 @@ public class CQT40_IPSContractPricingCiscoUSCPriceMatchContractTest extends Home
 	                    }
 					// comparision of retraived price values
 	                    clickDoneButton();
-					verifyReportingFieldsixpriceandZP00(price1value,Sellprice1);
-					verifyReportingFieldsixpriceandZP00( price1value,Sellprice2);
-					verifyReportingFieldsixpriceandZP00( price1value,Sellprice3);
+					verifyReportingFieldsixpriceandZP00(Rate2value,Sellpriceaftersaveasquote);
+					verifyReportingFieldsixpriceandZP00( Rate2value,Sellprice2);
+					verifyReportingFieldsixpriceandZP00( Rate2value,Sellprice3);
 					clickSideBarSmart();
 					
 					clickClosthedocument(QuoteNum);
-					//clickYesButtontocloseDocument();
+					clickYesButtontocloseDocument();
 					System.out.println("Test completed");
 				} catch (Exception e) {
 					ReportStatus.blnStatus = false;

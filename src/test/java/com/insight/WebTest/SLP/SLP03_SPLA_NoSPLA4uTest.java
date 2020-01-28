@@ -84,6 +84,7 @@ public class SLP03_SPLA_NoSPLA4uTest extends SLPLib{
 				     	pipLib.verifyThePriceInProdDetailsPage(firstProdPrice1); // Verifying price in product details page
 				     	commonLib.addToCartAndVerify();
 				     	orderLib.continueToCheckOutOnAddCart();
+				     	canadaLib.verifyPlaceCartLabel();
 				     	cartLib.clickAndVerifyExportCart(data.get("Order_Utilities"));
 				     	validateCartExportAndSheetName();
 				     	commonLib.clickLogOutLink(data.get("Logout"));
@@ -116,7 +117,8 @@ public class SLP03_SPLA_NoSPLA4uTest extends SLPLib{
 				     	cmtLib.navigateBackToCMT();
 				     	//User Requires Approval;OFF";
 						cmtLib.setPermissionsToDisable(data.get("Menu_Name"), data.get("Set_Permission"));
-				     	
+				     	// logout cmt
+						cmtLib.logoutSite();
 				     	
 					} catch (Exception e) {
 						ReportStatus.blnStatus = false;

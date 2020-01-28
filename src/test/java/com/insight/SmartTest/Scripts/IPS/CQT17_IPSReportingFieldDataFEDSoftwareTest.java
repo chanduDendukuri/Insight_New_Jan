@@ -51,10 +51,11 @@ public class CQT17_IPSReportingFieldDataFEDSoftwareTest extends HomeLib {
 				
 				
 				clickOnQuoteandAddlineitemsfromProductSearch(array,data.get("SoldToAcct"));
+				VerifyXconsymbolispresentforallthematerials(data.get("ItemNum1"));
 				ClickOnXsymbolunderCon();
 		        driver.switchTo().defaultContent();
 				//SelectContractId(1);
-		        selectContractID(data.get("ContractId1"));
+		        selectCOntractID(data.get("ContractId"), data.get("ContractTabName"));
 				enterUSCOMMmember(data.get("USCOMMmember"));
 				ClickonArrowNextToLineitem();
 				String lineitemvalue=getLineItemText();
@@ -88,6 +89,7 @@ public class CQT17_IPSReportingFieldDataFEDSoftwareTest extends HomeLib {
 		        validatetheLineitemfiledsaftersaving();
 		        //reportingFiledData();
 		        clickDoneButton();
+		        
 		        System.out.println("testcase completed");
 		        
 		     

@@ -18,6 +18,7 @@ public class ROD06_FCTWebReviewExportTest extends OrderLib{
 	CommonLib commonLib=new CommonLib();
 	CartLib cartLib=new CartLib();
 	ProductDisplayInfoLib prodLib=new ProductDisplayInfoLib();
+	CanadaLib canadaLib=new CanadaLib();
 
 	// #############################################################################################################
 	// #    Name of the Test         : ROD06_FCTWebReviewExport
@@ -49,27 +50,46 @@ public class ROD06_FCTWebReviewExportTest extends OrderLib{
 
 
 						cmtLib.loginToCMTSelectUserAndLoginAS(data.get("Header"), data.get("WebGrp"), data.get("WebGrp_Name"), data.get("Manage_Web_Grp_Options"), data.get("LnameEmailUname"), data.get("ContactName"));
+						//Blade Servers
 						searchLib.searchInHomePage(data.get("SearchText1"));
+						searchLib.verifyTheResultsForSearchTerm(data.get("SearchText1"));
+						// in-stock filter verification
+						// searchLib.verifyFilterBreadCrumb(data.get("In_Stock_Only"));
 						prodLib.selectFirstProductAddToCartAndVerifyCart();
-						cartLib.verifyQuickShopWithValidSinglePartNumber(data.get("QuickShop_Part"), data.get("Quantity"));
-
 						// ********  verify Export Excel ***************//
 						cartLib.ClickExportCartAndVerify(data.get("Order_Utilities"),data.get("Sheet_Name"),data.get("Row_number"),data.get("Column_Headers"));
+						// Quick shop
+						cartLib.verifyQuickShopWithValidSinglePartNumber(data.get("QuickShop_Part"), data.get("Quantity"));
 						// proceed To Checkout >> Fill Additional Information section >>>  Fill Line level Information >>> Fill Order and Item Info page - Review Order
+						scrollUp();
 						proceedToCheckout();
-						clickOnAdditionalInfoContinueButton();
-						clickContinueOnLLIAndShipBillPaySections(); // Click continue
+						Thread.sleep(3000);
+						cartLib.clickOnContinueButtonInAddInformtion();
+						clickContinueOnLineLevelInfo();
+						canadaLib.verifySBP();
+						clickContinueOnShippingAddress();
+						//enterAttentionField( data.get("Card_Name"));
+						shippingOptionsCarrierSelection();
+						billingAddressContinueButton();
 						selectPaymentInfoMethodCreditCard(data.get("Card_Number").toString(), data.get("Card_Name"), data.get("Month"), data.get("Year"),data.get("PO_Number"),data.get("POReleaseNumber"));
 						clickOnReviewOrderButton();
+						
 						// ********  verify Export Excel ***************//   -- Verify  items added
 						cartLib.ClickExportCartAndVerify(data.get("Order_Utilities"),data.get("Sheet_Name"),data.get("Row_number"),data.get("Column_Headers"));
+						
 						// SearchPart OR Product - Adobe
 						searchLib.searchInHomePage(data.get("SearchText2"));
+						searchLib.verifyTheResultsForSearchTerm(data.get("SearchText2"));
+						// in-stock filter verification
+						//searchLib.verifyFilterBreadCrumb(data.get("In_Stock_Only"));
 						prodLib.selectFirstProductAddToCartAndVerifyCart();
+						
 						// proceed To Checkout and click continue on Line Level information Section, shipping address,Shipping options, Billing address section >> Review Order
 						proceedToCheckout();
+						Thread.sleep(3000);
 						clickOnAdditionalInfoContinueButton();
 						clickContinueOnLineLevelInfo();
+						canadaLib.verifySBP();
 						shippingBillPayContinueButton();
 						shippingOptionsCarrierSelection();
 						shippingBillPayContinueButton();
@@ -78,7 +98,9 @@ public class ROD06_FCTWebReviewExportTest extends OrderLib{
 						// ******** verify Export Excel ***************//   -- Verify items added
 					   	cartLib.ClickExportCartAndVerify(data.get("Order_Utilities"),data.get("Sheet_Name"),data.get("Row_number"),data.get("Column_Headers"));
 						// Navigate to Account tools >> Company Standards
-						searchLib.selectAccountToolsFromSideMenuAndClickOnProductGrp(data.get("Tools_Menu"), data.get("Tools_Menu_DD"),data.get("Product_Group"),data.get("Product_Name"));
+						clickOnSideMenuSelectAccountToolOptions(data.get("Tools_Menu"), data.get("Tools_Menu_DD"));
+						commonLib.clickOnProductGrpInCompanyStandard( data.get("Product_Group"), data.get("Product_Name"));
+						
 						searchLib.clickAddToOrderOnCompanyStandardsScreen();
 
 						// Verifying Bundle added to cart
@@ -86,7 +108,6 @@ public class ROD06_FCTWebReviewExportTest extends OrderLib{
 
 						// proceed To Checkout >> Fill Additional Information section >>>  Fill Line level Information >>> Fill Order and Item Info page - Review Order
 						proceedToCheckout();
-
 						continueButtonOnAdditionalInformationSection();   // Click continue button on Add additional info
 						clickContinueOnLLIAndShipBillPaySections(); // Click continue
 						clickOnReviewOrderButton();       // Click Review order button
@@ -94,6 +115,7 @@ public class ROD06_FCTWebReviewExportTest extends OrderLib{
 						// ********  verify Export Excel ***************//   -- Verify bundle items added
 						cartLib.ClickExportCartAndVerify(data.get("Order_Utilities"),data.get("Sheet_Name"),data.get("Row_number"),data.get("Column_Headers"));
 						// End of the test
+						commonLib.clickLogOutLink(data.get("Logout"));
 						
 					} catch (Exception e) {
 						ReportStatus.blnStatus = false;

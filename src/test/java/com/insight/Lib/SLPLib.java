@@ -10,6 +10,7 @@ import org.openqa.selenium.WebElement;
 
 import com.insight.ObjRepo.CanadaObj;
 import com.insight.ObjRepo.CartObj;
+import com.insight.ObjRepo.CommonObj;
 import com.insight.ObjRepo.OrderObj;
 import com.insight.ObjRepo.SLPObj;
 import com.insight.ObjRepo.ShipBillPayObj;
@@ -20,7 +21,7 @@ public class SLPLib extends SLPObj {
 	String expectedWarrantyItemDec;
 	String expectedSummaryTotalAmount;
 	String referenceNumber;
-
+    OrderLib orderLib=new OrderLib();
 	/**
 	 * Method is used to get price from Product detail page
 	 * 
@@ -95,8 +96,7 @@ public class SLPLib extends SLPObj {
 			reporter.failureReport("Prorartion::", "ProratedPrice Matches With Actual Price:"+ totalAmount,"");
 		} else {
 			reporter.SuccessReport("Prorartion::",
-					"ProratedPrice Matches does not With Actual Price. Proratedprice-" + totalAmount + "",
-					"Actualprice:: " + Actualprice + "");
+					"Prorated Price is displayed. ","Proratedprice- $" + totalAmount + "  Actualprice: $" + Actualprice + "");
 		}
 	}
 	
@@ -117,6 +117,7 @@ public class SLPLib extends SLPObj {
 	public void selectApproveRadioButtonOnApprovalManagementPage() throws Throwable{
 		if(isCheckBoxSelected(APPROVE_RADIO_BTN)){
 			LOG.info("Radio button alreaded selected");
+			reporter.SuccessReport("Verify Approval Management Page", "Approval Management Page Exists", "");
 			
 		}else{
 			click(APPROVE_RADIO_BTN, "update approval status - Approve radio button");
@@ -131,9 +132,9 @@ public class SLPLib extends SLPObj {
 	public void updateRequisitionAndVerify(String refNum) throws Throwable{
 		click(ShipBillPayObj.APPROVEREQUISITOR_UPDATEBUTTON, "Update button");
 		if(isElementPresent(getRequisitionApprovedMsg(refNum),"Requisition approval message")){
-			reporter.SuccessReport("Verify requisition success message", "Requisition has been approved for ref num"+refNum, "");
+			reporter.SuccessReport("Verify requisition success message", "Requisition has been approved for ref number "+refNum, "");
 		}else{
-			reporter.failureReport("Verify requisition success message", "Requisition has not approved for ref num"+refNum, "");
+			reporter.failureReport("Verify requisition success message", "Requisition has not approved for ref number  "+refNum, "");
 		}
 	}
 	
@@ -474,7 +475,7 @@ public class SLPLib extends SLPObj {
 		  Workbook wb=WorkbookFactory.create(file);
 		  String sheetName=wb.getSheetName(0);
 		  if(sheetName.equals("send_cart")){
-			  reporter.SuccessReport("Verify send_cart in Export Cart Excel File", "send_cart Exists", "");
+			  reporter.SuccessReport("Verify send_cart in Export Cart Excel File", "send_cart Exists", "Sheet Name: send_cart");
 			  
 		  }else{
 			  reporter.failureReport("Verify send_cart in Export Cart Excel File", "send_cart does not Exists", "");
@@ -503,7 +504,7 @@ public class SLPLib extends SLPObj {
 		 */
 		public void verifyUserRequiresApprovelAlertMessage() throws Throwable{
 			if(isElementPresent(USER_REQUIRES_APPROVAL_MSG, "user requires alert message")){
-				reporter.SuccessReport("Verify Alert message displayed on CART Page", "Alert Exists", "");
+				reporter.SuccessReport("Verify Alert message displayed on CART Page", "Alert Exists", getText(USER_REQUIRES_APPROVAL_MSG, "approvel message"));
 			}else{
 				reporter.failureReport("Verify Alert message displayed on CART Page", "Alert does not Exists", "");
 			}
@@ -578,10 +579,11 @@ public class SLPLib extends SLPObj {
 		 */
 		public String verifyReportingUsagePeriod() throws Throwable {
 			String period = null;
-			if (isElementPresent(REPORTING_USAGE_ON_RECEIPT_PAGE, "reporting usage period on Cart PAGE")) {
+			if (isElementPresent(REPORTING_USAGE_ON_RECEIPT_PAGE, "reporting usage period on Cart PAGE")&& isElementPresent(ENROLLMENT, "ENROLLMENT")) {
 				 period = getText(REPORTING_USAGE_ON_RECEIPT_PAGE, "reporting usage period on Cart PAGE");
+				 String enrolment=getText(ENROLLMENT, "ENROLLMENT");
 				reporter.SuccessReport("verify reporting usage period on RECEIPT PAGE",
-						"Usage Field Exists and Verified. " + period,period );
+						"Usage Field Exists and Verified. " + period,period +"  "+enrolment);
 			} else {
 				reporter.failureReport("verify reporting usage period on RECEIPT PAGE", "Usage Field does not Exists. ", "");
 			}
@@ -692,7 +694,7 @@ public class SLPLib extends SLPObj {
 		 */
 		public void verifyAllReportingPeriodsCurrentinCartPage() throws Throwable{
 			if(isElementPresent(ALL_REPORTING_PERIODS_CURRENT_LABEL_CART_PAGE, "verify All Reporting Periods Current")){
-				reporter.SuccessReport("Verify All Reporting Periods Current message", "All Reporting Periods Current message", "");
+				reporter.SuccessReport("Verify All Reporting Periods Current message", "Cart Display's All Reporting Periods Current", "");
 			}else{
 				reporter.failureReport("Verify All Reporting Periods Current message", "All Reporting Periods Current message does not exist", "");
 
@@ -740,6 +742,62 @@ public class SLPLib extends SLPObj {
 			} else
 				reporter.failureReport("Verify PA# Field in Place Order Page", "PA# Field does not exist" , "");
 				}
+		}
+		
+		
+		public void verifyCartPageAndPartDetails(int itemNum) throws Throwable {
+			List<String> prodDesc1 = orderLib.getProductDescriptionOfCartProduct();
+			List<String> totalPrice1 = orderLib.getCartProductTotalPrice();
+			List<String> unitPrice1=orderLib.getCartProductUnitPrice();
+			List<String> quantity=orderLib.getCartProductQuantity();
+			
+			Thread.sleep(3000);
+			if (prodDesc1.get(itemNum)!=null && totalPrice1!=null) {
+				Thread.sleep(3000);
+				reporter.SuccessReport("Verify the part added to cart ", "cart details ",
+						 "  prod Description : " + prodDesc1.get(itemNum) + "   Quantity : "+quantity.get(itemNum)
+								+ "  Total Price: " + totalPrice1.get(itemNum)+ "   Unit price: "+unitPrice1.get(itemNum));
+			} else {
+				reporter.failureReport("Verify the part added to cart ", "Part is not added to cart.", "", driver);
+			}
+	   }
+		
+		/**
+		 * Method is to verify the search results page
+		 * 
+		 * @throws Throwable
+		 */
+		public void verifysearchResultsPageForSLP() throws Throwable {
+			Thread.sleep(2000);
+			waitForVisibilityOfElement(CommonObj.SEARCH_RESULTS_PAGE,  "Search results");
+			if (isElementPresent(CommonObj.SEARCH_RESULTS_PAGE, "Search results")&& isVisibleOnly(RETURN_TO_SLP, "Return to SLP link ")) {
+				reporter.SuccessReport("Verify search results page", "Search results page displayed", "Search results ");
+			} else {
+				reporter.failureReport("Verify search results page", "Search results page not verified successfully", "");
+			}
+		}
+		
+		
+		/**
+		 * Method is to verify the amount is not equals to zero
+		 * @param amount
+		 * @throws Throwable
+		 */
+		public void verifySubTotalAmount(Float amount) throws Throwable{
+			if(amount==0){
+				reporter.SuccessReport("Find SubTotalCurrency Code and Amount in Cart Summary on Content & resources ", "SubTotal Currency Code and Amount Exists", "Currency Code and Amount: USD$0.00");
+			}else{
+				reporter.failureReport("Find SubTotalCurrency Code and Amount in Cart Summary on Content & resources ", "SubTotal Currency Code and Amount does not exists", "");
+			}
+		}
+		
+		public void verifyUsagePeriodsMatching(String actualPeriod,String expectedPeriod) throws Throwable {
+			if(actualPeriod.equals(expectedPeriod)) {
+				reporter.SuccessReport("Verify Usage Period ", "Cart Display's Usage Months alredy Reported Upon",actualPeriod );
+			}else{
+				reporter.failureReport("Find SubTotalCurrency Code and Amount in Cart Summary on Content & resources ", "Cart does not Display's Usage Months alredy Reported Upon", "");
+			}
+			
 		}
 }
 

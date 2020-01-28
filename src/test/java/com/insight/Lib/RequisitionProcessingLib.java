@@ -684,7 +684,8 @@ public class RequisitionProcessingLib extends RequisitionProcessingObj {
 			reporter.failureReport("Verify Approval Management  Page", "Approval Management Page does Not Exists","");
    }
    public void clickUpdateInApprovalManagmentPage() throws Throwable {
-		if(click(OrderObj.UPDATE_BTN, "Update Button")){
+		if(isVisibleOnly(OrderObj.UPDATE_BTN, "update buton")){
+			click(OrderObj.UPDATE_BTN, "Update Button");
 			reporter.SuccessReport("Verify Approval Management  Page", "Requisition placed has been Approved.","");
 		} else
 			reporter.failureReport("Verify Approval Management  Page", "Requisition not Approved.","");

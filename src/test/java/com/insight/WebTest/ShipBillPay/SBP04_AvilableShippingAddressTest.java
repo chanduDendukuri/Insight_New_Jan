@@ -64,8 +64,8 @@ public class SBP04_AvilableShippingAddressTest extends ShipBillPayLib{
 				// --------RoleandPermission "change_ship_to;ON"
 				cmtLib.setPermissions(data.get("Menu_Name"), data.get("Set_Permission"));
 				cmtLib.setPermissions(data.get("Menu_Name"), data.get("Set_Permission5"));
-				cmtLib.setPermissions(data.get("Menu_Name"), data.get("Set_Permission6"));
-				//cmtLib.setPermissionsToDisableWithousReport(data.get("Set_Permission2"));
+				//cmtLib.setPermissions(data.get("Menu_Name"), data.get("Set_Permission6"));
+				cmtLib.setPermissionsToDisableWithoutReport(data.get("Set_Permission2"));
 				// Uncheck all shipping options
 				cmtLib.clickCheckOutSettings(data.get("Check_out_Settings"));
 				cmtLib.selectOptionInCheckoutSettings(data.get("Shipping Addresses"));
@@ -83,6 +83,7 @@ public class SBP04_AvilableShippingAddressTest extends ShipBillPayLib{
 				orderLib.proceedToCheckout();
 				cartLib.clickOnContinueButtonInAddInformtion();
 				orderLib.clickContinueOnLineLevelInfo();
+				Thread.sleep(5000);
 				// verify shipping address
 				VerifyDefualtSoldtoAddress(data.get("SoldToAddress"));
 				clickstoredAddressandVerify(data.get("storedaddress"),data.get("storedaddress"));
@@ -90,11 +91,6 @@ public class SBP04_AvilableShippingAddressTest extends ShipBillPayLib{
 				commonLib.clickLogOutLink(data.get("Logout_Header"));
 				// login-2
 				cmtLib.navigateBackToCMT();
-				cmtLib.hoverOverMasterGroupAndSelectChangeGrp();
-				cmtLib.searchForWebGroup(data.get("WebGrp"));
-				cmtLib.clickOnTheWebGroup(data.get("WebGrp_Name"));
-				cmtLib.hoverOnManageWebGroupsAndSelectOptions(data.get("Manage_Web_Grp_Options"));
-				cmtLib.searchForaUserAndSelect(data.get("LnameEmailUname"), data.get("ContactName"));
 				cmtLib.clickCheckOutSettings(data.get("Check_out_Settings"));
 				cmtLib.selectOptionInCheckoutSettings(data.get("Shipping Addresses"));
 				shipbLib.SelectAllLinkedaddresses(data.get("Linkuseraddresses"));
@@ -118,11 +114,6 @@ public class SBP04_AvilableShippingAddressTest extends ShipBillPayLib{
 				commonLib.clickLogOutLink(data.get("Logout_Header"));
 				// login-3
 				cmtLib.navigateBackToCMT();
-				cmtLib.hoverOverMasterGroupAndSelectChangeGrp();
-				cmtLib.searchForWebGroup(data.get("WebGrp"));
-				cmtLib.clickOnTheWebGroup(data.get("WebGrp_Name"));
-				cmtLib.hoverOnManageWebGroupsAndSelectOptions(data.get("Manage_Web_Grp_Options"));
-				cmtLib.searchForaUserAndSelect(data.get("LnameEmailUname"), data.get("ContactName"));
 				cmtLib.setPermissions(data.get("Menu_Name"), data.get("Set_Permission2"));
 				cmtLib.setPermissions(data.get("Menu_Name"), data.get("Set_Permission3"));
 				cmtLib.setPermissions(data.get("Menu_Name"), data.get("Set_Permission4"));
@@ -135,24 +126,20 @@ public class SBP04_AvilableShippingAddressTest extends ShipBillPayLib{
 				orderLib.proceedToCheckout();
 				cartLib.clickOnContinueButtonInAddInformtion();
 				orderLib.clickContinueOnLineLevelInfo();
-				String companyname3="IUS Created Shipping Adress Canada"+"_"+getRandomNumeric(4);
-				shipbLib.AddNewshippingAddressWithcountry(data.get("link"),companyname3, data.get("street"),
-						data.get("city"), data.get("zipcode"), data.get("state"), data.get("Country"),data.get("Attention"));
-				shipbLib.VerifyCreatedAddress(companyname3);
-				Thread.sleep(3000);
+				String companyname1="IUS Created Shipping Adress"+"_"+getRandomNumeric(4);
+				shipbLib.AddNewshippingAddressWithcountry(data.get("link"),companyname1, data.get("street2"),
+						data.get("city2"), data.get("zipcode2"), data.get("state2"), data.get("Country2"),data.get("Attention"));
+				Thread.sleep(5000);
 				scrollUp();
 				clickEdit();
 				// Search for the Account Name
-				clickstoredAddressandCancle(companyname3);
+				shipbLib.VerifyCreatedAddress(companyname1);
+				Thread.sleep(5000);
+				clickstoredAddressandVerify(companyname1,companyname1);
 				commonLib.clickLogOutLink(data.get("Logout_Header"));
 				// login-4
 				cmtLib.navigateBackToCMT();
-				cmtLib.hoverOverMasterGroupAndSelectChangeGrp();
-				cmtLib.searchForWebGroup(data.get("WebGrp"));
-				cmtLib.clickOnTheWebGroup(data.get("WebGrp_Name"));
-				cmtLib.hoverOnManageWebGroupsAndSelectOptions(data.get("Manage_Web_Grp_Options"));
-				cmtLib.searchForaUserAndSelect(data.get("LnameEmailUname"), data.get("ContactName"));
-				cmtLib.setPermissions(data.get("Menu_Name"), data.get("Set_Permission3"));
+           		cmtLib.setPermissions(data.get("Menu_Name"), data.get("Set_Permission3"));
 				cmtLib.loginAsAdminCMT();
 				// add to cart
 				commonLib.searchProduct(data.get("Search_Item"));
@@ -162,25 +149,27 @@ public class SBP04_AvilableShippingAddressTest extends ShipBillPayLib{
 				orderLib.proceedToCheckout();
 				cartLib.clickOnContinueButtonInAddInformtion();
 				orderLib.clickContinueOnLineLevelInfo();
-				String companyname="IUS Created Shipping Adress Canada"+"_"+getRandomNumeric(4);
+				String companyname="IUS Created Shipping Adress"+"_"+getRandomNumeric(4);
 				shipbLib.AddNewshippingAddressWithcountry(data.get("link"),companyname, data.get("street2"),
 						data.get("city2"), data.get("zipcode2"), data.get("state2"), data.get("Country2"),data.get("Attention"));
-				Thread.sleep(3000);
+				Thread.sleep(5000);
+				scrollUp();
+				clickEdit();
 				shipbLib.VerifyCreatedAddress(companyname);
+				clickstoredAddressandVerify(companyname,companyname);
+				String companyname3="IUS Created Shipping Adress Canada"+"_"+getRandomNumeric(4);
+				shipbLib.AddNewshippingAddressWithcountry(data.get("link"),companyname3, data.get("street"),
+						data.get("city"), data.get("zipcode"), data.get("state"), data.get("Country"),data.get("Attention"));
+				Thread.sleep(5000);
 				scrollUp();
 				clickEdit();
-				clickstoredAddressandCancle(companyname);
-				String companyname1="IUS Created Shipping Adress Canada"+"_"+getRandomNumeric(4);
-				shipbLib.AddNewshippingAddressWithcountry(data.get("link"),companyname1, data.get("street2"),
-						data.get("city2"), data.get("zipcode2"), data.get("state2"), data.get("Country2"),data.get("Attention"));
-				shipbLib.VerifyCreatedAddress(companyname1);
-				Thread.sleep(3000);
-				scrollUp();
-				clickEdit();
-				clickstoredAddressandCancle(companyname1);
+				shipbLib.VerifyCreatedAddress(companyname3);
 				commonLib.clickLogOutLink(data.get("Logout_Header"));
 				// permissions unchek
 				cmtLib.navigateBackToCMT();
+				cmtLib.clickCheckOutSettings(data.get("Check_out_Settings"));
+				cmtLib.selectOptionInCheckoutSettings(data.get("Shipping Addresses"));
+				shipbLib.SelectAllLinkedaddresses(data.get("Linkuseraddresses1"));
 				cmtLib.hoverOverMasterGroupAndSelectChangeGrp();
 				cmtLib.searchForWebGroup(data.get("WebGrp"));
 				cmtLib.clickOnTheWebGroup(data.get("WebGrp_Name"));
@@ -188,11 +177,6 @@ public class SBP04_AvilableShippingAddressTest extends ShipBillPayLib{
 				cmtLib.hoverOnManageWebGroupsAndSelectOptions(data.get("Manage_Web_Grp_Options"));
 				cmtLib.searchForaUserAndSelect(data.get("LnameEmailUname"), data.get("ContactName"));
 				cmtLib.setPermissionsToDisable(data.get("Menu_Name"), data.get("Set_Permission2"));
-				cmtLib.clickCheckOutSettings(data.get("Check_out_Settings"));
-				cmtLib.selectOptionInCheckoutSettings(data.get("Shipping Addresses"));
-				shipbLib.SelectAllLinkedaddresses(data.get("Linkuseraddresses1"));
-				
-
 				} catch (Exception e) {
 					ReportStatus.blnStatus = false;
 					//gErrorMessage = e.getMessage();

@@ -83,6 +83,7 @@ public class SLPObj extends ActionEngine{
     public static By REPORTING_USAGE_ON_RECEIPT_PAGE =By.xpath("//div[@class='row is-collapse-child expanded usage-reporting usage-reporting--summary']//span[contains(text(),'Report usage for:')]/following-sibling::span//strong");
     public static By RETRIEVE_LAST_USAGE_REPORT=By.xpath("//span[contains(text(),'Retrieve Last Usage Report')]");
     public static By REPORTING_PERIOD_WARNING_MSG=By.xpath("//span[@class='columns usage-reporting__warning-message']");
+    public static By ENROLLMENT=By.xpath("//div[@class='usage-reporting__footer']");
 
     public static By copytoallLink(String PartNum){
     	return By.xpath("//p[@class='cart__item-part cart__font-size--sm'][contains(.,'"+PartNum+"')]/following::div[11]/span//span[contains(text(),'Copy to all')]");
@@ -102,5 +103,6 @@ public class SLPObj extends ActionEngine{
 
     public static By ALL_REPORTING_PERIODS_CURRENT_LABEL_SLPA_PAGE=By.xpath("//span[@class='usagePeriod'][contains(text(),'All Reporting Periods Current')]");
     public static By ALL_REPORTING_PERIODS_CURRENT_LABEL_CART_PAGE=By.xpath("//div[@class='usage-reporting__detail row row__gutter--tiny collapse expanded']//span//strong[contains(text(),'All reporting periods current.')]");
-
+    
+    public static By RETURN_TO_SLP=By.xpath("//a[contains(text(),'Return to My Software License Agreements')]");
 }

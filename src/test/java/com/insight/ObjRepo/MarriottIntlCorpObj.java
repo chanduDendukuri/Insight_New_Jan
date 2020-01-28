@@ -199,6 +199,9 @@ public class MarriottIntlCorpObj extends ActionEngine {
 	}
 	
 	public static By ADDPRODUCT = By.xpath("//input[@value='KV3-00367-SLP']");
+	public static By ADDPMI(String PartNum) {
+		return By.xpath("//input[@value='"+PartNum+"']");
+	}
 	public static By getCompanyStandardsProductGroupwithbtext(String productGroup,String productName,String FieldOnly){
 		return By.xpath("//div//td[contains(text(),'"+productGroup+"')]/following::div[@class='csProductGroupMemberDiv']//td//a[contains(text(),'"+productName+"')]//following-sibling::b[contains(text(),'"+FieldOnly+"')]");
 	}

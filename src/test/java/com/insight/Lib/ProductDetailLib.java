@@ -622,19 +622,35 @@ public class ProductDetailLib extends ProductDetailObj {
 	 * @throws Throwable
 	 */
 	public void verifyContractDetails() throws Throwable {
-		if (isElementPresent(CONTRACT_TITLE, "Contract title")) {
+		boolean status = false;
+	//	if (isVisibleOnly(CONTRACT_TITLE, "Contract title"  )) {
 			
-			String contractTitle=getText(CONTRACT_TITLE, "Contract title");
-			if (!getText(CONTRACT_TITLE, "Contract title").equals("")) {
+		String contractTitle=getText(CONTRACT_TITLE, "Contract title");
+		String contractNumber=getText(CONTRACT_NUMBER, "Contract number");
+		String startDate=getText(START_DATE, "Start date");
+		String currentDate=getText(CURRENT_END_DATE, "Current end date");
+		String customers=getText(ELIGIBLE_CUSTOMERS, "Elgible customers");
+		String paymentTerms=getText(PAYMENT_TERMS, "Payment terms");
+		String delivery=getText(DELIVERY, "Delivery");
+		String return_info=getText(RETURN_INFO, "Return info");
+		if(isVisibleOnly(CONTRACT_TITLE, "Contract title"  )  ){
+			reporter.SuccessReport("Contact Details ", "Contact details are ",contractTitle + contractNumber + startDate +
+					currentDate+ customers + paymentTerms+ delivery+ return_info);
+		}
+		else{
+			reporter.failureReport("Contact Details ", "Contact details are ",contractTitle + contractNumber + startDate + currentDate+ customers + paymentTerms+ delivery+ return_info,driver);
+		}
+
+			/*if (!getText(CONTRACT_TITLE, "Contract title").equals("")) {
 				reporter.SuccessReport("Verifying contarct title", "Contract title exists",
 						contractTitle);
 			} else {
 				reporter.failureReport("Verifying contarct title", "Contract title does not exists", "");
 			}
-		}
+		}*/
 
-		 String contractNumber=getText(CONTRACT_NUMBER, "Contract number");
-		if (isElementPresent(CONTRACT_NUMBER, "Contract number")) {
+
+		/*if (isVisibleOnly(CONTRACT_NUMBER, "Contract number")) {
 			if (!getText(CONTRACT_NUMBER, "Contract number").equals("")) {
 				reporter.SuccessReport("Verifying contract number", "Contract number exists",
 						contractNumber);
@@ -643,17 +659,18 @@ public class ProductDetailLib extends ProductDetailObj {
 			}
 		}
 
-		String startDate=getText(START_DATE, "Start date");
-		if (isElementPresent(START_DATE, "Start date")) {
+		*/
+		/*if (isVisibleOnly(START_DATE, "Start date")) {
 			if (!getText(START_DATE, "Start date").equals("")) {
 				reporter.SuccessReport("Verifying Start date ", "Start date exists", startDate);
 			} else {
 				reporter.failureReport("Verifying Start date ", "Start date does not exists", "");
 			}
 		}
+*/
 
-		String currentDate=getText(CURRENT_END_DATE, "Current end date");
-		if (isElementPresent(CURRENT_END_DATE, "Current end date")) {
+/*
+		if (isVisibleOnly(CURRENT_END_DATE, "Current end date")) {
 			if (!getText(CURRENT_END_DATE, "Current end date").equals("")) {
 				reporter.SuccessReport("Verifying Current end datee ", "Current end date exists",
 						currentDate);
@@ -662,8 +679,10 @@ public class ProductDetailLib extends ProductDetailObj {
 			}
 		}
 
-		String customers=getText(ELIGIBLE_CUSTOMERS, "Elgible customers");
-		if (isElementPresent(ELIGIBLE_CUSTOMERS, "Elgible customers")) {
+*/
+
+/*
+		if (isVisibleOnly(ELIGIBLE_CUSTOMERS, "Elgible customers")) {
 			if (!getText(ELIGIBLE_CUSTOMERS, "Elgible customers").equals("")) {
 				reporter.SuccessReport("Verifying Elgible customers", "Elgible customers exists",
 						customers);
@@ -671,9 +690,21 @@ public class ProductDetailLib extends ProductDetailObj {
 				reporter.failureReport("Verifying Elgible customers", "Elgible customers does not exists", "");
 			}
 		}
+*/
 
-		String paymentTerms=getText(PAYMENT_TERMS, "Payment terms");
-		if (isElementPresent(PAYMENT_TERMS, "Payment terms")) {
+
+/*
+		if (isVisibleOnly(DELIVERY, "Delivery")) {
+			if (!getText(DELIVERY, "Delivery").equals("")) {
+				reporter.SuccessReport("Verifying Delivery", "Delivery exists",delivery );
+			} else {
+				reporter.failureReport("Verifying Delivery", "Delivery does not exists", "");
+			}
+		}
+*/
+/*
+
+		if (isVisibleOnly(PAYMENT_TERMS, "Payment terms")) {
 			if (!getText(PAYMENT_TERMS, "Payment terms").equals("")) {
 				reporter.SuccessReport("Verifying Payment terms", "Payment terms exists",
 						paymentTerms);
@@ -681,19 +712,13 @@ public class ProductDetailLib extends ProductDetailObj {
 				reporter.failureReport("Verifying Payment terms", "Payment terms does not exists", "");
 			}
 		}
+*/
 
-		String delivery=getText(DELIVERY, "Delivery");
-		if (isElementPresent(DELIVERY, "Delivery")) {
-			if (!getText(DELIVERY, "Delivery").equals("")) {
-				reporter.SuccessReport("Verifying Delivery", "Delivery exists",delivery );
-			} else {
-				reporter.failureReport("Verifying Delivery", "Delivery does not exists", "");
-			}
-		}
-		
-		String return_info=getText(RETURN_INFO, "Return info");
 
-		if (isElementPresent(RETURN_INFO, "Return info")) {
+
+
+/*
+		if (isVisibleOnly(RETURN_INFO, "Return info")) {
 			if (!getText(RETURN_INFO, "Return info").equals("")) {
 				reporter.SuccessReport("Verifying Return info", "Return info exists",
 						return_info);
@@ -701,6 +726,7 @@ public class ProductDetailLib extends ProductDetailObj {
 				reporter.failureReport("Verifying Return info", "Return info does not exists", "");
 			}
 		}
+*/
 
 	}
 	
@@ -743,7 +769,7 @@ public class ProductDetailLib extends ProductDetailObj {
 		for (int i = 0; i < myList2.size(); i++) {
 		if (myList2.get(i).isDisplayed()) {
 			myList2.get(i).click();
-				reporter.SuccessReport("Reviews", "Clicked on Reviews", "");
+				reporter.SuccessReport("Verify Review Symbols Exists and ", "Clicked on Review Symbol", "");
 			} else {
 				reporter.failureReport("Reviews ",
 						"Reviews Not Clicked", "");

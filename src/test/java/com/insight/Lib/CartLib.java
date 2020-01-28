@@ -22,6 +22,8 @@ import com.insight.ObjRepo.ShipBillPayObj;
 import com.insight.ObjRepo.productsDisplayInfoObj;
 import com.insight.accelerators.ActionEngine;
 
+import static com.insight.ObjRepo.CartObj.lblCartLebel;
+
 public class CartLib extends ActionEngine {
 
 	CommonLib commonLib = new CommonLib();
@@ -29,6 +31,7 @@ public class CartLib extends ActionEngine {
 	OrderObj orderObj = new OrderObj();
 	ShipBillPayLib shipbLib = new ShipBillPayLib();
 	InvoiceHistoryLib ivhLib=new InvoiceHistoryLib();
+	CanadaLib canadaLib=new CanadaLib();
 	String openMarketPrice;
 
 	/**
@@ -372,8 +375,11 @@ public class CartLib extends ActionEngine {
 	 */
 	public void clickOnContinueButtonInAddInformtion() throws Throwable {
 		if (isElementPresent(OrderObj.ORDER_ITEM_INFO_LABEl, "order and inforamtion page")) {
+			reporter.SuccessReport("Verify Line Level/Ship Bill & Pay/Line Level/Place Requisition/Place Order Page", "Order and item information Page loaded", "PageDetails : Order and item information");
 			click(OrderObj.CONTINUE_BTN, "Additional information section Continue button");
 			Thread.sleep(2000);
+		}else {
+			reporter.failureReport("Verify Line Level/Ship Bill & Pay/Line Level/Place Requisition/Place Order Page", "Order and item information Page not loaded", "", driver);
 		}
 	}
 
@@ -1073,8 +1079,14 @@ public class CartLib extends ActionEngine {
 	 */
 	public void ClickExportCartAndVerify(String orderUtilities,String sheetName,String rownum,String headers) throws Throwable {
 		scrollUp();
-		mouseClick(CartObj.getShoppingCartOrderUtilities(orderUtilities), "Export as a file");
-		verifyExportFile(sheetName,rownum,headers);
+		if(isVisibleOnly(CartObj.getShoppingCartOrderUtilities(orderUtilities), "order utilities")) {
+			reporter.SuccessReport("Verify order utilities exists", "order utilities exits", "Order Utilities List");
+			mouseClick(CartObj.getShoppingCartOrderUtilities(orderUtilities), "Export as a file");
+			verifyExportFile(sheetName,rownum,headers);
+		}else {
+			reporter.failureReport("Verify order utilities exists", "order utilities does not exits", "", driver);
+		}
+		
 
 	}
 
@@ -1120,6 +1132,7 @@ public class CartLib extends ActionEngine {
 	 * @customization author : CIGNITI
 	 */
 	public void verifyItemInCart(String itemInCart) throws Throwable {
+		canadaLib.verifyPlaceCartLabel();
 		waitForVisibilityOfElement(CartObj.getItemInCart(itemInCart), "Item in cart");
 		if (driver.findElement(CartObj.getItemInCart(itemInCart)).isDisplayed()) {
 			reporter.SuccessReport("verifying item added to cart :: ", " item added to cart is verified and it is same as product details page.ITEM IS :", itemInCart);
@@ -1133,7 +1146,7 @@ public class CartLib extends ActionEngine {
 	public void verifyItemInCartByInsightPart(String itemInCart) throws Throwable {
 		waitForVisibilityOfElement(CartObj.getItemIncartByInsightPartNumber(itemInCart), "Item in cart");
 		if (isElementPresent(CartObj.getItemIncartByInsightPartNumber(itemInCart), "part number")) {
-			reporter.SuccessReport("verifying item added to cart :: ", " ITEM ADDED TO CART IS :", itemInCart);
+			reporter.SuccessReport("verifying item added to cart :: ", " Item added to cart Mfr number # is :", itemInCart);
 		} else {
 			reporter.failureReport("verifying item added to cart :: ", "ITEM " + itemInCart + "is not ADDED TO CART",
 					itemInCart, driver);
@@ -1283,6 +1296,7 @@ public class CartLib extends ActionEngine {
 	 * @throws Throwable
 	 */
 	public void verifyProductGroupBundleAddedToCart(String productName) throws Throwable {
+		canadaLib.verifyPlaceCartLabel();
 		String actualprodGroupName = getText(CartObj.PROD_GROUP_NAME_IN_CART, "Product group name in cart");
 		if (actualprodGroupName.equals(productName) && isElementPresent(CartObj.BUNDLEONE, "Bundle one in cart")) {
 			reporter.SuccessReport("Verify product group displayed in the cart screen",
@@ -1830,17 +1844,24 @@ public class CartLib extends ActionEngine {
 		Thread.sleep(10000);
 		String sfile = System.getProperty("user.dir") + "\\" + "DownloadedFiles" + "\\" + "exportCart.xls";
 		File file = new File(sfile);
+		if (file.exists()) {
 		List<String> downloadedExcelContent = CommonLib.readRowFromExcel(sfile, sheetName, Integer.parseInt(rowNumber));
 		List<String> acutalContent = Arrays.asList(columnHeaders.split(","));
 		System.out.println("Compare content" + downloadedExcelContent.equals(acutalContent));
 		if (downloadedExcelContent.equals(acutalContent)) {
-			reporter.SuccessReport(columnHeaders, columnHeaders+ " are avilable", "");
+			reporter.SuccessReport(columnHeaders,  "columns are avilable in exportCart.xls", "columns: "+columnHeaders);
 		} else {
 			reporter.failureReport(columnHeaders, columnHeaders+ " are not avilable", "", driver);
+		 }
+		}else {
+			reporter.failureReport("ExportCart Excel File", "File dose not exists", "", driver);
 		}
 		System.out.println("File Deletion :" + file.delete());
 		if (file.exists()) {
 			file.delete();
+			reporter.SuccessReport("ExportCart Excel File", "File closed", "");
+		}else {
+			// do nothing
 		}
 	}
 
@@ -1918,27 +1939,43 @@ public class CartLib extends ActionEngine {
 	 * @throws Throwable
 	 */
 	public void verifyCarriers(String carrier,String UPS) throws Throwable {
-		if (isVisibleOnly(OrderObj.SELECT_CARRIER_DD, "carrier Drop down")) {
-		String Text=getText(OrderObj.SELECT_CARRIER_DD,"carrier Drop down");
-		click(OrderObj.SELECT_CARRIER_DD, "carrier Drop down");
+		if (isVisibleOnly(OrderObj.SELECTARRIER, "carrier Drop down")) {
+		String Text=getText(OrderObj.SELECTARRIER,"carrier Drop down");
+		click(OrderObj.SELECTARRIER, "carrier Drop down");
 			String carriers[] = carrier.split(",");
 			for (i = 0; i < carriers.length; i++) {
-				if (isVisibleOnly(OrderObj.selectCarrier(carriers[i]),carrier)) {
+				if (isVisibleOnly(OrderObj.verifyCarrier(carriers[i]),carrier)) {
 				} else {
 					reporter.failureReport("verify carrier options::", carriers[i] + " is not present", carriers[i],
 							driver);
 				}
 			}
-			reporter.SuccessReport("verify carrier options::", "Selected Options::"+Text+"", "Available carriers"+carrier);
-		} 
-		else if(isVisibleOnly(OrderObj.SELECT_CARRIER_DD,"Carrier DropDown")){
-			click(OrderObj.SELECT_CARRIER_DD, "carrier Drop down");
-			if (isVisibleOnly(OrderObj.selectCarrier(UPS),"UPS")) {
-				reporter.failureReport("verify carrier options::", " Expected Carrier Exist","UPS  Exits in Available Carriers List",driver);
-			} else {
-				reporter.SuccessReport("verify carrier options::", " Expected Carrier Does Not Exist","UPS Not Exits in Available Carriers List");
-			}
+			reporter.SuccessReport("verify carrier options::", "Selected Options::"+carrier+"", "Available carriers::"+carrier);
+			if(isElementNotPresent(OrderObj.verifyCarrier(UPS),"Verify UPS")){
+			reporter.SuccessReport("verify carrier options::", " Expected Carrier Exist","UPS  Does not Exits in Available Carriers List");
+		}else {
+			reporter.SuccessReport("verify carrier options::", " Expected Carrier Exist","UPS Exits in Available Carriers List");
 		}
-			
+	}
+		else {
+			reporter.SuccessReport("verify carrier options::", " Expected Carrier Exist","UPS Exits in Available Carriers List");
+
 		}
+
+	}		
+	public boolean verifyCartPageAvailablity() throws Throwable{
+		return isVisibleOnly(lblCartLebel,"Cart Header");
+		}
+	
+	public void verifySLPAProductOnCart(String itemInCart) throws Throwable {
+		waitForVisibilityOfElement(CartObj.getItemIncartByInsightPartNumber(itemInCart), "Item in cart");
+		if (isElementPresent(CartObj.getItemIncartByInsightPartNumber(itemInCart), "part number")) {
+			reporter.SuccessReport("Verify SPLA Product on CART Page ", " SPLA Product Exists and Verified", "Insight part: "+itemInCart);
+		} else {
+			reporter.failureReport("Verify SPLA Product on CART Page", "ITEM SLPA " + itemInCart + "is not ADDED TO CART",
+					itemInCart, driver);
+
+		}
+	}
+
 }

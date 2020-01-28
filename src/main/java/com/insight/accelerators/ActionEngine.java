@@ -440,9 +440,9 @@ public class ActionEngine extends TestEngineWeb {
 			throw new RuntimeException(e);
 		} finally {
 			if (!flag) {
-				reporter.failureReport("Select", visibleText + " is Not Select from the DropDown" + locatorName,visibleText, driver);
+				reporter.failureReport("Select", visibleText + " is Not Selected" + locatorName,visibleText, driver);
 			} else {
-				reporter.SuccessReport("Select", visibleText + "  is Selected from the DropDown" + locatorName,visibleText);
+				reporter.SuccessReport("Select", visibleText + "  is Selected " + locatorName,visibleText);
 			}
 		}
 	}
@@ -732,11 +732,11 @@ public class ActionEngine extends TestEngineWeb {
 			if (!status) {
 				if (reportIndicator) {
 					LOG.info("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
-					reporter.failureReport("isElementPresent : ", msgIsElementFoundFailure + locatorName, "NA",driver);
+					//reporter.failureReport("isElementPresent : ", msgIsElementFoundFailure + locatorName, "NA",driver);
 				}
 			} else {
 				LOG.info("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
-				TestEngineWeb.reporter.SuccessReport("isElementPresent : " + locatorName, this.msgIsElementFoundSuccess + locatorName,"NA");
+				//TestEngineWeb.reporter.SuccessReport("isElementPresent : " + locatorName, this.msgIsElementFoundSuccess + locatorName,"NA");
 			}
 			reportIndicator = true;
 		}
@@ -1290,7 +1290,7 @@ public class ActionEngine extends TestEngineWeb {
 			throw new RuntimeException(e);
 		} finally {
 			if (!flag) {
-				reporter.warningReport("GetText :: ", "Unable to get Text from :: " + locatorName);
+				//reporter.warningReport("GetText :: ", "Unable to get Text from :: " + locatorName);
 				LOG.info("GetText :: Unable to get Text from :: " + locatorName);
 			} else {
 				reporter.SuccessReport("GetText :: " + locatorName, "" + locatorName + " is :" ,text);
@@ -1374,7 +1374,7 @@ public class ActionEngine extends TestEngineWeb {
 				reporter.SuccessReport("GetAttribute :: ", "Locator is Visible and attribute value of:: " + locatorName+" is Null","NA");
 				LOG.info("GetAttribute :: Unable to get Attribute value from :: " + locatorName);
 			} else {
-				reporter.SuccessReport("GetAttribute :: ", "" + locatorName + " is " + text,"NA");
+				reporter.SuccessReport("GetAttribute :: ", "" + locatorName + " is "  ,text);
 				LOG.info("Locator is Visible and attribute value is retrieved :: " + text);
 			}
 		}

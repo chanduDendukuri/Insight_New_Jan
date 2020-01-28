@@ -21,6 +21,8 @@ public class OrderLib extends OrderObj{
 	CommonLib commonLib = new CommonLib();
 	CMTLib cmtLib = new CMTLib();
 	ShipBillPayObj shipBillPayObj=new ShipBillPayObj();
+	CartLib cartlib=new CartLib();
+	CanadaLib canadaLib=new CanadaLib();
 	String expectedWarrantyItemDec;
 	String expectedSummaryTotalAmount;
 	String referenceNumber;
@@ -31,6 +33,8 @@ public class OrderLib extends OrderObj{
 	public void continueToCheckOutAddWarrantyAndVerifyTheCart(String partNumber) throws Throwable{
 		
 		click(CONTINUE_TO_CHECKOUT, "Continue to checkout");
+		canadaLib.verifyPlaceCartLabel();
+		
 		if(isElementPresent(ADD_WARRANTY_LINK,"Warranty link" )){
 			click(ADD_WARRANTY_LINK, "Warranty link");
 			Thread.sleep(10000);
@@ -53,6 +57,28 @@ public class OrderLib extends OrderObj{
 		}else{
 			reporter.failureReport("Verify the warranty link.","Warranty Link is not displayed","",driver);
 		}
+	}
+	
+	public void addWarrantyInCartPage() throws Throwable {
+		if(isElementPresent(ADD_WARRANTY_LINK,"Warranty link" )){
+			click(ADD_WARRANTY_LINK, "Warranty link");
+			waitForVisibilityOfElement(ADD_FIRST_WARRANTY, "warranty", driver);
+			click(ADD_FIRST_WARRANTY," Warranty item");
+			Thread.sleep(2000);
+			String expectedWarrantyItemDec=driver.findElement(FIRST_WARRANTY_DESC_ON_POPUP).getAttribute("innerText");
+			click(ADD_TO_CART_IN_WARRANTY_POPUP, "Add to cart in warranty screen");
+			Thread.sleep(2000);
+			String actaulWarrantyItemDec=getText(WARRANTY_ITEM_DESC_ON_CART_SCREEN, "item description");
+			if (expectedWarrantyItemDec.equals(actaulWarrantyItemDec)) {
+				reporter.SuccessReport("Verify the warranty item added.","Warranty added successfully","Warranty: "+actaulWarrantyItemDec);
+			}else{
+				reporter.failureReport("Verify the warranty item added.","Warranty not added successfully.Expected warranty is : ",actaulWarrantyItemDec,driver);
+			}
+			
+		}else {
+			reporter.failureReport("Warranty link in add to cart", "Warranty link is not visible in cart page", "", driver);
+		}
+			
 	}
 	
 	/**
@@ -91,6 +117,7 @@ public class OrderLib extends OrderObj{
 	 * @throws Throwable
 	 */
 	public void continueToCheckOutOnAddCart() throws Throwable{
+		
 		click(CONTINUE_TO_CHECKOUT, "Continue to checkout");
 		if(isElementNotPresent(CanadaObj.CART_LABEL, "Cart header label displayed")) {
 			refreshPage();	
@@ -108,6 +135,7 @@ public class OrderLib extends OrderObj{
 		}
 		if(isElementPresent(PROCEED_TO_CHECKOUT, "Proceed to checkout") && isEnabled(PROCEED_TO_CHECKOUT, "Proceed to checkout")){
 			clickUntil(PROCEED_TO_CHECKOUT, ORDER_ITEM_INFO_LABEl, "Proceed to checkout");
+			Thread.sleep(3000);
 		}else{
 			reporter.failureReport("Verify the Proceed to checkout button visibility","Proceed to checkout is not visible or disabled","",driver);
 		}
@@ -270,14 +298,19 @@ public class OrderLib extends OrderObj{
 				reporter.failureReport("Verify the Invoice Notes in Review order page.","Invoice Notes verification is not successfull.","");
 			}
 			
-			String actaulWarrantyItemDec=getText(WARRANTY_ITEM_DESC_ON_CART_SCREEN, "item description");
-			if(expectedWarrantyItemDec.equals(actaulWarrantyItemDec)){
-				reporter.SuccessReport("Verify the warranty info in Review order page.","warranty info verification is successfull.","Warranty Description : "+actaulWarrantyItemDec);
-			}else{
-				reporter.failureReport("Verify the warranty info in Review order page.","warranty info verification is not successfull.","");
-			}
-			click(PLACE_ORDER_BTN, "place order button");
 		 }
+	}
+	/**
+	 * Method is to verify the warranties on the place order page
+	 * @throws Throwable
+	 */
+	public void verifyWarrantiesOnPlaceOrderPage() throws Throwable {
+		String actaulWarrantyItemDec=getText(WARRANTY_ITEM_DESC_ON_CART_SCREEN, "item description");
+		if(expectedWarrantyItemDec.equals(actaulWarrantyItemDec)){
+			reporter.SuccessReport("Verify the warranty info in Review order page.","warranty info verification is successfull.","Warranty Description : "+actaulWarrantyItemDec);
+		}else{
+			reporter.failureReport("Verify the warranty info in Review order page.","warranty info verification is not successfull.","");
+		}
 	}
 	
 	/**
@@ -335,7 +368,13 @@ public class OrderLib extends OrderObj{
 	 * @throws Throwable
 	 */
 	public void editOrderInfo(String sectionName) throws Throwable{
-		JSClick(getEditOnReviewOrderPage(sectionName), "Edit link of "+sectionName);
+		if(isVisibleOnly(getEditOnReviewOrderPage(sectionName), "edit button")) {
+			reporter.SuccessReport("Verify edit button in "+sectionName+" section", "Edit link exists in "+sectionName, "");
+			JSClick(getEditOnReviewOrderPage(sectionName), "Edit link of "+sectionName);
+		}else {
+			reporter.failureReport("Verify edit button in "+sectionName+" section", "Edit link does not exists in "+sectionName, "",driver);
+		}
+		
 	}
 	
 	/**
@@ -346,7 +385,7 @@ public class OrderLib extends OrderObj{
 	public void verifyCardNumberOnEditPaymentInfoSection(String endingDigits) throws Throwable{
 		
 		if (isElementPresent(getCardNumberEndingvalue(endingDigits), "Card Ending digits")) {
-			reporter.SuccessReport("Verify card ending digits ", " Card ending digits verification is successfull","");
+			reporter.SuccessReport("Verify card ending digits ", " Card ending digits verification is successfull","Ending digits: "+endingDigits);
 		} else {
 			reporter.failureReport("Verify card ending digits ",
 					"  Card ending digits verification is not successfull","",driver);
@@ -363,19 +402,24 @@ public class OrderLib extends OrderObj{
 	 * @throws Throwable
 	 */
 	public void addNewCardInPaymentInfoSection(String cardNumber,String cardName,String month,String year, String poNumebr,String PORealeseNumber) throws Throwable{
-		click(ADD_NEW_CARD, "Add new card link");
-		type(CARD_NUMBER_TEXTBX, cardNumber, "Card number"); // Entering details in payment info
-		type(CARD_NAME_TEXTBOX, cardName, "Card name");
-		click(EXPIRATION_MONTH, "Expiration month");
-		selectByValue(EXPIRATION_MONTH,month , "Expiration month");
-		click(EXPIRATION_YEAR, "Expiration year");
-		selectByValue(EXPIRATION_YEAR,year , "Expiration year");
-		type(PO_NUMBER, poNumebr, "P.O. Number");
-		if(isElementPresent(PO_REALESE_NUMBER,"PO Realese Number")){
-			  typeText(PO_REALESE_NUMBER, PORealeseNumber, "PO number");
+		if(isVisibleOnly(ADD_NEW_CARD, "add new card link")) {
+			click(ADD_NEW_CARD, "Add new card link");
+			type(CARD_NUMBER_TEXTBX, cardNumber, "Card number"); // Entering details in payment info
+			type(CARD_NAME_TEXTBOX, cardName, "Card name");
+			click(EXPIRATION_MONTH, "Expiration month");
+			selectByValue(EXPIRATION_MONTH,month , "Expiration month");
+			click(EXPIRATION_YEAR, "Expiration year");
+			selectByValue(EXPIRATION_YEAR,year , "Expiration year");
+			type(PO_NUMBER, poNumebr, "P.O. Number");
+			if(isElementPresent(PO_REALESE_NUMBER,"PO Realese Number")){
+				  typeText(PO_REALESE_NUMBER, PORealeseNumber, "PO number");
+			  }
+			click(REVIEW_ORDER_BTN, "review order button","review order button");
+		  }else {
+			  reporter.failureReport("verify add new link exists", "add new link does not exists", "", driver);
 		  }
-		click(REVIEW_ORDER_BTN, "review order button");
-	  }
+		}
+		
 	
 	/**
 	 * This method is to click on the product description on the place order page.
@@ -383,7 +427,12 @@ public class OrderLib extends OrderObj{
 	 */
 	public void clickOnProdDescOnPlaceOrderScreen() throws Throwable{
 		Thread.sleep(2000);
-		clickUntil(PROD_DESC_PLACE_ORDER_PAGE, CartObj.INSIGHT_NUMBER_IN_PRODUCT_DISPLAY, "Product description");
+		if(isVisibleOnly(PROD_DESC_PLACE_ORDER_PAGE, "Product description")) {
+			clickUntil(PROD_DESC_PLACE_ORDER_PAGE, CartObj.INSIGHT_NUMBER_IN_PRODUCT_DISPLAY, "Product description");
+		}else {
+			reporter.failureReport("verify product description exists", "Product description does not exists", "", driver);
+		}
+		
 	}
 	
 	/**
@@ -393,7 +442,7 @@ public class OrderLib extends OrderObj{
 	public void clickOnReviewOrderButton() throws Throwable{
 		Thread.sleep(5000);
 		clickUntil(REVIEW_ORDER_BTN,PLACEORDER_LABL, "review order button of Payment info Section");
-		
+		verifyPlaceOrderLabel();
 	}
 	
 	public void continueButtonOnAdditionalInformationSection() throws Throwable{
@@ -409,10 +458,11 @@ public class OrderLib extends OrderObj{
 		switch(permissionStatus){
 		case "ON": 
 			if(isElementPresent(CartObj.SAVE_ORDER_TEMPLATE, "Save Order template link") && isElementPresent(CartObj.SAVE_CART_CONTENTS, "Saved Cart Contents")){
+				reporter.SuccessReport("Order Utilities on Product Review Page", "Saved Carts and Order Templates Page Exists", "");
 				click(CartObj.SAVE_CART_CONTENTS, "Saved Cart Contents");
 				Thread.sleep(2000);
 				if(isElementPresent(CartObj.SAVE_CART_CONTENTS_POPUP, "Saved Cart Contents popup")){
-					reporter.SuccessReport("Verify saved cart contents popup in Review Order page", " Save order Template link exists in Review Order page","");
+					reporter.SuccessReport("Verify saved cart contents popup in Review Order page", " Save order Template link exists in Review Order page","saved cart contents ");
 					click(CartObj.SAVED_CART_CANCEL_BTN, "Saved cart popup cancel button");
 				}else{
 					reporter.failureReport("Verify saved cart contents popup in Review Order page", " Save cart contents popup does not exist in Review Order page","",driver);
@@ -421,7 +471,7 @@ public class OrderLib extends OrderObj{
 				click(CartObj.SAVE_ORDER_TEMPLATE, "Saved order template");
 				Thread.sleep(2000);
 				if(isElementPresent(CartObj.SAVE_ORDER_TEMPLATE_POPUP, "Saved order template popup")){
-					reporter.SuccessReport("Verify Saved order template popup in Review Order page", " Saved order template popup exists in Review Order page","");
+					reporter.SuccessReport("Verify Saved order template popup in Review Order page", " Saved order template popup exists in Review Order page","Link : Save order template");
 					click(CartObj.SAVED_CART_CANCEL_BTN, "Saved cart popup cancel button");
 				}else{
 					reporter.failureReport("Verify Saved order template popup in Review Order page", " Saved order template popup  does not exist in Review Order page","",driver);
@@ -568,8 +618,7 @@ public class OrderLib extends OrderObj{
 	 */
 	public void selectPaymentMethod(String paymentMethod) throws Throwable {
 		 click(PAYMENT_METHOD_DD, "payment method drop down");
-		  click(paymentSelection(paymentMethod), "payment method selection");
-		  
+		  click(paymentSelection(paymentMethod), "payment method selection:"+paymentMethod);
 		  click(REVIEW_ORDER_BTN, "review order button of payment Info"); 
 	}
 	
@@ -579,7 +628,8 @@ public class OrderLib extends OrderObj{
 	 */
 	public void clickContinueOnLLIAndShipBillPaySections() throws Throwable{
 		 clickContinueOnLineLevelInfo();   // Click continue on Line level Info
-         shippingBillPayContinueButton();  // Click continue on  shipping address 
+		 canadaLib.verifySBP();
+		 shippingBillPayContinueButton();  // Click continue on  shipping address 
          shippingOptionsCarrierSelection();  // Click continue on shipping options
          billingAddressContinueButton();  // Billing address continue button
 	}
@@ -593,14 +643,14 @@ public class OrderLib extends OrderObj{
 	 * @throws Throwable
 	 */
 	public void enterReportingDetailsInLineLevelInfoSection(String reportingField4,String reportingField5,String reportingField6) throws Throwable{
-		if(isElementPresent(REPORTING_FIELD_4, "Reporting Field 4")){
+		if(isElementPresent(OrderObj.ORDER_ITEM_INFO_LABEl, "order and inforamtion page")){
 		type(REPORTING_FIELD_4, reportingField4, "Reporting Field 4");
 		type(REPORTING_FIELD_5, reportingField5, "Reporting Field 5");
 		type(REPORTING_FIELD_6, reportingField6, "Reporting Field 6");
 		click(LLI_CONTINUE_BTN, "Continue button");
 		
 		}else{
-			reporter.failureReport("Verify reporting fields displayed in the Line level information section","Reporting fields are not displayed Line level information","");
+			reporter.failureReport("Verify Line Level/Ship Bill & Pay/Line Level/Place Requisition/Place Order Page", "Order and item information Page not loaded", "", driver);
 		}
 	}
 
@@ -664,6 +714,18 @@ public class OrderLib extends OrderObj{
 		   reporter.failureReport("Verify payment info term", "paymanet info term is visible ", "",driver);
 	   }
 	}
+	
+	public void termsInPaymentInfo(String PONumber,String POReleaseNumber) throws Throwable {
+		if (isElementPresent(PAYMENT_METHOD_TERM, "Terms is selected in dropdown")) {
+			type(PO_NUMBER, PONumber, "PO number");
+			if(isElementPresent(PO_REALESE_NUMBER,"PO Realese Number")){
+				  typeText(PO_REALESE_NUMBER, POReleaseNumber, "PO number");
+			  }
+			click(REVIEW_ORDER_BTN, "review order button of payment Info"); // Clicking Review order button in Payment Info
+	   }else {
+		   reporter.failureReport("Verify payment info term", "paymanet info term is visible ", "",driver);
+	   }
+	}
 	/**
 	 * 
 	 * @param ActualTax
@@ -712,7 +774,7 @@ public class OrderLib extends OrderObj{
 	
 
 	/**
-	 * Method is to check the tax exemption check box
+	 * Method is to check the tax Exemption  check box
 	 * @throws Throwable
 	 * 
 	 */
@@ -720,12 +782,13 @@ public class OrderLib extends OrderObj{
 		if (isElementPresent(TAXDECLERATION_MESSAGE, "Tax Exemption Message displayed")) {
 			if (isCheckBoxSelected(TAX_CHECKBOX)) {
 				reporter.SuccessReport("Verify the tax check box is checked or not",
-						"Tax Exemption Field Exists and checked","");
+						"Tax Exemption Field Exists and checked","Tax Exemption CheckBox ON");
 			} else {
+				Thread.sleep(3000);
 				click(TAX_CHECKBOX, "tax check box");
 			}
 		} else
-			reporter.failureReport("VerifyTax Exemption Field on Ship Bill Pay Place Order Page",
+			reporter.failureReport("Verify Tax Exemption Field on Ship Bill Pay Place Order Page",
 					"Tax Exemption Field doesn't Exists","",driver);
 	}
 
@@ -745,7 +808,7 @@ public class OrderLib extends OrderObj{
 	public void verifyCartHeaderLabel() throws Throwable {
 		if (isElementPresent(CART_LABL, "Cart header label displayed")) {
 			reporter.SuccessReport("Verify wether user navigates to cart page or not",
-					"User successfully navigated to cart page","");
+					"User successfully navigated to cart page","PageDetails : Cart");
 		} else {
 			reporter.failureReport("Verify wether user navigates to cart page or not",
 					"User not navigated to cart page","",driver);
@@ -763,7 +826,7 @@ public class OrderLib extends OrderObj{
 		clearData(itemPartNumber_Qty(partNumber));
 		Thread.sleep(2000);
 		type(itemPartNumber_Qty(partNumber), qntyNo, "Update Quantity number");
-		click(item_Qty_Update(partNumber), "Updated" + partNumber + " Quantity to:" + qntyNo);
+		click(item_Qty_Update(partNumber), "Updated " + partNumber + " Quantity to: " + qntyNo);
 	}
 
 	/**
@@ -773,10 +836,10 @@ public class OrderLib extends OrderObj{
 	public void verifyPlaceOrderLabel() throws Throwable {
 		if (isElementPresent(PLACEORDER_LABL, "Cart header label displayed")) {
 			reporter.SuccessReport("Verify wether user navigates to cart page or not",
-					"User successfully navigated to Place order page","");
+					"User successfully navigated to Place order page","PageDetails : Place order");
 		} else {
 			reporter.failureReport("Verify wether user navigates to cart page or not",
-					"User not navigated to Place Order page","",driver);
+					"User not navigated to Place Order page","PageDetails :Place order",driver);
 		}
 	}
 
@@ -814,7 +877,7 @@ public class OrderLib extends OrderObj{
 				click(TAX_CHECKBOX, "Tax exemption checkbox");
 				if (!isCheckBoxSelected(TAX_CHECKBOX)) {
 					reporter.SuccessReport("Verify checkbox is unchecked or not",
-							"Tax exemption checkbox unchecked successfully","");
+							"Tax exemption checkbox unchecked successfully","Tax Exemption  CheckBox OFF");
 				}
 			}
 		} else
@@ -822,7 +885,7 @@ public class OrderLib extends OrderObj{
 					"Tax Exemption Field doesn't Exists","");
 	}
     /**
-     * Method is to chek the 
+     * Method is to check the 
      * @throws Throwable
      */
 	public void taxDeclerationON() throws Throwable {
@@ -843,9 +906,9 @@ public class OrderLib extends OrderObj{
 	 */
 	public void verifyTheTaxAfterUncheckingTaxExemptionCheckbox() throws Throwable {
 		Thread.sleep(3000);
-		String result = getText(ADDLICENCE_TAX_AMOUNT, "Tax displayed after adding LICENCE").replace("$", "");
+		String result = getText(ADDLICENCE_TAX_AMOUNT, "Tax displayed after adding LICENCE").replace("$", "").replace(",", "");
 		if (isElementPresent(ADDLICENCE_TAX_AMOUNT, "Tax displayed", true) && (Float.valueOf(result)) > 0) {
-			reporter.SuccessReport("Verify Taxes on Place Order Page", "Taxes Exist and shows:" , result);
+			reporter.SuccessReport("Verify Taxes on Place Order Page", "Taxes Exist and shows:" , "Tax estimate USD $ "+result);
 		} else
 			reporter.failureReport("Verify Taxes on Place Order Page", "Place Order Page Shows Tax as 0.00","",driver);
 	}
@@ -853,13 +916,14 @@ public class OrderLib extends OrderObj{
 	/* 
 	 * @throws Throwable
 	 */
-	public void verifyTheTaxOnPlaceOrderPage() throws Throwable {
+	public String verifyTheTaxOnPlaceOrderPage() throws Throwable {
 		Thread.sleep(3000);
 		String result = getText(ADDLICENCE_TAX_AMOUNT, "Tax displayed after adding LICENCE").replace("$", "");
 		if (isElementPresent(ADDLICENCE_TAX_AMOUNT, "Tax displayed", true) ) {
-			reporter.SuccessReport("Verify Taxes on Place Order Page", "Taxes Exist and shows:" , result);
+			reporter.SuccessReport("Verify Taxes on Place Order Page", "Taxes Exist and shows as :" , "Tax estimate USD "+result);
 		} else
 			reporter.failureReport("Verify Taxes on Place Order Page", "Place Order Page Shows Tax as 0.00","",driver);
+		return result;
 	}
 	/**
 	 * 
@@ -868,9 +932,9 @@ public class OrderLib extends OrderObj{
 	public void verifyEWRFeeAndTax() throws Throwable {
 		Thread.sleep(3000);
 		// Verify EWR Fee
-		String result=getText(EWR_FEE_AMOUNT, "EWR Fee displayed after checking the tax checkbox").replace("$", "");
+		String result=getText(EWR_FEE_AMOUNT, "EWR Fee displayed after checking the tax checkbox");
 		if (isElementPresent(EWR_FEE_AMOUNT, "Tax displayed", true)) {
-			reporter.SuccessReport("Verify Total EWR Fee on Pace Order Page", "Total EWR Fee exists ",result);
+			reporter.SuccessReport("Verify Total EWR Fee on Pace Order Page", "Total EWR Fee exists ","Total EWR Fee USD "+result);
 	    }else {
 	    	reporter.failureReport("Verify Total EWR Fee on Pace Order Page", "Total EWR Fee does not exists ","",driver);
 	    }
@@ -878,7 +942,7 @@ public class OrderLib extends OrderObj{
 		String tax = getText(ADDLICENCE_TAX_AMOUNT, "Tax displayed").replace("$", "");
 		if (isElementPresent(ADDLICENCE_TAX_AMOUNT, "Tax displayed", true)) {
 			if (isElementPresent(ADDLICENCE_TAX_AMOUNT, "Tax displayed", true) && Float.valueOf(tax) == 0) {
-				reporter.SuccessReport("Verify Taxes on Place Order Page", "Place Order Page Shows Tax as : " +tax,"");
+				reporter.SuccessReport("Verify Taxe estimate on Place Order Page", "Tax estimate Exists and Value Returned and is shown as 0.00","Tax estimate USD $"+tax);
 		} else {
 			reporter.failureReport("Verify Taxes on Place Order Page", "Place Order Page does not show tax as 0.00","",driver);
 		  }
@@ -1468,6 +1532,8 @@ public class OrderLib extends OrderObj{
 			}
 	}
 
+
+
 	/**
 	 * 
 	 * @param toolsMenuName
@@ -1535,9 +1601,11 @@ public class OrderLib extends OrderObj{
 	public void clickOnAdditionalInfoContinueButton() throws Throwable {
 		if(isElementPresent(CONTINUE_BTN,"Continue Button Additional info Section")) {
 		click(CONTINUE_BTN, "Continue Button of Additional info Section");
+		reporter.SuccessReport("Continue button in Additional info page","Clicking on continue button","Continue button in additional info");
 	}else {
-		//do nothing
-	}
+			reporter.failureReport("Continue button in Additional info page","Clicking on continue button","Continue button in additional info",driver);
+
+		}
 	}
 
 	/**
@@ -1839,9 +1907,9 @@ public class OrderLib extends OrderObj{
 	 * @throws Throwable
 	 */
 	public String clickStoredAddressRadioButton() throws Throwable {
-		Thread.sleep(2000);
+		Thread.sleep(3000);
 		String addressSelected=getText(STORED_ADDRESS_RADIOBTN, "STORED ADDRESS RADIOBTN");
-		click(STORED_ADDRESS_RADIOBTN, "STORED ADDRESS RADIO BUTTON", addressSelected);
+		click(STORED_ADDRESS_RADIOBTN, "STORED ADDRESS RADIO BUTTON", "First CA address :"+addressSelected);
 		return addressSelected;
 		
 	}
@@ -1859,7 +1927,196 @@ public class OrderLib extends OrderObj{
 	}
 	
 	public void clickContinueOnShippingAddress() throws Throwable {
-		
-		click(SHIPPING_ADDRESS_CONTINUE_BTN,"Continue button","Shipping address continue button");
+		click(SHIPPING_ADDRESS_CONTINUE_BTN," Shipping address Continue button","Shipping address continue button");
 	}
+	
+	public void verifyCartPageAndPartDetails(int itemNum) throws Throwable {
+		List<String> prodDesc1 = getProductDescriptionOfCartProduct();
+		List<String> totalPrice1 = getCartProductTotalPrice();
+		List<String> unitPrice1=getCartProductUnitPrice();
+		List<String> quantity=getCartProductQuantity();
+		List<String> stock=getCartProductStock();
+		Thread.sleep(3000);
+		if (prodDesc1.get(itemNum)!=null && totalPrice1!=null) {
+			Thread.sleep(3000);
+			reporter.SuccessReport("Verify the part added to cart ", "cart details ",
+					 "  prod Description : " + prodDesc1.get(itemNum) + "   Quantity : "+quantity.get(itemNum)
+							+ "  Total Price: " + totalPrice1.get(itemNum)+ "   Unit price: "+unitPrice1.get(itemNum)+ "   "+stock.get(itemNum));
+		} else {
+			reporter.failureReport("Verify the part added to cart ", "Part is not added to cart.", "", driver);
+		}
+   }
+	
+	public void enterAttentionField(String text) throws Throwable {
+		if(isVisibleOnly(ATTENTION, "Attention")) {
+			type(ATTENTION, text, "ATTENTION", driver);;
+			click(SHIPPING_ADDRESS_CONTINUE_BTN," Shipping address Continue button","Shipping address continue button");
+		}else {
+			// do nothing
+		}
+		
+	}
+	
+	/**
+	 * This method is to verify the RP_HDL_Txt entered on PO page
+	 * @param RP_HDL_Txt
+	 * @throws Throwable
+	 */
+	public void verifyRP_HDL_TxtOnPlaceOrderPage(String RP_HDL_Txt) throws Throwable{
+		if(isElementPresent(getRP_HDL_TxtInPlaceOrderPage(RP_HDL_Txt),"RP_HDL_Txt")){
+			reporter.SuccessReport("Verify RP_HDL_Txt On Place Order Page", "RP_HDL_Txt On Place Order Page is present and same as input given in Additional info section", "RP_HDL_Txt : "+RP_HDL_Txt);
+			
+		}else{
+			reporter.failureReport("Verify RP_HDL_Txt On Place Order Page", "RP_HDL_Txt On Place Order Page is not present", "",driver);
+		}
+	}
+	
+	/**
+	 * This method is to verify the WG_HDL_Txt entered on PO page
+	 * @param RP_HDL_Txt
+	 * @throws Throwable
+	 */
+	public void verifyWG_HDL_TxtOnPlaceOrderPage(String WG_HDL_Txt) throws Throwable{
+		Thread.sleep(3000);
+		if(isElementPresent(getWG_HDL_TxtInPlaceOrderPage(WG_HDL_Txt),"WG_HDL_Txt")){
+			reporter.SuccessReport("Verify WG_HDL_Txt On Place Order Page", "WG_HDL_Txt On Place Order Page is present and same as input given in Additional info section", "WG_HDL_Txt : "+WG_HDL_Txt);
+			
+		}else{
+			reporter.failureReport("Verify WG_HDL_Txt On Place Order Page", "WG_HDL_Txt On Place Order Page is not present", "",driver);
+		}
+	}
+	/**
+	 * This method is to verify the RP_LNL_Txt entered on PO page
+	 * @param RP_HDL_Txt
+	 * @throws Throwable
+	 */
+	public void verifyRP_LNL_TxtOnPlaceOrderPage(String partNumber,String input) throws Throwable{
+		if(isElementPresent(getgetRP_LNL_TxtByPartNum(partNumber),"RP_LNL_Txt")){
+			String RP_LNL_Txt=getText(getgetRP_LNL_TxtByPartNum(partNumber), "RP_LNL_Txt");
+			if(input.equals(RP_LNL_Txt)) {
+				reporter.SuccessReport("Verify RP_LNL_Txt On Place Order Page", "RP_LNL_Txt On Place Order Page is present", "RP_LNL_Txt : "+RP_LNL_Txt);
+			}else {
+				reporter.failureReport("Verify RP_LNL_Txt On Place Order Page", "RP_LNL_Txt On Place Order Page is not same as input given in LNL section", "",driver);
+			}
+			
+			
+		}else{
+			reporter.failureReport("Verify RP_LNL_Txt On Place Order Page", "RP_LNL_Txt On Place Order Page is not present", "",driver);
+		}
+	}
+	
+	/**
+	 * This method is to verify the WG_LNL_Txt entered on PO page
+	 * @param WG_LNL_Txt
+	 * @throws Throwable
+	 */
+	public void verifyWG_LNL_TxtOnPlaceOrderPage(String partNumber,String input) throws Throwable{
+		if(isElementPresent(getgetWG_LNL_TxtByPartNum(partNumber),"WG_LNL_Txt")){
+			String WG_LNL_Txt=getText(getgetWG_LNL_TxtByPartNum(partNumber), "WG_LNL_Lst").trim();
+			if(input.equals(WG_LNL_Txt)) {
+				reporter.SuccessReport("Verify WG_LNL_Txt On Place Order Page", "WG_LNL_Txt On Place Order Page is present", "WG_LNL_Txt : "+WG_LNL_Txt);
+			}else {
+				reporter.failureReport("Verify WG_LNL_Txt On Place Order Page", "WG_LNL_Txt On Place Order Page is not same as input given in LNL section", "",driver);
+			}
+			
+			
+		}else{
+			reporter.failureReport("Verify WG_LNL_Lst On Place Order Page", "WG_LNL_Lst On Place Order Page is not present", "",driver);
+		}
+	}
+	
+	/**
+	 * This method is to verify the RP_LNL_Txt entered on PO page for bundle of products
+	 * @param RP_HDL_Txt
+	 * @throws Throwable
+	 */
+	public void verifyRP_LNL_TxtOnPlaceOrderPageForBundles(String bundle,String input) throws Throwable{
+		if(isElementPresent(getgetRP_LNL_TxtByBundles(bundle),"RP_LNL_Txt")){
+			String RP_LNL_Txt=getText(getgetRP_LNL_TxtByBundles(bundle), "RP_LNL_Txt");
+			if(input.equals(RP_LNL_Txt)) {
+				reporter.SuccessReport("Verify RP_LNL_Txt On Place Order Page", "RP_LNL_Txt On Place Order Page is present", "RP_LNL_Txt : "+RP_LNL_Txt);
+			}else {
+				reporter.failureReport("Verify RP_LNL_Txt On Place Order Page", "RP_LNL_Txt On Place Order Page is not same as input given in LNL section", "",driver);
+			}
+		}else{
+			reporter.failureReport("Verify RP_LNL_Txt On Place Order Page", "RP_LNL_Txt On Place Order Page is not present", "",driver);
+		}
+	}
+	
+	/**
+	 * This method is to verify the WG_LNL_Txt entered on PO page  for bundle of products
+	 * @param WG_LNL_Txt
+	 * @throws Throwable
+	 */
+	public void verifyWG_LNL_TxtOnPlaceOrderPageForBundles(String bundle,String input) throws Throwable{
+		if(isElementPresent(getgetWG_LNL_TxtByBundles(bundle),"WG_LNL_Txt")){
+			String WG_LNL_Txt=getText(getgetWG_LNL_TxtByBundles(bundle), "WG_LNL_Txt");
+			if(input.equals(WG_LNL_Txt)) {
+				reporter.SuccessReport("Verify WG_LNL_Txt On Place Order Page", "WG_LNL_Txt On Place Order Page is present", "WG_LNL_Txt : "+WG_LNL_Txt);
+			}else {
+				reporter.failureReport("Verify WG_LNL_Txt On Place Order Page", "WG_LNL_Txt On Place Order Page is not same as input given in LNL section", "",driver);
+			}
+		}else{
+			reporter.failureReport("Verify WG_LNL_Txt On Place Order Page", "WG_LNL_Lst On Place Order Page is not present", "",driver);
+		}
+	}
+	
+	/**
+	 * 
+	 * @return
+	 * @throws Throwable 
+	 */
+	public String  getProductDescriptionOfCartProductForRecentlyAddedItem() throws Throwable{
+		
+		return getText(CartObj.CART_PROD_DESC_RECENTLYADDEDTEM,"Product description of recently added item");
+	}
+	
+	/**
+	 * 
+	 * @return
+	 * @throws Throwable 
+	 */
+	public String getCartProductTotalPriceForRecentlyAddedItem() throws Throwable {
+		
+		return getText(CartObj.CART_PROD_TOTAL_PRICE,"ProductTotalPriceForRecentlyAddedItem");
+		}
+	
+	/**
+	 * 
+	 * @return
+	 * @throws Throwable 
+	 */
+	public String getCartProductUnitPriceForRecentlyAddedItem() throws Throwable {
+		
+		return getText(CartObj.CART_PROD_UNIT_PRICE_RECENTLYADDEDTEM,"CartProductUnitPriceForRecentlyAddedItem");
+}
+	
+	/**
+	 * 
+	 * @return
+	 * @throws Throwable 
+	 */
+	public String getCartProductQuantityForRecentlyAddedItem() throws Throwable {
+		return getText(CartObj.CART_PROD_QTY_RECENTLYADDEDTEM,"CartProductQuantityForRecentlyAddedItem");
+		
+	}
+	
+	/**
+	 * 
+	 * @return
+	 * @throws Throwable 
+	 */
+	public String getCartProductStockForRecentlyAddedItem() throws Throwable {
+
+		return getText(CartObj.CART_PROD_STOCK_RECENTLYADDEDTEM,"CartProductStockForRecentlyAddedItem");
+		}
+	
+	public void verifyTaxEstimatesAreEqual(float tax1,float tax2) throws Throwable {
+		if(tax1==tax2) {
+			reporter.SuccessReport("Verify Tax estimates are equal", "Tax estimates are equal", "Tax 1: "+tax1+"  Tax2: "+tax2);
+		}else {
+			reporter.failureReport("Verify Tax estimates are equal", "Tax estimates are not equal", "");
+		}
+	}
+
 }

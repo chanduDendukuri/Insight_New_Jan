@@ -7,19 +7,19 @@ import com.insight.googledrive.ReportStatus;
 import com.insight.utilities.TestUtil;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
-
-import java.util.Arrays;
 import java.util.Hashtable;
-import java.util.List;
+
 
 public class ROD07_FCTWebReviewExportIPSTest extends OrderLib{
 
-	ProductDisplayInfoLib prodInfoLib=new ProductDisplayInfoLib();
+	//ProductDisplayInfoLib prodInfoLib=new ProductDisplayInfoLib();
 	CMTLib cmtLib=new CMTLib();
 	SearchLib searchLib=new SearchLib();
 	CommonLib commonLib=new CommonLib();
 	CartLib cartLib=new CartLib();
 	ProductDisplayInfoLib prodLib=new ProductDisplayInfoLib();
+	ProductDetailLib prodDetails = new ProductDetailLib();
+	CanadaLib canadaLib=new CanadaLib();
 
 	// #############################################################################################################
 	// #    Name of the Test         : ROD07_FCTWebReviewExportIPS
@@ -50,7 +50,6 @@ public class ROD07_FCTWebReviewExportIPSTest extends OrderLib{
 										+ data.get("Password") + " To Validate::" + data.get("errorMessage") + "  **************","");
 
 
-
 						// Login to CMT and disable override_payment_options;off"
 						cmtLib.loginToCMT(data.get("Header"));
 						cmtLib.searchForWebGroup( data.get("WebGrp"));
@@ -58,29 +57,33 @@ public class ROD07_FCTWebReviewExportIPSTest extends OrderLib{
 						cmtLib.setCustomerLevelPermissionsOFF(data.get("Customer_Permissions"));
 						cmtLib. hoverOnManageWebGroupsAndSelectOptions(data.get("Manage_Web_Grp_Options"));
 						cmtLib.searchForaUserAndSelect(data.get("LnameEmailUname"),data.get("ContactName"));
-
+						// enable_purchase_popup;ON";
+						cmtLib.setPermissions(data.get("Menu_Name"), data.get("Set_Permission"));
 						// Login As to UAT Web
 						cmtLib.loginAsAdminCMT();
 
 						searchLib.selectNewcontract(data.get("Contract_Name1"));
+						prodDetails.verifyContractDetails();
 						searchLib.searchInHomePage(data.get("SearchText"));
+						searchLib.verifyBreadCrumbInSearchResultsPage(data.get("SearchText"));
 						prodLib.selectFirstProductAddToCartAndVerifyCart();
 						commonLib.updateCartQuantity(data.get("Quantity"));
 						// Selecting second contract
-						searchLib.selectNewcontract(data.get("Contract_Name2"));  
+						searchLib.selectNewcontract(data.get("Contract_Name2")); 
+						prodDetails.verifyContractDetails();
 						searchLib.searchInHomePage(data.get("SearchText"));
+						searchLib.verifyBreadCrumbInSearchResultsPage(data.get("SearchText"));
 						prodLib.selectFirstProductAddToCartAndVerifyCart();
 						commonLib.updateCartQuantity(data.get("Quantity"));
-
+						cartLib.ClickExportCartAndVerify(data.get("Order_Utilities"),data.get("Sheet_Name"),data.get("Row_number"),data.get("Column_Headers1"));
 						proceedToCheckout();
 						enterReportingDetailsInLineLevelInfoSection(data.get("REPORTING FIELD_4"), data.get("REPORTING FIELD_5"), data.get("REPORTING FIELD_6"));
-
-						shippingBillPayContinueButton();   // Click continue on Shipping address
-						shippingOptionsCarrierSelection();  // Click continue on Shipping options
-						shippingBillPayContinueButton();   // Billing address continue button
+						canadaLib.verifySBP();
+						clickContinueOnShippingAddress();   // Click continue on Shipping address
+						shippingOptionsCarrierSelection(); // carrier options continue button
+						billingAddressContinueButton();   // Billing address continue button
 						selectPaymentInfoMethodCreditCard(data.get("Card_Number").toString(), data.get("Card_Name"), data.get("Month"), data.get("Year"),data.get("PO_Number"),data.get("POReleaseNumber"));
 						clickOnReviewOrderButton(); // Click Review order button on payment info
-
 						// Click on Export as a file and verify 
 						cartLib.ClickExportCartAndVerify(data.get("Order_Utilities"),data.get("Sheet_Name"),data.get("Row_number"),data.get("Column_Headers"));
 						commonLib.clickLogOutLink(data.get("Logout"));

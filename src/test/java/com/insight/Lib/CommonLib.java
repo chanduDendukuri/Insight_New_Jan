@@ -19,6 +19,8 @@ import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.omg.PortableServer.THREAD_POLICY_ID;
+import org.openqa.selenium.By;
 import org.testng.Reporter;
 
 public class CommonLib extends ActionEngine{
@@ -91,7 +93,7 @@ public class CommonLib extends ActionEngine{
 	public void clickRolesAndPermissionsAtUserLevel() throws Throwable
 	{	
 		waitForVisibilityOfElement(CartObj.ROLES_AND_PERMISSIONS_USER_LEVEL,"ROLES AND PERMISSIONS AT USER LEVEL");
-		click(CartObj.ROLES_AND_PERMISSIONS_USER_LEVEL,"ROLES AND PERMISSIONS AT USER LEVEL");
+		click(CartObj.ROLES_AND_PERMISSIONS_USER_LEVEL,"ROLES AND PERMISSIONS AT USER LEVEL","ROLES AND PERMISSIONS AT USER LEVEL");
 	}
 	
 
@@ -208,7 +210,7 @@ public class CommonLib extends ActionEngine{
 			//typeUsingJavaScriptExecutor(CartObj.SEARCH,SearchItem,"SEARCHFIELD");
 
 			//Thread.sleep(20000);
-			typeForSearchingProduct(CartObj.SEARCH,SearchItem,"SEARCHFIELD");
+			typeForSearchingProduct(CartObj.SEARCH,SearchItem,SearchItem);
 
 			//click(CartObj.SEARCH_BUTTON," SEARCH BUTTON");
 			sendKeysActionsEnter(CartObj.SEARCH);
@@ -226,9 +228,9 @@ public class CommonLib extends ActionEngine{
 			String productNo = getText(CartObj.INSIGHT_NUMBER_IN_PRODUCT_DISPLAY,"INSIGHT NUMBER IN PRODUCT DISPLAY");
 			 String[] actualProduct=productNo.replace("\"", "").split("# ");
 			if(actualProduct[1].equals(SearchItem)) {
-				reporter.SuccessReport("Verifying Displayed Product Details :", "Actual and expected product details are verified and the Product is : ", SearchItem );
+				reporter.SuccessReport("Verifying Displayed Product Details :", "Mfr Part# is Exists and Same  ", "Mfr number # :"+SearchItem );
 			}else{
-				reporter.failureReport("Verifying Displayed Product Details :", "Actual and Expected missmatch.Expected is: " ,SearchItem);
+				reporter.failureReport("Verifying Displayed Product Details :", "Actual and Expected missmatch.Expected is: " ,SearchItem,driver);
 			}
 				
 		}
@@ -298,10 +300,10 @@ public class CommonLib extends ActionEngine{
 		{	
 			waitForVisibilityOfElement(CartObj.BUNDLE,"Bundle");
 			if(isElementPresent(CartObj.BUNDLE,"Bundle",true)) {
-				reporter.SuccessReport("Verify the Bundle  on Cart", "Bundle Field Exists", "");
+				reporter.SuccessReport("Verify the Bundle  on Cart", "Bundle Field Exists", "Bundle-1");
 			}
 			else {
-				reporter.failureReport("Verify the Bundle  on Cart", "Bundle Field Does Not Exist", "");
+				reporter.failureReport("Verify the Bundle  on Cart", "Bundle Field Does Not Exist", "Bundle-1");
 			}
 			
 				
@@ -310,14 +312,22 @@ public class CommonLib extends ActionEngine{
 		 *  
 		 *  @author : 
 		 */
-		public void updateCartQuantity(String quantity) throws Throwable
-		{	
+		public void updateCartQuantity(String quantity) throws Throwable{	
 			waitForVisibilityOfElement(CartObj.QUANTITY,"QUANTITY");
 			Thread.sleep(2000);
 			clearData(CartObj.QUANTITY);
 			type(CartObj.QUANTITY,quantity,"NUMBER OF ITEMS");
 			click(CartObj.UPDATE,"UPDATE");
-			
+		}
+		public boolean clickOnUpdateLinkInViewCartPage(String quan) throws Throwable{
+			boolean status=false;
+			if(isVisibleOnly(CartObj.UPDATE,"UPDATE")) {
+				status =true;
+				click(CartObj.UPDATE, "UPDATE","Updated to " + quan);
+			}else{
+				status=false;
+			}
+			return status;
 		}
 		
 		public void updateCartQuantityByZero(String quantity) throws Throwable
@@ -610,7 +620,7 @@ public class CommonLib extends ActionEngine{
 			if(isVisibleOnly(CommonObj.SPINNER_IMAGE, "spinner image")) {
 				LOG.info("spinner image disapperaed");
 			}else {
-				reporter.failureReport("spinner image","spinner image not disapperaed","");
+				//reporter.failureReport("spinner image","spinner image not disapperaed","");
 			}
 			}
 			else {
@@ -781,5 +791,45 @@ public class CommonLib extends ActionEngine{
 			reporter.failureReport("Verify Message in Product Details Page", "The price displayed will be prorated in the Cart based on the remaining agreement period. is Not Exists","");
 		}
 		}
+	
+
+	public void verifyDefualtShippingSelectedOption() throws Throwable {
+		if (isVisibleOnly(CommonObj.defaultShippingOptionSelected, "Shipping Option")) {
+			reporter.SuccessReport("Verify Default Shipping options to SLS Ground in Shipping Options in the Checkout Settings Tab on Manage Web groups: Create User Page", "SLS Ground is Default Shipping Oprion Exists in Shipping Options","");
+		}else{
+			reporter.failureReport("Verify Default Shipping options to SLS Ground in Shipping Options in the Checkout Settings Tab on Manage Web groups: Create User Page", "SLS Ground is Default Shipping Oprion Exists in Shipping Options Not Exists","",driver);
+		}
+		}
+
+	public void updateCartQuantityInProductDetailsPage(String Quantity) throws Throwable
+	{
+		waitForVisibilityOfElement(CartObj.QUANTITY,"QUANTITY");
+		Thread.sleep(2000);
+		clearData(CartObj.QUANTITY);
+		type(CartObj.QUANTITY,Quantity,"NUMBER OF ITEMS");
+	}
+	
+	public void clickOnBundle(String productGroup,String productName) throws Throwable
+	{
+		click(CommonObj.getCompanyStandardsProductGroup(productGroup, productName), "select product from product group");
+	}
+	
+	public void verifyDescription() throws Throwable
+	{
+		isVisible(CommonObj.lblDescription, "Description title exists");
+	}
+	
+	public void getFirstProductDescription() throws Throwable
+	{
+		getText(CommonObj.FirstProductDescription, "ProductDescription");
+	}
+	public void clickOnAddToOrder() throws Throwable
+	{
+		click(CommonObj.btnAddToOrder, "Add to cart button exists and is selected","");
+	}
+	public void clickOnViewCart() throws Throwable
+	{
+		click(CommonObj.lnkViewCart, "view cart link exists and is selected");
+	}
 
 }

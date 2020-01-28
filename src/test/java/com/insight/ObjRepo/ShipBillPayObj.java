@@ -15,7 +15,7 @@ public class ShipBillPayObj extends ActionEngine{
     public static By STOREDCARDS=By.xpath("//select[@id='insightPaymentStoreCards']//option");
     public static By APPROVEREQUISITOR_UPDATEBUTTON=By.xpath("//div[@id='rsUpdatebuttons']//a/span[contains(text(),'UPDATE ')]");
     public static By verifyShippingCarrier(String shippingCarrier) {
-    	return By.xpath("//label[text()='Shipping carrier:']//parent::div//p[text()='"+shippingCarrier+"']");
+    	return By.xpath("//label[text()='Shipping carrier:']//parent::div//p[contains(text(),'"+shippingCarrier+"')]");
     }
     public static By PAYMENTINFO_LABEL=By.xpath("//div[@id='bodyContent']//h2[contains(text(),'Payment Information')]");
     public static By ORDER_DETAILS_BUTTON=By.xpath("//strong[text()='Order details']//parent::a");
@@ -189,6 +189,8 @@ public class ShipBillPayObj extends ActionEngine{
  		return By.xpath("//td[contains(text(),'"+PartNum+"')]");
  		
      } 	
+     
+     public static By searchResults = By.xpath("//*[@class='stored-address__label']");
 
      public static By CALANDER = By.xpath("//span[@class='ion ion-calendar ion--right date-picker__icon']");
      public static By SEARCH_FIELD = By.xpath("//input[@id='storedAddress-search']");
@@ -214,6 +216,7 @@ public static By EDIT_LINK=By.xpath("//h3[contains(text(),'Shipping address')]/f
 public static By SHIPPING_ADDRES=By.xpath("//p[@id='iw-checkout__address-section-selected-address']");
 public static By SHIPPING_ADDRESES=By.xpath("//p[@id='iw-checkout__address-section-selected-address']/br[1]");
 public static By SHIPPING_ADDRESESSECONDLINE=By.xpath("//p[@id='iw-checkout__address-section-selected-address']/br[2]");
+public static By STOCKONLY_SEARCHRESULTS=By.xpath("//div[@class='filter-item js-filter-item']/a[@class='button call-to-action']");
 
 
 
