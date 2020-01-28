@@ -28,7 +28,7 @@ public class QuoteHistoryObj extends ActionEngine {
 		 return By.xpath("//table[@class='footable clean full footable-loaded default']//tbody//tr[1]//td//a[contains(.,'"+quoteReferenceNum+"')]");
 	 }
 	 public static By DESCENDING =By.xpath("//input[@id='descQuote']");
-		
+		public static By radiobutton_descending = By.xpath("//input[@type='radio' and @id='descQuote']//following-sibling::span");
 	 public static By getAdvSearchQuoteFormTable(String quoteName){
 		 return By.xpath("//table[@id='quoteSearch']//tbody//tr//td[contains(.,'"+quoteName+"')]");
 	 }
