@@ -63,6 +63,7 @@ public class QTH06_QuoteHistoryDateSearchTest extends QuoteHistoryLib {
 					cmtLib.setPermissions(data.get("Menu_Name"), data.get("Set_Permission1"));
 					cmtLib.setPermissions(data.get("Menu_Name"), data.get("Set_Permission2"));
 					cmtLib.setPermissions(data.get("Menu_Name"), data.get("Set_Permission3"));
+					cmtLib.verifyWebGroupsManagementUsers();
 					cmtLib.clickOnloginAs();
 					switchToChildWindow();
 					cmtLib.loginVerification("User - "+data.get("ContactName"));
