@@ -117,6 +117,7 @@ public class OrderLib extends OrderObj{
 	 * @throws Throwable
 	 */
 	public void continueToCheckOutOnAddCart() throws Throwable{
+		
 		click(CONTINUE_TO_CHECKOUT, "Continue to checkout");
 		if(isElementNotPresent(CanadaObj.CART_LABEL, "Cart header label displayed")) {
 			refreshPage();	
@@ -914,13 +915,14 @@ public class OrderLib extends OrderObj{
 	/* 
 	 * @throws Throwable
 	 */
-	public void verifyTheTaxOnPlaceOrderPage() throws Throwable {
+	public String verifyTheTaxOnPlaceOrderPage() throws Throwable {
 		Thread.sleep(3000);
 		String result = getText(ADDLICENCE_TAX_AMOUNT, "Tax displayed after adding LICENCE").replace("$", "");
 		if (isElementPresent(ADDLICENCE_TAX_AMOUNT, "Tax displayed", true) ) {
 			reporter.SuccessReport("Verify Taxes on Place Order Page", "Taxes Exist and shows as :" , "Tax estimate USD "+result);
 		} else
 			reporter.failureReport("Verify Taxes on Place Order Page", "Place Order Page Shows Tax as 0.00","",driver);
+		return result;
 	}
 	/**
 	 * 
@@ -2107,5 +2109,13 @@ public class OrderLib extends OrderObj{
 
 		return getText(CartObj.CART_PROD_STOCK_RECENTLYADDEDTEM,"CartProductStockForRecentlyAddedItem");
 		}
+	
+	public void verifyTaxEstimatesAreEqual(float tax1,float tax2) throws Throwable {
+		if(tax1==tax2) {
+			reporter.SuccessReport("Verify Tax estimates are equal", "Tax estimates are equal", "Tax 1: "+tax1+"  Tax2: "+tax2);
+		}else {
+			reporter.failureReport("Verify Tax estimates are equal", "Tax estimates are not equal", "");
+		}
+	}
 
 }
