@@ -81,7 +81,7 @@ public class ROD06_FCTWebReviewExportTest extends OrderLib{
 						searchLib.searchInHomePage(data.get("SearchText2"));
 						searchLib.verifyTheResultsForSearchTerm(data.get("SearchText2"));
 						// in-stock filter verification
-						searchLib.verifyFilterBreadCrumb(data.get("In_Stock_Only"));
+						//searchLib.verifyFilterBreadCrumb(data.get("In_Stock_Only"));
 						prodLib.selectFirstProductAddToCartAndVerifyCart();
 						
 						// proceed To Checkout and click continue on Line Level information Section, shipping address,Shipping options, Billing address section >> Review Order
