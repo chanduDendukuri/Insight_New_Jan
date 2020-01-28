@@ -980,4 +980,12 @@ return status;
 			}
 		}
 	}
+	
+	public void clickOnSearchUnderAdvancedSearch() throws Throwable
+	{
+			click(btnsearchUnderAdvancedSearch, "search button under advanced search");
+	}
+	public void verifyQuoteHistoryReults() throws Throwable {
+		isVisible(lblExpirationDate, "quote history results");
+	}
 }

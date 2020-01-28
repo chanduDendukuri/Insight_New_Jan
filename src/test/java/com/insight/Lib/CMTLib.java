@@ -1,5 +1,6 @@
 package com.insight.Lib;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -244,6 +245,10 @@ public class CMTLib extends CMTObj {
 		mouseHover(MASTER_GROUP, "Master Group");
 		click(CHANGE_MASTER_GRP, "Change master group option");
 	}
+	public void hoverOverManagecurrentWebGrp() throws Throwable {
+		mouseHover(ManageCurrentWebGroup, "ManageCurrentWebGroup");
+		click(UserslinkfromManageCurrentWebGroup, "UserslinkfromManageCurrentWebGroup");
+	}
 
 	/**
 	 * This method is to click on Approve item catalog link
@@ -317,7 +322,8 @@ public class CMTLib extends CMTObj {
 		click(btn_SaveAsQuote, "Save as Quote button in cart page", "");
 		waitForVisibilityOfElement(txt_SaveAsQuoteSuccessfull, "Save as Quote Successfull", driver);
 	}
-	public void getQuoteNameandReferenceNumber() throws Throwable {
+	public List<String> getQuoteNameandReferenceNumber() throws Throwable {
+		List<String> details = new ArrayList<>();
 		String QuoteName = getText(txt_QuoteName, "Quotename");
 		String ReferenceNumber = getText(txt_referencenumber, "Reference number");
 		if(QuoteName!=null && ReferenceNumber!=null) {
@@ -326,6 +332,9 @@ public class CMTLib extends CMTObj {
 		else {
 		reporter.failureReport("QuoteName and ReferenceNUmber", "QuoteName and Reference Numbers are not displayed", "");
 		}
+		details.add(QuoteName);
+		details.add(ReferenceNumber);
+		return details;
 	}
 	
 	public void SwitchToParentWindow() {
@@ -405,7 +414,10 @@ public class CMTLib extends CMTObj {
 		}
 
 	}
-
+public  void verifyDashboard()throws Throwable {
+	boolean enabledashboard  = driver.findElement(By.xpath("//div[@class='contactInfoNameTextBox']//input[@id='enableDashboard']")).isDisplayed();
+	System.out.println(enabledashboard);
+}
 	/**
 	 * Search for a user in the users screen and select it.
 	 * 
@@ -3505,5 +3517,14 @@ public void verifyProductStandardsTitle() throws Throwable
 		}
 	}
 
+	public void verifyManageWebGroupsCreateUser() throws Throwable
+	{
+		isVisible(CMTObj.lblWebGroupManagement, "Web group create User page verification");
+	}
+	public void verifyWebGroupsManagementUsers() throws Throwable
+	{
+		isVisible(lblWebGroupManagementUsers, "WebGroupsManagementUsers page loaded");
+	}
+	
 }
 

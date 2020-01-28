@@ -111,8 +111,8 @@ public class InvoiceHistoryObj extends ActionEngine{
 	public static By ACCOUNT_NUMBER=By.xpath("//td[@class='wtvtd1']//tbody//tr//td[2]");
 
 	public static By defaultSelectedAccount(String accountNumber) {
-		return By.xpath("//table[@class='wtvtable1']//tbody//tr//td//input[contains(@id,'"+accountNumber+"')]"); 
-				
+		return By.xpath("//table[@class='wtvtable1']//tbody//tr//td//input[contains(@id,'"+accountNumber+"')]"); 			
 	}
-
+	public static By btnsearchUnderAdvancedSearch= By.xpath("//input[@id='quoteAdvSearch']");
+	public static By lblExpirationDate=By.xpath("(//*[text()='Expiration Date'])[2]");
 }

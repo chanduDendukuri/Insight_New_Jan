@@ -263,16 +263,18 @@ public class SLPLib extends SLPObj {
 	}
 	
 	
-	public void verifydeployedatewithcurrentdate()throws Throwable {
+	public String verifydeployedatewithcurrentdate()throws Throwable {
+		String deploydate =null;
 		if (isElementPresent(DEPLOY_DATEINPOPUP, "Deploy Date")) {
-			String deploydate = getText(DEPLOY_DATEINPOPUP, "Date ordered");
+			 deploydate = getText(DEPLOY_DATEINPOPUP, "Date ordered");
 			String actualDate = getCurrentDateTime("dd-MMM-yyyy");
 			if (actualDate.contains(deploydate)) {
-				reporter.SuccessReport("Deploy Date:: ", "verification of deploy date with current date is successfull","");
+				reporter.SuccessReport("Deploy Date:: ", "Deploy Date is defaulted to Today's Date","Deploy Date: "+deploydate);
 			} else {
 				reporter.failureReport("Deploy Date:: ", "verification of deploy date with current date is Not successfull : "+deploydate+" .Expected Date :",actualDate);
 			}
 		}
+		return deploydate;
 		
 	}
 	/**
@@ -735,11 +737,10 @@ public class SLPLib extends SLPObj {
 		public void verifyPAvalueinPlaceOrderPage() throws Throwable {
 			int i=1;
 			List<WebElement> PAList =  driver.findElements(PA_fieldinplaceorderpage(i));
-			for(i=1; i<=PAList.size(); i++){
+			for( i=1; i<=PAList.size(); i++){
 			if(isElementPresent(PA_fieldinplaceorderpage(i), "PA field in line level Information in Place order Page")){
 				String PA_Value = getText(PA_fieldinplaceorderpage(i), "PA field in line level Information in Place order Page").replace("PA #:", " ").trim();
-				reporter.SuccessReport("Verify PA# Field in Place Order Page ", "PA#"+i+" Field  Exists and Verified",PA_Value);
-
+				reporter.SuccessReport("Verify PA# Field in Place Order Page ", "PA#"+i+" Field  Exists and Verified","PA Field:PA #: "+PA_Value);
 			} else
 				reporter.failureReport("Verify PA# Field in Place Order Page", "PA# Field does not exist" , "");
 				}
@@ -808,7 +809,32 @@ public class SLPLib extends SLPObj {
 			} else {
 				reporter.failureReport("Verify CITRIX Product on CART Page", "Citrix product " + itemInCart + "is not ADDED TO CART",
 						itemInCart, driver);
-
+			}
+		}
+		
+		
+		public String getDeploydateOnCart(String partNum) throws Throwable {
+			return getText(getDeployDateOnCartPage(partNum), "Deploy date in cart");
+		}
+		
+		public void verifycartDetailsWithDeployPopUpDetails(String date,String Desc,String mfrNum) throws Throwable {
+			String mfrPart=getText(DEPLOY_DATE_POPUP_MFR_PART, "mfr part");
+			String description=getText(DEPLOY_DATE_POPUP_DESCRIPTION, "Description");
+			String popupDate=getText(DEPLOY_DATEINPOPUP, "date");
+			
+			if(mfrPart.equals(mfrNum) && Desc.equals(description) && date.equals(popupDate)) {
+				reporter.SuccessReport("Verify the data in Deploy Date POP-up", "Mnf# Part and Search Item are Same and Verfied", "Description: "+description+" mfrNum"+mfrNum+"  Date: "+date);
+			}else {
+				reporter.failureReport("Verify the data in Deploy Date POP-up", "Mnf# Part and Search Item are not Same", "");
+			}
+		}
+		
+		
+		public void verifyPAOnReceiptPage(String paInput) throws Throwable {
+			if(isVisibleOnly(getPAOnReceipt(paInput), "PA #")) {
+				reporter.SuccessReport("Verify PA# Field in Place Order Page", paInput+" Field Exists and Verified", "PA field PA #: "+paInput);
+			}else {
+				reporter.failureReport("Verify PA# Field in Place Order Page", paInput+" Field does not Exists", "",driver);
 			}
 		}
 }

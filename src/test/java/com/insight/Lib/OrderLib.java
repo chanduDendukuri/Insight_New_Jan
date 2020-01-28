@@ -2079,7 +2079,7 @@ public class OrderLib extends OrderObj{
 	 */
 	public String getCartProductTotalPriceForRecentlyAddedItem() throws Throwable {
 		
-		return getText(CartObj.CART_PROD_TOTAL_PRICE,"ProductTotalPriceForRecentlyAddedItem");
+		return getText(CartObj.CART_PROD_TOTAL_PRICE_RECENTLYADDEDTEM,"ProductTotalPriceForRecentlyAddedItem");
 		}
 	
 	/**
@@ -2155,4 +2155,14 @@ public class OrderLib extends OrderObj{
 			  }
 		}
 	}
+
+	/* Method to get the reference number of the quote
+	 * @return
+	 * @throws Throwable
+	 */
+	public String getQuoteReferenceName() throws Throwable{
+		return getText(QUOTE_REFERENCE_NAME, "Reference name").trim();
+	}
+
+
 }

@@ -9,6 +9,7 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 
+import com.insight.ObjRepo.CMTObj;
 import com.insight.ObjRepo.CanadaObj;
 import com.insight.ObjRepo.CartObj;
 import com.insight.ObjRepo.CommonObj;
@@ -53,7 +54,26 @@ public class QuoteHistoryLib extends QuoteHistoryObj {
 		}
 		
 	}
-
+public void VerifyQuoteDetailsunderQuoteSearch() throws Throwable {
+	String QN = getText(getQuoteNumberinresults, "QuoteNumberinresults");
+	String AName = getText(txt_AccountName, "AccountName");
+	String ANumber = getText(txt_AccountNumberUnderQuoteSearch, "Account Number");
+	if(QN!=null && AName!=null && ANumber!=null) {
+		reporter.SuccessReport("Quote details:", "Quote details are displayed as expected", ""+QN+" "+AName+ "" +ANumber+"");
+	}
+	else {
+		reporter.failureReport("Quote details:", "Quote details are not displayed as expected", "");
+	}
+	
+}
+public void SelectWebGroupfromdd(String option) throws Throwable {
+	click(dd_WebGrp, "WebGrp dropdown", "");
+	click(WebGroupOption(option), "Web Group option", "");
+	click(CONT_BTN, "Continue button Linelevel Info");
+	waitForVisibilityOfElement(SelctedWebGroupName(option), "Web group name");
+	
+	
+}
 	
 	/**
 	 * Method is used to verify quote details
@@ -255,7 +275,10 @@ public class QuoteHistoryLib extends QuoteHistoryObj {
 		}
 
 	}
-
+public void SelectAccountdropdownoption(String option) throws Throwable  {
+	click(CMTObj.dd_Account, "Account dropdown", "");
+	click(CMTObj.dd_Accountdropdownoption(option), "Accountdropdownoption", "");
+}
 	/**
 	 * Method is used to click on Quote number
 	 * 
@@ -267,8 +290,15 @@ public class QuoteHistoryLib extends QuoteHistoryObj {
 		if(isElementPresent(getValueFromQuoteTable(quoteName), "Quote Details ")) {		
 		reporter.SuccessReport("Verify the Created Quote is saved in the Last Five Quotes", " Created Quote is saved in the Last Five Quotes", "");
 		}
+		else {
+			reporter.failureReport("Verify the Created Quote is saved in the Last Five Quotes", " Created Quote is not saved in the Last Five Quotes", "");
+			
 		}
-	
+		}
+	public void ClickFirstQuoteNumber() throws Throwable {
+		click(CMTObj.FirstQuoteNUmberLink, "FirstQuoteNUmberLink", "");
+		waitForVisibilityOfElement(CMTObj.txt_QuoteDetails, "QuoteDetails");
+	}
 	/**
 	 * Method is used to click on Quote number
 	 * 
@@ -379,7 +409,7 @@ public class QuoteHistoryLib extends QuoteHistoryObj {
 	
 	public void verifyExportFileInQuoteHistory(String sheetName, String rowNumber,String columnHeaders) throws Throwable {
 		//int rowNumber 		= 1; 		// zero based index
-		String sfile = "C:/Users/e004303/Downloads/orderhistory.xls";
+		String sfile = "./DownloadedFiles";
 		File file=new File(sfile);
 		List<String> downloadedExcelContent = CommonLib.readRowFromExcel(sfile, sheetName,Integer.parseInt(rowNumber));
 		List<String> acutalContent   = actualContent();
@@ -725,5 +755,20 @@ public class QuoteHistoryLib extends QuoteHistoryObj {
 			
 			click(canadaObj.getAccountToolsMenu(toolsMenuName), "Account tools menu");
 			click(CommonObj.getAccountToolsDD(toolsMenuName, dropDown), "Select account tools");
+		}
+		
+		public void getQuoteNumberInQuoteDetailsPage() throws Throwable
+		{
+			getText(QuoteNumberInQuoteDetails, "Quote number in quote details page");
+		}
+		
+		public void getQuoteNameInQuoteDetailsPage() throws Throwable
+		{
+			getText(QuoteNameInQuoteDetails, "Quote name in quote details page");
+		}
+		
+		public void getAccountNumberInQuoteDetailsPage() throws Throwable
+		{
+			getText(AccountNumberInQuoteDetails, "Account number in quote details page");
 		}
 }
