@@ -75,16 +75,29 @@ public class SLP13_CITRIX_ZeroUsage extends SLPLib{
 						cmtLib.loginAsAdminCMT();
 						// Login verification
 						cmtLib.loginVerification(data.get("ContactName"));
+						
+						// account tools >> Software License Agreements
+						commonLib.clickOnAccountToolsMenuIcon(data.get("Tools_Menu"), data.get("Tools_Menu_DD"));
+						// Select Software  Lic Agreements
+				     	canadaLib.selectSPLADetailsProductCheckBox(data.get("Software_Agrement"));
+						// verify search results and select first product
+				     	 verifysearchResultsPageForSLP();
+						
 						// Search for part or product and add to cart : ROYSPLACXAPREM-CSP
 				     	searchLib.searchInHomePage(data.get("PartNum1"));
+				     	pipLib.enterQuantityOnProductDetailsPage(data.get("Quantity"));
 				     	commonLib.addToCartAndVerify();
 				     	orderLib.continueToCheckOutOnAddCart();
 				     	orderLib.verifyCartHeaderLabel();
 				     	//Verify part item added in cart page
 				     	cartLib.verifyItemInCart(data.get("PartNum1"));
-				        // account tools >> Software License Agreements
+				     	int itemnumber=Integer.valueOf(data.get("Item_Number"));
+				     	verifyCartPageAndPartDetails(itemnumber-1);
+				        
+				     	// account tools >> Software License Agreements
 				     	orderLib.clickOnSideMenuSelectAccountToolOptions(data.get("Tools_Menu"), data.get("Tools_Menu_DD"));						
-						//canadaLib.selectSPLADetailsProductCheckBox(data.get("SPLA"));
+				     	canadaLib.verifySPLAPage();
+				     	//canadaLib.selectSPLADetailsProductCheckBox(data.get("SPLA"));
 				     	canadaLib.clickOnLastUsageReportBtn(data.get("Software_Agrement"));
 						orderLib.verifyCartHeaderLabel();
 						String subTotal=sbpLib.getTotalAmountInCart(data.get("SubTotal_label"));
@@ -96,49 +109,64 @@ public class SLP13_CITRIX_ZeroUsage extends SLPLib{
 						cartLib.verifyOnlyOneItemInCartPage();
 						// Verify Only Zero Usage Part in the Cart CAD $0.00"
 						String subtotalAmt=cartLib.getSummaryAmountInCart();
-						assertTextStringContains(subtotalAmt, data.get("Price"));
-						// Verify usage period on cart
+						Float subTotalAmount1 = Float.parseFloat(subtotalAmt.replace("$", ""));
+						 verifySubTotalAmount(subTotalAmount1);
+						
+						 String itemPrice=orderLib.getCartProductTotalPriceForRecentlyAddedItem();
+						 Float cartZeroUsageItem = Float.parseFloat(itemPrice.replace("$", ""));
+						 if(cartZeroUsageItem==0){
+								reporter.SuccessReport("Only Zero Usage Part in the Cart", " Zero Usage part Exists.", "Price USD $0.00");
+							}else{
+								reporter.failureReport("Only Zero Usage Part in the Cart ", " Zero Usage part does not exists", "");
+							}
+						 
+						 // Verify usage period on cart
 						String cartUsagePeriod=canadaLib.verifyReportingUsagePeriod();
 						
 						//Proceed to checkout
 						 orderLib.proceedToCheckout();
 						 orderLib.clickOnAdditionalInfoContinueButton();
 						 orderLib.clickContinueOnLineLevelInfo();
-						 orderLib.shippingBillPayContinueButton();  // Click continue on  shipping address 
-						 orderLib.shippingBillPayContinueButton();  // Billing address continue button
+						 canadaLib.verifySBP();
+						 orderLib.clickContinueOnShippingAddress();
+						 orderLib.shippingOptionsCarrierSelection();
+						 orderLib.billingAddressContinueButton();
+						 
 						 orderLib.addNewCardInPayment(data.get("cardNumber"), data.get("cardName"), data.get("month"), data.get("year"),data.get("poNumebr"),data.get("POReleaseNumber"));
 						 orderLib.clickOnReviewOrderButton();  // Click Review order button
-						// Verify usage period on place order page
-						  String poUsagePeriod=verifyReportingUsagePeriod();
+						 
+						 // Verify usage period on place order page
+						  String poUsagePeriod=canadaLib.verifyReportingUsagePeriod();
 						  assertTextStringMatching(cartUsagePeriod, poUsagePeriod);
+						 
 						 // Place Order
 						 String amount = cartLib.getSummaryAmountInCart();
 						orderLib.placeOrderAndVerifyReceiptOrderAndDate(amount);
-						canadaLib.verifyReportingUsagePeriodInReceiptPage();						
+						verifyReportingUsagePeriodOnReceiptPage();	
+						//Verify Receipt
+						orderLib.verifyReceiptVerbiage();
+						
 						// account tools >> Software License Agreements
 						orderLib.clickOnSideMenuSelectAccountToolOptions(data.get("Tools_Menu"), data.get("Tools_Menu_DD"));
 						canadaLib.verifySPLAPage();
 						verifyAllReportingPeriodsCurrent();
 						//SelectSoftwareLicAgrements
 						
+						// account tools >> Software License Agreements
+						orderLib.clickOnSideMenuSelectAccountToolOptions(data.get("Tools_Menu"), data.get("Tools_Menu_DD"));
+						verifysearchResultsPageForSLP();						
+						
 						// Search for part or product and add to cart : RPTCNSVPXCSPSE200C 
-				     	searchLib.searchInHomePage(data.get("PartNum2"));
+				     	searchLib.searchInHomePage(data.get("PartNum1"));
+				     	pipLib.enterQuantityOnProductDetailsPage(data.get("Quantity"));
 				     	commonLib.addToCartAndVerify();
 				     	orderLib.continueToCheckOutOnAddCart();
+				     	orderLib.verifyCartHeaderLabel();
 				     	//Verify part item added in cart page
-				     	cartLib.verifyItemInCart(data.get("PartNum2"));
-				     	String cartUsagePeriod1=canadaLib.verifyReportingUsagePeriod();
-						//Proceed to checkout
-						 orderLib.proceedToCheckout();
-						 orderLib.clickOnAdditionalInfoContinueButton();
-						 orderLib.clickContinueOnLineLevelInfo();
-						 orderLib.shippingBillPayContinueButton();  // Click continue on  shipping address 
-						 orderLib.shippingBillPayContinueButton();  // Billing address continue button
-						 orderLib.addNewCardInPayment(data.get("cardNumber"), data.get("cardName"), data.get("month"), data.get("year"),data.get("poNumebr"),data.get("POReleaseNumber"));
-						 orderLib.clickOnReviewOrderButton();  // Click Review order button
-						// Verify usage period on place order page
-						 verifyReportingUsagePeriod();
-						  commonLib.clickLogOutLink(data.get("Logout"));				    
+				     	cartLib.verifyItemInCart(data.get("PartNum1"));
+				     	verifyCartPageAndPartDetails(itemnumber-1);
+				     	verifyAllReportingPeriodsCurrent();
+						commonLib.clickLogOutLink(data.get("Logout"));				    
 						
 				} catch (Exception e) {
 					ReportStatus.blnStatus = false;

@@ -578,7 +578,7 @@ public class SLPLib extends SLPObj {
 		 * 
 		 * @throws Throwable
 		 */
-		public String verifyReportingUsagePeriod() throws Throwable {
+		public String verifyReportingUsagePeriodOnReceiptPage() throws Throwable {
 			String period = null;
 			if (isElementPresent(REPORTING_USAGE_ON_RECEIPT_PAGE, "reporting usage period on Cart PAGE")&& isElementPresent(ENROLLMENT_ON_RECEIPT_PAGE, "ENROLLMENT")) {
 				 period = getText(REPORTING_USAGE_ON_RECEIPT_PAGE, "reporting usage period on Cart PAGE");

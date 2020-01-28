@@ -71,7 +71,7 @@ public class CAN13_CartBundlesTest extends CanadaLib{
 						
 						//cmtLib.setPermissions(data.get("Menu_Name"),data.get("Enable_Purchasing_Popup"));
 						cmtLib.clickOnloginAs();
-						//cmtLib.loginVerification(data.get("contactName"));
+						cmtLib.loginVerification(data.get("ContactName"));
 						switchToChildWindow();
 
 					
