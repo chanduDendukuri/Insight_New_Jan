@@ -326,6 +326,20 @@ public class CMTLib extends CMTObj {
 		reporter.failureReport("QuoteName and ReferenceNUmber", "QuoteName and Reference Numbers are not displayed", "");
 		}
 	}
+	
+	public void SwitchToParentWindow() {
+		String Parent_Window = driver.getWindowHandle();    
+
+		 for (String Child_Window : driver.getWindowHandles())  
+		 {  
+		 driver.switchTo().window(Child_Window);  
+		 //Perform operation on child window 
+		 driver.close();
+		 } 
+
+		 //Switching back to Parent Window  
+		 driver.switchTo().window(Parent_Window);  
+	}
 	/**
 	 * Method is to Verify the Same User Logged into Insight from CMT by Contact
 	 * name verification

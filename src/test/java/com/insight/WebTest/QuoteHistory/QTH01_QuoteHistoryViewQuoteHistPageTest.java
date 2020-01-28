@@ -79,14 +79,15 @@ public class QTH01_QuoteHistoryViewQuoteHistPageTest extends QuoteHistoryLib {
 						clickOnAdvancedSearchSearchButton();
 						verifyNoRecords();
 						commonLib.clickLogOutLink(data.get("Logout_Header"));	
-						driver.close();
+						cmtLib.navigateBackToCMT();
 						cmtLib.setPermissions(data.get("Menu_Name"), data.get("Set_Permission2"));
 						cmtLib.setPermissions(data.get("Menu_Name"), data.get("Set_Permission3"));
 						cmtLib.clickUpdateUser();
-						cmtLib.setPermissions(data.get("Menu_Name"), data.get("Set_Permission2"));
+						cmtLib.setPermissionsToDisable(data.get("Menu_Name"), data.get("Set_Permission2"));
+						
 						cmtLib.clickUpdateUser();
-						cmtLib.loginToCMTSearchWebGrpAndUser(data.get("Header"), data.get("WebGrp"),
-								data.get("LnameEmailUname"), data.get("ContactName"));
+						cmtLib.loginAsAdminCMT();
+						cmtLib.loginVerification(data.get("ContactName"));
 						canadaLib.clickOnSideMenuSelectAccountToolOptions(data.get("Tools_Menu"),
 								data.get("Tools_Menu_DD"));
 						verifyQuoteHistoryPageOpened();
@@ -99,8 +100,28 @@ public class QTH01_QuoteHistoryViewQuoteHistPageTest extends QuoteHistoryLib {
 						orderLib.continueToCheckOutOnAddCart();	
 						cmtLib.clickSaveAsQuote();	
 						cmtLib.getQuoteNameandReferenceNumber();
+						cmtLib.loginAsAdminCMT();
+						cmtLib.loginVerification(data.get("ContactName"));
 						canadaLib.clickOnSideMenuSelectAccountToolOptions(data.get("Tools_Menu"),
-								data.get("Tools_Menu_DD"));
+								data.get("Tools_Menu_DD"));	 
+						verifyQuoteHistoryPageOpened();
+						invoiceHistoryLib.clickOnAdvancedSearch();					// Perform Quote Search						
+						clickOnAdvancedSearchSearchButton();
+						verifyNoRecords();
+						searchLib.searchInHomePage(data.get("SearchItem"));
+						cartLib.selectFirstProductDisplay();
+						commonLib.addToCartAndVerify();
+						orderLib.continueToCheckOutOnAddCart();	
+						cmtLib.clickSaveAsQuote();	
+						cmtLib.getQuoteNameandReferenceNumber();
+						canadaLib.clickOnSideMenuSelectAccountToolOptions(data.get("Tools_Menu"),
+								data.get("Tools_Menu_DD"));	 
+						quoteNumberInTable(data.get("Quote_Name"));	
+						
+						
+						
+						
+						
 						
 						
 						
@@ -121,6 +142,7 @@ public class QTH01_QuoteHistoryViewQuoteHistPageTest extends QuoteHistoryLib {
 						commonLib.clickLogOutLink(data.get("Logout_Header"));
 						driver.close();
 						cmtLib.setPermissions(data.get("Menu_Name"), data.get("Set_Permission1"));
+						cmtLib.loginVerification(data.get("HomePage1"));
 						
 						
 						
