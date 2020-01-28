@@ -409,7 +409,7 @@ public void SelectAccountdropdownoption(String option) throws Throwable  {
 	
 	public void verifyExportFileInQuoteHistory(String sheetName, String rowNumber,String columnHeaders) throws Throwable {
 		//int rowNumber 		= 1; 		// zero based index
-		String sfile = "./DownloadedFiles";
+		String sfile = "./DownloadedFiles/orderhistory.xls";
 		File file=new File(sfile);
 		List<String> downloadedExcelContent = CommonLib.readRowFromExcel(sfile, sheetName,Integer.parseInt(rowNumber));
 		List<String> acutalContent   = actualContent();
