@@ -1009,9 +1009,15 @@ public  void verifyDashboard()throws Throwable {
 	 * This method is to enter user Name in create an account page
 	 *
 	 */
-	public void enterUserNameInCreateAnAccount(String userName) throws Throwable {
+	public void enterUserNameInCreateAnAccount(String userName,String userName1) throws Throwable {
 		type(USER_NAME, userName, "user Name");
 		click(CHECK_AVAILABILITY, "Check availability");
+		if(isElementPresent(AVAILABLEUSERNAMEMSG,"User Name Available")) {
+			//Proceed
+		}else {
+			clearData(USER_NAME);
+			type(USER_NAME, userName1, "user Name");	
+		}
 
 	}
 
@@ -1021,7 +1027,7 @@ public  void verifyDashboard()throws Throwable {
 		}
 		type(USER_NAME, userName, "user Name");
 		click(CHECK_AVAILABILITY, "Check availability");
-		if (isElementPresent(USER_NAME_MESSAGE, "user name message")) {
+		if (isVisibleOnly(USER_NAME_MESSAGE, "user name Not Available")) {
 			clearData(USER_NAME);
 			type(USER_NAME, userName1, "user Name");
 			return userName1;

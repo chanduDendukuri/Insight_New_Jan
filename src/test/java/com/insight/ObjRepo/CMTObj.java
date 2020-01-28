@@ -585,6 +585,7 @@ public static By lnkDeleteProductGroups=By.xpath("//*[text()=' Delete Product Gr
 	public static By BILLING_ACCOUNT_NAME = By.xpath("//input[@id='companyName']");
 	public static By ADRESSES = By.xpath("//input[@id='addressOne']");
 	public static By CITY = By.xpath("//input[@id='city']");
+	public static By AVAILABLEUSERNAMEMSG=By.xpath("//span[@id='username-message' and text()='Available']");
 
 	public static By selectState() {
 		return By.xpath("//select[@id='state']");
