@@ -623,6 +623,13 @@ public class ShipBillPayLib extends ShipBillPayObj {
 	 */
 	public void VisaCardErrorPayment(String cardNumber, String cardName, String month, String year, String poNumebr)
 			throws Throwable {
+		click(PAYMENT_METHOD_DD, "payment method drop down");
+		if(isVisibleOnly(OrderObj.PAYMENT_METHOD_VERIFICATION_TERMS,"Terms")) {
+			reporter.failureReport("Verify payment options:", "Terms Exists in payment Options", "Terms");
+			if(isVisibleOnly(OrderObj.PAYMENT_METHOD_VERIFICATION_procurementscard,"Procurement Card")) {
+				reporter.failureReport("Verify payment options:", "Procurementcard  Option exits", "");	
+			}
+		}else {
 		type(OrderObj.CARD_NUMBER_TEXTBX, cardNumber, "Card number"); // Entering
 																		// details
 		// in payment
@@ -637,6 +644,7 @@ public class ShipBillPayLib extends ShipBillPayObj {
 			reporter.SuccessReport("Verify visa card error message", "Visa card type is not supported", "");
 		} else {
 			reporter.failureReport("Verify visa card error message", "Visa card type is supported", "");
+		}
 		}
 	}
 
