@@ -12,6 +12,7 @@ public class EndUserFeaturesObj extends ActionEngine{
 	public static By UPDATE_BUTTON_CHECKOUT_DEFAULTS=By.xpath("//input[@id='updateChkoutDef']");
 	public static By CHECK_OUT_DEFAULTS_UPDATE_SUCESS_MESSAGE=By.xpath("//div[@id='chkDefaultMessage']");	
 	public static By SHIPPING_METHOD_SELECTED_OPTION=By.xpath("//*[@id='js-chkoutDefalut-tab']/div/div/div[1]/div/div/div[2]/div");
+	public static By SHIPPING_METHOD_SELECTED_OPTION_Values=By.xpath("//*[@id='js-chkoutDefalut-tab']/div/div/div[1]/div/div/div[2]/div/ul/li[contains(text(),'SLS')]");
 
 		
 	

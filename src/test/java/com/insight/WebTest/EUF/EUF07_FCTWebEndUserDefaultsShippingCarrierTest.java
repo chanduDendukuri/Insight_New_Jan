@@ -64,51 +64,74 @@ public class EUF07_FCTWebEndUserDefaultsShippingCarrierTest extends EndUserFeatu
 						commonLib.clickOnUpdateButtonInUserSettings();
 						cmtLib.verifyUpdateSuccessMessages();
 //retrive success message and displaye in the report after clicking on update
+	//First Login as
 						cmtLib.clickOnloginAs();
 						switchToChildWindow();
 						
 						canadaLib.clickOnSideMenuSelectAccountToolOptions(data.get("Tools_Menu"),
 						data.get("Tools_Menu_DD"));
-						clickOnTabInUserProfile(data.get("Tab_Name"));
+						//clickOnTabInUserProfile(data.get("Tab_Name"));
+						clickOnTabInUserProfile("Checkout Defaults");
 						selectedShippingMethod(data.get("SLS_Shipping_Option"));
-//Select SLS Next Day AM 						
+//Select SLS Next Day AM
+						cmtLib.selectShippingOptions("SLS Next Day AM");
 						clickUpdateButtonInCheckoutDefaults();
 						cmtLib.verifyUpdateSuccessMessage();
 						
-						cmtLib.selectShippingOptions(data.get("Shipping_Options2"));
-						clickUpdateButtonInCheckoutDefaults();
-						cmtLib.verifyUpdateSuccessMessage();
-//capture the successful message
-
 						cmtLib.selectShippingOptions(data.get("Shipping_Option_None"));
 						clickUpdateButtonInCheckoutDefaults();
 						cmtLib.verifyUpdateSuccessMessage();
+//capture the successful message
+/*
+						cmtLib.selectShippingOptions(data.get("Shipping_Option_None"));
+						clickUpdateButtonInCheckoutDefaults();
+						cmtLib.verifyUpdateSuccessMessage();*/
+
 //Select Non from the dropdown 
 //capture Successreport
+						commonLib.clickLogOutLink(data.get("Logout_Header"));
 						cmtLib.navigateBackToCMT();
 						// navigate to checkout settings >>  payment options
 						
 						cmtLib.selectDefaultShippingOptionInCheckoutSettings(data.get("Shipping_Options1"));
 						commonLib.clickOnUpdateButtonInUserSettings();
+	//Second Loginas
+					reporter.SuccessReport("Second Loging","** Second Login**","Second");
 						cmtLib.clickOnloginAs();
 						switchToChildWindow();
 						canadaLib.clickOnSideMenuSelectAccountToolOptions(data.get("Tools_Menu"),
 								data.get("Tools_Menu_DD"));
-						clickOnTabInUserProfile(data.get("Tab_Name"));
+						clickOnTabInUserProfile(data.get("Tab_Name")+ " Defaults");
 						selectedShippingMethod(data.get("Shipping_Options1"));
+						//clickUpdateButtonInCheckoutDefaults();
+						//selectedShippingMethod();
+						//Select SLS Next Day AM
+						cmtLib.selectShippingOptions("SLS Next Day AM");
 						clickUpdateButtonInCheckoutDefaults();
+						cmtLib.verifyUpdateSuccessMessage();
+
+						cmtLib.selectShippingOptions(data.get("Shipping_Option_None"));
+						clickUpdateButtonInCheckoutDefaults();
+						cmtLib.verifyUpdateSuccessMessage();
+
+						commonLib.clickLogOutLink((data.get("Logout_Header")));
 						cmtLib.navigateBackToCMT();
 						// navigate to checkout settings >>  payment options
 						
+						//cmtLib.selectDefaultShippingOptionInCheckoutSettings(data.get("Shipping_Options2"));
 						cmtLib.selectDefaultShippingOptionInCheckoutSettings(data.get("Shipping_Options2"));
+	//				commonLib.clickOnUpdateButtonInUserSettings();
 						commonLib.clickOnUpdateButtonInUserSettings();
+						cmtLib.verifyUpdateSuccessMessages();
+	//Third Login
 						cmtLib.clickOnloginAs();
 						switchToChildWindow();
 						canadaLib.clickOnSideMenuSelectAccountToolOptions(data.get("Tools_Menu"),
 								data.get("Tools_Menu_DD"));
 						clickOnTabInUserProfile(data.get("Tab_Name"));
 						selectedShippingMethod(data.get("Shipping_Option_None"));
-						clickUpdateButtonInCheckoutDefaults();
+						//clickUpdateButtonInCheckoutDefaults();
+						verifyShippingMethodSelectedOptionValues();
 						commonLib.clickLogOutLink(data.get("Logout_Header"));
 						System.out.println("Test completed");
 						
