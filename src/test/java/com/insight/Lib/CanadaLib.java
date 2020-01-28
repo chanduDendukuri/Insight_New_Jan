@@ -722,7 +722,7 @@ public class CanadaLib extends CanadaObj {
 		if (isElementPresent(REPORTING_USAGE_PERIOD, "reporting usage period") && isElementPresent(ENROLLMENT, "ENROLLMENT")) {
 			 period = getText(REPORTING_USAGE_PERIOD, "reporting usage period");
 			reporter.SuccessReport("verify reporting usage period in cart page",
-					"Usage Field Exists and Verified. " + period, period +"  "+getText(ENROLLMENT, "ENROLLMENT"));
+					"Usage Field Exists and Verified. " + period, "Report usage for: "+period +"  "+getText(ENROLLMENT, "ENROLLMENT"));
 		} else {
 			reporter.failureReport("verify reporting usage period in cart page", "Usage Field does not Exists. ", "",driver);
 		}

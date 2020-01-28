@@ -84,6 +84,7 @@ public class SLPObj extends ActionEngine{
     public static By RETRIEVE_LAST_USAGE_REPORT=By.xpath("//span[contains(text(),'Retrieve Last Usage Report')]");
     public static By REPORTING_PERIOD_WARNING_MSG=By.xpath("//span[@class='columns usage-reporting__warning-message']");
     public static By ENROLLMENT=By.xpath("//div[@class='usage-reporting__footer']");
+    public static By ENROLLMENT_ON_RECEIPT_PAGE=By.xpath("//div[@class='column small-12 medium-shrink medium-text-right']");
 
     public static By copytoallLink(String PartNum){
     	return By.xpath("//p[@class='cart__item-part cart__font-size--sm'][contains(.,'"+PartNum+"')]/following::div[11]/span//span[contains(text(),'Copy to all')]");
