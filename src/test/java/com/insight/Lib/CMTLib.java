@@ -204,12 +204,16 @@ public class CMTLib extends CMTObj {
 	 * @param webgrpName
 	 * @throws Throwable
 	 */
-	public void clickOnTheWebGroup(String... webgrpName) throws Throwable {
-		if (isElementVisible(getWebGroupName(), 3, "Search results are displayed on Client Search Page")) {
-			click(getWebGroupName(), "Web Group link exists :" + webgrpName);
+	public boolean clickOnTheWebGroup(String webgrpName) throws Throwable {
+		boolean status = false;
+		if (isElementVisible(getWebGroupName(webgrpName), 3, "Search results are displayed on Client Search Page")) {
+			click(getWebGroupName(webgrpName), "Web Group link exists :" );
+			status = true;
 		} else {
 			reporter.failureReport("Verify web group displayed", "searched Web group is not displayed", "", driver);
+			status = false;
 		}
+		return status;
 	}
 
 	public void clickOnLogoutlink() throws Throwable {
@@ -311,8 +315,7 @@ public class CMTLib extends CMTObj {
 	 * @throws Throwable
 	 */
 	public void loginVerification(String contactName) throws Throwable {
-		waitForVisibilityOfElement(CMTObj.getLoginVerficationByContactNameOnHeader(contactName),
-				"contact Name is " + contactName);
+		waitForVisibilityOfElement(CMTObj.getLoginVerficationByContactNameOnHeader(contactName),"contact Name is " + contactName);
 		//if(getText(CMTObj.getLoginVerficationByContactNameOnHeader(contactName),"LoginName").contains(contactName)){
 		if (isVisibleOnly(CMTObj.getLoginVerficationByContactNameOnHeader(contactName), "contact Name")) {
 			reporter.SuccessReport("Verify the Same User Logged into Insight from CMT",
@@ -3457,6 +3460,18 @@ public void verifyProductStandardsTitle() throws Throwable
 {
 	isVisible(lblProductStandards, "ProductStandardsTitle verification");
 }
+
+	public void loginVerificationByGetText(String contactName) throws Throwable {
+		String a = getText(CMTObj.getLoginVerficationByContactNameOnHeader(contactName),"contact Name is " + contactName);
+		//if(getText(CMTObj.getLoginVerficationByContactNameOnHeader(contactName),"LoginName").contains(contactName)){
+		if (a.contains(contactName)) {
+			reporter.SuccessReport("Verify the Same User Logged into Insight from CMT",
+					"User login verification is successfull. User is : ", contactName);
+		} else {
+			reporter.failureReport("Verify the Same User Logged into Insight",
+					"User login verification is not successfull.Actual name is: ", contactName, driver);
+		}
+	}
 
 }
 
