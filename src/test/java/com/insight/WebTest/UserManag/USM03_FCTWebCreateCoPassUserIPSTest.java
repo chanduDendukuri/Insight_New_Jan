@@ -70,8 +70,8 @@ public class USM03_FCTWebCreateCoPassUserIPSTest  extends UserManagementLib {
 							cmtLib.enterUserName(data.get("Name2"));
 							cmtLib.checkAvailability();
 							cmtLib.verifyAvailabiltyOfUserNameExists();
-							String userName=getRandomNumeric(4);
-							cmtLib.enterUserName("QTPTest"+userName);
+							String userName="QTPTest"+getRandomNumeric(4);
+							cmtLib.enterUserName(userName);
 							cmtLib.clickCreateUserButton();
 							//Permissions
 							cmtLib.clickOnRolesAndPermissionsTab(data.get("Menu_Name"));
@@ -95,7 +95,10 @@ public class USM03_FCTWebCreateCoPassUserIPSTest  extends UserManagementLib {
 							cmtLib.selectDefaultPaymentOption(data.get("Default_Payment_Option1"));
 							scrollUp();
 							cmtLib.hoverOnManageWebGroupsAndSelectOptions(data.get("Manage_Web_Grp_Options1"));
-							verifydefualtLinkedAcc();
+							verifydefualtLinkedAcc(data.get("Account_Number"));
+							cmtLib.hoverOnManageWebGroupsAndSelectOptions(data.get("Manage_Web_Grp_Options"));
+							String ContactName="CoPass "+userName;
+							cmtLib.searchForaUserAndSelect(userName,ContactName);
 							cmtLib.clickInformationTab(data.get("Information_Tab"));
 							cmtLib.clickOnUserURL();
 							cmtLib.verifyCreateAnAccountPage();
@@ -110,13 +113,13 @@ public class USM03_FCTWebCreateCoPassUserIPSTest  extends UserManagementLib {
 							cmtLib.verifyAvailabilityCreateAccount(data.get("CreateacUserName5"),userName2);
 							String password="QTPTest"+getRandomNumeric(4);
 							cmtLib.enterPasswordInCreateAnAccount(password);
-							cmtLib.enterConfirmPasswordInCreateAnAccount(password);
+							cmtLib.enterConfirmPasswordInCreateAnAccount(password);//Phone_Number
 							cmtLib.clickCreateButtonInCreateAnAccount();
 							cmtLib.clickContinueButtonInCreateAnAccount();
 							mic.handleinsightpopup();
 							cmtLib.verifyWelcomePage();
-							productdetLib.verifytheLoginUser(data.get("LnameEmailUname"));
-							commonLib.clickLogOutLink(data.get("Header"));
+							productdetLib.verifytheLoginUser(firstName+" "+lastName);
+							commonLib.clickLogOutLink(data.get("Logout_Header"));
 							cmtLib.loginToCMT(data.get("Header"));
 							cmtLib.searchForWebGroup(data.get("WebGrp"));
 							cmtLib.manageUsers();
@@ -132,7 +135,7 @@ public class USM03_FCTWebCreateCoPassUserIPSTest  extends UserManagementLib {
 							cmtLib.verifyDDPermission(data.get("Permision6"),data.get("Option"));
 							cmtLib.updateUser();
 							cmtLib.hoverOnManageWebGroupsAndSelectOptions(data.get("Manage_Web_Grp_Options1"));
-							verifydefualtLinkedAcc();
+							verifydefualtLinkedAcc(data.get("Account"));
 							cmtLib.selectOptionInCheckoutSettings(data.get("Payment_Options"));
 							Thread.sleep(3000);
 							cmtLib.selectDefaultPaymentOption(data.get("Default_Payment_Option1"));					
