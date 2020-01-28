@@ -92,7 +92,8 @@ public class QuoteHistoryObj extends ActionEngine {
 		 public static By LICENCE_LINELEVEL1 = By.xpath("(//input[@name='licenseInformation.LICENSE'])[1]");
 		 public static By LICENCE_LINELEVEL2 = By.xpath("(//input[@name='licenseInformation.LICENSE'])[2]");
 		 public static By CONT_BTN = By.xpath("//button[contains(.,'Continue')]");
-		 
-		 
+		 public static By QuoteNameInQuoteDetails=By.xpath("(//*[text()='Quote Name:']/following::dd)[1]");
+		 public static By QuoteNumberInQuoteDetails=By.xpath("(//*[text()='Quote Number:']/following::dd)[1]");
+		 public static By AccountNumberInQuoteDetails=By.xpath("(//*[text()='Account Number:']/following::dd)[1]");
 		 
 }

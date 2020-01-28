@@ -3473,5 +3473,14 @@ public void verifyProductStandardsTitle() throws Throwable
 		}
 	}
 
+	public void verifyManageWebGroupsCreateUser() throws Throwable
+	{
+		isVisible(CMTObj.lblWebGroupManagement, "Web group create User page verification");
+	}
+	public void verifyWebGroupsManagementUsers() throws Throwable
+	{
+		isVisible(lblWebGroupManagementUsers, "WebGroupsManagementUsers page loaded");
+	}
+	
 }
 

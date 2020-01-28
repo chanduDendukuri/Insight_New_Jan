@@ -379,7 +379,7 @@ public class QuoteHistoryLib extends QuoteHistoryObj {
 	
 	public void verifyExportFileInQuoteHistory(String sheetName, String rowNumber,String columnHeaders) throws Throwable {
 		//int rowNumber 		= 1; 		// zero based index
-		String sfile = "C:/Users/e004303/Downloads/orderhistory.xls";
+		String sfile = "C:\\SriSowmya\\Jan28\\Insight_New_Jan\\DownloadedFiles";
 		File file=new File(sfile);
 		List<String> downloadedExcelContent = CommonLib.readRowFromExcel(sfile, sheetName,Integer.parseInt(rowNumber));
 		List<String> acutalContent   = actualContent();
@@ -725,5 +725,20 @@ public class QuoteHistoryLib extends QuoteHistoryObj {
 			
 			click(canadaObj.getAccountToolsMenu(toolsMenuName), "Account tools menu");
 			click(CommonObj.getAccountToolsDD(toolsMenuName, dropDown), "Select account tools");
+		}
+		
+		public void getQuoteNumberInQuoteDetailsPage() throws Throwable
+		{
+			getText(QuoteNumberInQuoteDetails, "Quote number in quote details page");
+		}
+		
+		public void getQuoteNameInQuoteDetailsPage() throws Throwable
+		{
+			getText(QuoteNameInQuoteDetails, "Quote name in quote details page");
+		}
+		
+		public void getAccountNumberInQuoteDetailsPage() throws Throwable
+		{
+			getText(AccountNumberInQuoteDetails, "Account number in quote details page");
 		}
 }

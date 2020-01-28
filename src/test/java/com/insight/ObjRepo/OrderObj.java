@@ -340,5 +340,6 @@ public class OrderObj extends ActionEngine{
 	 public static By getgetWG_LNL_TxtByBundles(String bundleName) {
 		 return By.xpath("//div[@class='cart__item-bundle'][contains(.,'Insight Part #: "+bundleName+"')]/following::div[@class='row expanded is-collapse-child'][1]//label[contains(text(),'WG_LNL_Txt:')]//p");
 	 }
+	 public static By QUOTE_REFERENCE_NAME=By.xpath("//div[@id='quotenameval']//span");
 }
 
