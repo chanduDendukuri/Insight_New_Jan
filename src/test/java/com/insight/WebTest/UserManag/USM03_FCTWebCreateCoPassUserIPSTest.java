@@ -95,7 +95,7 @@ public class USM03_FCTWebCreateCoPassUserIPSTest  extends UserManagementLib {
 							cmtLib.selectDefaultPaymentOption(data.get("Default_Payment_Option1"));
 							scrollUp();
 							cmtLib.hoverOnManageWebGroupsAndSelectOptions(data.get("Manage_Web_Grp_Options1"));
-							verifydefualtLinkedAcc();
+							verifydefualtLinkedAcc(data.get("Account"));
 							cmtLib.clickInformationTab(data.get("Information_Tab"));
 							cmtLib.clickOnUserURL();
 							cmtLib.verifyCreateAnAccountPage();
@@ -132,7 +132,7 @@ public class USM03_FCTWebCreateCoPassUserIPSTest  extends UserManagementLib {
 							cmtLib.verifyDDPermission(data.get("Permision6"),data.get("Option"));
 							cmtLib.updateUser();
 							cmtLib.hoverOnManageWebGroupsAndSelectOptions(data.get("Manage_Web_Grp_Options1"));
-							verifydefualtLinkedAcc();
+							verifydefualtLinkedAcc(data.get("Account"));
 							cmtLib.selectOptionInCheckoutSettings(data.get("Payment_Options"));
 							Thread.sleep(3000);
 							cmtLib.selectDefaultPaymentOption(data.get("Default_Payment_Option1"));					

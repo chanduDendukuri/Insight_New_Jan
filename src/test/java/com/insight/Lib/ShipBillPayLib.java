@@ -8,6 +8,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 
+import com.insight.ObjRepo.CMTObj;
 import com.insight.ObjRepo.CartObj;
 import com.insight.ObjRepo.CommonObj;
 import com.insight.ObjRepo.InvoiceHistoryObj;
@@ -775,7 +776,7 @@ public class ShipBillPayLib extends ShipBillPayObj {
 	 */
 	public void selectTheGroupPaymentOptions(String Paymentoption) throws Throwable {
 		waitForVisibilityOfElement(OPTIONSINCLUDED_REQUESTORGRP, "Payment Options in requestor group");
-		selectByVisibleText(OPTIONSINCLUDED_REQUESTORGRP, Paymentoption, "Payment option::" + Paymentoption + "");
+		selectByVisibleText(OPTIONSINCLUDED_REQUESTORGRP, Paymentoption, "Payment Options are Already Included in the Avilable Options::" + Paymentoption + "");
 		click(OrderObj.SAVE_CHANGES_BTN, "save changes button");
 		if (isElementPresent(OrderObj.SHIPPING_PAYMENTS_SUCCESS_MSG, "Success message")) {
 			reporter.SuccessReport("Verify success message", "Shipping payments options success message is displayed",
@@ -788,11 +789,15 @@ public class ShipBillPayLib extends ShipBillPayObj {
 
 	public void SelectAllowedoptionspaymentcheckoutsettings(String Paymentoption) throws Throwable {
 		waitForVisibilityOfElement(ALLOWEDOPTIONS_CHECKOUTSETTINGS, "Allowed Options");
+		if(isVisibleOnly(PROCUREMENTCARD_OPTION,"Procurement Card Option")) {
 		selectByVisibleText(ALLOWEDOPTIONS_CHECKOUTSETTINGS, Paymentoption, "Payment option::" + Paymentoption + "");
-		// DEFUALTPAYMENTTYPE
-		selectByVisibleText(DEFUALTPAYMENTTYPE, Paymentoption, "Payment option::" + Paymentoption + "");
+		click(CMTObj.LEFT_ARROW, Paymentoption + " is selected And Moved to Available Options");
 		click(UPDATEBUTTON_SHPPINGADDRESS, "update Button");
 		waitForVisibilityOfElement(SUCCESMSG_PAYMENTOPTIONS, "Payment options updated Success Msg");
+		reporter.SuccessReport("Verify Payment Option", "Payment Option added to Avialble Options", "");
+		}else {
+			reporter.SuccessReport("Verify Payment Option", "Payment Option Alredy added to Avialble Options", "");
+		}
 	}
 
 	/**
