@@ -68,7 +68,13 @@ public class CMTObj extends ActionEngine {
 	public static By getManageWebGroupDDLinks(String links) {
 		return By.xpath("//div[@id='manageWebGroupDiv']//a[contains(text(),'" + links + "')]");
 	}
-
+public static By UpdateUser = By.xpath("//span[contains(text(),'Update User')]");
+public static By SaveAsQuote = By.xpath("(//div[@class='cart-summary']//following::a[contains(text(),'Save as quote')])[3]");
+public static By SaveAsQuoteHeading = By.xpath("//h1[contains(text(),'Save as Quote')]");
+public static By btn_SaveAsQuote = By.xpath("//span[@id='saveQuoteButton']");
+public static By txt_SaveAsQuoteSuccessfull = By.xpath("//h1[contains(text(),'Save as Quote - Successful')]");
+public static By txt_QuoteName = By.xpath("//div[@id='quotenameval']//span");
+public static By txt_referencenumber = By.xpath("//div[@id='quotenumval']//span");
 	// Custom Catalogs
 	public static By APPROVE_ITEM_CATALOG_LINK = By
 			.xpath("//td[@class='contentline']//a[contains(text(),'Approved Item Catalog')]");

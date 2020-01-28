@@ -302,7 +302,26 @@ public class CMTLib extends CMTObj {
 		}
 		
 	}
+	public void clickUpdateUser() throws Throwable {
+		click(UpdateUser, "Update User", "");
+	}
 
+	public void clickSaveAsQuote() throws Throwable {
+		click(SaveAsQuote, "Save as quote", "");
+		waitForVisibilityOfElement(SaveAsQuoteHeading, "SaveAsQuoteHeading", driver);
+		click(btn_SaveAsQuote, "Save as Quote button in cart page", "");
+		waitForVisibilityOfElement(txt_SaveAsQuoteSuccessfull, "Save as Quote Successfull", driver);
+	}
+	public void getQuoteNameandReferenceNumber() throws Throwable {
+		String QuoteName = getText(txt_QuoteName, "Quotename");
+		String ReferenceNumber = getText(txt_referencenumber, "Reference number");
+		if(QuoteName!=null && ReferenceNumber!=null) {
+			reporter.SuccessReport("QuoteName and ReferenceNUmber", "QuoteName and Reference Numbers are", ""+QuoteName+" ,"+ReferenceNumber+"");
+		}
+		else {
+		reporter.failureReport("QuoteName and ReferenceNUmber", "QuoteName and Reference Numbers are not displayed", "");
+		}
+	}
 	/**
 	 * Method is to Verify the Same User Logged into Insight from CMT by Contact
 	 * name verification
