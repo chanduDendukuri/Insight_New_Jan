@@ -96,7 +96,6 @@ public class USM03_FCTWebCreateCoPassUserIPSTest  extends UserManagementLib {
 							scrollUp();
 							cmtLib.hoverOnManageWebGroupsAndSelectOptions(data.get("Manage_Web_Grp_Options1"));
 							verifydefualtLinkedAcc();
-							cmtLib.clickUpdateButtonOnLinkedAccountsScreen();
 							cmtLib.clickInformationTab(data.get("Information_Tab"));
 							cmtLib.clickOnUserURL();
 							cmtLib.verifyCreateAnAccountPage();
