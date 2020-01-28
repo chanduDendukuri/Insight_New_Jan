@@ -1,5 +1,6 @@
 package com.insight.Lib;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.openqa.selenium.WebElement;
@@ -814,4 +815,27 @@ public class EndUserFeaturesLib extends EndUserFeaturesObj{
 		}
 
 
+	public void verifyNumberOfCheckboxesSelected() throws Throwable{
+		boolean status = false;
+		//click(SHIPPING_METHOD_SELECTED_OPTION, "selected option");
+		//click(dropdownPaymentMethod,"Payment Method");
+		List<WebElement> myList = driver.findElements(checkedCheckBoxes);
+		String count=null;
+		int j=0;
+		 List<Integer> iPassCount = new ArrayList<Integer>();
+		for (int i=0; i<myList.size();i++) {
+			if(myList.get(i).isSelected()) {
+			//	int j=0;
+				j=i;
+				 count = Integer.toString(i);
+				iPassCount.add(i);
+
+				//status=true;
+			}
+			//break;
+
+		}
+		reporter.SuccessReport("Selected Permissions"," selected Permission count is " +j+1," selected Permission count is "+j+1);
+
+	}
 }

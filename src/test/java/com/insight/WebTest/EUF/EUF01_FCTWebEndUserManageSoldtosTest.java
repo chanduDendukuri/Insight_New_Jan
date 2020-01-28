@@ -63,6 +63,7 @@ public class EUF01_FCTWebEndUserManageSoldtosTest extends EndUserFeaturesLib{
 								data.get("LnameEmailUname"), data.get("ContactName"));
 						// Click on Linked Accounts
 						cmtLib.clickCheckOutSettings(data.get("Linked_Accounts"));
+						verifyNumberOfCheckboxesSelected();
 						cmtLib.clickDefaultRadioButtonInLinkedAccounts();
 						cmtLib.clickUpdateButtonOnLinkedAccountsScreen();
 						cmtLib.clickOnloginAs();

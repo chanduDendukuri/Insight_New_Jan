@@ -40,6 +40,7 @@ public class EndUserFeaturesObj extends ActionEngine{
    public static By REMOVEDEFUALT=By.xpath("//a[@class='removeDefault']");
    public static By USERNOTLINKEDTOANYWARNING_MSG=By.xpath("//span[@id='linkedAccountWarningText']");
    public static By NODEFUALTACCOUNT=By.xpath("//div[@id='accounToolsErrorMessage']");
+   public static By checkedCheckBoxes=By.cssSelector("[id*='linkedAccountCheckBox']");
 
 
 	//favorite links
