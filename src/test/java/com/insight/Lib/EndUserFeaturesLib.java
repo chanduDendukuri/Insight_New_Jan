@@ -506,10 +506,10 @@ public class EndUserFeaturesLib extends EndUserFeaturesObj{
 	 */
 	public void verifyRemoveDefualtLink() throws Throwable {
 		if(isVisibleOnly(REMOVEDEFUALT,"Remove default account")){
-			reporter.SuccessReport("System displays Remove Link on Current Account Tab in Account Management -Account Tools Page", "Remove Link on Current Account Tab is Existss","");
+			reporter.SuccessReport("System displays Remove Link on Current Account Tab in Account Management -Account Tools Page", "Remove Link on Current Account Tab is Existss",getText(REMOVEDEFUALT,"Remove default account"));
 		}
 		else {
-			reporter.failureReport("System displays Remove Link on Current Account Tab in Account Management -Account Tools Page", "Remove Link on Current Account Tab is Not Exists","",driver);
+			reporter.failureReport("System displays Remove Link on Current Account Tab in Account Management -Account Tools Page", "Remove Link on Current Account Tab is Not Exists",getText(REMOVEDEFUALT,"Remove default account"),driver);
 		
 		}
 	}
@@ -561,20 +561,21 @@ public class EndUserFeaturesLib extends EndUserFeaturesObj{
 	public void verifyWebGroup(String webGroup) throws Throwable {
 		String text=getText(WEB_GROUP_TEXT, "webgroup");
 		if(text.contains(webGroup)) {
-			reporter.SuccessReport("System displays Current WebGroup on Current Account Tab in Account Management -Account Tools Page", "Current WebGroup on Current Account Tab is Exists","");
+			reporter.SuccessReport("System displays Current WebGroup on Current Account Tab in Account Management -Account Tools Page", "Current WebGroup on Current Account Tab is Exists",text);
 		}
 		else {
-			reporter.failureReport("System displays Current WebGroup on Current Account Tab in Account Management -Account Tools Page", "Current WebGroup on Current Account Tab is Not Exists","",driver);
+			reporter.failureReport("System displays Current WebGroup on Current Account Tab in Account Management -Account Tools Page", "Current WebGroup on Current Account Tab is Not Exists",text,driver);
 		
 		}
 	}
 	
 	public void verifyCurrentAccount() throws Throwable {
 		if(isVisibleOnly(YOUR_CURRENT_ACCOUNT, "Current account")) {
-			reporter.SuccessReport("System displays Account Name and Address on Current Account Tab in Account Management -Account Tools Page", "Account Name and Address on Current Account Tab is Exists","");
+
+			reporter.SuccessReport("System displays Account Name and Address on Current Account Tab in Account Management -Account Tools Page", "Account Name and Address on Current Account Tab is Exists",getText(lblCurrentAddressResults,"Current Address"));
 		}
 		else {
-			reporter.failureReport("System displays Account Name and Address on Current Account Tab in Account Management -Account Tools Page", "Account Name and Address on Current Account Tab is Not Exists","",driver);
+			reporter.failureReport("System displays Account Name and Address on Current Account Tab in Account Management -Account Tools Page", "Account Name and Address on Current Account Tab is Not Exists",getText(lblCurrentAddressResults,"Current Address"),driver);
 		
 		}
 	}
