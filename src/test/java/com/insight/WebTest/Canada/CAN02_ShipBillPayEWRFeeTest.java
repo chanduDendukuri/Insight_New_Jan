@@ -112,6 +112,7 @@ public class CAN02_ShipBillPayEWRFeeTest extends CanadaLib{
 									orderLib.shippingOptionsCarrierSelection(); // Click continue on shipping options
 									orderLib.billingAddressContinueButton();
 									orderLib.termsInPaymentInfo(data.get("PONumber"), data.get("POReleaseNumber"));
+									orderLib.placeOrderAndVerifyReceiptOrderAndDate(summaryAmount);
 
 									orderLib.verifyPlaceOrderLabel();
 									String EWRAMOUNT = canadaLib.getEWRFeeInSummary();
@@ -134,7 +135,8 @@ public class CAN02_ShipBillPayEWRFeeTest extends CanadaLib{
 									orderLib.verifyPlaceOrderLabel();
 									String EWRAMOUNT1 = canadaLib.getEWRFeeInSummary();
 									canadaLib.verifyEWRInCartPage();
-
+									String summaryAmount = cartLib.getSummaryAmountInCart();
+									orderLib.placeOrderAndVerifyReceiptOrderAndDate(summaryAmount);
 
 									commonLib.searchProduct(data.get("Search_Item3"));
 									//should add code to verify product details
