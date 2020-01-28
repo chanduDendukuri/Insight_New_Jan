@@ -83,9 +83,25 @@ public class SLP11_CITRIXSearchTest extends SLPLib{
 						// Select Software  Lic Agreements
 				     	canadaLib.selectSPLADetailsProductCheckBox(data.get("Soft_Agrement"));
 						// verify search results and select first product
-				     	searchLib.verifysearchResultsPage();
+				     	 verifysearchResultsPageForSLP();
 				     	// search for a part / product and ad to cart  >> 4007110-CSP
 				     	searchLib.searchInHomePage(data.get("SearchText1"));
+				     	searchLib.removeTheFilterForInStockOnly(data.get("In_Stock_Only"));
+						pipLib.verifyTheManufacturerNumberInProductDetailsPage(data.get("SearchText1"));
+						pipLib.enterQuantityOnProductDetailsPage(data.get("Quantity"));
+				     	
+				     	
+				     	
+				     	
+				     	
+				     	
+				     	
+				     	
+				     	
+				     	
+				     	
+				     	
+				     	
 				     	commonLib.addToCartAndVerify();
 						orderLib.continueToCheckOutOnAddCart();
 						cartLib.verifyItemInCart(data.get("SearchText1"));

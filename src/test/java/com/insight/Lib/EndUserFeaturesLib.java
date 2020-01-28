@@ -1,5 +1,6 @@
 package com.insight.Lib;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.openqa.selenium.WebElement;
@@ -22,6 +23,7 @@ public class EndUserFeaturesLib extends EndUserFeaturesObj{
 	 * @customization author : CIGNITI
 	 * **/
 	public void clickOnTabInUserProfile(String tabName) throws Throwable {
+		//scrollToBottomWithCordinate("100");
 		click(CommonObj.getFavoritesTabs(tabName), ""+tabName+" Tab in UserProfile");
 	}
 	/**
@@ -791,4 +793,49 @@ public class EndUserFeaturesLib extends EndUserFeaturesObj{
 			click(dropdownPaymentMethod,"Payment Method");
 			click(selectPaymentMethodForBillingPayment(option),"Payment Method");
 		}
+
+		public void verifyShippingMethodSelectedOptionValues() throws Throwable{
+			boolean status = false;
+			click(SHIPPING_METHOD_SELECTED_OPTION, "selected option");
+			//click(dropdownPaymentMethod,"Payment Method");
+			List<WebElement> myList = driver.findElements(SHIPPING_METHOD_SELECTED_OPTION_Values);
+
+			for (int i=0; i<myList.size();i++) {
+				if(myList.get(i).getText().contains("SLS")) {
+					status = true;
+					reporter.SuccessReport("Shipping Method dropdown value", "Shipping Method dropdown value", myList.get(i).getText());
+
+				}
+				break;
+				}
+			if(!status) {
+				reporter.failureReport("Shipping Method dropdown value", "Shipping Method dropdown value",myList.get(i).getText(),driver);
+
+			}
+		}
+
+
+	public void verifyNumberOfCheckboxesSelected() throws Throwable{
+		boolean status = false;
+		//click(SHIPPING_METHOD_SELECTED_OPTION, "selected option");
+		//click(dropdownPaymentMethod,"Payment Method");
+		List<WebElement> myList = driver.findElements(checkedCheckBoxes);
+		String count=null;
+		int j=0;
+		 List<Integer> iPassCount = new ArrayList<Integer>();
+		for (int i=0; i<myList.size();i++) {
+			if(myList.get(i).isSelected()) {
+			//	int j=0;
+				j=i;
+				 count = Integer.toString(i);
+				iPassCount.add(i);
+
+				//status=true;
+			}
+			//break;
+
+		}
+		reporter.SuccessReport("Selected Permissions"," selected Permission count is " +j+1," selected Permission count is "+j+1);
+
+	}
 }
