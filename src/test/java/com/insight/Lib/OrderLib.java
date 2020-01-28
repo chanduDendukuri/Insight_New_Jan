@@ -784,6 +784,7 @@ public class OrderLib extends OrderObj{
 				reporter.SuccessReport("Verify the tax check box is checked or not",
 						"Tax Exemption Field Exists and checked","Tax Exemption CheckBox ON");
 			} else {
+				Thread.sleep(3000);
 				click(TAX_CHECKBOX, "tax check box");
 			}
 		} else
@@ -941,7 +942,7 @@ public class OrderLib extends OrderObj{
 		String tax = getText(ADDLICENCE_TAX_AMOUNT, "Tax displayed").replace("$", "");
 		if (isElementPresent(ADDLICENCE_TAX_AMOUNT, "Tax displayed", true)) {
 			if (isElementPresent(ADDLICENCE_TAX_AMOUNT, "Tax displayed", true) && Float.valueOf(tax) == 0) {
-				reporter.SuccessReport("Verify Taxe estimate on Place Order Page", "Tax estimate Exists and Value Returned and is shown as 0.00","Tax estimate USD "+tax);
+				reporter.SuccessReport("Verify Taxe estimate on Place Order Page", "Tax estimate Exists and Value Returned and is shown as 0.00","Tax estimate USD $"+tax);
 		} else {
 			reporter.failureReport("Verify Taxes on Place Order Page", "Place Order Page does not show tax as 0.00","",driver);
 		  }
@@ -1906,7 +1907,7 @@ public class OrderLib extends OrderObj{
 	 * @throws Throwable
 	 */
 	public String clickStoredAddressRadioButton() throws Throwable {
-		Thread.sleep(2000);
+		Thread.sleep(3000);
 		String addressSelected=getText(STORED_ADDRESS_RADIOBTN, "STORED ADDRESS RADIOBTN");
 		click(STORED_ADDRESS_RADIOBTN, "STORED ADDRESS RADIO BUTTON", "First CA address :"+addressSelected);
 		return addressSelected;
