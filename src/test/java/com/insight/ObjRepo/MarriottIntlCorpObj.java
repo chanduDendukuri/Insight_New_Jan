@@ -81,6 +81,7 @@ public class MarriottIntlCorpObj extends ActionEngine {
 	public static By SHIPPINGADDRESS = By.xpath(
 			"//section[@class='section shipping-address']//label[contains(text(),'Address:')]/following-sibling::p");
 	public static By WEBGRP_DROPDOWN = By.xpath("//div[@class='c-header__middle']//button[@id='webGroupDropdown']");
+	public static By WebGroupName =  By.xpath("//div[@class='c-header__middle']//button[@id='webGroupDropdown']//span");
 	// MI Global Software Catalog
 	public static By END_USER_EMAIL = By
 			.xpath("//span[contains(text(),'End User Email (Confirmation Notification)')]//following-sibling::input");
