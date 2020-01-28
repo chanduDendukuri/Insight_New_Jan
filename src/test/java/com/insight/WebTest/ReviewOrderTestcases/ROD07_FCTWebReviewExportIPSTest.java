@@ -58,7 +58,8 @@ public class ROD07_FCTWebReviewExportIPSTest extends OrderLib{
 						cmtLib.setCustomerLevelPermissionsOFF(data.get("Customer_Permissions"));
 						cmtLib. hoverOnManageWebGroupsAndSelectOptions(data.get("Manage_Web_Grp_Options"));
 						cmtLib.searchForaUserAndSelect(data.get("LnameEmailUname"),data.get("ContactName"));
-
+						// enable_purchase_popup;ON";
+						cmtLib.setPermissions(data.get("Menu_Name"), data.get("Set_Permission"));
 						// Login As to UAT Web
 						cmtLib.loginAsAdminCMT();
 
@@ -75,7 +76,6 @@ public class ROD07_FCTWebReviewExportIPSTest extends OrderLib{
 						searchLib.verifyBreadCrumbInSearchResultsPage(data.get("SearchText"));
 						prodLib.selectFirstProductAddToCartAndVerifyCart();
 						commonLib.updateCartQuantity(data.get("Quantity"));
-						cartLib.ClickExportCartAndVerify(data.get("Order_Utilities"),data.get("Sheet_Name"),data.get("Row_number"),data.get("Column_Headers"));
 
 						proceedToCheckout();
 						enterReportingDetailsInLineLevelInfoSection(data.get("REPORTING FIELD_4"), data.get("REPORTING FIELD_5"), data.get("REPORTING FIELD_6"));

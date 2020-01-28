@@ -80,7 +80,7 @@ public class ROD11_FCTWebReviewOrderESDPartsTest extends OrderLib{
 						// payment info
 						termsInPaymentInfo(data.get("PONumber"),data.get("POReleaseNumber"));
 						// verify tax on place order page
-						verifyTheTaxOnPlaceOrderPage();
+						String taxBefore=verifyTheTaxOnPlaceOrderPage();
 						searchLib.searchInHomePage(data.get("SearchText1"));
 						searchLib.removeTheFilterForInStockOnly(data.get("In_Stock_Only"));
 						prodInfoLib.verifyTheManufacturerNumberInProductDetailsPage(data.get("SearchText1"));
@@ -99,7 +99,11 @@ public class ROD11_FCTWebReviewOrderESDPartsTest extends OrderLib{
 						billingAddressContinueButton();
 						clickOnReviewOrderButton();
 						// verify tax on place order page
-						verifyTheTaxOnPlaceOrderPage();
+						String taxAfter=verifyTheTaxOnPlaceOrderPage();
+						float tax1=Float.valueOf(taxBefore);
+						float tax2=Integer.valueOf(taxAfter);
+						verifyTaxEstimatesAreEqual(tax1, tax2);
+						
 						commonLib.clickLogOutLink(data.get("Logout"));
 					} catch (Exception e) {
 						ReportStatus.blnStatus = false;
