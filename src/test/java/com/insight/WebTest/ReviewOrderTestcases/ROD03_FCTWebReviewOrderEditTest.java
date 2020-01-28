@@ -66,7 +66,7 @@ public class ROD03_FCTWebReviewOrderEditTest extends OrderLib{
 						searchLib.searchInHomePage(data.get("SearchText"));
 						searchLib.verifyTheResultsForSearchTerm(data.get("SearchText"));
 						// in-stock filter verification
-						searchLib.verifyFilterBreadCrumb(data.get("In_Stock_Only"));
+						//searchLib.verifyFilterBreadCrumb(data.get("In_Stock_Only"));
 						//***** Add a item to cart >> proceed To Checkout ****//
 						prodInfoLib.getFirstProdDescription();
 						String partNumber=prodInfoLib.getPartNumberInSearchResultsPage();

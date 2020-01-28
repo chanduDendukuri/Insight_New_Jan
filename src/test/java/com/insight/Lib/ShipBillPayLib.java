@@ -498,13 +498,12 @@ public class ShipBillPayLib extends ShipBillPayObj {
 		click(STOREDADDRESS_LINK, "stored Address Link");
 		waitForVisibilityOfElement(SEARCHFIELD_STOREDADDRESS, "Stored Address Search Field");
 		if(isElementPresent(SEARCHFIELD_STOREDADDRESS, "Stored Address Search Field")) {
-			reporter.SuccessReport("Verify stored address page", "Stored address page is displayed and verified", "NA");
+			reporter.SuccessReport("Verify stored address page", "Stored address link is displayed and verified", "");
 			type(SEARCHFIELD_STOREDADDRESS, Userstoredaddress, "Stored Address Search field");
 			click(SEARCH_BUTTON, "Search Button");
 		}else {
 			reporter.failureReport("Verify stored address page", "Stored address page not displayed", "NA",driver);
 		}
-		
 	}
 
 	public void ClickcancelButtonStoredAddress() throws Throwable {
@@ -512,7 +511,7 @@ public class ShipBillPayLib extends ShipBillPayObj {
 	}
 
 	public void clickContinueOnStoredAddresssScreen() throws Throwable {
-		click(CONTINUE_BUTTON_STOREDADDRESS, "Continue on Stored address screen", "Continue");
+		click(CONTINUE_BUTTON_STOREDADDRESS, "Continue on Stored address screen", "Continue on Stored address screen");
 	}
 	public void RemoveDefualtShippingAddress() throws Throwable {
 		waitForVisibilityOfElement(REMOVE_DEFAULTADDRESS, "Remove defualt Address");
@@ -1149,10 +1148,14 @@ public class ShipBillPayLib extends ShipBillPayObj {
 			type(SEARCH_FIELD,Text,"Search Field");
 			click(search_Button,"Search Button");
 			Thread.sleep(3000);
+			if(isVisibleOnly(RADIOBUTTON,"Search Result")) {
 			if (driver.findElement(RADIOBUTTON).isSelected()) {
-				reporter.SuccessReport("Stored address is selected", "Stored Address is selected", "Search By Account Type");
+				reporter.SuccessReport("Stored address is selected", "Stored Address is visible in Results and Radio Button is selected", "Search By Account Type"+storedaddress);
 			} else {
-				reporter.failureReport("Stored address is Not selected", "Stored address is Not selected", "");
+				reporter.SuccessReport("Stored address is Not selected", "Stored address is Not selected", "");
+			}
+			}else {
+				//do nothing
 			}
 			click(CANCELBUTTON_STOREDADDRESS, "Cancle Button on search shipping address page");
 

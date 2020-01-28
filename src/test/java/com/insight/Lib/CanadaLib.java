@@ -14,6 +14,7 @@ import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.mortbay.log.Log;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
@@ -49,9 +50,9 @@ public class CanadaLib extends CanadaObj {
 	 */
 	public void verifySBP() throws Throwable {
 		if (isElementPresent(SHIP_BILL, "Ship bill")) {
-			reporter.SuccessReport("Verify ship bill pay section", "Ship bill section is present ", "");
+			reporter.SuccessReport("Verify ship bill pay section", "Ship bill section is present ", "PageDetails : Ship bill section");
 		} else {
-			reporter.failureReport("Verify ship bill pay section", "Ship bill section is not present", "",driver);
+			reporter.failureReport("Verify ship bill pay section", "Ship bill section is not present", "Ship bill section",driver);
 		}
 	}
 
@@ -155,10 +156,10 @@ public class CanadaLib extends CanadaObj {
 	public void verifyGSTAmonunts(String gstAmount, String GstAmount1) throws Throwable {
 		if (!gstAmount.equals(GstAmount1)) {
 			reporter.SuccessReport("Verify GST ,PST and QST Taxes in the Place Order Page",
-					"Cart GST, PST and QST Taxes are Verified", "");
+					"Cart GST, PST and QST Taxes are Verified", "Place order page:GST,PST and QST taxes verification");
 		} else {
 			reporter.failureReport("Verify GST ,PST and QST Taxes in the Place Order Page",
-					"Cart GST, PST and QST Taxes are Not Verified", "",driver);
+					"Cart GST, PST and QST Taxes are Not Verified", "Place order page:GST,PST and QST taxes verification",driver);
 		}
 	}
 
@@ -286,7 +287,7 @@ public class CanadaLib extends CanadaObj {
 		if (isElementPresent(INVOICE_NUMBER, "invoice number ")) {
 
 			click(INVOICE_NUMBER, "Click on invoice number ");
-			reporter.SuccessReport("Verify invoice Details POPUP", " invoice Details POPUP exists", "");
+			reporter.SuccessReport("Verify invoice Details POPUP", " invoice Details POPUP exists", getText(INVOICE_NUMBER, "Click on invoice number "));
 		}
 
 	}
@@ -320,6 +321,10 @@ public class CanadaLib extends CanadaObj {
 			click(InvoiceHistoryLib.COSE_ACCOUNT_TOOLS, "close account tools");
 		}
 		click(CommonObj.ACCOUNT_TOOLS, "Account tools menu icon");
+		//WebElement element = driver.findElement(by);
+		scrollToBottomWithCordinate("150");
+
+		//((JavascriptExecutor) WebDriver).executeAsyncScript(100,1000);
 		click(getAccountToolsMenu(toolsMenuName), "Account tools menu::"+toolsMenuName+"");
 		click(CommonObj.getAccountToolsDD(toolsMenuName, dropDown), "Select account tools::"+dropDown+"");
 	}
@@ -355,11 +360,17 @@ public class CanadaLib extends CanadaObj {
 	 * @throws Throwable
 	 */
 	public void verifyInvoiceHistoryPageOpened() throws Throwable {
+		boolean status=false;
 		if(isElementPresent(QUICKSEARCH_DROPDOWN, "Invoice history header ")) {
-			reporter.SuccessReport("Verify invoice history page is loaded", "Invoice history page is loaded","");
+			status = true;
+			String s1=Boolean.toString(status);
+
+			reporter.SuccessReport("Verify invoice history page is loaded", "Invoice history page is loaded",getText(QUICKSEARCH_DROPDOWN, "Invoice history header ")+"and Status is "+s1);
 		}
 		else {
-			reporter.failureReport("Verify invoice history page is loaded", "Invoice history page is not loaded","",driver);
+			status =false;
+			String s1=Boolean.toString(status);
+			reporter.failureReport("Verify invoice history page is loaded", "Invoice history page is not loaded",getText(QUICKSEARCH_DROPDOWN, "Invoice history header ") +" and Status is "+s1,driver);
 		}
 	}
 
@@ -390,23 +401,28 @@ public class CanadaLib extends CanadaObj {
 	}
 
 	public void verifyDownloadedFile(String filename) throws Throwable {
-
+		boolean status = false;
 		Desktop desktop = Desktop.getDesktop();
 		if (!Desktop.isDesktopSupported()) {
 			System.out.println("Desktop is not supported");
 			return;
 		}
 		//File file = new File("C:\\Users\\e002106\\Downloads\\1100635152.PDF");// CHANGE
+
 		String sfile = System.getProperty("user.dir") + "\\" + "DownloadedFiles" + "\\" + filename+".PDF";																	// PATH
 		File file = new File(sfile);
 		Thread.sleep(5000);																		// ACCORDINGLY
 		if (file.exists()) {
 			System.out.println("file found");
+			status = true;
 			//desktop.open(file);
-			reporter.SuccessReport("Verify the file existance ", "File Found", "");
+			 String s1=Boolean.toString(status);
+			reporter.SuccessReport("Verify the file existance ", "File Found", s1);
 		} else {
 			System.out.println("file not found");
-			reporter.failureReport("Verify the file existance ", "File not Found", "",driver);
+			status = false;
+			String s1=Boolean.toString(status);
+			reporter.failureReport("Verify the file existance ", "File not Found", s1,driver);
 		}
 		file.deleteOnExit();
 	}
@@ -589,8 +605,9 @@ public class CanadaLib extends CanadaObj {
 	public void selectSPLADetailsProductCheckBox(String spla) throws Throwable {
 		if (isElementPresent(SPLA_LABEL, "SPLA LABEL")) {
 			if (!isCheckBoxSelected(getMySoftwareLicenseAgreementscheckBoxes(spla))) {
-				click(getMySoftwareLicenseAgreementscheckBoxes(spla),"SPLA Details Product CheckBox");
-				click(SELECT_PRODUCT, "Select product checkbox");
+				click(getMySoftwareLicenseAgreementscheckBoxes(spla),"SPLA Details Product CheckBox : "+spla);
+				Thread.sleep(3000);
+				click(SELECT_PRODUCT, "Link: View Products For Selected Agreements");
 			} else {
 				LOG.info("Checkbox already selected");
 			}
@@ -689,7 +706,7 @@ public class CanadaLib extends CanadaObj {
 	 */
 	public void VerifyNonSplaItemsMessage() throws Throwable {
 		if (isElementPresent(NON_SPLA_MSG, "NON SPLA MESSASGE")) {
-			reporter.SuccessReport("Verify non SPLA message", "non SPLA message displayed", "");
+			reporter.SuccessReport("Verify non SPLA message", "non SPLA message displayed", "Message : In order to report usage please remove items that do not apply to the selected service provider.");
 		} else {
 			reporter.failureReport("Verify non SPLA message", "non SPLA message is not displayed", "");
 		}
@@ -702,10 +719,10 @@ public class CanadaLib extends CanadaObj {
 	 */
 	public String verifyReportingUsagePeriod() throws Throwable {
 		String period = null;
-		if (isElementPresent(REPORTING_USAGE_PERIOD, "reporting usage period")) {
+		if (isElementPresent(REPORTING_USAGE_PERIOD, "reporting usage period") && isElementPresent(ENROLLMENT, "ENROLLMENT")) {
 			 period = getText(REPORTING_USAGE_PERIOD, "reporting usage period");
 			reporter.SuccessReport("verify reporting usage period in cart page",
-					"Usage Field Exists and Verified. " + period, "");
+					"Usage Field Exists and Verified. " + period, period +"  "+getText(ENROLLMENT, "ENROLLMENT"));
 		} else {
 			reporter.failureReport("verify reporting usage period in cart page", "Usage Field does not Exists. ", "",driver);
 		}
@@ -1642,4 +1659,20 @@ reporter.failureReport("Select  All Fields in the Available Fields on Reports Pa
 
 	}
 	
+	/**
+	 * Method is to verify the reporting usage period
+	 * 
+	 * @throws Throwable
+	 */
+	public String verifyReportingUsagePeriodWarningMessage() throws Throwable {
+		String period = null;
+		if (isElementPresent(REPORTING_USAGE_PERIOD_WARNING_MSG, "reporting usage period")) {
+			 period = getText(REPORTING_USAGE_PERIOD_WARNING_MSG, "reporting usage period");
+			reporter.SuccessReport("verify reporting usage period in cart page",
+					"Usage Field Exists and Verified. " + period, "");
+		} else {
+			reporter.failureReport("verify reporting usage period in cart page", "Usage Field does not Exists. ", "",driver);
+		}
+		return period;
+	}
 }

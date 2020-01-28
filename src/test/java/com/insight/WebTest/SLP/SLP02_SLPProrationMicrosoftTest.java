@@ -11,6 +11,7 @@ import com.insight.Lib.CommonLib;
 import com.insight.Lib.OrderLib;
 import com.insight.Lib.ProductDetailLib;
 import com.insight.Lib.ProductDisplayInfoLib;
+import com.insight.Lib.RequisitionProcessingLib;
 import com.insight.Lib.SLPLib;
 import com.insight.Lib.SearchLib;
 import com.insight.Lib.ShipBillPayLib;
@@ -29,6 +30,7 @@ public class SLP02_SLPProrationMicrosoftTest extends SLPLib{
 	ProductDisplayInfoLib pipLib=new ProductDisplayInfoLib();
 	ShipBillPayLib sbpLib=new ShipBillPayLib();
 	CanadaLib canadaLib=new CanadaLib();
+	RequisitionProcessingLib ReqLib = new RequisitionProcessingLib();
 	   
 	    // #############################################################################################################
 		// #       Name of the Test         :  SLP02_SLPProrationMicrosoft
@@ -67,8 +69,6 @@ public class SLP02_SLPProrationMicrosoftTest extends SLPLib{
 						cmtLib.setPermissions(data.get("Menu_Name"), data.get("Set_Permission"));
 						cmtLib.loginAsAdminCMT();
 						
-						// Login Verification 
-						cmtLib.loginVerification(data.get("ContactName"));
 						// account tools >> Software License Agreements
 						commonLib.clickOnAccountToolsAndClickOnProductGrp(data.get("Tools_Menu"), data.get("Tools_Menu_DD"));
 						// Select Software  Lic Agreements
@@ -76,29 +76,38 @@ public class SLP02_SLPProrationMicrosoftTest extends SLPLib{
 						// verify search results and select first product
 				     	searchLib.verifysearchResultsPage();
 				     	
-				     	cartLib.selectFirstProductDisplay();
-				        String price = getpricefromProductdetailpage();
-				        Float Actualprice = Float.parseFloat(price.replace("USD $", ""));
-				        String partNum= prodDetailsLib.getMFRNumberInProductInfopage();
-				        commonLib.addToCartAndVerify();
-				        orderLib.continueToCheckOutOnAddCart();
-				        String subTotal=sbpLib.getTotalAmountInCart(data.get("SubTotal_label"));
-				        Float subTotalAmount = Float.parseFloat(subTotal.replace("$", ""));
-				        // verifying Prorated Price of product in cart 
-				        verifyProrationincartpage(partNum, Actualprice);
-				        // verifying Prorated Price with the subtotal price in cart price
-				        verifyProrationPrice(subTotalAmount, Actualprice);
-				        
-				        //Proceed to checkout
+				       // Search for part or product and add to cart : part : 394-00559-SLP
+				     	searchLib.searchInHomePage(data.get("SearchText"));
+				        // Stock only
+						searchLib.removeTheFilterForInStockOnly(data.get("In_Stock_Only"));
+						String price = getpricefromProductdetailpage(); 
+						Float Actualprice = Float.parseFloat(price.replace("USD $", ""));
+						pipLib.verifyTheManufacturerNumberInProductDetailsPage(data.get("SearchText"));
+						pipLib.enterQuantityOnProductDetailsPage(data.get("Quantity"));
+				     	commonLib.addToCartAndVerify();
+				     	orderLib.continueToCheckOutOnAddCart();
+				    	canadaLib.verifyPlaceCartLabel();
+				     					     	
+				    	String subTotal=sbpLib.getTotalAmountInCart(data.get("SubTotal_label"));
+					    Float subTotalAmount = Float.parseFloat(subTotal.replace("$", ""));
+					     // verifying Prorated Price of product in cart
+					   verifyProrationincartpage(data.get("SearchText"), Actualprice);
+					    // verifying Prorated Price with the subtotal price in cart price
+					   verifyProrationPrice(subTotalAmount, Actualprice);
+				     	
+					    //Proceed to checkout
 						 orderLib.proceedToCheckout();
 						 orderLib.clickOnAdditionalInfoContinueButton();
-						 orderLib.clickContinueOnLLIAndShipBillPaySections();
-						// orderLib.clickOnReviewOrderButton();  // Click Review order button
-						 String totalAmt=sbpLib.getTotalAmountInCart(data.get("TotalAmount_label"));
-						 Double totalAmount = Double.valueOf(totalAmt.replace("$", ""));
-						 // verifying Prorated Price with the total price in place order page 
-					        verifyProrationPrice(Actualprice, totalAmount);
-						// Place Order
+						 orderLib.clickContinueOnLineLevelInfo();   // Click continue on Line level Info
+						 canadaLib.verifySBP();
+						 orderLib.shippingBillPayContinueButton();
+                         orderLib.billingAddressContinueButton();
+				     	 orderLib.selectPaymentInfoMethodCreditCard(data.get("cardNumber"), data.get("cardName"), data.get("month"), data.get("year"),data.get("poNumebr"),data.get("POReleaseNumber"));
+				     	orderLib.clickOnReviewRequisitionButton(); 
+				     	String totalAmt=sbpLib.getTotalAmountInCart(data.get("TotalAmount_label"));
+						Double totalAmount = Double.valueOf(totalAmt.replace("$", ""));
+						verifyProrationPrice(Actualprice, totalAmount);
+				     	
 						String summaryAmount = cartLib.getSummaryAmountInCart();
 						clickPlaceRequisition();
 						//Verify Receipt page
@@ -106,7 +115,7 @@ public class SLP02_SLPProrationMicrosoftTest extends SLPLib{
 						verifyReceiptPageOrderDetails(summaryAmount);
 						orderLib.verifyReceiptVerbiage();
 						commonLib.clickLogOutLink(data.get("LogOut"));
-						
+				     	
 						// navigate back to CMT
 						cmtLib.navigateBackToCMT();
 						cmtLib.hoverOverMasterGroupAndSelectChangeGrp();
@@ -116,11 +125,20 @@ public class SLP02_SLPProrationMicrosoftTest extends SLPLib{
 						cmtLib.searchForaUserAndSelect(data.get("LnameEmailUname1"), data.get("ContactName1"));
 						cmtLib.loginAsAdminCMT(); // login to Uat1
 						
+						commonLib.clickOnInsightLogoOnHomePage();
 						// Select my requisition history from account tools
 						commonLib.clickOnAccountToolsAndClickOnProductGrp(data.get("Tools_Menu1"), data.get("Tools_Menu_DD1"));
 						selectReferenceNumFromRequisitionSearchResults(ReferenceNumber);
 						selectApproveRadioButtonOnApprovalManagementPage();
-						updateRequisitionAndVerify(ReferenceNumber);
+						
+						
+						ReqLib.clickUpdateInApprovalManagmentPage();
+						clickonEnterNewcard();
+						ReqLib.enterNewcarDetails(data.get("cardtype"), data.get("cardNum"), data.get("cardName"));
+						ReqLib.continuebutton();
+						ReqLib.verifyApproveRequisitionStatus();
+						
+						// updateRequisitionAndVerify(ReferenceNumber);
 						commonLib.clickLogOutLink(data.get("LogOut"));  // Logout End of test
 						
 					} catch (Exception e) {

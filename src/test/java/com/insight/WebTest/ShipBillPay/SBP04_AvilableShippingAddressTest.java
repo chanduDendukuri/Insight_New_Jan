@@ -63,7 +63,7 @@ public class SBP04_AvilableShippingAddressTest extends ShipBillPayLib{
 				cmtLib.searchForaUserAndSelect(data.get("LnameEmailUname"), data.get("ContactName"));
 				// --------RoleandPermission "change_ship_to;ON"
 				cmtLib.setPermissions(data.get("Menu_Name"), data.get("Set_Permission"));
-				//cmtLib.setPermissions(data.get("Menu_Name"), data.get("Set_Permission5"));
+				cmtLib.setPermissions(data.get("Menu_Name"), data.get("Set_Permission5"));
 				//cmtLib.setPermissions(data.get("Menu_Name"), data.get("Set_Permission6"));
 				cmtLib.setPermissionsToDisableWithoutReport(data.get("Set_Permission2"));
 				// Uncheck all shipping options
@@ -134,6 +134,7 @@ public class SBP04_AvilableShippingAddressTest extends ShipBillPayLib{
 				clickEdit();
 				// Search for the Account Name
 				shipbLib.VerifyCreatedAddress(companyname1);
+				Thread.sleep(5000);
 				clickstoredAddressandVerify(companyname1,companyname1);
 				commonLib.clickLogOutLink(data.get("Logout_Header"));
 				// login-4

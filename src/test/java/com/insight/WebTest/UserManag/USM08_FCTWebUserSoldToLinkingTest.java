@@ -59,7 +59,6 @@ public class USM08_FCTWebUserSoldToLinkingTest extends UserManagementLib{
 							Hashtable<String, String> data = TestUtil.getDataByRowNo("USM08_FCTWebUserSoldToLinking", TestDataInsight, "UserManagement", intCounter);
 							TestEngineWeb.reporter.initTestCaseDescription("FCTWebUserSoldToLinking");
 
-							
 							// Login to CMT
 							cmtLib.loginToCMT(data.get("Header"));
 							cmtLib.searchForWebGroup(data.get("WebGrp"));

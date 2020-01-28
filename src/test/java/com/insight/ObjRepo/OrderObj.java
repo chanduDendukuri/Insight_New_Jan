@@ -314,7 +314,7 @@ public class OrderObj extends ActionEngine{
 
 	 
 	 // Stored address
-	 public static By STORED_ADDRESS_RADIOBTN=By.xpath("(//div//label[@class='stored-address__label'])[1]");
+	 public static By STORED_ADDRESS_RADIOBTN=By.xpath("(//div//label[@class='stored-address__label'])[2]");
 	 public static By COMPANY_NAME_IN_SHIPPING_ADDRESS=By.xpath("//p[@id='iw-checkout__address-section-company-name']");
 	 
 	 // place order

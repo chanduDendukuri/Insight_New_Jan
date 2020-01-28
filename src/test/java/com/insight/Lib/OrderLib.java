@@ -117,6 +117,7 @@ public class OrderLib extends OrderObj{
 	 * @throws Throwable
 	 */
 	public void continueToCheckOutOnAddCart() throws Throwable{
+		
 		click(CONTINUE_TO_CHECKOUT, "Continue to checkout");
 		if(isElementNotPresent(CanadaObj.CART_LABEL, "Cart header label displayed")) {
 			refreshPage();	
@@ -713,6 +714,18 @@ public class OrderLib extends OrderObj{
 		   reporter.failureReport("Verify payment info term", "paymanet info term is visible ", "",driver);
 	   }
 	}
+	
+	public void termsInPaymentInfo(String PONumber,String POReleaseNumber) throws Throwable {
+		if (isElementPresent(PAYMENT_METHOD_TERM, "Terms is selected in dropdown")) {
+			type(PO_NUMBER, PONumber, "PO number");
+			if(isElementPresent(PO_REALESE_NUMBER,"PO Realese Number")){
+				  typeText(PO_REALESE_NUMBER, POReleaseNumber, "PO number");
+			  }
+			click(REVIEW_ORDER_BTN, "review order button of payment Info"); // Clicking Review order button in Payment Info
+	   }else {
+		   reporter.failureReport("Verify payment info term", "paymanet info term is visible ", "",driver);
+	   }
+	}
 	/**
 	 * 
 	 * @param ActualTax
@@ -771,6 +784,7 @@ public class OrderLib extends OrderObj{
 				reporter.SuccessReport("Verify the tax check box is checked or not",
 						"Tax Exemption Field Exists and checked","Tax Exemption CheckBox ON");
 			} else {
+				Thread.sleep(3000);
 				click(TAX_CHECKBOX, "tax check box");
 			}
 		} else
@@ -822,10 +836,10 @@ public class OrderLib extends OrderObj{
 	public void verifyPlaceOrderLabel() throws Throwable {
 		if (isElementPresent(PLACEORDER_LABL, "Cart header label displayed")) {
 			reporter.SuccessReport("Verify wether user navigates to cart page or not",
-					"User successfully navigated to Place order page","");
+					"User successfully navigated to Place order page","PageDetails : Place order");
 		} else {
 			reporter.failureReport("Verify wether user navigates to cart page or not",
-					"User not navigated to Place Order page","",driver);
+					"User not navigated to Place Order page","PageDetails :Place order",driver);
 		}
 	}
 
@@ -902,13 +916,14 @@ public class OrderLib extends OrderObj{
 	/* 
 	 * @throws Throwable
 	 */
-	public void verifyTheTaxOnPlaceOrderPage() throws Throwable {
+	public String verifyTheTaxOnPlaceOrderPage() throws Throwable {
 		Thread.sleep(3000);
 		String result = getText(ADDLICENCE_TAX_AMOUNT, "Tax displayed after adding LICENCE").replace("$", "");
 		if (isElementPresent(ADDLICENCE_TAX_AMOUNT, "Tax displayed", true) ) {
-			reporter.SuccessReport("Verify Taxes on Place Order Page", "Taxes Exist and shows:" , result);
+			reporter.SuccessReport("Verify Taxes on Place Order Page", "Taxes Exist and shows as :" , "Tax estimate USD "+result);
 		} else
 			reporter.failureReport("Verify Taxes on Place Order Page", "Place Order Page Shows Tax as 0.00","",driver);
+		return result;
 	}
 	/**
 	 * 
@@ -927,7 +942,7 @@ public class OrderLib extends OrderObj{
 		String tax = getText(ADDLICENCE_TAX_AMOUNT, "Tax displayed").replace("$", "");
 		if (isElementPresent(ADDLICENCE_TAX_AMOUNT, "Tax displayed", true)) {
 			if (isElementPresent(ADDLICENCE_TAX_AMOUNT, "Tax displayed", true) && Float.valueOf(tax) == 0) {
-				reporter.SuccessReport("Verify Taxe estimate on Place Order Page", "Tax estimate Exists and Value Returned and is shown as 0.00","Tax estimate USD "+tax);
+				reporter.SuccessReport("Verify Taxe estimate on Place Order Page", "Tax estimate Exists and Value Returned and is shown as 0.00","Tax estimate USD $"+tax);
 		} else {
 			reporter.failureReport("Verify Taxes on Place Order Page", "Place Order Page does not show tax as 0.00","",driver);
 		  }
@@ -1892,9 +1907,9 @@ public class OrderLib extends OrderObj{
 	 * @throws Throwable
 	 */
 	public String clickStoredAddressRadioButton() throws Throwable {
-		Thread.sleep(2000);
+		Thread.sleep(3000);
 		String addressSelected=getText(STORED_ADDRESS_RADIOBTN, "STORED ADDRESS RADIOBTN");
-		click(STORED_ADDRESS_RADIOBTN, "STORED ADDRESS RADIO BUTTON", addressSelected);
+		click(STORED_ADDRESS_RADIOBTN, "STORED ADDRESS RADIO BUTTON", "First CA address :"+addressSelected);
 		return addressSelected;
 		
 	}
@@ -2045,4 +2060,63 @@ public class OrderLib extends OrderObj{
 			reporter.failureReport("Verify WG_LNL_Txt On Place Order Page", "WG_LNL_Lst On Place Order Page is not present", "",driver);
 		}
 	}
+	
+	/**
+	 * 
+	 * @return
+	 * @throws Throwable 
+	 */
+	public String  getProductDescriptionOfCartProductForRecentlyAddedItem() throws Throwable{
+		
+		return getText(CartObj.CART_PROD_DESC_RECENTLYADDEDTEM,"Product description of recently added item");
+	}
+	
+	/**
+	 * 
+	 * @return
+	 * @throws Throwable 
+	 */
+	public String getCartProductTotalPriceForRecentlyAddedItem() throws Throwable {
+		
+		return getText(CartObj.CART_PROD_TOTAL_PRICE,"ProductTotalPriceForRecentlyAddedItem");
+		}
+	
+	/**
+	 * 
+	 * @return
+	 * @throws Throwable 
+	 */
+	public String getCartProductUnitPriceForRecentlyAddedItem() throws Throwable {
+		
+		return getText(CartObj.CART_PROD_UNIT_PRICE_RECENTLYADDEDTEM,"CartProductUnitPriceForRecentlyAddedItem");
+}
+	
+	/**
+	 * 
+	 * @return
+	 * @throws Throwable 
+	 */
+	public String getCartProductQuantityForRecentlyAddedItem() throws Throwable {
+		return getText(CartObj.CART_PROD_QTY_RECENTLYADDEDTEM,"CartProductQuantityForRecentlyAddedItem");
+		
+	}
+	
+	/**
+	 * 
+	 * @return
+	 * @throws Throwable 
+	 */
+	public String getCartProductStockForRecentlyAddedItem() throws Throwable {
+
+		return getText(CartObj.CART_PROD_STOCK_RECENTLYADDEDTEM,"CartProductStockForRecentlyAddedItem");
+		}
+	
+	public void verifyTaxEstimatesAreEqual(float tax1,float tax2) throws Throwable {
+		if(tax1==tax2) {
+			reporter.SuccessReport("Verify Tax estimates are equal", "Tax estimates are equal", "Tax 1: "+tax1+"  Tax2: "+tax2);
+		}else {
+			reporter.failureReport("Verify Tax estimates are equal", "Tax estimates are not equal", "");
+		}
+	}
+
 }

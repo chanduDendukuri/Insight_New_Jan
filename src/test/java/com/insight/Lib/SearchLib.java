@@ -1167,7 +1167,7 @@ public class SearchLib extends CommonObj {
 	public void verifysearchResultsPage() throws Throwable {
 		waitForVisibilityOfElement(SEARCH_RESULTS_PAGE,  "Search results");
 		if (isElementPresent(SEARCH_RESULTS_PAGE, "Search results")) {
-			reporter.SuccessReport("Verify search results page", "Search results page verified successfully", "");
+			reporter.SuccessReport("Verify search results page", "Search results page displayed", "Search results ");
 		} else {
 			reporter.failureReport("Verify search results page", "Search results page not verified successfully", "");
 		}
@@ -1454,6 +1454,7 @@ public class SearchLib extends CommonObj {
 				reporter.failureReport("Verify that "+contract+" exists", contract+ " Exists","",driver);
 			}
 	}
+	
 }
  
 
