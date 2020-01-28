@@ -136,14 +136,14 @@ public class QTH01_QuoteHistoryViewQuoteHistPageTest extends QuoteHistoryLib {
 						
 						verifyQuoteHistoryPageOpened();
 						invoiceHistoryLib.clickOnAdvancedSearch();	
-						QHL.SelectAccountdropdownoption(data.get("AccountOption"));
+						//QHL.SelectAccountdropdownoption(data.get("AccountOption"));
 						clickOnAdvancedSearchSearchButton();
 						VerifyQuoteDetailsunderQuoteSearch();
 						SelectWebGroupfromdd("Briana");
 						canadaLib.clickOnSideMenuSelectAccountToolOptions(data.get("Tools_Menu"),
 								data.get("Tools_Menu_DD"));
 						invoiceHistoryLib.clickOnAdvancedSearch();
-						QHL.SelectAccountdropdownoption(data.get("AccountOption"));
+						//QHL.SelectAccountdropdownoption(data.get("AccountOption"));
 						clickOnAdvancedSearchSearchButton();
 						VerifyQuoteDetailsunderQuoteSearch();
 						commonLib.clickLogOutLink(data.get("Logout_Header"));

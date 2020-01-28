@@ -65,7 +65,7 @@ public class CMTObj extends ActionEngine {
 		return By.xpath("//td[@id='webGroupName']//a[contains(text(),'" + webGrpName + "')]");
 		//return By.xpath("//a[@id='webGroupId']");
 	}
-	public static By dd_Account = By.xpath("//select[@id='accountSelection']//following::div[@class='nice-select m-b-md']//span");
+	public static By dd_Account = By.xpath("//span[@class='current'][contains(text(),'All My Accounts in the current Web Group')]");
 public static By dd_Accountdropdownoption(String option) {
 	return By.xpath("//div[@class='nice-select m-b-md open']//li[contains(text(),'"+option+"')]");
 }
@@ -585,6 +585,7 @@ public static By lnkDeleteProductGroups=By.xpath("//*[text()=' Delete Product Gr
 	public static By BILLING_ACCOUNT_NAME = By.xpath("//input[@id='companyName']");
 	public static By ADRESSES = By.xpath("//input[@id='addressOne']");
 	public static By CITY = By.xpath("//input[@id='city']");
+	public static By AVAILABLEUSERNAMEMSG=By.xpath("//span[@id='username-message' and text()='Available']");
 
 	public static By selectState() {
 		return By.xpath("//select[@id='state']");

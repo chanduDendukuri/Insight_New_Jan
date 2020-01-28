@@ -277,6 +277,7 @@ public void SelectWebGroupfromdd(String option) throws Throwable {
 
 	}
 public void SelectAccountdropdownoption(String option) throws Throwable  {
+scrollUp();
 	click(CMTObj.dd_Account, "Account dropdown", "");
 	click(CMTObj.dd_Accountdropdownoption(option), "Accountdropdownoption", "");
 }
