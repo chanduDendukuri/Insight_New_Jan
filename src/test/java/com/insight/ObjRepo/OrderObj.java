@@ -93,6 +93,7 @@ public class OrderObj extends ActionEngine{
 	public static By selectCarrier(String carrier) {
 		return By.xpath("//div[@class='Select-menu-outer']//div[@class='Select-option'][contains(text(),'"+carrier+"')]");
 	}
+	public static By NO_CARRIER_PREFERENCE=By.xpath("//span[@class='Select-value-label']");
 	public static By verifyCarrier(String carrier) {
 		return By.xpath("//div[contains(text(),'"+carrier+"')]");
 	}
