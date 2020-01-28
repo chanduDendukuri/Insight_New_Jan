@@ -204,10 +204,11 @@ public class CMTLib extends CMTObj {
 	 * @param webgrpName
 	 * @throws Throwable
 	 */
+
 	public boolean clickOnTheWebGroup(String webgrpName) throws Throwable {
 		boolean status = false;
 		if (isElementVisible(getWebGroupName(webgrpName), 3, "Search results are displayed on Client Search Page")) {
-			click(getWebGroupName(webgrpName), "Web Group link exists :" );
+			click(getWebGroupName(webgrpName), "Web Group link exists :"+ webgrpName );
 			status = true;
 		} else {
 			reporter.failureReport("Verify web group displayed", "searched Web group is not displayed", "", driver);

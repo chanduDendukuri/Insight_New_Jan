@@ -79,6 +79,7 @@ public class SLP06_SPLAZeroUsageTest extends SLPLib{
 						cmtLib.loginVerification(data.get("ContactName"));
 						// account tools >> Software License Agreements
 						commonLib.clickOnAccountToolsAndClickOnProductGrp(data.get("Tools_Menu"), data.get("Tools_Menu_DD"));
+						canadaLib.verifySPLAPage();
 						// Select Software  Lic Agreements
 				     	canadaLib.selectSPLADetailsProductCheckBox(data.get("SPLA"));
 						// verify search results 
@@ -97,6 +98,7 @@ public class SLP06_SPLAZeroUsageTest extends SLPLib{
 				    	
 				     	// account tools >> Software License Agreements
 						commonLib.clickOnAccountToolsAndClickOnProductGrp(data.get("Tools_Menu"), data.get("Tools_Menu_DD"));
+						canadaLib.verifySPLAPage();
 						retrieveLastUsageReport(data.get("Software_Agrement"));
 						String subTotal=sbpLib.getTotalAmountInCart(data.get("SubTotal_label"));
 						Double subTotalAmount = Double.parseDouble(subTotal.replace("$", ""));
@@ -105,7 +107,7 @@ public class SLP06_SPLAZeroUsageTest extends SLPLib{
 						// Verify Only Zero Usage Part in the Cart CAD $0.00"
 						String subtotalAmt=cartLib.getSummaryAmountInCart();
 						Float subTotalAmount1 = Float.parseFloat(subtotalAmt.replace("$", ""));
-						                                                      //verifySubTotalAmount(subTotalAmount1);
+						   verifySubTotalAmount(subTotalAmount1);
 						//assertTextStringContains(subtotalAmt, data.get("Price")); 
 						// verify reporting usage period warning message
 						verifyReportingPeriodWarning();
@@ -122,7 +124,7 @@ public class SLP06_SPLAZeroUsageTest extends SLPLib{
 						 orderLib.clickOnReviewOrderButton();  // Click Review order button
 						
 						// Verify usage period on place order page
-						  String poUsagePeriod=verifyReportingUsagePeriod();
+						  String poUsagePeriod=canadaLib.verifyReportingUsagePeriod();
 						  verifyUsagePeriodsMatching(poUsagePeriod, cartUsagePeriod);
 						 
 						 // Place Order
@@ -130,11 +132,12 @@ public class SLP06_SPLAZeroUsageTest extends SLPLib{
 						orderLib.placeOrderAndVerifyReceiptOrderAndDate(amount);
 					 
 						// Verify usage period on receipt page
-						 String receiptUsagePeriod=verifyReportingUsagePeriod();
+						 String receiptUsagePeriod=verifyReportingUsagePeriodOnReceiptPage();
 						 verifyUsagePeriodsMatching(receiptUsagePeriod, cartUsagePeriod);
 						
 						 // account tools >> Software License Agreements
 						commonLib.clickOnAccountToolsAndClickOnProductGrp(data.get("Tools_Menu"), data.get("Tools_Menu_DD"));
+						canadaLib.verifySPLAPage();
 						verifyAllReportingPeriodsCurrent();
 						canadaLib.selectSPLADetailsProductCheckBox(data.get("SPLA"));
 						// verify search results 

@@ -78,7 +78,7 @@ public class SLP01_SPLASearchTest extends SLPLib{
 							
 							// account tools >> Software License Agreements
 							commonLib.clickOnAccountToolsAndClickOnProductGrp(data.get("Tools_Menu"), data.get("Tools_Menu_DD"));
-							
+							canadaLib.verifySPLAPage();
 							// Select Software  Lic Agreements
 					     	canadaLib.selectSPLADetailsProductCheckBox(data.get("SPLA"));
 					     	// verify search results and select first product
