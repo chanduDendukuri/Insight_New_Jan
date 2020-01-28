@@ -98,12 +98,24 @@ public class SLPObj extends ActionEngine{
     }
     public static By DEPLOYEDDATE_CARTPAGE=By.xpath("//div[@class='proration__deploy-details--date']");
     public static By change_field(String partNum){
-    	return By.xpath("//p[@class='cart__item-part cart__font-size--sm'][contains(.,'"+partNum+"')]/following::div[11]/span//span[contains(text(),'Change')]");
+    	return By.xpath("//p[@class='cart__item-part cart__font-size--sm'][contains(.,'"+partNum+"')]/following::div//span[@class='prortation__link-text prortation__link-text--change'][contains(text(),'Change')]");
     }
     
+    public static By getDeployDateOnCartPage(String partNum) {
+    	return By.xpath("//p[@class='cart__item-part cart__font-size--sm'][contains(.,'"+partNum+"')]/following::div//span//div[@class='proration__deploy-details--date']");
+    }
 
     public static By ALL_REPORTING_PERIODS_CURRENT_LABEL_SLPA_PAGE=By.xpath("//span[@class='usagePeriod'][contains(text(),'All Reporting Periods Current')]");
     public static By ALL_REPORTING_PERIODS_CURRENT_LABEL_CART_PAGE=By.xpath("//div[@class='usage-reporting__detail row row__gutter--tiny collapse expanded']//span//strong[contains(text(),'All reporting periods current.')]");
     
     public static By RETURN_TO_SLP=By.xpath("//a[contains(text(),'Return to My Software License Agreements')]");
+
+// Deploy date popup
+    public static By DEPLOY_DATE_POPUP_MFR_PART=By.xpath("//table[@class='proration-modal__table']//tbody//td[2]");
+    public static By DEPLOY_DATE_POPUP_DESCRIPTION=By.xpath("//table[@class='proration-modal__table']//tbody//td[3]");
+
+    // PA #on receipt page 
+    public static By getPAOnReceipt(String pa){
+    	return By.xpath("//label[@class='form__label--readonly'][contains(.,'PA #:')]//p[contains(text(),'"+pa+"')]");
+    }
 }
