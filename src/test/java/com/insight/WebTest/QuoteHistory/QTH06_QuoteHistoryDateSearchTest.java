@@ -50,28 +50,32 @@ public class QTH06_QuoteHistoryDateSearchTest extends QuoteHistoryLib {
 					CanadaLib canadaLib = new CanadaLib();
 					InvoiceHistoryLib invoiceHistoryLib = new InvoiceHistoryLib();
 					CommonLib commonLib = new CommonLib();
-					cmtLib.loginToCMTSearchWebGrpAndUser(data.get("Header"), data.get("WebGrp"),
-							data.get("LnameEmailUname"), data.get("ContactName"));
+					cmtLib.loginToCMT(data.get("Header"));
+					cmtLib.verifyClientSearchTitle();
+					cmtLib.searchForWebGroup(data.get("WebGrp"));
+					cmtLib.clickOnTheWebGroup(data.get("Webgroupname"));
+					cmtLib.verifyManageWebGroupSettings();
+					cmtLib.hoverOnManageWebGroupsAndSelectOptions(data.get("ManageWebGrpOptions"));
+					cmtLib.verifyManageWebGroupsUserManagement();
+					cmtLib.searchForaUserAndSelect(data.get("LnameEmailUname"), data.get("ContactName"));
 
 					// Enable Quotes Check Box
-					cmtLib.setPermissions(data.get("Menu_Name"), data.get("Set_Permission"));
+					cmtLib.setPermissions(data.get("Menu_Name"), data.get("Set_Permission1"));
+					cmtLib.setPermissions(data.get("Menu_Name"), data.get("Set_Permission2"));
+					cmtLib.setPermissions(data.get("Menu_Name"), data.get("Set_Permission3"));
 					cmtLib.clickOnloginAs();
 					switchToChildWindow();
-					cmtLib.loginVerification(data.get("ContactName"));
+					cmtLib.loginVerification("User - "+data.get("ContactName"));
 					canadaLib.clickOnSideMenuSelectAccountToolOptions(data.get("Tools_Menu"),
 							data.get("Tools_Menu_DD"));
-
-					// Perform Quote Search
 					verifyQuoteHistoryPageOpened();
 					invoiceHistoryLib.clickOnAdvancedSearch();
-					// calender date
 					invoiceHistoryLib.datePickerStartDateCalender(data.get("FromDate"));
-					clickOnAdvancedSearchSearchButton();
+					invoiceHistoryLib.clickOnSearchUnderAdvancedSearch();
+					//invoiceHistoryLib.verifyQuoteHistoryReults();
 					invoiceHistoryLib.verifySearchResultsAreDisplayed();
-					quoteNumberLink();
-					canadaLib.verifyInvoiceHistoryPageOpened();
-					verifyQuoteDetails(data.get("Quote_details"));
 					commonLib.clickLogOutLink(data.get("Logout_Header"));
+					
 				} catch (Exception e) {
 					ReportStatus.blnStatus = false;
 					//gErrorMessage = e.getMessage();

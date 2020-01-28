@@ -12,6 +12,7 @@ import com.insight.Lib.CommonLib;
 import com.insight.Lib.InvoiceHistoryLib;
 import com.insight.Lib.MarriottIntlCorpLib;
 import com.insight.Lib.OrderLib;
+import com.insight.Lib.ProductDisplayInfoLib;
 import com.insight.Lib.QuoteHistoryLib;
 import com.insight.Lib.SearchLib;
 import com.insight.accelerators.ReportControl;
@@ -59,48 +60,85 @@ public class QTH03_QuoteHistoryViewSearchResultsTest extends QuoteHistoryLib {
 							InvoiceHistoryLib invoiceHistoryLib = new InvoiceHistoryLib();
 							MarriottIntlCorpLib marriottIntlCorpLib=new MarriottIntlCorpLib();
 							CommonLib commonLib = new CommonLib();
-							cmtLib.loginToCMTSearchWebGrpAndUser(data.get("Header"), data.get("WebGrp1"),
-									data.get("LnameEmailUname1"), data.get("ContactName1"));
+							ProductDisplayInfoLib prodinfo=new ProductDisplayInfoLib();
+							
+							cmtLib.loginToCMT(data.get("Header"));
+							cmtLib.verifyClientSearchTitle();
+							cmtLib.searchForWebGroup(data.get("WebGrp1"));
+							cmtLib.clickOnTheWebGroup(data.get("Webgroupname"));
+							cmtLib.verifyManageWebGroupSettings();
+							cmtLib.hoverOnManageWebGroupsAndSelectOptions(data.get("ManageWebGrpOptions"));
+							cmtLib.verifyManageWebGroupsUserManagement();
+							cmtLib.searchForaUserAndSelect(data.get("LnameEmailUname1"), data.get("ContactName1"));
+							
 							cmtLib.setPermissions(data.get("Menu_Name"), data.get("Set_Permission1"));
-							cmtLib.setPermissionsToDisable(data.get("Menu_Name"), data.get("Set_Permission2"));
+							//cmtLib.setPermissionsToDisable(data.get("Menu_Name"), data.get("Set_Permission2"));
 							// Login As to Web UAT
-							cmtLib.loginAsAdminCMT();
-							cmtLib.loginVerification(data.get("ContactName1"));
-							// Select First Product and Add to cart
-							searchLib.searchInHomePage(data.get("SearchItem1"));
-							cartLib.selectFirstProductDisplay();
-							commonLib.addToCartAndVerify();
-							orderLib.continueToCheckOutOnAddCart();					
-							// Create Quote
+							cmtLib.verifyWebGroupsManagementUsers();
+						    cmtLib.setPermissionsToDisable(data.get("Menu_Name"), data.get("Set_Permission2"));
+						    cmtLib.verifyWebGroupsManagementUsers();
+						    cmtLib.setPermissionsToDisable(data.get("Menu_Name"), data.get("Set_Permission3"));
+						    cmtLib.clickOnloginAs();
+							switchToChildWindow();
+							cmtLib.loginVerification("User - "+data.get("ContactName1"));
+							commonLib.searchProduct(data.get("SearchItem1"));
+							searchLib.verifyTheResultsForSearchTerm(data.get("SearchItem1"));
+							prodinfo.getPartNumberInSearchResultsPage();
+							commonLib.addToCartAndVerifyInSearchPage();
+							orderLib.continueToCheckOutOnAddCart();
+							cartLib.verifyCartPageAvailablity();
 							orderLib.createQuote(data.get("Quote_Name1"));
+							orderLib.getQuoteReferenceName();
 							orderLib.getQuoteReferenceNumber();
-							canadaLib.clickOnSideMenuSelectAccountToolOptions(data.get("Tools_Menu"),data.get("Tools_Menu_DD"));
-							verifyQuoteHistoryPageOpened();										
-							invoiceHistoryLib.verifyAdvancedSearch();	
+							canadaLib.clickOnSideMenuSelectAccountToolOptions(data.get("Tools_Menu"),
+									data.get("Tools_Menu_DD"));
+							verifyQuoteHistoryPageOpened();		
 							invoiceHistoryLib.verifyQuickSearch();
+							invoiceHistoryLib.verifyAdvancedSearch();
 							commonLib.clickLogOutLink(data.get("Logout_Header"));
-							cmtLib.loginToCMTSearchWebGrpAndUser(data.get("Header"), data.get("WebGrp2"),
-									data.get("LnameEmailUname2"), data.get("ContactName2"));
-							cmtLib.loginAsAdminCMT();
-							cmtLib.loginVerification(data.get("ContactName2"));
-							canadaLib.clickOnSideMenuSelectAccountToolOptions(data.get("Tools_Menu"),data.get("Tools_Menu_DD"));
+							
+							cmtLib.loginToCMT(data.get("Header"));
+							cmtLib.verifyClientSearchTitle();
+							cmtLib.searchForWebGroup(data.get("WebGrp1"));
+							cmtLib.clickOnTheWebGroup(data.get("Webgroupname"));
+							cmtLib.verifyManageWebGroupSettings();
+							cmtLib.hoverOnManageWebGroupsAndSelectOptions(data.get("ManageWebGrpOptions"));
+							cmtLib.verifyManageWebGroupsUserManagement();
+							cmtLib.searchForaUserAndSelect(data.get("LnameEmailUname1"), data.get("ContactName1"));
+							
+							cmtLib.setPermissions(data.get("Menu_Name"), data.get("Set_Permission1"));
+							cmtLib.setPermissions(data.get("Menu_Name"), data.get("Set_Permission2"));
+							cmtLib.setPermissions(data.get("Menu_Name"), data.get("Set_Permission3"));
+							//cmtLib.setPermissionsToDisable(data.get("Menu_Name"), data.get("Set_Permission2"));
+							// Login As to Web UAT
+							cmtLib.verifyWebGroupsManagementUsers();
+						    cmtLib.setPermissionsToDisable(data.get("Menu_Name"), data.get("Set_Permission2"));
+						    cmtLib.verifyWebGroupsManagementUsers();
+						    cmtLib.clickOnloginAs();
+							switchToChildWindow();
+							cmtLib.loginVerification("User - "+data.get("ContactName1"));
+							canadaLib.clickOnSideMenuSelectAccountToolOptions(data.get("Tools_Menu"),
+									data.get("Tools_Menu_DD"));
+							verifyQuoteHistoryPageOpened();	
 							invoiceHistoryLib.clickOnAdvancedSearch();
-							// calender date
-							invoiceHistoryLib.datePickerStartDateCalender(data.get("Date"));
-							descInAdvSearch();
-							invoiceHistoryLib.clickOnAdvancedSearchSearchButton();
-						    String rowNumber 		= "1"; 		// zero based index
+							invoiceHistoryLib.datePickerStartDateCalender(data.get("FromDate"));
+							invoiceHistoryLib.clickOnSearchUnderAdvancedSearch();
+							invoiceHistoryLib.verifySearchResultsAreDisplayed();
 							clickExportToExcelButton();
+							String rowNumber = "1";
+							
 							verifyExportFileInQuoteHistory(data.get("SheetName"),rowNumber,data.get("ColumnHeaders"));
 							quoteNumberLink();
-							canadaLib.verifyInvoiceHistoryPageOpened();
-							verifyQuoteDetails(data.get("Quote_details"));
+							verifyQuoteDetails();
 							getDelailsOnQuotePage();
+							verifyConvertQuoteButton();
 							verifyPrint();
 							verifyEmailIcon();
 							verifyEditThisQuoteIcon();
 							verifyDeleteThisQuoteIcon();
 							commonLib.clickLogOutLink(data.get("Logout_Header"));
+							System.out.println("Test Completed");
+					
 								} catch (Exception e) {
 									ReportStatus.blnStatus = false;
 									//gErrorMessage = e.getMessage();
