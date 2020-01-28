@@ -101,7 +101,7 @@ public class ROD11_FCTWebReviewOrderESDPartsTest extends OrderLib{
 						// verify tax on place order page
 						String taxAfter=verifyTheTaxOnPlaceOrderPage();
 						float tax1=Float.valueOf(taxBefore);
-						float tax2=Integer.valueOf(taxAfter);
+						float tax2=Float.valueOf(taxAfter);
 						verifyTaxEstimatesAreEqual(tax1, tax2);
 						
 						commonLib.clickLogOutLink(data.get("Logout"));
