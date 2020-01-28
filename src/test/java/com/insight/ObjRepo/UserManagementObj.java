@@ -43,7 +43,7 @@ public class UserManagementObj extends ActionEngine{
 	public static By FERROR_MSG=By.xpath("//div[@class='input-error' and contains(text(),'Please enter First Name')]");
 	public static By LERROR_MSG=By.xpath("//div[@class='input-error' and contains(text(),'Please enter Last Name')]");
 	public static By PhoneError_MSG=By.xpath("//div[@class='input-error' and contains(text(),'Please enter valid Phone Number')]");
-	public static By LINKEDACCOUNTS_Defualtacc=By.xpath("//span[@id='defaultSoldtoforWebGroup']/following-sibling::br");
+	public static By LINKEDACCOUNTS_Defualtacc=By.xpath("//div[@class='soldToManagementDefaultSoldToDetails']");
 
 
 }

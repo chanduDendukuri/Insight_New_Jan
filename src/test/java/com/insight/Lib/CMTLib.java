@@ -332,9 +332,9 @@ public class CMTLib extends CMTObj {
 	 * @param lnameEmailUname
 	 * @throws Throwable
 	 */
-	public void searchUsers(String lnameEmailUname) throws Throwable {
-		waitForVisibilityOfElement(CMTObj.LNAME_EMAIL_USERNAME, "LNAME EMAIL USERNAME: " + lnameEmailUname);
-		type(CMTObj.LNAME_EMAIL_USERNAME, lnameEmailUname, "LNAME EMAIL USERNAME: " + lnameEmailUname);
+	public void searchUsers(String LnameEmailUname) throws Throwable {
+		waitForVisibilityOfElement(CMTObj.LNAME_EMAIL_USERNAME, "LNAME EMAIL USERNAME: " + LnameEmailUname);
+		type(CMTObj.LNAME_EMAIL_USERNAME, LnameEmailUname, "LNAME EMAIL USERNAME: " + LnameEmailUname);
 		click(CMTObj.USERNAME_SEARCH_BUTTON, "Search button Exists and Clicked", "Link: Search");
 	}
 
