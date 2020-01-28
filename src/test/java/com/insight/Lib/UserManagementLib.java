@@ -292,7 +292,9 @@ public class UserManagementLib extends UserManagementObj {
 	//LINKEDACCOUNTS_Defualtacc
 	
 	public void verifydefualtLinkedAcc()throws Throwable {
-		if(isVisibleOnly(LINKEDACCOUNTS_Defualtacc,"Error Msg")){
+		if(isVisibleOnly(LINKEDACCOUNTS_Defualtacc,"Defualt Account")){
+		String address[]=getText(LINKEDACCOUNTS_Defualtacc,"Defualt Account").split("validation 1");	
+			System.out.println(address[1]);
 		reporter.SuccessReport("Verify Default Linked to Account# in the Linked Accounts Tab on Manage Web groups: Create User Page", "Default Linked to Account# in Linked Accounts Tab", "Account#"+getText(LINKEDACCOUNTS_Defualtacc,"Defualt Account"));
 		}
 		else {
