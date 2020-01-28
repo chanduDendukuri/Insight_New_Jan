@@ -242,6 +242,10 @@ public class CMTLib extends CMTObj {
 	 * @throws Throwable
 	 */
 	public void hoverOverMasterGroupAndSelectChangeGrp() throws Throwable {
+		
+		mouseHover(MASTER_GROUP, "Master Group");
+		driver.navigate().refresh();
+	  
 		mouseHover(MASTER_GROUP, "Master Group");
 		click(CHANGE_MASTER_GRP, "Change master group option");
 	}
