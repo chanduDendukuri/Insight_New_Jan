@@ -116,4 +116,5 @@ public class EndUserFeaturesObj extends ActionEngine{
     public static By selectPaymentMethodForBillingPayment(String option){
         return By.xpath("//*[contains(text(),'Payment Method')]//..//..//div//ul//li[text()='"+option+"']");
     }
+    public static By lblCurrentAddressResults=By.xpath("//div[@class='medium-4 columns currentAcctLvl']");
 }

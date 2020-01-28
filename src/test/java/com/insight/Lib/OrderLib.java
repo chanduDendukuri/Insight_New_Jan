@@ -573,7 +573,7 @@ public class OrderLib extends OrderObj{
 		 
 		if(isElementPresent(PAYMENT_METHOD_DD, "payment DD")){
 			click(PAYMENT_METHOD_DD, "payment method drop down");
-			click(PAYMENT_METHOD_SELECTION, "payment method selection");
+			click(PAYMENT_METHOD_SELECTION, "payment method selection::Credit Card");
 		}
 			  type(CARD_NUMBER_TEXTBX, cardNumber, "Card number"); // Entering Card details in payment info
 			  type(CARD_NAME_TEXTBOX, cardName, "Card name");
@@ -2079,7 +2079,7 @@ public class OrderLib extends OrderObj{
 	 */
 	public String getCartProductTotalPriceForRecentlyAddedItem() throws Throwable {
 		
-		return getText(CartObj.CART_PROD_TOTAL_PRICE,"ProductTotalPriceForRecentlyAddedItem");
+		return getText(CartObj.CART_PROD_TOTAL_PRICE_RECENTLYADDEDTEM,"ProductTotalPriceForRecentlyAddedItem");
 		}
 	
 	/**
@@ -2119,5 +2119,50 @@ public class OrderLib extends OrderObj{
 			reporter.failureReport("Verify Tax estimates are equal", "Tax estimates are not equal", "");
 		}
 	}
+	/**
+	 * Method is to fill the card details in the payment info section
+	 * @param cardNumber
+	 * @param cardName
+	 * @param month
+	 * @param year
+	 * @param PONumber
+	 * @throws Throwable
+	 */
+	public void selectPaymentInfoMethodCreditCardandVerifyonlyCreditCardExists(String cardNumber,String cardName,String month,String year,String PONumber,String PORealeseNumber) throws Throwable{
+		click(PAYMENT_METHOD_DD, "payment method drop down");
+		if(isVisibleOnly(PAYMENT_METHOD_VERIFICATION_TERMS,"Terms")) {
+			reporter.failureReport("Verify payment options:", "Terms Exists in payment Options", "Terms");
+			if(isVisibleOnly(PAYMENT_METHOD_VERIFICATION_procurementscard,"Procurement Card")) {
+				reporter.failureReport("Verify payment options:", "Procurementcard  Option exits", "");	
+			}
+		}else {
+			  reporter.SuccessReport("Verify payment options:", "Only Credit card exists as Payments Option", "Credit Card");	
+		   if(isElementPresent(PAYMENT_METHOD_DD, "payment DD")){
+			//click(PAYMENT_METHOD_DD, "payment method drop down");
+			click(PAYMENT_METHOD_SELECTION, "payment method selection::Credit Card");
+		}
+			  type(CARD_NUMBER_TEXTBX, cardNumber, "Card number"); // Entering Card details in payment info
+			  type(CARD_NAME_TEXTBOX, cardName, "Card name");
+			  click(EXPIRATION_MONTH, "Expiration month");
+			  selectByValue(EXPIRATION_MONTH,month , "Expiration month");
+			  click(EXPIRATION_YEAR, "Expiration year");
+			  selectByValue(EXPIRATION_YEAR,year , "Expiration year");
+			  if(isElementPresent(PO_NUMBER,"PO Number")){
+			  type(PO_NUMBER, PONumber, "PO number");
+			  }
+			  if(isElementPresent(PO_REALESE_NUMBER,"PO Realese Number")){
+				  typeText(PO_REALESE_NUMBER, PORealeseNumber, "PO number");
+			  }
+		}
+	}
+
+	/* Method to get the reference number of the quote
+	 * @return
+	 * @throws Throwable
+	 */
+	public String getQuoteReferenceName() throws Throwable{
+		return getText(QUOTE_REFERENCE_NAME, "Reference name").trim();
+	}
+
 
 }

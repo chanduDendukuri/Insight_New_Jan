@@ -97,8 +97,7 @@ public class SLP13_CITRIX_ZeroUsage extends SLPLib{
 				     	// account tools >> Software License Agreements
 				     	orderLib.clickOnSideMenuSelectAccountToolOptions(data.get("Tools_Menu"), data.get("Tools_Menu_DD"));						
 				     	canadaLib.verifySPLAPage();
-				     	//canadaLib.selectSPLADetailsProductCheckBox(data.get("SPLA"));
-				     	canadaLib.clickOnLastUsageReportBtn(data.get("Software_Agrement"));
+				     	retrieveLastUsageReport(data.get("Software_Agrement"));
 						orderLib.verifyCartHeaderLabel();
 						String subTotal=sbpLib.getTotalAmountInCart(data.get("SubTotal_label"));
 						Double subTotalAmount = Double.parseDouble(subTotal.replace("$", ""));
@@ -136,7 +135,7 @@ public class SLP13_CITRIX_ZeroUsage extends SLPLib{
 						 orderLib.clickOnReviewOrderButton();  // Click Review order button
 						 
 						 // Verify usage period on place order page
-						  String poUsagePeriod=canadaLib.verifyReportingUsagePeriod();
+						  String poUsagePeriod=verifyReportingUsagePeriodOnReceiptPage();
 						  assertTextStringMatching(cartUsagePeriod, poUsagePeriod);
 						 
 						 // Place Order
@@ -154,7 +153,9 @@ public class SLP13_CITRIX_ZeroUsage extends SLPLib{
 						
 						// account tools >> Software License Agreements
 						orderLib.clickOnSideMenuSelectAccountToolOptions(data.get("Tools_Menu"), data.get("Tools_Menu_DD"));
-						verifysearchResultsPageForSLP();						
+						canadaLib.selectSPLADetailsProductCheckBox(data.get("Software_Agrement"));
+						// verify search results and select first product
+				     	 verifysearchResultsPageForSLP();						
 						
 						// Search for part or product and add to cart : RPTCNSVPXCSPSE200C 
 				     	searchLib.searchInHomePage(data.get("PartNum1"));

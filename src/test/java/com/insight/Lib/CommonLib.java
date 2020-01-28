@@ -786,7 +786,7 @@ public class CommonLib extends ActionEngine{
 
 	public void verifyPDPMesssageforAdobeProducts() throws Throwable {
 		if (isElementPresent(CommonObj.PDP_MESSAGEVERIFY, "Prorated Agreement period message")) {
-			reporter.SuccessReport("Verify Message in Product Details Page", "Proration message exists in Product details page","");
+			reporter.SuccessReport("Verify Message in Product Details Page", "Proration message exists in Product details page","The price displayed will be prorated in the cart based on the remaining agreement period.");
 		}else{
 			reporter.failureReport("Verify Message in Product Details Page", "The price displayed will be prorated in the Cart based on the remaining agreement period. is Not Exists","");
 		}
@@ -832,5 +832,21 @@ public class CommonLib extends ActionEngine{
 	{
 		click(CommonObj.lnkViewCart, "view cart link exists and is selected");
 	}
+	public void addToCartAndVerifyInSearchPage() throws Throwable
+	{	
+		 if(isElementPresent(CartObj.ADD_TO_CART_IN_PRODUCT_SEARCHPAGE," ADD TO CART IN search page")) {
+			click(CartObj.ADD_TO_CART_IN_PRODUCT_SEARCHPAGE," ADD TO CART IN PRODUCT search page");
+			Thread.sleep(10000);
+			waitForVisibilityOfElement(CartObj.ADD_TO_CART_SUCCESS_MESSAGE,"ADD TO CART SUCCESS MESSAGE");					
+			 if(isElementPresent(CartObj.ADD_TO_CART_SUCCESS_MESSAGE,"ADD TO CART SUCCESS MESSAGE")){
+				 reporter.SuccessReport("Verify ADD TO CART SUCCESS MESSAGE", "ADD TO CART SUCCESS MESSAGE displayed", "");
+			 }else {
+				 reporter.failureReport("Verify ADD TO CART SUCCESS MESSAGE", "ADD TO CART SUCCESS MESSAGE not displayed", "", driver);
+			 }
+		}else {
+			 reporter.failureReport("Verify ADD TO CART IN PRODUCT DISPLAY PAGE", "ADD TO CART BUTTON NOT displayed", "", driver);
+		}
+	}
+	
 
 }
