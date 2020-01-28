@@ -106,7 +106,7 @@ public class QTH01_QuoteHistoryViewQuoteHistPageTest extends QuoteHistoryLib {
 						
 						canadaLib.clickOnSideMenuSelectAccountToolOptions(data.get("Tools_Menu"),
 								data.get("Tools_Menu_DD"));	 
-						verifyQuoteHistoryPageOpened();
+						verifyQuoteHistoryPageOpened(); 
 						 
 						quoteNumberInTable(quotedetails.get(0));	
 						ClickFirstQuoteNumber();

@@ -63,7 +63,7 @@ public class CAN01_ShipBillPayTaxTest extends CanadaLib{
 					
 						cmtLib.loginToCMT(data.get("Header"));
 						cmtLib.searchForWebGroup(data.get("WebGrp"));
-						cmtLib.clickOnTheWebGroup(data.get("WebGrp"));
+						cmtLib.clickOnTheWebGroup(data.get("Webgrpname"));
 						cmtLib.verifyManageWebGroupSettings();
 						cmtLib.hoverOnManageWebGroupsAndSelectOptions(data.get("ManageWebGrpOptions"));
 						cmtLib.verifyManageWebGroupsUserManagement();
@@ -71,8 +71,17 @@ public class CAN01_ShipBillPayTaxTest extends CanadaLib{
 						cmtLib.setPermissions(data.get("Menu_Name"), data.get("Set_Permission"));
 						//cmtLib.setPermissions(data.get("Menu_Name"),data.get("Enable_Purchasing_Popup"));
 						cmtLib.clickOnloginAs();
-						//cmtLib.loginVerification(data.get("contactName"));
 						switchToChildWindow();
+						cmtLib.loginVerification("User - "+data.get("contactName"));
+						//cmtLib.loginVerificationByGetText("User - "+data.get("ContactName"));
+						//cmtLib.loginVerification("Canada Test");
+						
+						
+						
+						/*
+					 * cmtLib.clickOnloginAs(); cmtLib.loginVerification(data.get("contactName"));
+					 * switchToChildWindow();
+					 */
 
 						canadaLib.verifyCanadaWebgroup();
 						// Adding first product to cart
@@ -82,7 +91,7 @@ public class CAN01_ShipBillPayTaxTest extends CanadaLib{
 						//commonLib.addFirstDisplyedItemToCartAndVerify();
 						prodinfo.getPartNumberInSearchResultsPage();
 						searchLib.increaseQuantity(data.get("Quantity"));
-						commonLib.addToCartAndVerify();
+						commonLib.addToCartAndVerifyInSearchPage();
 //						commonLib.continueToShopping();
 //						commonLib.clickCart();
 						canadaLib.continueToCheckout();
@@ -116,6 +125,8 @@ public class CAN01_ShipBillPayTaxTest extends CanadaLib{
 						orderLib.verifyPlaceOrderLabel();
 						String PSTAMOUNT = canadaLib.getPSTInSummary(data.get("PST"));
 						String GSTAMOUNT = canadaLib.getGSTInSummary(data.get("GST"));
+						shipbLib.verifyPriceIsCAD(data.get("CANDAIAN_DOLLAR"));
+						shipbLib.getSummaryAmountsInCart(data.get("SubTotal"), data.get("Total"));
 						canadaLib.clickReturnToCart();
 						commonLib.spinnerImage();
 						canadaLib.verifyPlaceCartLabel();
@@ -134,6 +145,8 @@ public class CAN01_ShipBillPayTaxTest extends CanadaLib{
 						String PSTAMOUNT1 = canadaLib.getPSTInSummary(data.get("PST"));
 						String GSTAMOUNT1 = canadaLib.getGSTInSummary(data.get("GST"));
 						canadaLib.verifyGSTAmonunts(GSTAMOUNT, GSTAMOUNT1);
+						shipbLib.verifyPriceIsCAD(data.get("CANDAIAN_DOLLAR"));
+						shipbLib.getSummaryAmountsInCart(data.get("SubTotal"), data.get("Total"));
 						String summaryAmount = cartLib.getSummaryAmountInCart();
 						orderLib.placeOrderAndVerifyReceiptOrderAndDate(summaryAmount);
 						shipbLib.clickOrderDetailsButtonInREceipt();
@@ -141,6 +154,8 @@ public class CAN01_ShipBillPayTaxTest extends CanadaLib{
 						String PSTAMOUNT2 = canadaLib.getPSTInSummary(data.get("PST"));
 						String GSTAMOUNT2 = canadaLib.getGSTInSummary(data.get("GST"));
 						canadaLib.verifyGSTAmonunts(GSTAMOUNT, GSTAMOUNT2);
+						shipbLib.verifyPriceIsCAD(data.get("CANDAIAN_DOLLAR"));
+						shipbLib.getSummaryAmountsInCart(data.get("SubTotal"), data.get("Total"));
 						commonLib.clickLogOutLink(data.get("Logout_Header"));
 						
 						System.out.println("Test completed");

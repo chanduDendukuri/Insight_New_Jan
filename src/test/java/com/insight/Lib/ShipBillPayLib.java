@@ -797,7 +797,7 @@ public class ShipBillPayLib extends ShipBillPayObj {
 		waitForVisibilityOfElement(SUCCESMSG_PAYMENTOPTIONS, "Payment options updated Success Msg");
 		reporter.SuccessReport("Verify Payment Option", "Payment Option added to Avialble Options", "");
 		}else {
-			reporter.SuccessReport("Verify Payment Option", "Payment Option Alredy added to Avialble Options", "");
+			reporter.SuccessReport("Verify Payment Option", "Payment Option Alredy added to Avialble Options", Paymentoption);
 		}
 	}
 
@@ -1009,6 +1009,7 @@ public class ShipBillPayLib extends ShipBillPayObj {
 	}
 		}
 		public void deleteCart(String cartname)throws Throwable {
+			if(isVisibleOnly(CartObj.deleteButton(cartname),"Delete Cart")) {
 			waitForVisibilityOfElement(CartObj.deleteButton(cartname),"SavedCart::"+cartname+"");
 			click((CartObj.deleteButton(cartname)), "Delete cart::"+cartname+"");
 			waitForVisibilityOfElement(CartObj.YES_BUTTON_INCONFORMATION_POP_UP, "Yes in conformation pop up");
@@ -1019,6 +1020,9 @@ public class ShipBillPayLib extends ShipBillPayObj {
 			} else {
 				reporter.failureReport("Delete cart meassage ", "Cart is sucessfully not deleted", "", driver);
 
+			}
+			}else {
+				reporter.SuccessReport("verify saved carts and delete", "saved carts already deleted", "");
 			}
 		}
 			public void verifyPartNumInProductDetailPage(String Partnum) throws Throwable {

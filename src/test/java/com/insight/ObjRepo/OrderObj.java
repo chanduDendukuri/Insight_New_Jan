@@ -63,6 +63,11 @@ public class OrderObj extends ActionEngine{
 	public static By REVIEW_ORDER_BTN=By.xpath("//button[@type='submit' and contains(text(),'Review order')]");
 	public static By DEFAULT_SAVED_CARD_DETAILS=By.xpath("//div[@class='iw-set-as-my-default iw-set-as-my-default__show edit-payment-card']");
 	public static By PAYMENT_METHOD_SELECTION=By.xpath("//div[@class='Select-menu']//div[contains(text(),'Credit card')]");
+	public static By PAYMENT_METHOD_VERIFICATION_TERMS=By.xpath("//div[@class='Select-menu']//div[contains(text(),'Terms')]");
+	public static By PAYMENT_METHOD_VERIFICATION_procurementscard=By.xpath("//div[@class='Select-menu']//div[contains(text(),'Procurement Card')]");
+
+	
+	
 	public static By PAYMENT_METHOD_DD=By.xpath("//div[contains(@class,'Select Select__Payment-method Select')]");
 	public static By PROD_DESC_PLACE_ORDER_PAGE=By.xpath("//h4[@class='cart__item-heading'] ");
 	public static By PAYMENT_METHOD_TERM= By.xpath("//span[@class='Select-value-label'][contains(text(),'Terms')]"); 
@@ -340,5 +345,6 @@ public class OrderObj extends ActionEngine{
 	 public static By getgetWG_LNL_TxtByBundles(String bundleName) {
 		 return By.xpath("//div[@class='cart__item-bundle'][contains(.,'Insight Part #: "+bundleName+"')]/following::div[@class='row expanded is-collapse-child'][1]//label[contains(text(),'WG_LNL_Txt:')]//p");
 	 }
+	 public static By QUOTE_REFERENCE_NAME=By.xpath("//div[@id='quotenameval']//span");
 }
 

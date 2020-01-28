@@ -1235,9 +1235,6 @@ public class SearchLib extends CommonObj {
 	 * @throws Throwable
 	 */
 	public void checkMessageiconforAdobeProducts() throws Throwable{
-		if(isEnabled(CommonObj.MESSAGE_TOOLTIP, "Message icon ToolTip")){
-		System.out.println("Am here");
-		}
 		if (isElementPresent(CommonObj.MESSAGE_ICON, "Message icon")) {			
 			//Actions builder=new Actions(driver);
 			mouseHover(CommonObj.MESSAGE_ICON, "Message Icon");
