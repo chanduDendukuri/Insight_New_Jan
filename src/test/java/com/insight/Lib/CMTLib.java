@@ -562,6 +562,7 @@ public  void verifyDashboard()throws Throwable {
 	 */
 	public void setPermissions(String menuName, String userPermissions) throws Throwable {
 		click(getUsersTabMenus(menuName), "Roles And Permissions");
+		Thread.sleep(3000);
 		if (isCheckBoxSelected(getUserPermission(userPermissions))) {
 			LOG.info(userPermissions + " check box already checked: " + userPermissions);
 			reporter.SuccessReport(userPermissions, "check box already checked::" + userPermissions + " ON",
