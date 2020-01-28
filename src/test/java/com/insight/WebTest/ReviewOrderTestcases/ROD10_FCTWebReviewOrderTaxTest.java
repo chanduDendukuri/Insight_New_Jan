@@ -74,7 +74,7 @@ public class ROD10_FCTWebReviewOrderTaxTest extends OrderLib{
 						shippingOptionsCarrierSelection();
 						billingAddressContinueButton();
 						selectPaymentInfoMethodCreditCard(data.get("cardNumber").toString(), data.get("cardName"), data.get("month"), data.get("year"),data.get("poNumebr"),data.get("POReleaseNumber"));
-
+						verifyTaxDeclarationONByDefault();
 						// Verify Tax exemption message is displayed or not
 						taxDeclerationCheckBoxON();
 						clickOnReviewOrderButton();

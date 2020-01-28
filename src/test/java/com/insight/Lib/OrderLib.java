@@ -523,6 +523,7 @@ public class OrderLib extends OrderObj{
 	 * @throws Throwable
 	 */
 	public void shippingOptionsCarrierSelection() throws Throwable{
+		Thread.sleep(3000);
 		click(CONTINUE_BTN, "Continue button of Shipping Options");
 		if(isElementPresent(SHIPPING_CARRIER_REQUIRED_MSG, "A shipping carrier is required message")){
 			 click(SELECT_CARRIER_DD, "carrier Drop down");
@@ -792,6 +793,21 @@ public class OrderLib extends OrderObj{
 					"Tax Exemption Field doesn't Exists","",driver);
 	}
 
+	
+	/**
+	 * Method is to check the tax Exemption  check box
+	 * @throws Throwable
+	 * 
+	 */
+	public void verifyTaxDeclarationONByDefault() throws Throwable {
+		if (isElementPresent(TAXDECLERATION_MESSAGE, "Tax Exemption Message displayed") && isCheckBoxSelected(TAX_CHECKBOX)) {
+				reporter.SuccessReport("Verify the tax check box is checked or not",
+						"Tax Exemption Field Exists and checked","Tax Exemption CheckBox ON");
+			} else {
+				reporter.failureReport("Verify Tax Exemption Field on Ship Bill Pay Place Order Page",
+						"Tax Exemption Field doesn't Exists or CheckBox is OFF","",driver);
+			}
+	}
 	/**
 	 * 
 	 * @throws Throwable
@@ -2119,6 +2135,33 @@ public class OrderLib extends OrderObj{
 			reporter.failureReport("Verify Tax estimates are equal", "Tax estimates are not equal", "");
 		}
 	}
+	
+	/**
+	 * Method is to select carrier option in the ship bill page
+	 * @throws Throwable
+	 */
+	public void selectShippingOptionsCarrierSelection(String carrier) throws Throwable{
+		Thread.sleep(3000);
+		if(isVisibleOnly(NO_CARRIER_PREFERENCE, "shipping carrier DD")){
+			click(NO_CARRIER_PREFERENCE, "carrier Drop down");
+			click(selectCarrier(carrier), "Carrier "+carrier);
+			click(CARRIER_PRICE_RADIO_BTN, "Carrier option: Ground");
+			Thread.sleep(2000);
+			click(CONTINUE_BTN, "Continue button of Shipping Options");
+			
+		 }else{
+			 
+			 reporter.failureReport("verify carrier selection", "carrier selection DD does not exists", "", driver);
+		 }
+	}
+	
+	/*public void selectCarrier(String carrier) throws Throwable {
+		clickUntil(OrderObj.SELECTARRIER,OrderObj.verifyCarrier(carrier), "carrier Drop down");
+		if (isElementPresent(OrderObj.verifyCarrier(carrier), "shipping carrier in Dropdown"+carrier)) {
+			click(OrderObj.verifyCarrier(carrier), "Carrier From Drop down"+carrier);
+		}
+	}*/
+
 	/**
 	 * Method is to fill the card details in the payment info section
 	 * @param cardNumber
