@@ -106,7 +106,7 @@ public class QTH01_QuoteHistoryViewQuoteHistPageTest extends QuoteHistoryLib {
 						
 						canadaLib.clickOnSideMenuSelectAccountToolOptions(data.get("Tools_Menu"),
 								data.get("Tools_Menu_DD"));	 
-						verifyQuoteHistoryPageOpened();
+						verifyQuoteHistoryPageOpened(); 
 						 
 						quoteNumberInTable(quotedetails.get(0));	
 						ClickFirstQuoteNumber();
@@ -126,24 +126,24 @@ public class QTH01_QuoteHistoryViewQuoteHistPageTest extends QuoteHistoryLib {
 						cmtLib.clickUpdateUser();
 						cmtLib.setPermissionsToDisable(data.get("Menu_Name"), data.get("Set_Permission2"));
 						
-						cmtLib.clickUpdateUser();
+						
 						cmtLib.loginAsAdminCMT();
 						
-						cmtLib.loginVerification(data.get("ContactName"));
+						cmtLib.loginVerification(data.get("ContactName2"));
 						marriottIntlCorpLib.getandVerifyWebGroupName(data.get("webgrpName"));
 						canadaLib.clickOnSideMenuSelectAccountToolOptions(data.get("Tools_Menu"),
 								data.get("Tools_Menu_DD"));
 						
 						verifyQuoteHistoryPageOpened();
 						invoiceHistoryLib.clickOnAdvancedSearch();	
-						QHL.SelectAccountdropdownoption(data.get("AccountOption"));
+						//QHL.SelectAccountdropdownoption(data.get("AccountOption"));
 						clickOnAdvancedSearchSearchButton();
 						VerifyQuoteDetailsunderQuoteSearch();
 						SelectWebGroupfromdd("Briana");
 						canadaLib.clickOnSideMenuSelectAccountToolOptions(data.get("Tools_Menu"),
 								data.get("Tools_Menu_DD"));
 						invoiceHistoryLib.clickOnAdvancedSearch();
-						QHL.SelectAccountdropdownoption(data.get("AccountOption"));
+						//QHL.SelectAccountdropdownoption(data.get("AccountOption"));
 						clickOnAdvancedSearchSearchButton();
 						VerifyQuoteDetailsunderQuoteSearch();
 						commonLib.clickLogOutLink(data.get("Logout_Header"));

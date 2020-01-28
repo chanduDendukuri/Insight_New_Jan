@@ -65,7 +65,7 @@ public class CMTObj extends ActionEngine {
 		return By.xpath("//td[@id='webGroupName']//a[contains(text(),'" + webGrpName + "')]");
 		//return By.xpath("//a[@id='webGroupId']");
 	}
-	public static By dd_Account = By.xpath("//div[@class='nice-select m-b-md open']");
+	public static By dd_Account = By.xpath("//span[@class='current'][contains(text(),'All My Accounts in the current Web Group')]");
 public static By dd_Accountdropdownoption(String option) {
 	return By.xpath("//div[@class='nice-select m-b-md open']//li[contains(text(),'"+option+"')]");
 }

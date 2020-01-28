@@ -242,6 +242,10 @@ public class CMTLib extends CMTObj {
 	 * @throws Throwable
 	 */
 	public void hoverOverMasterGroupAndSelectChangeGrp() throws Throwable {
+		
+		mouseHover(MASTER_GROUP, "Master Group");
+		driver.navigate().refresh();
+	  
 		mouseHover(MASTER_GROUP, "Master Group");
 		click(CHANGE_MASTER_GRP, "Change master group option");
 	}
@@ -558,6 +562,7 @@ public  void verifyDashboard()throws Throwable {
 	 */
 	public void setPermissions(String menuName, String userPermissions) throws Throwable {
 		click(getUsersTabMenus(menuName), "Roles And Permissions");
+		Thread.sleep(3000);
 		if (isCheckBoxSelected(getUserPermission(userPermissions))) {
 			LOG.info(userPermissions + " check box already checked: " + userPermissions);
 			reporter.SuccessReport(userPermissions, "check box already checked::" + userPermissions + " ON",
