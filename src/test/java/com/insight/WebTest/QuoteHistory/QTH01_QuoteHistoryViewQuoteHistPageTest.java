@@ -126,10 +126,10 @@ public class QTH01_QuoteHistoryViewQuoteHistPageTest extends QuoteHistoryLib {
 						cmtLib.clickUpdateUser();
 						cmtLib.setPermissionsToDisable(data.get("Menu_Name"), data.get("Set_Permission2"));
 						
-						cmtLib.clickUpdateUser();
+						
 						cmtLib.loginAsAdminCMT();
 						
-						cmtLib.loginVerification(data.get("ContactName"));
+						cmtLib.loginVerification(data.get("ContactName2"));
 						marriottIntlCorpLib.getandVerifyWebGroupName(data.get("webgrpName"));
 						canadaLib.clickOnSideMenuSelectAccountToolOptions(data.get("Tools_Menu"),
 								data.get("Tools_Menu_DD"));
