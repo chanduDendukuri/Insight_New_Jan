@@ -578,6 +578,7 @@ public class ShipBillPayLib extends ShipBillPayObj {
 					"Unable to Link user to Available Adresses", "");
 		}
 		click(UPDATEBUTTON_SHPPINGADDRESS, "Update Button Permissions");
+		waitForVisibilityOfElement(SUCCESSMSG_SHIPPINGADDRESS, "Shipping Address Option Updated Msg");
 	}
 	
 	public void verifyNoDefaultAddress() throws Throwable {

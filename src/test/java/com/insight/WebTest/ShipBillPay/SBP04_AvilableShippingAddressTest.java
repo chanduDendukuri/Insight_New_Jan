@@ -115,7 +115,7 @@ public class SBP04_AvilableShippingAddressTest extends ShipBillPayLib{
 				// login-3
 				cmtLib.navigateBackToCMT();
 				cmtLib.setPermissions(data.get("Menu_Name"), data.get("Set_Permission2"));
-				cmtLib.setPermissions(data.get("Menu_Name"), data.get("Set_Permission3"));
+				//cmtLib.setPermissions(data.get("Menu_Name"), data.get("Set_Permission3"));
 				cmtLib.setPermissions(data.get("Menu_Name"), data.get("Set_Permission4"));
 				cmtLib.loginAsAdminCMT();
 				// add to cart
@@ -170,13 +170,8 @@ public class SBP04_AvilableShippingAddressTest extends ShipBillPayLib{
 				cmtLib.clickCheckOutSettings(data.get("Check_out_Settings"));
 				cmtLib.selectOptionInCheckoutSettings(data.get("Shipping Addresses"));
 				shipbLib.SelectAllLinkedaddresses(data.get("Linkuseraddresses1"));
-				cmtLib.hoverOverMasterGroupAndSelectChangeGrp();
-				cmtLib.searchForWebGroup(data.get("WebGrp"));
-				cmtLib.clickOnTheWebGroup(data.get("WebGrp_Name"));
-				cmtLib.setCustomerLevelPermissionsON(data.get("WebGrpPermission"));
-				cmtLib.hoverOnManageWebGroupsAndSelectOptions(data.get("Manage_Web_Grp_Options"));
-				cmtLib.searchForaUserAndSelect(data.get("LnameEmailUname"), data.get("ContactName"));
-				cmtLib.setPermissionsToDisable(data.get("Menu_Name"), data.get("Set_Permission2"));
+				cmtLib.logoutSite();
+				
 				} catch (Exception e) {
 					ReportStatus.blnStatus = false;
 					//gErrorMessage = e.getMessage();
