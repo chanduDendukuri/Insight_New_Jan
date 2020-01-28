@@ -60,9 +60,9 @@ public class CMTObj extends ActionEngine {
 	// public String
 	// MANAGE_WEBGRP_DD="//div[@id='manageWebGroupDiv']//a[contains(text(),'#')]";
 
-	public static By getWebGroupName(String... webGrpName) {
-		//return By.xpath("//td[@id='webGroupName']//a[contains(text(),'" + webGrpName + "')]");
-		return By.xpath("//a[@id='webGroupId']");
+	public static By getWebGroupName(String webGrpName) {
+		return By.xpath("//td[@id='webGroupName']//a[contains(text(),'" + webGrpName + "')]");
+		//return By.xpath("//a[@id='webGroupId']");
 	}
 
 	public static By getManageWebGroupDDLinks(String links) {

@@ -108,7 +108,7 @@ public class QTH01_QuoteHistoryViewQuoteHistPageTest extends QuoteHistoryLib {
 						cmtLib.loginAsAdminCMT();
 						cmtLib.loginVerification(data.get("HomePage1"));
 						canadaLib.clickOnSideMenuSelectAccountToolOptions(data.get("Tools_Menu"),
-								data.get("Tools_Menu_DD"));	
+								data.get("Tools_Menu_DD"));	 
 						verifyQuoteHistoryPageOpened();
 						invoiceHistoryLib.clickOnAdvancedSearch();	
 						descInAdvSearch();// Perform Quote Search

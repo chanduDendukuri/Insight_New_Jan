@@ -243,12 +243,12 @@ public class CommonLib extends ActionEngine{
 		{	
 			 if(isElementPresent(CartObj.ADD_TO_CART_IN_PRODUCT_DISPLAY," ADD TO CART IN PRODUCT DISPLAY")) {
 				click(CartObj.ADD_TO_CART_IN_PRODUCT_DISPLAY," ADD TO CART IN PRODUCT DISPLAY");
-				Thread.sleep(2200);
+				Thread.sleep(10000);
 				waitForVisibilityOfElement(CartObj.ADD_TO_CART_SUCCESS_MESSAGE,"ADD TO CART SUCCESS MESSAGE");					
 				 if(isElementPresent(CartObj.ADD_TO_CART_SUCCESS_MESSAGE,"ADD TO CART SUCCESS MESSAGE")){
 					 reporter.SuccessReport("Verify ADD TO CART SUCCESS MESSAGE", "ADD TO CART SUCCESS MESSAGE displayed", "");
 				 }else {
-					 reporter.failureReport("Verify ADD TO CART SUCCESS MESSAGE", "ADD TO CART SUCCESS MESSAGE displayed", "", driver);
+					 reporter.failureReport("Verify ADD TO CART SUCCESS MESSAGE", "ADD TO CART SUCCESS MESSAGE not displayed", "", driver);
 				 }
 			}else {
 				 reporter.failureReport("Verify ADD TO CART IN PRODUCT DISPLAY PAGE", "ADD TO CART BUTTON NOT displayed", "", driver);
@@ -811,7 +811,8 @@ public class CommonLib extends ActionEngine{
 	
 	public void clickOnBundle(String productGroup,String productName) throws Throwable
 	{
-		click(CommonObj.getCompanyStandardsProductGroup(productGroup, productName), "select product from product group");
+		//click(CommonObj.getCompanyStandardsProductGroup(productGroup, productName), "select product from product group");
+		clickUntil(CommonObj.getCompanyStandardsProductGroup(productGroup, productName), CommonObj.lblDescription,"select product from product group");
 	}
 	
 	public void verifyDescription() throws Throwable
