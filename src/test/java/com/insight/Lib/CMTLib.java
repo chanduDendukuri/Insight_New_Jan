@@ -736,7 +736,7 @@ public  void verifyDashboard()throws Throwable {
 			reporter.SuccessReport("Verify theWebGrp Level Permissions: ", "Permission is Already Enabled",
 					customerPermissions +" ON");
 		} else {
-			click(getCustomerLevelPermissionsForWebGrp(customerPermissions), "Customer level permissions");
+			click(getCustomerLevelPermissionsForWebGrp(customerPermissions), "Customer level permissions"+customerPermissions);
 			click(UPDATE_CUSTOMER_PERMISSIONS_BTN, "Update button");
 			if (isElementPresent(CUSTOMER_PERMISSION_UPDATE_MSG, "update sucessful message")) {
 				reporter.SuccessReport("Verify the Success message ", "Permissions Updated Succesfully.",
