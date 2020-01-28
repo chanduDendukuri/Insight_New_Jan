@@ -1,5 +1,6 @@
 package com.insight.Lib;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -204,10 +205,11 @@ public class CMTLib extends CMTObj {
 	 * @param webgrpName
 	 * @throws Throwable
 	 */
+
 	public boolean clickOnTheWebGroup(String webgrpName) throws Throwable {
 		boolean status = false;
 		if (isElementVisible(getWebGroupName(webgrpName), 3, "Search results are displayed on Client Search Page")) {
-			click(getWebGroupName(webgrpName), "Web Group link exists :" );
+			click(getWebGroupName(webgrpName), "Web Group link exists :"+ webgrpName );
 			status = true;
 		} else {
 			reporter.failureReport("Verify web group displayed", "searched Web group is not displayed", "", driver);
@@ -242,6 +244,10 @@ public class CMTLib extends CMTObj {
 	public void hoverOverMasterGroupAndSelectChangeGrp() throws Throwable {
 		mouseHover(MASTER_GROUP, "Master Group");
 		click(CHANGE_MASTER_GRP, "Change master group option");
+	}
+	public void hoverOverManagecurrentWebGrp() throws Throwable {
+		mouseHover(ManageCurrentWebGroup, "ManageCurrentWebGroup");
+		click(UserslinkfromManageCurrentWebGroup, "UserslinkfromManageCurrentWebGroup");
 	}
 
 	/**
@@ -306,7 +312,44 @@ public class CMTLib extends CMTObj {
 		}
 		
 	}
+	public void clickUpdateUser() throws Throwable {
+		click(UpdateUser, "Update User", "");
+	}
 
+	public void clickSaveAsQuote() throws Throwable {
+		click(SaveAsQuote, "Save as quote", "");
+		waitForVisibilityOfElement(SaveAsQuoteHeading, "SaveAsQuoteHeading", driver);
+		click(btn_SaveAsQuote, "Save as Quote button in cart page", "");
+		waitForVisibilityOfElement(txt_SaveAsQuoteSuccessfull, "Save as Quote Successfull", driver);
+	}
+	public List<String> getQuoteNameandReferenceNumber() throws Throwable {
+		List<String> details = new ArrayList<>();
+		String QuoteName = getText(txt_QuoteName, "Quotename");
+		String ReferenceNumber = getText(txt_referencenumber, "Reference number");
+		if(QuoteName!=null && ReferenceNumber!=null) {
+			reporter.SuccessReport("QuoteName and ReferenceNUmber", "QuoteName and Reference Numbers are", ""+QuoteName+" ,"+ReferenceNumber+"");
+		}
+		else {
+		reporter.failureReport("QuoteName and ReferenceNUmber", "QuoteName and Reference Numbers are not displayed", "");
+		}
+		details.add(QuoteName);
+		details.add(ReferenceNumber);
+		return details;
+	}
+	
+	public void SwitchToParentWindow() {
+		String Parent_Window = driver.getWindowHandle();    
+
+		 for (String Child_Window : driver.getWindowHandles())  
+		 {  
+		 driver.switchTo().window(Child_Window);  
+		 //Perform operation on child window 
+		 driver.close();
+		 } 
+
+		 //Switching back to Parent Window  
+		 driver.switchTo().window(Parent_Window);  
+	}
 	/**
 	 * Method is to Verify the Same User Logged into Insight from CMT by Contact
 	 * name verification
@@ -371,7 +414,10 @@ public class CMTLib extends CMTObj {
 		}
 
 	}
-
+public  void verifyDashboard()throws Throwable {
+	boolean enabledashboard  = driver.findElement(By.xpath("//div[@class='contactInfoNameTextBox']//input[@id='enableDashboard']")).isDisplayed();
+	System.out.println(enabledashboard);
+}
 	/**
 	 * Search for a user in the users screen and select it.
 	 * 
@@ -521,8 +567,6 @@ public class CMTLib extends CMTObj {
 			click(UPDATE_USER_BTN, "Update user button");
 			waitForVisibilityOfElement(PERMISSION_UPDATE_MSG, "PERMISSION UPDATE MSG");
 			if (isElementPresent(PERMISSION_UPDATE_MSG, "update sucessful message")) {
-				reporter.SuccessReport(userPermissions, "check box already checked::" + userPermissions + " ON",
-						userPermissions + " ON");
 				reporter.SuccessReport("Verify the Sucess message ", "Permissions Updated Succesfully ",
 						"Permissions Updated Succesfully");
 			} else {

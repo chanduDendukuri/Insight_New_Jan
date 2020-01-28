@@ -1,6 +1,8 @@
 package com.insight.WebTest.QuoteHistory;
 
+import java.util.ArrayList;
 import java.util.Hashtable;
+import java.util.List;
 
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
@@ -48,11 +50,12 @@ public class QTH01_QuoteHistoryViewQuoteHistPageTest extends QuoteHistoryLib {
 								Hashtable<String, String> data = TestUtil.getDataByRowNo("TC_QTH01QuoteHistoryViewQuoteHistPage", TestDataInsight, "Quote_History", intCounter);
 								TestEngineWeb.reporter.initTestCaseDescription("QuoteHistoryViewQuoteHistPage");
 
- 
+ List<String> quotedetails = new ArrayList<>();
 						CMTLib cmtLib = new CMTLib();
 						SearchLib searchLib = new SearchLib();
 						OrderLib orderLib=new OrderLib();
 						CanadaLib canadaLib=new CanadaLib();
+						QuoteHistoryLib QHL = new QuoteHistoryLib();
 						CartLib cartLib=new CartLib();
 						InvoiceHistoryLib invoiceHistoryLib = new InvoiceHistoryLib();
 						MarriottIntlCorpLib marriottIntlCorpLib=new MarriottIntlCorpLib();
@@ -61,6 +64,7 @@ public class QTH01_QuoteHistoryViewQuoteHistPageTest extends QuoteHistoryLib {
 								data.get("LnameEmailUname"), data.get("ContactName"));
 						cmtLib.setPermissions(data.get("Menu_Name"), data.get("Set_Permission1"));
 						cmtLib.setPermissionsToDisable(data.get("Menu_Name"), data.get("Set_Permission2"));
+						cmtLib.clickUpdateUser();
 						// Login As to Web UAT
 						cmtLib.loginAsAdminCMT();
 						cmtLib.loginVerification(data.get("ContactName"));
@@ -68,62 +72,90 @@ public class QTH01_QuoteHistoryViewQuoteHistPageTest extends QuoteHistoryLib {
 						searchLib.searchInHomePage(data.get("SearchItem"));
 						cartLib.selectFirstProductDisplay();
 						commonLib.addToCartAndVerify();
-						orderLib.continueToCheckOutOnAddCart();					
-						// Create Quote
-						orderLib.createQuote(data.get("Quote_Name"));
-						String refNumber=orderLib.getQuoteReferenceNumber();
+						orderLib.continueToCheckOutOnAddCart();	
+						cmtLib.clickSaveAsQuote();	
+						cmtLib.getQuoteNameandReferenceNumber();
 						canadaLib.clickOnSideMenuSelectAccountToolOptions(data.get("Tools_Menu"),
 								data.get("Tools_Menu_DD"));
-						verifyQuoteHistoryPageOpened();
-					// Perform Quote Search						
-						quoteNumberInTable(data.get("Quote_Name"));					
-						commonLib.clickLogOutLink(data.get("Logout_Header"));
-						
-						cmtLib.navigateBackToCMT();
-						cmtLib.loginAsAdminCMT();
-						cmtLib.loginVerification(data.get("ContactName"));
-						canadaLib.clickOnSideMenuSelectAccountToolOptions(data.get("Tools_Menu"),
-								data.get("Tools_Menu_DD"));					
-						verifyQuoteHistoryPageOpened();								
-						quoteNumberInRecentQuoteTable(refNumber,data.get("Quote_Name"));	
-					   commonLib.clickLogOutLink(data.get("Logout_Header"));						
-						
-					   cmtLib.loginToCMTSearchWebGrpAndUser(data.get("Header"), data.get("WebGrp1"),
-								data.get("LnameEmailUname1"), data.get("ContactName1"));						
-						// Login As to Web UAT
-						cmtLib.loginAsAdminCMT();
-						cmtLib.loginVerification(data.get("ContactName1"));
-						// Select First Product and Add to cart
-						canadaLib.clickOnSideMenuSelectAccountToolOptions(data.get("Tools_Menu"),
-								data.get("Tools_Menu_DD"));						
 						verifyQuoteHistoryPageOpened();
 						invoiceHistoryLib.clickOnAdvancedSearch();					// Perform Quote Search						
 						clickOnAdvancedSearchSearchButton();
 						verifyNoRecords();
 						commonLib.clickLogOutLink(data.get("Logout_Header"));	
+						cmtLib.navigateBackToCMT();
+						cmtLib.setPermissions(data.get("Menu_Name"), data.get("Set_Permission2"));
+						cmtLib.setPermissions(data.get("Menu_Name"), data.get("Set_Permission3"));
+						cmtLib.clickUpdateUser();
+						cmtLib.setPermissionsToDisable(data.get("Menu_Name"), data.get("Set_Permission2"));
 						
-						cmtLib.loginToCMTSearchWebGrpAndUser(data.get("Header"), data.get("WebGrp2"),
-								data.get("LnameEmailUname2"), data.get("ContactName2"));
-						
+						cmtLib.clickUpdateUser();
 						cmtLib.loginAsAdminCMT();
-						cmtLib.loginVerification(data.get("HomePage1"));
+						cmtLib.loginVerification(data.get("ContactName"));
 						canadaLib.clickOnSideMenuSelectAccountToolOptions(data.get("Tools_Menu"),
-								data.get("Tools_Menu_DD"));	
+								data.get("Tools_Menu_DD"));
 						verifyQuoteHistoryPageOpened();
-						invoiceHistoryLib.clickOnAdvancedSearch();	
-						descInAdvSearch();// Perform Quote Search
-						clickOnAdvancedSearchSearchButton();
-						verifyNoRecords();					
-						marriottIntlCorpLib.SwitchWebGroup(data.get("webgrpName"));	
-						cmtLib.loginVerification(data.get("HomePage2"));
-						canadaLib.clickOnSideMenuSelectAccountToolOptions(data.get("Tools_Menu"),
-								data.get("Tools_Menu_DD"));	
-						verifyQuoteHistoryPageOpened();
-						invoiceHistoryLib.clickOnAdvancedSearch();	
-						descInAdvSearch();// Perform Quote Search
+						invoiceHistoryLib.clickOnAdvancedSearch();					// Perform Quote Search						
 						clickOnAdvancedSearchSearchButton();
 						verifyNoRecords();
+						searchLib.searchInHomePage(data.get("SearchItem"));
+						cartLib.selectFirstProductDisplay();
+						commonLib.addToCartAndVerify();
+						orderLib.continueToCheckOutOnAddCart();	
+						cmtLib.clickSaveAsQuote();	
+						quotedetails = cmtLib.getQuoteNameandReferenceNumber();
+						
+						canadaLib.clickOnSideMenuSelectAccountToolOptions(data.get("Tools_Menu"),
+								data.get("Tools_Menu_DD"));	 
+						verifyQuoteHistoryPageOpened();
+						 
+						quoteNumberInTable(quotedetails.get(0));	
+						ClickFirstQuoteNumber();
 						commonLib.clickLogOutLink(data.get("Logout_Header"));
+						cmtLib.navigateBackToCMT();
+						cmtLib.hoverOverMasterGroupAndSelectChangeGrp();
+						cmtLib.searchForWebGroup(data.get("WebGrp2"));
+						commonLib.clickOnWebGroupNumber(data.get("WebGrp2"));
+						cmtLib.verifyManageWebGroupSettings();
+						cmtLib.hoverOverManagecurrentWebGrp();
+						cmtLib.searchUsers(data.get("LnameEmailUname2"));
+						cmtLib.verifyUserandClick(data.get("ContactName2"));
+						cmtLib.verifyDashboard();
+						cmtLib.clickUpdateUser();
+						cmtLib.setPermissions(data.get("Menu_Name"), data.get("Set_Permission2"));
+						cmtLib.setPermissions(data.get("Menu_Name"), data.get("Set_Permission3"));
+						cmtLib.clickUpdateUser();
+						cmtLib.setPermissionsToDisable(data.get("Menu_Name"), data.get("Set_Permission2"));
+						
+						cmtLib.clickUpdateUser();
+						cmtLib.loginAsAdminCMT();
+						
+						cmtLib.loginVerification(data.get("ContactName"));
+						marriottIntlCorpLib.getandVerifyWebGroupName(data.get("webgrpName"));
+						canadaLib.clickOnSideMenuSelectAccountToolOptions(data.get("Tools_Menu"),
+								data.get("Tools_Menu_DD"));
+						
+						verifyQuoteHistoryPageOpened();
+						invoiceHistoryLib.clickOnAdvancedSearch();	
+						QHL.SelectAccountdropdownoption(data.get("AccountOption"));
+						clickOnAdvancedSearchSearchButton();
+						VerifyQuoteDetailsunderQuoteSearch();
+						SelectWebGroupfromdd("Briana");
+						canadaLib.clickOnSideMenuSelectAccountToolOptions(data.get("Tools_Menu"),
+								data.get("Tools_Menu_DD"));
+						invoiceHistoryLib.clickOnAdvancedSearch();
+						QHL.SelectAccountdropdownoption(data.get("AccountOption"));
+						clickOnAdvancedSearchSearchButton();
+						VerifyQuoteDetailsunderQuoteSearch();
+						commonLib.clickLogOutLink(data.get("Logout_Header"));
+						
+						
+						
+						
+						
+						
+						
+						
+						
 
 					} catch (Exception e) {
 						ReportStatus.blnStatus = false;

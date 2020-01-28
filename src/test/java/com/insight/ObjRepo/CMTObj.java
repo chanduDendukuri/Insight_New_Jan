@@ -40,7 +40,8 @@ public class CMTObj extends ActionEngine {
 		return By.xpath("//div[@class='c-header__middle']//span[contains(text(),'"+contactName+"')]");
 	}
 
-	
+	public static By ManageCurrentWebGroup = By.xpath("//div[@id='manageWebGroupOptionsButton']");
+	public static By UserslinkfromManageCurrentWebGroup = By.xpath("//div[@id='manageWebGroupOptionsButton']//a[contains(text(),'Users')]");
 	public static By rbtnUsetheCustomizedPermissionBelow = By.id("permissionGroup2");
 	public static By chbxEditContactInformation = By.xpath("//*[@name='edit_contact_info']");
 	public static By btnUpdateUser = By.xpath("//*[@title='Update User']");
@@ -64,11 +65,22 @@ public class CMTObj extends ActionEngine {
 		return By.xpath("//td[@id='webGroupName']//a[contains(text(),'" + webGrpName + "')]");
 		//return By.xpath("//a[@id='webGroupId']");
 	}
-
+	public static By dd_Account = By.xpath("//div[@class='nice-select m-b-md open']");
+public static By dd_Accountdropdownoption(String option) {
+	return By.xpath("//div[@class='nice-select m-b-md open']//li[contains(text(),'"+option+"')]");
+}
 	public static By getManageWebGroupDDLinks(String links) {
 		return By.xpath("//div[@id='manageWebGroupDiv']//a[contains(text(),'" + links + "')]");
 	}
-
+public static By UpdateUser = By.xpath("//span[contains(text(),'Update User')]");
+public static By SaveAsQuote = By.xpath("(//div[@class='cart-summary']//following::a[contains(text(),'Save as quote')])[3]");
+public static By SaveAsQuoteHeading = By.xpath("//h1[contains(text(),'Save as Quote')]");
+public static By btn_SaveAsQuote = By.xpath("//span[@id='saveQuoteButton']");
+public static By txt_SaveAsQuoteSuccessfull = By.xpath("//h1[contains(text(),'Save as Quote - Successful')]");
+public static By txt_QuoteName = By.xpath("//div[@id='quotenameval']//span");
+public static By txt_referencenumber = By.xpath("//div[@id='quotenumval']//span");
+public static By FirstQuoteNUmberLink = By.xpath("(//td[@class='footable-visible footable-first-column']//a)[1]");
+public static By txt_QuoteDetails = By.xpath("//h2[contains(text(),'Quote Details')]");
 	// Custom Catalogs
 	public static By APPROVE_ITEM_CATALOG_LINK = By
 			.xpath("//td[@class='contentline']//a[contains(text(),'Approved Item Catalog')]");

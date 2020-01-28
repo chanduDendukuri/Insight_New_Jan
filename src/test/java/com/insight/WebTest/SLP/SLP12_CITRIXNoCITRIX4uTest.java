@@ -76,13 +76,13 @@ public class SLP12_CITRIXNoCITRIX4uTest extends SLPLib{
 						// Select Software  Lic Agreements
 				     	canadaLib.selectSPLADetailsProductCheckBox(data.get("Soft_Agrement"));
 						// verify search results and select first product
-				     	searchLib.verifysearchResultsPage();
+				     	verifysearchResultsPageForSLP();
 				     	String firstProdPrice1 = pipLib.getFirtProductListPrice();
 				     	cartLib.selectFirstProductDisplay();
 				     	pipLib.verifyThePriceInProdDetailsPage(firstProdPrice1); // Verifying price in product details page
 				     	commonLib.addToCartAndVerify();
 				     	orderLib.continueToCheckOutOnAddCart();
-				     	
+				     	canadaLib.verifyPlaceCartLabel();
 				     	cartLib.clickAndVerifyExportCart(data.get("Order_Utilities"));
 				     	validateCartExportAndSheetName();
 				     	commonLib.clickLogOutLink(data.get("Logout"));
@@ -100,12 +100,13 @@ public class SLP12_CITRIXNoCITRIX4uTest extends SLPLib{
 						// Select Software  Lic Agreements
 				     	canadaLib.selectSPLADetailsProductCheckBox(data.get("Soft_Agrement"));
 				       // verify search results and select first product
-				     	searchLib.verifysearchResultsPage();
+				     	verifysearchResultsPageForSLP();
 				     	String firstProdPrice2 = pipLib.getFirtProductListPrice();
 				     	cartLib.selectFirstProductDisplay();
 				     	pipLib.verifyThePriceInProdDetailsPage(firstProdPrice2); // Verifying price in product details page
 				     	commonLib.addToCartAndVerify();
 				     	orderLib.continueToCheckOutOnAddCart();
+				     	canadaLib.verifyPlaceCartLabel();
 				     	// Verify proceed to check out exists or not 
 				     	verifyProccedToCheckOutbuttonExists();
 				     	verifyUserRequiresApprovelAlertMessage();
@@ -115,7 +116,7 @@ public class SLP12_CITRIXNoCITRIX4uTest extends SLPLib{
 				     	cmtLib.navigateBackToCMT();
 				     	//User Requires Approval;OFF";
 						cmtLib.setPermissionsToDisable(data.get("Menu_Name"), data.get("Set_Permission"));
-						
+						cmtLib.logoutSite();
 						
 					} catch (Exception e) {
 						ReportStatus.blnStatus = false;

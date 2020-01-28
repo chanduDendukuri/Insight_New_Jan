@@ -74,6 +74,7 @@ public class SLP03_SPLA_NoSPLA4uTest extends SLPLib{
 						cmtLib.loginVerification(data.get("ContactName"));
 						// account tools >> Software License Agreements
 						commonLib.clickOnAccountToolsAndClickOnProductGrp(data.get("Tools_Menu"), data.get("Tools_Menu_DD"));
+						canadaLib.verifySPLAPage();
 						// Select Software  Lic Agreements
 				     	canadaLib.selectSPLADetailsProductCheckBox(data.get("SPLA"));
 						// verify search results and select first product

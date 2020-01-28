@@ -80,6 +80,7 @@ public class SLP11_CITRIXSearchTest extends SLPLib{
 						
 						// account tools >> Software License Agreements
 						commonLib.clickOnAccountToolsMenuIcon(data.get("Tools_Menu"), data.get("Tools_Menu_DD"));
+						canadaLib.verifySPLAPage();
 						// Select Software  Lic Agreements
 				     	canadaLib.selectSPLADetailsProductCheckBox(data.get("Soft_Agrement"));
 						// verify search results and select first product
@@ -138,7 +139,7 @@ public class SLP11_CITRIXSearchTest extends SLPLib{
 						
 						//Verify Receipt
 						orderLib.verifyReceiptVerbiage();
-						String reportingPeriodonReceiptPage=verifyReportingUsagePeriod();
+						String reportingPeriodonReceiptPage=verifyReportingUsagePeriodOnReceiptPage();
 						assertTextStringMatching(reportingPeriod, reportingPeriodonReceiptPage);
 						orderLib.clickOrderDetailsLinkOnReceiptPage();
 						commonLib.clickLogOutLink(data.get("Logout"));
