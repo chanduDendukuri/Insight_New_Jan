@@ -424,6 +424,15 @@ public class MarriottIntlCorpLib extends MarriottIntlCorpObj {
 			reporter.failureReport("Switch to WebGroup", "WebGroup is unable to Switch", "");
 		}
 	}
+	public void getandVerifyWebGroupName(String expectedWebGroupname) throws Throwable {
+		String webgrp = getText(WebGroupName, "Web Group name");
+		if(webgrp.contains(expectedWebGroupname)) {
+			reporter.SuccessReport("WebGroup", "WebGroup is displayed as " + webgrp + "", "");
+		}
+		 else {
+				reporter.failureReport("Switch to WebGroup", "WebGroup is not displaying as expected", "");
+			}
+	}
 
 	public void addAdditionalInfoOfProductSWP(String endUserEmail, String country, String enduserunit,
 			String endusermarsha) throws Throwable {
