@@ -630,6 +630,7 @@ public class ShipBillPayLib extends ShipBillPayObj {
 				reporter.failureReport("Verify payment options:", "Procurementcard  Option exits", "");	
 			}
 		}else {
+			 reporter.SuccessReport("Verify payment options:", "Only Credit card exists as Payments Option", "Credit Card");	
 		type(OrderObj.CARD_NUMBER_TEXTBX, cardNumber, "Card number"); // Entering
 																		// details
 		// in payment
