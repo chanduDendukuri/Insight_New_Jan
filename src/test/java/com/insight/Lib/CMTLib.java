@@ -567,8 +567,6 @@ public  void verifyDashboard()throws Throwable {
 			click(UPDATE_USER_BTN, "Update user button");
 			waitForVisibilityOfElement(PERMISSION_UPDATE_MSG, "PERMISSION UPDATE MSG");
 			if (isElementPresent(PERMISSION_UPDATE_MSG, "update sucessful message")) {
-				reporter.SuccessReport(userPermissions, "check box already checked::" + userPermissions + " ON",
-						userPermissions + " ON");
 				reporter.SuccessReport("Verify the Sucess message ", "Permissions Updated Succesfully ",
 						"Permissions Updated Succesfully");
 			} else {
