@@ -204,12 +204,17 @@ public class CMTLib extends CMTObj {
 	 * @param webgrpName
 	 * @throws Throwable
 	 */
-	public void clickOnTheWebGroup(String... webgrpName) throws Throwable {
-		if (isElementVisible(getWebGroupName(), 3, "Search results are displayed on Client Search Page")) {
-			click(getWebGroupName(), "Web Group link exists :" + webgrpName);
+
+	public boolean clickOnTheWebGroup(String webgrpName) throws Throwable {
+		boolean status = false;
+		if (isElementVisible(getWebGroupName(webgrpName), 3, "Search results are displayed on Client Search Page")) {
+			click(getWebGroupName(webgrpName), "Web Group link exists :"+ webgrpName );
+			status = true;
 		} else {
 			reporter.failureReport("Verify web group displayed", "searched Web group is not displayed", "", driver);
+			status = false;
 		}
+		return status;
 	}
 
 	public void clickOnLogoutlink() throws Throwable {
@@ -302,7 +307,40 @@ public class CMTLib extends CMTObj {
 		}
 		
 	}
+	public void clickUpdateUser() throws Throwable {
+		click(UpdateUser, "Update User", "");
+	}
 
+	public void clickSaveAsQuote() throws Throwable {
+		click(SaveAsQuote, "Save as quote", "");
+		waitForVisibilityOfElement(SaveAsQuoteHeading, "SaveAsQuoteHeading", driver);
+		click(btn_SaveAsQuote, "Save as Quote button in cart page", "");
+		waitForVisibilityOfElement(txt_SaveAsQuoteSuccessfull, "Save as Quote Successfull", driver);
+	}
+	public void getQuoteNameandReferenceNumber() throws Throwable {
+		String QuoteName = getText(txt_QuoteName, "Quotename");
+		String ReferenceNumber = getText(txt_referencenumber, "Reference number");
+		if(QuoteName!=null && ReferenceNumber!=null) {
+			reporter.SuccessReport("QuoteName and ReferenceNUmber", "QuoteName and Reference Numbers are", ""+QuoteName+" ,"+ReferenceNumber+"");
+		}
+		else {
+		reporter.failureReport("QuoteName and ReferenceNUmber", "QuoteName and Reference Numbers are not displayed", "");
+		}
+	}
+	
+	public void SwitchToParentWindow() {
+		String Parent_Window = driver.getWindowHandle();    
+
+		 for (String Child_Window : driver.getWindowHandles())  
+		 {  
+		 driver.switchTo().window(Child_Window);  
+		 //Perform operation on child window 
+		 driver.close();
+		 } 
+
+		 //Switching back to Parent Window  
+		 driver.switchTo().window(Parent_Window);  
+	}
 	/**
 	 * Method is to Verify the Same User Logged into Insight from CMT by Contact
 	 * name verification
@@ -311,8 +349,7 @@ public class CMTLib extends CMTObj {
 	 * @throws Throwable
 	 */
 	public void loginVerification(String contactName) throws Throwable {
-		waitForVisibilityOfElement(CMTObj.getLoginVerficationByContactNameOnHeader(contactName),
-				"contact Name is " + contactName);
+		waitForVisibilityOfElement(CMTObj.getLoginVerficationByContactNameOnHeader(contactName),"contact Name is " + contactName);
 		//if(getText(CMTObj.getLoginVerficationByContactNameOnHeader(contactName),"LoginName").contains(contactName)){
 		if (isVisibleOnly(CMTObj.getLoginVerficationByContactNameOnHeader(contactName), "contact Name")) {
 			reporter.SuccessReport("Verify the Same User Logged into Insight from CMT",
@@ -329,9 +366,9 @@ public class CMTLib extends CMTObj {
 	 * @param lnameEmailUname
 	 * @throws Throwable
 	 */
-	public void searchUsers(String lnameEmailUname) throws Throwable {
-		waitForVisibilityOfElement(CMTObj.LNAME_EMAIL_USERNAME, "LNAME EMAIL USERNAME: " + lnameEmailUname);
-		type(CMTObj.LNAME_EMAIL_USERNAME, lnameEmailUname, "LNAME EMAIL USERNAME: " + lnameEmailUname);
+	public void searchUsers(String LnameEmailUname) throws Throwable {
+		waitForVisibilityOfElement(CMTObj.LNAME_EMAIL_USERNAME, "LNAME EMAIL USERNAME: " + LnameEmailUname);
+		type(CMTObj.LNAME_EMAIL_USERNAME, LnameEmailUname, "LNAME EMAIL USERNAME: " + LnameEmailUname);
 		click(CMTObj.USERNAME_SEARCH_BUTTON, "Search button Exists and Clicked", "Link: Search");
 	}
 
@@ -3455,6 +3492,18 @@ public void verifyProductStandardsTitle() throws Throwable
 {
 	isVisible(lblProductStandards, "ProductStandardsTitle verification");
 }
+
+	public void loginVerificationByGetText(String contactName) throws Throwable {
+		String a = getText(CMTObj.getLoginVerficationByContactNameOnHeader(contactName),"contact Name is " + contactName);
+		//if(getText(CMTObj.getLoginVerficationByContactNameOnHeader(contactName),"LoginName").contains(contactName)){
+		if (a.contains(contactName)) {
+			reporter.SuccessReport("Verify the Same User Logged into Insight from CMT",
+					"User login verification is successfull. User is : ", contactName);
+		} else {
+			reporter.failureReport("Verify the Same User Logged into Insight",
+					"User login verification is not successfull.Actual name is: ", contactName, driver);
+		}
+	}
 
 }
 

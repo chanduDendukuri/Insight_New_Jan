@@ -63,7 +63,7 @@ public class CAN01_ShipBillPayTaxTest extends CanadaLib{
 					
 						cmtLib.loginToCMT(data.get("Header"));
 						cmtLib.searchForWebGroup(data.get("WebGrp"));
-						cmtLib.clickOnTheWebGroup();
+						cmtLib.clickOnTheWebGroup(data.get("WebGrp"));
 						cmtLib.verifyManageWebGroupSettings();
 						cmtLib.hoverOnManageWebGroupsAndSelectOptions(data.get("ManageWebGrpOptions"));
 						cmtLib.verifyManageWebGroupsUserManagement();

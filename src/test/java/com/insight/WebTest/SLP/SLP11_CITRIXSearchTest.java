@@ -80,6 +80,7 @@ public class SLP11_CITRIXSearchTest extends SLPLib{
 						
 						// account tools >> Software License Agreements
 						commonLib.clickOnAccountToolsMenuIcon(data.get("Tools_Menu"), data.get("Tools_Menu_DD"));
+						canadaLib.verifySPLAPage();
 						// Select Software  Lic Agreements
 				     	canadaLib.selectSPLADetailsProductCheckBox(data.get("Soft_Agrement"));
 						// verify search results and select first product
@@ -89,43 +90,47 @@ public class SLP11_CITRIXSearchTest extends SLPLib{
 				     	searchLib.removeTheFilterForInStockOnly(data.get("In_Stock_Only"));
 						pipLib.verifyTheManufacturerNumberInProductDetailsPage(data.get("SearchText1"));
 						pipLib.enterQuantityOnProductDetailsPage(data.get("Quantity"));
-				     	
-				     	
-				     	
-				     	
-				     	
-				     	
-				     	
-				     	
-				     	
-				     	
-				     	
-				     	
-				     	
-				     	commonLib.addToCartAndVerify();
+						commonLib.addToCartAndVerify();
 						orderLib.continueToCheckOutOnAddCart();
-						cartLib.verifyItemInCart(data.get("SearchText1"));
+						verifyCITRIXItemInCart(data.get("SearchText1"));
 				     	
-				     	// search for product : 7NQ-00302-MSPLA
-				     	searchLib.searchInHomePage(data.get("SearchText2"));
-				        // search for product and add to cart
-				     	commonLib.addToCartAndVerify();
-				     	orderLib.continueToCheckOutOnAddCart();
-				     	verifyCitrixItemsInCart(); // Verifying citrix item in cart
-				     	// verifying the Non Service Provider Items Removal Message in cart
+						Thread.sleep(3000);
+				     	int itemnumber=Integer.valueOf(data.get("Item_Number"));
+				     	verifyCartPageAndPartDetails(itemnumber-1);
+				     	
+				        // search for product and add to cart  : Workstations
+						searchLib.searchInHomePage(data.get("SearchText3"));
+						searchLib.verifyTheResultsForSearchTerm(data.get("SearchText3"));
+						pipLib.getPartNumberInSearchResultsPage();
+						cartLib.selectFirstProductDisplay();
+						String mfrNumber=prodDetailsLib.getMFRNumberInProductInfopage();
+						String insigtPart=prodDetailsLib.getInsightPartNumberInProductInfopage();
+						commonLib.addToCartAndVerify();
+						orderLib.continueToCheckOutOnAddCart();
+						canadaLib.verifyPlaceCartLabel();
+						cartLib.verifyItemInCartByInsightPart(mfrNumber);
+						verifyCartPageAndPartDetails(itemnumber);
+						// Verify CITRIX part in cart
+						verifyCITRIXItemInCart(data.get("SearchText1"));
+						verifyCitrixItemsInCart();
+						
+						// verifying the Non Service Provider Items Removal Message in cart
 				     	verifyNonServiceProviderItemsRemovalMessage();
+				     	
 				     	///	Remove non Citrix Items from the Cart
-				     	deleteParticularItemInCart(data.get("SearchText2"));
-				        // Verifying citrix item in cart
-				     	verifyCitrixItemsInCart();
-				        // Verify Usage Period
+				     	deleteParticularItemInCart(insigtPart);
+				     	// Usage period warning message
+				       canadaLib.verifyReportingUsagePeriodWarningMessage();
+				       // Verify Usage Period
 						String reportingPeriod=canadaLib.verifyReportingUsagePeriod();
-						orderLib.proceedToCheckout();
-						orderLib.continueButtonOnAdditionalInformationSection();  // Click continue on Additional information Section
-			            orderLib.clickContinueOnLineLevelInfo(); // Click continue on Line Level information Section
-						orderLib.shippingBillPayContinueButton(); // Click continue on shipping address Section
-						orderLib.shippingBillPayContinueButton(); // Click continue on Shipping options Section
-						orderLib.shippingBillPayContinueButton(); //Click continue on Billing address Section
+						//Proceed to checkout
+						 orderLib.proceedToCheckout();
+						 orderLib.clickOnAdditionalInfoContinueButton();
+						 orderLib.clickContinueOnLineLevelInfo();   // Click continue on Line level Info
+						 canadaLib.verifySBP();
+						 orderLib.clickContinueOnShippingAddress();
+						 orderLib.shippingOptionsCarrierSelection();
+						 orderLib.billingAddressContinueButton(); // Billing address continue button
 						orderLib.selectPaymentInfoMethodCreditCard(data.get("Card_Number").toString(), data.get("Card_Name"),data.get("Month"), data.get("Year"),data.get("PO_Number"),data.get("POReleaseNumber"));  // VISA card
 						orderLib.clickOnReviewOrderButton();
 						//Place Order
@@ -134,7 +139,7 @@ public class SLP11_CITRIXSearchTest extends SLPLib{
 						
 						//Verify Receipt
 						orderLib.verifyReceiptVerbiage();
-						String reportingPeriodonReceiptPage=canadaLib.verifyReportingUsagePeriod();
+						String reportingPeriodonReceiptPage=verifyReportingUsagePeriodOnReceiptPage();
 						assertTextStringMatching(reportingPeriod, reportingPeriodonReceiptPage);
 						orderLib.clickOrderDetailsLinkOnReceiptPage();
 						commonLib.clickLogOutLink(data.get("Logout"));

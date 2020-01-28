@@ -22,6 +22,7 @@ public class SLPLib extends SLPObj {
 	String expectedSummaryTotalAmount;
 	String referenceNumber;
     OrderLib orderLib=new OrderLib();
+    CanadaLib canadaLib=new CanadaLib();
 	/**
 	 * Method is used to get price from Product detail page
 	 * 
@@ -528,7 +529,7 @@ public class SLPLib extends SLPObj {
 		 */
 		public void verifyNonServiceProviderItemsRemovalMessage() throws Throwable{
 			if(isElementPresent(NON_CITRIX_ITEMS_REMOVE_MESSAGE, "NON CITRIX ITEMS REMOVE MESSAGE")){
-				reporter.SuccessReport("Verify NON CITRIX Past Message on CART Page", "In order to report usage please remove items that do not apply to the selected service provider Exist", "");
+				reporter.SuccessReport("Verify NON CITRIX Past Message on CART Page", "In order to report usage please remove items that do not apply to the selected service provider Exist", "Message: In order to report usage please remove items that do not apply to the selected service provider");
 			}else{
 				reporter.failureReport("Verify NON CITRIX Past Message on CART Page", "In order to report usage please remove items that do not apply to the selected service provider Not Exists", "");
 			}
@@ -540,7 +541,7 @@ public class SLPLib extends SLPObj {
 		 * @throws Throwable
 		 */
 		public void deleteParticularItemInCart(String partNum) throws Throwable{
-			click(getdeleteIconIncartBypartNumber(partNum), "Delete item in cart");
+			click(getdeleteIconIncartBypartNumber(partNum), "Deleted item in cart  "+partNum);
 		}
 		/**
 		 * Method is used to click on Quote number
@@ -577,13 +578,13 @@ public class SLPLib extends SLPObj {
 		 * 
 		 * @throws Throwable
 		 */
-		public String verifyReportingUsagePeriod() throws Throwable {
+		public String verifyReportingUsagePeriodOnReceiptPage() throws Throwable {
 			String period = null;
-			if (isElementPresent(REPORTING_USAGE_ON_RECEIPT_PAGE, "reporting usage period on Cart PAGE")&& isElementPresent(ENROLLMENT, "ENROLLMENT")) {
+			if (isElementPresent(REPORTING_USAGE_ON_RECEIPT_PAGE, "reporting usage period on Cart PAGE")&& isElementPresent(ENROLLMENT_ON_RECEIPT_PAGE, "ENROLLMENT")) {
 				 period = getText(REPORTING_USAGE_ON_RECEIPT_PAGE, "reporting usage period on Cart PAGE");
-				 String enrolment=getText(ENROLLMENT, "ENROLLMENT");
+				 String enrolment=getText(ENROLLMENT_ON_RECEIPT_PAGE, "ENROLLMENT");
 				reporter.SuccessReport("verify reporting usage period on RECEIPT PAGE",
-						"Usage Field Exists and Verified. " + period,period +"  "+enrolment);
+						"Usage Field Exists and Verified. " + period," Report usage for:" + ""+period +"  "+enrolment);
 			} else {
 				reporter.failureReport("verify reporting usage period on RECEIPT PAGE", "Usage Field does not Exists. ", "");
 			}
@@ -797,7 +798,18 @@ public class SLPLib extends SLPObj {
 			}else{
 				reporter.failureReport("Find SubTotalCurrency Code and Amount in Cart Summary on Content & resources ", "Cart does not Display's Usage Months alredy Reported Upon", "");
 			}
-			
+		}
+		
+		public void verifyCITRIXItemInCart(String itemInCart) throws Throwable {
+			canadaLib.verifyPlaceCartLabel();
+			waitForVisibilityOfElement(CartObj.getItemInCart(itemInCart), "Item in cart");
+			if (driver.findElement(CartObj.getItemInCart(itemInCart)).isDisplayed()) {
+				reporter.SuccessReport("Verify CITRIX Product on CART Page", "CITRIX Product is Existed and Verified", "Product :Insight Part # "+itemInCart);
+			} else {
+				reporter.failureReport("Verify CITRIX Product on CART Page", "Citrix product " + itemInCart + "is not ADDED TO CART",
+						itemInCart, driver);
+
+			}
 		}
 }
 

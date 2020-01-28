@@ -63,17 +63,26 @@ public class CAN13_CartBundlesTest extends CanadaLib{
 						cmtLib.verifyClientSearchTitle();
 						//canadaLib.verifyCanadaWebgroup();
 						cmtLib.searchForWebGroup(data.get("WebGrp"));
-						cmtLib.clickOnTheWebGroup();
+						cmtLib.clickOnTheWebGroup(data.get("ContactName"));/*{
+							reporter.SuccessReport("Web Group Name ","Selected web group name is:  ",  data.get("WebGrp"));
+						}*/
 						cmtLib.verifyManageWebGroupSettings();
 						cmtLib.hoverOnManageWebGroupsAndSelectOptions(data.get("ManageWebGrpOptions"));
 						cmtLib.verifyManageWebGroupsUserManagement();
 						cmtLib.searchForaUserAndSelect(data.get("LnameEmailUname"), data.get("ContactName"));
-						
-						//cmtLib.setPermissions(data.get("Menu_Name"),data.get("Enable_Purchasing_Popup"));
-						cmtLib.clickOnloginAs();
-						//cmtLib.loginVerification(data.get("contactName"));
-						switchToChildWindow();
 
+									/*cmtLib.loginToCMTSearchWebGrpAndUser(data.get("Header"), data.get("WebGrp"),
+											data.get("LnameEmailUname"), data.get("ContactName"));
+						*///cmtLib.setPermissions(data.get("Menu_Name"),data.get("Enable_Purchasing_Popup"));
+						cmtLib.clickOnloginAs();
+/*<<<<<<< HEAD
+						cmtLib.loginVerification(data.get("ContactName"));
+						switchToChildWindow();
+=======*/
+									switchToChildWindow();
+						cmtLib.loginVerification("User - "+data.get("ContactName"));
+						//cmtLib.loginVerificationByGetText("User - "+data.get("ContactName"));
+									cmtLib.loginVerification("Canada Test");
 					
 					
 					/*
