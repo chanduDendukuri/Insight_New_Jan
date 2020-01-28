@@ -117,6 +117,7 @@ public class OrderLib extends OrderObj{
 	 * @throws Throwable
 	 */
 	public void continueToCheckOutOnAddCart() throws Throwable{
+		
 		click(CONTINUE_TO_CHECKOUT, "Continue to checkout");
 		if(isElementNotPresent(CanadaObj.CART_LABEL, "Cart header label displayed")) {
 			refreshPage();	

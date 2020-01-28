@@ -54,7 +54,7 @@ public class ROD06_FCTWebReviewExportTest extends OrderLib{
 						searchLib.searchInHomePage(data.get("SearchText1"));
 						searchLib.verifyTheResultsForSearchTerm(data.get("SearchText1"));
 						// in-stock filter verification
-						searchLib.verifyFilterBreadCrumb(data.get("In_Stock_Only"));
+						// searchLib.verifyFilterBreadCrumb(data.get("In_Stock_Only"));
 						prodLib.selectFirstProductAddToCartAndVerifyCart();
 						// ********  verify Export Excel ***************//
 						cartLib.ClickExportCartAndVerify(data.get("Order_Utilities"),data.get("Sheet_Name"),data.get("Row_number"),data.get("Column_Headers"));
