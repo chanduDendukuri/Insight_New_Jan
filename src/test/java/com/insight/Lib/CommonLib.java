@@ -786,7 +786,7 @@ public class CommonLib extends ActionEngine{
 
 	public void verifyPDPMesssageforAdobeProducts() throws Throwable {
 		if (isElementPresent(CommonObj.PDP_MESSAGEVERIFY, "Prorated Agreement period message")) {
-			reporter.SuccessReport("Verify Message in Product Details Page", "Proration message exists in Product details page","");
+			reporter.SuccessReport("Verify Message in Product Details Page", "Proration message exists in Product details page","The price displayed will be prorated in the cart based on the remaining agreement period.");
 		}else{
 			reporter.failureReport("Verify Message in Product Details Page", "The price displayed will be prorated in the Cart based on the remaining agreement period. is Not Exists","");
 		}

@@ -1,6 +1,7 @@
 package com.insight.WebTest.SLP;
 
 import java.util.Hashtable;
+import java.util.List;
 
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
@@ -66,38 +67,60 @@ public class SLP14_AdobeVIP extends SLPLib{
 					cmtLib.hoverOnManageWebGroupsAndSelectOptions(data.get("Manage_Web_Grp_Options"));
 					cmtLib.searchForaUserAndSelect(data.get("LnameEmailUname"), data.get("ContactName"));
 					// "enable_standard_reports;ON";
-					cmtLib.setPermissionsToDisable(data.get("Menu_Name"), data.get("Set_Permission"));
+					//cmtLib.setPermissionsToDisable(data.get("Menu_Name"), data.get("Set_Permission"));
 					cmtLib.loginAsAdminCMT();
 					// Login verification
 					cmtLib.loginVerification(data.get("ContactName"));
 					// account tools >> Company Standards					
 					searchLib.selectAccountToolsFromSideMenuAndClickOnProductGrp(data.get("Tools_Menu"), data.get("Tools_Menu_DD"),data.get("productGroup"),data.get("productName"));
+					
 					searchLib.verifyProductWStandardsPage();
 					searchLib.verifyClientAndClickOnProductGrpName(data.get("productName"));
 					searchLib.checkMessageiconforAdobeProducts();
+					// Select first description and verify mini popup window
+					searchLib.selectDescriptionAndVerifyMiniPopupWindow();
+					
 					// Search for part or product and add to cart : part : 65234076BA03A12
 			     	searchLib.searchInHomePage(data.get("PartNum1"));
 			     	commonLib.verifyPDPMesssageforAdobeProducts();
 			     	commonLib.addToCartAndVerify();
 			     	orderLib.continueToCheckOutOnAddCart();
-			     // Search for Adobe part or product and add to cart : part : 65234098BA03A12
+			     	canadaLib.verifyPlaceCartLabel();
+			     	
+			        // Search for Adobe part or product and add to cart : part : 65234098BA03A12
 			     	searchLib.searchInHomePage(data.get("PartNum2"));
 			     	commonLib.verifyPDPMesssageforAdobeProducts();
-			     	commonLib.addToCartAndVerify();
+			    	pipLib.enterQuantityOnProductDetailsPage(data.get("Quantity"));
+                    commonLib.addToCartAndVerify();
 			     	orderLib.continueToCheckOutOnAddCart();
-			     // Search for Non Adobe part or product and add to cart : part :L9K19UT#ABA 
+			     	canadaLib.verifyPlaceCartLabel();
+			        
+			     	// Search for Non Adobe part or product and add to cart : part :L9K19UT#ABA 
 			     	searchLib.searchInHomePage(data.get("PartNum3"));
+			     	
+			     	pipLib.enterQuantityOnProductDetailsPage(data.get("Quantity"));
 			     	commonLib.addToCartAndVerify();
 			     	orderLib.continueToCheckOutOnAddCart();
+			     	
+			     	// Verify Deploy popup details for part 1
 			     	verifyandClickchangeLink(data.get("PartNum1"));
 			     	verifydeployedatewithcurrentdate();
+			     	String date1=getDeploydateOnCart(data.get("PartNum1"));
+			     	List<String> prodDesc1 = orderLib.getProductDescriptionOfCartProduct();
+			     	verifycartDetailsWithDeployPopUpDetails(date1, prodDesc1.get(1), data.get("PartNum1"));
 			     	calenderforUnpaidLicense(data.get("Date1"));
 			     	clickapply();
+			     	
 			     	verifyandClickchangeLink(data.get("PartNum2"));
 			     	verifydeployedatewithcurrentdate();
+			     	String date2=getDeploydateOnCart(data.get("PartNum2"));
+			     	List<String> prodDesc2 = orderLib.getProductDescriptionOfCartProduct();
+			     	verifycartDetailsWithDeployPopUpDetails(date2, prodDesc2.get(2), data.get("PartNum2"));
 			     	calenderforUnpaidLicense(data.get("Date2"));
 			     	clickapply();
-			     	 //Verify Deployed date displayed in cart page
+			     	
+			     	
+			     	//Verify Deployed date displayed in cart page
                     String DeployedDate= getTextfromdeployedateinCartPage();
 			     	orderLib.proceedToCheckout();
 			     	int i=1;
@@ -105,27 +128,25 @@ public class SLP14_AdobeVIP extends SLPLib{
 			     	enterPAvalue(data.get("PA"),i);
 			     	enterPAvalue(data.get("PA1"),j);
 			     	orderLib.clickContinueOnLineLevelInfo();
-			     	orderLib.shippingBillPayContinueButton(); // Click continue on
-					                                             // shipping address
-                    orderLib.shippingOptionsCarrierSelection(); // Click continue on
-					                                            // shipping options
-                    orderLib.shippingBillPayContinueButton(); // Billing address
-					                                              // continue button
-                    orderLib.enterCreditCard(data.get("Card_Number").toString(), data.get("Card_Name"), data.get("Month"),
+			     	 canadaLib.verifySBP();
+					 orderLib.shippingBillPayContinueButton();
+					 orderLib.shippingOptionsCarrierSelection();
+					 orderLib.billingAddressContinueButton();
+                    orderLib.selectPaymentInfoMethodCreditCard(data.get("Card_Number").toString(), data.get("Card_Name"), data.get("Month"),
         					data.get("Year"), data.get("PONumber"),data.get("POReleaseNumber"));
                     orderLib.clickOnReviewOrderButton();                       
                             
                     orderLib.verifyPlaceOrderLabel();
                     String OrderDate=getTextfromdeployedateinPlaceOrderPage();
-                    assertTrue(DeployedDate.contains(OrderDate), "Both dates are matched");
+                    assertTrue(DeployedDate.contains(OrderDate), "Deploy Date Field Exists and Verified");
                     //Verifying PA fields in Place order page
                     verifyPAvalueinPlaceOrderPage();                              
                     //Place Order
 						String summaryAmountInLogin=cartLib.getSummaryAmountInCart();
 						 orderLib.placeOrderAndVerifyReceiptOrderAndDate(summaryAmountInLogin);
-						String RefNumber= orderLib.getTextfromReferenceNumber();
                       orderLib.clickOrderDetailsLinkOnReceiptPage();
-                      					
+                      verifyPAOnReceiptPage(data.get("PA"));	
+                      verifyPAOnReceiptPage(data.get("PA1"));
 					commonLib.clickLogOutLink(data.get("Logout"));
 					
 				} catch (Exception e) {

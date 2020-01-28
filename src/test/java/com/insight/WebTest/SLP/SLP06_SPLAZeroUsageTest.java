@@ -124,7 +124,7 @@ public class SLP06_SPLAZeroUsageTest extends SLPLib{
 						 orderLib.clickOnReviewOrderButton();  // Click Review order button
 						
 						// Verify usage period on place order page
-						  String poUsagePeriod=canadaLib.verifyReportingUsagePeriod();
+						  String poUsagePeriod=verifyReportingUsagePeriodOnReceiptPage();
 						  verifyUsagePeriodsMatching(poUsagePeriod, cartUsagePeriod);
 						 
 						 // Place Order
