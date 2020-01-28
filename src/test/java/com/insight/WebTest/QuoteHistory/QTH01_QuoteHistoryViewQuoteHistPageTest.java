@@ -86,9 +86,9 @@ public class QTH01_QuoteHistoryViewQuoteHistPageTest extends QuoteHistoryLib {
 								data.get("Tools_Menu_DD"));					
 						verifyQuoteHistoryPageOpened();								
 						quoteNumberInRecentQuoteTable(refNumber,data.get("Quote_Name"));	
-					   commonLib.clickLogOutLink(data.get("Logout_Header"));						
+					    commonLib.clickLogOutLink(data.get("Logout_Header"));						
 						
-					   cmtLib.loginToCMTSearchWebGrpAndUser(data.get("Header"), data.get("WebGrp1"),
+					    cmtLib.loginToCMTSearchWebGrpAndUser(data.get("Header"), data.get("WebGrp1"),
 								data.get("LnameEmailUname1"), data.get("ContactName1"));						
 						// Login As to Web UAT
 						cmtLib.loginAsAdminCMT();

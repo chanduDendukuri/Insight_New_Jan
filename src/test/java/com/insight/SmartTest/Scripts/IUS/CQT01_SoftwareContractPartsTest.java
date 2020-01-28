@@ -81,7 +81,8 @@ public class CQT01_SoftwareContractPartsTest extends HomeLib {
 					clickOnVIPCheckBox();
 					clickOnSaveButtonOnOptionsAndLevelsPopup();
 					SearchButton();
-					verifyResultsofMaterailIdofKeyWordSearch(data.get("MaterialId"));
+					clickOnMaterialID();
+					//verifyResultsofMaterailIdofKeyWordSearch(data.get("MaterialId"));
 					clickOnAddToOrderButton();
 					clickCloseButton();
 					clickUpdateCosting();
