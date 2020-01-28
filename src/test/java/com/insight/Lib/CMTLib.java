@@ -728,7 +728,7 @@ public  void verifyDashboard()throws Throwable {
 
 		if (isCheckBoxSelected(getCustomerLevelPermissionsForWebGrp(customerPermissions))) {
 			LOG.info(customerPermissions + " check box already checked.");
-			reporter.SuccessReport("Verify the Success message ", "Permissions Updated Succesfully.",
+			reporter.SuccessReport("Verify theWebGrp Level Permissions: ", "Permission is Already Enabled",
 					customerPermissions +" ON");
 		} else {
 			click(getCustomerLevelPermissionsForWebGrp(customerPermissions), "Customer level permissions");

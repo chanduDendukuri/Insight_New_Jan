@@ -61,8 +61,8 @@ public class SBP06_CreditCardOverrideTest extends ShipBillPayLib {
 				cmtLib.loginToCMT(data.get("Header"));
 				cmtLib.searchForWebGroup(data.get("WebGrp"));
 				cmtLib.clickOnTheWebGroup(data.get("WebGrp_Name"));
-				cmtLib.setCustomerLevelPermissionsON(data.get("Customer_Permissions_ON"));
 				cmtLib.setCustomerLevelPermissionsOFF(data.get("PermissionDisable"));
+				cmtLib.setCustomerLevelPermissionsON(data.get("Customer_Permissions_ON"));
 				cmtLib.hoverOnManageWebGroupsAndSelectOptions(data.get("Manage_Web_Grp_Options"));
 				cmtLib.searchForaUserAndSelect(data.get("LnameEmailUname"), data.get("ContactName"));
 				cmtLib.loginAsAdminCMT();
