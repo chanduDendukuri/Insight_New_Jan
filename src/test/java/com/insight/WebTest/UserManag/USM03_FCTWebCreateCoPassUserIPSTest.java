@@ -109,8 +109,9 @@ public class USM03_FCTWebCreateCoPassUserIPSTest  extends UserManagementLib {
 							String lastName="QTPTest"+getRandomNumeric(4);
 							cmtLib.enterLastNameInCreateAnAccount(lastName);
 							cmtLib.enterPhoneNumberInCreateAnAccount(data.get("Phone_Number"));
+							String userName1="QTPTest"+getRandomNumeric(4);
 							String userName2="QTPTest"+getRandomNumeric(4);
-							cmtLib.verifyAvailabilityCreateAccount(data.get("CreateacUserName5"),userName2);
+							cmtLib.enterUserNameInCreateAnAccount(userName1,userName2);
 							String password="QTPTest"+getRandomNumeric(4);
 							cmtLib.enterPasswordInCreateAnAccount(password);
 							cmtLib.enterConfirmPasswordInCreateAnAccount(password);//Phone_Number

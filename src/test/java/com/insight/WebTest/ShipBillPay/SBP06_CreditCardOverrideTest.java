@@ -61,8 +61,8 @@ public class SBP06_CreditCardOverrideTest extends ShipBillPayLib {
 				cmtLib.loginToCMT(data.get("Header"));
 				cmtLib.searchForWebGroup(data.get("WebGrp"));
 				cmtLib.clickOnTheWebGroup(data.get("WebGrp_Name"));
-				cmtLib.setCustomerLevelPermissionsON(data.get("Customer_Permissions_ON"));
 				cmtLib.setCustomerLevelPermissionsOFF(data.get("PermissionDisable"));
+				cmtLib.setCustomerLevelPermissionsON(data.get("Customer_Permissions_ON"));
 				cmtLib.hoverOnManageWebGroupsAndSelectOptions(data.get("Manage_Web_Grp_Options"));
 				cmtLib.searchForaUserAndSelect(data.get("LnameEmailUname"), data.get("ContactName"));
 				cmtLib.loginAsAdminCMT();
@@ -117,7 +117,7 @@ public class SBP06_CreditCardOverrideTest extends ShipBillPayLib {
 				orderLib.shippingOptionsCarrierSelection(); // Click continue on shipping options
 				orderLib.billingAddressContinueButton(); // Billing address continue button
 				// CREDIT CARD VERIFICATION
-				orderLib.selectPaymentInfoMethodCreditCard(data.get("cardNumber"), data.get("Card_Name"), data.get("Month"),
+				orderLib.selectPaymentInfoMethodCreditCardandVerifyonlyCreditCardExists(data.get("cardNumber"), data.get("Card_Name"), data.get("Month"),
 						data.get("year"),data.get("PONumber"),data.get("POReleaseNumber"));
 				orderLib.clickOnReviewOrderButton();
 				String summaryAmount1 = cartLib.getSummaryAmountInCart();
@@ -148,15 +148,14 @@ public class SBP06_CreditCardOverrideTest extends ShipBillPayLib {
 				orderLib.shippingOptionsCarrierSelection(); // Click continue on shipping options
 				orderLib.billingAddressContinueButton(); // Billing address continue button
 				// CREDIT CARD VERIFICATION
-				orderLib.selectPaymentInfoMethodCreditCard(data.get("cardNumber"), data.get("Card_Name"), data.get("Month"),
+				orderLib.selectPaymentInfoMethodCreditCardandVerifyonlyCreditCardExists(data.get("cardNumber"), data.get("Card_Name"), data.get("Month"),
 						data.get("year"),data.get("PONumber"),data.get("POReleaseNumber"));
 				orderLib.clickOnReviewOrderButton();
 				String summaryAmount2 = cartLib.getSummaryAmountInCart();
 				orderLib.placeOrderAndVerifyReceiptOrderAndDate(summaryAmount2);
+				commonLib.clickLogOutLink(data.get("Logout_Header"));
 				cmtLib.navigateBackToCMT();
-				cmtLib.hoverOverMasterGroupAndSelectChangeGrp();
-				cmtLib.searchForWebGroup(data.get("WebGrp"));
-				cmtLib.clickOnTheWebGroup(data.get("WebGrp_Name"));
+				cmtLib.hoverOnManageWebGroupsAndSelectOptions(data.get("Manage_Web_Grp_Options2"));
 				// override_payment_options
 				cmtLib.setCustomerLevelPermissionsOFF(data.get("Customer_Permissions_ON"));
 				cmtLib.logoutSite();

@@ -623,6 +623,14 @@ public class ShipBillPayLib extends ShipBillPayObj {
 	 */
 	public void VisaCardErrorPayment(String cardNumber, String cardName, String month, String year, String poNumebr)
 			throws Throwable {
+		click(PAYMENT_METHOD_DD, "payment method drop down");
+		if(isVisibleOnly(OrderObj.PAYMENT_METHOD_VERIFICATION_TERMS,"Terms")) {
+			reporter.failureReport("Verify payment options:", "Terms Exists in payment Options", "Terms");
+			if(isVisibleOnly(OrderObj.PAYMENT_METHOD_VERIFICATION_procurementscard,"Procurement Card")) {
+				reporter.failureReport("Verify payment options:", "Procurementcard  Option exits", "");	
+			}
+		}else {
+			 reporter.SuccessReport("Verify payment options:", "Only Credit card exists as Payments Option", "Credit Card");	
 		type(OrderObj.CARD_NUMBER_TEXTBX, cardNumber, "Card number"); // Entering
 																		// details
 		// in payment
@@ -637,6 +645,7 @@ public class ShipBillPayLib extends ShipBillPayObj {
 			reporter.SuccessReport("Verify visa card error message", "Visa card type is not supported", "");
 		} else {
 			reporter.failureReport("Verify visa card error message", "Visa card type is supported", "");
+		}
 		}
 	}
 
@@ -797,7 +806,7 @@ public class ShipBillPayLib extends ShipBillPayObj {
 		waitForVisibilityOfElement(SUCCESMSG_PAYMENTOPTIONS, "Payment options updated Success Msg");
 		reporter.SuccessReport("Verify Payment Option", "Payment Option added to Avialble Options", "");
 		}else {
-			reporter.SuccessReport("Verify Payment Option", "Payment Option Alredy added to Avialble Options", "");
+			reporter.SuccessReport("Verify Payment Option", "Payment Option Alredy added to Avialble Options", Paymentoption);
 		}
 	}
 
@@ -1009,6 +1018,7 @@ public class ShipBillPayLib extends ShipBillPayObj {
 	}
 		}
 		public void deleteCart(String cartname)throws Throwable {
+			if(isVisibleOnly(CartObj.deleteButton(cartname),"Delete Cart")) {
 			waitForVisibilityOfElement(CartObj.deleteButton(cartname),"SavedCart::"+cartname+"");
 			click((CartObj.deleteButton(cartname)), "Delete cart::"+cartname+"");
 			waitForVisibilityOfElement(CartObj.YES_BUTTON_INCONFORMATION_POP_UP, "Yes in conformation pop up");
@@ -1019,6 +1029,9 @@ public class ShipBillPayLib extends ShipBillPayObj {
 			} else {
 				reporter.failureReport("Delete cart meassage ", "Cart is sucessfully not deleted", "", driver);
 
+			}
+			}else {
+				reporter.SuccessReport("verify saved carts and delete", "saved carts already deleted", "");
 			}
 		}
 			public void verifyPartNumInProductDetailPage(String Partnum) throws Throwable {

@@ -832,5 +832,21 @@ public class CommonLib extends ActionEngine{
 	{
 		click(CommonObj.lnkViewCart, "view cart link exists and is selected");
 	}
+	public void addToCartAndVerifyInSearchPage() throws Throwable
+	{	
+		 if(isElementPresent(CartObj.ADD_TO_CART_IN_PRODUCT_SEARCHPAGE," ADD TO CART IN search page")) {
+			click(CartObj.ADD_TO_CART_IN_PRODUCT_SEARCHPAGE," ADD TO CART IN PRODUCT search page");
+			Thread.sleep(10000);
+			waitForVisibilityOfElement(CartObj.ADD_TO_CART_SUCCESS_MESSAGE,"ADD TO CART SUCCESS MESSAGE");					
+			 if(isElementPresent(CartObj.ADD_TO_CART_SUCCESS_MESSAGE,"ADD TO CART SUCCESS MESSAGE")){
+				 reporter.SuccessReport("Verify ADD TO CART SUCCESS MESSAGE", "ADD TO CART SUCCESS MESSAGE displayed", "");
+			 }else {
+				 reporter.failureReport("Verify ADD TO CART SUCCESS MESSAGE", "ADD TO CART SUCCESS MESSAGE not displayed", "", driver);
+			 }
+		}else {
+			 reporter.failureReport("Verify ADD TO CART IN PRODUCT DISPLAY PAGE", "ADD TO CART BUTTON NOT displayed", "", driver);
+		}
+	}
+	
 
 }

@@ -75,7 +75,7 @@ public class ROD11_FCTWebReviewOrderESDPartsTest extends OrderLib{
 						sbpLib.clickContinueOnStoredAddresssScreen();
 						verifyStoredAddressAdded(companyName);
 						clickContinueOnShippingAddress();
-						selectShippingOptionsCarrier(); // Shipping options continue button
+						selectShippingOptionsCarrierSelection(data.get("Carrier")); // Shipping options continue button
 						billingAddressContinueButton();  //billing address
 						// payment info
 						termsInPaymentInfo(data.get("PONumber"),data.get("POReleaseNumber"));
