@@ -81,9 +81,11 @@ public class CanadaLib extends CanadaObj {
 	 * 
 	 * @throws Throwable
 	 */
+	OrderLib ord = new OrderLib();
 	public String getEWRFeeInSummary() throws Throwable {
+		List<String> currency=ord.getCurrencyTypeOfCartProduct();
 		String EWRAmount = getText(EWR_AMOUNT, "EWR Amount");
-		return EWRAmount;
+		return currency.get(0)+EWRAmount;
 	}
 
 	/**
