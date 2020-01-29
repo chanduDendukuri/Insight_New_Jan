@@ -58,7 +58,7 @@ public void VerifyQuoteDetailsunderQuoteSearch() throws Throwable {
 	String QN = getText(getQuoteNumberinresults, "QuoteNumberinresults");
 	String AName = getText(txt_AccountName, "AccountName");
 	String ANumber = getText(txt_AccountNumberUnderQuoteSearch, "Account Number");
-	if(QN!=null && AName!=null && ANumber!=null) {
+	if(QN!="" && AName!="" && ANumber!="") {
 		reporter.SuccessReport("Quote details:", "Quote details are displayed as expected", ""+QN+" "+AName+ "" +ANumber+"");
 	}
 	else {

@@ -31,9 +31,9 @@ public class QuoteHistoryObj extends ActionEngine {
 	 public static By SelctedWebGroupName(String option) {
 		 return By.xpath("//div[@class='c-header__middle']//button[@id='webGroupDropdown']//span[contains(text(),'"+option+"')]");
 	 }
-	 public static By txt_AccountNumberUnderQuoteSearch = By.xpath("(//td[starts-with(@class,'footable-visible footable-last-column')])[1]");
+	 public static By txt_AccountNumberUnderQuoteSearch = By.xpath("//*[@id=\"quoteSearch\"]//td[6]");
 	 public static By getQuoteNumberinresults = By.xpath("(//td[starts-with(@class,'footable-visible footable')]//a)[3]");
-	 public static By txt_AccountName = By.xpath("//td[starts-with(@class,'footable-visible')]//following-sibling::td[contains(text(),'FREEPORT MCMORAN COPPER & GOLD INC')]");
+	 public static By txt_AccountName = By.xpath("//*[@id=\"quoteSearch\"]//td[5]");
 	 public static By getReferenceNumber(String quoteReferenceNum){
 		 return By.xpath("//table[@class='footable clean full footable-loaded default']//tbody//tr[1]//td//a[contains(.,'"+quoteReferenceNum+"')]");
 	 }
