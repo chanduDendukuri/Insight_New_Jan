@@ -1089,7 +1089,14 @@ public class SearchLib extends CommonObj {
 			reporter.failureReport("Verify the selected contract displayed in cart page ","contracts title is not displayed successfully.Expceted is: ",contractName);
 		}
 	}
-	
+	public void selectContractInCartPageforTcQTH07(String contractName) throws Throwable{
+		clickUntil(CONTRACT_DD, getContractsFromDD(contractName), "contract drop down");
+		click(getContractsFromDD(contractName),"Selected contract name");
+		click(CartObj.CART,"CART");
+		Thread.sleep(2000);
+		String title = getText(CONTRACT_VERIFY,"Contract Name title in cart").replace("# 1-SAMPLE - ABBR TITLE", "");
+		
+	}
 	/**
 	 * 
 	 * @param toolsMenuName

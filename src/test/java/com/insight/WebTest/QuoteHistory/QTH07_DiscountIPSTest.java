@@ -1,11 +1,14 @@
 package com.insight.WebTest.QuoteHistory;
 
+import java.util.ArrayList;
 import java.util.Hashtable;
+import java.util.List;
 
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 import com.insight.Lib.CMTLib;
+import com.insight.Lib.CanadaLib;
 import com.insight.Lib.CartLib;
 import com.insight.Lib.CommonLib;
 import com.insight.Lib.OrderLib;
@@ -46,13 +49,13 @@ public class QTH07_DiscountIPSTest extends QuoteHistoryLib {
 							Hashtable<String, String> data = TestUtil.getDataByRowNo("QTH07_DiscountIPS", TestDataInsight, "Quote_History", intCounter);
 							TestEngineWeb.reporter.initTestCaseDescription("DiscountIPS");
 
-		
+							List<String> quotedetails = new ArrayList<>();
 					CMTLib cmtLib = new CMTLib();
 					CommonLib commonLib = new CommonLib();
 					SearchLib searchLib = new SearchLib();
 					CartLib cartLib = new CartLib();
 					OrderLib orderLib = new OrderLib();
-
+					CanadaLib canadaLib=new CanadaLib();
 					cmtLib.loginToCMTSearchWebGrpAndUser(data.get("Header"), data.get("WebGrp"),
 							data.get("LnameEmailUname"), data.get("ContactName"));
 
@@ -95,7 +98,7 @@ public class QTH07_DiscountIPSTest extends QuoteHistoryLib {
 					orderLib.verifyCartHeaderLabel();
 
 					// Select Contract - 3
-					searchLib.selectContractInCartPage(data.get("Contract3"));
+					searchLib.selectContractInCartPageforTcQTH07(data.get("Contract3"));
 
 					// Search item
 					searchLib.searchInHomePage(data.get("SearchItem3"));
@@ -105,6 +108,28 @@ public class QTH07_DiscountIPSTest extends QuoteHistoryLib {
 					// Click Add To Order
 					commonLib.addToCartAndVerify();
 					orderLib.continueToCheckOutOnAddCart();
+					cmtLib.clickSaveAsQuote();	
+					 
+					quotedetails = cmtLib.getQuoteNameandReferenceNumber();
+					
+					commonLib.clickOnAccountToolsAndClickOnProductGrp(data.get("Tools_Menu1"),
+							data.get("Tools_Menu_DD1"));
+					verifyQuoteHistoryPageOpened();
+					quoteNumberInTable(quotedetails.get(0));
+					verifyMSRPPrice();
+					verifyDiscountPrice();
+					orderLib.convertQuote();
+					cartLib.verifyCartBreadCrumb();
+
+					// Proceed to checkout
+					orderLib.proceedToCheckout();
+					
+					
+					
+					
+					
+					
+					
 					// create a Quote
 					orderLib.createQuote(data.get("Quote_Name"));
 					String refNumber = orderLib.getQuoteReferenceNumber();
