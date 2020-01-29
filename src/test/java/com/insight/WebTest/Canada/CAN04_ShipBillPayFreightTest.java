@@ -62,58 +62,91 @@ public class CAN04_ShipBillPayFreightTest extends CanadaLib{
 						OrderLib orderLib = new OrderLib();
 						ShipBillPayLib shipbLib = new ShipBillPayLib();
 						CanadaLib canadaLib = new CanadaLib();
+						ProductDisplayInfoLib prodinfo = new ProductDisplayInfoLib();
+//Common Across all the testcases Starts from here
+									cmtLib.loginToCMT(data.get("Header"));
+									cmtLib.searchForWebGroup(data.get("WebGrp"));
+									cmtLib.clickOnTheWebGroup(data.get("MgContactName"));
+									cmtLib.verifyManageWebGroupSettings();
+									cmtLib.hoverOnManageWebGroupsAndSelectOptions(data.get("ManageWebGrpOptions"));
+									cmtLib.verifyManageWebGroupsUserManagement();
+									cmtLib.searchForaUserAndSelect(data.get("LnameEmailUname"), data.get("ContactName"));
+									cmtLib.setPermissions(data.get("Menu_Name"), data.get("Set_Permission"));
+									//cmtLib.setPermissions(data.get("Menu_Name"),data.get("Enable_Purchasing_Popup"));
+									cmtLib.clickOnloginAs();
+									switchToChildWindow();
+									cmtLib.loginVerification(data.get("ContactName"));
+									shipbLib.verifyWEbsiteIsCannada();
+									canadaLib.verifyCanadaWebgroup();
 
-						cmtLib.loginToCMTSearchWebGrpAndUser(data.get("Header"), data.get("WebGrp"), data.get("LnameEmailUname"),
-								data.get("ContactName"));
-						cmtLib.setPermissions(data.get("Menu_Name"), data.get("Set_Permission"));
-						cmtLib.setPermissions(data.get("Menu_Name"),data.get("Enable_Purchasing_Popup"));
-						cmtLib.clickOnloginAs();
-						switchToChildWindow();
+//End here
 
-						canadaLib.verifyCanadaWebgroup();
 						// Adding first product to cart
-						commonLib.searchProduct(data.get("Search_Item"));
-						commonLib.addToCartAndVerify();
+									commonLib.searchProduct(data.get("Search_Item"));
+									prodinfo.verifyTheManufacturerNumberInProductDetailsPage(data.get("Search_Item"));
+									commonLib.updateCartQuantityInProductDetailsPage(data.get("Quantity"));
+									prodinfo.addToCartInProductDetailsPage();
+									commonLib.addToCartAndVerify();
 
-//						commonLib.continueToShopping();
-//						commonLib.clickCart();
 						canadaLib.continueToCheckout();
-						cartLib.verifyItemInCart(data.get("Search_Item"));
+						cartLib.verifyCartPageAvailablity();
+						//prodinfo.verifyCartPageAndPartDetailsForRecentlyItem();
+						prodinfo.verifyCartPageAndPartDetailsForRecentlyItemDynamically(data.get("Search_Item"));
+
 
 						commonLib.searchProduct(data.get("Search_Item1"));
+						prodinfo.getPartNumberInSearchResultsPage();
 						commonLib.addFirstDisplyedItemToCartAndVerify();
 						String partNumber1 = cartLib.getPartNumber();
 						System.out.println("partNumber1"+partNumber1);
 //						commonLib.continueToShopping();
 //						commonLib.clickCart();
 						canadaLib.continueToCheckout();
-						cartLib.verifyItemInCart(partNumber1);
+									cartLib.verifyCartPageAvailablity();
+									//prodinfo.verifyCartPageAndPartDetails();
+									prodinfo.verifyCartPageAndPartDetailsForRecentlyItemDynamically(data.get("Search_Item1"));
 
-						commonLib.searchProduct(data.get("Search_Item2"));
-						commonLib.addFirstDisplyedItemToCartAndVerify();
-						String partNumber2 = cartLib.getPartNumber();
-						System.out.println("partNumber2"+partNumber2);
+									cartLib.verifyItemInCart(partNumber1);
+
+
+// **********************************End of Second search value ***************************************
+// ++++++++++++++++++++++++++++++++++End of Third search value *+++++++++++++++++++++++++++++++++++++*
+
+									commonLib.searchProduct(data.get("Search_Item2"));
+									prodinfo.getPartNumberInSearchResultsPage();
+									commonLib.addFirstDisplyedItemToCartAndVerify();
+									String partNumber2 = cartLib.getPartNumber();
+									System.out.println("partNumber2"+partNumber1);
 //						commonLib.continueToShopping();
 //						commonLib.clickCart();
-						canadaLib.continueToCheckout();
-						cartLib.verifyItemInCart(partNumber2);
-						// proceed to check out
-						orderLib.proceedToCheckout();
-						cartLib.clickOnContinueButtonInAddInformtion();
-						orderLib.clickContinueOnLineLevelInfo();
-						canadaLib.verifySBP();
-						orderLib.shippingBillPayContinueButton();
+									canadaLib.continueToCheckout();
+									cartLib.verifyCartPageAvailablity();
+									prodinfo.verifyCartPageAndPartDetailsForRecentlyItemDynamically(partNumber2);
+									//prodinfo.verifyCartPageAndPartDetails();
+									cartLib.verifyItemInCart(partNumber2);
+									//prodinfo.verifyCartPageAndPartDetailsForRecentlyItemDynamically(data.get("Search_Item2"));
 
-						canadaLib.verifyGroundIsDefaultShippingOption();
-						orderLib.shippingOptionsCarrierSelection(); // Click continue on shipping options
-						orderLib.shippingBillPayContinueButton();
-						orderLib.termsInPaymentInfo(data.get("PONumber"));
-						orderLib.verifyPlaceOrderLabel();
-						shipbLib.Verifyshippingcarrier(data.get("Shipping_carrier"));
-						String summaryAmount = cartLib.getSummaryAmountInCart();
-						orderLib.placeOrderAndVerifyReceiptOrderAndDate(summaryAmount);
-						commonLib.clickLogOutLink(data.get("Logout_Header"));//fnCloseTest();
-						System.out.println("Test completed");
+									// proceed to check out
+//$$$$$$$$$$$$$$$$$$$$$$$$End of 3rd prod $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+									orderLib.proceedToCheckout();
+									cartLib.clickOnContinueButtonInAddInformtion();
+									orderLib.clickContinueOnLineLevelInfo();
+									canadaLib.verifySBP();
+									orderLib.getgroundOptionInShipmentOptionsPage();
+									reporter.SuccessReport("Air Values in shipment options ","Air data in shipment options is ",orderLib.getAirValueFromShipbillOptions());
+									reporter.SuccessReport("Ground Values in shipment options ","Ground data in shipment options is ",orderLib.getGroundValueFromShipbillOptions());
+									canadaLib.verifyGroundIsDefaultShippingOption();
+
+									orderLib.shippingBillPayContinueButton();
+									orderLib.billingAddressContinueButton();
+									orderLib.shippingOptionsCarrierSelection();
+									orderLib.termsInPaymentInfo(data.get("PONumber"), data.get("POReleaseNumber"));
+									orderLib.verifyPlaceOrderLabel();
+									orderLib.availabilityOfCanadaGroundInSummaryTotal();
+									String summaryAmount1 = cartLib.getSummaryAmountInCart();
+									orderLib.placeOrderAndVerifyReceiptOrderAndDate(summaryAmount1);
+									commonLib.clickLogOutLink(data.get("Logout_Header"));//fnCloseTest();
+									System.out.println("Test completed");
 					
 								} catch (Exception e) {
 									ReportStatus.blnStatus = false;
