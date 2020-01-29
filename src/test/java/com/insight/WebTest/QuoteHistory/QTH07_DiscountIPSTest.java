@@ -123,6 +123,14 @@ public class QTH07_DiscountIPSTest extends QuoteHistoryLib {
 
 					// Proceed to checkout
 					orderLib.proceedToCheckout();
+					EntervalidEmail(data.get("Email"));
+					orderLib.clickContinueOnLLIAndShipBillPaySections();
+					orderLib.addNewCardInPayment(data.get("cardNumber"), data.get("cardName"), data.get("month"),
+							data.get("year"), data.get("poNumber"),data.get("POReleaseNumber"));
+					orderLib.clickOnReviewOrderButton();
+					orderLib.clickOrderDetailsLinkOnReceiptPage();
+					
+					
 					
 					
 					
