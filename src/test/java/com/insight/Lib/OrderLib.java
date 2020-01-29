@@ -832,7 +832,7 @@ public class OrderLib extends OrderObj{
 	}
 
 	/**
-	 * 
+	 *
 	 * @param partNumber
 	 * @param qntyNo
 	 * @throws Throwable
@@ -2207,5 +2207,13 @@ public class OrderLib extends OrderObj{
 		return getText(QUOTE_REFERENCE_NAME, "Reference name").trim();
 	}
 
+	public List<String>  getCurrencyTypeOfCartProduct(){
 
+		List<WebElement> myList = driver.findElements(CartObj.currencytype);
+		List<String> all_elements_text = new ArrayList<>();
+		for (int i = 0; i < myList.size(); i++) {
+			all_elements_text.add(myList.get(i).getText());
+		}
+		return  all_elements_text;
+	}
 }

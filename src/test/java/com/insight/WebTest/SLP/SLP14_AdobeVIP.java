@@ -78,7 +78,7 @@ public class SLP14_AdobeVIP extends SLPLib{
 					searchLib.verifyClientAndClickOnProductGrpName(data.get("productName"));
 					searchLib.checkMessageiconforAdobeProducts();
 					// Select first description and verify mini popup window
-					searchLib.selectDescriptionAndVerifyMiniPopupWindow();
+					//searchLib.selectDescriptionAndVerifyMiniPopupWindow();
 					
 					// Search for part or product and add to cart : part : 65234076BA03A12
 			     	searchLib.searchInHomePage(data.get("PartNum1"));
@@ -140,7 +140,8 @@ public class SLP14_AdobeVIP extends SLPLib{
                     String OrderDate=getTextfromdeployedateinPlaceOrderPage();
                     assertTrue(DeployedDate.contains(OrderDate), "Deploy Date Field Exists and Verified");
                     //Verifying PA fields in Place order page
-                    verifyPAvalueinPlaceOrderPage();                              
+                    verifyPAOnReceiptPage(data.get("PA")); 
+                    verifyPAOnReceiptPage(data.get("PA1")); 
                     //Place Order
 						String summaryAmountInLogin=cartLib.getSummaryAmountInCart();
 						 orderLib.placeOrderAndVerifyReceiptOrderAndDate(summaryAmountInLogin);

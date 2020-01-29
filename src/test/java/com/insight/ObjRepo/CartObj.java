@@ -308,7 +308,7 @@ public static By Productname_at_cart=By.xpath("//h4[@class='cart__item-heading']
    public static By CLOSE_ICON_PRINT_POPUP=By.xpath(" //section[@class='cart-print-header undefined']//span[@class='cart-print-header__icon--close ion-ios-close-empty']");
    
    // Verify Cart 
-   
+   public static By currencytype=By.xpath("//*[@class='iw-currency__code']");
    public static By CART_PROD_DESC=By.xpath("//div[@class='columns flex-child-auto cart__table-col--desc text-left']/a/h4");
    public static By CART_PROD_QTY=By.xpath("//label[text()='Item quantity']/following-sibling::input[@id='iw-checkout__cart-item-quantity']");
    public static By CART_PROD_STOCK=By.xpath("//label[text()='Item quantity']/following-sibling::input/following::span/span[contains(text(),' Stock: ')]");

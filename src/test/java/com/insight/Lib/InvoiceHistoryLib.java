@@ -643,7 +643,7 @@ return status;
 	 */
 	public void clickAscendingSortOption() throws Throwable {
 		scrollUp();
-		click(SORT_BY_ASC,"Ascending order");
+		radioClick(SORT_BY_ASC,"Ascending order");
 	}
 	
 
