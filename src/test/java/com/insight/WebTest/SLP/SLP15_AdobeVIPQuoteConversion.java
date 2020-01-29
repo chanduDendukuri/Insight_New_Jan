@@ -1,6 +1,7 @@
 package com.insight.WebTest.SLP;
 
 import java.util.Hashtable;
+import java.util.List;
 
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
@@ -74,34 +75,85 @@ public class SLP15_AdobeVIPQuoteConversion extends SLPLib{
 						cmtLib.loginAsAdminCMT();
 						// Login verification
 						cmtLib.loginVerification(data.get("ContactName"));
-						// Search for part or product and add to cart :65234076BA03A12
+						
+						// Search for part or product and add to cart :65291080BA03A12
 				     	searchLib.searchInHomePage(data.get("PartNum1"));
+				     	pipLib.verifyTheManufacturerNumberInProductDetailsPage(data.get("PartNum1"));
+				     	pipLib.enterQuantityOnProductDetailsPage(data.get("Quantity"));
 				     	commonLib.addToCartAndVerify();
 				     	orderLib.continueToCheckOutOnAddCart();
-				     // Search for part or product and add to cart : 65234098BA03A12
+				       
+				     	// Search for part or product and add to cart : 65234098BA03A12
 				     	searchLib.searchInHomePage(data.get("PartNum2"));
+				     	pipLib.verifyTheManufacturerNumberInProductDetailsPage(data.get("PartNum2"));
+				     	pipLib.enterQuantityOnProductDetailsPage(data.get("Quantity"));
 				     	commonLib.addToCartAndVerify();
 				     	orderLib.continueToCheckOutOnAddCart();
-				     // Search for part or product and add to cart : L9K19UT#ABA
+				       
+				     	// Search for part or product and add to cart : L9K19UT#ABA
 				     	searchLib.searchInHomePage(data.get("PartNum3"));
+				     	pipLib.verifyTheManufacturerNumberInProductDetailsPage(data.get("PartNum3"));
+				     	pipLib.enterQuantityOnProductDetailsPage(data.get("Quantity"));
 				     	commonLib.addToCartAndVerify();
 				     	orderLib.continueToCheckOutOnAddCart();
+				     	
+				        // Verify Deploy popup details for part 1
 				     	verifyandClickchangeLink(data.get("PartNum1"));
 				     	verifydeployedatewithcurrentdate();
+				     	String date1=getDeploydateOnCart(data.get("PartNum1"));
+				     	List<String> prodDesc1 = orderLib.getProductDescriptionOfCartProduct();
+				     	verifycartDetailsWithDeployPopUpDetails(date1, prodDesc1.get(1), data.get("PartNum1"));
+				     	calenderforUnpaidLicense(data.get("Date1"));
 				     	clickapply();
 				     	Thread.sleep(2000);
+				     	// Copy to all 
 				     	verifyandClickcopytoallifexists(data.get("PartNum1"));
+				     	String date2=getDeploydateOnCart(data.get("PartNum2"));
+				     	verifyDateAppliedToAllPartAfterCopyAll(date2, data.get("Date1"));
+				     	
 				     	orderLib.proceedToCheckout();
 				     	int i=1;
 				     	int j=2;
 				     	enterPAvalue(data.get("PA"),i);//PA_fieldinplaceorderpage
 				     	enterPAvalue(data.get("PA1"),j);
 				     	orderLib.clickContinueOnLineLevelInfo();
-				     	orderLib.shippingBillPayContinueButton(); // Click continue on
+				        orderLib.clickOnReturnToCartLink();     
+				        canadaLib.verifyPlaceCartLabel();
+				        String dateUpdated=getDeploydateOnCart(data.get("PartNum2"));
+				        verifyDateAppliedToAllPartAfterCopyAll(dateUpdated, data.get("Date1"));
+				        String subTotalAmount=  sbpLib.getTotalAmountInCart(data.get("Subtotal")).replace("$", "").replace(",", "");
+				     	Double subTotal=Double.valueOf(subTotalAmount);
+				     	if(subTotal!=0) {
+				     		reporter.SuccessReport("Find SubtotalCurrency Code and Amount in Cart Summary on Content & resources ", "Subtotal Currency Code and Amount Exists", "Currency Code and Amount: USD $"+subTotal);
+				     	}else {
+				     		reporter.failureReport("Find SubtotalCurrency Code and Amount in Cart Summary on Content & resources ", "Subtotal Currency Code and Amount does not Exists", "Currency Code and Amount: USD $"+subTotal,driver);
+				     	}
+				        
+				     	int noOfCharacters=8;
+                        String quoteName= getRandomString(noOfCharacters).toString();
+                        clickSaveasQuote();
+				        
+				        
+				        
+				        
+				       
+				     	
+				     	
+				     	
+				     	
+				     	
+				     	
+                        
+                        
+                        
+                        
+                        
+                        
+                        orderLib.shippingBillPayContinueButton(); // Click continue on
 						                                             // shipping address
                         orderLib.shippingOptionsCarrierSelection(); // Click continue on
 						                                            // shipping options
-                        orderLib.shippingBillPayContinueButton(); // Billing address
+                        orderLib.billingAddressContinueButton(); // Billing address
 						                                              // continue button
                         orderLib.enterCreditCard(data.get("Card_Number").toString(), data.get("Card_Name"), data.get("Month"),
             					data.get("Year"), data.get("PONumber"),data.get("POReleaseNumber"));
@@ -109,8 +161,8 @@ public class SLP15_AdobeVIPQuoteConversion extends SLPLib{
                         orderLib.verifyCartHeaderLabel();
                         //Verify Deployed date displayed in cart page
                         verifydeployeDateinCartPage();
-                        int noOfCharacters=8;
-                        String quoteName= getRandomString(noOfCharacters).toString();
+                        /*int noOfCharacters=8;
+                        String quoteName= getRandomString(noOfCharacters).toString();*/
                         orderLib.createQuoteandGenerateName(quoteName);
                         String refNumber = orderLib.getQuoteReferenceNumber();
                         searchLib.verifyAccountToolForOrderMenuItem(data.get("toolsMenuName"), data.get("dropDown"));
