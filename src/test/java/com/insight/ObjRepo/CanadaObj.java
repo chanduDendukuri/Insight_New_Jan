@@ -53,7 +53,7 @@ public class CanadaObj extends ActionEngine {
 	}
 
 	public static By getSearchByTextOrder(String searchBy) {
-		return By.xpath("//div[@class='nice-select  open']//ul/li[contains(text(),'" + searchBy + "')] or //div[@class='nice-select open']//ul/li[contains(text(),'" + searchBy +"')] ");
+		return By.xpath("//div[@class='nice-select  open' or 'nice-select open']//ul/li[contains(text(),'" + searchBy + "')]");
 	}
 
 	// summary amounts in cart
