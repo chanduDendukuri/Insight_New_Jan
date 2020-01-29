@@ -72,7 +72,7 @@ public class SLPObj extends ActionEngine{
   }
    public static By ENTER_NEWCARDBUTTON=By.xpath("//a[contains(text(),'Enter New Card')]");
     // cart page messages
-    public static By USER_REQUIRES_APPROVAL_MSG=By.xpath("//div[@class='row expanded is-collapse-child shopping-cart__messages']//span[@class='columns iw-message__text']");
+    public static By USER_REQUIRES_APPROVAL_MSG=By.xpath("//div[@class='row expanded is-collapse-child shopping-cart__messages']//span[@class='columns iw-message__text'][contains(text(),'You require approval to place orders, however this licensing program does not allow approval routing. Please contact spprograms@insight.com for assistance.')]");
     public static By NON_CITRIX_ITEMS_REMOVE_MESSAGE=By.xpath("//span[@class='columns iw-message__text'][contains(text(),'In order to report usage please remove items that do not apply to the selected service provider.')]");
     public static By CITRIX_ITEMS_IN_CART=By.xpath("//h4[@class='cart__item-heading'][contains(text(),'CSP')]");
     
