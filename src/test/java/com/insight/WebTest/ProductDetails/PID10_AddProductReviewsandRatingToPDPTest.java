@@ -61,9 +61,10 @@ public class PID10_AddProductReviewsandRatingToPDPTest extends ActionEngine{
 					CMTLib cmtLib = new CMTLib();
 					CartLib cartLib = new CartLib();
 					ProductDetailLib productdetLib = new ProductDetailLib();
+					
 					commonLib.searchProduct(data.get("Search_Item"));
 					cartLib.selectFirstProductDisplay();
-					productdetLib.VerifyreviwsatProductDisplay();
+					productdetLib.VerifyreviwsatProductDisplay(data.get("Rating"));
 					cmtLib.loginToCMTSearchWebGrpAndUser(data.get("Header"), data.get("WebGrp"), data.get("LnameEmailUname"),data.get("Contact_Name"));
 					cmtLib.loginAsAdminCMT();
 					commonLib.searchProduct(data.get("Search_Item"));
@@ -72,7 +73,7 @@ public class PID10_AddProductReviewsandRatingToPDPTest extends ActionEngine{
 					productdetLib.verifyReviewtab();
 					productdetLib.FillReviewsubmissionform(data.get("title"),data.get("Text"),data.get("Nickname"));
 					productdetLib.clicksubmitandverifyerrormsgreviewsubmissionform();
-					productdetLib.VerifyreviwsatProductDisplay();
+					productdetLib.VerifyreviwsatProductDisplay(data.get("Rating"));
 					commonLib.clickLogOutLink(data.get("Logout_Header"));
 					// fnCloseTest();
 					System.out.println("Test completed");
