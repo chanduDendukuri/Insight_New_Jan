@@ -576,6 +576,7 @@ scrollUp();
 	public void verifyAndClickQuoteNumberOnHistory(String quoteNumber) throws Throwable {
 		waitForVisibilityOfElement(getQuoteNumberFRomQuickSearchHistory(quoteNumber), "Quote History");
 		if (isElementPresent(getQuoteNumberFRomQuickSearchHistory(quoteNumber), "Quote History ")) {
+			((JavascriptExecutor) driver).executeScript("window.scrollBy(0, 200)", "");
 			click(getQuoteNumberFRomQuickSearchHistory(quoteNumber),"click on QuoteNumber");
 			reporter.SuccessReport("Click on the Quote Number on Quote History", " Quote Numbers Exists and Clickedt", "");		
 		}
@@ -643,6 +644,10 @@ scrollUp();
 				}
 			} 
 		}
+	public String GetQuoteNumberfromQuoteHistory() throws Throwable {
+		String QuoteNumber = getText(txt_QuoteNumber, "Quote Number");
+		return QuoteNumber;
+	}
 	/**
 	 * Method is used to verify Quote History present
 	 * 

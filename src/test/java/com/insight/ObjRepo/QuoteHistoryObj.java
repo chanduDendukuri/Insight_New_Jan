@@ -79,9 +79,10 @@ public class QuoteHistoryObj extends ActionEngine {
 	 public static By getQuickSearchQuoteFormTable(String QuoteNumber){
 		 return By.xpath("//table[@id='quoteSearch']//tbody//tr//td//a[contains(.,'"+QuoteNumber+"')]");
 	 }
+	 public static By txt_QuoteNumber = By.xpath("//div[@id=\"js-recent-quotes-target\"]//a");
 		public static By QUICK_SEARCH_TEXT = By.xpath("//input[@id='quoQuickInputNumber']");
 		 public static By getQuoteNumberFRomQuickSearchHistory(String quoteNumber){
-			 return By.xpath("//table[@id='quoteSearch']//tbody//tr//td//a[contains(.,'"+quoteNumber+"')]");
+			 return By.xpath("//table[@id='quoteSearch']//tbody//tr//td//a[contains(text(),'"+quoteNumber+"')]");
 		 }
 		 public static By ERROR_MSG = By.xpath("//div[@class='alert']");
 		 public static By QUICKSHOP_ERROR_MSG = By.xpath("//div[@class='hide-for-print']/following::span[@class='columns iw-message__text']");

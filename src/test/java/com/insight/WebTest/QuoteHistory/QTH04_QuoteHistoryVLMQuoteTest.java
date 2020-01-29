@@ -60,16 +60,16 @@ public class QTH04_QuoteHistoryVLMQuoteTest extends QuoteHistoryLib {
 							CommonLib commonLib = new CommonLib();
 							cmtLib.loginToCMTSearchWebGrpAndUser(data.get("Header"), data.get("WebGrp"),
 									data.get("LnameEmailUname"), data.get("ContactName"));
-							cmtLib.setPermissions(data.get("Menu_Name"), data.get("Set_Permission1"));
-							cmtLib.setPermissionsToDisable(data.get("Menu_Name"), data.get("Set_Permission2"));
+						//	cmtLib.setPermissions(data.get("Menu_Name"), data.get("Set_Permission1"));
+							//cmtLib.setPermissionsToDisable(data.get("Menu_Name"), data.get("Set_Permission2"));
 							// Login As to Web UAT
 							cmtLib.loginAsAdminCMT();
 							cmtLib.loginVerification(data.get("ContactName"));
 							canadaLib.clickOnSideMenuSelectAccountToolOptions(data.get("Tools_Menu"),  data.get("Tools_Menu_DD"));							
 							verifyQuoteHistory();
-							canadaLib.clickOnInvoiceHistory();
-							quickSearchAndVerifySearchResults(data.get("SearchBy"),data.get("Number"));
-							verifyAndClickQuoteNumberOnHistory(data.get("Number"));
+							String QuoteNumber = GetQuoteNumberfromQuoteHistory();
+							quickSearchAndVerifySearchResults(data.get("SearchBy"),QuoteNumber);
+							verifyAndClickQuoteNumberOnHistory(QuoteNumber);
 							verifyQuoteDetails();						
 							verifyConvertQuoteButton();	
 							verifyErrorMsg();
