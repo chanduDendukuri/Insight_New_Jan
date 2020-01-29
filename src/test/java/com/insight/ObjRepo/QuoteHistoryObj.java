@@ -37,6 +37,7 @@ public class QuoteHistoryObj extends ActionEngine {
 	 public static By getReferenceNumber(String quoteReferenceNum){
 		 return By.xpath("//table[@class='footable clean full footable-loaded default']//tbody//tr[1]//td//a[contains(.,'"+quoteReferenceNum+"')]");
 	 }
+	 public static By txtfield_name = By.xpath("//input[@name='referenceNumber']");
 	 public static By DESCENDING =By.xpath("//input[@id='descQuote']");
 		public static By radiobutton_descending = By.xpath("//input[@type='radio' and @id='descQuote']//following-sibling::span");
 	 public static By getAdvSearchQuoteFormTable(String quoteName){
@@ -52,7 +53,9 @@ public class QuoteHistoryObj extends ActionEngine {
 	 }
 
 	 public static By QUOTE_NAME = By.xpath("//table[@id='quoteSearch']//tr//td[1]/a");
-	 
+	 public static By btn_SSearch = By.xpath("//button[contains(text(),'Search')]");
+	 public static By referencenumberudersearchrersuts = By.xpath("//div[@class='search-results']//td[6]");
+	 public static By ordernumberudersearchrersuts = By.xpath("//div[@class='search-results']//td[2]");
 	 public static By DATE_ENTERED = By.xpath("//table[@id='quoteSearch']//tr//td[3]");
 	 public static By EXPIRATION_DATE = By.xpath("//table[@id='quoteSearch']//tr//td[4]/div");
 	 public static By ACCOUNTNAME = By.xpath("//table[@id='quoteSearch']//tr//td[5]");

@@ -319,8 +319,8 @@ public class OrderLib extends OrderObj{
 	 * This method is to verify the order and date in the receipt page.
 	 * @throws Throwable
 	 */
-	public void placeOrderAndVerifyReceiptOrderAndDate(String totalSummary) throws Throwable {
-
+	public List<String> placeOrderAndVerifyReceiptOrderAndDate(String totalSummary) throws Throwable {
+List<String> orderdetails = new ArrayList<String>();
 		clickUntil(PLACE_ORDER_BTN, RECEIPT_LABEL,"Place order button");
 		Thread.sleep(3000);
 
@@ -333,6 +333,7 @@ public class OrderLib extends OrderObj{
 					reporter.failureReport("Verify the Reference number ", "The reference number is null or empty. ","",driver);
 					
 				}else{
+					orderdetails.add(referenceNumber);
 					reporter.SuccessReport("Verify the Reference number ", "The reference number: " , "reference number: "+referenceNumber);
 				}
 			} else{
@@ -343,6 +344,7 @@ public class OrderLib extends OrderObj{
 			if (isElementPresent(TOTAL_AMOUNT, "Total Amount")) {
 				String totalAmount = getText(TOTAL_AMOUNT, "Total Amount");
 				if(totalSummary.equals(totalAmount)){
+					orderdetails.add(totalAmount);
 					reporter.SuccessReport("Verify the Total Amount ", "The Total Amount verification is successfull: " , "Total amount : "+totalAmount);
 				}else{
 					reporter.failureReport("Verify the Total Amount ", "The Total Amount is not updated correctly. ","",driver);
@@ -360,12 +362,14 @@ public class OrderLib extends OrderObj{
 				c.add(Calendar.DATE, -1);
 				String actualDate  = sdf.format(c.getTime());
 				if (actualDate.contains(dateOrdered)) {
+					orderdetails.add(actualDate);
 					reporter.SuccessReport("Verify the Date ordered ", " date ordered verification is successfull","Ordered Date : "+dateOrdered);
 				} else {
 					reporter.failureReport("Verify the Date ordered ", " date ordered verification is not successfull : "+dateOrdered+" .Expected Date :",actualDate,driver);
 				}
 			}
 		}
+		return orderdetails;
 	}
 	
 	/**

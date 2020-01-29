@@ -588,6 +588,14 @@ scrollUp();
 		clearData(txt_Email);
 		type(txt_Email, email, "email field");
 	}
+	public void selectadvancedOrdersearchoption(String text,String testdata) throws Throwable {
+		selectByVisibleText(CanadaObj.ADVANCE_SEARCH_ORDERHISTORY, text, "ADVANCE_SEARCH_ORDERHISTORY");
+		type(txtfield_name, testdata, "reference field");
+		click(btn_SSearch, "Seach button", "");
+		waitForVisibilityOfElement(referencenumberudersearchrersuts, "referencenumberudersearchrersuts");
+		click(ordernumberudersearchrersuts, "ordernumberudersearchrersuts", "");
+		waitForVisibilityOfElement(CanadaObj.ORDER_DETAILS_PAGE, "ORDER_DETAILS_PAGE");
+	}
 	/**
 	 * Method is used to verify Delete this quote icon
 	 * 
