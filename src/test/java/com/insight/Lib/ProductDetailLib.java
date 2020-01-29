@@ -582,11 +582,14 @@ public class ProductDetailLib extends ProductDetailObj {
 		waitForVisibilityOfElement(ESTIMATEDTAX_LABEL, "Estimated Tax");
 		if (isElementPresent(ESTIMATEDTAX_LABEL, "Estimated Tax")) {
 			String EstimatedTax = getText(ESTIMATEDTAX, "Estimated Tax").trim();
-			reporter.SuccessReport("Verify Tax onTotal Price Estimation POPUP", "Estimation Taxes Field Exists::USD " + EstimatedTax + "", "Estimated Tax:"+EstimatedTax);
+			if(EstimatedTax.contains("0.00")) {
+			reporter.failureReport("Verify Tax on Total Price Estimation POPUP", "Estimated Tax is Zero ", "Estimated Tax:"+EstimatedTax);
 		} else {
-			reporter.failureReport("Estimated Tax", "Estimated Tax is not visible", "");
+			reporter.SuccessReport("Estimated Tax", "Estimated Tax is not Zero",EstimatedTax);
 		}
+	    reporter.SuccessReport("Verify Tax onTotal Price Estimation POPUP", "Estimation Taxes Field Exists::USD " + EstimatedTax + "", "Estimated Tax:"+EstimatedTax);
 		click(PRICEESTIMATOR_POPUPCLOSE, "Close Popup");
+		}
 	}
 	/**
 	 * This method is to verify Estimated Shipping
@@ -750,10 +753,14 @@ public class ProductDetailLib extends ProductDetailObj {
 	 * 
 	 * @throws Throwable
 	 */
-	public void VerifyreviwsatProductDisplay() throws Throwable {
-		if (isElementPresent(RATING_PRODUCTDISPLAY, "Reviews Visible")) {
-			reporter.SuccessReport("Reviews", "Reviews Visible in Product Display", "");
-		} else {
+	public void VerifyreviwsatProductDisplay(String rating) throws Throwable {
+		isVisibleOnly(RATING_PRODUCTDISPLAY, "Reviews Visible");
+			String RATING=getText(RATING_PRODUCTDISPLAY,"Rating").trim();
+			System.out.println(RATING);
+			if(RATING.contains(rating)){
+				reporter.SuccessReport("Verify Reviews", "Reviews Visible in Product Display Page as Expected", RATING);	
+			}
+		 else {
 			reporter.failureReport("Reviews Visible", "Reviews not Visible", "");
 		}
 	}
@@ -947,13 +954,15 @@ public class ProductDetailLib extends ProductDetailObj {
 	 * 
 	 * @throws Throwable
 	 */
-	public void verifyEstimatedshippingOption() throws Throwable {
-		if (isElementPresent(ESTIMATEDSHIPPING_LABEL, "Estimated Shipping")) {
+	public void verifyEstimatedshippingOption(String ShippingOption) throws Throwable {
+		if (isVisibleOnly(ESTIMATEDSHIPPING_LABEL, "Estimated Shipping")) {
 			String Estimatedshipping = getText(ESTIMATEDSHIPPING, "Shipping Option").trim();
-			reporter.SuccessReport("Verify Shipping Option", "Shipping Option Exists", Estimatedshipping);
+			if(Estimatedshipping.contains(ShippingOption)) {
+			reporter.SuccessReport("Verify Shipping Option::", "Defualt Shipping Option Verify", ShippingOption);
 		} else {
 			reporter.failureReport("Estimated Shipping Option", "Estimated Shipping is not visible", "");
 		}
+	}
 	}
 	/**
 	 * This method is to verify Bread crumb

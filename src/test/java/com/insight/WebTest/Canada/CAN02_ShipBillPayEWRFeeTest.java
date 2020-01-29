@@ -70,9 +70,7 @@ public class CAN02_ShipBillPayEWRFeeTest extends CanadaLib{
 									cmtLib.clickOnloginAs();
 									switchToChildWindow();
 									cmtLib.loginVerification(data.get("MgContactName"));
-
-
-
+									shipbLib.verifyWEbsiteIsCannada();
 						canadaLib.verifyCanadaWebgroup();
 						// Adding first product to cart
 

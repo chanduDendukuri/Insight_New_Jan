@@ -31,8 +31,8 @@ import com.insight.ObjRepo.productsDisplayInfoObj;
 import com.insight.utilities.DynamicTestDataGenerator;
 
 public class CanadaLib extends CanadaObj {
-	
-	
+
+
 
 	/**
 	 * Method is used to verify user is logged to canada webgrp
@@ -81,9 +81,13 @@ public class CanadaLib extends CanadaObj {
 	 * 
 	 * @throws Throwable
 	 */
+
 	public String getEWRFeeInSummary() throws Throwable {
+		OrderLib ord = new OrderLib();
+		List<String> currency=ord.getCurrencyTypeOfCartProduct();
 		String EWRAmount = getText(EWR_AMOUNT, "EWR Amount");
-		return EWRAmount;
+		return currency.get(0)+EWRAmount;
+		//return EWRAmount;
 	}
 
 	/**

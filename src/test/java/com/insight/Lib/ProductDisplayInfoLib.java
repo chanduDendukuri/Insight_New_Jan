@@ -2,13 +2,10 @@ package com.insight.Lib;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import com.insight.ObjRepo.*;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-
-import com.insight.ObjRepo.CartObj;
-import com.insight.ObjRepo.EndUserFeaturesObj;
-import com.insight.ObjRepo.ShipBillPayObj;
-import com.insight.ObjRepo.productsDisplayInfoObj;
 
 public class ProductDisplayInfoLib extends productsDisplayInfoObj {
 
@@ -1305,10 +1302,12 @@ public void getSummaryCartDetails() throws Throwable{
 		List<String> unitPrice1=orderLib.getCartProductUnitPrice();
 		List<String> quantity=orderLib.getCartProductQuantity();
 		List<String> stock=orderLib.getCartProductStock();
+		List<String> currency=orderLib.getCurrencyTypeOfCartProduct();
+
 		if (prodDesc1.get(0)!=null && totalPrice1!=null) {
 			reporter.SuccessReport("Verify the part added to cart ", "Part added to cart and cart details are: ",
 					 "  prod Description : " + prodDesc1.get(0) + " Quantity : "+quantity
-							+ "Total Price: " + totalPrice1.get(0)+ " Unit price: "+unitPrice1+ "Stock :"+stock);
+							+ "Total Price: " + currency.get(0)+" "+ totalPrice1.get(0)+ " Unit price: "+ currency.get(0)+" "+unitPrice1+ "Stock :" +stock);
 		} else {
 			reporter.failureReport("Verify the part added to cart ", "Part is not added to cart.", "", driver);
 		}
@@ -1378,7 +1377,45 @@ public void getSummaryCartDetails() throws Throwable{
 			reporter.failureReport("Verify the part added to cart ", "Part is not added to cart.", "", driver);
 		}
    }
-	
+
+
+	public void verifyCartPageAndPartDetailsForRecentlyItemDynamically(String prodcut) throws Throwable {
+		List<WebElement> stockList = null;
+		List<WebElement> DecList = driver.findElements(CartObj.CART_PROD_DESC_RECENTLYADDEDTEM_loop);
+		List<WebElement> priceList = driver.findElements(CartObj.CART_PROD_TOTAL_PRICE_RECENTLYADDEDTEM_loop);
+		List<WebElement> UnitPriceList = driver.findElements(CartObj.CART_PROD_UNIT_PRICE_RECENTLYADDEDTEM_loop);
+		List<WebElement> qtyList = driver.findElements(CartObj.CART_PROD_QTY_RECENTLYADDEDTEM_loop);
+		if (isVisibleOnly(CartObj.CART_PROD_STOCK_RECENTLYADDEDTEM_loop, "Stock")) {
+			stockList = driver.findElements(CartObj.CART_PROD_STOCK_RECENTLYADDEDTEM_loop);
+		}
+		List<WebElement> partNum = driver.findElements(CartObj.Cart_Prod_Insight_Part_Number);
+
+		for (int i = 0; i < DecList.size(); i++) {
+			if (partNum.get(i).getText().contains(prodcut) || DecList.get(i).getText().contains(prodcut)) {
+				if (DecList.get(i).isDisplayed()) {
+					reporter.SuccessReport("Unit Price ", "Unit price is for " + partNum.get(i).getText() + " is ", DecList.get(i).getText());
+				}
+				if (priceList.get(i).isDisplayed()) {
+					reporter.SuccessReport("Product Description", "Product Description is " + partNum.get(i).getText() + " is ", priceList.get(i).getText());
+				}
+				if (UnitPriceList.get(i).isDisplayed()) {
+					reporter.SuccessReport("Unit Price ", "Unit price is " + partNum.get(i).getText() + " is ", UnitPriceList.get(i).getText());
+				}
+				if (qtyList.get(i).isDisplayed()) {
+					reporter.SuccessReport("Quantity List", "Quantity List is " + partNum.get(i).getText() + " is ", qtyList.get(i).getText());
+				}
+				if (stockList != null) {
+					/*if (stockList.get(i).isDisplayed()) {*/
+						reporter.SuccessReport("Stock List", "Stock List is " + partNum.get(i).getText() + " is ", "Available");
+					/*}*/
+				}
+			}
+
+		}
+
+
+	}
+
 }
   
 	

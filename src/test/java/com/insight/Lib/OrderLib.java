@@ -717,7 +717,11 @@ public class OrderLib extends OrderObj{
 	}
 	
 	public void termsInPaymentInfo(String PONumber,String POReleaseNumber) throws Throwable {
-		if (isElementPresent(PAYMENT_METHOD_TERM, "Terms is selected in dropdown")) {
+		boolean status = false;
+		if (isVisibleOnly(PAYMENT_METHOD_TERM, "Terms is selected in dropdown")) {
+			status = true;
+			String s1 = Boolean.toString(status);
+			reporter.SuccessReport("Payment Method Terms ","Terms is selected in Dropdown list", "Terms selection status is:  "+s1);
 			type(PO_NUMBER, PONumber, "PO number");
 			if(isElementPresent(PO_REALESE_NUMBER,"PO Realese Number")){
 				  typeText(PO_REALESE_NUMBER, POReleaseNumber, "PO number");
@@ -832,7 +836,7 @@ public class OrderLib extends OrderObj{
 	}
 
 	/**
-	 * 
+	 *
 	 * @param partNumber
 	 * @param qntyNo
 	 * @throws Throwable
@@ -850,12 +854,16 @@ public class OrderLib extends OrderObj{
 	 * @throws Throwable
 	 */
 	public void verifyPlaceOrderLabel() throws Throwable {
+		boolean status=false;
+
 		if (isElementPresent(PLACEORDER_LABL, "Cart header label displayed")) {
+			status= true;
+			String s1 = Boolean.toString(status);
 			reporter.SuccessReport("Verify wether user navigates to cart page or not",
-					"User successfully navigated to Place order page","PageDetails : Place order");
+					"User successfully navigated to Place order page","PageDetails : Place order is " + status);
 		} else {
 			reporter.failureReport("Verify wether user navigates to cart page or not",
-					"User not navigated to Place Order page","PageDetails :Place order",driver);
+					"User not navigated to Place Order page","PageDetails :Place order is " + status,driver);
 		}
 	}
 
@@ -2207,5 +2215,50 @@ public class OrderLib extends OrderObj{
 		return getText(QUOTE_REFERENCE_NAME, "Reference name").trim();
 	}
 
+	public List<String>  getCurrencyTypeOfCartProduct(){
 
-}
+		List<WebElement> myList = driver.findElements(CartObj.currencytype);
+		List<String> all_elements_text = new ArrayList<>();
+		for (int i = 0; i < myList.size(); i++) {
+			all_elements_text.add(myList.get(i).getText());
+		}
+		return  all_elements_text;
+	}
+	public boolean verifyDefaultShipmentMethodsInShippingOptions() throws Throwable{
+		return isCheckBoxSelected(groundRadioButton);
+	}
+	public String getgroundOptionInShipmentOptionsPage() throws Throwable{
+		String a = null;
+		if(verifyDefaultShipmentMethodsInShippingOptions())
+		{
+		a=	getText(groundOptionInShipmentOptionsPage,"Ground value");
+		reporter.SuccessReport("Default shipment billoption"," The default shipment value is ",a);
+		}
+		return a;
+	}
+	public String getAirValueFromShipbillOptions()throws Throwable{
+		String a= getText(airOptionInShipmentOptionsPage,"Air");
+		String b = getText(airPriceValueInShipmentOptionsPage,"Air Value");
+		String c= a + " the amount is "+ b;
+		return c;
+	}
+	public String getGroundValueFromShipbillOptions()throws Throwable {
+		String a = getText(groundOptionInShipmentOptionsPage, "Ground");
+		String b = getText(groundPriceOptionInShipmentOptionsPage, "Ground Value");
+		String c = a + " the amount is " + b;
+
+		return c;
+	}
+	public void availabilityOfCanadaGroundInSummaryTotal() throws Throwable{
+		boolean status = false;
+		if(isVisibleOnly(canadaGroundInSummary,"Canada ground Summary")){
+			status = true;
+			String a = Boolean.toString(status);
+			reporter.SuccessReport("Canada Ground in summary total ", " Availability of canada ground is " ,getText(canadaGroundInSummary,"Canada Ground" )+" is "+ status);
+
+		}else{
+			reporter.failureReport("Canada Ground in summary total ", " Availability of canada ground is " ,getText(canadaGroundInSummary,"Canada Ground" +" is ") + "is "+status,driver);
+
+		}
+	}
+	}

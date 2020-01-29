@@ -80,7 +80,7 @@ public class QTH05_QuoteHistoryDirectBillCartTest  extends QuoteHistoryLib {
 							String refNumber = orderLib.getQuoteReferenceNumber();
 							canadaLib.clickOnSideMenuSelectAccountToolOptions(data.get("Tools_Menu"),  data.get("Tools_Menu_DD"));							
 							verifyQuoteHistory();
-							canadaLib.clickOnInvoiceHistory();
+							
 							quickSearchAndVerifySearchResults(data.get("SearchBy"),refNumber);
 							verifyAndClickQuoteNumberOnHistory(data.get("QuoteNumber"));
 							verifyQuoteDetails();						

@@ -29,7 +29,7 @@ public class ShipBillPayObj extends ActionEngine{
     public static By USA_WEBGROUP=By.xpath("//span[text()='Web Group – USA - Praxair']");
     public static By CLICK_HERE=By.xpath("//span[text()='Click Here']//parent::a");
     public static By CONTINUE_BUTTON=By.xpath("//button[text()='Continue']");
-    public static By CANNADA_WEBSITE=By.xpath("//span[text()='Web Group – Canada - Praxair']");
+    public static By CANNADA_WEBSITE=By.xpath("//span[text()='Web Group – Canada - Praxair'] | //span[contains(text(),'Web Group –')]");
     //cart
     public static By SUB_TOTAL=By.xpath("//div[@class='columns small-12 large-3 print-5 print-offset-7']//div[text()='Subtotal']//parent::div");
     public static By SUB_TOTAL_CURRENCY=By.xpath("//div[@class='columns small-12 large-3 print-5 print-offset-7']//div[text()='Subtotal']//parent::div//span[@class='iw-currency__code']");
