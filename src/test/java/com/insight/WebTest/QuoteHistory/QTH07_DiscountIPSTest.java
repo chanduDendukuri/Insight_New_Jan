@@ -58,12 +58,14 @@ public class QTH07_DiscountIPSTest extends QuoteHistoryLib {
 
 					// Enable Quotes Check Box
 					cmtLib.setPermissions(data.get("Menu_Name"), data.get("Set_Permission"));
-
+					cmtLib.setPermissions(data.get("Menu_Name"), data.get("Set_Permission1"));
+					cmtLib.setPermissions(data.get("Menu_Name"), data.get("Set_Permission2"));
+					cmtLib.setPermissionsToDisable(data.get("Menu_Name"), data.get("Set_Permission2"));
 					// Disable -- quote_track_only_my_quotes;OFF
-					cmtLib.setPermissionsToDisable(data.get("Menu_Name"), data.get("Disable_Permission"));
+					//cmtLib.setPermissionsToDisable(data.get("Menu_Name"), data.get("Disable_Permission"));
 
 					// Enable purchasing popup
-					cmtLib.setPermissions(data.get("Menu_Name"), data.get("Set_Permission_Msg"));
+					//cmtLib.setPermissions(data.get("Menu_Name"), data.get("Set_Permission_Msg"));
 
 					cmtLib.clickOnloginAs();
 					switchToChildWindow();
