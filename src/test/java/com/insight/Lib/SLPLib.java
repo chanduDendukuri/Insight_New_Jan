@@ -832,9 +832,9 @@ public class SLPLib extends SLPObj {
 		
 		public void verifyPAOnReceiptPage(String paInput) throws Throwable {
 			if(isVisibleOnly(getPAOnReceipt(paInput), "PA #")) {
-				reporter.SuccessReport("Verify PA# Field in Place Order Page", paInput+" Field Exists and Verified", "PA field PA #: "+paInput);
+				reporter.SuccessReport("Verify PA# Field in Place Order Page or Receipt page", paInput+" Field Exists and Verified", "PA field PA #: "+paInput);
 			}else {
-				reporter.failureReport("Verify PA# Field in Place Order Page", paInput+" Field does not Exists", "",driver);
+				reporter.failureReport("Verify PA# Field in Place Order Page or or Receipt page", paInput+" Field does not Exists", "",driver);
 			}
 		}
 }
