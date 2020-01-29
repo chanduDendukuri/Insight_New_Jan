@@ -643,7 +643,7 @@ scrollUp();
 			click(CanadaObj.getSearchByTextOrder(searchBy), "Search By");
 			click(QUICK_SEARCH_TEXT, "Click on Text");
 			type(QUICK_SEARCH_TEXT, text, "Text ");
-			Thread.sleep(5000);
+			((JavascriptExecutor) driver).executeScript("window.scrollBy(0, 200)", "");
 			click(CanadaObj.SEARCH, "Search");
 			waitForVisibilityOfElement(InvoiceHistoryObj.searchResultsTable, "search results table");
 			if (isElementPresent(InvoiceHistoryObj.searchResultsTable, "search results table")) {

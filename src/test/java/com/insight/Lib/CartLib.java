@@ -1778,7 +1778,8 @@ public class CartLib extends ActionEngine {
 	 * @throws Throwable
 	 */
 	public void verifyCartBreadCrumb() throws Throwable {
-		if (isElementPresent(CartObj.CART_LABEL_ON_CART_PAGE, "cart page")) {
+		if (waitForVisibilityOfElement(CartObj.CART_LABEL_ON_CART_PAGE, "cart page")) {
+			
 			reporter.SuccessReport("Verify cart page", "User successfully navigated to cart page", "PageDetails : Cart");
 		} else {
 			reporter.failureReport("Verify cart page", "Cart page is not displayed", "", driver);
