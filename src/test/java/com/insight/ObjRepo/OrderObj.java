@@ -347,5 +347,11 @@ public class OrderObj extends ActionEngine{
 		 return By.xpath("//div[@class='cart__item-bundle'][contains(.,'Insight Part #: "+bundleName+"')]/following::div[@class='row expanded is-collapse-child'][1]//label[contains(text(),'WG_LNL_Txt:')]//p");
 	 }
 	 public static By QUOTE_REFERENCE_NAME=By.xpath("//div[@id='quotenameval']//span");
+	 public static By groundRadioButton = By.xpath("//*[text()='Ground']//..//..//input");
+	 public static By groundOptionInShipmentOptionsPage = By.xpath("//*[text()='Ground']");
+	 public static By groundPriceOptionInShipmentOptionsPage = By.xpath("//*[text()='Ground']//..//span[@class='iw-currency']");
+	 public static By airOptionInShipmentOptionsPage = By.xpath("//*[text()='Air']");
+	 public static By airPriceValueInShipmentOptionsPage = By.xpath("//*[text()='Air']//..//span[@class='iw-currency']");
+	 public static By canadaGroundInSummary = By.xpath("(//*[@class='cart-summary__totals']//*[@class='columns cart-summary__label']//*[text()='Canada Ground'])[2]");
 }
 

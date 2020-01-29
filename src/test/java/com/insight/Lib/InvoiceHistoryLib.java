@@ -917,6 +917,7 @@ return status;
 	 */
 	public void closeHierarchyPopUp() throws Throwable {
 		click(CLOSE_HIERARCHY_POP_UP,"Close hierarchy pop up");
+		Thread.sleep(3000);
 	}
 	
 	public void verifySelectedOptionInAccountSelectionDD(String expected) throws Throwable {
@@ -988,4 +989,39 @@ return status;
 	public void verifyQuoteHistoryReults() throws Throwable {
 		isVisible(lblExpirationDate, "quote history results");
 	}
+	public void verifyGPAccountHierarchyTree() throws Throwable
+	{
+		List<WebElement> myList=driver.findElements(GP);
+		if(myList.size()!=0) {
+		for(int i=1;i<=myList.size();i++) {
+			String gdpdetails= getText(GPDetails(i),"GP Account hierarchy details");
+			reporter.SuccessReport("Verify the GP Account Hierarchy Tree Load", "GP Account Hierarchy Tree Loaded", "Account name,Account number and address are:"+gdpdetails);
+		}
+		}
+		else {
+			reporter.failureReport("Verify the GP Account Hierarchy Tree Load", "Could not load GP Account Hierarchy ", "", driver);
+		}
+	}
+	
+	public void verifyRPAccountHierarchyTree() throws Throwable
+	{
+		waitForVisibilityOfElement(ACCOUNT_NUMBER, "Account number");
+		
+		List<WebElement> myList=driver.findElements(GP);
+		if(myList.size()!=0) {
+		for(int i=1;i<=myList.size();i++) {
+			String rpdetails= getText(RPDetails(i),"RP Account hierarchy details");
+			reporter.SuccessReport("Verify the RP Account Hierarchy Tree Load", "RP Account Hierarchy Tree Loaded", "Account name,Account number and address are:"+rpdetails);
+		}
+		}
+		else {
+			reporter.failureReport("Verify the RP Account Hierarchy Tree Load", "Could not load RP Account Hierarchy ", "", driver);
+		}
+	}
+	public void verifyGGPDetails() throws Throwable
+	{
+		getText(GGPDetails, "GGP Account details");
+	}
+	
+	
 }
