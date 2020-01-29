@@ -1,7 +1,9 @@
 package com.insight.Lib;
 
 import java.io.FileNotFoundException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 import org.openqa.selenium.WebElement;
 
@@ -352,7 +354,11 @@ public class OrderLib extends OrderObj{
 			// date ordered verification
 			if (isElementPresent(DATE_ORDERED, "Date ordered")) {
 				String dateOrdered = getText(DATE_ORDERED, "Date ordered");
-				String actualDate = getCurrentDateTime("dd-MMM-yyyy");
+				//String actualDate = getCurrentDateTime("dd-MMM-yyyy");
+				Calendar c = Calendar.getInstance();
+				SimpleDateFormat sdf = new SimpleDateFormat("dd-MMM-yyyy");
+				c.add(Calendar.DATE, -1);
+				String actualDate  = sdf.format(c.getTime());
 				if (actualDate.contains(dateOrdered)) {
 					reporter.SuccessReport("Verify the Date ordered ", " date ordered verification is successfull","Ordered Date : "+dateOrdered);
 				} else {
