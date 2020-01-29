@@ -81,6 +81,7 @@ public class IVH03_InvoiceDetailsHierachyTreeControlsTest extends InvoiceHistory
 					verifyTree();
 					getAccountNumber(data.get("Account_Number"));
 					getAccountName(data.get("Account_Name"));
+					verifyRPAccountHierarchyTree();
 					closeHierarchyPopUp();
 					// ######## GGP Level default account ################################
 					canadaLib.clickOnSideMenuSelectAccountToolOptions(data.get("Tools_Menu"),
@@ -96,6 +97,7 @@ public class IVH03_InvoiceDetailsHierachyTreeControlsTest extends InvoiceHistory
 					verifyTree();
 					getAccountNumber(data.get("Account_Number1"));
 					getAccountName(data.get("Account_Name1"));
+					verifyRPAccountHierarchyTree();
 					verifyDefaultSelectedAccount(data.get("Default_Account"));
 					closeHierarchyPopUp();
 					// ######## RP Level default account ################################

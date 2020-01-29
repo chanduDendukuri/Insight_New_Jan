@@ -149,14 +149,6 @@ public class QTH01_QuoteHistoryViewQuoteHistPageTest extends QuoteHistoryLib {
 						VerifyQuoteDetailsunderQuoteSearch();
 						commonLib.clickLogOutLink(data.get("Logout_Header"));
 						
-						
-						
-						
-						
-						
-						
-						
-						
 
 					} catch (Exception e) {
 						ReportStatus.blnStatus = false;

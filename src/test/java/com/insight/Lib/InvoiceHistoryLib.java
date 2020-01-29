@@ -933,21 +933,23 @@ return status;
 		}
 	}
 	
-	/*
-	 * public void getAccountNumber(String expectedAccountNumber) throws Throwable {
-	 * waitForVisibilityOfElement(ACCOUNT_NUMBER, "Account number"); String
-	 * strArray[] = expectedAccountNumber.split(",");
-	 * System.out.println("strArray.length"+strArray.length); List<WebElement>
-	 * myList=driver.findElements(ACCOUNT_NUMBER); for(int
-	 * i=0;i<strArray.length;i++) { String accountNumber= myList.get(i).getText();
-	 * 
-	 * if(accountNumber.equalsIgnoreCase(strArray[i])) { switch(i) { case 1:
-	 * reporter.SuccessReport(strStepName, strStepDes, input); }
-	 * reporter.SuccessReport("Verifying account number",
-	 * "Account number is:"+" "+accountNumber, strArray[i]); } else {
-	 * reporter.failureReport("Verifying account number",
-	 * "Account number is not:"+" "+accountNumber, strArray[i],driver); } } }
-	 */
+	public void getAccountNumber(String expectedAccountNumber) throws Throwable {
+		waitForVisibilityOfElement(ACCOUNT_NUMBER, "Account number");
+		String strArray[] = expectedAccountNumber.split(","); 
+		System.out.println("strArray.length"+strArray.length);
+		List<WebElement> myList=driver.findElements(ACCOUNT_NUMBER);
+		for(int i=0;i<strArray.length;i++) {
+			String accountNumber= myList.get(i).getText();
+			
+			if(accountNumber.equalsIgnoreCase(strArray[i])) {
+				reporter.SuccessReport("Verifying account number", "Account number is:"+" "+accountNumber, strArray[i]);
+			}
+			else {
+				reporter.failureReport("Verifying account number", "Account number is not:"+" "+accountNumber, strArray[i],driver);
+			}
+		}
+	}
+	
 	public void getAccountName(String expectedAccountName) throws Throwable {
 		waitForVisibilityOfElement(ACCOUNT_NAME, "Account name");
 		String strArray[] = expectedAccountName.split(","); 
