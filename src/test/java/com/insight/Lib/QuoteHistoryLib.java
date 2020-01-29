@@ -584,8 +584,9 @@ scrollUp();
 			reporter.failureReport("Click on the Quote Number on Quote History", " Quote Numbers Exists and Clickedt", "");	
 		}
 	}
-	public void EntervalidEmail() {
+	public void EntervalidEmail(String email) throws Throwable {
 		clearData(txt_Email);
+		type(txt_Email, email, "email field");
 	}
 	/**
 	 * Method is used to verify Delete this quote icon
