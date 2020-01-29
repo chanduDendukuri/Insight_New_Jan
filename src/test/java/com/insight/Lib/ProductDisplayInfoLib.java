@@ -1305,10 +1305,12 @@ public void getSummaryCartDetails() throws Throwable{
 		List<String> unitPrice1=orderLib.getCartProductUnitPrice();
 		List<String> quantity=orderLib.getCartProductQuantity();
 		List<String> stock=orderLib.getCartProductStock();
+		List<String> currency=orderLib.getCurrencyTypeOfCartProduct();
+
 		if (prodDesc1.get(0)!=null && totalPrice1!=null) {
 			reporter.SuccessReport("Verify the part added to cart ", "Part added to cart and cart details are: ",
 					 "  prod Description : " + prodDesc1.get(0) + " Quantity : "+quantity
-							+ "Total Price: " + totalPrice1.get(0)+ " Unit price: "+unitPrice1+ "Stock :"+stock);
+							+ "Total Price: " + currency.get(0)+" "+ totalPrice1.get(0)+ " Unit price: "+ currency.get(0)+" "+unitPrice1+ "Stock :" +stock);
 		} else {
 			reporter.failureReport("Verify the part added to cart ", "Part is not added to cart.", "", driver);
 		}
