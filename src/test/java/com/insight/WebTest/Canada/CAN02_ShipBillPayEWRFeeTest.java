@@ -101,9 +101,6 @@ public class CAN02_ShipBillPayEWRFeeTest extends CanadaLib{
 									prodinfo.verifyCartPageAndPartDetails();
 									cartLib.verifyItemInCart(partNumber2);
 
-
-						//shipbLib.verifyPriceIsCAD(data.get("CANDAIAN_DOLLAR"));
-						//shipbLib.getSummaryAmountsInCart(data.get("SubTotal"), data.get("Total"));
 						// proceed to check out
 						orderLib.proceedToCheckout();
 									cartLib.clickOnContinueButtonInAddInformtion();
@@ -147,6 +144,7 @@ public class CAN02_ShipBillPayEWRFeeTest extends CanadaLib{
 
 									canadaLib.continueToCheckout();
 									cartLib.verifyCartPageAvailablity();
+									//Need to verify this statement
 									prodinfo.verifyCartPageAndPartDetailsForRecentlyItem();
 
 
@@ -167,35 +165,8 @@ public class CAN02_ShipBillPayEWRFeeTest extends CanadaLib{
 						shipbLib.clickOrderDetailsButtonInREceipt();
 					//	String EWRAMOUNT2 = canadaLib.getEWRFeeInSummary();
 									String EWRAMOUNT3 = canadaLib.getEWRFeeInSummary();
-									orderLib.verifyPlaceOrderLabel();
 
-				/*		// Adding first product to cart
-						commonLib.searchProduct(data.get("Search_Item2"));
-						commonLib.addToCartAndVerify();
-
-//						commonLib.continueToShopping();
-//						commonLib.clickCart();
-						canadaLib.continueToCheckout();
-						cartLib.verifyItemInCart(data.get("Search_Item2"));
-						// proceed to check out
-						orderLib.proceedToCheckout();
-						cartLib.clickOnContinueButtonInAddInformtion();
-						canadaLib.verifySBP();
-						orderLib.shippingBillPayContinueButton();
-						orderLib.shippingOptionsCarrierSelection(); // Click continue on shipping options
-						orderLib.shippingBillPayContinueButton();
-						orderLib.termsInPaymentInfo(data.get("PONumber"));
-						orderLib.verifyPlaceOrderLabel();
-
-
-						String EWRAMOUNT3 = canadaLib.getEWRFeeInSummary();
-						canadaLib.verifyEWRAmonunts(EWRAMOUNT2, EWRAMOUNT3);
-						String summaryAmount1 = cartLib.getSummaryAmountInCart();
-									orderLib.placeOrderAndVerifyReceiptOrderAndDate(summaryAmount);
-									shipbLib.clickOrderDetailsButtonInREceipt();
-						shipbLib.clickOrderDetailsButtonInREceipt();
-
-				*/		commonLib.clickLogOutLink(data.get("Logout_Header"));
+					commonLib.clickLogOutLink(data.get("Logout_Header"));
 						//fnCloseTest();
 						System.out.println("Test completed");
 								} catch (Exception e) {
