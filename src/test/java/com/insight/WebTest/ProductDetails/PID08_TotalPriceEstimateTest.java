@@ -76,7 +76,7 @@ public class PID08_TotalPriceEstimateTest extends ActionEngine{
 					Thread.sleep(5000);
 					productdetLib.verifyEstimatedshipping();
 					productdetLib.verifyEstimatedPrice();
-					productdetLib.verifyEstimatedshippingOption();
+					productdetLib.verifyEstimatedshippingOption(data.get("Default_Shipping_Option"));
 					productdetLib.verifyEstimatedtax();
 					Thread.sleep(5000);
 					commonLib.clickLogOutLink(data.get("Logout_Header"));

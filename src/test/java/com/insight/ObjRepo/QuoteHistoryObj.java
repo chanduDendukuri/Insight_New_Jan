@@ -31,9 +31,9 @@ public class QuoteHistoryObj extends ActionEngine {
 	 public static By SelctedWebGroupName(String option) {
 		 return By.xpath("//div[@class='c-header__middle']//button[@id='webGroupDropdown']//span[contains(text(),'"+option+"')]");
 	 }
-	 public static By txt_AccountNumberUnderQuoteSearch = By.xpath("(//td[starts-with(@class,'footable-visible footable-last-column')])[1]");
+	 public static By txt_AccountNumberUnderQuoteSearch = By.xpath("//*[@id=\"quoteSearch\"]//td[6]");
 	 public static By getQuoteNumberinresults = By.xpath("(//td[starts-with(@class,'footable-visible footable')]//a)[3]");
-	 public static By txt_AccountName = By.xpath("//td[starts-with(@class,'footable-visible')]//following-sibling::td[contains(text(),'FREEPORT MCMORAN COPPER & GOLD INC')]");
+	 public static By txt_AccountName = By.xpath("//*[@id=\"quoteSearch\"]//td[5]");
 	 public static By getReferenceNumber(String quoteReferenceNum){
 		 return By.xpath("//table[@class='footable clean full footable-loaded default']//tbody//tr[1]//td//a[contains(.,'"+quoteReferenceNum+"')]");
 	 }
@@ -79,9 +79,10 @@ public class QuoteHistoryObj extends ActionEngine {
 	 public static By getQuickSearchQuoteFormTable(String QuoteNumber){
 		 return By.xpath("//table[@id='quoteSearch']//tbody//tr//td//a[contains(.,'"+QuoteNumber+"')]");
 	 }
+	 public static By txt_QuoteNumber = By.xpath("//div[@id=\"js-recent-quotes-target\"]//a");
 		public static By QUICK_SEARCH_TEXT = By.xpath("//input[@id='quoQuickInputNumber']");
 		 public static By getQuoteNumberFRomQuickSearchHistory(String quoteNumber){
-			 return By.xpath("//table[@id='quoteSearch']//tbody//tr//td//a[contains(.,'"+quoteNumber+"')]");
+			 return By.xpath("//table[@id='quoteSearch']//tbody//tr//td//a[contains(text(),'"+quoteNumber+"')]");
 		 }
 		 public static By ERROR_MSG = By.xpath("//div[@class='alert']");
 		 public static By QUICKSHOP_ERROR_MSG = By.xpath("//div[@class='hide-for-print']/following::span[@class='columns iw-message__text']");
