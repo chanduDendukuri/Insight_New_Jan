@@ -55,71 +55,121 @@ public class CAN02_ShipBillPayEWRFeeTest extends CanadaLib{
 						OrderLib orderLib = new OrderLib();
 						ShipBillPayLib shipbLib = new ShipBillPayLib();
 						CanadaLib canadaLib = new CanadaLib();
+						ProductDisplayInfoLib prodinfo = new ProductDisplayInfoLib();
 
 
-						cmtLib.loginToCMTSearchWebGrpAndUser(data.get("Header"), data.get("WebGrp"), data.get("LnameEmailUname"),
-								data.get("ContactName"));
-						cmtLib.setPermissions(data.get("Menu_Name"), data.get("Set_Permission"));
-						cmtLib.setPermissions(data.get("Menu_Name"),data.get("Enable_Purchasing_Popup"));
-						cmtLib.clickOnloginAs();
-						switchToChildWindow();
+									cmtLib.loginToCMT(data.get("Header"));
+									cmtLib.searchForWebGroup(data.get("WebGrp"));
+									cmtLib.clickOnTheWebGroup(data.get("MgContactName"));
+									cmtLib.verifyManageWebGroupSettings();
+									cmtLib.hoverOnManageWebGroupsAndSelectOptions(data.get("ManageWebGrpOptions"));
+									cmtLib.verifyManageWebGroupsUserManagement();
+									cmtLib.searchForaUserAndSelect(data.get("LnameEmailUname"), data.get("ContactName"));
+									cmtLib.setPermissions(data.get("Menu_Name"), data.get("Set_Permission"));
+									//cmtLib.setPermissions(data.get("Menu_Name"),data.get("Enable_Purchasing_Popup"));
+									cmtLib.clickOnloginAs();
+									switchToChildWindow();
+									cmtLib.loginVerification(data.get("MgContactName"));
+
+
 
 						canadaLib.verifyCanadaWebgroup();
 						// Adding first product to cart
+
 						commonLib.searchProduct(data.get("Search_Item"));
+						searchLib.verifyTheResultsForSearchTerm(data.get("Search_Item"));
+						searchLib.removeTheFilterForInStockOnly("filter");
+						prodinfo.getPartNumberInSearchResultsPage();
 						commonLib.addFirstDisplyedItemToCartAndVerify();
+
 						String partNumber1 = cartLib.getPartNumber();
 						System.out.println("partNumber1"+partNumber1);
-//						commonLib.continueToShopping();
+//						//commonLib.continueToShopping();
 //						commonLib.clickCart();
 						canadaLib.continueToCheckout();
-						cartLib.verifyItemInCart(partNumber1);
+									cartLib.verifyCartPageAvailablity();
+									prodinfo.verifyCartPageAndPartDetails();
+									cartLib.verifyItemInCart(partNumber1);
 						// Adding second product to cart
 						commonLib.searchProduct(data.get("Search_Item1"));
+									searchLib.verifyTheResultsForSearchTerm(data.get("Search_Item1"));
+									searchLib.removeTheFilterForInStockOnly("filter");
+									prodinfo.getPartNumberInSearchResultsPage();
 						commonLib.addFirstDisplyedItemToCartAndVerify();
 						String partNumber2 = cartLib.getPartNumber();
-//						commonLib.continueToShopping();
-//						commonLib.clickCart();
 						canadaLib.continueToCheckout();
-						cartLib.verifyItemInCart(partNumber2);
+									prodinfo.verifyCartPageAndPartDetails();
+									cartLib.verifyItemInCart(partNumber2);
 
-						shipbLib.verifyPriceIsCAD(data.get("CANDAIAN_DOLLAR"));
-						shipbLib.getSummaryAmountsInCart(data.get("SubTotal"), data.get("Total"));
+
+						//shipbLib.verifyPriceIsCAD(data.get("CANDAIAN_DOLLAR"));
+						//shipbLib.getSummaryAmountsInCart(data.get("SubTotal"), data.get("Total"));
 						// proceed to check out
 						orderLib.proceedToCheckout();
-						cartLib.clickOnContinueButtonInAddInformtion();
-						canadaLib.verifySBP();
-						orderLib.shippingBillPayContinueButton();
-						orderLib.shippingOptionsCarrierSelection(); // Click continue on shipping options
-						orderLib.shippingBillPayContinueButton();
-						orderLib.termsInPaymentInfo(data.get("PONumber"));
-						orderLib.verifyPlaceOrderLabel();
+									cartLib.clickOnContinueButtonInAddInformtion();
+									canadaLib.verifySBP();
+									orderLib.shippingBillPayContinueButton();
+									orderLib.shippingOptionsCarrierSelection(); // Click continue on shipping options
+									orderLib.billingAddressContinueButton();
+									orderLib.termsInPaymentInfo(data.get("PONumber"), data.get("POReleaseNumber"));
 
-						String EWRAMOUNT = canadaLib.getEWRFeeInSummary();
+									orderLib.verifyPlaceOrderLabel();
+									String EWRAMOUNT = canadaLib.getEWRFeeInSummary();
 						canadaLib.verifyEWRInCartPage();
+								//	orderLib.placeOrderAndVerifyReceiptOrderAndDate(summaryAmount);
 
 						canadaLib.clickReturnToCart();
+
 						commonLib.spinnerImage();
 						canadaLib.verifyPlaceCartLabel();
 						commonLib.updateCartQuantity(data.get("quantity"));
 						// proceed to check out
 						orderLib.proceedToCheckout();
-						cartLib.clickOnContinueButtonInAddInformtion();
-						canadaLib.verifySBP();
-						orderLib.shippingBillPayContinueButton();
-						orderLib.shippingOptionsCarrierSelection(); // Click continue on shipping options
-						orderLib.shippingBillPayContinueButton();
 
-						orderLib.termsInPaymentInfo(data.get("PONumber"));
+									cartLib.clickOnContinueButtonInAddInformtion();
+									canadaLib.verifySBP();
+									orderLib.shippingBillPayContinueButton();
+									orderLib.shippingOptionsCarrierSelection(); // Click continue on shipping options
+									orderLib.billingAddressContinueButton();
+									orderLib.termsInPaymentInfo(data.get("PONumber"), data.get("POReleaseNumber"));
+									orderLib.verifyPlaceOrderLabel();
+									String EWRAMOUNT1 = canadaLib.getEWRFeeInSummary();
+									canadaLib.verifyEWRInCartPage();
+									String summaryAmount = cartLib.getSummaryAmountInCart();
+									orderLib.placeOrderAndVerifyReceiptOrderAndDate(summaryAmount);
 
-						String EWRAMOUNT1 = canadaLib.getEWRFeeInSummary();
-						canadaLib.verifyEWRAmonunts(EWRAMOUNT, EWRAMOUNT1);
-						String summaryAmount = cartLib.getSummaryAmountInCart();
-						orderLib.placeOrderAndVerifyReceiptOrderAndDate(summaryAmount);
+									commonLib.searchProduct(data.get("Search_Item3"));
+									//should add code to verify product details
+									//productdetail.
+									prodinfo.verifyTheManufacturerNumberInProductDetailsPage(data.get("Search_Item3"));
+									commonLib.updateCartQuantityInProductDetailsPage(data.get("Quantity1"));
+									prodinfo.addToCartInProductDetailsPage();
+
+									canadaLib.continueToCheckout();
+									cartLib.verifyCartPageAvailablity();
+									prodinfo.verifyCartPageAndPartDetailsForRecentlyItem();
+
+
+									orderLib.proceedToCheckout();
+
+									cartLib.clickOnContinueButtonInAddInformtion();
+									canadaLib.verifySBP();
+									orderLib.shippingBillPayContinueButton();
+									orderLib.shippingOptionsCarrierSelection(); // Click continue on shipping options
+									orderLib.billingAddressContinueButton();
+									orderLib.termsInPaymentInfo(data.get("PONumber"), data.get("POReleaseNumber"));
+									orderLib.verifyPlaceOrderLabel();
+									String EWRAMOUNT2 = canadaLib.getEWRFeeInSummary();
+
+									canadaLib.verifyEWRAmonunts(EWRAMOUNT, EWRAMOUNT1);
+						String summaryAmount1 = cartLib.getSummaryAmountInCart();
+						orderLib.placeOrderAndVerifyReceiptOrderAndDate(summaryAmount1);
 						shipbLib.clickOrderDetailsButtonInREceipt();
-						String EWRAMOUNT2 = canadaLib.getEWRFeeInSummary();
+					//	String EWRAMOUNT2 = canadaLib.getEWRFeeInSummary();
+									String EWRAMOUNT3 = canadaLib.getEWRFeeInSummary();
+									orderLib.verifyPlaceOrderLabel();
 
-						// Adding first product to cart
+				/*		// Adding first product to cart
 						commonLib.searchProduct(data.get("Search_Item2"));
 						commonLib.addToCartAndVerify();
 
@@ -137,12 +187,15 @@ public class CAN02_ShipBillPayEWRFeeTest extends CanadaLib{
 						orderLib.termsInPaymentInfo(data.get("PONumber"));
 						orderLib.verifyPlaceOrderLabel();
 
+
 						String EWRAMOUNT3 = canadaLib.getEWRFeeInSummary();
 						canadaLib.verifyEWRAmonunts(EWRAMOUNT2, EWRAMOUNT3);
 						String summaryAmount1 = cartLib.getSummaryAmountInCart();
-						orderLib.placeOrderAndVerifyReceiptOrderAndDate(summaryAmount1);
+									orderLib.placeOrderAndVerifyReceiptOrderAndDate(summaryAmount);
+									shipbLib.clickOrderDetailsButtonInREceipt();
 						shipbLib.clickOrderDetailsButtonInREceipt();
-						commonLib.clickLogOutLink(data.get("Logout_Header"));
+
+				*/		commonLib.clickLogOutLink(data.get("Logout_Header"));
 						//fnCloseTest();
 						System.out.println("Test completed");
 								} catch (Exception e) {

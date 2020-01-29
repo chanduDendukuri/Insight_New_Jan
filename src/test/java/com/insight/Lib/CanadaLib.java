@@ -135,11 +135,11 @@ public class CanadaLib extends CanadaObj {
 	}
 
 	public void verifyEWRInCartPage() throws Throwable {
+
 		String EWRAmount = getText(EWR_AMOUNT, "EWR Amount");
 		if (isElementPresent(EWR_AMOUNT, "EWR Amount") && (!EWRAmount.isEmpty() || !(EWRAmount == null))) {
 
-			reporter.SuccessReport("Verify EWR Fee and Taxes in the Cart", "EWR Fee and Taxes Exist in the Cart ",
-					EWRAmount);
+			reporter.SuccessReport("Verify EWR Fee and Taxes in the Cart", "EWR Fee and Taxes Exist in the Cart ","Currency Code is "+getCurrencyCodeForEWR()+ " and the amount is " +EWRAmount);
 		} else {
 			reporter.failureReport("Verify EWR Fee and Taxes in the Cart", "EWR Fee and Taxes Do Not Exist in the Cart",
 					"",driver);
@@ -1674,5 +1674,9 @@ reporter.failureReport("Select  All Fields in the Available Fields on Reports Pa
 			reporter.failureReport("verify reporting usage period in cart page", "Usage Field does not Exists. ", "",driver);
 		}
 		return period;
+	}
+
+	public String getCurrencyCodeForEWR() throws Throwable{
+		return getText(txtCurrencyCode,"Get currency ");
 	}
 }

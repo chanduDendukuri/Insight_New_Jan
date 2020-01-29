@@ -148,7 +148,7 @@ public class SBP06_CreditCardOverrideTest extends ShipBillPayLib {
 				orderLib.shippingOptionsCarrierSelection(); // Click continue on shipping options
 				orderLib.billingAddressContinueButton(); // Billing address continue button
 				// CREDIT CARD VERIFICATION
-				orderLib.selectPaymentInfoMethodCreditCard(data.get("cardNumber"), data.get("Card_Name"), data.get("Month"),
+				orderLib.selectPaymentInfoMethodCreditCardandVerifyonlyCreditCardExists(data.get("cardNumber"), data.get("Card_Name"), data.get("Month"),
 						data.get("year"),data.get("PONumber"),data.get("POReleaseNumber"));
 				orderLib.clickOnReviewOrderButton();
 				String summaryAmount2 = cartLib.getSummaryAmountInCart();
