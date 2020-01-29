@@ -79,6 +79,7 @@ public class QuoteHistoryObj extends ActionEngine {
 	 public static By getQuickSearchQuoteFormTable(String QuoteNumber){
 		 return By.xpath("//table[@id='quoteSearch']//tbody//tr//td//a[contains(.,'"+QuoteNumber+"')]");
 	 }
+	 public static By txt_Email = By.xpath("//input[@name='licenseInformation.CONTACT_EMAIL']");
 	 public static By txt_QuoteNumber = By.xpath("//div[@id=\"js-recent-quotes-target\"]//a");
 		public static By QUICK_SEARCH_TEXT = By.xpath("//input[@id='quoQuickInputNumber']");
 		 public static By getQuoteNumberFRomQuickSearchHistory(String quoteNumber){
