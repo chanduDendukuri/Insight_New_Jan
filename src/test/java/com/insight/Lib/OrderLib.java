@@ -3,6 +3,8 @@ package com.insight.Lib;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
+
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 
 import com.insight.ObjRepo.CanadaObj;
@@ -1404,6 +1406,7 @@ List<String> orderdetails = new ArrayList<String>();
 		click(SEARCH_BTN, "search button");
 		Thread.sleep(20000);
 		clickUntil(SEARCH_BTN,QUOTE_NUMBER_HISTORY_PAGE, "search button");
+		((JavascriptExecutor) driver).executeScript("window.scrollBy(0, 200)", "");
 		click(QUOTE_NUMBER_HISTORY_PAGE, "Quote Number");
 		if(isElementPresent(QUOTE_DETAILS_PAGE_LABEL, "Quote details page")){
 			reporter.SuccessReport("Verify Quote details page", "Quote details page is displayed","");
