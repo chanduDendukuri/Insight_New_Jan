@@ -59,10 +59,6 @@ public class IVH03_InvoiceDetailsHierachyTreeControlsTest extends InvoiceHistory
 					clickShowAccountHirerachy();
 					verifyAccountHirearchyPopUp();
 					verifyTree();
-					verifyGGPDetails();
-					verifyGPAccountHierarchyTree();
-					verifyRPAccountHierarchyTree();
-					
 					closeHierarchyPopUp();
 
 					canadaLib.clickOnSideMenuSelectAccountToolOptions(data.get("Tools_Menu"),
@@ -83,13 +79,9 @@ public class IVH03_InvoiceDetailsHierachyTreeControlsTest extends InvoiceHistory
 					clickShowAccountHirerachy();
 					verifyAccountHirearchyPopUp();
 					verifyTree();
-					verifyGGPDetails();
-					verifyGPAccountHierarchyTree();
+					getAccountNumber(data.get("Account_Number"));
+					getAccountName(data.get("Account_Name"));
 					verifyRPAccountHierarchyTree();
-					/*
-					 * getAccountNumber(data.get("Account_Number"));
-					 * getAccountName(data.get("Account_Name"));
-					 */
 					closeHierarchyPopUp();
 					// ######## GGP Level default account ################################
 					canadaLib.clickOnSideMenuSelectAccountToolOptions(data.get("Tools_Menu"),
@@ -103,13 +95,9 @@ public class IVH03_InvoiceDetailsHierachyTreeControlsTest extends InvoiceHistory
 					clickShowAccountHirerachy();
 					verifyAccountHirearchyPopUp();
 					verifyTree();
-					verifyGGPDetails();
-					verifyGPAccountHierarchyTree();
+					getAccountNumber(data.get("Account_Number1"));
+					getAccountName(data.get("Account_Name1"));
 					verifyRPAccountHierarchyTree();
-					/*
-					 * getAccountNumber(data.get("Account_Number1"));
-					 * getAccountName(data.get("Account_Name1"));
-					 */
 					verifyDefaultSelectedAccount(data.get("Default_Account"));
 					closeHierarchyPopUp();
 					// ######## RP Level default account ################################
@@ -124,9 +112,6 @@ public class IVH03_InvoiceDetailsHierachyTreeControlsTest extends InvoiceHistory
 					clickShowAccountHirerachy();
 					verifyAccountHirearchyPopUp();
 					verifyTree();
-					verifyGGPDetails();
-					verifyGPAccountHierarchyTree();
-					verifyRPAccountHierarchyTree();
 					verifyDefaultSelectedAccount(data.get("Default_Account1"));
 					closeHierarchyPopUp();
 					commonLib.clickLogOutLink(data.get("Logout_Header"));
