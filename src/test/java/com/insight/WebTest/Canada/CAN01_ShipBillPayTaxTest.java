@@ -82,7 +82,7 @@ public class CAN01_ShipBillPayTaxTest extends CanadaLib{
 					 * cmtLib.clickOnloginAs(); cmtLib.loginVerification(data.get("contactName"));
 					 * switchToChildWindow();
 					 */
-
+									shipbLib.verifyWEbsiteIsCannada();
 						canadaLib.verifyCanadaWebgroup();
 						// Adding first product to cart
 						commonLib.searchProduct(data.get("Search_Item"));

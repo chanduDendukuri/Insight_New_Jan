@@ -828,13 +828,39 @@ public class SLPLib extends SLPObj {
 				reporter.failureReport("Verify the data in Deploy Date POP-up", "Mnf# Part and Search Item are not Same", "");
 			}
 		}
-		
+		/***
+		 * method is to verify PA on receipt and PO page 
+		 * @param paInput
+		 * @throws Throwable
+		 */
 		
 		public void verifyPAOnReceiptPage(String paInput) throws Throwable {
 			if(isVisibleOnly(getPAOnReceipt(paInput), "PA #")) {
 				reporter.SuccessReport("Verify PA# Field in Place Order Page or Receipt page", paInput+" Field Exists and Verified", "PA field PA #: "+paInput);
 			}else {
 				reporter.failureReport("Verify PA# Field in Place Order Page or or Receipt page", paInput+" Field does not Exists", "",driver);
+			}
+		}
+		
+		/**
+		 * Method is to verify the date is copied correctly
+		 * @param actualDate
+		 * @param expectedDate
+		 * @throws Throwable
+		 */
+		public void verifyDateAppliedToAllPartAfterCopyAll(String actualDate,String expectedDate) throws Throwable {
+			if(actualDate.equals(expectedDate)) {
+				reporter.SuccessReport("Verify date is copied to all parts", "Deploy date updted in the cart ", "Deploy Date: "+actualDate);
+			}else {
+				reporter.failureReport("Verify date is copied to all parts", "Date is not copied to all parts", "", driver);
+			}
+		}
+		
+		public void clickSaveasQuote() throws Throwable {
+			if(isVisibleOnly(CartObj.SAVE_AS_QUOTE, "Save as Quote")) {
+				clickUntil(CartObj.SAVE_AS_QUOTE,OrderObj.QUOTE_NAME ,"Save as quote Link");
+			}else {
+				reporter.failureReport("verify save as quote in cart page", "save as quote does not exists", "", driver);
 			}
 		}
 }

@@ -82,6 +82,7 @@ public class SLP14_AdobeVIP extends SLPLib{
 					
 					// Search for part or product and add to cart : part : 65234076BA03A12
 			     	searchLib.searchInHomePage(data.get("PartNum1"));
+			     	pipLib.verifyTheManufacturerNumberInProductDetailsPage(data.get("PartNum1"));
 			     	commonLib.verifyPDPMesssageforAdobeProducts();
 			     	commonLib.addToCartAndVerify();
 			     	orderLib.continueToCheckOutOnAddCart();
@@ -89,6 +90,7 @@ public class SLP14_AdobeVIP extends SLPLib{
 			     	
 			        // Search for Adobe part or product and add to cart : part : 65234098BA03A12
 			     	searchLib.searchInHomePage(data.get("PartNum2"));
+			     	pipLib.verifyTheManufacturerNumberInProductDetailsPage(data.get("PartNum2"));
 			     	commonLib.verifyPDPMesssageforAdobeProducts();
 			    	pipLib.enterQuantityOnProductDetailsPage(data.get("Quantity"));
                     commonLib.addToCartAndVerify();
@@ -97,24 +99,26 @@ public class SLP14_AdobeVIP extends SLPLib{
 			        
 			     	// Search for Non Adobe part or product and add to cart : part :L9K19UT#ABA 
 			     	searchLib.searchInHomePage(data.get("PartNum3"));
-			     	
+			     	pipLib.verifyTheManufacturerNumberInProductDetailsPage(data.get("PartNum3"));
 			     	pipLib.enterQuantityOnProductDetailsPage(data.get("Quantity"));
 			     	commonLib.addToCartAndVerify();
 			     	orderLib.continueToCheckOutOnAddCart();
 			     	
 			     	// Verify Deploy popup details for part 1
-			     	verifyandClickchangeLink(data.get("PartNum1"));
-			     	verifydeployedatewithcurrentdate();
 			     	String date1=getDeploydateOnCart(data.get("PartNum1"));
 			     	List<String> prodDesc1 = orderLib.getProductDescriptionOfCartProduct();
+			     	verifyandClickchangeLink(data.get("PartNum1"));
+			     	verifydeployedatewithcurrentdate();
 			     	verifycartDetailsWithDeployPopUpDetails(date1, prodDesc1.get(1), data.get("PartNum1"));
 			     	calenderforUnpaidLicense(data.get("Date1"));
 			     	clickapply();
+			       
 			     	
-			     	verifyandClickchangeLink(data.get("PartNum2"));
-			     	verifydeployedatewithcurrentdate();
+			     	// Verify Deploy popup details for part 2
 			     	String date2=getDeploydateOnCart(data.get("PartNum2"));
 			     	List<String> prodDesc2 = orderLib.getProductDescriptionOfCartProduct();
+			     	verifyandClickchangeLink(data.get("PartNum2"));
+			     	verifydeployedatewithcurrentdate();
 			     	verifycartDetailsWithDeployPopUpDetails(date2, prodDesc2.get(2), data.get("PartNum2"));
 			     	calenderforUnpaidLicense(data.get("Date2"));
 			     	clickapply();
