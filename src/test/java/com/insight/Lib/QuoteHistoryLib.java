@@ -638,7 +638,7 @@ scrollUp();
 	public void quickSearchAndVerifySearchResults(String searchBy, String text) throws Throwable {
 		waitForVisibilityOfElement(CanadaObj.SEARCHBY_DROPDOWN, "Quick Search");
 		if (isElementPresent(CanadaObj.SEARCHBY_DROPDOWN, "Quick Search")) {
-			((JavascriptExecutor) driver).executeScript("window.scrollBy(0, +420)", "");
+			((JavascriptExecutor) driver).executeScript("window.scrollBy(0, +320)", "");
 			click(CanadaObj.SEARCHBY_DROPDOWN, "SearchBy");
 			click(CanadaObj.getSearchByTextOrder(searchBy), "Search By");
 			click(QUICK_SEARCH_TEXT, "Click on Text");
