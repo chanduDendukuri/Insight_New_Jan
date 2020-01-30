@@ -77,8 +77,6 @@ public class SLP14_AdobeVIP extends SLPLib{
 					searchLib.verifyProductWStandardsPage();
 					searchLib.verifyClientAndClickOnProductGrpName(data.get("productName"));
 					searchLib.checkMessageiconforAdobeProducts();
-					// Select first description and verify mini popup window
-					//searchLib.selectDescriptionAndVerifyMiniPopupWindow();
 					
 					// Search for part or product and add to cart : part : 65234076BA03A12
 			     	searchLib.searchInHomePage(data.get("PartNum1"));
@@ -112,7 +110,6 @@ public class SLP14_AdobeVIP extends SLPLib{
 			     	verifycartDetailsWithDeployPopUpDetails(date1, prodDesc1.get(1), data.get("PartNum1"));
 			     	calenderforUnpaidLicense(data.get("Date1"));
 			     	clickapply();
-			       
 			     	
 			     	// Verify Deploy popup details for part 2
 			     	String date2=getDeploydateOnCart(data.get("PartNum2"));
@@ -122,7 +119,6 @@ public class SLP14_AdobeVIP extends SLPLib{
 			     	verifycartDetailsWithDeployPopUpDetails(date2, prodDesc2.get(2), data.get("PartNum2"));
 			     	calenderforUnpaidLicense(data.get("Date2"));
 			     	clickapply();
-			     	
 			     	
 			     	//Verify Deployed date displayed in cart page
                     String DeployedDate= getTextfromdeployedateinCartPage();
@@ -141,8 +137,13 @@ public class SLP14_AdobeVIP extends SLPLib{
                     orderLib.clickOnReviewOrderButton();                       
                             
                     orderLib.verifyPlaceOrderLabel();
-                    String OrderDate=getTextfromdeployedateinPlaceOrderPage();
-                    assertTrue(DeployedDate.contains(OrderDate), "Deploy Date Field Exists and Verified");
+                    //String OrderDate=getTextfromdeployedateinPlaceOrderPage();
+                   // Order date verification
+                    //verifyDateAppliedToAllPartAfterCopyAll(DeployedDate, OrderDate);
+                    verifyDeploydateOnPlaceOrderPage(data.get("PartNum2"), data.get("Date2"));
+                    verifyDeploydateOnPlaceOrderPage(data.get("PartNum1"), data.get("Date1"));
+                    
+                    //assertTrue(DeployedDate.contains(OrderDate), "Deploy Date Field Exists and Verified");
                     //Verifying PA fields in Place order page
                     verifyPAOnReceiptPage(data.get("PA")); 
                     verifyPAOnReceiptPage(data.get("PA1")); 
@@ -150,6 +151,8 @@ public class SLP14_AdobeVIP extends SLPLib{
 						String summaryAmountInLogin=cartLib.getSummaryAmountInCart();
 						 orderLib.placeOrderAndVerifyReceiptOrderAndDate(summaryAmountInLogin);
                       orderLib.clickOrderDetailsLinkOnReceiptPage();
+                      verifyDeploydateOnPlaceOrderPage(data.get("PartNum2"), data.get("Date2"));
+                      verifyDeploydateOnPlaceOrderPage(data.get("PartNum1"), data.get("Date1"));
                       verifyPAOnReceiptPage(data.get("PA"));	
                       verifyPAOnReceiptPage(data.get("PA1"));
 					commonLib.clickLogOutLink(data.get("Logout"));

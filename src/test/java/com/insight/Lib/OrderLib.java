@@ -355,14 +355,14 @@ List<String> orderdetails = new ArrayList<String>();
 				reporter.failureReport("Verify the Total Amount ", "The Total Amount is not updated. ","",driver);
 			}
 
-			// date ordered verification
+			  // date ordered verification
 			if (isElementPresent(DATE_ORDERED, "Date ordered")) {
 				String dateOrdered = getText(DATE_ORDERED, "Date ordered");
-				//String actualDate = getCurrentDateTime("dd-MMM-yyyy");
-				Calendar c = Calendar.getInstance();
+				String actualDate = getCurrentDateTime("dd-MMM-yyyy");
+				/*Calendar c = Calendar.getInstance();
 				SimpleDateFormat sdf = new SimpleDateFormat("dd-MMM-yyyy");
 				c.add(Calendar.DATE, -1);
-				String actualDate  = sdf.format(c.getTime());
+				String actualDate  = sdf.format(c.getTime());*/
 				if (actualDate.contains(dateOrdered)) {
 					orderdetails.add(actualDate);
 					reporter.SuccessReport("Verify the Date ordered ", " date ordered verification is successfull","Ordered Date : "+dateOrdered);
