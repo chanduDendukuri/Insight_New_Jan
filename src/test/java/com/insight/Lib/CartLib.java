@@ -1879,14 +1879,14 @@ public class CartLib extends ActionEngine {
 	 */
 	public void verifyOnlyOneItemInCartPage() throws Throwable {
 		List<WebElement> trashicon = driver.findElements(CartObj.TRASH_ICON);
-		if (trashicon.size() > 1) {
+		if (trashicon.size() == 1) {
 				reporter.SuccessReport("Only Zero Usage Part in the Cart",
-						"The Cart Not Removes all parts except for the CITRIX Zero Usage part.", "");
+						"Only one part in cart", "");
 
 			}
 		else {
 		reporter.failureReport("Only Zero Usage Part in the Cart",
-				"The Cart Removes all parts except for the CITRIX Zero Usage part.", "", driver);
+				"More than one part in cart", "", driver);
 	  }
 	}
 

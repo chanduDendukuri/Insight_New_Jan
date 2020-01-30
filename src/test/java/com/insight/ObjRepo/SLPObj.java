@@ -78,7 +78,7 @@ public class SLPObj extends ActionEngine{
     // cart page messages
     public static By USER_REQUIRES_APPROVAL_MSG=By.xpath("//div[@class='row expanded is-collapse-child shopping-cart__messages']//span[@class='columns iw-message__text'][contains(text(),'You require approval to place orders, however this licensing program does not allow approval routing. Please contact spprograms@insight.com for assistance.')]");
     public static By NON_CITRIX_ITEMS_REMOVE_MESSAGE=By.xpath("//span[@class='columns iw-message__text'][contains(text(),'In order to report usage please remove items that do not apply to the selected service provider.')]");
-    public static By CITRIX_ITEMS_IN_CART=By.xpath("//h4[@class='cart__item-heading'][contains(text(),'CSP')]");
+    public static By CITRIX_ITEMS_IN_CART=By.xpath("//h4[@class='cart__item-heading'][contains(text(),'CITRIX CSP')]");
     
     public static By getdeleteIconIncartBypartNumber(String partNum){
     	return By.xpath("//p[contains(.,'Insight Part #: "+partNum+"')]/ancestor::div[@class='row expanded align-top is-collapse-child cart__table-row text-center']//span[@class='ion-trash-a cart__trash-icon']");
@@ -92,6 +92,11 @@ public class SLPObj extends ActionEngine{
 
     public static By copytoallLink(String PartNum){
     	return By.xpath("//p[@class='cart__item-part cart__font-size--sm'][contains(.,'"+PartNum+"')]/following::div[11]/span//span[contains(text(),'Copy to all')]");
+    }
+    
+    public static By retriveLastUsageReport(String softwareAgreement) {
+		return By.xpath("//tr//td//strong[contains(text(),'"+softwareAgreement+"')]/following::td//div[@class='buttons inline left']//a//span[contains(.,'Retrieve Last Usage Report')]");
+    	
     }
     
     public static By getCopyAllLink(String PartNum) {
@@ -154,4 +159,7 @@ public class SLPObj extends ActionEngine{
      
      public static By QUOTEHISTORY_LINK=By.xpath("//a[@class='displayQuoteHistory']");
     
+     public static By mfrRequirementsOnPlaceOrderPage(int i,int j) {
+    	 return By.xpath("(//section[@class='line-level__section'])["+i+"]//div//label["+j+"]");
+     }
 }
