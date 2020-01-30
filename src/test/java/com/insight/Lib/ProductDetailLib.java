@@ -825,7 +825,7 @@ public class ProductDetailLib extends ProductDetailObj {
 	 */
 	public void clicksubmitandverifyerrormsgreviewsubmissionform() throws Throwable {
 		click(SUBMIT_BUTTON,"Submit");
-		if (isElementPresent(REVIEWSERROR_MSG, "Reviews Submission Form")){
+		if (isElementPresent(REVIEWSERROR_MSG, "Reviews Submission Form"+getText(REVIEWSERROR_MSG,"Error Msg"))){
 			click(SUBMISSIONFORMCLOSE,"Close Button");
 			reporter.SuccessReport("Reviews Error Msg", "Reviews Error Msg Exists", "");
 		}

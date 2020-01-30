@@ -109,7 +109,8 @@ public class QTH09_ConvertSmartQuoteOnWebTest extends QuoteHistoryLib {
 					verifyQuoteHistory();			
 			        quickSearchAndVerifySearchResults(data.get("SearchBy"),QuoteNum);
 					verifyAndClickQuoteNumberOnHistory(QuoteNum);
-					verifyQuoteDetails();						
+					verifyQuoteDetails();	
+					
 					orderLib.convertQuote();
 					cartLib.verifyCartBreadCrumb();
 					// Proceed to checkout
