@@ -58,7 +58,7 @@ public class PID05_RecommendedProductsTest extends ActionEngine{
 					TestEngineWeb.reporter.initTestCaseDescription("RecommendedProductsTest");
 
 					commonLib.searchProduct(data.get("Search_Item"));
-					
+					cartLib.selectFirstProductDisplay();
 					
 					
 					

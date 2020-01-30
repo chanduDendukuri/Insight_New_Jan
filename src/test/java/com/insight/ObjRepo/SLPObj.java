@@ -159,7 +159,7 @@ public class SLPObj extends ActionEngine{
      
      public static By QUOTEHISTORY_LINK=By.xpath("//a[@class='displayQuoteHistory']");
     
-     public static By mfrRequirementsOnPlaceOrderPage(int i,int j) {
-    	 return By.xpath("(//section[@class='line-level__section'])["+i+"]//div//label["+j+"]");
+     public static By mfrRequirementsOnPlaceOrderPage(int j) {
+    	 return By.xpath("(//section[@class='line-level__section']//div//label)["+j+"]");
      }
 }

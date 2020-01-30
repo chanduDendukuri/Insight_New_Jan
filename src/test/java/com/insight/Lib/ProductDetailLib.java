@@ -825,7 +825,7 @@ public class ProductDetailLib extends ProductDetailObj {
 	 */
 	public void clicksubmitandverifyerrormsgreviewsubmissionform() throws Throwable {
 		click(SUBMIT_BUTTON,"Submit");
-		if (isElementPresent(REVIEWSERROR_MSG, "Reviews Submission Form")){
+		if (isElementPresent(REVIEWSERROR_MSG, "Reviews Submission Form"+getText(REVIEWSERROR_MSG,"Error Msg"))){
 			click(SUBMISSIONFORMCLOSE,"Close Button");
 			reporter.SuccessReport("Reviews Error Msg", "Reviews Error Msg Exists", "");
 		}
@@ -1019,6 +1019,7 @@ public class ProductDetailLib extends ProductDetailObj {
 		waitForVisibilityOfElement(WARENTYPOPUP,"Add Warrenties Popup");
 	 click(RDIOBUTTONOFWARRENTY,"Radio Button of Warrenty");
 	 click(ADDTOCARTBUTTONINWARRENTIESPOPUP,"Add To Cart Button in Warrenties PopUp");
+	 waitForVisibilityOfElement(CartObj.CART_LABEL_ON_CART_PAGE,"Cart Page");
 	 isElementPresent(ADDEDWARRENTY,"Added Warrenty"+getText(ADDEDWARRENTY,"Added Warrenty Name").trim());
 	}
 	public String clickOnWarrentiesTabAddToCart() throws Throwable{

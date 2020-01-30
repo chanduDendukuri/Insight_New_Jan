@@ -1468,7 +1468,7 @@ List<String> orderdetails = new ArrayList<String>();
 		clickUntil(SEARCH_BY_DD,getSearchByQuoteHistoryDDOption(quoteDDOption), "Search drop down");
 		click(getSearchByQuoteHistoryDDOption(quoteDDOption), "Quote search by option");
 		type(SEARCH_NUMBER,refNumber , "Reference number");
-		System.out.println(refNumber+refNumber);
+		//System.out.println(refNumber+refNumber);
 		click(SEARCH_BTN, "search button");
 		Thread.sleep(20000);
 		clickUntil(SEARCH_BTN,QUOTE_NUMBER_HISTORY_PAGE, "search button");
