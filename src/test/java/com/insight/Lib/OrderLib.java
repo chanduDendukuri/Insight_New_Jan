@@ -1423,7 +1423,7 @@ List<String> orderdetails = new ArrayList<String>();
 	public void createQuote(String quoteName) throws Throwable{
 		clickUntil(CartObj.SAVE_AS_QUOTE,QUOTE_NAME ,"Save as quote Link");
 		type(QUOTE_NAME,quoteName, "Quote name");
-		scrollToBottomWithCordinate("800");
+		scrollToBottomWithCordinate("600");
 		click(SAVE_AS_QUOTE_BTN, "save as quote button");
 		if(isElementPresent(SAVE_QUOTE_MSG, "Success message")){
 			 reporter.SuccessReport("Verify Success message", "Save as Quote - Successful message displayed","");
