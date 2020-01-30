@@ -110,7 +110,7 @@ public class QTH12_CQTValidateSoftwareLicenseFieldsTest extends QuoteHistoryLib 
 					orderLib.clickOnReviewOrderButton();
 					// Place Order
 					String summaryAmount = cartLib.getSummaryAmountInCart();
-					orderLib.placeOrderAndVerifyReceiptOrderAndDateQuoteHistory(summaryAmount);
+					orderLib.placeOrderAndVerifyReceiptOrderAndDate(summaryAmount);
 					// Verify Receipt
 					orderLib.verifyReceiptVerbiage();
 					String ReferenceNumber = sbpLib.getReferenceNum();

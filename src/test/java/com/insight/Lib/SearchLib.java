@@ -1243,16 +1243,20 @@ public class SearchLib extends CommonObj {
 	 */
 	public void checkMessageiconforAdobeProducts() throws Throwable{
 		if (isElementPresent(CommonObj.MESSAGE_ICON, "Message icon")) {			
-			//Actions builder=new Actions(driver);
 			mouseHover(CommonObj.MESSAGE_ICON, "Message Icon");
-			//String tool =getText(CommonObj.MESSAGE_TOOLTIP,"Message Tool Tip");
-			if (isEnabled(CommonObj.MESSAGE_TOOLTIP, "Message icon ToolTip")) {	
-			reporter.SuccessReport("Verify Adobe Products has  Message Option on Product Standards Page", "Adobe Product has Tooltip message","");			
+			   Thread.sleep(3000);
+				WebElement element=driver.findElement(CommonObj.MESSAGE_ICON);
+				String hover_data =element.getAttribute("onmouseover");
+				 Thread.sleep(3000);
+				 String toolTipMsg="The price displayed will be prorated in the Cart based on the remaining agreement period.";
+			if((hover_data.replace("InsightCommon.showTooltip('", "").replace("',this);", "")).equals(toolTipMsg)) {
+			reporter.SuccessReport("Verify Adobe Products has  Message Option on Product Standards Page", "Adobe Product has Tooltip message",toolTipMsg);			
 		}else{
-			reporter.failureReport("Ve1rify Adobe Products has  Message Option on Product Standards Page", "Adobe Product  has No Message Options", "");
+			reporter.failureReport("Verify Adobe Products has  Message Option on Product Standards Page", "Adobe Product  has No Message tooltip ", "");
 		}
+		}else {
+			reporter.failureReport("Verify Adobe Products has  Message Option on Product Standards Page", "Adobe Product  has No Message Options", "");
 		}
-			
 	}
 	
 	/**

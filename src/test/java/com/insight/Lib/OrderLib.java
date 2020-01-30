@@ -355,10 +355,13 @@ List<String> orderdetails = new ArrayList<String>();
 				reporter.failureReport("Verify the Total Amount ", "The Total Amount is not updated. ","",driver);
 			}
 
-			// date ordered verification
+			  // date ordered verification
 			if (isElementPresent(DATE_ORDERED, "Date ordered")) {
 				String dateOrdered = getText(DATE_ORDERED, "Date ordered");
 				String actualDate = getCurrentDateTime("dd-MMM-yyyy");
+
+				
+
 				
 				if (actualDate.contains(dateOrdered)) {
 					orderdetails.add(actualDate);
@@ -370,8 +373,15 @@ List<String> orderdetails = new ArrayList<String>();
 		}
 		return orderdetails;
 	}
-	public List<String> placeOrderAndVerifyReceiptOrderAndDateQuoteHistory(String totalSummary) throws Throwable {
-List<String> orderdetails = new ArrayList<String>();
+	
+	/**
+	 * Method is to verify receipt order page -- QuoteHistory
+	 * @param totalSummary
+	 * @return
+	 * @throws Throwable
+	 */
+	public List<String> placeOrderAndVerifyReceiptOrderAndDateQuoteHistory(String totalSummary) throws Throwable { 
+	List<String> orderdetails = new ArrayList<String>();
 		clickUntil(PLACE_ORDER_BTN, RECEIPT_LABEL,"Place order button");
 		Thread.sleep(3000);
 
@@ -409,6 +419,7 @@ List<String> orderdetails = new ArrayList<String>();
 				String dateOrdered = getText(DATE_ORDERED, "Date ordered");
 				//String actualDate = getCurrentDateTime("dd-MMM-yyyy");
 				Calendar c = Calendar.getInstance();
+
 				SimpleDateFormat sdf = new SimpleDateFormat("dd-MMM-yyyy");
 				c.add(Calendar.DATE, -1);
 				String actualDate  = sdf.format(c.getTime());
