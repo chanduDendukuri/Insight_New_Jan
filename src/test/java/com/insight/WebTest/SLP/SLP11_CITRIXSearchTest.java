@@ -89,7 +89,7 @@ public class SLP11_CITRIXSearchTest extends SLPLib{
 				     	searchLib.searchInHomePage(data.get("SearchText1"));
 				     	searchLib.removeTheFilterForInStockOnly(data.get("In_Stock_Only"));
 						pipLib.verifyTheManufacturerNumberInProductDetailsPage(data.get("SearchText1"));
-						//pipLib.enterQuantityOnProductDetailsPage(data.get("Quantity"));
+						pipLib.enterQuantityOnProductDetailsPage(data.get("Quantity"));
 						commonLib.addToCartAndVerify();
 						orderLib.continueToCheckOutOnAddCart();
 						verifyCITRIXItemInCart(data.get("SearchText1"));
