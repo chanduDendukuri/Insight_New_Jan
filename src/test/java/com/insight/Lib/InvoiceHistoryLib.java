@@ -40,6 +40,7 @@ public class InvoiceHistoryLib extends InvoiceHistoryObj {
 			type(CanadaObj.QUICK_SEARCH_TEXT, text, "Text ");
 			Thread.sleep(5000);
 			click(CanadaObj.SEARCH, "Search");
+			Thread.sleep(5000);
 
 			waitForVisibilityOfElement(searchResultsTable, "search results table");
 			if (isVisibleOnly(searchResultsTable, "search results table")) {

@@ -56,7 +56,7 @@ public class IVH02_InvoiceHistory15DaysTest extends InvoiceHistoryLib {
 					cmtLib.permissionFromDD(data.get("Set_Permission"), data.get("Permission_Dropdown_Option"));
 					cmtLib.clickOnloginAs();
 					switchToChildWindow();
-					String date = getPreviousDay("15");
+					//String date = getPreviousDay("15");
 					cmtLib.loginVerification(data.get("ContactName"));
 					closeAccountTools();
 					canadaLib.clickOnSideMenuSelectAccountToolOptions(data.get("Tools_Menu"),
@@ -64,10 +64,11 @@ public class IVH02_InvoiceHistory15DaysTest extends InvoiceHistoryLib {
 					canadaLib.verifyInvoiceHistoryPageOpened();
 					invoiceHistoryLib.clickOnAdvancedSearch();
 					// calender date
-					invoiceHistoryLib.datePickerStartDateCalender(date);
+					//invoiceHistoryLib.datePickerStartDateCalender(date);
 					setAccountHirerachydropdown(data.get("Hirerachy_Dropdown_option"));
 					clickOnAdvancedSearchSearchButton();
 					verifySearchResultsAreDisplayed();
+					getInvoiceNumberFromSearchResults();
 					commonLib.clickLogOutLink(data.get("Logout_Header"));
 
 					System.out.println("Test completed");
