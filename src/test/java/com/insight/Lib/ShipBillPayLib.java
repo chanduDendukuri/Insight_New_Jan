@@ -1219,5 +1219,30 @@ public class ShipBillPayLib extends ShipBillPayObj {
 				 //do nothing
 			 }
 		}
+		
+		public void verifyProcurmentOptioninAllowedOptions() throws Throwable {
+			if(isVisibleOnly(PROCUREMENTCARD_OPTION,"Procurement Card Option")) {
+			reporter.SuccessReport("Verify Procurement Card is Selected in Allowed Options in Payment Options in the Checkout Settings Tab on Manage Web groups: Create User Page", "Procurement Card in Allowed Options in Payment Options on Checkout Settings Tab Exists", "Procurement Card");
+			}else {
+				reporter.failureReport("Verify Payment Option", "Payment Option is Not in Allowed Options", "Procurement Card");
+			}
+		}
+		public void verifyOptioninAllowedOptions(String Option) throws Throwable {
+			if(isVisibleOnly(OPTION(Option),"Procurement Card Option")) {
+			reporter.SuccessReport("Verify "+Option+" is Selected in Allowed Options in Payment Options in the Checkout Settings Tab on Manage Web groups: Create User Page", ""+Option+"  in Allowed Options in Payment Options on Checkout Settings Tab Exists", Option);
+			}else {
+				reporter.failureReport("Verify Payment Option", "Payment Option is Not in Allowed Options", "");
+			}
+		}
+		public void verifyNoDefaultAddressBillingAddress() throws Throwable {
+			if (isVisibleOnly(DEFUALT_ADDRESS, "No Defualt Address")) {
+				reporter.SuccessReport("verifyNo Default Billing Addresses Linked to Account# in the Checkout Settings Tab on Manage Web groups: Create User Page::",
+						"No Default Billing Addresses Linked to Account# in Checkout Settings Tab", "");	
+			} else {
+				reporter.failureReport("verify Defualt Address::",
+						"Unable to Verify No Defualt Address Adresses", "");
+			}
+		}
+		
 }
 

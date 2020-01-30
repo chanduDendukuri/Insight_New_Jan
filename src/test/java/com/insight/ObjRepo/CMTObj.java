@@ -194,7 +194,7 @@ public static By txt_QuoteDetails = By.xpath("//h2[contains(text(),'Quote Detail
 	public static By UPDATE_BUTTON = By.xpath("//span[text()='Update']//parent::a");
 
 	public static By defaultShippingOption(String text) {
-		return By.xpath("//select[@id='defaultShipTypeSelID1']//option[text()='" + text + "']");
+		return By.xpath("//select[@id='defaultShipTypeSelID1']//option[contains(text(),'"+ text +"')]");
 	}
 
 	public static By getOptionsunderCkeckoutsettings(String user_Permissions) {
@@ -690,4 +690,8 @@ public static By lnkDeleteProductGroups=By.xpath("//*[text()=' Delete Product Gr
 	public static By lblWebGroupManagement=By.xpath("//*[contains(text(),'Manage Web Groups:')]");
 	public static By lblWebGroupManagementUsers=By.xpath("//*[contains(text(),'Web Group Management:')]");
 	public static By lblOrderNumber=By.xpath("//span[text()='Order number']//following-sibling::a[@class='orders__link order-card-header__link']");
+    public static By DEFAULTCHECKBOXINBILLINGADDRESS=By.xpath("//div[@class='OptionContents']//td[@class='linkedField']/input[@checked='checked']");
+    public static By DEFAULTCHECKBOXINSHIPPINGADDRESS=By.xpath("//td[@class='linkedField']/input[@checked='checked']");
+
+
 }
