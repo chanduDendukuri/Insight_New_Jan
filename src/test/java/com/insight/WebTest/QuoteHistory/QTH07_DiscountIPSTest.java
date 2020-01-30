@@ -130,7 +130,7 @@ public class QTH07_DiscountIPSTest extends QuoteHistoryLib {
 							data.get("year"), data.get("poNumber"),data.get("POReleaseNumber"));
 					orderLib.clickOnReviewOrderButton();
 					
-					orderdetails=orderLib.placeOrderAndVerifyReceiptOrderAndDate("$9,279.30");
+					orderdetails=orderLib.placeOrderAndVerifyReceiptOrderAndDateQuoteHistory("$9,279.30");
 					commonLib.clickOnAccountToolsAndClickOnProductGrp(data.get("Tools_Menu1"),
 							data.get("Tools_Menu_DD2"));
 					String[] RN = (orderdetails.get(0)).split(" ");
