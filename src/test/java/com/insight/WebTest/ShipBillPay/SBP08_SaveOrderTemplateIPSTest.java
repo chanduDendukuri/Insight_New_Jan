@@ -119,11 +119,6 @@ public class SBP08_SaveOrderTemplateIPSTest extends ShipBillPayLib{
 				commonLib.clickLogOutLink(data.get("Logout_Header"));
 				// permissions unchek
 				cmtLib.navigateBackToCMT();
-				cmtLib.hoverOverMasterGroupAndSelectChangeGrp();
-				cmtLib.searchForWebGroup(data.get("WebGrp"));
-				cmtLib.clickOnTheWebGroup(data.get("WebGrp_Name"));
-				cmtLib.hoverOnManageWebGroupsAndSelectOptions(data.get("Manage_Web_Grp_Options"));
-				cmtLib.searchForaUserAndSelect(data.get("LnameEmailUname"), data.get("ContactName"));
 				cmtLib.setPermissionsToDisable(data.get("Menu_Name"), data.get("Set_Permission"));
 
 				} catch (Exception e) {

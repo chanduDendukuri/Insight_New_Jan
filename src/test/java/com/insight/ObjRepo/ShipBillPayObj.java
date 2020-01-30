@@ -218,8 +218,10 @@ public static By SHIPPING_ADDRESES=By.xpath("//p[@id='iw-checkout__address-secti
 public static By SHIPPING_ADDRESESSECONDLINE=By.xpath("//p[@id='iw-checkout__address-section-selected-address']/br[2]");
 public static By STOCKONLY_SEARCHRESULTS=By.xpath("//div[@class='filter-item js-filter-item']/a[@class='button call-to-action']");
 public static By PROCUREMENTCARD_OPTION=By.xpath("//select[@id='payAllowedSel']/option[contains(text(),'Procurement Card')]");
-
-
+public static By ALLOWED_OPTIONS = By.xpath("//select[@id='shipAllowedSel']");
+public static By OPTION(String Option) {
+return By.xpath("//select[@id='payAllowedSel']/option[contains(text(),'"+Option+"')]");
+}
 
 }
 
