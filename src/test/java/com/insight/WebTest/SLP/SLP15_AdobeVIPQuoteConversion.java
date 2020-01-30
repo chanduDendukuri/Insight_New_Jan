@@ -154,7 +154,7 @@ public class SLP15_AdobeVIPQuoteConversion extends SLPLib{
                         // MFR requirements
                         verifyManufacturerRequirementsOnQuoteScreen();
                         String quotesubTotal1=getSubTotalOnQuotesScreen(data.get("SubTotal1")).replace("$", "").replace(",", "");;
-				        verifySubTotalAmountsOnQuoteAndCartScreen(subTotalAmount, quotesubTotal);
+				        verifySubTotalAmountsOnQuoteAndCartScreen(subTotalAmount, quotesubTotal1);
 				        clickQuoteHistoryLink();
 				        Thread.sleep(5000);
 				        orderLib.searchByInQuoteHistory(refNumber,data.get("DD_Option"));
@@ -164,7 +164,7 @@ public class SLP15_AdobeVIPQuoteConversion extends SLPLib{
 						getDeploydateOnCart(data.get("PartNum1"));
                         
 						 orderLib.proceedToCheckout();
-						 orderLib.continueButtonOnAdditionalInformationSection();
+						 //orderLib.continueButtonOnAdditionalInformationSection();
 						 orderLib.clickContinueOnLineLevelInfo();
 						 canadaLib.verifySBP();
 						 orderLib.clickContinueOnShippingAddress();
@@ -175,23 +175,25 @@ public class SLP15_AdobeVIPQuoteConversion extends SLPLib{
 			             data.get("Year"), data.get("PONumber"),data.get("POReleaseNumber"));
                         orderLib.clickOnReviewOrderButton();                       
                         orderLib.verifyPlaceOrderLabel();
-                      //Verifying PA fields in Place order page
+                      
+                        //Verifying PA fields in Place order page
                         verifyPAOnReceiptPage(data.get("PA")); 
                         verifyPAOnReceiptPage(data.get("PA1")); 
-                        
-                        /*String OrderDate=getTextfromdeployedateinPlaceOrderPage();
-                        assertTrue(DeployedDate.contains(OrderDate), "Deploy Date Field Exists and Verified");*/
-                        
-                        
-                        
-                        
+                        // Verify deploy date
+                        verifyDeploydateOnPlaceOrderPage(data.get("PartNum2"), data.get("Date2"));
+                        verifyDeploydateOnPlaceOrderPage(data.get("PartNum1"), data.get("Date1"));
+                        int item=Integer.valueOf(data.get("item_num"));
+                        verifyManufacturerRequirementsOnPlaceOrderScreen(item);
+                        verifyManufacturerRequirementsOnPlaceOrderScreen(item+1);
+                        String subTotalAmountOnPO=  sbpLib.getTotalAmountInCart(data.get("Subtotal")).replace("$", "").replace(",", "");
+				     	 verifySubTotalAmountsOnQuoteAndCartScreen(subTotalAmountOnPO, quotesubTotal);
                         //Place Order
 						String summaryAmountInLogin=cartLib.getSummaryAmountInCart();
 						 orderLib.placeOrderAndVerifyReceiptOrderAndDate(summaryAmountInLogin);
 						String RefNumber= orderLib.getTextfromReferenceNumber();
                         orderLib.clickOrderDetailsLinkOnReceiptPage();
                      // Logout
-            			commonLib.clickLogOutLink(data.get("header1"));
+            			commonLib.clickLogOutLink(data.get("Logout"));
 
             			
 					} catch (Exception e) {

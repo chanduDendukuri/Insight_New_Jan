@@ -1489,7 +1489,7 @@ List<String> orderdetails = new ArrayList<String>();
 	public void convertQuote() throws Throwable{
 		//scrollToBottomWithCordinate("800");
 		if(isElementPresent(CONVERT_QUOTE_BTN, "Convert quote button")){
-		click(CONVERT_QUOTE_BTN, "Convert quote button");
+		clickUntil(CONVERT_QUOTE_BTN, CartObj.CART_LABEL_ON_CART_PAGE, "Convert quote button", "Convert quote button");
 		reporter.SuccessReport("Click on Covert Quote Button", "Covert Quote Button is Exists and Selected","");
 		 }else{
 			 reporter.failureReport("Click on Covert Quote Button", "Covert Quote Button is Not Exists",""); 
