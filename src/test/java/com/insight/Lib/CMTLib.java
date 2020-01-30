@@ -2701,7 +2701,8 @@ public  void verifyDashboard()throws Throwable {
 	 */
 	public void VerifytheCheckBoxStatus(String status) throws Throwable {
 		List<WebElement> list = driver.findElements(LINKED_ACCOUNT_CHECKBOX);
-
+                  int C= list.size();
+                  System.out.println(C);
 		if (status.equals("Checked")) {
 			for (i = 0; i <= list.size(); i++) {
 				if (isCheckBoxSelected(LINKED_ACCOUNT_CHECKBOX)) {
@@ -2712,7 +2713,7 @@ public  void verifyDashboard()throws Throwable {
 				}
 			}
 			reporter.SuccessReport("Verify linked account check box selected",
-					" linked account check boxes are selected / Checked for all the displayed users " + i, "");
+					" linked account check boxes are selected / Checked for all the displayed users " +C, "");
 		}
 
 		if (status.equals("UnChecked")) {
@@ -2889,11 +2890,10 @@ public  void verifyDashboard()throws Throwable {
 	 */
 	public void verifyErrorMessage() throws Throwable {
 		if (isElementPresent(ERR_MSG, "Error Message ")) {
-
 			String errorMessage = driver.findElement(ERR_MSG).getText();
-			reporter.SuccessReport("verify default account exists", " default account exists", "");
+			reporter.SuccessReport("Verify Error Msg Exists", "Error Msg Exists", errorMessage);
 		} else {
-			reporter.failureReport("verify default account exists", "no default account does not exists", "", driver);
+			reporter.failureReport("Verify Error Msg Exists", "Verify Error Msg does not exists", "", driver);
 		}
 	}
 
@@ -3604,6 +3604,16 @@ public void defualtShippingAddressCheckBox()throws Throwable{
 	}
 	
 }
+public void verifySetPermissionsDisabled(String userPermissions) throws Throwable {
+	if (isCheckBoxSelected(getUserPermission(userPermissions))) {
+		LOG.info(userPermissions + " check box already checked: " + userPermissions);
+		reporter.failureReport("Verify the Permission is Enabled::" + userPermissions,
+				"check box already checked::" + userPermissions + "", userPermissions);
+	} else {
+		reporter.SuccessReport("Verify Permissions::", "Permission is not Enabled", "" + userPermissions + "");
+	}
+}
+
 
 	public void permissionForDD(String userPermission, String optionDD) throws Throwable {
 		if (!isCheckBoxSelected(getUserPermission(userPermission))){

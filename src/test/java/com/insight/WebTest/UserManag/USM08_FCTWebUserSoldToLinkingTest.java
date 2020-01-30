@@ -65,14 +65,15 @@ public class USM08_FCTWebUserSoldToLinkingTest extends UserManagementLib{
 							cmtLib.clickOnTheWebGroup(data.get("WebGrp_Name"));
 							cmtLib.hoverOnManageWebGroupsAndSelectOptions(data.get("Manage_Web_Grp_Options"));
 							cmtLib.searchForaUserAndSelect(data.get("LnameEmailUname"), data.get("ContactName"));
+
 							// Click on Linked Accounts
 							cmtLib.clickCheckOutSettings(data.get("Linked_Accounts"));
-							
 							// Verify AccountName,AccountNumber,Address,AccountStatus,DefaultLogin
 							String[] headers=data.get("Linked_Account_header").split(",");
 							for(i=0;i<headers.length;i++){
 								cmtLib.verifyLinkedAccountHeaders(headers[i]);
 							}
+							
 							// Select >>  Link User to All Available Accounts
 							cmtLib.selectFromLinkedAccountDD(data.get("Option1"));
 							cmtLib.VerifytheCheckBoxStatus("Checked");
