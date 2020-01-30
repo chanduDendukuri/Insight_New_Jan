@@ -136,9 +136,10 @@ public class InvoiceHistoryObj extends ActionEngine {
 	public static By YearOfstartDate = By.xpath("//*[@class='react-datepicker__year-read-view--selected-year']");
 	public static By dateForStartDate = By.xpath("//*[@class='react-datepicker__month-read-view--selected-month']");
 
-	public static By startAndEndDate (int num) {
-		return By.xpath("(//*[@class='form__field date-picker__input'])["+num+"]");
-	}
+	public static By startDate =By.xpath("(//*[@class='form__field date-picker__input'])[1]");
+	public static By EndDate =By.xpath("(//*[@class='form__field date-picker__input'])[2]");
+
+
 
 	public static By selectMonthFromCalender(String month) {
 

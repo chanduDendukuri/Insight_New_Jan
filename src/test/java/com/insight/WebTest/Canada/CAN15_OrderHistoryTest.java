@@ -57,7 +57,7 @@ public class CAN15_OrderHistoryTest extends ActionEngine {
                     cmtLib.searchForaUserAndSelect(data.get("LnameEmailUname"), data.get("ContactName"));
                     //cmtLib.setPermissions(data.get("Menu_Name"), data.get("Set_Permission"));
                     cmtLib.clickOnPermissionAndRolesMenu(data.get("Menu_Name"));
-                    cmtLib.permissionFromDD(data.get("permission"), data.get("Permission_Drop_Down"));
+                    cmtLib.permissionForDD(data.get("permission"), data.get("Permission_Drop_Down"));
                     String[] permissions1 = data.get("Set_Permission").split(",");
                     for (i = 0; i < permissions1.length; i++) {
                         //cmtLib.setPermissions(data.get("Menu_Name"),permissions1[i]);
@@ -107,7 +107,8 @@ public class CAN15_OrderHistoryTest extends ActionEngine {
                     invoice.clickOnAdvancedSearchSearchButton();
                     scrollToBottomWithCordinate("160");
 
-                    invoice.selectStartandEndDateInRecentHistory(data.get("Date"),data.get("End_Date"));
+                    invoice.selectStartandEndDateInRecentHistory(data.get("Date"));
+                    invoice.selectEndDateInRecentHistory(data.get("End_Date"));
                    // invoice.datePickerEndDateCalender(data.get("End_Date"));
                     canadaLib.clickOnSearchButtonInRecentOrders();
                     cmtLib.getOrderNumbersFromRecentOrders();
