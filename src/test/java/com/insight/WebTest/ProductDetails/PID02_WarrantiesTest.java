@@ -70,13 +70,13 @@ public class PID02_WarrantiesTest extends ActionEngine{
 					Thread.sleep(5000);
 					Thread.sleep(5000);
 					String MfrNum=productdetLib.clickOnWarrentiesTabAddToCart();
-					commonLib.continueToShopping();
+					canadaLib.continueToCheckout();
+					cartLib.verifyItemInCart(MfrNum);
 					commonLib.searchProduct(data.get("SearchItem2"));
 					productdetLib.getProductNameInProductDetailPage(data.get("SearchItem1"));
 					productdetLib.getMFRNumberInProductInfopage();
 					commonLib.addToCartAndVerify();
 					canadaLib.continueToCheckout();
-					cartLib.verifyItemInCart(MfrNum);
 					productdetLib.clickonAddWarentyincartPage();
 					commonLib.clickLogOutLink(data.get("Logout_Header"));
 					System.out.println("Test completed");

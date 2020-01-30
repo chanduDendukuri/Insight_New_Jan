@@ -1423,7 +1423,7 @@ List<String> orderdetails = new ArrayList<String>();
 	public void createQuote(String quoteName) throws Throwable{
 		clickUntil(CartObj.SAVE_AS_QUOTE,QUOTE_NAME ,"Save as quote Link");
 		type(QUOTE_NAME,quoteName, "Quote name");
-		scrollToBottomWithCordinate("800");
+		scrollToBottomWithCordinate("600");
 		click(SAVE_AS_QUOTE_BTN, "save as quote button");
 		if(isElementPresent(SAVE_QUOTE_MSG, "Success message")){
 			 reporter.SuccessReport("Verify Success message", "Save as Quote - Successful message displayed","");
@@ -1468,7 +1468,7 @@ List<String> orderdetails = new ArrayList<String>();
 		clickUntil(SEARCH_BY_DD,getSearchByQuoteHistoryDDOption(quoteDDOption), "Search drop down");
 		click(getSearchByQuoteHistoryDDOption(quoteDDOption), "Quote search by option");
 		type(SEARCH_NUMBER,refNumber , "Reference number");
-		System.out.println(refNumber+refNumber);
+		//System.out.println(refNumber+refNumber);
 		click(SEARCH_BTN, "search button");
 		Thread.sleep(20000);
 		clickUntil(SEARCH_BTN,QUOTE_NUMBER_HISTORY_PAGE, "search button");

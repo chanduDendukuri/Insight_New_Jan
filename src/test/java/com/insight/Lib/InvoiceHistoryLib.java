@@ -897,15 +897,17 @@ return status;
 		  status=driver.findElement(HIERARCHY_TREE).getAttribute("checked");
 		  System.out.println("tree"+tree);
 		  
-		  if(tree.contains("c0")) { reporter.
-		  SuccessReport("Verify Tree Fields on Insight Invoice or Order History Page ",
+		  if(tree.contains("c0")) { 
+			  reporter.SuccessReport("Verify Tree Fields on Insight Invoice or Order History Page ",
 		  "Tree Level Displays with Great Grand Parent", "C0 is checked:"+status); }
 		  
-		  else if(tree.contains("c1")) { reporter.
+		  else if(tree.contains("c1")) 
+		  { reporter.
 		  SuccessReport("Verify Tree Fields on Insight Invoice or Order History Page ",
 		  "Tree Level Displays with  Grand Parent", "C1 checked:"+status); }
 		  
-		  else if(tree.contains("c2")) { reporter.
+		  else if(tree.contains("c2")) 
+		  { reporter.
 		  SuccessReport("Verify Tree Fields on Insight Invoice or Order History Page ",
 		  "Tree Level Displays with reporting Parent", " C2 is checked:"+status); }
 		  
@@ -1130,4 +1132,5 @@ return status;
 		Thread.sleep(3000);
 		click(CanadaObj.drpSearchByInInvoiceHistory, "Sort by drop down");
 	}
+	
 }
