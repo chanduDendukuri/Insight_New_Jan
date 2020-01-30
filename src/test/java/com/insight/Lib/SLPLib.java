@@ -448,7 +448,7 @@ public class SLPLib extends SLPObj {
 		String day=date.split("-")[0];
 		String month=date.split("-")[1];
 		String year=date.split("-")[2];
-		click(DEPLOY_DATEINPOPUP,"Calnder");
+		click(DEPLOY_DATEINPOPUP,"Calender");
 		String calenderYear=getText(SELECTEDYEAR, "Selected year");
 		System.out.println("calenderYear"+calenderYear);
 		String calenderMonth=getText(SELECTED_MONTH, "Selected month");
@@ -621,7 +621,7 @@ public class SLPLib extends SLPObj {
 			if (isElementPresent(CanadaObj.SPLA_LABEL, "SPLA LABEL")) {
 				if (!isCheckBoxSelected(CanadaObj.getMySoftwareLicenseAgreementscheckBoxes(softwareAgreement))) {
 					click(CanadaObj.getMySoftwareLicenseAgreementscheckBoxes(softwareAgreement),"SPLA Details Product CheckBox");
-					click(RETRIEVE_LAST_USAGE_REPORT, "Select retrieve last usage report button");
+					click(retriveLastUsageReport(softwareAgreement), "Select retrieve last usage report button");
 				} else {
 					LOG.info("Checkbox already selected");
 				}

@@ -154,6 +154,7 @@ public class SLP14_AdobeVIP extends SLPLib{
                       verifyPAOnReceiptPage(data.get("PA"));	
                       verifyPAOnReceiptPage(data.get("PA1"));
 					commonLib.clickLogOutLink(data.get("Logout"));
+					//cmtLib.logoutSite();
 					
 				} catch (Exception e) {
 					ReportStatus.blnStatus = false;

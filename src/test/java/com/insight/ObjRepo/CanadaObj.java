@@ -259,5 +259,5 @@ public class CanadaObj extends ActionEngine {
 			public static By btnSearchButton = By.xpath("//button[text()='Search']");
 			public static By closeAssetSerialNumber = By.xpath("//*[@class='iw-dialog__icon--close ion-ios-close-empty']");
 			public static By ewrVlaue = By.xpath("//*[@title='Electronic waste recycling']//../..//following-sibling::div[@class='columns shrink iw-summary__value']");
-
+			public static By drpSearchByInInvoiceHistory=By.xpath("//*[@class='nice-select']");
 }
