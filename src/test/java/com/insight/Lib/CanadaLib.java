@@ -1683,4 +1683,13 @@ reporter.failureReport("Select  All Fields in the Available Fields on Reports Pa
 	public String getCurrencyCodeForEWR() throws Throwable{
 		return getText(txtCurrencyCode,"Get currency ");
 	}
-}
+	public void getInvoiceNumberInInvoiceDetailsPage() throws Throwable
+	{
+		getText(lblInvoiceNumber,"Invoice number");
+	}
+	public void getInvoiceDateInInvoiceDetailsPage() throws Throwable
+	{
+		getText(lblInvoiceDate,"Invoice date");
+	}
+	
+	}

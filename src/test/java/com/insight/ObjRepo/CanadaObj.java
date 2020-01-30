@@ -246,4 +246,6 @@ public class CanadaObj extends ActionEngine {
 			// Filters
 			public static By FILTER_BY_MANUFACTURER=By.xpath("//section[@aria-label='Filter By Manufacturers']");
 			public static By txtCurrencyCode=By.xpath("(//*[text()='EWR ']//..//following-sibling::div//span//span[@class='iw-currency__code'])[1]");
+			public static By lblInvoiceNumber=By.xpath("(//*[text()='Invoice Number: ']/following::dd)[1]");
+			public static By lblInvoiceDate=By.xpath("(//*[text()='Invoice Number: ']/following::dd)[1]");
 }
