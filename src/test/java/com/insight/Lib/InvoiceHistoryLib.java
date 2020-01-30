@@ -29,6 +29,8 @@ public class InvoiceHistoryLib extends InvoiceHistoryObj {
 	public void quickSearchAndVerifySearchResults(String searchBy, String text) throws Throwable {
 
 		Thread.sleep(10000);
+		
+		clickOnSearchByInInvoiceHistory();
 
 		waitForVisibilityOfElement(CanadaObj.SEARCHBY_DROPDOWN, "Quick Search");
 		if (isVisibleOnly(CanadaObj.SEARCHBY_DROPDOWN, "Quick Search")) {
@@ -40,6 +42,7 @@ public class InvoiceHistoryLib extends InvoiceHistoryObj {
 			type(CanadaObj.QUICK_SEARCH_TEXT, text, "Text ");
 			Thread.sleep(5000);
 			click(CanadaObj.SEARCH, "Search");
+			Thread.sleep(5000);
 
 			waitForVisibilityOfElement(searchResultsTable, "search results table");
 			if (isVisibleOnly(searchResultsTable, "search results table")) {
@@ -888,53 +891,53 @@ return status;
 	 * @throws Throwable
 	 */
 	public void verifyTree() throws Throwable {
+		
+		  waitForVisibilityOfElement(HIERARCHY_TREE, "Hierarchy tree"); String
+		  tree=driver.findElement(HIERARCHY_TREE).getAttribute("id"); String
+		  status=driver.findElement(HIERARCHY_TREE).getAttribute("checked");
+		  System.out.println("tree"+tree);
+		  
+		  if(tree.contains("c0")) { reporter.
+		  SuccessReport("Verify Tree Fields on Insight Invoice or Order History Page ",
+		  "Tree Level Displays with Great Grand Parent", "C0 is checked:"+status); }
+		  
+		  else if(tree.contains("c1")) { reporter.
+		  SuccessReport("Verify Tree Fields on Insight Invoice or Order History Page ",
+		  "Tree Level Displays with  Grand Parent", "C1 checked:"+status); }
+		  
+		  else if(tree.contains("c2")) { reporter.
+		  SuccessReport("Verify Tree Fields on Insight Invoice or Order History Page ",
+		  "Tree Level Displays with reporting Parent", " C2 is checked:"+status); }
+		  
+		  else if(tree.contains("c3")) { reporter.
+		  SuccessReport("Verify Tree Fields on Insight Invoice or Order History Page ",
+		  "Tree Level Displays with All my accounts", " C3 is checked:"+status); } else
+		  { reporter.
+		  failureReport("Verify Tree Fields on Insight Invoice or Order History Page ",
+		  "Tree Does Not Exist", tree+ "is checked:"+status,driver); }
+		 
+			
 		/*
 		 * waitForVisibilityOfElement(HIERARCHY_TREE, "Hierarchy tree"); String
-		 * tree=driver.findElement(HIERARCHY_TREE).getAttribute("id"); String
+		 * tree=driver.findElement(HIERARCHY_TREE).getAttribute("id"); List<WebElement>
+		 * myList=driver.findElements(HIERARCHY_TREE); String
 		 * status=driver.findElement(HIERARCHY_TREE).getAttribute("checked");
-		 * System.out.println("tree"+tree);
-		 * 
-		 * if(tree.contains("c0")) { reporter.
+		 * if(tree.contains("c0")||tree.contains("c1")||tree.contains("c2")) {
+		 * for(i=0;i<myList.size();i++) { if(tree.contains("c0")) { reporter.
 		 * SuccessReport("Verify Tree Fields on Insight Invoice or Order History Page ",
-		 * "Tree Level Displays with Great Grand Parent", "C0 is checked:"+status); }
+		 * "Tree Level Displays with Great Grand Parent",
+		 * "Tree level hierarchy is checked:" +status); }
 		 * 
 		 * else if(tree.contains("c1")) { reporter.
 		 * SuccessReport("Verify Tree Fields on Insight Invoice or Order History Page ",
-		 * "Tree Level Displays with  Grand Parent", "C1 checked:"+status); }
+		 * "Tree Level Displays with  Grand Parent", "Tree level hierarchy is checked:"
+		 * +status); }
 		 * 
 		 * else if(tree.contains("c2")) { reporter.
 		 * SuccessReport("Verify Tree Fields on Insight Invoice or Order History Page ",
-		 * "Tree Level Displays with reporting Parent", " C2 is checked:"+status); }
-		 * 
-		 * else if(tree.contains("c3")) { reporter.
-		 * SuccessReport("Verify Tree Fields on Insight Invoice or Order History Page ",
-		 * "Tree Level Displays with All my accounts", " C3 is checked:"+status); } else
-		 * { reporter.
-		 * failureReport("Verify Tree Fields on Insight Invoice or Order History Page ",
-		 * "Tree Does Not Exist", tree+ "is checked:"+status,driver); }
+		 * "Tree Level Displays with reporting Parent",
+		 * "Tree level hierarchy is checked:" +status); } } }
 		 */
-			
-		waitForVisibilityOfElement(HIERARCHY_TREE, "Hierarchy tree");
-		String tree=driver.findElement(HIERARCHY_TREE).getAttribute("id");
-		List<WebElement> myList=driver.findElements(HIERARCHY_TREE);
-		String status=driver.findElement(HIERARCHY_TREE).getAttribute("checked");
-		if(tree.contains("c0")||tree.contains("c1")||tree.contains("c2"))
-		{
-		for(i=0;i<myList.size();i++)
-		{
-			if(tree.contains("c0")) {
-				reporter.SuccessReport("Verify Tree Fields on Insight Invoice or Order History Page ", "Tree Level Displays with Great Grand Parent", "Tree level hierarchy is checked:" +status);
-			}
-			
-			else if(tree.contains("c1")) {
-				reporter.SuccessReport("Verify Tree Fields on Insight Invoice or Order History Page ", "Tree Level Displays with  Grand Parent", "Tree level hierarchy is checked:" +status);
-			}
-			
-			else if(tree.contains("c2")) {
-				reporter.SuccessReport("Verify Tree Fields on Insight Invoice or Order History Page ", "Tree Level Displays with reporting Parent", "Tree level hierarchy is checked:" +status);
-			}
-		}
-		}
 		
 		
 	}
@@ -1021,20 +1024,15 @@ return status;
 		isVisibleOnly(recentHistoryHeader,"Recent History");
 	}
 
-	public void selectStartandEndDateInRecentHistory(String startDate,String endDate) throws Throwable{
-		List<WebElement> date = driver.findElements(startAndEndDate);
-		String sday=startDate.split(" ")[0];
-		String smonth=startDate.split(" ")[1];
-		String syear=startDate.split(" ")[2];
-		String eday=endDate.split(" ")[0];
-		String emonth=endDate.split(" ")[1];
-		String eyear=endDate.split(" ")[2];
-		for(int i=0;i<date.size();i++)
-		{
-			if(i==0) {
-				reporter.SuccessReport("Start date ", "Start Date", startDate);
+	public void selectStartandEndDateInRecentHistory(String startDatev) throws Throwable{
+		//List<WebElement> date = driver.findElements(startAndEndDate);
+		String sday=startDatev.split(" ")[0];
+		String smonth=startDatev.split(" ")[1];
+		String syear=startDatev.split(" ")[2];
+
+				reporter.SuccessReport("Start date ", "Start Date", startDatev);
 				//date.get(i).click();
-				click(startAndEndDate(i),"Start date");
+				click(startDate,"Start date");
 				click(MonthOfstartDate, "Clicking on month");
 				click(selectMonthFromCalender(smonth), "Month", smonth);
 
@@ -1043,18 +1041,7 @@ return status;
 
 				click(selectDateFromCalender(sday), "Date", sday);
 
-			}if(i==1){
-				reporter.SuccessReport("End Date ","End Date is",endDate);
-				click(startAndEndDate(i+1),"End date");
-				click(MonthOfstartDate, "Clicking on month");
-				click(selectMonthFromCalender(emonth), "Month", emonth);
 
-				click(YearOfstartDate, "Year of the start date");
-				click(selectYearFromCalender(eyear), "Year ", eyear);
-
-				click(selectDateFromCalender(eday), "Date", eday);
-			}
-		}
 	}
 	public void verifyGPAccountHierarchyTree() throws Throwable
 	{
@@ -1089,6 +1076,26 @@ return status;
 	{
 		getText(GGPDetails, "GGP Account details");
 	}
+
+	public void selectEndDateInRecentHistory(String endDate) throws Throwable{
+		//List<WebElement> date = driver.findElements(startAndEndDate);
+
+		String eday=endDate.split(" ")[0];
+		String emonth=endDate.split(" ")[1];
+		String eyear=endDate.split(" ")[2];
+			reporter.SuccessReport("End Date ","End Date is",endDate);
+			click(EndDate,"End date");
+			click(MonthOfstartDate, "Clicking on month");
+			click(selectMonthFromCalender(emonth), "Month", emonth);
+
+			click(YearOfstartDate, "Year of the start date");
+			click(selectYearFromCalender(eyear), "Year ", eyear);
+
+			click(selectDateFromCalender(eday), "Date", eday);
+
+	}
+	
+
 	
 	public void getInvoiceNumberFromSearchResults() throws Throwable
 	{
@@ -1117,5 +1124,10 @@ return status;
 		 else {
 			 reporter.failureReport("Excel download verification","Could not export excel file","", driver);
 		 }
+	}
+	public void clickOnSearchByInInvoiceHistory() throws Throwable
+	{
+		Thread.sleep(3000);
+		click(CanadaObj.drpSearchByInInvoiceHistory, "Sort by drop down");
 	}
 }

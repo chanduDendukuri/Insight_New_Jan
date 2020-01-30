@@ -67,9 +67,6 @@ public class USM03_FCTWebCreateCoPassUserIPSTest  extends UserManagementLib {
 							cmtLib.enterUserName(data.get("Name1"));
 							cmtLib.checkAvailability();
 							cmtLib.verifyAvailabiltyOfUserNameExists();
-							cmtLib.enterUserName(data.get("Name2"));
-							cmtLib.checkAvailability();
-							cmtLib.verifyAvailabiltyOfUserNameExists();
 							String userName="QTPTest"+getRandomNumeric(4);
 							cmtLib.enterUserName(userName);
 							cmtLib.clickCreateUserButton();
@@ -109,17 +106,18 @@ public class USM03_FCTWebCreateCoPassUserIPSTest  extends UserManagementLib {
 							cmtLib.clickInformationTab(data.get("Information_Tab"));
 							cmtLib.clickOnUserURL();
 							cmtLib.verifyCreateAnAccountPage();
-							String email="QTPTest"+getRandomNumeric(4)+"@test.com";
+							String Number=getRandomNumeric(4);
+							String email="QTPTest"+Number+"@test.com";
 							cmtLib.enterEmailInCreateAnAccount(email);
-							String firstName="QTPTest"+getRandomNumeric(4);
+							String firstName="QTPTest"+Number;
 							cmtLib.enterFirstNameInCreateAnAccount(firstName);
-							String lastName="QTPTest"+getRandomNumeric(4);
+							String lastName="QTPTest"+Number;
 							cmtLib.enterLastNameInCreateAnAccount(lastName);
 							cmtLib.enterPhoneNumberInCreateAnAccount(data.get("Phone_Number"));
-							String userName1="QTPTest"+getRandomNumeric(4);
-							String userName2="QTPTest"+getRandomNumeric(4);
+							String userName1="QTPTest"+Number;
+							String userName2="QTPTest"+Number;
 							cmtLib.enterUserNameInCreateAnAccount(userName1,userName2);
-							String password="QTPTest"+getRandomNumeric(4);
+							String password="QTPTest"+Number;
 							cmtLib.enterPasswordInCreateAnAccount(password);
 							cmtLib.enterConfirmPasswordInCreateAnAccount(password);//Phone_Number
 							cmtLib.clickCreateButtonInCreateAnAccount();
@@ -138,6 +136,7 @@ public class USM03_FCTWebCreateCoPassUserIPSTest  extends UserManagementLib {
 							for (i = 0; i < permissions2.length; i++) {
 								cmtLib.verifySetPermissions( permissions2[i]);
 							}
+							cmtLib.verifySetPermissionsDisabled(data.get("DisablePermission"));
 							cmtLib.verifyDDPermission(data.get("Permision4"),data.get("Option"));
 							cmtLib.verifyDDPermission(data.get("Permision5"),data.get("Option"));
 							//cmtLib.verifyDDPermission(data.get("Permision6"),data.get("Option"));
