@@ -13,6 +13,7 @@ import java.util.List;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.mortbay.log.Log;
+import org.omg.PortableServer.THREAD_POLICY_ID;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
@@ -38,7 +39,7 @@ public class CanadaLib extends CanadaObj {
 	 * Method is used to verify user is logged to canada webgrp
 	 */
 	public void verifyCanadaWebgroup() throws Throwable {
-		if (isElementPresent(CANADA_WEBGROUP, "Canada webgroup")) {
+		if (isVisibleOnly(CANADA_WEBGROUP, "Canada webgroup")) {
 			reporter.SuccessReport("Verify Canada Web Site Login", "User is Logged into Canada Insight", "");
 		} else {
 			reporter.failureReport("Verify Canada Web Site Login", "User is not Logged into Canada Insight", "",driver);
@@ -49,7 +50,7 @@ public class CanadaLib extends CanadaObj {
 	 * Method is used to verify SBP
 	 */
 	public void verifySBP() throws Throwable {
-		if (isElementPresent(SHIP_BILL, "Ship bill")) {
+		if (isVisibleOnly(SHIP_BILL, "Ship bill")) {
 			reporter.SuccessReport("Verify ship bill pay section", "Ship bill section is present ", "PageDetails : Ship bill section");
 		} else {
 			reporter.failureReport("Verify ship bill pay section", "Ship bill section is not present", "Ship bill section",driver);
@@ -104,7 +105,7 @@ public class CanadaLib extends CanadaObj {
 	 * @throws Throwable
 	 */
 	public void verifyPlaceCartLabel() throws Throwable {
-		if (isElementPresent(CART_LABEL, "Cart header label displayed")) {
+		if (isVisibleOnly(CART_LABEL, "Cart header label displayed")) {
 			reporter.SuccessReport("Verify wether user navigates to cart page ",
 					"User successfully navigated to cart page", "PageDetails : Cart");
 		} else {
@@ -121,7 +122,7 @@ public class CanadaLib extends CanadaObj {
 	 */
 	public void verifyGSTAndPSTInCartPage(String pst, String Gst) throws Throwable {
 		Thread.sleep(5000);
-		if (isElementPresent(ShipBillPayLib.getAmountsInSummary(pst), "pst")) {
+		if (isVisibleOnly(ShipBillPayLib.getAmountsInSummary(pst), "pst")) {
 			String subTotalAmount = getText(ShipBillPayLib.getAmountsInSummary(pst), "PST amount");
 			reporter.SuccessReport("Verify PST/QST estimates", "PST/QST Estimates in SBP page Exist: ", subTotalAmount);
 		} else {
@@ -129,7 +130,7 @@ public class CanadaLib extends CanadaObj {
 
 		}
 
-		if (isElementPresent(ShipBillPayLib.getAmountsInSummary(Gst), "Gst")) {
+		if (isVisibleOnly(ShipBillPayLib.getAmountsInSummary(Gst), "Gst")) {
 			String subTotalAmount = getText(ShipBillPayLib.getAmountsInSummary(pst), "GST amount");
 			reporter.SuccessReport("Verify GST/HST estimates", "GST/HST Estimates in SBP page Exist ", subTotalAmount);
 		} else {
@@ -141,7 +142,7 @@ public class CanadaLib extends CanadaObj {
 	public void verifyEWRInCartPage() throws Throwable {
 
 		String EWRAmount = getText(EWR_AMOUNT, "EWR Amount");
-		if (isElementPresent(EWR_AMOUNT, "EWR Amount") && (!EWRAmount.isEmpty() || !(EWRAmount == null))) {
+		if (isVisibleOnly(EWR_AMOUNT, "EWR Amount") && (!EWRAmount.isEmpty() || !(EWRAmount == null))) {
 
 			reporter.SuccessReport("Verify EWR Fee and Taxes in the Cart", "EWR Fee and Taxes Exist in the Cart ","Currency Code is "+getCurrencyCodeForEWR()+ " and the amount is " +EWRAmount);
 		} else {
@@ -189,7 +190,7 @@ public class CanadaLib extends CanadaObj {
 	 */
 	public void verifySortOption(String sortOption) throws Throwable {
 
-		if (isElementPresent(productsDisplayInfoObj.getSortByOptions(sortOption), "Select sort option")) {
+		if (isVisibleOnly(productsDisplayInfoObj.getSortByOptions(sortOption), "Select sort option")) {
 			reporter.SuccessReport("Verify sort options in search results page",
 					"Sort option in search results verified successfully. Option is : " , sortOption);
 		} else {
@@ -205,7 +206,7 @@ public class CanadaLib extends CanadaObj {
 	 * @throws Throwable
 	 */
 	public void verifyNoResultsFoundMessgeInProductSearchResults() throws Throwable {
-		if (isElementPresent(productsDisplayInfoObj.INVALID_PROD_SEARCH_MSG, "invalid product search message")) {
+		if (isVisibleOnly(productsDisplayInfoObj.INVALID_PROD_SEARCH_MSG, "invalid product search message")) {
 			reporter.SuccessReport("Verify invalid search message", "No results found message displayed", "");
 		} else {
 			reporter.failureReport("Verify invalid search message", "No results found displayed not displayed", "",driver);
@@ -222,7 +223,7 @@ public class CanadaLib extends CanadaObj {
 
 		List<WebElement> mylist = driver.findElements(STOCK_CART);
 		for (int i = 0; i < mylist.size(); i++) {
-			if (isElementPresent(STOCK_CART, "Stock")) {
+			if (isVisibleOnly(STOCK_CART, "Stock")) {
 				reporter.SuccessReport("Verify Item is Added to Cart on Cart Page Page ",
 						"Stock Exists and Verified in the Cart ", "");
 			} else {
@@ -246,7 +247,7 @@ public class CanadaLib extends CanadaObj {
 		Thread.sleep(10000);
 
 		waitForVisibilityOfElement(SEARCHBY_DROPDOWN, "Quick Search");
-		if (isElementPresent(SEARCHBY_DROPDOWN, "Quick Search")) {
+		if (isVisibleOnly(SEARCHBY_DROPDOWN, "Quick Search")) {
 
 			click(SEARCHBY_DROPDOWN, "SearchBy");
 
@@ -261,7 +262,7 @@ public class CanadaLib extends CanadaObj {
 			String actualText;
 
 			waitForVisibilityOfElement(ORDERNUM_INVOICEHISTORY, "OrderNumber in invoice history");
-			if (isElementPresent(ORDERNUM_INVOICEHISTORY, "OrderNumber in invoice history")) {
+			if (isVisibleOnly(ORDERNUM_INVOICEHISTORY, "OrderNumber in invoice history")) {
 				actualText = getText(ORDERNUM_INVOICEHISTORY, "OrderNumber in invoice history").trim();
 
 				if (actualText.equalsIgnoreCase(orderNumber)) {
@@ -288,7 +289,7 @@ public class CanadaLib extends CanadaObj {
 	 * @throws Throwable
 	 */
 	public void invoiceNumberLink() throws Throwable {
-		if (isElementPresent(INVOICE_NUMBER, "invoice number ")) {
+		if (isVisibleOnly(INVOICE_NUMBER, "invoice number ")) {
 
 			click(INVOICE_NUMBER, "Click on invoice number ");
 			reporter.SuccessReport("Verify invoice Details POPUP", " invoice Details POPUP exists", getText(INVOICE_NUMBER, "Click on invoice number "));
@@ -305,7 +306,7 @@ public class CanadaLib extends CanadaObj {
 	 * @throws Throwable
 	 */
 	public void printIcon() throws Throwable {
-		if (isElementPresent(PRINTICON, "Print Icon")) {
+		if (isVisibleOnly(PRINTICON, "Print Icon")) {
 
 			click(PRINTICON, "Print Icon ");
 
@@ -365,7 +366,7 @@ public class CanadaLib extends CanadaObj {
 	 */
 	public void verifyInvoiceHistoryPageOpened() throws Throwable {
 		boolean status=false;
-		if(isElementPresent(QUICKSEARCH_DROPDOWN, "Invoice history header ")) {
+		if(isVisibleOnly(QUICKSEARCH_DROPDOWN, "Invoice history header ")) {
 			status = true;
 			String s1=Boolean.toString(status);
 
@@ -385,7 +386,7 @@ public class CanadaLib extends CanadaObj {
 	 */
 	public void closeIcon() throws Throwable {
 		waitForVisibilityOfElement(CLOSE, "close Icon");
-		if (isElementPresent(CLOSE, "close Icon")) {
+		if (isVisibleOnly(CLOSE, "close Icon")) {
 			click(CLOSE, "close Icon ");
 		}
 	}
@@ -397,7 +398,7 @@ public class CanadaLib extends CanadaObj {
 	 */
 	public void clickOnDownloadLink() throws Throwable {
 		waitForVisibilityOfElement(DOWNLOADLINK, "DownloadLink");
-		if (isElementPresent(DOWNLOADLINK, "DownloadLink")) {
+		if (isVisibleOnly(DOWNLOADLINK, "DownloadLink")) {
 			click(DOWNLOADLINK, "DownloadLink ");
 
 		}
@@ -440,7 +441,7 @@ public class CanadaLib extends CanadaObj {
 		List<WebElement> mylist = driver.findElements(EWR_FEE_FOR_PRODUCT);
 		for (int i = 0; i < mylist.size(); i++) {
 			String ewrFee = getText(EWR_FEE_FOR_PRODUCT, "EWR Fees");
-		if (isElementPresent(EWR_FEE_FOR_PRODUCT, "EWR fees") && (!ewrFee.isEmpty() || !(ewrFee == null))) {
+		if (isVisibleOnly(EWR_FEE_FOR_PRODUCT, "EWR fees") && (!ewrFee.isEmpty() || !(ewrFee == null))) {
 			reporter.SuccessReport("Verify EWR Fees For Each in the Cart on Quote Confirmation page",
 					"EWR Fee Exists : " + ewrFee, "");
 		} else {
@@ -458,7 +459,7 @@ public class CanadaLib extends CanadaObj {
 	 */
 	public String verifyEWRTotalFeesOnQuotesScreen() throws Throwable {
 		String ewrFeeTotal = getText(EWR_TOTAL_FEES, "EWR total Fee");
-		if (isElementPresent(EWR_TOTAL_FEES, "EWR fees") && (!ewrFeeTotal.isEmpty() || !(ewrFeeTotal == null))) {
+		if (isVisibleOnly(EWR_TOTAL_FEES, "EWR fees") && (!ewrFeeTotal.isEmpty() || !(ewrFeeTotal == null))) {
 			reporter.SuccessReport("Verify EWR Total Field in the Cart on Quote Confirmation Page",
 					"Total EWR Fee Exists in the Cart : " + ewrFeeTotal, "");
 		} else {
@@ -476,7 +477,7 @@ public class CanadaLib extends CanadaObj {
 	public String verifyGSTEstimateOnQuotesScreen() throws Throwable {
 		String GST = getText(GST_ESTIMATE_QUOTES_PAGE, "GST estimate");
 		System.out.println("GST"+GST);
-		if (isElementPresent(GST_ESTIMATE_QUOTES_PAGE, " GST estimate") && (!GST.isEmpty() || !(GST == null))) {
+		if (isVisibleOnly(GST_ESTIMATE_QUOTES_PAGE, " GST estimate") && (!GST.isEmpty() || !(GST == null))) {
 			reporter.SuccessReport("Verify G.S.T Estimate on Quote Confirmation Page", "G.S.T Estimate exist : " + GST,
 					"");
 		} else {
@@ -492,7 +493,7 @@ public class CanadaLib extends CanadaObj {
 	 */
 	public String verifyPST_QSTEstimates() throws Throwable {
 		String PST_QST = getText(PST_QST_ESTIMATE_QUOTES_PAGE, " P.S.T/Q.S.T Estimates");
-		if (isElementPresent(PST_QST_ESTIMATE_QUOTES_PAGE, "  P.S.T/Q.S.T Estimates")
+		if (isVisibleOnly(PST_QST_ESTIMATE_QUOTES_PAGE, "  P.S.T/Q.S.T Estimates")
 				&& (!PST_QST.isEmpty() || !(PST_QST == null))) {
 			reporter.SuccessReport("Verify  P.S.T/Q.S.T Estimates on Quote Confirmation Page",
 					" P.S.T/Q.S.T Estimates exist : " + PST_QST, "");
@@ -538,7 +539,7 @@ public class CanadaLib extends CanadaObj {
 		Thread.sleep(10000);
 
 		waitForVisibilityOfElement(ADVANCE_SEARCH_ORDERHISTORY, "Advance Search");
-		if (isElementPresent(ADVANCE_SEARCH_ORDERHISTORY, "Advance Search")) {
+		if (isVisibleOnly(ADVANCE_SEARCH_ORDERHISTORY, "Advance Search")) {
 
 			selectByValue(ADVANCE_SEARCH_ORDERHISTORY, searchBy, "Select ");
 			click(ADVANCE_SEARCH_TEXTBOX, "Click on Text");
@@ -551,26 +552,25 @@ public class CanadaLib extends CanadaObj {
 			String actualText;
 
 			if (text.equals("Order1")) {
-				if (isElementPresent(getOrderNumber(text), text + " in Order history")) {
+				if (isVisibleOnly(getOrderNumber(text), text + " in Order history")) {
 					actualText = getText(getOrderNumber(text), "OrderNumber in Order history").trim();
-
+				reporter.SuccessReport("Order Number","Order Number is available and the value is ",actualText);
 				} else {
 
 					reporter.failureReport("Verify OderNumber displayed in Invoice hisory page  ",
 							" OderNumber is not displayed in Invoice hisory page", "");
 
-					reporter.failureReport("Verify Element is  present  ", " Element is not present", "",driver);
 
 				}
 			}
 
 			if (text.equals("Order2")) {
-				if (isElementPresent(getProductDetail(text), text + " in Order history")) {
+				if (isVisibleOnly(getProductDetail(text), text + " in Order history")) {
 					actualText = getText(getProductDetail(text), "OrderNumber in Order history").trim();
 
 					if (actualText.equalsIgnoreCase(text)) {
 						reporter.SuccessReport("Verify " + text + " displayed in Order hisory page  ",
-								" OderNumber is displayed in Invoice hisory page", "");
+								" OderNumber is displayed in Invoice hisory page", actualText);
 					} else {
 						reporter.failureReport("Verify " + text + " displayed in Order hisory page  ",
 								" OderNumber is not displayed in Order hisory page", "",driver);
@@ -580,12 +580,12 @@ public class CanadaLib extends CanadaObj {
 				}
 			}
 			if (text.equals("Order3")) {
-				if (isElementPresent(getProductDetail(text), text + " in Order history")) {
+				if (isVisibleOnly(getProductDetail(text), text + " in Order history")) {
 					actualText = getText(getProductDetail(text), "OrderNumber in Order history").trim();
 
 					if (actualText.equalsIgnoreCase(text)) {
 						reporter.SuccessReport("Verify " + text + " displayed in Order hisory page  ",
-								" OderNumber is displayed in Invoice hisory page", "");
+								" OderNumber is displayed in Invoice hisory page", actualText);
 					} else {
 						reporter.failureReport("Verify " + text + " displayed in Order hisory page  ",
 								" OderNumber is not displayed in Order hisory page", "",driver);
@@ -607,7 +607,7 @@ public class CanadaLib extends CanadaObj {
 	 * @throws Throwable
 	 */
 	public void selectSPLADetailsProductCheckBox(String spla) throws Throwable {
-		if (isElementPresent(SPLA_LABEL, "SPLA LABEL")) {
+		if (isVisibleOnly(SPLA_LABEL, "SPLA LABEL")) {
 			if (!isCheckBoxSelected(getMySoftwareLicenseAgreementscheckBoxes(spla))) {
 				click(getMySoftwareLicenseAgreementscheckBoxes(spla),"SPLA Details Product CheckBox : "+spla);
 				Thread.sleep(3000);
@@ -623,7 +623,7 @@ public class CanadaLib extends CanadaObj {
 	 * @throws Throwable
 	 */
 	public void verifySPLAPage() throws Throwable{
-		if(isElementPresent(SPLA_LABEL, "SPLA LABEL")){
+		if(isVisibleOnly(SPLA_LABEL, "SPLA LABEL")){
 		   reporter.SuccessReport("verify SPLA page", "SPLA page verification is successfull", "");
 		  }else{
 			  reporter.failureReport("verify SPLA page", "SPLA page verification is not successfull", "",driver);
@@ -654,7 +654,7 @@ public class CanadaLib extends CanadaObj {
 		Thread.sleep(10000);
 		waitForVisibilityOfElement(ORDER_DETAILS_PAGE, "Order details ");
 		String actualText;
-		if (isElementPresent(ORDERNUMBER_DETAILSPAGE, "OrderNumber in Order history")) {
+		if (isVisibleOnly(ORDERNUMBER_DETAILSPAGE, "OrderNumber in Order history")) {
 			actualText = getText(ORDERNUMBER_DETAILSPAGE, "OrderNumber in Order history").trim();
 
 			if (orderNumber.contains(actualText)) {
@@ -666,7 +666,7 @@ public class CanadaLib extends CanadaObj {
 			}
 		}
 
-		if (isElementPresent(REFERENCENUMBER_DETAILSPAGE, "Reference Number in Order history details Page")) {
+		if (isVisibleOnly(REFERENCENUMBER_DETAILSPAGE, "Reference Number in Order history details Page")) {
 			actualText = getText(REFERENCENUMBER_DETAILSPAGE, "Reference Number in Order history details Page");
 
 			if (actualText.equalsIgnoreCase(referenceNumber)) {
@@ -677,7 +677,7 @@ public class CanadaLib extends CanadaObj {
 						" OrderNumber is not displayed in Order hisory page", referenceNumber,driver);
 			}
 		}
-		if (isElementPresent(PONUMBER_DETAILSPAGE, "Purchase Number in Order history details Page")) {
+		if (isVisibleOnly(PONUMBER_DETAILSPAGE, "Purchase Number in Order history details Page")) {
 			actualText = getText(PONUMBER_DETAILSPAGE, "Purchase Number in Order history details Page");
 
 			if (actualText.equalsIgnoreCase(purchaseNumber)) {
@@ -689,7 +689,7 @@ public class CanadaLib extends CanadaObj {
 			}
 		}
 
-		if (isElementPresent(getEWRNumber(EWR), "EWR Fee in Order history details Page")) {
+		if (isVisibleOnly(getEWRNumber(EWR), "EWR Fee in Order history details Page")) {
 			actualText = getAttributeByValue(getEWRNumber(EWR), "EWR Fee in Order history details Page");
 
 			if (actualText.equalsIgnoreCase(EWR)) {
@@ -709,7 +709,7 @@ public class CanadaLib extends CanadaObj {
 	 * @throws Throwable
 	 */
 	public void VerifyNonSplaItemsMessage() throws Throwable {
-		if (isElementPresent(NON_SPLA_MSG, "NON SPLA MESSASGE")) {
+		if (isVisibleOnly(NON_SPLA_MSG, "NON SPLA MESSASGE")) {
 			reporter.SuccessReport("Verify non SPLA message", "non SPLA message displayed", "Message : In order to report usage please remove items that do not apply to the selected service provider.");
 		} else {
 			reporter.failureReport("Verify non SPLA message", "non SPLA message is not displayed", "");
@@ -723,7 +723,7 @@ public class CanadaLib extends CanadaObj {
 	 */
 	public String verifyReportingUsagePeriod() throws Throwable {
 		String period = null;
-		if (isElementPresent(REPORTING_USAGE_PERIOD, "reporting usage period") && isElementPresent(ENROLLMENT, "ENROLLMENT")) {
+		if (isVisibleOnly(REPORTING_USAGE_PERIOD, "reporting usage period") && isVisibleOnly(ENROLLMENT, "ENROLLMENT")) {
 			 period = getText(REPORTING_USAGE_PERIOD, "reporting usage period");
 			reporter.SuccessReport("verify reporting usage period in cart page",
 					"Usage Field Exists and Verified. " + period, "Report usage for: "+period +"  "+getText(ENROLLMENT, "ENROLLMENT"));
@@ -734,10 +734,10 @@ public class CanadaLib extends CanadaObj {
 	}
 
 	public void clickOnLastUsageReportBtn(String softwareAgreement) throws Throwable {
-		if (isElementPresent(CanadaObj.SPLA_LABEL, "SPLA LABEL")) {
+		if (isVisibleOnly(CanadaObj.SPLA_LABEL, "SPLA LABEL")) {
 			if (!isCheckBoxSelected(CanadaObj.getMySoftwareLicenseAgreementscheckBoxes(softwareAgreement))) {
 				click(CanadaObj.getMySoftwareLicenseAgreementscheckBoxes(softwareAgreement),"SPLA Details Product CheckBox");
-		if (isElementPresent(CITRIX_LASTUSAGE_REPORTBTN, "Retrive last usage report button")) {
+		if (isVisibleOnly(CITRIX_LASTUSAGE_REPORTBTN, "Retrive last usage report button")) {
 			click(CITRIX_LASTUSAGE_REPORTBTN, " Citrix Retrive last usage report button");
 		}else {
 			reporter.failureReport("Verify Citrix Retrive last usage report button exists", "Citrix Retrive last usage report button does not exists", "", driver);
@@ -754,7 +754,7 @@ public class CanadaLib extends CanadaObj {
 	 */
 	public void verifyReportingUsagePeriodInReceiptPage() throws Throwable {
 		String period = null;
-		if (isElementPresent(REPORTING_USAGEINRECEIPT_PAGE, "reporting usage period")) {
+		if (isVisibleOnly(REPORTING_USAGEINRECEIPT_PAGE, "reporting usage period")) {
 			 period = getText(REPORTING_USAGEINRECEIPT_PAGE, "reporting usage period");
 			reporter.SuccessReport("Verify Usage Period on Receipt Page",
 					"Usage Field Exists in Receipt Page " , period);
@@ -763,7 +763,7 @@ public class CanadaLib extends CanadaObj {
 		}
 	}
 	public void CandaHomePageVerification() throws Throwable {
-		if (isElementPresent(CANADA_FLAG, "Canada Flag")) {
+		if (isVisibleOnly(CANADA_FLAG, "Canada Flag")) {
 			reporter.SuccessReport("Verify Canada Web Site Login", "User is Logged into Canada Insight", "");
 		} else {
 			reporter.failureReport("Verify Canada Web Site Login", "User is not Logged into Canada Insight", "",driver);
@@ -772,9 +772,9 @@ public class CanadaLib extends CanadaObj {
 
 	public void selectProdCheckbox() throws Throwable {
 		waitForVisibilityOfElement(CHKBOX_SELECT, "Product select checkbox");
-		// isElementPresent(CartObj.ADD_TO_CART_SUCCESS_MESSAGE,"ADD TO CART
+		// isVisibleOnly(CartObj.ADD_TO_CART_SUCCESS_MESSAGE,"ADD TO CART
 		// SUCCESS MESSAGE",true);
-		if (isElementPresent(CHKBOX_SELECT, "product check box")) {
+		if (isVisibleOnly(CHKBOX_SELECT, "product check box")) {
 			if (!isCheckBoxSelected(CHKBOX_SELECT)) {
 				driver.findElement(CHKBOX_SELECT).click();
 
@@ -796,7 +796,7 @@ public class CanadaLib extends CanadaObj {
 	 */
 
 	public void SearchProduct(String product_name) throws Throwable {
-		if (isElementPresent(SEARCH_PRODUCT, "Canada Search Product")) {
+		if (isVisibleOnly(SEARCH_PRODUCT, "Canada Search Product")) {
 			type(SEARCH_PRODUCT, product_name, "Search product  name");
 			reporter.SuccessReport("Verify Search Product textbox",
 					"Search product textbox clicked and searched the required item", "");
@@ -807,7 +807,7 @@ public class CanadaLib extends CanadaObj {
 
 	public void verifyProductPrice() throws Throwable {
 		waitForVisibilityOfElement(PROD_PRICE, "Canada Product Price");
-		if (isElementPresent(PROD_PRICE, "Canada Product Price")) {
+		if (isVisibleOnly(PROD_PRICE, "Canada Product Price")) {
 			reporter.SuccessReport("Price on Product Detail Page", "Price Exists", "");
 		} else {
 			reporter.failureReport("Price on Product Detail Page", "Price Does Not Exist", "",driver);
@@ -816,7 +816,7 @@ public class CanadaLib extends CanadaObj {
 
 	public void verifyProratedPrice() throws Throwable {
 		waitForVisibilityOfElement(PRORATED_PRICE, "Canada Product Prorated Price");
-		if (isElementPresent(PRORATED_PRICE, "Canada Product Prorated Price")) {
+		if (isVisibleOnly(PRORATED_PRICE, "Canada Product Prorated Price")) {
 			reporter.SuccessReport("Prorated Price displayed in the Cart Page", "Prorated Price is displayed", "");
 		} else {
 			reporter.failureReport("Prorated Price displayed in the Cart Page", "Prorated Price is Not displayed", "",driver);
@@ -825,7 +825,7 @@ public class CanadaLib extends CanadaObj {
 
 	public void veriyProratedPriceinSBP() throws Throwable {
 		waitForVisibilityOfElement(PRORATED_PRICE, "Canada Product Prorated Price");
-		if (isElementPresent(FINAL_PRORATED_PRICE, "Canada Product Prorated Price")) {
+		if (isVisibleOnly(FINAL_PRORATED_PRICE, "Canada Product Prorated Price")) {
 			reporter.SuccessReport("Prorated Price displayed in the SBP Page", "Prorated Price is displayed", "");
 		} else {
 			reporter.failureReport("Prorated Price displayed in the SBP Page", "Prorated Price is Not displayed", "",driver);
@@ -847,10 +847,10 @@ public class CanadaLib extends CanadaObj {
 		reporter.SuccessReport("Verify Place order on Place order Page ", "Place order on Place order Page", "");
 		Thread.sleep(3000);
 
-		if (isElementPresent(OrderObj.RECEIPT_LABEL, "receipt")) {
+		if (isVisibleOnly(OrderObj.RECEIPT_LABEL, "receipt")) {
 
 			// Reference number verification
-			if (isElementPresent(OrderObj.REFERENCE_ORDER_NUM, "Reference number")) {
+			if (isVisibleOnly(OrderObj.REFERENCE_ORDER_NUM, "Reference number")) {
 				referenceNumber = getText(OrderObj.REFERENCE_ORDER_NUM, "Reference number");
 				if (referenceNumber.isEmpty()) {
 					reporter.failureReport("Verify the Reference number ", "The reference number is null or empty. ",
@@ -864,7 +864,7 @@ public class CanadaLib extends CanadaObj {
 			}
 
 			// Total Amount verification
-			if (isElementPresent(OrderObj.TOTAL_AMOUNT, "Total Amount")) {
+			if (isVisibleOnly(OrderObj.TOTAL_AMOUNT, "Total Amount")) {
 				String totalAmount = getText(OrderObj.TOTAL_AMOUNT, "Total Amount");
 
 				if (totalSummary != null) {
@@ -877,7 +877,7 @@ public class CanadaLib extends CanadaObj {
 			}
 
 			// date ordered verification
-			if (isElementPresent(OrderObj.DATE_ORDERED, "Date ordered")) {
+			if (isVisibleOnly(OrderObj.DATE_ORDERED, "Date ordered")) {
 				String dateOrdered = getText(OrderObj.DATE_ORDERED, "Date ordered");
 				if (dateOrdered != null) {
 					reporter.SuccessReport("Verify the Date ordered ", " date ordered verification is successfull", "");
@@ -895,7 +895,7 @@ public class CanadaLib extends CanadaObj {
 	 */
 	public void selectReportUsageButtonsInMySoftwareLicenseAgreements(String button) throws Throwable{
 		
-		if(isElementPresent(reportUsageButtons(button), "report usage button")){
+		if(isVisibleOnly(reportUsageButtons(button), "report usage button")){
 			clickUntil(reportUsageButtons(button), CART_LABEL, "report usage button");
 		}else{
 			reporter.failureReport("Verify report usage buttons ", "Report usage button for product is not displayed", "",driver);
@@ -918,7 +918,7 @@ public class CanadaLib extends CanadaObj {
 	
 	public void clickCreateAccountOnCanadaSearchPage() throws Throwable{
 		waitForVisibilityOfElement(CREATE_AN_ACCOUNT, "CREATE AN ACCOUNT");
-		if (isElementPresent(CREATE_AN_ACCOUNT, "CREATE AN ACCOUNT", true)) {
+		if (isVisibleOnly(CREATE_AN_ACCOUNT, "CREATE AN ACCOUNT")) {
 			click(CREATE_AN_ACCOUNT, "CREATE AN ACCOUNT");
 			reporter.SuccessReport("Verify create an Account is displayed and clicked on canada page  ", " create an Account is displayed and clicked on canada page, verification is successfull", "");
 		}
@@ -937,7 +937,7 @@ public class CanadaLib extends CanadaObj {
 	public void enterMailDetails(String userName) throws Throwable {
 	
 		waitForVisibilityOfElement(SewpObj.EMAIL_ADDRESS, "Email Address");
-		if (isElementPresent(SewpObj.EMAIL_ADDRESS, "Email Address", true)) {	
+		if (isElementPresent(SewpObj.EMAIL_ADDRESS, "Email Address", true)) {
 			
 		typeText(SewpObj.EMAIL_ADDRESS, "UFT"+userName + "@Automation.com", "Email Address");		
 		// Select agency
@@ -996,7 +996,7 @@ public void clickOnNext() throws Throwable {
 public void verifyCountryDisplayed(String actualCountry) throws Throwable {
 	
 	waitForVisibilityOfElement(COUNTRY, "Country");
-	if (isElementPresent(COUNTRY, "Country")) {		
+	if (isVisibleOnly(COUNTRY, "Country")) {		
 	String expectedCountryName=driver.findElement(COUNTRY).getAttribute("innerText"); 
 	if(actualCountry.equalsIgnoreCase(expectedCountryName)){
 		reporter.SuccessReport("Verify Verify Country should default based on domain  ", "Verified country displayed as expected ", "");
@@ -1018,7 +1018,7 @@ public void verifyCountryDisplayed(String actualCountry) throws Throwable {
  */
 public void selectJobTitle(String jobTitle) throws Throwable {
 	waitForVisibilityOfElement(JOBTITLE, "JobTitle");
-	if (isElementPresent(JOBTITLE, "Jobtitle", true)){		
+	if (isElementPresent(JOBTITLE, "Jobtitle", true)){
 		selectByValue(JOBTITLE, jobTitle, "Select");
 	}
 	
@@ -1032,7 +1032,7 @@ public void selectJobTitle(String jobTitle) throws Throwable {
  */
 public void selectOption() throws Throwable {
 	waitForVisibilityOfElement(COORPORATE_ENTERPRISE, "JobTitle");
-	if (isElementPresent(COORPORATE_ENTERPRISE, "OtherOptions", true)){		
+	if (isElementPresent(COORPORATE_ENTERPRISE, "OtherOptions", true)){
 		click(COORPORATE_ENTERPRISE, "Select ");
 		
 	}
@@ -1063,7 +1063,7 @@ public void selectOption() throws Throwable {
 	 */
 	public void verifyProductPriceWithGivenPrice(String price) throws Throwable {
 		waitForVisibilityOfElement(PROD_PRICE, "Canada Product Price");
-		if (isElementPresent(PROD_PRICE, "Canada Product Price")) {
+		if (isVisibleOnly(PROD_PRICE, "Canada Product Price")) {
 			String expectedPrice = getText(PROD_PRICE, "Canada Product Price").trim();
 			if (price.equals(expectedPrice))
 				reporter.SuccessReport("Price on Product Detail Page", "Price Exists", "");
@@ -1081,7 +1081,7 @@ public void selectOption() throws Throwable {
 	 */
 	public String enterPhoneOnAdditionalInfo(String phone) throws Throwable {
 		//String phone = DynamicTestDataGenerator.generateRandomPhoneNumber();
-		if (isElementPresent(MarriottIntlCorpObj.PHONE, "Phone Number")) {
+		if (isVisibleOnly(MarriottIntlCorpObj.PHONE, "Phone Number")) {
 			click(MarriottIntlCorpObj.PHONE, "Phone Number");
 			type(MarriottIntlCorpObj.PHONE, phone, "Phone Number");
 		}
@@ -1095,7 +1095,7 @@ public void selectOption() throws Throwable {
 	 */
 	public String enterNameOnAdditionalInfo() throws Throwable {
 		String name = DynamicTestDataGenerator.generateRandomFirstName();
-		if (isElementPresent(MarriottIntlCorpObj.NAME, "Name")) {
+		if (isVisibleOnly(MarriottIntlCorpObj.NAME, "Name")) {
 			click(MarriottIntlCorpObj.NAME, "Name");
 			type(MarriottIntlCorpObj.NAME, name, "Name");
 		}
@@ -1107,7 +1107,7 @@ public void addShippingAddress(String name, String userName,String street1,Strin
 		throws Throwable {
 
 	waitForVisibilityOfElement(COMPANY_NAME, "Company Name");
-	if (isElementPresent(COMPANY_NAME, "Company Name")) {
+	if (isVisibleOnly(COMPANY_NAME, "Company Name")) {
 		click(COMPANY_NAME, "Company Name");
 		type(COMPANY_NAME, name, "Company Name");
 		clearData(ATTENTION);
@@ -1139,7 +1139,7 @@ public void addShippingAddress(String name, String userName,String street1,Strin
  */
 public void verifyShippingMethod(String shipMehtod) throws Throwable {
 	waitForVisibilityOfElement(getCarriers(shipMehtod), "JobTitle");
-	if (isElementPresent(getCarriers(shipMehtod), "OtherOptions", true)){		
+	if (isElementPresent(getCarriers(shipMehtod), "OtherOptions", true)){
 		
 		String expectedShipMethod=driver.findElement(getCarriers(shipMehtod)).getAttribute("innerText"); 
 		System.out.println("expectedShipMethod"+expectedShipMethod);
@@ -1154,7 +1154,7 @@ public void verifyShippingMethod(String shipMehtod) throws Throwable {
 	}
 }
 public void saveAddress() throws Throwable {
-	if(isElementPresent(SAVE_ADDRESS, "Save addresses")) {
+	if(isVisibleOnly(SAVE_ADDRESS, "Save addresses")) {
 		click(SUGGESTED_ADDRESSES,"SUggested addresses");
 		click(SAVE_ADDRESS, "Save addresses");
 	}else {
@@ -1179,7 +1179,7 @@ public void clickPlaceOrderButton() throws Throwable {
  */
 public void getReferenceNo() throws Throwable {
 	waitForVisibilityOfElement(REFERENCE_NO, "Reference Number");
-	if (isElementPresent(REFERENCE_NO, "Reference Number", true) && isElementPresent(THANK_YOU_ORDER_MSG, "Thank you for order message")){		
+	if (isElementPresent(REFERENCE_NO, "Reference Number", true) && isVisibleOnly(THANK_YOU_ORDER_MSG, "Thank you for order message")){
 	
 	String refno= getText(REFERENCE_NO,"Reference Number");
 	reporter.SuccessReport("Verify reference Number  ", "Reference Number  ", refno);
@@ -1193,7 +1193,7 @@ public void getReferenceNo() throws Throwable {
  */
 public void clickOnEnterACard(String cardOpt) throws Throwable {
 	waitForVisibilityOfElement(getEnterACard(cardOpt), "Enter A Card Button");
-	if (isElementPresent(getEnterACard(cardOpt), "Enter A Card Button", true)){		
+	if (isElementPresent(getEnterACard(cardOpt), "Enter A Card Button", true)){
 	click(getEnterACard(cardOpt), "Enter A Card Button");
 	reporter.SuccessReport("Click Enter a new card link on "+cardOpt+"",
 			"Enter a new card Link  Exist ", "");
@@ -1236,7 +1236,7 @@ public void clickOnEnterACard(String cardOpt) throws Throwable {
 	 */
 	public void verifyCountry(String countryName) throws Throwable {
 		waitForVisibilityOfElement(getCountryFlag(countryName), "Enter A Card Button");
-		if (isElementPresent(getCountryFlag(countryName), "Enter A Card Button", true)){		
+		if (isElementPresent(getCountryFlag(countryName), "Enter A Card Button", true)){
 		//click(getCountryFlag(countryName), "Enter A Card Button");
 		reporter.SuccessReport("Verify country name as "+countryName+"",
 				"CountryName verified ", countryName);
@@ -1253,7 +1253,7 @@ public void clickOnEnterACard(String cardOpt) throws Throwable {
 	public void clickOnReportOptions(String reportOption) throws Throwable {
 		click(STANDARD_REPORT,"Standard Report");
 		waitForVisibilityOfElement(getReportOptions(reportOption), "Standard Report Options");
-		if (isElementPresent(getReportOptions(reportOption), "Standard Report Options", true)){		
+		if (isElementPresent(getReportOptions(reportOption), "Standard Report Options", true)){
 		click(getReportOptions(reportOption), "Enter A Card Button");
 		reporter.SuccessReport("Click "+reportOption+" on Reports Page" ,
 				""+reportOption+" Reports Page exists  ", "");
@@ -1271,7 +1271,7 @@ public void clickOnEnterACard(String cardOpt) throws Throwable {
 	 */
 	public void verifyReportsPage() throws Throwable {
 		waitForVisibilityOfElement(REPORTS_PAGE, "Reports");
-		if (isElementPresent(REPORTS_PAGE, "Reports", true)){		
+		if (isElementPresent(REPORTS_PAGE, "Reports", true)){
 		click(REPORTS_PAGE, "Reports");
 		reporter.SuccessReport("Verify Reports Page",
 				"Reports Page Loaded", "");
@@ -1289,7 +1289,7 @@ public void clickOnEnterACard(String cardOpt) throws Throwable {
 	 */
 	public void verifySelectReport(String selectReport) throws Throwable {
 		waitForVisibilityOfElement(getSelectAReport(selectReport), "Select A Report");
-		if (isElementPresent(getSelectAReport(selectReport), "Select A Report", true)){			
+		if (isElementPresent(getSelectAReport(selectReport), "Select A Report", true)){
 		reporter.SuccessReport("Verify  "+selectReport+" is Default to Select Report on Reports Page",
 				"Select Report Defaulted to "+selectReport+" Reports", "");
 		}
@@ -1306,7 +1306,7 @@ public void clickOnEnterACard(String cardOpt) throws Throwable {
 	 */
 	public void verifyAccountSelections(String account) throws Throwable {
 		waitForVisibilityOfElement(getAccountSelections(account), "Select A Report");
-		if (isElementPresent(getAccountSelections(account), "Select A Report", true)){			
+		if (isElementPresent(getAccountSelections(account), "Select A Report", true)){
 		reporter.SuccessReport("Verify  "+account+" is Default to Account Selections on Reports Page",
 				"Account Selections are  Defaulted to "+account+"", "");
 		}
@@ -1324,9 +1324,9 @@ public void clickOnEnterACard(String cardOpt) throws Throwable {
 	 */
 	public void verifyFilterbyCurrency(String currency) throws Throwable {
 		waitForVisibilityOfElement(getFilterByCurrency(currency), "Select A Report");
-		if (isElementPresent(getFilterByCurrency(currency), "Select A Report", true)){			
+		if (isElementPresent(getFilterByCurrency(currency), "Select A Report")){
 		reporter.SuccessReport("Verify 'Convert all transactions to' is Default to CAD on Reports Page",
-				"Convert all transactions to' Amount is Not Default to CAD", "");
+				"Convert all transactions to' Amount is Not Default to CAD", "true");
 		}
 		else{
 			reporter.failureReport("Verify 'Convert all transactions to' is Default to CAD on Reports Page",
@@ -1342,9 +1342,9 @@ public void clickOnEnterACard(String cardOpt) throws Throwable {
 	 */
 	public void verifyFilterOption() throws Throwable {
 		waitForVisibilityOfElement(FILTERCURRENT_OPTION, "Filter Option");
-		if (isElementPresent(FILTERCURRENT_OPTION, "Filter Option", true)){			
+		if (isVisibleOnly(FILTERCURRENT_OPTION, "Filter Option")){
 		reporter.SuccessReport("Verify Convert all transactions to Filter Option Default on Reports Page",
-				"Convert all transactions to' Filter is not Defaulted Option", "");
+				"Convert all transactions to' Filter is not Defaulted Option", "true");
 		}
 		else{
 			reporter.failureReport("Verify Convert all transactions to Filter Option Default on Reports Page",
@@ -1358,7 +1358,7 @@ public void clickOnEnterACard(String cardOpt) throws Throwable {
 	 */
 	public void verifyScheduleReport(String scheduleOption) throws Throwable {
 		waitForVisibilityOfElement(getScheduleReport(scheduleOption), "Schedule Report Option ");
-		if (isElementPresent(getScheduleReport(scheduleOption), "Select A Report", true)){			
+		if (isVisibleOnly(getScheduleReport(scheduleOption), "Select A Report")){
 		reporter.SuccessReport("Verify Schedule Report is Defaulted to 'Run Report Now' on Reports Page",
 				"Schedule Report is Defaulted to 'Run Report Now'", "");
 		}
@@ -1374,7 +1374,7 @@ public void clickOnEnterACard(String cardOpt) throws Throwable {
 	 */
 	public void verifyDeliveryOption() throws Throwable {
 		waitForVisibilityOfElement(DELIVERY_OPTION, "Delivery Option");
-		if (isElementPresent(DELIVERY_OPTION, "Delivery Option", true)){			
+		if (isVisibleOnly(DELIVERY_OPTION, "Delivery Option")){
 		reporter.SuccessReport("View Delivery Options on Reports Page",
 				"Report Delivery Options Field Exists", "");
 		}
@@ -1391,7 +1391,7 @@ public void clickOnEnterACard(String cardOpt) throws Throwable {
 	 */
 	public void clickOnAccountSelections(String accountSelctionOtion) throws Throwable {
 		waitForVisibilityOfElement(ACCOUT_SELECTION, "Select Account selections");
-		if (isElementPresent(ACCOUT_SELECTION, "Select Account selections", true)){		
+		if (isVisibleOnly(ACCOUT_SELECTION, "Select Account selections")){
 			
 			selectByVisibleText(ACCOUT_SELECTION,accountSelctionOtion,"Account Selections");
 		reporter.SuccessReport("Verify  "+accountSelctionOtion+" is selected to Account Selections on Reports Page",
@@ -1410,7 +1410,7 @@ public void clickOnEnterACard(String cardOpt) throws Throwable {
 	 */
 	public void verifyQuickDateOption(String quickDateOption) throws Throwable {
 		waitForVisibilityOfElement(getQuickDate(quickDateOption), "Delivery Option");
-		if (isElementPresent(getQuickDate(quickDateOption), "Delivery Option", true)){			
+		if (isVisibleOnly(getQuickDate(quickDateOption), "Delivery Option")){
 		reporter.SuccessReport("Verify Quick Date Options is Defaulted to 'Current Month' on Reports Page",
 				"Quick Date is Defaulted to 'Current Month'", "");
 		}
@@ -1427,7 +1427,7 @@ public void clickOnEnterACard(String cardOpt) throws Throwable {
 	 */
 	public void verifyCustomDate() throws Throwable {
 		
-		if (isElementPresent(START_DATE, "START DATE", true) && isElementPresent(END_DATE, "END DATE", true)){
+		if (isVisibleOnly(START_DATE, "START DATE") && isVisibleOnly(END_DATE, "END DATE")){
 			
 		  reporter.SuccessReport("Verify Start Date and End Date Defaults to 'Custom Dates' on Reports Page",
 					"Custom Start Date and End Date is Defaulted to 'Custom Dates'", "");
@@ -1479,7 +1479,7 @@ public void clickOnEnterACard(String cardOpt) throws Throwable {
 	 */
 	public void verifyFilterOrder() throws Throwable {
 		waitForVisibilityOfElement(FILTER_ORDERTYPE, "FilterOrder type");
-		if (isElementPresent(FILTER_ORDERTYPE, "FilterOrder type", true)){			
+		if (isVisibleOnly(FILTER_ORDERTYPE, "FilterOrder type")){
 		reporter.SuccessReport("Verify Filter by Order Type is Default to 'All' on Reports Page",
 				"Filter by Order Type  is Defaulted to 'All'", "");
 		}
@@ -1496,7 +1496,7 @@ public void clickOnEnterACard(String cardOpt) throws Throwable {
 	 */
 	public void verifySmartcheck() throws Throwable {
 		waitForVisibilityOfElement(SMART_CHECK, "Smart Check");
-		if (isElementPresent(SMART_CHECK, "Smart Check", true)){			
+		if (isVisibleOnly(SMART_CHECK, "Smart Check")){
 		reporter.SuccessReport("Verify Smart Tracker Check Box on Reports Page",
 				"Smart Tracker Check Box Exists and UnChecked", "");
 		}
@@ -1516,7 +1516,7 @@ public void verifyAllFields() throws Throwable {
 
 String option ="Account City";
 waitForVisibilityOfElement(AVAILABLE_FIELDS, "Available fields");
-if (isElementPresent(AVAILABLE_FIELDS, "Available fields", true)) {
+if (isVisibleOnly(AVAILABLE_FIELDS, "Available fields")) {
 
   new Select(driver.findElement(AVAILABLE_FIELDS)).selectByVisibleText(option);
   driver.findElement(AVAILABLE_FIELDS).sendKeys(Keys.CONTROL + "a");;
@@ -1540,7 +1540,7 @@ reporter.failureReport("Select  All Fields in the Available Fields on Reports Pa
 	 */
 	public void clickOnDeliveryMethod(String deliveryMethod) throws Throwable {
 		waitForVisibilityOfElement(DELIVERYMETOD, "Select Delivery Method");
-		if (isElementPresent(DELIVERYMETOD, "Select ADelivery Method", true)){		
+		if (isVisibleOnly(DELIVERYMETOD, "Select ADelivery Method")){
 			
 			selectByVisibleText(DELIVERYMETOD,deliveryMethod ,"Delivery Option");
 		reporter.SuccessReport("Verify  "+deliveryMethod+" is selected to Account Selections on Reports Page",
@@ -1558,7 +1558,7 @@ reporter.failureReport("Select  All Fields in the Available Fields on Reports Pa
 	 */
 	public void clickOnDeliveryFormat(String deliveryFormat) throws Throwable {
 		waitForVisibilityOfElement(DELIVERY_FORMAT, "Select Delivery  format");
-		if (isElementPresent(DELIVERY_FORMAT, "Select Delivery  format", true)){		
+		if (isVisibleOnly(DELIVERY_FORMAT, "Select Delivery  format")){
 			
 			selectByVisibleText(DELIVERY_FORMAT, deliveryFormat,"Delivery Option");
 		reporter.SuccessReport("Verify  "+deliveryFormat+" is selected to Account Selections on Reports Page",
@@ -1578,7 +1578,7 @@ reporter.failureReport("Select  All Fields in the Available Fields on Reports Pa
 	 */
 	public void clickOnRun() throws Throwable {
 		waitForVisibilityOfElement(RUN, "Run button");
-		if (isElementPresent(RUN,"Run button", true)){		
+		if (isVisibleOnly(RUN,"Run button")){
 			
 		 click(RUN, "Run button");
 		reporter.SuccessReport("Verify  Click Run on Reports Page",
@@ -1636,7 +1636,7 @@ reporter.failureReport("Select  All Fields in the Available Fields on Reports Pa
 	 * @throws Throwable
 	 */
 	public void verifyFilterByManufacturerOnSearchResultsPage() throws Throwable{
-		if(isElementPresent(FILTER_BY_MANUFACTURER, "Filter By manufacturer")){
+		if(isVisibleOnly(FILTER_BY_MANUFACTURER, "Filter By manufacturer")){
 			reporter.SuccessReport("Verify filter by manufacturer ", "Filter by manufacturer is present", "");
 		}else{
 			reporter.failureReport("Verify filter by manufacturer ", "Filter by manufacturer is not present", "");
@@ -1652,7 +1652,7 @@ reporter.failureReport("Select  All Fields in the Available Fields on Reports Pa
 	public void addAdditionalInfo(String name, String phone)throws Throwable {
 
 		waitForVisibilityOfElement(MarriottIntlCorpObj.NAME, "Name");
-		if (isElementPresent(MarriottIntlCorpObj.NAME, "Name")) {
+		if (isVisibleOnly(MarriottIntlCorpObj.NAME, "Name")) {
 			click(MarriottIntlCorpObj.NAME, "Name");
 			type(MarriottIntlCorpObj.NAME, "UFT"+name+" "+"Automation", "Name");
 			clearData(MarriottIntlCorpObj.PHONE);
@@ -1670,7 +1670,7 @@ reporter.failureReport("Select  All Fields in the Available Fields on Reports Pa
 	 */
 	public String verifyReportingUsagePeriodWarningMessage() throws Throwable {
 		String period = null;
-		if (isElementPresent(REPORTING_USAGE_PERIOD_WARNING_MSG, "reporting usage period")) {
+		if (isVisibleOnly(REPORTING_USAGE_PERIOD_WARNING_MSG, "reporting usage period")) {
 			 period = getText(REPORTING_USAGE_PERIOD_WARNING_MSG, "reporting usage period");
 			reporter.SuccessReport("verify reporting usage period in cart page",
 					"Usage Field Exists and Verified. " + period, "");
@@ -1683,4 +1683,63 @@ reporter.failureReport("Select  All Fields in the Available Fields on Reports Pa
 	public String getCurrencyCodeForEWR() throws Throwable{
 		return getText(txtCurrencyCode,"Get currency ");
 	}
+
+	public String getAssetAndSerialNumberValuesOnPopups() throws Throwable{
+		String text= getText(getAssetTagDetails,"Get currency");
+		reporter.SuccessReport("Asset And Serial Number values","Asset and Serial number value is "," values are "+  text);
+	return text;
+	}
+public boolean verifyAssetSerialNuberValues() throws Throwable{
+		return isVisibleOnly(headerAssetSerial,"Asset / Serial Number");
+}
+public boolean clickOnAssetAndSerialNumber() throws Throwable{
+	boolean Status=false;
+		if(isVisibleOnly(AssetandSerialNumber,"Asset Serial Number"))
+	{
+		Status=true;
+		click(AssetandSerialNumber,"Asset Serial Number");
+	}else{
+	Status=false;
+	reporter.failureReport("Asset Serial number link", "Availability of Asset Serial number is ",Boolean.toString(Status),driver);
+	}
+		return Status;
+}
+public void verifyAccountNumberDetailsInResultsGrid() throws Throwable{
+	if(isVisibleOnly(OrderNumbeLnk,"Results are appeared")){
+		reporter.SuccessReport("Order Number lnk","Order number",getText(OrderNumbeLnk,"Order Number"));
+	}else
+	{
+		reporter.failureReport("Order Number lnk","Order number",getText(OrderNumbeLnk,"Order Number"),driver);
+	}
+}
+	public void clickOnAccountNumberDetailsInResultsGrid() throws Throwable{
+		if(isVisibleOnly(OrderNumbeLnk,"Results are appeared")){
+			click(OrderNumbeLnk,"Results are appeared","Orderno");
+			reporter.SuccessReport("Order Number lnk","Order number",getText(OrderNumbeLnk,"Order Number"));
+		}else
+		{
+			reporter.failureReport("Order Number lnk","Order number",getText(OrderNumbeLnk,"Order Number"),driver);
+		}
+	}
+public boolean verifyOrderDetailsHeader() throws Throwable{
+		return isVisibleOnly(OrderHistoryPage,"Order History Page");
+}
+
+
+public void clickOnSearchButton() throws Throwable{
+		click(SearchButton,"Search","Search");
+}
+public void closeAssetSerialNumberPopup() throws Throwable{
+	if(	isVisibleOnly(closeAssetSerialNumber,"AssetSerial Number")){
+		click(closeAssetSerialNumber,"Asset Serial number");
+	}
+}
+public void getEwrVlaue() throws Throwable{
+	if(isVisibleOnly(ewrVlaue,"ewr value")){
+		reporter.SuccessReport("WER Value ","EWR value from summary is ", getText(ewrVlaue,"Ewr Value"));
+	}
+}
+public void clickOnSearchButtonInRecentOrders() throws Throwable{
+		click(btnSearchButton,"Search Button");
+}
 }

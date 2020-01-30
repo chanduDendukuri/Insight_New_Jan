@@ -85,7 +85,7 @@ public class CAN04_ShipBillPayFreightTest extends CanadaLib{
 									commonLib.searchProduct(data.get("Search_Item"));
 									prodinfo.verifyTheManufacturerNumberInProductDetailsPage(data.get("Search_Item"));
 									commonLib.updateCartQuantityInProductDetailsPage(data.get("Quantity"));
-									prodinfo.addToCartInProductDetailsPage();
+									//prodinfo.addToCartInProductDetailsPage();
 									commonLib.addToCartAndVerify();
 
 						canadaLib.continueToCheckout();

@@ -986,6 +986,45 @@ return status;
 			click(btnsearchUnderAdvancedSearch, "search button under advanced search");
 	}
 	public void verifyQuoteHistoryReults() throws Throwable {
-		isVisible(lblExpirationDate, "quote history results");
+		isVisibleOnly(lblExpirationDate, "quote history results");
+	}
+	public void verifyRecentHistoryHeader() throws Throwable{
+		isVisibleOnly(recentHistoryHeader,"Recent History");
+	}
+
+	public void selectStartandEndDateInRecentHistory(String startDate,String endDate) throws Throwable{
+		List<WebElement> date = driver.findElements(startAndEndDate);
+		String sday=startDate.split(" ")[0];
+		String smonth=startDate.split(" ")[1];
+		String syear=startDate.split(" ")[2];
+		String eday=endDate.split(" ")[0];
+		String emonth=endDate.split(" ")[1];
+		String eyear=endDate.split(" ")[2];
+		for(int i=0;i<date.size();i++)
+		{
+			if(i==0) {
+				reporter.SuccessReport("Start date ", "Start Date", startDate);
+				//date.get(i).click();
+				click(startAndEndDate(i),"Start date");
+				click(MonthOfstartDate, "Clicking on month");
+				click(selectMonthFromCalender(smonth), "Month", smonth);
+
+				click(YearOfstartDate, "Year of the start date");
+				click(selectYearFromCalender(syear), "Year ", syear);
+
+				click(selectDateFromCalender(sday), "Date", sday);
+
+			}if(i==1){
+				reporter.SuccessReport("End Date ","End Date is",endDate);
+				click(startAndEndDate(i+1),"End date");
+				click(MonthOfstartDate, "Clicking on month");
+				click(selectMonthFromCalender(emonth), "Month", emonth);
+
+				click(YearOfstartDate, "Year of the start date");
+				click(selectYearFromCalender(eyear), "Year ", eyear);
+
+				click(selectDateFromCalender(eday), "Date", eday);
+			}
+		}
 	}
 }
