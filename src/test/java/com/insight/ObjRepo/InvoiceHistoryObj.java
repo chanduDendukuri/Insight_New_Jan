@@ -166,5 +166,6 @@ public static By selectDateFromCalender(String date) {
 	public static By RPDetails(int i) {
 		return By.xpath("((//*[contains(@id,'b3')])[1]//parent::td/following::td/table/tbody/tr)["+i+"]");
 	}
-
+	public static By INVOICE_NUMBER =By.xpath("//*[@id='invoiceSearch']/tbody/tr/td/a");
+	public static By INVOICE_STATUS=By.xpath("(//*[@id='invoiceSearch']/tbody/tr/td[5])[1]");
 }

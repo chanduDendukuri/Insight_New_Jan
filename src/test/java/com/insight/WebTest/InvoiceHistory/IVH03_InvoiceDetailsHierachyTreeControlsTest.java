@@ -61,53 +61,29 @@ public class IVH03_InvoiceDetailsHierachyTreeControlsTest extends InvoiceHistory
 					verifyTree();
 					closeHierarchyPopUp();
 
-					canadaLib.clickOnSideMenuSelectAccountToolOptions(data.get("Tools_Menu"),
-							data.get("Tools_Menu_DD"));
-					canadaLib.verifyInvoiceHistoryPageOpened();
-					invoiceHistoryLib.clickOnAdvancedSearch();
-					scrollUp();
-					verifySelectedOptionInAccountSelectionDD(data.get("Default_Option"));
+					
 					// ######## GGP Level ################################
-					canadaLib.clickOnSideMenuSelectAccountToolOptions(data.get("Tools_Menu"),
-							data.get("Tools_Menu_DD"));
-					canadaLib.verifyInvoiceHistoryPageOpened();
-					invoiceHistoryLib.clickOnAdvancedSearch();
-					scrollUp();
 					verifySelectedOptionInAccountSelectionDD(data.get("Default_Option"));
 					closeAccountHirearchyDropdow();
 					setAccountHirerachydropdown(data.get("GGP"));
 					clickShowAccountHirerachy();
 					verifyAccountHirearchyPopUp();
 					verifyTree();
-					getAccountNumber(data.get("Account_Number"));
-					getAccountName(data.get("Account_Name"));
+					verifyGGPDetails();
 					verifyRPAccountHierarchyTree();
 					closeHierarchyPopUp();
 					// ######## GGP Level default account ################################
-					canadaLib.clickOnSideMenuSelectAccountToolOptions(data.get("Tools_Menu"),
-							data.get("Tools_Menu_DD"));
-					canadaLib.verifyInvoiceHistoryPageOpened();
-					invoiceHistoryLib.clickOnAdvancedSearch();
-					scrollUp();
-					verifySelectedOptionInAccountSelectionDD(data.get("Default_Option"));
-					closeAccountHirearchyDropdow();
+					
 					setAccountHirerachydropdown(data.get("GGP"));
 					clickShowAccountHirerachy();
 					verifyAccountHirearchyPopUp();
 					verifyTree();
-					getAccountNumber(data.get("Account_Number1"));
-					getAccountName(data.get("Account_Name1"));
+					verifyGGPDetails();
 					verifyRPAccountHierarchyTree();
 					verifyDefaultSelectedAccount(data.get("Default_Account"));
 					closeHierarchyPopUp();
 					// ######## RP Level default account ################################
-					canadaLib.clickOnSideMenuSelectAccountToolOptions(data.get("Tools_Menu"),
-							data.get("Tools_Menu_DD"));
-					canadaLib.verifyInvoiceHistoryPageOpened();
-					invoiceHistoryLib.clickOnAdvancedSearch();
-					scrollUp();
-					 verifySelectedOptionInAccountSelectionDD(data.get("Default_Option"));
-					 closeAccountHirearchyDropdow();
+
 					setAccountHirerachydropdown(data.get("RP"));
 					clickShowAccountHirerachy();
 					verifyAccountHirearchyPopUp();

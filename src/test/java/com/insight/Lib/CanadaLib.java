@@ -1684,6 +1684,17 @@ reporter.failureReport("Select  All Fields in the Available Fields on Reports Pa
 		return getText(txtCurrencyCode,"Get currency ");
 	}
 
+	public void getInvoiceNumberInInvoiceDetailsPage() throws Throwable
+	{
+		getText(lblInvoiceNumber,"Invoice number");
+	}
+	public void getInvoiceDateInInvoiceDetailsPage() throws Throwable
+	{
+		getText(lblInvoiceDate,"Invoice date");
+	}
+	
+	
+
 	public String getAssetAndSerialNumberValuesOnPopups() throws Throwable{
 		String text= getText(getAssetTagDetails,"Get currency");
 		reporter.SuccessReport("Asset And Serial Number values","Asset and Serial number value is "," values are "+  text);
@@ -1743,3 +1754,4 @@ public void clickOnSearchButtonInRecentOrders() throws Throwable{
 		click(btnSearchButton,"Search Button");
 }
 }
+

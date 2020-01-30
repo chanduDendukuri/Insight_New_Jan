@@ -812,7 +812,7 @@ public class CommonLib extends ActionEngine{
 	public void clickOnBundle(String productGroup,String productName) throws Throwable
 	{
 		//click(CommonObj.getCompanyStandardsProductGroup(productGroup, productName), "select product from product group");
-		clickUntil(CommonObj.getCompanyStandardsProductGroup(productGroup, productName), CommonObj.lblDescription,"select product from product group");
+		clickUntil(CommonObj.getCompanyStandardsProductGroup(productGroup, productName), CommonObj.lblDescription,"select product from product group",productGroup);
 	}
 	
 	public void verifyDescription() throws Throwable
