@@ -246,4 +246,13 @@ public class CanadaObj extends ActionEngine {
 			// Filters
 			public static By FILTER_BY_MANUFACTURER=By.xpath("//section[@aria-label='Filter By Manufacturers']");
 			public static By txtCurrencyCode=By.xpath("(//*[text()='EWR ']//..//following-sibling::div//span//span[@class='iw-currency__code'])[1]");
+			public static By getAssetTagDetails = By.xpath("//*[@class='row asset-serial-numbers']");
+			public static By headerAssetSerial = By.xpath("//h3[text()='Asset/Serial numbers']");
+			public static By AssetandSerialNumber = By.xpath("//*[text()='Asset/Serial numbers' and @class='orders__link-text']");
+			public static By OrderNumbeLnk = By.xpath("//span[text()='Order number']//following-sibling::a");
+			public static By OrderHistoryPage = By.xpath("//h1[text()='Order details']");
+			public static By SearchButton = By.xpath("//*[@type='search']");
+			public static By btnSearchButton = By.xpath("//button[text()='Search']");
+			public static By closeAssetSerialNumber = By.xpath("//*[@class='iw-dialog__icon--close ion-ios-close-empty']");
+			public static By ewrVlaue = By.xpath("//*[@title='Electronic waste recycling']//../..//following-sibling::div[@class='columns shrink iw-summary__value']");
 }

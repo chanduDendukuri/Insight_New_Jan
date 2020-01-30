@@ -689,4 +689,5 @@ public static By lnkDeleteProductGroups=By.xpath("//*[text()=' Delete Product Gr
 	public static By lblProductStandards=By.xpath("//*[text()='Product Standards']");
 	public static By lblWebGroupManagement=By.xpath("//*[contains(text(),'Manage Web Groups:')]");
 	public static By lblWebGroupManagementUsers=By.xpath("//*[contains(text(),'Web Group Management:')]");
+	public static By lblOrderNumber=By.xpath("//span[text()='Order number']//following-sibling::a[@class='orders__link order-card-header__link']");
 }
