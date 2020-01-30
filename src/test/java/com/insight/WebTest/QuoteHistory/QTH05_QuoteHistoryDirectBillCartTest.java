@@ -73,6 +73,7 @@ public class QTH05_QuoteHistoryDirectBillCartTest  extends QuoteHistoryLib {
 							// view cart
 							commonLib.clickCart();
 							cartLib.verifyCartBreadCrumb();
+							cartLib.getpartnumberIncartpage();
 							// add product by quick shop
 							verifyAdditemsbyQuickshop(data.get("QuickShopPart"));
 							verifyQuickShopErrorMsg();
@@ -81,8 +82,8 @@ public class QTH05_QuoteHistoryDirectBillCartTest  extends QuoteHistoryLib {
 							canadaLib.clickOnSideMenuSelectAccountToolOptions(data.get("Tools_Menu"),  data.get("Tools_Menu_DD"));							
 							verifyQuoteHistory();
 							String QuoteNumber = GetQuoteNumberfromQuoteHistory();
-							quickSearchAndVerifySearchResults(data.get("SearchBy"),refNumber);
-							verifyAndClickQuoteNumberOnHistory(QuoteNumber);
+							quickSearchAndVerifySearchResults(data.get("SearchBy"),data.get("Quote_RFNumber"));
+							verifyAndClickQuoteNumberOnHistory(data.get("QuoteNumber"));
 							verifyQuoteDetails();						
 							verifyConvertQuoteButton();	
 							verifyErrorMsg();
