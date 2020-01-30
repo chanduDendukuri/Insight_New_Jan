@@ -99,6 +99,7 @@ public class SLP13_CITRIX_ZeroUsage extends SLPLib{
 				     	canadaLib.verifySPLAPage();
 				     	retrieveLastUsageReport(data.get("Software_Agrement"));
 						orderLib.verifyCartHeaderLabel();
+						verifyCitrixItemsInCart();
 						String subTotal=sbpLib.getTotalAmountInCart(data.get("SubTotal_label"));
 						Double subTotalAmount = Double.parseDouble(subTotal.replace("$", ""));
 						verifyAmount(subTotalAmount);
@@ -150,7 +151,7 @@ public class SLP13_CITRIX_ZeroUsage extends SLPLib{
 						canadaLib.verifySPLAPage();
 						verifyAllReportingPeriodsCurrent();
 						//SelectSoftwareLicAgrements
-						
+						commonLib.clickOnInsightLogoOnHomePage();
 						// account tools >> Software License Agreements
 						orderLib.clickOnSideMenuSelectAccountToolOptions(data.get("Tools_Menu"), data.get("Tools_Menu_DD"));
 						canadaLib.selectSPLADetailsProductCheckBox(data.get("Software_Agrement"));
@@ -166,7 +167,7 @@ public class SLP13_CITRIX_ZeroUsage extends SLPLib{
 				     	//Verify part item added in cart page
 				     	cartLib.verifyItemInCart(data.get("PartNum1"));
 				     	verifyCartPageAndPartDetails(itemnumber-1);
-				     	verifyAllReportingPeriodsCurrent();
+				     	verifyAllReportingPeriodsCurrentinCartPage();
 						commonLib.clickLogOutLink(data.get("Logout"));				    
 						
 				} catch (Exception e) {
