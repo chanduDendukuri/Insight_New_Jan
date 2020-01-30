@@ -621,7 +621,7 @@ public class SLPLib extends SLPObj {
 			if (isElementPresent(CanadaObj.SPLA_LABEL, "SPLA LABEL")) {
 				if (!isCheckBoxSelected(CanadaObj.getMySoftwareLicenseAgreementscheckBoxes(softwareAgreement))) {
 					click(CanadaObj.getMySoftwareLicenseAgreementscheckBoxes(softwareAgreement),"SPLA Details Product CheckBox");
-					click(retriveLastUsageReport(softwareAgreement), "Select retrieve last usage report button");
+					clickUntil(retriveLastUsageReport(softwareAgreement), CartObj.CART_LABEL_ON_CART_PAGE,"Select retrieve last usage report button");
 				} else {
 					LOG.info("Checkbox already selected");
 				}
@@ -904,7 +904,7 @@ public class SLPLib extends SLPObj {
 			if(isVisibleOnly(getDeployDateAndLicenceTypeOnPlaceOrderPage(dateorLicence, partNum), "Deploy dat and Licence")) {
 				reporter.SuccessReport("Validate Deployment date and License Type", "Validate Deployment date and License Type", "Deployment Date for Insight Part #: "+partNum+" Date: "+dateorLicence);
 			}else {
-				reporter.failureReport("Validate Deployment date and License Type", "Validate Deployment date and License Type", "");
+				reporter.failureReport("Validate Deployment date and License Type", "Validate Deployment date and License Type","" ,driver);
 			}
 		}
 		
@@ -999,9 +999,9 @@ public class SLPLib extends SLPObj {
 			 */
 			public void verifyManufacturerRequirementsOnPlaceOrderScreen(int i) throws Throwable {
 				List <WebElement> element=driver.findElements(By.xpath("//section[@class='line-level__section']["+i+"]//div//label"));
-					  for(int j=i;j<=element.size();j++){
-						  if(isVisible(mfrRequirementsOnPlaceOrderPage(i,j), "MFR requirements")) {
-								String Mfrreq=getText(mfrRequirementsOnPlaceOrderPage(i,j), "MFR requirements");
+					  for(int j=1;j<=element.size();j++){
+						  if(isVisible(mfrRequirementsOnPlaceOrderPage(j),"MFR requirements")) {
+								String Mfrreq=getText(mfrRequirementsOnPlaceOrderPage(j), "MFR requirements");
 								reporter.SuccessReport("Verify Manufacturer Requirements ", "Manufacturer Requirements Exists and Verified", Mfrreq);
 							}	else {
 								reporter.failureReport("Verify Manufacturer Requirements ", "Manufacturer Requirements does not  Exists","",driver );
