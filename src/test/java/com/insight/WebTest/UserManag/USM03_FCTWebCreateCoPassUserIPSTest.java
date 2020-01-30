@@ -80,7 +80,7 @@ public class USM03_FCTWebCreateCoPassUserIPSTest  extends UserManagementLib {
 							cmtLib.verifyDDPermission(data.get("Permision5"),data.get("Option"));
 							//cmtLib.verifyDDPermission(data.get("Permision6"),data.get("Option"));
 							cmtLib.verifyDDPermission(data.get("Permision7"),data.get("Option2"));
-							cmtLib.updateUser();
+							cmtLib.setPermissionsToDisable(data.get("Menu_Name"),data.get("DisablePermission"));
 							cmtLib.clickCheckOutSettings(data.get("Check_out_Settings"));
 							cmtLib.selectOptionInCheckoutSettings(data.get("Payment_Options"));
 							shipbilllib.verifyOptioninAllowedOptions(data.get("OptionTerms"));
@@ -136,7 +136,6 @@ public class USM03_FCTWebCreateCoPassUserIPSTest  extends UserManagementLib {
 							for (i = 0; i < permissions2.length; i++) {
 								cmtLib.verifySetPermissions( permissions2[i]);
 							}
-							cmtLib.setPermissionsToDisable(data.get("Menu_Name"),data.get("DisablePermission"));
 							cmtLib.verifyDDPermission(data.get("Permision4"),data.get("Option"));
 							cmtLib.verifyDDPermission(data.get("Permision5"),data.get("Option"));
 							//cmtLib.verifyDDPermission(data.get("Permision6"),data.get("Option"));
