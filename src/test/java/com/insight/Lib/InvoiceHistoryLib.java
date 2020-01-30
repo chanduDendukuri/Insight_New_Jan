@@ -1022,20 +1022,15 @@ return status;
 		isVisibleOnly(recentHistoryHeader,"Recent History");
 	}
 
-	public void selectStartandEndDateInRecentHistory(String startDate,String endDate) throws Throwable{
-		List<WebElement> date = driver.findElements(startAndEndDate);
-		String sday=startDate.split(" ")[0];
-		String smonth=startDate.split(" ")[1];
-		String syear=startDate.split(" ")[2];
-		String eday=endDate.split(" ")[0];
-		String emonth=endDate.split(" ")[1];
-		String eyear=endDate.split(" ")[2];
-		for(int i=0;i<date.size();i++)
-		{
-			if(i==0) {
-				reporter.SuccessReport("Start date ", "Start Date", startDate);
+	public void selectStartandEndDateInRecentHistory(String startDatev) throws Throwable{
+		//List<WebElement> date = driver.findElements(startAndEndDate);
+		String sday=startDatev.split(" ")[0];
+		String smonth=startDatev.split(" ")[1];
+		String syear=startDatev.split(" ")[2];
+
+				reporter.SuccessReport("Start date ", "Start Date", startDatev);
 				//date.get(i).click();
-				click(startAndEndDate(i),"Start date");
+				click(startDate,"Start date");
 				click(MonthOfstartDate, "Clicking on month");
 				click(selectMonthFromCalender(smonth), "Month", smonth);
 
@@ -1044,18 +1039,7 @@ return status;
 
 				click(selectDateFromCalender(sday), "Date", sday);
 
-			}if(i==1){
-				reporter.SuccessReport("End Date ","End Date is",endDate);
-				click(startAndEndDate(i+1),"End date");
-				click(MonthOfstartDate, "Clicking on month");
-				click(selectMonthFromCalender(emonth), "Month", emonth);
 
-				click(YearOfstartDate, "Year of the start date");
-				click(selectYearFromCalender(eyear), "Year ", eyear);
-
-				click(selectDateFromCalender(eday), "Date", eday);
-			}
-		}
 	}
 	public void verifyGPAccountHierarchyTree() throws Throwable
 	{
@@ -1090,6 +1074,26 @@ return status;
 	{
 		getText(GGPDetails, "GGP Account details");
 	}
+
+	public void selectEndDateInRecentHistory(String endDate) throws Throwable{
+		//List<WebElement> date = driver.findElements(startAndEndDate);
+
+		String eday=endDate.split(" ")[0];
+		String emonth=endDate.split(" ")[1];
+		String eyear=endDate.split(" ")[2];
+			reporter.SuccessReport("End Date ","End Date is",endDate);
+			click(EndDate,"End date");
+			click(MonthOfstartDate, "Clicking on month");
+			click(selectMonthFromCalender(emonth), "Month", emonth);
+
+			click(YearOfstartDate, "Year of the start date");
+			click(selectYearFromCalender(eyear), "Year ", eyear);
+
+			click(selectDateFromCalender(eday), "Date", eday);
+
+	}
+	
+
 	
 	public void getInvoiceNumberFromSearchResults() throws Throwable
 	{

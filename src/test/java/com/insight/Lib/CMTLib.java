@@ -3605,5 +3605,20 @@ public void defualtShippingAddressCheckBox()throws Throwable{
 	
 }
 
+	public void permissionForDD(String userPermission, String optionDD) throws Throwable {
+		if (!isCheckBoxSelected(getUserPermission(userPermission))){
+			click(getUserPermission(userPermission),userPermission,userPermission);
+			click(getPermissionDropDowns(userPermission), "permission drop down");
+		}
+		selectByVisibleText(getPermissionDropDowns(userPermission), optionDD, "permission drop down");
+		click(UPDATE_USER_BTN, "Update user button");
+		if (isElementPresent(PERMISSION_UPDATE_MSG, "update sucessful message")) {
+			reporter.SuccessReport("Verify the Sucess message ", "Permissions Updated Succesfully", "");
+		} else {
+			reporter.failureReport("Verify the sucess message", "Permissions are not Updated Succesfully", "", driver);
+		}
+	}
+
+
 }
 
