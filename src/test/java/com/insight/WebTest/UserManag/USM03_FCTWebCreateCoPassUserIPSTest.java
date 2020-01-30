@@ -136,7 +136,7 @@ public class USM03_FCTWebCreateCoPassUserIPSTest  extends UserManagementLib {
 							for (i = 0; i < permissions2.length; i++) {
 								cmtLib.verifySetPermissions( permissions2[i]);
 							}
-							cmtLib.verifySetPermissionsDisabled(data.get("DisablePermission"));
+							cmtLib.setPermissionsToDisable(data.get("Menu_Name"),data.get("DisablePermission"));
 							cmtLib.verifyDDPermission(data.get("Permision4"),data.get("Option"));
 							cmtLib.verifyDDPermission(data.get("Permision5"),data.get("Option"));
 							//cmtLib.verifyDDPermission(data.get("Permision6"),data.get("Option"));
