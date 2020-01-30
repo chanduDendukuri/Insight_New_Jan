@@ -75,39 +75,44 @@ public class IVH07_InvoiceHistorySearchSortOptionsTest extends InvoiceHistoryLib
 						setAccountHirerachydropdown(data.get("Hirerachy_Dropdown_option"));
 						clickOnAdvancedSearchSearchButton();
 						verifySearchResultsAreDisplayed();
-						verifyResultsPerPage(data.get("Rows"));
+						getInvoiceNumberFromSearchResults();
+						//verifyResultsPerPage(data.get("Rows"));
+						getInvoiceStatus();
 						clickBackToSearch();
 						//Invoice Number10 Records per page As Ascending
-						scrollUp();
-						canadaLib.clickOnSideMenuSelectAccountToolOptions(data.get("Tools_Menu"),
-								data.get("Tools_Menu_DD"));
-						canadaLib.verifyInvoiceHistoryPageOpened();
-						invoiceHistoryLib.clickOnAdvancedSearch();
-						invoiceHistoryLib.datePickerStartDateCalender(data.get("Date"));
-						invoiceHistoryLib.datePickerEndDateCalender(data.get("End_Date"));
-						clickAscendingSortOption();
+					/*
+					 * scrollUp();
+					 * canadaLib.clickOnSideMenuSelectAccountToolOptions(data.get("Tools_Menu"),
+					 * data.get("Tools_Menu_DD")); canadaLib.verifyInvoiceHistoryPageOpened();
+					 * invoiceHistoryLib.clickOnAdvancedSearch();
+					 * invoiceHistoryLib.datePickerStartDateCalender(data.get("Date"));
+					 * invoiceHistoryLib.datePickerEndDateCalender(data.get("End_Date"));
+					 * clickAscendingSortOption(); selectRowsDropdown(data.get("Rows1"));
+					 * selectSortByDropdown(data.get("Sort_By"));
+					 * setAccountHirerachydropdown(data.get("Hirerachy_Dropdown_option"));
+					 * clickOnAdvancedSearchSearchButton(); verifySearchResultsAreDisplayed();
+					 * verifyResultsPerPage(data.get("Rows1")); clickBackToSearch();
+					 * scrollUp();
+					 */
+						//Invoice Number 50 Records per page As descending
+						
+					/*
+					 * canadaLib.clickOnSideMenuSelectAccountToolOptions(data.get("Tools_Menu"),
+					 * data.get("Tools_Menu_DD")); canadaLib.verifyInvoiceHistoryPageOpened();
+					 * invoiceHistoryLib.clickOnAdvancedSearch();
+					 */
+						//invoiceHistoryLib.datePickerStartDateCalender(data.get("Date"));
+						//invoiceHistoryLib.datePickerEndDateCalender(data.get("End_Date"));
+						clickDescendingSortOption();
 						selectRowsDropdown(data.get("Rows1"));
 						selectSortByDropdown(data.get("Sort_By"));
 						setAccountHirerachydropdown(data.get("Hirerachy_Dropdown_option"));
 						clickOnAdvancedSearchSearchButton();
 						verifySearchResultsAreDisplayed();
-						verifyResultsPerPage(data.get("Rows1"));
-						clickBackToSearch();
-						//Invoice Number 50 Records per page As Ascending
-						scrollUp();
-						canadaLib.clickOnSideMenuSelectAccountToolOptions(data.get("Tools_Menu"),
-								data.get("Tools_Menu_DD"));
-						canadaLib.verifyInvoiceHistoryPageOpened();
-						invoiceHistoryLib.clickOnAdvancedSearch();
-						invoiceHistoryLib.datePickerStartDateCalender(data.get("Date"));
-						invoiceHistoryLib.datePickerEndDateCalender(data.get("End_Date"));
-						clickAscendingSortOption();
-						selectRowsDropdown(data.get("Rows2"));
-						selectSortByDropdown(data.get("Sort_By"));
-						setAccountHirerachydropdown(data.get("Hirerachy_Dropdown_option"));
-						clickOnAdvancedSearchSearchButton();
-						verifySearchResultsAreDisplayed();
-						verifyResultsPerPage(data.get("Rows2"));
+						getInvoiceNumberFromSearchResults();
+						getInvoiceStatus();
+						//verifySearchResultsAreDisplayed();
+						//verifyResultsPerPage(data.get("Rows2"));
 						clickBackToSearch();
 						commonLib.clickLogOutLink(data.get("Logout_Header"));
 

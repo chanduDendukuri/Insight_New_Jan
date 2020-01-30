@@ -66,11 +66,7 @@ public class QTH11_ConvertQuote3rdPartyCarrierTest extends QuoteHistoryLib {
 					Thread.sleep(4000);
 					loginlib.loginIntoSmartApplication(data.get("UserName"),data.get("Password"));//QTPSVC,!OffShore!​
 					Thread.sleep(4000);
-					Homelib.clickCreateQuoteButton();
-					Thread.sleep(4000);
-					Homelib.enterSoldTo(data.get("SoldToAcct"));//0010285059
-					Thread.sleep(4000);
-					Homelib.selectOrg(data.get("SalesOrg"));//2400
+					
 					Homelib.EnterSalesDocNumber(data.get("SalesDoc"));//0220702721
 					Homelib.clickOnSalesDocSearch();
 					Homelib.clickSideBarSmart();
@@ -126,7 +122,7 @@ public class QTH11_ConvertQuote3rdPartyCarrierTest extends QuoteHistoryLib {
 					orderLib.clickOnReviewOrderButton();
 					
 					String summaryAmount = cartLib.getSummaryAmountInCart();
-					orderLib.placeOrderAndVerifyReceiptOrderAndDate(summaryAmount);
+					orderLib.placeOrderAndVerifyReceiptOrderAndDateQuoteHistory(summaryAmount);
 					shipbLib.clickOrderDetailsButtonInREceipt();
 					shipbLib.verifyShippingCarrierAFterReviewOrder(data.get("Shiping_Carrier_Verify_Receipt"),data.get("Shiping_Carrier_Verify_Receipt"));
 					commonLib.clickLogOutLink(data.get("Logout_Header"));

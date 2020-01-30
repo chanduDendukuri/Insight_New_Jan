@@ -880,7 +880,7 @@ public class SLPLib extends SLPObj {
 		 */
 		public void verifyDateAppliedToAllPartAfterCopyAll(String actualDate,String expectedDate) throws Throwable {
 			if(actualDate.equals(expectedDate)) {
-				reporter.SuccessReport("Verify date is copied to all parts", "Deploy date updted in the cart ", "Deploy Date: "+actualDate);
+				reporter.SuccessReport("Verify date is copied to all parts", "Deploy date updted  ", "Deploy Date: "+actualDate);
 			}else {
 				reporter.failureReport("Verify date is copied to all parts", "Date is not copied to all parts", "", driver);
 			}
@@ -929,7 +929,7 @@ public class SLPLib extends SLPObj {
 		 */
 		public void verifyProductDeployDate(String date) throws Throwable {
 			List <WebElement> element=driver.findElements(By.xpath("//span[contains(text(),'"+date+"')]"));
-			for(i=1;i<element.size();i++) {
+			for(i=1;i<=element.size();i++) {
 				if(isVisible(getDeployDateOnQuotePage(i,date), "date")) {
 					reporter.SuccessReport("Deploy Date Field ", "Updated Deploy Date Field on Quote screen is Exists","Deploy date :"+date );
 				}	else {
@@ -959,7 +959,7 @@ public class SLPLib extends SLPObj {
 			List <WebElement> element=driver.findElements(By.xpath("//div[@class='editManufacturerRequirements']"));
 			for(i=1;i<element.size();i++) {
 				if(isVisible(manufacturerRequirements(i), "MFR requirements")) {
-					String Mfrreq=getText(manufacturerRequirements(i), "MFR requirements");
+					String Mfrreq=getText(manufacturerRequirements(i+1), "MFR requirements");
 					reporter.SuccessReport("Verify Manufacturer Requirements ", "Manufacturer Requirements Exists and Verified", Mfrreq);
 				}	else {
 					reporter.failureReport("Verify Manufacturer Requirements ", "Manufacturer Requirements does not  Exists","",driver );
@@ -989,8 +989,25 @@ public class SLPLib extends SLPObj {
 		 }
 		 
 		 public void clickQuoteHistoryLink() throws Throwable {
-			 click(QUOTEHISTORY_LINK, "QUOTEHISTORY_LINK", "");
+			 click(QUOTEHISTORY_LINK, "QUOTE HISTORY LINK", "");
 		 }
+		 
+		 /**
+			 * 
+			 * @param date
+			 * @throws Throwable
+			 */
+			public void verifyManufacturerRequirementsOnPlaceOrderScreen(int i) throws Throwable {
+				List <WebElement> element=driver.findElements(By.xpath("//section[@class='line-level__section']["+i+"]//div//label"));
+					  for(int j=i;j<=element.size();j++){
+						  if(isVisible(mfrRequirementsOnPlaceOrderPage(i,j), "MFR requirements")) {
+								String Mfrreq=getText(mfrRequirementsOnPlaceOrderPage(i,j), "MFR requirements");
+								reporter.SuccessReport("Verify Manufacturer Requirements ", "Manufacturer Requirements Exists and Verified", Mfrreq);
+							}	else {
+								reporter.failureReport("Verify Manufacturer Requirements ", "Manufacturer Requirements does not  Exists","",driver );
+					  }
+				}
+			}
 
 }
 

@@ -142,8 +142,8 @@ public class SLP16_MPSACartTest extends SLPLib{
 			     	String part3Date=getDeploydateOnCart(data.get("PartNum3"));
 			     	String part2Date=getDeploydateOnCart(data.get("PartNum2"));
 			     	// verify it for 3rd part 
-			     	verifyDateAppliedToAllPartAfterCopyAll(part3Date, data.get("Date1"));
-			     	verifyDateAppliedToAllPartAfterCopyAll(part2Date, data.get("Date1"));
+			     	verifyDateAppliedToAllPartAfterCopyAll(part3Date, data.get("Date"));
+			     	verifyDateAppliedToAllPartAfterCopyAll(part2Date, data.get("Date"));
 			     	verifyUpdatedUnPaidLisenceOnCartPage(data.get("PartNum2"));
 			     	verifyUpdatedUnPaidLisenceOnCartPage(data.get("PartNum3"));
 			     	
@@ -162,7 +162,7 @@ public class SLP16_MPSACartTest extends SLPLib{
 	                
 	                 verifyDeploydateOnPlaceOrderPage(data.get("PartNum2"), part2Date);
 	                 verifyDeploydateOnPlaceOrderPage(data.get("PartNum3"), part3Date);
-	                 //verifyLicenceOnPlaceOrderPage(data.get("PartNum2"), data.get("UnPaid"));
+	                
 	                 verifyUpdatedUnPaidLisenceOnCartPage(data.get("PartNum2"));
 	                 verifyUpdatedUnPaidLisenceOnCartPage(data.get("PartNum3"));
 	                 commonLib.clickLogOutLink(data.get("Logout"));
@@ -173,7 +173,6 @@ public class SLP16_MPSACartTest extends SLPLib{
 					gTestStatus = false;
 					throw new RuntimeException(e);
 				}
-				
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
