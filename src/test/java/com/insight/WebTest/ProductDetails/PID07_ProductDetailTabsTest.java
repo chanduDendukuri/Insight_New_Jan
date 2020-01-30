@@ -6,15 +6,11 @@ import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 import com.insight.Lib.CMTLib;
-import com.insight.Lib.CanadaLib;
 import com.insight.Lib.CartLib;
-import com.insight.Lib.ChinaLib;
 import com.insight.Lib.CommonLib;
-import com.insight.Lib.OrderLib;
+import com.insight.Lib.MarriottIntlCorpLib;
 import com.insight.Lib.ProductDetailLib;
-import com.insight.Lib.ProductDisplayInfoLib;
 import com.insight.Lib.SearchLib;
-import com.insight.Lib.ShipBillPayLib;
 import com.insight.accelerators.ActionEngine;
 import com.insight.accelerators.ReportControl;
 import com.insight.accelerators.TestEngineWeb;
@@ -55,26 +51,35 @@ public class PID07_ProductDetailTabsTest extends ActionEngine{
 					Hashtable<String, String> data = TestUtil.getDataByRowNo("PID07_ProductDetailTabs",
 							TestDataInsight, "Product_Detail", intCounter);
 					TestEngineWeb.reporter.initTestCaseDescription("ProductDetailTabsTest");
-
 				CommonLib commonLib = new CommonLib();
 				ProductDetailLib productdetLib = new ProductDetailLib();
-				commonLib.searchProduct(data.get("Search_Item1"));
-				searchLib.verifyBreadCrumbInSearchResultsPage(data.get("Search_Item1"));
-				productdetLib.getFirstProdDescription();
-				cartLib.selectFirstProductDisplay();
-				productdetLib.getProductNameInProductDetailPage(data.get("Search_Item1"));
+				MarriottIntlCorpLib micLib=new MarriottIntlCorpLib();
+				
+				commonLib.searchProduct(data.get("Search_Item2"));
+				productdetLib.getProductNameInProductDetailPage(data.get("Search_Item2"));
 				productdetLib.getMFRNumberInProductInfopage();
 				productdetLib.OverviewTab();
-				commonLib.searchProduct(data.get("Search_Item2"));
+				productdetLib.clickOnWarrenties();
+				Thread.sleep(5000);
+				Thread.sleep(5000);
+				String MfrNum=productdetLib.clickOnWarrentiesAddToCart();
+				commonLib.continueToShopping();
+				productdetLib.clickOnAccessories();
+				String accessories=productdetLib.clickOnAccessoriesAddToCart();
+				commonLib.continueToShopping();
 				// Verify Specifications
+				productdetLib.clickOnSpecification();
 				productdetLib.verifySpecifications(data.get("Tab1"));
 				productdetLib.verifySpecifications(data.get("Tab2"));
 				productdetLib.verifySpecifications(data.get("Tab3"));
 				productdetLib.verifySpecifications(data.get("Tab4"));
 				Thread.sleep(3000);
 				scrollUp();
-				// Update Qauntiy
-				productdetLib.Verifyupdatequantity();
+				commonLib.clickCart();
+				micLib.handleinsightpopup();
+				cartLib.verifyItemInCart(accessories);
+				cartLib.verifyItemInCart(MfrNum);
+				Thread.sleep(3000);
 			    //End of The Test
 				System.out.println("Test completed");
 			} catch (Exception e) {

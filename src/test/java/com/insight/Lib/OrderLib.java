@@ -1,8 +1,12 @@
 package com.insight.Lib;
 
 import java.io.FileNotFoundException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
+
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 
 import com.insight.ObjRepo.CanadaObj;
@@ -317,8 +321,8 @@ public class OrderLib extends OrderObj{
 	 * This method is to verify the order and date in the receipt page.
 	 * @throws Throwable
 	 */
-	public void placeOrderAndVerifyReceiptOrderAndDate(String totalSummary) throws Throwable {
-
+	public List<String> placeOrderAndVerifyReceiptOrderAndDate(String totalSummary) throws Throwable {
+List<String> orderdetails = new ArrayList<String>();
 		clickUntil(PLACE_ORDER_BTN, RECEIPT_LABEL,"Place order button");
 		Thread.sleep(3000);
 
@@ -331,6 +335,7 @@ public class OrderLib extends OrderObj{
 					reporter.failureReport("Verify the Reference number ", "The reference number is null or empty. ","",driver);
 					
 				}else{
+					orderdetails.add(referenceNumber);
 					reporter.SuccessReport("Verify the Reference number ", "The reference number: " , "reference number: "+referenceNumber);
 				}
 			} else{
@@ -341,6 +346,66 @@ public class OrderLib extends OrderObj{
 			if (isElementPresent(TOTAL_AMOUNT, "Total Amount")) {
 				String totalAmount = getText(TOTAL_AMOUNT, "Total Amount");
 				if(totalSummary.equals(totalAmount)){
+					orderdetails.add(totalAmount);
+					reporter.SuccessReport("Verify the Total Amount ", "The Total Amount verification is successfull: " , "Total amount : "+totalAmount);
+				}else{
+					reporter.failureReport("Verify the Total Amount ", "The Total Amount is not updated correctly. ","",driver);
+				}
+			} else {
+				reporter.failureReport("Verify the Total Amount ", "The Total Amount is not updated. ","",driver);
+			}
+
+			  // date ordered verification
+			if (isElementPresent(DATE_ORDERED, "Date ordered")) {
+				String dateOrdered = getText(DATE_ORDERED, "Date ordered");
+				String actualDate = getCurrentDateTime("dd-MMM-yyyy");
+
+				
+
+				
+				if (actualDate.contains(dateOrdered)) {
+					orderdetails.add(actualDate);
+					reporter.SuccessReport("Verify the Date ordered ", " date ordered verification is successfull","Ordered Date : "+dateOrdered);
+				} else {
+					reporter.failureReport("Verify the Date ordered ", " date ordered verification is not successfull : "+dateOrdered+" .Expected Date :",actualDate,driver);
+				}
+			}
+		}
+		return orderdetails;
+	}
+	
+	/**
+	 * Method is to verify receipt order page -- QuoteHistory
+	 * @param totalSummary
+	 * @return
+	 * @throws Throwable
+	 */
+	public List<String> placeOrderAndVerifyReceiptOrderAndDateQuoteHistory(String totalSummary) throws Throwable { 
+	List<String> orderdetails = new ArrayList<String>();
+		clickUntil(PLACE_ORDER_BTN, RECEIPT_LABEL,"Place order button");
+		Thread.sleep(3000);
+
+		if (isElementPresent(RECEIPT_LABEL, "receipt")) {
+               reporter.SuccessReport("Verify receipt Page", "Receipt page is loaded", "Receipt page");
+			// Reference number verification
+			if (isElementPresent(REFERENCE_ORDER_NUM, "Reference number")) {
+				referenceNumber = getText(REFERENCE_ORDER_NUM, "Reference number");
+				if(referenceNumber.isEmpty()){
+					reporter.failureReport("Verify the Reference number ", "The reference number is null or empty. ","",driver);
+					
+				}else{
+					orderdetails.add(referenceNumber);
+					reporter.SuccessReport("Verify the Reference number ", "The reference number: " , "reference number: "+referenceNumber);
+				}
+			} else{
+				reporter.failureReport("Verify the Reference number ", "The reference number is null or empty.","",driver);
+			}
+			
+			// Total Amount verification
+			if (isElementPresent(TOTAL_AMOUNT, "Total Amount")) {
+				String totalAmount = getText(TOTAL_AMOUNT, "Total Amount");
+				if(totalSummary.equals(totalAmount)){
+					orderdetails.add(totalAmount);
 					reporter.SuccessReport("Verify the Total Amount ", "The Total Amount verification is successfull: " , "Total amount : "+totalAmount);
 				}else{
 					reporter.failureReport("Verify the Total Amount ", "The Total Amount is not updated correctly. ","",driver);
@@ -352,14 +417,21 @@ public class OrderLib extends OrderObj{
 			// date ordered verification
 			if (isElementPresent(DATE_ORDERED, "Date ordered")) {
 				String dateOrdered = getText(DATE_ORDERED, "Date ordered");
-				String actualDate = getCurrentDateTime("dd-MMM-yyyy");
+				//String actualDate = getCurrentDateTime("dd-MMM-yyyy");
+				Calendar c = Calendar.getInstance();
+
+				SimpleDateFormat sdf = new SimpleDateFormat("dd-MMM-yyyy");
+				c.add(Calendar.DATE, -1);
+				String actualDate  = sdf.format(c.getTime());
 				if (actualDate.contains(dateOrdered)) {
+					orderdetails.add(actualDate);
 					reporter.SuccessReport("Verify the Date ordered ", " date ordered verification is successfull","Ordered Date : "+dateOrdered);
 				} else {
 					reporter.failureReport("Verify the Date ordered ", " date ordered verification is not successfull : "+dateOrdered+" .Expected Date :",actualDate,driver);
 				}
 			}
 		}
+		return orderdetails;
 	}
 	
 	/**
@@ -1400,6 +1472,7 @@ public class OrderLib extends OrderObj{
 		click(SEARCH_BTN, "search button");
 		Thread.sleep(20000);
 		clickUntil(SEARCH_BTN,QUOTE_NUMBER_HISTORY_PAGE, "search button");
+		((JavascriptExecutor) driver).executeScript("window.scrollBy(0, 200)", "");
 		click(QUOTE_NUMBER_HISTORY_PAGE, "Quote Number");
 		if(isElementPresent(QUOTE_DETAILS_PAGE_LABEL, "Quote details page")){
 			reporter.SuccessReport("Verify Quote details page", "Quote details page is displayed","");

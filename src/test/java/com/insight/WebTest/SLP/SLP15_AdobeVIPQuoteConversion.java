@@ -89,6 +89,7 @@ public class SLP15_AdobeVIPQuoteConversion extends SLPLib{
 				     	pipLib.enterQuantityOnProductDetailsPage(data.get("Quantity"));
 				     	commonLib.addToCartAndVerify();
 				     	orderLib.continueToCheckOutOnAddCart();
+				     	canadaLib.verifyPlaceCartLabel();
 				       
 				     	// Search for part or product and add to cart : L9K19UT#ABA
 				     	searchLib.searchInHomePage(data.get("PartNum3"));
@@ -96,12 +97,13 @@ public class SLP15_AdobeVIPQuoteConversion extends SLPLib{
 				     	pipLib.enterQuantityOnProductDetailsPage(data.get("Quantity"));
 				     	commonLib.addToCartAndVerify();
 				     	orderLib.continueToCheckOutOnAddCart();
+				     	canadaLib.verifyPlaceCartLabel();
 				     	
 				        // Verify Deploy popup details for part 1
-				     	verifyandClickchangeLink(data.get("PartNum1"));
-				     	verifydeployedatewithcurrentdate();
 				     	String date1=getDeploydateOnCart(data.get("PartNum1"));
 				     	List<String> prodDesc1 = orderLib.getProductDescriptionOfCartProduct();
+				     	verifyandClickchangeLink(data.get("PartNum1"));
+				     	verifydeployedatewithcurrentdate();
 				     	verifycartDetailsWithDeployPopUpDetails(date1, prodDesc1.get(1), data.get("PartNum1"));
 				     	calenderforUnpaidLicense(data.get("Date1"));
 				     	clickapply();
@@ -132,56 +134,58 @@ public class SLP15_AdobeVIPQuoteConversion extends SLPLib{
 				     	int noOfCharacters=8;
                         String quoteName= getRandomString(noOfCharacters).toString();
                         clickSaveasQuote();
-				        
-				        
-				        
-				        
-				       
-				     	
-				     	
-				     	
-				     	
-				     	
-				     	
-                        
-                        
-                        
-                        
-                        
-                        
-                        orderLib.shippingBillPayContinueButton(); // Click continue on
-						                                             // shipping address
-                        orderLib.shippingOptionsCarrierSelection(); // Click continue on
-						                                            // shipping options
-                        orderLib.billingAddressContinueButton(); // Billing address
-						                                              // continue button
-                        orderLib.enterCreditCard(data.get("Card_Number").toString(), data.get("Card_Name"), data.get("Month"),
-            					data.get("Year"), data.get("PONumber"),data.get("POReleaseNumber"));
-                        orderLib.clickOnReviewOrderButton();                       
-                        orderLib.verifyCartHeaderLabel();
-                        //Verify Deployed date displayed in cart page
-                        verifydeployeDateinCartPage();
-                        /*int noOfCharacters=8;
-                        String quoteName= getRandomString(noOfCharacters).toString();*/
-                        orderLib.createQuoteandGenerateName(quoteName);
+                        // verifying deploy date on quotes screen
+                        verifyProductDeployDate(data.get("Date1"));
+                        // verifying PA fields 
+                        verifyPAFieldsOnQuotesScreen(data.get("PA"));
+                        verifyPAFieldsOnQuotesScreen(data.get("PA1"));
+                        // MFR requirements
+                        verifyManufacturerRequirementsOnQuoteScreen();
+				        String quotesubTotal=getSubTotalOnQuotesScreen(data.get("SubTotal1")).replace("$", "").replace(",", "");;
+				        verifySubTotalAmountsOnQuoteAndCartScreen(subTotalAmount, quotesubTotal);
+				        orderLib.createQuoteandGenerateName(quoteName);
                         String refNumber = orderLib.getQuoteReferenceNumber();
-                        searchLib.verifyAccountToolForOrderMenuItem(data.get("toolsMenuName"), data.get("dropDown"));
-                        quoteLib.clickQuoteNumberLink(quoteName);
-                        orderLib.convertQuote();
-                        orderLib.verifyCartHeaderLabel();
-                        orderLib.proceedToCheckout();
-                        orderLib.clickContinueOnLineLevelInfo();
-				     	orderLib.shippingBillPayContinueButton(); // Click continue on
-						                                             // shipping address
-                        orderLib.shippingOptionsCarrierSelection(); // Click continue on
-						                                            // shipping options
-                        orderLib.shippingBillPayContinueButton(); // Billing address
-						                                              // continue button
-                        orderLib.enterCreditCard(data.get("Card_Number").toString(), data.get("Card_Name"), data.get("Month"),
-            					data.get("Year"), data.get("PONumber"),data.get("POReleaseNumber"));
+				     	
+				        // verifying deploy date on quotes screen
+                        verifyProductDeployDate(data.get("Date1"));
+                        // verifying PA fields 
+                        verifyPAFieldsOnQuotesScreen(data.get("PA"));
+                        verifyPAFieldsOnQuotesScreen(data.get("PA1"));
+                        // MFR requirements
+                        verifyManufacturerRequirementsOnQuoteScreen();
+                        String quotesubTotal1=getSubTotalOnQuotesScreen(data.get("SubTotal1")).replace("$", "").replace(",", "");;
+				        verifySubTotalAmountsOnQuoteAndCartScreen(subTotalAmount, quotesubTotal);
+				        clickQuoteHistoryLink();
+				        Thread.sleep(5000);
+				        orderLib.searchByInQuoteHistory(refNumber,data.get("DD_Option"));
+				        orderLib.convertQuote();
+						cartLib.verifyCartBreadCrumb();
+						getDeploydateOnCart(data.get("PartNum2"));
+						getDeploydateOnCart(data.get("PartNum1"));
+                        
+						 orderLib.proceedToCheckout();
+						 orderLib.continueButtonOnAdditionalInformationSection();
+						 orderLib.clickContinueOnLineLevelInfo();
+						 canadaLib.verifySBP();
+						 orderLib.clickContinueOnShippingAddress();
+					     orderLib.shippingOptionsCarrierSelection();
+						 orderLib.billingAddressContinueButton();
+                        
+                         orderLib.selectPaymentInfoMethodCreditCard(data.get("Card_Number").toString(), data.get("Card_Name"), data.get("Month"),
+			             data.get("Year"), data.get("PONumber"),data.get("POReleaseNumber"));
                         orderLib.clickOnReviewOrderButton();                       
                         orderLib.verifyPlaceOrderLabel();
-                      //Place Order
+                      //Verifying PA fields in Place order page
+                        verifyPAOnReceiptPage(data.get("PA")); 
+                        verifyPAOnReceiptPage(data.get("PA1")); 
+                        
+                        /*String OrderDate=getTextfromdeployedateinPlaceOrderPage();
+                        assertTrue(DeployedDate.contains(OrderDate), "Deploy Date Field Exists and Verified");*/
+                        
+                        
+                        
+                        
+                        //Place Order
 						String summaryAmountInLogin=cartLib.getSummaryAmountInCart();
 						 orderLib.placeOrderAndVerifyReceiptOrderAndDate(summaryAmountInLogin);
 						String RefNumber= orderLib.getTextfromReferenceNumber();

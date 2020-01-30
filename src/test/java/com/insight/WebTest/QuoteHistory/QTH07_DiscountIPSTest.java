@@ -50,6 +50,7 @@ public class QTH07_DiscountIPSTest extends QuoteHistoryLib {
 							TestEngineWeb.reporter.initTestCaseDescription("DiscountIPS");
 
 							List<String> quotedetails = new ArrayList<>();
+							List<String> orderdetails = new ArrayList<>();
 					CMTLib cmtLib = new CMTLib();
 					CommonLib commonLib = new CommonLib();
 					SearchLib searchLib = new SearchLib();
@@ -115,7 +116,7 @@ public class QTH07_DiscountIPSTest extends QuoteHistoryLib {
 					commonLib.clickOnAccountToolsAndClickOnProductGrp(data.get("Tools_Menu1"),
 							data.get("Tools_Menu_DD1"));
 					verifyQuoteHistoryPageOpened();
-					quoteNumberInTable(quotedetails.get(0));
+					quoteNumberInTable(quotedetails.get(0));ClickFirstQuoteNumber();
 					verifyMSRPPrice();
 					verifyDiscountPrice();
 					orderLib.convertQuote();
@@ -128,48 +129,20 @@ public class QTH07_DiscountIPSTest extends QuoteHistoryLib {
 					orderLib.addNewCardInPayment(data.get("cardNumber"), data.get("cardName"), data.get("month"),
 							data.get("year"), data.get("poNumber"),data.get("POReleaseNumber"));
 					orderLib.clickOnReviewOrderButton();
-					orderLib.clickOrderDetailsLinkOnReceiptPage();
 					
-					
-					
-					
-					
-					
-					
-					
-					
-					// create a Quote
-					orderLib.createQuote(data.get("Quote_Name"));
-					String refNumber = orderLib.getQuoteReferenceNumber();
-
-					// Navigate to Quote History
+					orderdetails=orderLib.placeOrderAndVerifyReceiptOrderAndDateQuoteHistory("$9,279.30");
 					commonLib.clickOnAccountToolsAndClickOnProductGrp(data.get("Tools_Menu1"),
-							data.get("Tools_Menu_DD1"));
-					orderLib.searchByInQuoteHistory(refNumber, data.get("DD_Option"));
-
-					// Verify MSRP Price and Discount off
-					verifyMSRPPrice();
-					verifyDiscountPrice();
-
-					// Convert Quote
-					orderLib.convertQuote();
-					cartLib.verifyCartBreadCrumb();
-
-					// Proceed to checkout
-					orderLib.proceedToCheckout();
-					orderLib.clickContinueOnLLIAndShipBillPaySections();
-					orderLib.addNewCardInPayment(data.get("cardNumber"), data.get("cardName"), data.get("month"),
-							data.get("year"), data.get("poNumber"),data.get("POReleaseNumber"));
-					orderLib.clickOnReviewOrderButton();
-
-					// Place Order
-					String summaryAmount = cartLib.getSummaryAmountInCart();
-					orderLib.placeOrderAndVerifyReceiptOrderAndDate(summaryAmount);
-					// Verify Receipt
-					orderLib.verifyReceiptVerbiage();
-					orderLib.clickOrderDetailsLinkOnReceiptPage();
-
+							data.get("Tools_Menu_DD2"));
+					String[] RN = (orderdetails.get(0)).split(" ");
+					selectadvancedOrdersearchoption("Reference number",RN[0]);
+					
 					commonLib.clickLogOutLink(data.get("Logout_Header"));
+					
+					
+					
+					
+					
+					
 
 				} catch (Exception e) {
 					ReportStatus.blnStatus = false;

@@ -6,6 +6,7 @@ import java.util.List;
 
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
 import com.insight.ObjRepo.CanadaObj;
@@ -149,7 +150,7 @@ public class SLPLib extends SLPObj {
 	public void verifydeploydate(String partnum) throws Throwable {
 		String Deploydate = getText(deploy_date(partnum), "Deploy Date");
 		if (isElementPresent(deploy_date(partnum), "Deploy Date")) {
-			reporter.SuccessReport("Deploy Date::", "Deploy Date Exists As Expected in Cart Page", ""+Deploydate+"");
+			reporter.SuccessReport("Deploy Date::", "Deploy Date Exists As Expected in Cart Page", "Deploy Date : "+Deploydate+"");
 		} else {
 			reporter.failureReport("Deploy Date::", "Deploy Date Doesnot Exists As Expected", "");
 		}
@@ -164,7 +165,7 @@ public class SLPLib extends SLPObj {
 	public void verifylicensetype(String partnum) throws Throwable {
 		String LicenseType = getText(licensetype(partnum), "License type");
 		if (isElementPresent(licensetype(partnum), "License Type")) {
-			reporter.SuccessReport("License Type::", "New  for MPSA Products in the Cart Exists As Expected",
+			reporter.SuccessReport("License Type::", "License Type: New Exists in the Cart",
 					LicenseType);
 		} else {
 			reporter.failureReport("License Type::", "New  for MPSA Products in the Cart Doesnot Exists", "");
@@ -181,7 +182,7 @@ public class SLPLib extends SLPObj {
 		if (isElementPresent(licensetype(partnum), "License Type")) {
 			reporter.failureReport("License Type::", "New  for MPSA Products in the Cart Exists", "");
 		} else {
-			reporter.SuccessReport("License Type::", "New  for MPSA Products in the Cart Doesnot Exists As Expected",
+			reporter.SuccessReport("License Type::", "New  for MPSA Products in the Cart Doesnot Exists",
 					"");
 		}
 	}
@@ -345,11 +346,29 @@ public class SLPLib extends SLPObj {
 		String UpadtedLicense =getText(licensetype(partnum),"License");
 		System.out.println("UpadtedLicense::"+UpadtedLicense);
 		if (UpadtedLicense.equals(previouseLicense)) {
-			reporter.failureReport("Updated License::", "Updated License is Not Displayed", "");
+			reporter.failureReport("Updated License::", "Updated License is Not Displayed", "License :"+UpadtedLicense);
 		} else {
-			reporter.SuccessReport("Updated License::", "License is Updated and Displayed", "");
+			reporter.SuccessReport("Updated License::", "License is Updated and Displayed", "License :"+UpadtedLicense);
 		}
 	}
+	
+	/**
+	 * 
+	 * @param This method is to verify PartNum in PopUp Data 
+	 * @throws Throwable
+	 */
+	public void verifyUpdatedUnPaidLisenceOnCartPage(String partnum) throws Throwable {
+		
+		String UnpaidLicense =getText(unpaidLicenseType(partnum),"License");
+		
+		if (isVisibleOnly(unpaidLicenseType(partnum), "license type")) {
+			reporter.SuccessReport("Updated License::", "License is Updated and Displayed", "License type of Insight part :"+partnum+ " is "+UnpaidLicense);
+		} else {
+			reporter.failureReport("Updated License::", "Updated License is Not Displayed", "License :"+UnpaidLicense);
+		}
+	}
+	
+	
 	/**
 	 * 
 	 * @param This method is to get license 
@@ -440,10 +459,10 @@ public class SLPLib extends SLPObj {
 		}
 		else{
 			click(YEAR_DROPDOWN,"year dropdown");
-			click(Year(year),"Selecy year");
+			click(Year(year),"Selecy year "+year);
 			click(MONTH_DROPDOWN,"Month dropdown");
-			click(Month(month),"Select month");
-			click(Day(day),"Selecting date");
+			click(Month(month),"Select month "+month);
+			click(Day(day),"Selecting date "+day);
 		}
 		}
 	
@@ -643,7 +662,7 @@ public class SLPLib extends SLPObj {
 			if(isElementPresent(ALL_REPORTING_PERIODS_CURRENT_LABEL_SLPA_PAGE, "verify All Reporting Periods Current")){
 				reporter.SuccessReport("Verify All Reporting Periods Current message", "All Reporting Periods Current message", "");
 			}else{
-				reporter.failureReport("Verify All Reporting Periods Current message", "All Reporting Periods Current message does not exist", "");
+				reporter.failureReport("Verify All Reporting Periods Current message", "All Reporting Periods Current message does not exist", "",driver);
 
 			}
 		}
@@ -656,9 +675,18 @@ public class SLPLib extends SLPObj {
 				click(copytoallLink(PartNum), "Copy to All");
 				reporter.SuccessReport("Select Copy to all items in cart on Line Level Page", "COPY TO ALL link Exists and Selected", "");
 			} else {
-				reporter.failureReport("Select Copy to all items in cart on Line Level Page", "COPY TO ALL link does not Exist", "");
+				reporter.failureReport("Select Copy to all items in cart on Line Level Page", "COPY TO ALL link does not Exist", "",driver);
 			}
+		}
 		
+		public void clickOnCopyToAllLink(String parNumber) throws Throwable {
+			Thread.sleep(4000);
+			if(isVisible(getCopyAllLink(parNumber), "Copy To All")) {
+				reporter.SuccessReport("Select Copy to all items in cart on Line Level Page", "COPY TO ALL link Exists", "");
+				JSClick(getCopyAllLink(parNumber), "Copy To All");
+			}else {
+				reporter.failureReport("Select Copy to all items in cart on Line Level Page", "COPY TO ALL link does not Exist", "",driver);
+			}
 		}
 		
 		/**
@@ -678,7 +706,7 @@ public class SLPLib extends SLPObj {
 				if (actualDate.contains(deploydate)) {
 					reporter.SuccessReport("Deploy Date:: ", "verification of deploy date with current date is successfull","");
 				} else {
-					reporter.failureReport("Deploy Date:: ", "verification of deploy date with current date is Not successfull : "+deploydate+" .Expected Date :",actualDate);
+					reporter.failureReport("Deploy Date:: ", "verification of deploy date with current date is Not successfull : "+deploydate+" .Expected Date :",actualDate,driver);
 				}
 			}
 		}
@@ -814,7 +842,9 @@ public class SLPLib extends SLPObj {
 		
 		
 		public String getDeploydateOnCart(String partNum) throws Throwable {
-			return getText(getDeployDateOnCartPage(partNum), "Deploy date in cart");
+			String date= getText(getDeployDateOnCartPage(partNum), "Deploy date in cart");
+			reporter.SuccessReport("Deploy date on cart page", "Deploy date on cart page is: ", "Deploy date : "+date);
+			return date;
 		}
 		
 		public void verifycartDetailsWithDeployPopUpDetails(String date,String Desc,String mfrNum) throws Throwable {
@@ -823,7 +853,7 @@ public class SLPLib extends SLPObj {
 			String popupDate=getText(DEPLOY_DATEINPOPUP, "date");
 			
 			if(mfrPart.equals(mfrNum) && Desc.equals(description) && date.equals(popupDate)) {
-				reporter.SuccessReport("Verify the data in Deploy Date POP-up", "Mnf# Part and Search Item are Same and Verfied", "Description: "+description+" mfrNum"+mfrNum+"  Date: "+date);
+				reporter.SuccessReport("Verify the data in Deploy Date POP-up", "Mnf# Part and Search Item are Same and Verfied", "Description: "+description+"  MfrNum : "+mfrNum+"  Date: "+date);
 			}else {
 				reporter.failureReport("Verify the data in Deploy Date POP-up", "Mnf# Part and Search Item are not Same", "");
 			}
@@ -850,7 +880,7 @@ public class SLPLib extends SLPObj {
 		 */
 		public void verifyDateAppliedToAllPartAfterCopyAll(String actualDate,String expectedDate) throws Throwable {
 			if(actualDate.equals(expectedDate)) {
-				reporter.SuccessReport("Verify date is copied to all parts", "Deploy date updted in the cart ", "Deploy Date: "+actualDate);
+				reporter.SuccessReport("Verify date is copied to all parts", "Deploy date updted  ", "Deploy Date: "+actualDate);
 			}else {
 				reporter.failureReport("Verify date is copied to all parts", "Date is not copied to all parts", "", driver);
 			}
@@ -863,5 +893,104 @@ public class SLPLib extends SLPObj {
 				reporter.failureReport("verify save as quote in cart page", "save as quote does not exists", "", driver);
 			}
 		}
+		
+		/**
+		 * 
+		 * @param partNum
+		 * @param dateorLicence
+		 * @throws Throwable 
+		 */
+		public void verifyDeploydateOnPlaceOrderPage(String partNum, String dateorLicence) throws Throwable {
+			if(isVisibleOnly(getDeployDateAndLicenceTypeOnPlaceOrderPage(dateorLicence, partNum), "Deploy dat and Licence")) {
+				reporter.SuccessReport("Validate Deployment date and License Type", "Validate Deployment date and License Type", "Deployment Date for Insight Part #: "+partNum+" Date: "+dateorLicence);
+			}else {
+				reporter.failureReport("Validate Deployment date and License Type", "Validate Deployment date and License Type", "");
+			}
+		}
+		
+		/**
+		 * 
+		 * @param partNum
+		 * @param dateorLicence
+		 * @throws Throwable 
+		 */
+		public void verifyLicenceOnPlaceOrderPage(String partNum, String dateorLicence) throws Throwable {
+			if(isVisibleOnly(getDeployDateAndLicenceTypeOnPlaceOrderPage(dateorLicence, partNum), "Deploy dat and Licence")) {
+				reporter.SuccessReport("Validate Deployment date and License Type", "Validate Deployment date and License Type", "Deployment Date for Insight Part #: "+partNum+" Date: "+dateorLicence);
+			}else {
+				reporter.failureReport("Validate Deployment date and License Type", "Validate Deployment date and License Type", "");
+			}
+		}
+		
+		/**
+		 * 
+		 * @param date
+		 * @throws Throwable
+		 */
+		public void verifyProductDeployDate(String date) throws Throwable {
+			List <WebElement> element=driver.findElements(By.xpath("//span[contains(text(),'"+date+"')]"));
+			for(i=1;i<element.size();i++) {
+				if(isVisible(getDeployDateOnQuotePage(i,date), "date")) {
+					reporter.SuccessReport("Deploy Date Field ", "Updated Deploy Date Field on Quote screen is Exists","Deploy date :"+date );
+				}	else {
+					reporter.failureReport("Deploy Date Field ", "Updated Deploy Date Field on Quote screen does not  Exists",date,driver );
+				}
+			}
+		}
+		
+		/**
+		 * @param pa
+		 * @throws Throwable
+		 */
+		public void verifyPAFieldsOnQuotesScreen(String pa) throws Throwable {
+			if(isVisibleOnly(getPAField(pa), "PA")) {
+				reporter.SuccessReport("Verify PA Field on quote screen", "PA Field is Exists and Verified","PA Field:PA #: " +pa);
+			}else {
+				reporter.failureReport("Verify PA Field on quote screen", "PA Field is does not Exists", "",driver);
+			}
+		}
+		
+		/**
+		 * 
+		 * @param date
+		 * @throws Throwable
+		 */
+		public void verifyManufacturerRequirementsOnQuoteScreen() throws Throwable {
+			List <WebElement> element=driver.findElements(By.xpath("//div[@class='editManufacturerRequirements']"));
+			for(i=1;i<element.size();i++) {
+				if(isVisible(manufacturerRequirements(i), "MFR requirements")) {
+					String Mfrreq=getText(manufacturerRequirements(i), "MFR requirements");
+					reporter.SuccessReport("Verify Manufacturer Requirements ", "Manufacturer Requirements Exists and Verified", Mfrreq);
+				}	else {
+					reporter.failureReport("Verify Manufacturer Requirements ", "Manufacturer Requirements does not  Exists","",driver );
+				}
+			}
+		}
+		
+		public String getSubTotalOnQuotesScreen(String label) throws Throwable {
+			return getText(getSummaryAmountOnQuoteScreen(label), "Amount");
+		}
+   
+		 public void verifySubTotalAmountsOnQuoteAndCartScreen(String actualAmount, String expectedAmount) throws Throwable {
+			 if(actualAmount.equals(expectedAmount)) {
+				 reporter.SuccessReport("Verify Subtotal in the Save as Quote - Successful Page", "Price is Verified", "Actual Price: USD $"+actualAmount+"  Expected: USD $"+expectedAmount);
+			 }else {
+				 reporter.failureReport("Verify Subtotal in the Save as Quote - Successful Page", "Price Verification is not successful", "", driver);
+			 }
+		 }
+		 
+		 public void clickSaveAsQuoteButtonOnQuoteScreen() throws Throwable {
+			 click(OrderLib.SAVE_AS_QUOTE_BTN, "save as quote button");
+			 if(isElementPresent(OrderLib.SAVE_QUOTE_MSG, "Success message")){
+				 reporter.SuccessReport("Verify Success message", "Save as Quote - Successful message displayed","");
+			 }else{
+				 reporter.failureReport("Verify Success message ", "Save as Quote - Successful message not displayed ",""); 
+			}
+		 }
+		 
+		 public void clickQuoteHistoryLink() throws Throwable {
+			 click(QUOTEHISTORY_LINK, "QUOTEHISTORY_LINK", "");
+		 }
+
 }
 
