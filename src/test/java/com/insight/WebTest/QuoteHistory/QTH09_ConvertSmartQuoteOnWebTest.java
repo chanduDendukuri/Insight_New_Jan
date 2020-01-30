@@ -72,8 +72,8 @@ public class QTH09_ConvertSmartQuoteOnWebTest extends QuoteHistoryLib {
 					Homelib.enterSoldTo(data.get("SoldToAcct"));//10285059
 					Homelib.selectOrg(data.get("SalesOrg"));//2400
 					Homelib.Addmaterail(data.get("Material1"));//OCN1
-					Homelib.Addmaterail(data.get("Material1"));//OCN1
-					Homelib.Addmaterail(data.get("Material1"));//OCN1
+					//Homelib.Addmaterail(data.get("Material1"));//OCN1
+					//Homelib.Addmaterail(data.get("Material1"));//OCN1
 					Homelib.clickAdvancedHeader();
 					Homelib.clickAdvancedHeaderTab(data.get("Tab1"));//Programs
 					Homelib.clickonEnrolmentIdatProgramsTab(data.get("Enrolmentid"));//S9662270
