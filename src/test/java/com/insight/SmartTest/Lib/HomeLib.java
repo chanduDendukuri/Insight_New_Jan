@@ -614,7 +614,7 @@ action.moveToElement(el).perform();
 	// Add line items
 
 	public void AddLineItems(String columnName, String Material, int rowNumber) throws Throwable {
-		click(AddMaterialLineItem1(columnName, rowNumber), "Material");
+		click(AddMaterialLineItem1(columnName, rowNumber), Material);
 		try {
 			driver.findElement(AddMeterialInLineItems).sendKeys(Material);
 		} catch (Exception e) {
@@ -794,6 +794,7 @@ public void deSelectvaluefromotherGroupingDropdown(String option) throws Throwab
 		click(AddMeterialInLineItems, "Material Line item");
 		driver.findElement(AddMeterialInLineItems).sendKeys(Material);
 		driver.findElement(AddMeterialInLineItems).sendKeys(Keys.ENTER);
+		
 		loadingSymbol();
 	}
 
