@@ -426,7 +426,8 @@ public class MarriottIntlCorpLib extends MarriottIntlCorpObj {
 	}
 	public void getandVerifyWebGroupName(String expectedWebGroupname) throws Throwable {
 		String webgrp = getText(WebGroupName, "Web Group name");
-		if(webgrp.contains(expectedWebGroupname)) {
+		String expWengrpname1 = "Freeport-McMoRan Copper & Gold Inc";
+		if(webgrp.contains(expectedWebGroupname)||webgrp.contains(expWengrpname1)) {
 			reporter.SuccessReport("WebGroup", "WebGroup is displayed as " + webgrp + "", "");
 		}
 		 else {
