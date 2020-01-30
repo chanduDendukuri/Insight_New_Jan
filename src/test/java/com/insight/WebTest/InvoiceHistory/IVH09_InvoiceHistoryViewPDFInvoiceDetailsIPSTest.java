@@ -70,7 +70,9 @@ public class IVH09_InvoiceHistoryViewPDFInvoiceDetailsIPSTest extends InvoiceHis
 					String invoiceNumber=canadaLib.getInvoiceNumber();
 					canadaLib.invoiceNumberLink();
 					canadaLib.verifyInvoiceHistoryPageOpened();
-					verifyInvoiceDetails(data.get("Invoice_Details"));
+					canadaLib.getInvoiceNumberInInvoiceDetailsPage();
+					canadaLib.getInvoiceDateInInvoiceDetailsPage();
+					//verifyInvoiceDetails(data.get("Invoice_Details"));
 					canadaLib.printIcon();
 					verifyPrintPopUp();
 					canadaLib.closeIcon();

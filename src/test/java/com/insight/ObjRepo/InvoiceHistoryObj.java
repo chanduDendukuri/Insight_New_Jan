@@ -136,9 +136,10 @@ public class InvoiceHistoryObj extends ActionEngine {
 	public static By YearOfstartDate = By.xpath("//*[@class='react-datepicker__year-read-view--selected-year']");
 	public static By dateForStartDate = By.xpath("//*[@class='react-datepicker__month-read-view--selected-month']");
 
-	public static By startAndEndDate (int num) {
-		return By.xpath("(//*[@class='form__field date-picker__input'])["+num+"]");
-	}
+	public static By startDate =By.xpath("(//*[@class='form__field date-picker__input'])[1]");
+	public static By EndDate =By.xpath("(//*[@class='form__field date-picker__input'])[2]");
+
+
 
 	public static By selectMonthFromCalender(String month) {
 
@@ -165,5 +166,6 @@ public static By selectDateFromCalender(String date) {
 	public static By RPDetails(int i) {
 		return By.xpath("((//*[contains(@id,'b3')])[1]//parent::td/following::td/table/tbody/tr)["+i+"]");
 	}
-
+	public static By INVOICE_NUMBER =By.xpath("//*[@id='invoiceSearch']/tbody/tr/td/a");
+	public static By INVOICE_STATUS=By.xpath("(//*[@id='invoiceSearch']/tbody/tr/td[5])[1]");
 }

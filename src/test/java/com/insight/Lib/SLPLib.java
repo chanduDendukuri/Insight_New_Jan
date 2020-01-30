@@ -448,7 +448,7 @@ public class SLPLib extends SLPObj {
 		String day=date.split("-")[0];
 		String month=date.split("-")[1];
 		String year=date.split("-")[2];
-		click(DEPLOY_DATEINPOPUP,"Calnder");
+		click(DEPLOY_DATEINPOPUP,"Calender");
 		String calenderYear=getText(SELECTEDYEAR, "Selected year");
 		System.out.println("calenderYear"+calenderYear);
 		String calenderMonth=getText(SELECTED_MONTH, "Selected month");
@@ -621,7 +621,7 @@ public class SLPLib extends SLPObj {
 			if (isElementPresent(CanadaObj.SPLA_LABEL, "SPLA LABEL")) {
 				if (!isCheckBoxSelected(CanadaObj.getMySoftwareLicenseAgreementscheckBoxes(softwareAgreement))) {
 					click(CanadaObj.getMySoftwareLicenseAgreementscheckBoxes(softwareAgreement),"SPLA Details Product CheckBox");
-					click(RETRIEVE_LAST_USAGE_REPORT, "Select retrieve last usage report button");
+					click(retriveLastUsageReport(softwareAgreement), "Select retrieve last usage report button");
 				} else {
 					LOG.info("Checkbox already selected");
 				}
@@ -929,7 +929,7 @@ public class SLPLib extends SLPObj {
 		 */
 		public void verifyProductDeployDate(String date) throws Throwable {
 			List <WebElement> element=driver.findElements(By.xpath("//span[contains(text(),'"+date+"')]"));
-			for(i=1;i<element.size();i++) {
+			for(i=1;i<=element.size();i++) {
 				if(isVisible(getDeployDateOnQuotePage(i,date), "date")) {
 					reporter.SuccessReport("Deploy Date Field ", "Updated Deploy Date Field on Quote screen is Exists","Deploy date :"+date );
 				}	else {
@@ -959,7 +959,7 @@ public class SLPLib extends SLPObj {
 			List <WebElement> element=driver.findElements(By.xpath("//div[@class='editManufacturerRequirements']"));
 			for(i=1;i<element.size();i++) {
 				if(isVisible(manufacturerRequirements(i), "MFR requirements")) {
-					String Mfrreq=getText(manufacturerRequirements(i), "MFR requirements");
+					String Mfrreq=getText(manufacturerRequirements(i+1), "MFR requirements");
 					reporter.SuccessReport("Verify Manufacturer Requirements ", "Manufacturer Requirements Exists and Verified", Mfrreq);
 				}	else {
 					reporter.failureReport("Verify Manufacturer Requirements ", "Manufacturer Requirements does not  Exists","",driver );
@@ -989,8 +989,25 @@ public class SLPLib extends SLPObj {
 		 }
 		 
 		 public void clickQuoteHistoryLink() throws Throwable {
-			 click(QUOTEHISTORY_LINK, "QUOTEHISTORY_LINK", "");
+			 click(QUOTEHISTORY_LINK, "QUOTE HISTORY LINK", "");
 		 }
+		 
+		 /**
+			 * 
+			 * @param date
+			 * @throws Throwable
+			 */
+			public void verifyManufacturerRequirementsOnPlaceOrderScreen(int i) throws Throwable {
+				List <WebElement> element=driver.findElements(By.xpath("//section[@class='line-level__section']["+i+"]//div//label"));
+					  for(int j=i;j<=element.size();j++){
+						  if(isVisible(mfrRequirementsOnPlaceOrderPage(i,j), "MFR requirements")) {
+								String Mfrreq=getText(mfrRequirementsOnPlaceOrderPage(i,j), "MFR requirements");
+								reporter.SuccessReport("Verify Manufacturer Requirements ", "Manufacturer Requirements Exists and Verified", Mfrreq);
+							}	else {
+								reporter.failureReport("Verify Manufacturer Requirements ", "Manufacturer Requirements does not  Exists","",driver );
+					  }
+				}
+			}
 
 }
 

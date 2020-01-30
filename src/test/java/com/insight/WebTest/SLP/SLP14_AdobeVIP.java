@@ -139,11 +139,9 @@ public class SLP14_AdobeVIP extends SLPLib{
                     orderLib.verifyPlaceOrderLabel();
                     //String OrderDate=getTextfromdeployedateinPlaceOrderPage();
                    // Order date verification
-                    //verifyDateAppliedToAllPartAfterCopyAll(DeployedDate, OrderDate);
                     verifyDeploydateOnPlaceOrderPage(data.get("PartNum2"), data.get("Date2"));
                     verifyDeploydateOnPlaceOrderPage(data.get("PartNum1"), data.get("Date1"));
                     
-                    //assertTrue(DeployedDate.contains(OrderDate), "Deploy Date Field Exists and Verified");
                     //Verifying PA fields in Place order page
                     verifyPAOnReceiptPage(data.get("PA")); 
                     verifyPAOnReceiptPage(data.get("PA1")); 
@@ -156,6 +154,7 @@ public class SLP14_AdobeVIP extends SLPLib{
                       verifyPAOnReceiptPage(data.get("PA"));	
                       verifyPAOnReceiptPage(data.get("PA1"));
 					commonLib.clickLogOutLink(data.get("Logout"));
+					//cmtLib.logoutSite();
 					
 				} catch (Exception e) {
 					ReportStatus.blnStatus = false;
