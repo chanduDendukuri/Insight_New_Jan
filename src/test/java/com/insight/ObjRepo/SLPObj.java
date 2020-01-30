@@ -25,9 +25,13 @@ public class SLPObj extends ActionEngine{
     	return By.xpath("//a[contains(@href,'"+Partnum+"')]/ancestor::div[@class='cart__item']//div[@class='proration__deploy-details--date']");
        }
     public static By licensetype(String Partnum) {
-    	return By.xpath("//a[contains(@href,'"+Partnum+"')]/ancestor::div[@class='cart__item']//div[contains(text(),'License type:')]/parent::div/div/div[@class='proration__deploy-details--date']");
+    	return By.xpath("//a[contains(@href,'"+Partnum+"')]/ancestor::div[@class='cart__item']//div[contains(text(),'License type:')]/parent::div/div/div[@class='proration__deploy-details--date'][contains(text(),'New')]");
 
       }
+    
+    public static By unpaidLicenseType(String partNum) {
+    	return By.xpath("//a[contains(@href,'"+partNum+"')]/ancestor::div[@class='cart__item']//div[contains(text(),'License type:')]/parent::div/div/div[@class='proration__deploy-details--date'][contains(text(),'Unpaid')]");
+    }
     
     public static By PLACE_REQUISITION=By.xpath("//section[@class='cart cart']/following::div[@class='cart-summary-container']//button[contains(text(),'Place requisition')]");
 	
@@ -89,6 +93,10 @@ public class SLPObj extends ActionEngine{
     public static By copytoallLink(String PartNum){
     	return By.xpath("//p[@class='cart__item-part cart__font-size--sm'][contains(.,'"+PartNum+"')]/following::div[11]/span//span[contains(text(),'Copy to all')]");
     }
+    
+    public static By getCopyAllLink(String PartNum) {
+    	return By.xpath("//p[@class='cart__item-part cart__font-size--sm'][contains(.,'"+PartNum+"')]/following::div//span[@class='prortation__link-text prortation__link-text--copy']");
+    }
     public static By PA_FIELD=By.xpath("//input[@name='licenseInformation.AUTHORIZATION']");
     public static By PA_fieldincartpage(int i){
     	return By.xpath("(//input[@name='licenseInformation.AUTHORIZATION'])["+i+"]");
@@ -118,4 +126,32 @@ public class SLPObj extends ActionEngine{
     public static By getPAOnReceipt(String pa){
     	return By.xpath("//label[@class='form__label--readonly'][contains(.,'PA #:')]//p[contains(text(),'"+pa+"')]");
     }
+    
+    public static By getDeployDateAndLicenceTypeOnPlaceOrderPage(String input,String partNum) {
+    	return By.xpath("//div[@class='proration__deploy-details--date'][contains(text(),'"+input+"')]/ancestor::div//div[@class='cart__item']//div//p[contains(.,'Insight Part #: "+partNum+"')]");
+    }
+   
+    
+    // Quotes
+    public static By getDescriptionOnQuotePage(String description) {
+    	return By.xpath("//a[@id='A1'][contains(text(),'"+description+"')]");
+    }
+    
+    public static By getDeployDateOnQuotePage(int i,String date) {
+    	return By.xpath("(//span[contains(text(),'"+date+"')])["+i+"]");
+    }
+    
+    public static By getPAField(String pa) {
+    	return By.xpath("//div[contains(text(),'PA #: "+pa+"')]");
+    }
+     public static By manufacturerRequirements(int i) {
+    	 return By.xpath("(//div[@class='editManufacturerRequirements'])["+i+"]");
+     }
+     
+     public static By getSummaryAmountOnQuoteScreen(String label) {
+    	 return By.xpath("//td[contains(text(),'"+ label +"')]/following-sibling::td//span[@id='subtotalvalDiv']");
+     }
+     
+     public static By QUOTEHISTORY_LINK=By.xpath("//a[@class='displayQuoteHistory']");
+    
 }

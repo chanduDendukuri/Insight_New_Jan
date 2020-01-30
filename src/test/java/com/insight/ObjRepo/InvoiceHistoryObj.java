@@ -139,6 +139,7 @@ public class InvoiceHistoryObj extends ActionEngine {
 	public static By startAndEndDate (int num) {
 		return By.xpath("(//*[@class='form__field date-picker__input'])['" + num + "']");
 	}
+
 	public static By selectMonthFromCalender(String month) {
 
 			return By.xpath("//*[@class='react-datepicker__month-dropdown']//div[text()='"+month+"']");
@@ -151,4 +152,18 @@ public static By selectDateFromCalender(String date) {
 
 			return By.xpath("(//*[@class='react-datepicker__month']//div[text()='"+date+"'])[1]");
 }
+
+	//public static By btnsearchUnderAdvancedSearch= By.xpath("//input[@id='quoteAdvSearch']");
+	//public static By lblExpirationDate=By.xpath("(//*[text()='Expiration Date'])[2]");
+	
+	public static By GGPDetails=By.xpath("(//*[contains(@id,'b0')]//parent::td/following::tr)[1]");
+	public static By GP=By.xpath("//*[contains(@id,'b2')]");
+	public static By GPDetails(int i) {
+		return By.xpath("(//*[contains(@id,'b2')]//parent::td/following::td/div/table/tbody/tr)["+i+"]");
+	}
+	public static By RP=By.xpath("//*[contains(@id,'b3')]");
+	public static By RPDetails(int i) {
+		return By.xpath("((//*[contains(@id,'b3')])[1]//parent::td/following::td/table/tbody/tr)["+i+"]");
+	}
+
 }

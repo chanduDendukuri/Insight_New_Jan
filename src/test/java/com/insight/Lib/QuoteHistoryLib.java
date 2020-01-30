@@ -584,7 +584,18 @@ scrollUp();
 			reporter.failureReport("Click on the Quote Number on Quote History", " Quote Numbers Exists and Clickedt", "");	
 		}
 	}
-	
+	public void EntervalidEmail(String email) throws Throwable {
+		clearData(txt_Email);
+		type(txt_Email, email, "email field");
+	}
+	public void selectadvancedOrdersearchoption(String text,String testdata) throws Throwable {
+		selectByVisibleText(CanadaObj.ADVANCE_SEARCH_ORDERHISTORY, text, "ADVANCE_SEARCH_ORDERHISTORY");
+		type(txtfield_name, testdata, "reference field");
+		click(btn_SSearch, "Seach button", "");
+		waitForVisibilityOfElement(referencenumberudersearchrersuts, "referencenumberudersearchrersuts");
+		click(ordernumberudersearchrersuts, "ordernumberudersearchrersuts", "");
+		waitForVisibilityOfElement(CanadaObj.ORDER_DETAILS_PAGE, "ORDER_DETAILS_PAGE");
+	}
 	/**
 	 * Method is used to verify Delete this quote icon
 	 * 
@@ -627,12 +638,12 @@ scrollUp();
 	public void quickSearchAndVerifySearchResults(String searchBy, String text) throws Throwable {
 		waitForVisibilityOfElement(CanadaObj.SEARCHBY_DROPDOWN, "Quick Search");
 		if (isElementPresent(CanadaObj.SEARCHBY_DROPDOWN, "Quick Search")) {
-			((JavascriptExecutor) driver).executeScript("window.scrollBy(0, +420)", "");
+			((JavascriptExecutor) driver).executeScript("window.scrollBy(0, +320)", "");
 			click(CanadaObj.SEARCHBY_DROPDOWN, "SearchBy");
 			click(CanadaObj.getSearchByTextOrder(searchBy), "Search By");
 			click(QUICK_SEARCH_TEXT, "Click on Text");
 			type(QUICK_SEARCH_TEXT, text, "Text ");
-			Thread.sleep(5000);
+			
 			click(CanadaObj.SEARCH, "Search");
 			waitForVisibilityOfElement(InvoiceHistoryObj.searchResultsTable, "search results table");
 			if (isElementPresent(InvoiceHistoryObj.searchResultsTable, "search results table")) {
