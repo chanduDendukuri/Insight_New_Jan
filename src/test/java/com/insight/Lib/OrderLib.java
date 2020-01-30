@@ -1160,7 +1160,7 @@ List<String> orderdetails = new ArrayList<String>();
 	 */
 	public void clickOnSideMenuSelectAccountToolOptions(String toolsMenuName,String dropDown) throws Throwable{
 		Thread.sleep(20000);
-		if(isElementPresent(InvoiceHistoryLib.COSE_ACCOUNT_TOOLS, "close account tools")) {
+		if(isVisibleOnly(InvoiceHistoryLib.COSE_ACCOUNT_TOOLS, "close account tools")) {
 			click(InvoiceHistoryLib.COSE_ACCOUNT_TOOLS, "close account tools");
 		}   
 		click(CommonObj.ACCOUNT_TOOLS,"Account tools menu icon");   
