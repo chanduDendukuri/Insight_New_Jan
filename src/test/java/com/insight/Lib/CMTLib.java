@@ -604,7 +604,7 @@ public  void verifyDashboard()throws Throwable {
 	 * @throws Throwable
 	 */
 	public void setPermissionsToDisable(String menuName, String userPermissions) throws Throwable {
-		click(getUsersTabMenus(menuName), "Roles And Permissions");
+			click(getUsersTabMenus(menuName), "Roles And Permissions");
 		if (isCheckBoxSelected(getUserPermission(userPermissions))) {
 			click(getUserPermission(userPermissions), "User permissions : " + userPermissions + " is OFF");
 			click(UPDATE_USER_BTN, "Update user button");
@@ -711,7 +711,9 @@ public  void verifyDashboard()throws Throwable {
 	 * @throws Throwable
 	 */
 	public void permissionFromDD(String userPermission, String optionDD) throws Throwable {
-		click(getPermissionDropDowns(userPermission), "permission drop down");
+		if (!isCheckBoxSelected(getUserPermission(userPermission))){
+			click(getPermissionDropDowns(userPermission), "permission drop down");
+		}
 		selectByVisibleText(getPermissionDropDowns(userPermission), optionDD, "permission drop down");
 		click(UPDATE_USER_BTN, "Update user button");
 		if (isElementPresent(PERMISSION_UPDATE_MSG, "update sucessful message")) {
@@ -3536,6 +3538,44 @@ public void verifyProductStandardsTitle() throws Throwable
 	{
 		isVisible(lblWebGroupManagementUsers, "WebGroupsManagementUsers page loaded");
 	}
-	
+
+	/*public void setPermissionsWithMultipleOptions(String menuName, String userPermissions) throws Throwable {
+		click(getUsersTabMenus(menuName), "Roles And Permissions");
+		Thread.sleep(3000);
+		String[] permissions1=userPermissions.split(",");
+		for (i = 0; i < permissions1.length; i++) {
+			setPermissions(data.get("Menu_Name"),permissions1[i]);
+		}
+
+		if (isCheckBoxSelected(getUserPermission(userPermissions))) {
+			LOG.info(userPermissions + " check box already checked: " + userPermissions);
+			reporter.SuccessReport(userPermissions, "check box already checked::" + userPermissions + " ON",
+					userPermissions + " ON");
+		} else {
+			click(getUserPermission(userPermissions), "User permissions: " + userPermissions);
+			click(UPDATE_USER_BTN, "Update user button");
+			waitForVisibilityOfElement(PERMISSION_UPDATE_MSG, "PERMISSION UPDATE MSG");
+			if (isElementPresent(PERMISSION_UPDATE_MSG, "update sucessful message")) {
+				reporter.SuccessReport("Verify the Sucess message ", "Permissions Updated Succesfully ",
+						"Permissions Updated Succesfully");
+			} else {
+				reporter.failureReport("Verify the sucess message", "Permissions are not Updated Succesfully", "",
+						driver);
+			}
+		}
+	}*/
+public void clickOnPermissionAndRolesMenu(String menuName) throws Throwable{
+	click(getUsersTabMenus(menuName), "Roles And Permissions");
+}
+
+
+public void getOrderNumbersFromRecentOrders() throws Throwable{
+	List<WebElement> order= driver.findElements(lblOrderNumber);
+
+	for (int i = 0; i < order.size(); i++) {
+		order.get(i).getText();
+		reporter.SuccessReport("Order Number ","Order numbers are ",order.get(i).getText());
+	}
+}
 }
 

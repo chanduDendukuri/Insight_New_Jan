@@ -151,7 +151,11 @@ public class ShipBillPayLib extends ShipBillPayObj {
 	public void verifyWEbsiteIsCannada() throws Throwable {
 		if (isElementPresent(ShipBillPayObj.CANNADA_WEBSITE, "Cannada website")) {
 			reporter.SuccessReport("Verify Canada Web Site Login", "User is Logged into Canada Insight", "Canada Webgrp::Web Group – Canada - Praxair");
-		} else {
+		}
+		if(getText(ShipBillPayObj.CANNADA_WEBSITE,"Canada").contains("Canada")){
+			reporter.SuccessReport("Verify Canada Web Site Login", "User is Logged into Canada Insight", "Canada Webgrp::Web Group – Canada - Praxair");
+		}
+		else {
 			reporter.failureReport("Verify Canada Web Site Login", "User is Not Logged into Canada Insight", "");
 		}
 	}

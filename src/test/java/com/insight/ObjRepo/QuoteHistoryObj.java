@@ -31,12 +31,13 @@ public class QuoteHistoryObj extends ActionEngine {
 	 public static By SelctedWebGroupName(String option) {
 		 return By.xpath("//div[@class='c-header__middle']//button[@id='webGroupDropdown']//span[contains(text(),'"+option+"')]");
 	 }
-	 public static By txt_AccountNumberUnderQuoteSearch = By.xpath("(//td[starts-with(@class,'footable-visible footable-last-column')])[1]");
+	 public static By txt_AccountNumberUnderQuoteSearch = By.xpath("//*[@id=\"quoteSearch\"]//td[6]");
 	 public static By getQuoteNumberinresults = By.xpath("(//td[starts-with(@class,'footable-visible footable')]//a)[3]");
-	 public static By txt_AccountName = By.xpath("//td[starts-with(@class,'footable-visible')]//following-sibling::td[contains(text(),'FREEPORT MCMORAN COPPER & GOLD INC')]");
+	 public static By txt_AccountName = By.xpath("//*[@id=\"quoteSearch\"]//td[5]");
 	 public static By getReferenceNumber(String quoteReferenceNum){
 		 return By.xpath("//table[@class='footable clean full footable-loaded default']//tbody//tr[1]//td//a[contains(.,'"+quoteReferenceNum+"')]");
 	 }
+	 public static By txtfield_name = By.xpath("//input[@name='referenceNumber']");
 	 public static By DESCENDING =By.xpath("//input[@id='descQuote']");
 		public static By radiobutton_descending = By.xpath("//input[@type='radio' and @id='descQuote']//following-sibling::span");
 	 public static By getAdvSearchQuoteFormTable(String quoteName){
@@ -52,7 +53,9 @@ public class QuoteHistoryObj extends ActionEngine {
 	 }
 
 	 public static By QUOTE_NAME = By.xpath("//table[@id='quoteSearch']//tr//td[1]/a");
-	 
+	 public static By btn_SSearch = By.xpath("//button[contains(text(),'Search')]");
+	 public static By referencenumberudersearchrersuts = By.xpath("//div[@class='search-results']//td[6]");
+	 public static By ordernumberudersearchrersuts = By.xpath("//div[@class='search-results']//td[2]");
 	 public static By DATE_ENTERED = By.xpath("//table[@id='quoteSearch']//tr//td[3]");
 	 public static By EXPIRATION_DATE = By.xpath("//table[@id='quoteSearch']//tr//td[4]/div");
 	 public static By ACCOUNTNAME = By.xpath("//table[@id='quoteSearch']//tr//td[5]");
@@ -79,9 +82,11 @@ public class QuoteHistoryObj extends ActionEngine {
 	 public static By getQuickSearchQuoteFormTable(String QuoteNumber){
 		 return By.xpath("//table[@id='quoteSearch']//tbody//tr//td//a[contains(.,'"+QuoteNumber+"')]");
 	 }
+	 public static By txt_Email = By.xpath("//input[@name='licenseInformation.CONTACT_EMAIL']");
+	 public static By txt_QuoteNumber = By.xpath("//div[@id=\"js-recent-quotes-target\"]//a");
 		public static By QUICK_SEARCH_TEXT = By.xpath("//input[@id='quoQuickInputNumber']");
 		 public static By getQuoteNumberFRomQuickSearchHistory(String quoteNumber){
-			 return By.xpath("//table[@id='quoteSearch']//tbody//tr//td//a[contains(.,'"+quoteNumber+"')]");
+			 return By.xpath("//table[@id='quoteSearch']//tbody//tr//td//a[contains(text(),'"+quoteNumber+"')]");
 		 }
 		 public static By ERROR_MSG = By.xpath("//div[@class='alert']");
 		 public static By QUICKSHOP_ERROR_MSG = By.xpath("//div[@class='hide-for-print']/following::span[@class='columns iw-message__text']");

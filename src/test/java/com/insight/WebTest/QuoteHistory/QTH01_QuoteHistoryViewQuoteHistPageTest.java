@@ -142,19 +142,12 @@ public class QTH01_QuoteHistoryViewQuoteHistPageTest extends QuoteHistoryLib {
 						SelectWebGroupfromdd("Briana");
 						canadaLib.clickOnSideMenuSelectAccountToolOptions(data.get("Tools_Menu"),
 								data.get("Tools_Menu_DD"));
-						invoiceHistoryLib.clickOnAdvancedSearch();
+						
 						//QHL.SelectAccountdropdownoption(data.get("AccountOption"));
+						invoiceHistoryLib.clickOnAdvancedSearch();
 						clickOnAdvancedSearchSearchButton();
 						VerifyQuoteDetailsunderQuoteSearch();
 						commonLib.clickLogOutLink(data.get("Logout_Header"));
-						
-						
-						
-						
-						
-						
-						
-						
 						
 
 					} catch (Exception e) {

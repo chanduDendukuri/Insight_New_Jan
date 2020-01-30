@@ -1,8 +1,12 @@
 package com.insight.Lib;
 
 import java.io.FileNotFoundException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
+
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 
 import com.insight.ObjRepo.CanadaObj;
@@ -317,8 +321,8 @@ public class OrderLib extends OrderObj{
 	 * This method is to verify the order and date in the receipt page.
 	 * @throws Throwable
 	 */
-	public void placeOrderAndVerifyReceiptOrderAndDate(String totalSummary) throws Throwable {
-
+	public List<String> placeOrderAndVerifyReceiptOrderAndDate(String totalSummary) throws Throwable {
+List<String> orderdetails = new ArrayList<String>();
 		clickUntil(PLACE_ORDER_BTN, RECEIPT_LABEL,"Place order button");
 		Thread.sleep(3000);
 
@@ -331,6 +335,7 @@ public class OrderLib extends OrderObj{
 					reporter.failureReport("Verify the Reference number ", "The reference number is null or empty. ","",driver);
 					
 				}else{
+					orderdetails.add(referenceNumber);
 					reporter.SuccessReport("Verify the Reference number ", "The reference number: " , "reference number: "+referenceNumber);
 				}
 			} else{
@@ -341,6 +346,7 @@ public class OrderLib extends OrderObj{
 			if (isElementPresent(TOTAL_AMOUNT, "Total Amount")) {
 				String totalAmount = getText(TOTAL_AMOUNT, "Total Amount");
 				if(totalSummary.equals(totalAmount)){
+					orderdetails.add(totalAmount);
 					reporter.SuccessReport("Verify the Total Amount ", "The Total Amount verification is successfull: " , "Total amount : "+totalAmount);
 				}else{
 					reporter.failureReport("Verify the Total Amount ", "The Total Amount is not updated correctly. ","",driver);
@@ -352,14 +358,20 @@ public class OrderLib extends OrderObj{
 			// date ordered verification
 			if (isElementPresent(DATE_ORDERED, "Date ordered")) {
 				String dateOrdered = getText(DATE_ORDERED, "Date ordered");
-				String actualDate = getCurrentDateTime("dd-MMM-yyyy");
+				//String actualDate = getCurrentDateTime("dd-MMM-yyyy");
+				Calendar c = Calendar.getInstance();
+				SimpleDateFormat sdf = new SimpleDateFormat("dd-MMM-yyyy");
+				c.add(Calendar.DATE, -1);
+				String actualDate  = sdf.format(c.getTime());
 				if (actualDate.contains(dateOrdered)) {
+					orderdetails.add(actualDate);
 					reporter.SuccessReport("Verify the Date ordered ", " date ordered verification is successfull","Ordered Date : "+dateOrdered);
 				} else {
 					reporter.failureReport("Verify the Date ordered ", " date ordered verification is not successfull : "+dateOrdered+" .Expected Date :",actualDate,driver);
 				}
 			}
 		}
+		return orderdetails;
 	}
 	
 	/**
@@ -717,7 +729,11 @@ public class OrderLib extends OrderObj{
 	}
 	
 	public void termsInPaymentInfo(String PONumber,String POReleaseNumber) throws Throwable {
-		if (isElementPresent(PAYMENT_METHOD_TERM, "Terms is selected in dropdown")) {
+		boolean status = false;
+		if (isVisibleOnly(PAYMENT_METHOD_TERM, "Terms is selected in dropdown")) {
+			status = true;
+			String s1 = Boolean.toString(status);
+			reporter.SuccessReport("Payment Method Terms ","Terms is selected in Dropdown list", "Terms selection status is:  "+s1);
 			type(PO_NUMBER, PONumber, "PO number");
 			if(isElementPresent(PO_REALESE_NUMBER,"PO Realese Number")){
 				  typeText(PO_REALESE_NUMBER, POReleaseNumber, "PO number");
@@ -850,12 +866,16 @@ public class OrderLib extends OrderObj{
 	 * @throws Throwable
 	 */
 	public void verifyPlaceOrderLabel() throws Throwable {
+		boolean status=false;
+
 		if (isElementPresent(PLACEORDER_LABL, "Cart header label displayed")) {
+			status= true;
+			String s1 = Boolean.toString(status);
 			reporter.SuccessReport("Verify wether user navigates to cart page or not",
-					"User successfully navigated to Place order page","PageDetails : Place order");
+					"User successfully navigated to Place order page","PageDetails : Place order is " + status);
 		} else {
 			reporter.failureReport("Verify wether user navigates to cart page or not",
-					"User not navigated to Place Order page","PageDetails :Place order",driver);
+					"User not navigated to Place Order page","PageDetails :Place order is " + status,driver);
 		}
 	}
 
@@ -1392,6 +1412,7 @@ public class OrderLib extends OrderObj{
 		click(SEARCH_BTN, "search button");
 		Thread.sleep(20000);
 		clickUntil(SEARCH_BTN,QUOTE_NUMBER_HISTORY_PAGE, "search button");
+		((JavascriptExecutor) driver).executeScript("window.scrollBy(0, 200)", "");
 		click(QUOTE_NUMBER_HISTORY_PAGE, "Quote Number");
 		if(isElementPresent(QUOTE_DETAILS_PAGE_LABEL, "Quote details page")){
 			reporter.SuccessReport("Verify Quote details page", "Quote details page is displayed","");
@@ -2216,4 +2237,41 @@ public class OrderLib extends OrderObj{
 		}
 		return  all_elements_text;
 	}
-}
+	public boolean verifyDefaultShipmentMethodsInShippingOptions() throws Throwable{
+		return isCheckBoxSelected(groundRadioButton);
+	}
+	public String getgroundOptionInShipmentOptionsPage() throws Throwable{
+		String a = null;
+		if(verifyDefaultShipmentMethodsInShippingOptions())
+		{
+		a=	getText(groundOptionInShipmentOptionsPage,"Ground value");
+		reporter.SuccessReport("Default shipment billoption"," The default shipment value is ",a);
+		}
+		return a;
+	}
+	public String getAirValueFromShipbillOptions()throws Throwable{
+		String a= getText(airOptionInShipmentOptionsPage,"Air");
+		String b = getText(airPriceValueInShipmentOptionsPage,"Air Value");
+		String c= a + " the amount is "+ b;
+		return c;
+	}
+	public String getGroundValueFromShipbillOptions()throws Throwable {
+		String a = getText(groundOptionInShipmentOptionsPage, "Ground");
+		String b = getText(groundPriceOptionInShipmentOptionsPage, "Ground Value");
+		String c = a + " the amount is " + b;
+
+		return c;
+	}
+	public void availabilityOfCanadaGroundInSummaryTotal() throws Throwable{
+		boolean status = false;
+		if(isVisibleOnly(canadaGroundInSummary,"Canada ground Summary")){
+			status = true;
+			String a = Boolean.toString(status);
+			reporter.SuccessReport("Canada Ground in summary total ", " Availability of canada ground is " ,getText(canadaGroundInSummary,"Canada Ground" )+" is "+ status);
+
+		}else{
+			reporter.failureReport("Canada Ground in summary total ", " Availability of canada ground is " ,getText(canadaGroundInSummary,"Canada Ground" +" is ") + "is "+status,driver);
+
+		}
+	}
+	}

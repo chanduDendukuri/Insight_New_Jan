@@ -71,8 +71,13 @@ public class IVH06_InvoiceDetailsHierachyTreeSelectAccountTest extends InvoiceHi
 							clickShowAccountHirerachy();
 							verifyAccountHirearchyPopUp();
 							verifyTree();
-							getAccountNumber(data.get("Account_Number"));
-							getAccountName(data.get("Account_Name"));
+							verifyGGPDetails();
+							verifyGPAccountHierarchyTree();
+							verifyRPAccountHierarchyTree();
+					/*
+					 * getAccountNumber(data.get("Account_Number"));
+					 * getAccountName(data.get("Account_Name"));
+					 */
 							verifyDefaultSelectedAccount(data.get("Default_Account"));
 							closeHierarchyPopUp();
 							// ######## custom list of accounts ################################
@@ -89,8 +94,13 @@ public class IVH06_InvoiceDetailsHierachyTreeSelectAccountTest extends InvoiceHi
 							clickShowAccountHirerachy();
 							verifyAccountHirearchyPopUp();
 							verifyTree();
-							getAccountNumber(data.get("Account_Number1"));
-							getAccountName(data.get("Account_Name1"));
+							verifyGGPDetails();
+							verifyGPAccountHierarchyTree();
+							verifyRPAccountHierarchyTree();
+					/*
+					 * getAccountNumber(data.get("Account_Number1"));
+					 * getAccountName(data.get("Account_Name1"));
+					 */
 							verifyDefaultSelectedAccount(data.get("Default_Account1"));
 							closeHierarchyPopUp();
 							
@@ -106,8 +116,13 @@ public class IVH06_InvoiceDetailsHierachyTreeSelectAccountTest extends InvoiceHi
 							clickShowAccountHirerachy();
 							verifyAccountHirearchyPopUp();
 							verifyTree();
-							getAccountNumber(data.get("Account_Number2"));
-							getAccountName(data.get("Account_Name2"));
+							verifyGGPDetails();
+							verifyGPAccountHierarchyTree();
+							verifyRPAccountHierarchyTree();
+					/*
+					 * getAccountNumber(data.get("Account_Number2"));
+					 * getAccountName(data.get("Account_Name2"));
+					 */
 							verifyDefaultSelectedAccount(data.get("Default_Account2"));
 							closeHierarchyPopUp();
 							
@@ -123,8 +138,13 @@ public class IVH06_InvoiceDetailsHierachyTreeSelectAccountTest extends InvoiceHi
 							clickShowAccountHirerachy();
 							verifyAccountHirearchyPopUp();
 							verifyTree();
-							getAccountNumber(data.get("Account_Number3"));
-							getAccountName(data.get("Account_Name3"));
+							verifyGGPDetails();
+							verifyGPAccountHierarchyTree();
+							verifyRPAccountHierarchyTree();
+					/*
+					 * getAccountNumber(data.get("Account_Number3"));
+					 * getAccountName(data.get("Account_Name3"));
+					 */
 							verifyDefaultSelectedAccount(data.get("Default_Account3"));
 							closeHierarchyPopUp();
 							
@@ -140,8 +160,13 @@ public class IVH06_InvoiceDetailsHierachyTreeSelectAccountTest extends InvoiceHi
 							clickShowAccountHirerachy();
 							verifyAccountHirearchyPopUp();
 							verifyTree();
-							getAccountNumber(data.get("Account_Number4"));
-							getAccountName(data.get("Account_Name"));
+							verifyGGPDetails();
+							verifyGPAccountHierarchyTree();
+							verifyRPAccountHierarchyTree();
+					/*
+					 * getAccountNumber(data.get("Account_Number4"));
+					 * getAccountName(data.get("Account_Name"));
+					 */
 							verifyDefaultSelectedAccount(data.get("Default_Account4"));
 							closeHierarchyPopUp();
 						

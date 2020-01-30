@@ -59,7 +59,7 @@ public void VerifyQuoteDetailsunderQuoteSearch() throws Throwable {
 	String QN = getText(getQuoteNumberinresults, "QuoteNumberinresults");
 	String AName = getText(txt_AccountName, "AccountName");
 	String ANumber = getText(txt_AccountNumberUnderQuoteSearch, "Account Number");
-	if(QN!=null && AName!=null && ANumber!=null) {
+	if(QN!="" && AName!="" && ANumber!="") {
 		reporter.SuccessReport("Quote details:", "Quote details are displayed as expected", ""+QN+" "+AName+ "" +ANumber+"");
 	}
 	else {
@@ -576,6 +576,7 @@ scrollUp();
 	public void verifyAndClickQuoteNumberOnHistory(String quoteNumber) throws Throwable {
 		waitForVisibilityOfElement(getQuoteNumberFRomQuickSearchHistory(quoteNumber), "Quote History");
 		if (isElementPresent(getQuoteNumberFRomQuickSearchHistory(quoteNumber), "Quote History ")) {
+			((JavascriptExecutor) driver).executeScript("window.scrollBy(0, 200)", "");
 			click(getQuoteNumberFRomQuickSearchHistory(quoteNumber),"click on QuoteNumber");
 			reporter.SuccessReport("Click on the Quote Number on Quote History", " Quote Numbers Exists and Clickedt", "");		
 		}
@@ -583,7 +584,18 @@ scrollUp();
 			reporter.failureReport("Click on the Quote Number on Quote History", " Quote Numbers Exists and Clickedt", "");	
 		}
 	}
-	
+	public void EntervalidEmail(String email) throws Throwable {
+		clearData(txt_Email);
+		type(txt_Email, email, "email field");
+	}
+	public void selectadvancedOrdersearchoption(String text,String testdata) throws Throwable {
+		selectByVisibleText(CanadaObj.ADVANCE_SEARCH_ORDERHISTORY, text, "ADVANCE_SEARCH_ORDERHISTORY");
+		type(txtfield_name, testdata, "reference field");
+		click(btn_SSearch, "Seach button", "");
+		waitForVisibilityOfElement(referencenumberudersearchrersuts, "referencenumberudersearchrersuts");
+		click(ordernumberudersearchrersuts, "ordernumberudersearchrersuts", "");
+		waitForVisibilityOfElement(CanadaObj.ORDER_DETAILS_PAGE, "ORDER_DETAILS_PAGE");
+	}
 	/**
 	 * Method is used to verify Delete this quote icon
 	 * 
@@ -626,11 +638,12 @@ scrollUp();
 	public void quickSearchAndVerifySearchResults(String searchBy, String text) throws Throwable {
 		waitForVisibilityOfElement(CanadaObj.SEARCHBY_DROPDOWN, "Quick Search");
 		if (isElementPresent(CanadaObj.SEARCHBY_DROPDOWN, "Quick Search")) {
+			((JavascriptExecutor) driver).executeScript("window.scrollBy(0, +320)", "");
 			click(CanadaObj.SEARCHBY_DROPDOWN, "SearchBy");
 			click(CanadaObj.getSearchByTextOrder(searchBy), "Search By");
 			click(QUICK_SEARCH_TEXT, "Click on Text");
 			type(QUICK_SEARCH_TEXT, text, "Text ");
-			Thread.sleep(5000);
+			
 			click(CanadaObj.SEARCH, "Search");
 			waitForVisibilityOfElement(InvoiceHistoryObj.searchResultsTable, "search results table");
 			if (isElementPresent(InvoiceHistoryObj.searchResultsTable, "search results table")) {
@@ -643,6 +656,10 @@ scrollUp();
 				}
 			} 
 		}
+	public String GetQuoteNumberfromQuoteHistory() throws Throwable {
+		String QuoteNumber = getText(txt_QuoteNumber, "Quote Number");
+		return QuoteNumber;
+	}
 	/**
 	 * Method is used to verify Quote History present
 	 * 
