@@ -248,7 +248,7 @@ public class CanadaObj extends ActionEngine {
 			public static By txtCurrencyCode=By.xpath("(//*[text()='EWR ']//..//following-sibling::div//span//span[@class='iw-currency__code'])[1]");
 
 			public static By lblInvoiceNumber=By.xpath("(//*[text()='Invoice Number: ']/following::dd)[1]");
-			public static By lblInvoiceDate=By.xpath("(//*[text()='Invoice Number: ']/following::dd)[1]");
+			public static By lblInvoiceDate=By.xpath("(//*[text()='Invoice Number: ']/following::dd)[2]");
 
 			public static By getAssetTagDetails = By.xpath("//*[@class='row asset-serial-numbers']");
 			public static By headerAssetSerial = By.xpath("//h3[text()='Asset/Serial numbers']");
