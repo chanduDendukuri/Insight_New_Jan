@@ -86,19 +86,26 @@ public class USM03_FCTWebCreateCoPassUserIPSTest  extends UserManagementLib {
 							cmtLib.updateUser();
 							cmtLib.clickCheckOutSettings(data.get("Check_out_Settings"));
 							cmtLib.selectOptionInCheckoutSettings(data.get("Payment_Options"));
-							// navigate to checkout settings >>  payment options
-							cmtLib.verifyPaymentOptionsInCheckOutSettings(data.get("Options"));
-							//cmtLib.selectedOptionPaymentMethod(data.get("SelectedOption"));
+							shipbilllib.verifyOptioninAllowedOptions(data.get("OptionTerms"));
+							shipbilllib.verifyOptioninAllowedOptions(data.get("OptionCreditCard"));
+							shipbilllib.verifyOptioninAllowedOptions(data.get("Options1"));
+							
 							commonLib.selectOptionInCheckoutSettings(data.get("Shipping_Options"));
 							cmtLib.verifyShippingOptions();
+							cmtLib.NoOptionOtherThanSLSinShippingOption(data.get("SLS"));
+							//Billing Address
+							cmtLib.selectOptionInCheckoutSettings(data.get("Billing_address"));
+							shipbilllib.verifyNoDefaultAddressBillingAddress();
+							cmtLib.DEFUALTCHECKBOX();
+							//Shipping Address
+							cmtLib.selectOptionInCheckoutSettings(data.get("Shipping_address"));
+							cmtLib.defualtShippingAddressCheckBox();
 							commonLib.verifyDefualtShippingSelectedOption();
+							//Payment
 							cmtLib.selectDefaultPaymentOption(data.get("Default_Payment_Option1"));
-							scrollUp();
-							cmtLib.hoverOnManageWebGroupsAndSelectOptions(data.get("Manage_Web_Grp_Options1"));
+							//Linked Account
+							cmtLib.clickCheckOutSettings(data.get("Manage_Web_Grp_Options1"));
 							verifydefualtLinkedAcc(data.get("Account_Number"));
-							cmtLib.hoverOnManageWebGroupsAndSelectOptions(data.get("Manage_Web_Grp_Options"));
-							String ContactName="CoPass "+userName;
-							cmtLib.searchForaUserAndSelect(userName,ContactName);
 							cmtLib.clickInformationTab(data.get("Information_Tab"));
 							cmtLib.clickOnUserURL();
 							cmtLib.verifyCreateAnAccountPage();
@@ -133,13 +140,15 @@ public class USM03_FCTWebCreateCoPassUserIPSTest  extends UserManagementLib {
 							}
 							cmtLib.verifyDDPermission(data.get("Permision4"),data.get("Option"));
 							cmtLib.verifyDDPermission(data.get("Permision5"),data.get("Option"));
-							cmtLib.verifyDDPermission(data.get("Permision6"),data.get("Option"));
+							//cmtLib.verifyDDPermission(data.get("Permision6"),data.get("Option"));
+							cmtLib.verifyDDPermission(data.get("Permision7"),data.get("Option2"));
 							cmtLib.updateUser();
-							cmtLib.hoverOnManageWebGroupsAndSelectOptions(data.get("Manage_Web_Grp_Options1"));
-							verifydefualtLinkedAcc(data.get("Account"));
+							cmtLib.clickCheckOutSettings(data.get("Manage_Web_Grp_Options1"));
+							verifydefualtLinkedAcc(data.get("Account_Number"));
+							cmtLib.clickCheckOutSettings(data.get("Check_out_Settings"));
 							cmtLib.selectOptionInCheckoutSettings(data.get("Payment_Options"));
 							Thread.sleep(3000);
-							cmtLib.selectDefaultPaymentOption(data.get("Default_Payment_Option1"));					
+							shipbilllib.verifyProcurmentOptioninAllowedOptions();
 							cmtLib.logoutSite();
 							
 						} catch (Exception e) {

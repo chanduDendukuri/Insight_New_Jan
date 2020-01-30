@@ -118,7 +118,7 @@ public class QTH13_CQTRecalculatesOnFreightChangeTest extends QuoteHistoryLib {
 						quoteHistoryLib.verifyShippingEstimateInCartSummary(data.get("Shiping_Carrier_Verify1"));
 						String shippingEstimateAmount1=shipbLib.getShippingEstimateAmount();
 						String summaryAmount = cartLib.getSummaryAmountInCart();
-						orderLib.placeOrderAndVerifyReceiptOrderAndDate(summaryAmount);
+						orderLib.placeOrderAndVerifyReceiptOrderAndDateQuoteHistory(summaryAmount);
 						shipbLib.clickOrderDetailsButtonInREceipt();
 						shipbLib.verifyShippingCarrierAFterReviewOrder(data.get("Shiping_Carrier_Verify_Receipt"),data.get("Shiping_Carrier_Verify_Receipt"));
 						commonLib.clickLogOutLink(data.get("Logout_Header"));

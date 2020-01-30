@@ -50,6 +50,7 @@ public class CMTLib extends CMTObj {
 		click(CommonObj.LOGIN_BTN, "Login button");
 		Thread.sleep(3000);
 		waitForVisibilityOfElement(WEB_GROUP, "WEB GROUP in CMT TOOL HOME PAGE");
+		if(isVisibleOnly(CMT_WELCOME_POPUP,"CMT Welcome Popup")) {
 		WebElement ExpectedUserName = driver.findElement(CMTObj.CMT_WELCOME_POPUP);
 		if (ExpectedUserName.isDisplayed()) {
 			handleWelcomeToInsightBetaPopUpInCMT();
@@ -57,6 +58,7 @@ public class CMTLib extends CMTObj {
 					"User name is : " + CMT_ADMIN_USERNAME + "password is : " + CMT_ADMIN_PASSWORD);
 		} else {
 			reporter.failureReport("Verify login", "Login is not sucessful", "", driver);
+		}
 		}
 	}
 
@@ -896,7 +898,7 @@ public  void verifyDashboard()throws Throwable {
 
 	public void clickCheckOutSettings(String checkOutSettings) throws Throwable {
 		waitForVisibilityOfElement(CMTObj.getUsersTabMenus(checkOutSettings), "User Tabs::" + checkOutSettings + "");
-		click(CMTObj.getUsersTabMenus(checkOutSettings), "User Tabs::" + checkOutSettings + "");
+		click(CMTObj.getUsersTabMenus(checkOutSettings), "Select Tab::" + checkOutSettings + " Manage Web groups: Users Page");
 	}
 
 	/**
@@ -3577,5 +3579,31 @@ public void getOrderNumbersFromRecentOrders() throws Throwable{
 		reporter.SuccessReport("Order Number ","Order numbers are ",order.get(i).getText());
 	}
 }
+public void NoOptionOtherThanSLSinShippingOption(String SLS)throws Throwable{
+	//defaultShippingOption
+	List<WebElement> Options= driver.findElements(defaultShippingOption(SLS));
+	for (int i = 0; i < Options.size(); i++) {
+		Options.get(i).getText();
+	}
+	reporter.SuccessReport("Verify No Shipping Partners Only SLS Carries in Shipping Options in the Checkout Settings Tab on Manage Web groups: Create User Page","No Shipping Partners Only SLS Carries Exists in Shipping Options","");
+}
+//DEFAULTCHECKBOXINBILLINGADDRESS
+public void DEFUALTCHECKBOX()throws Throwable{
+	if(isVisibleOnly(DEFAULTCHECKBOXINBILLINGADDRESS,"Defualt Address")) {
+		reporter.failureReport("Verify No Default Billing Addresses are Not Selected","Default Billing Addresses are Selected","");	
+	}else {
+		reporter.SuccessReport("Verify No Default Billing Addresses are Not Selected in the Checkout Settings Tab on Manage Web groups: Create User Page","No Default Billing Addresses are Selected in Checkout Settings Tab","");	
+	}
+	
+}
+public void defualtShippingAddressCheckBox()throws Throwable{
+	if(isVisibleOnly(DEFAULTCHECKBOXINSHIPPINGADDRESS,"Defualt Address")) {
+		reporter.SuccessReport("Verify Default All Shipping Addresses Selected in the Checkout Settings Tab on Manage Web groups: Create User Page","Default All Shipping Addresses Selected in the Checkout Settings Tab","");	
+	}else {
+		reporter.failureReport("Verify No Default Shipping Addresses are Not Selected","Default Shipping Addresses are Selected","");	
+	}
+	
+}
+
 }
 

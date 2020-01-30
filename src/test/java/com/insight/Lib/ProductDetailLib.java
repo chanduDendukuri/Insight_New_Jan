@@ -377,7 +377,7 @@ public class ProductDetailLib extends ProductDetailObj {
 		List<WebElement> myList2 = driver.findElements(OVERVIEWTABCONTENTS);
 		for (int i = 0; i < myList2.size(); i++) {
 			if (myList2.get(i).isDisplayed()) {
-				reporter.SuccessReport("over view tab contents", "" + myList2.get(i).getText() + "", "");
+				reporter.SuccessReport("Verify over view tab contents are getting Loaded", "Over View Tab Contents", "" + myList2.get(i).getText() +"");
 			} else {
 				reporter.failureReport("over view tab contents Not Visible ", "over view tab contents Not Visible ",
 						"");
@@ -422,7 +422,7 @@ public class ProductDetailLib extends ProductDetailObj {
 	}
 
 	/**
-	 * This method is to update quantity
+	 * This method is to update quantity//WARRANTIES
 	 * 
 	 * @throws Throwable
 	 */
@@ -970,11 +970,10 @@ public class ProductDetailLib extends ProductDetailObj {
 	 * @throws Throwable
 	 */
 	public void verifySpecifications(String Tab) throws Throwable {
-		click(SPECIFICATIONS_TAB,"Specification Tab");
 		if (isVisibleOnly(SPECTIFICATIONS(Tab), "Specifications")) {
-			reporter.SuccessReport("Verify Technical Specifications on specifications Tab", "Technical specification on specifications Tab exists", "Tech Spec"+Tab);
+			reporter.SuccessReport("Verify Technical Specifications on specifications Tab", "Technical specification on specifications Tab exists", Tab);
 		} else {
-			reporter.failureReport("Verify Technical Specifications on specifications Tab", "Technical specification on specifications Tab Does not exists","Tech Spec"+Tab);
+			reporter.failureReport("Verify Technical Specifications on specifications Tab", "Technical specification on specifications Tab Does not exists",Tab);
 		}
 	}
 	/**
@@ -987,6 +986,53 @@ public class ProductDetailLib extends ProductDetailObj {
 			reporter.failureReport("Insight Home Page", "Insight Home does Page Exists","");
 		}	
 			}
+	
+	
+	public void clickOnWarrenties() throws Throwable{
+		click(WARRANTIES,"Warranties Tab");
+	}//WARRENYADDTOCART
+	
+
+	public String clickOnWarrentiesAddToCart() throws Throwable{
+		String MfrNum=getText(MFRNUMOFWARRENTY,"MfrNum of Warrenty").replace("Insight Part #:", " ").replace("Mfr Part #:", " ").replace("|", "").trim();
+		System.out.println(MfrNum);
+		click(WARRENYADDTOCART,"Add to cart Button of ::Mfr Num # "+MfrNum+" in Warranties Tab ");
+		return MfrNum;
+	}
+
+	public String clickOnAccessoriesAddToCart() throws Throwable{
+		String MfrNum=getText(MFRNUMOFACCESSORIES,"MfrNum of Warrenty").replace("|", "").replace("Insight Part #:", "").replace("Mfr Part #:", "").trim();
+		System.out.println(MfrNum);
+		String MfrNumumber[]=MfrNum.split(" ");
+		System.out.println(MfrNumumber[0]);
+		click(ACCESSORIESADDTOCART,"Add to cart Button of:: Mfr Num #"+MfrNum+" in accessories Tab");
+		return MfrNumumber[0].trim();
+	}
+	public void clickOnAccessories() throws Throwable{
+		click(ACCESSORIESTAB,"ACCESSORIES Tab");
+	}	
+	public void clickOnSpecification() throws Throwable{
+	click(SPECIFICATIONS_TAB,"Specification Tab");
+	}
+	public void clickonAddWarentyincartPage()throws Throwable{
+		click(ADDWARRENTIEINCARTPAGE,"Add warranty in Cart Page");
+		waitForVisibilityOfElement(WARENTYPOPUP,"Add Warrenties Popup");
+	 click(RDIOBUTTONOFWARRENTY,"Radio Button of Warrenty");
+	 click(ADDTOCARTBUTTONINWARRENTIESPOPUP,"Add To Cart Button in Warrenties PopUp");
+	 isElementPresent(ADDEDWARRENTY,"Added Warrenty"+getText(ADDEDWARRENTY,"Added Warrenty Name").trim());
+	}
+	public String clickOnWarrentiesTabAddToCart() throws Throwable{
+		String MfrNum=getText(MFRNUMOFWARRENTY,"MfrNum of Warrenty").replace("Insight Part #:", " ").replace("Mfr Part #:", " ").replace("|", "").trim();
+		System.out.println(MfrNum);
+		String MfrNumumber[]=MfrNum.split(" ");
+		click(WARRENYADDTOCART,"Add to cart Button of ::Mfr Num # "+MfrNumumber[0]+" in Warranties Tab ");
+		return MfrNumumber[0].trim();
+	}
+	
+	
+	
+	
+	
 }
 
 

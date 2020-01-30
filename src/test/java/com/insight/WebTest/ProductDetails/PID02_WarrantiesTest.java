@@ -61,30 +61,24 @@ public class PID02_WarrantiesTest extends ActionEngine{
                    //Login
 					cmtLib.loginToCMTSearchWebGrpAndUser(data.get("Header"), data.get("WebGrp"),
 							data.get("LnameEmailUname"), data.get("Contact_Name"));
-
 					cmtLib.clickOnloginAs();
 					switchToChildWindow();
-
 					commonLib.searchProduct(data.get("SearchItem1"));
-					commonLib.addToCartAndVerify();
-					Thread.sleep(2000);
-					orderLib.continueToCheckOutAddWarrantyAndVerifyTheCart(data.get("Warrenty_Part_Number"));
-					commonLib.clickLogOutLink(data.get("Logout_Header"));
-					cmtLib.handleWelcomeToInsightBetaPopUp();
+					productdetLib.getProductNameInProductDetailPage(data.get("SearchItem1"));
+					productdetLib.getMFRNumberInProductInfopage();
+					productdetLib.clickOnWarrenties();
+					Thread.sleep(5000);
+					Thread.sleep(5000);
+					String MfrNum=productdetLib.clickOnWarrentiesTabAddToCart();
+					commonLib.continueToShopping();
 					commonLib.searchProduct(data.get("SearchItem2"));
-
-					// verify warranties part number in product details page
-					productDisplayInfoLib.clickOnWarrantiesTabOnProductDetailsPage();
-					productDisplayInfoLib.verifyMfrpartInWarrantiesTab();
-					String partNumber = productdetLib.getMFRNumberInProductInfopageInWarrentiesTab();
-
-					productdetLib.updateQuantityInWarrentiesTab(data.get("quantity"));
-					productdetLib.clickAddToCartInWarrientiesTab();
-//					commonLib.continueToShopping();
-//					commonLib.clickCart();
+					productdetLib.getProductNameInProductDetailPage(data.get("SearchItem1"));
+					productdetLib.getMFRNumberInProductInfopage();
+					commonLib.addToCartAndVerify();
 					canadaLib.continueToCheckout();
-					cartLib.verifyItemInCart(partNumber);
-					// fnCloseTest();
+					cartLib.verifyItemInCart(MfrNum);
+					productdetLib.clickonAddWarentyincartPage();
+					commonLib.clickLogOutLink(data.get("Logout_Header"));
 					System.out.println("Test completed");
 				} catch (Exception e) {
 					ReportStatus.blnStatus = false;
