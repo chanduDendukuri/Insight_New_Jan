@@ -122,6 +122,7 @@ public class QTH03_QuoteHistoryViewSearchResultsTest extends QuoteHistoryLib {
 							verifyQuoteHistoryPageOpened();	
 							invoiceHistoryLib.clickOnAdvancedSearch();
 							invoiceHistoryLib.datePickerStartDateCalender(data.get("FromDate"));
+							invoiceHistoryLib.datePickerEndDateCalender(data.get("ToDate"));
 							invoiceHistoryLib.clickOnSearchUnderAdvancedSearch();
 							invoiceHistoryLib.verifySearchResultsAreDisplayed();
 							clickExportToExcelButton();

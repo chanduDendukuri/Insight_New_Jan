@@ -74,22 +74,12 @@ public class IVH06_InvoiceDetailsHierachyTreeSelectAccountTest extends InvoiceHi
 							verifyGGPDetails();
 							verifyGPAccountHierarchyTree();
 							verifyRPAccountHierarchyTree();
-					/*
-					 * getAccountNumber(data.get("Account_Number"));
-					 * getAccountName(data.get("Account_Name"));
-					 */
 							verifyDefaultSelectedAccount(data.get("Default_Account"));
 							closeHierarchyPopUp();
 							// ######## custom list of accounts ################################
 							
 							// ######## GGP ################################
-							canadaLib.clickOnSideMenuSelectAccountToolOptions(data.get("Tools_Menu"),
-									data.get("Tools_Menu_DD"));
-							canadaLib.verifyInvoiceHistoryPageOpened();
-							invoiceHistoryLib.clickOnAdvancedSearch();
-							scrollUp();
-							verifySelectedOptionInAccountSelectionDD(data.get("Default_Option"));
-							closeAccountHirearchyDropdow();
+	
 							setAccountHirerachydropdown(data.get("GGP"));
 							clickShowAccountHirerachy();
 							verifyAccountHirearchyPopUp();
@@ -97,21 +87,12 @@ public class IVH06_InvoiceDetailsHierachyTreeSelectAccountTest extends InvoiceHi
 							verifyGGPDetails();
 							verifyGPAccountHierarchyTree();
 							verifyRPAccountHierarchyTree();
-					/*
-					 * getAccountNumber(data.get("Account_Number1"));
-					 * getAccountName(data.get("Account_Name1"));
-					 */
 							verifyDefaultSelectedAccount(data.get("Default_Account1"));
 							closeHierarchyPopUp();
 							
 							// ######## GP ################################
-							canadaLib.clickOnSideMenuSelectAccountToolOptions(data.get("Tools_Menu"),
-									data.get("Tools_Menu_DD"));
-							canadaLib.verifyInvoiceHistoryPageOpened();
-							invoiceHistoryLib.clickOnAdvancedSearch();
-							scrollUp();
-							verifySelectedOptionInAccountSelectionDD(data.get("Default_Option"));
-							closeAccountHirearchyDropdow();
+			
+							
 							setAccountHirerachydropdown(data.get("GP"));
 							clickShowAccountHirerachy();
 							verifyAccountHirearchyPopUp();
@@ -119,21 +100,12 @@ public class IVH06_InvoiceDetailsHierachyTreeSelectAccountTest extends InvoiceHi
 							verifyGGPDetails();
 							verifyGPAccountHierarchyTree();
 							verifyRPAccountHierarchyTree();
-					/*
-					 * getAccountNumber(data.get("Account_Number2"));
-					 * getAccountName(data.get("Account_Name2"));
-					 */
 							verifyDefaultSelectedAccount(data.get("Default_Account2"));
 							closeHierarchyPopUp();
 							
 							// ######## RP ################################
-							canadaLib.clickOnSideMenuSelectAccountToolOptions(data.get("Tools_Menu"),
-									data.get("Tools_Menu_DD"));
-							canadaLib.verifyInvoiceHistoryPageOpened();
-							invoiceHistoryLib.clickOnAdvancedSearch();
-							scrollUp();
-							verifySelectedOptionInAccountSelectionDD(data.get("Default_Option"));
-							closeAccountHirearchyDropdow();
+		
+							
 							setAccountHirerachydropdown(data.get("RP"));
 							clickShowAccountHirerachy();
 							verifyAccountHirearchyPopUp();
@@ -141,21 +113,11 @@ public class IVH06_InvoiceDetailsHierachyTreeSelectAccountTest extends InvoiceHi
 							verifyGGPDetails();
 							verifyGPAccountHierarchyTree();
 							verifyRPAccountHierarchyTree();
-					/*
-					 * getAccountNumber(data.get("Account_Number3"));
-					 * getAccountName(data.get("Account_Name3"));
-					 */
 							verifyDefaultSelectedAccount(data.get("Default_Account3"));
 							closeHierarchyPopUp();
 							
 							// ######## All my accounts ################################
-							canadaLib.clickOnSideMenuSelectAccountToolOptions(data.get("Tools_Menu"),
-									data.get("Tools_Menu_DD"));
-							canadaLib.verifyInvoiceHistoryPageOpened();
-							invoiceHistoryLib.clickOnAdvancedSearch();
-							scrollUp();
-							verifySelectedOptionInAccountSelectionDD(data.get("Default_Option"));
-							closeAccountHirearchyDropdow();
+							
 							setAccountHirerachydropdown(data.get("Default_Option"));
 							clickShowAccountHirerachy();
 							verifyAccountHirearchyPopUp();
@@ -163,10 +125,6 @@ public class IVH06_InvoiceDetailsHierachyTreeSelectAccountTest extends InvoiceHi
 							verifyGGPDetails();
 							verifyGPAccountHierarchyTree();
 							verifyRPAccountHierarchyTree();
-					/*
-					 * getAccountNumber(data.get("Account_Number4"));
-					 * getAccountName(data.get("Account_Name"));
-					 */
 							verifyDefaultSelectedAccount(data.get("Default_Account4"));
 							closeHierarchyPopUp();
 						

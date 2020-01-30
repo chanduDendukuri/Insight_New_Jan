@@ -71,8 +71,9 @@ public class IVH10_InvoiceHistoryViewInvoiceSearchResultsTest extends InvoiceHis
 						verifySearchResultsAreDisplayed();
 						verifyBackToSearchLink();
 						verifyExportToExcelLink();
+						verifyExcelDownload();
 						verifyPagination();
-					verifySearchResultsHeaders(data.get("Search_Results_Headers"));
+						verifySearchResultsHeaders(data.get("Search_Results_Headers"));
 						scrollToBottomWithCordinate(data.get("Scroll_length"));
 						canadaLib.invoiceNumberLink();
 						canadaLib.verifyInvoiceHistoryPageOpened();
