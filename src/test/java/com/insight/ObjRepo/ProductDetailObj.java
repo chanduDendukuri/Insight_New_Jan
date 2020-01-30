@@ -91,7 +91,7 @@ public class ProductDetailObj extends ActionEngine {
 	public static By OVERVIEWTAB = By.xpath("//div[@class='product-details-vtabs']//p/a[contains(text(),'overview')]");
 
 	public static By OVERVIEWTABCONTENTS = By
-			.xpath("//div[@id='tpl-specs-overview-target']//table[@class='product-specs']//td");
+			.xpath("//div[@id='tpl-specs-overview-target']//table[@class='product-specs']//tr");
 	public static By PRODUCTDETAILS = By.xpath("//table[@class='product-specs']//tr/td");
 	public static By ADDACCESSORIES = By.xpath("//a[@class='section-title' and contains(text(),'Add Accessories')]");
 	public static By UPDATEQUNTITY = By.xpath(
@@ -124,6 +124,7 @@ public class ProductDetailObj extends ActionEngine {
 	public static By RATING_PRODUCTDISPLAY = By.xpath("//a[@class='js-ratings-reviews']");
 	public static By REVIEWSTAB_PRODUCTDISPLAY = By
 			.xpath("//section[@id='detail-reviews']/p/a[contains(text(),'Reviews')]");
+	public static By WARRANTIES=By.xpath("//a[@data-gtm-info='WARRANTIES']");
 	public static By LEAVEAREVIEW_BUTTON = By.xpath("//button[contains(text(),'Leave a review') and @type='button']");
 	public static By REVIEWSUBMISSION_FORM = By.xpath("//div[@id='review-submission-modal']");
 	public static By REVIEWSSYAMBOLS = By.xpath("//div[@class='o-grid__item o-grid__item--shrink u-show@tablet']//div[@class='c-star-rating c-star-rating--editable c-star-rating']/label");
@@ -161,7 +162,16 @@ public class ProductDetailObj extends ActionEngine {
 	public static By SPECTIFICATIONS(String Tab) {
 	return By.xpath("//div[@id='tpl-specs-specs-target']//div[@class='ccs-ds-extendedSpec-header' and contains(text(),'"+Tab+"')]");
 	}
+	public static By WARRENYADDTOCART = By.xpath("//section[@id='detail-warranties']//div[@class='add-to-order-wrapper']/a");
+     public static By MFRNUMOFWARRENTY=By.xpath("//section[@id='detail-warranties']//div[@class='product-details']");
+     public static By MFRNUMOFACCESSORIES=By.xpath("//section[@id='detail-accessories']//div[@class='product-details']");
+      public static By ACCESSORIESTAB=By.xpath("//a[@data-gtm-info='ACCESSORIES']");      
+      public static By ACCESSORIESADDTOCART=By.xpath("//section[@id='detail-accessories']//div[@class='add-to-order-wrapper']/a");
 
-
+      public static By ADDWARRENTIEINCARTPAGE=By.xpath("//span[@class='cart__table-col cart-item__add-warranty']");
+     public static By WARENTYPOPUP=By.xpath("//h3[@class='iw-modal__heading']");
+     public static By RDIOBUTTONOFWARRENTY=By.xpath("//input[@name='warrantyItemRadio']");
+   public static By ADDTOCARTBUTTONINWARRENTIESPOPUP=By.xpath("//button[@class='button expanded no-margin-bot']");
+   public static By ADDEDWARRENTY=By.xpath("//p[@class='selected-warranty__item-desc']");
 
 }
