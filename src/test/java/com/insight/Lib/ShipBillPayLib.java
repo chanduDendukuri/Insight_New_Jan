@@ -407,7 +407,7 @@ public class ShipBillPayLib extends ShipBillPayObj {
 		} else {
 			reporter.failureReport("Stored address is Not selected", "Stored address is Not selected", "");
 		}
-		getText(SHIPPING_ADDRES,"Shiping address Company"+Text).trim();
+		getText(SHIPPING_ADDRES,"Shiping address Company :"+Text).trim();
 		click(CONTINUE_BUTTONSTOREDADDRESS, "continue Button of Stored Address");
 
 	}
@@ -1254,7 +1254,7 @@ public class ShipBillPayLib extends ShipBillPayObj {
 			}
 		}
 		public void selectCarrierandGrounOption(String carrier) throws Throwable {
-			clickUntil(OrderObj.SELECTARRIER,OrderObj.verifyCarrier(carrier), "carrier Drop down");
+			clickUntil(OrderObj.SELECT_CARRIER_DD,OrderObj.verifyCarrier(carrier), "carrier Drop down");
 			if (isElementPresent(OrderObj.verifyCarrier(carrier), "shipping carrier in Dropdown"+carrier)) {
 				click(OrderObj.verifyCarrier(carrier), "From Carrier Drop down"+carrier);
 			}
@@ -1263,6 +1263,7 @@ public class ShipBillPayLib extends ShipBillPayObj {
 			}else {
 				click(GROUND_CAREER,"Ground- USD $30.46Option Exists and Selected");
 			}
+			click(CONTINUE_BTN, "Continue button of Shipping Options");
 		}
 }
 
