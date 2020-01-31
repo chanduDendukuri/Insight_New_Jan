@@ -67,7 +67,6 @@ public class REP11_AccountsByRegionTest  extends ReportingLib {
 							cmtLib.manageUsers();
 							clickOnReportingAdminLogin();
 							VerifyWelcomePage(data.get("Tools_Menu"),data.get("Tools_Menu_DD"));
-						
 							clickOnReportOptions(data.get("ReportOption"));
 							canadaLib.verifyReportsPage();
 							canadaLib.verifySelectReport(data.get("SelectReport"));

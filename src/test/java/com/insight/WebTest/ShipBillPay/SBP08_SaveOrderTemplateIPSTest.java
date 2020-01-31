@@ -63,7 +63,7 @@ public class SBP08_SaveOrderTemplateIPSTest extends ShipBillPayLib{
 				cmtLib.setPermissions(data.get("Menu_Name"), data.get("Set_Permission"));
 				cmtLib.loginAsAdminCMT();
 				canadaLib.clickOnSideMenuSelectAccountToolOptions(data.get("toolsMenuName"),data.get("dropDown"));	
-				//deleteCart("");
+				deletesavedcartsortamplates();
 				commonLib.searchProduct(data.get("Search_Item1"));
 				verifyPartNumInProductDetailPage(data.get("Search_Item1"));
 				VerifyQuantity();
@@ -119,8 +119,9 @@ public class SBP08_SaveOrderTemplateIPSTest extends ShipBillPayLib{
 				shipbLib.Selectshippingcarrier();
 				VerifySoldtoAddress(data.get("Text"));
 				orderLib.billingAddressContinueButton(); 
+				scrollUp();
 				//Deletesavedcarts
-				shipbLib.Deletesavedcarts(Tamplate, data.get("toolsMenuName"), data.get("dropDown"));
+				shipbLib.Deletesavedcarts(data.get("toolsMenuName"), data.get("dropDown"),Tamplate);
 				commonLib.clickLogOutLink(data.get("Logout_Header"));
 				
 

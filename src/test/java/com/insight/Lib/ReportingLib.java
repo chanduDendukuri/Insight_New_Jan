@@ -806,9 +806,9 @@ public class ReportingLib extends ReportsObj {
 	 */
 	public void clickOnReportOptions(String reportOption) throws Throwable {
 		click(STANDARDREPORTS, "standard reports", "standard reports");
-		waitForVisibilityOfElement(getReportOptions(reportOption), "Standard Report Options");
+		waitForVisibilityOfElement(getReportOptions(reportOption), "Standard Report Options::"+reportOption);
 		if (isElementPresent(getReportOptions(reportOption), "Standard Report Options", true)){		
-		click(getReportOptions(reportOption), "Enter A Card Button");
+		click(getReportOptions(reportOption), "Enter A Card Button "+reportOption);
 		reporter.SuccessReport("Click "+reportOption+" on Reports Page" ,
 				""+reportOption+" Reports Page exists  ", "");
 		}

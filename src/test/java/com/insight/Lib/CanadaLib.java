@@ -1035,9 +1035,9 @@ public void selectOption() throws Throwable {
 	waitForVisibilityOfElement(COORPORATE_ENTERPRISE, "JobTitle");
 	if (isElementPresent(COORPORATE_ENTERPRISE, "OtherOptions", true)){
 		click(COORPORATE_ENTERPRISE, "Select ");
-		
+	}else {
+		reporter.failureReport("Verify option : I am shopping for: Corporate/Enterprise  ", "option : I am shopping for: Corporate/Enterprise does not exists", "", driver);
 	}
-	
 }
 
 

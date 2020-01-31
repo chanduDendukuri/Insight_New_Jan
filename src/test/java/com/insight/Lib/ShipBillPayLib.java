@@ -331,8 +331,7 @@ public class ShipBillPayLib extends ShipBillPayObj {
 	}
 
 	public void ReviewrequisitionnumPage() throws Throwable {
-		ClickRviewrequesition();
-		clickUntil(PLACE_REQUISITION_BUTTON, OrderObj.RECEIPT_LABEL, "Place requisition button is clicked");
+	    clickUntil(PLACE_REQUISITION_BUTTON, OrderObj.RECEIPT_LABEL, "Place requisition button is clicked");
 		Thread.sleep(3000);
 		if (isElementPresent(OrderObj.RECEIPT_LABEL, "Recipt Page is Opened")) {
 			waitForVisibilityOfElement(REFERENCE_NUMBER, "Reference Number");
@@ -407,7 +406,7 @@ public class ShipBillPayLib extends ShipBillPayObj {
 		} else {
 			reporter.failureReport("Stored address is Not selected", "Stored address is Not selected", "");
 		}
-		getText(SHIPPING_ADDRES,"Shiping address Company"+Text).trim();
+		getText(SHIPPING_ADDRES,"Shiping address Company :"+Text).trim();
 		click(CONTINUE_BUTTONSTOREDADDRESS, "continue Button of Stored Address");
 
 	}
@@ -1039,6 +1038,23 @@ public class ShipBillPayLib extends ShipBillPayObj {
 				reporter.SuccessReport("verify saved carts and delete", "saved carts already deleted", "");
 			}
 		}
+
+		public void deletesavedcartsortamplates() throws Throwable {
+			List<WebElement> myList = driver.findElements(CartObj.DELETEBTN);
+			if (isElementPresent(CartObj.DELETEBTN, "error message")) {
+			for (int i = 0; i < myList.size(); i++) {
+			 myList.get(i).click();
+			 waitForVisibilityOfElement(CartObj.YES_BUTTON_INCONFORMATION_POP_UP, "Yes in conformation pop up");
+				click(CartObj.YES_BUTTON_INCONFORMATION_POP_UP, "Yes in conformation pop up");
+				waitForVisibilityOfElement(CartObj.DELETE_CART_MEASSAGE, "ACCOUNT TOOLS");
+			}
+			reporter.SuccessReport("verifying Saved Carts\tamplates", "Saved carts Exists and Deleted: " , "");
+				} else {
+					reporter.SuccessReport("verifying Saved Carts\\tamplates", "Saved carts does not exists: ", "");
+				}
+		}
+		
+		
 			public void verifyPartNumInProductDetailPage(String Partnum) throws Throwable {
 				if (isVisibleOnly(partNum(Partnum), "PartNum")) {
 						reporter.SuccessReport("verify PartNum In ProductDetail Page::", "PartNum  Exists", Partnum);
@@ -1254,7 +1270,12 @@ public class ShipBillPayLib extends ShipBillPayObj {
 			}
 		}
 		public void selectCarrierandGrounOption(String carrier) throws Throwable {
-			clickUntil(OrderObj.SELECTARRIER,OrderObj.verifyCarrier(carrier), "carrier Drop down");
+			if(isVisibleOnly(OrderObj.SELECTCARRIERDD_FEDEX,"FedEx DD")) {
+				clickUntil(OrderObj.SELECTCARRIERDD_FEDEX,OrderObj.verifyCarrier(carrier), "carrier Drop down");	
+			}
+			if(isVisibleOnly(OrderObj.SELECT_CARRIER_DD,"FedEx DD")) {
+			clickUntil(OrderObj.SELECT_CARRIER_DD,OrderObj.verifyCarrier(carrier), "carrier Drop down");
+			}
 			if (isElementPresent(OrderObj.verifyCarrier(carrier), "shipping carrier in Dropdown"+carrier)) {
 				click(OrderObj.verifyCarrier(carrier), "From Carrier Drop down"+carrier);
 			}
@@ -1263,6 +1284,7 @@ public class ShipBillPayLib extends ShipBillPayObj {
 			}else {
 				click(GROUND_CAREER,"Ground- USD $30.46Option Exists and Selected");
 			}
+			click(CONTINUE_BTN, "Continue button of Shipping Options");
 		}
 }
 

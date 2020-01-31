@@ -109,7 +109,7 @@ public class SLP15_AdobeVIPQuoteConversion extends SLPLib{
 				     	clickapply();
 				     	Thread.sleep(2000);
 				     	// Copy to all 
-				     	verifyandClickcopytoallifexists(data.get("PartNum1"));
+				     	clickOnCopyToAllLink(data.get("PartNum1"));
 				     	String date2=getDeploydateOnCart(data.get("PartNum2"));
 				     	verifyDateAppliedToAllPartAfterCopyAll(date2, data.get("Date1"));
 				     	
@@ -133,7 +133,7 @@ public class SLP15_AdobeVIPQuoteConversion extends SLPLib{
 				        
                         clickSaveasQuote();
                         // verifying deploy date on quotes screen
-                        verifyProductDeployDate(data.get("Date1"));
+                        verifyProductDeployDate(data.get("Date1"),data.get("Unpaid"));
                         // verifying PA fields 
                         verifyPAFieldsOnQuotesScreen(data.get("PA"));
                         verifyPAFieldsOnQuotesScreen(data.get("PA1"));
@@ -145,7 +145,7 @@ public class SLP15_AdobeVIPQuoteConversion extends SLPLib{
                         String refNumber = orderLib.getQuoteReferenceNumber();
 				     	
 				        // verifying deploy date on quotes screen
-                        verifyProductDeployDate(data.get("Date1"));
+                        verifyProductDeployDate(data.get("Date1"),data.get("Unpaid"));
                         // verifying PA fields 
                         verifyPAFieldsOnQuotesScreen(data.get("PA"));
                         verifyPAFieldsOnQuotesScreen(data.get("PA1"));
