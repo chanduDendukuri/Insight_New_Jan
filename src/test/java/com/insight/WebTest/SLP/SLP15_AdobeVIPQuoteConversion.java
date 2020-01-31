@@ -59,7 +59,7 @@ public class SLP15_AdobeVIPQuoteConversion extends SLPLib{
 						ReportControl.intRowCount = intCounter;
 						Hashtable<String, String> data = TestUtil.getDataByRowNo("SLP15_AdobeVIPQuoteConversion", TestData, "SLP", intCounter);
 						TestEngineWeb.reporter
-								.initTestCaseDescription("SLPProrationMicrosoft");
+								.initTestCaseDescription("AdobeVIPQuoteConversion");
 						reporter.SuccessReport("Iteration Number : ",
 								"**************Iteration Number::  " + intCounter + " For:: " + data.get("LoginName") + " ::and:: "
 										+ data.get("Password") + " To Validate::" + data.get("errorMessage") + "  **************","");
@@ -178,11 +178,11 @@ public class SLP15_AdobeVIPQuoteConversion extends SLPLib{
                         verifyPAOnReceiptPage(data.get("PA")); 
                         verifyPAOnReceiptPage(data.get("PA1")); 
                         // Verify deploy date
-                        verifyDeploydateOnPlaceOrderPage(data.get("PartNum2"), data.get("Date2"));
+                        verifyDeploydateOnPlaceOrderPage(data.get("PartNum2"), data.get("Date1"));
                         verifyDeploydateOnPlaceOrderPage(data.get("PartNum1"), data.get("Date1"));
                         int item=Integer.valueOf(data.get("item_num"));
                         verifyManufacturerRequirementsOnPlaceOrderScreen(item);
-                        verifyManufacturerRequirementsOnPlaceOrderScreen(item+1);
+                        
                         String subTotalAmountOnPO=  sbpLib.getTotalAmountInCart(data.get("Subtotal")).replace("$", "").replace(",", "");
 				     	 verifySubTotalAmountsOnQuoteAndCartScreen(subTotalAmountOnPO, quotesubTotal);
                         //Place Order
