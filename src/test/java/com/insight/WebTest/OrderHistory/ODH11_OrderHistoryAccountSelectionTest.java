@@ -56,7 +56,7 @@ public class ODH11_OrderHistoryAccountSelectionTest extends OrderHistoryLib {
 								switchToChildWindow();
 								cmtLib.handleWelcomeToInsightBetaPopUp();
 								cmtLib.loginVerification(data.get("ContactName"));
-								invoiceHistoryLib.closeAccountTools();
+								//invoiceHistoryLib.closeAccountTools();
 								canadaLib.clickOnSideMenuSelectAccountToolOptions(data.get("Tools_Menu"),
 										data.get("Tools_Menu_DD"));
 								verifyOrderHistoryPage();
