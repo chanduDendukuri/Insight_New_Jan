@@ -1785,7 +1785,11 @@ public class CartLib extends ActionEngine {
 			reporter.failureReport("Verify cart page", "Cart page is not displayed", "", driver);
 		}
 	}
-
+public void getpartnumberIncartpage() throws Throwable {
+	getText(CartObj.Insightpartnumber, "Insightpartnumber");
+	getText(CartObj.MfrPartNumber, "Insightpartnumber");
+	
+}
 	/**
 	 * This method is to verify the contract is present in the cart page.
 	 * 

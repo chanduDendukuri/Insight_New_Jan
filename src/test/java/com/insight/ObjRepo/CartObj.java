@@ -25,7 +25,8 @@ public class CartObj extends CommonObj{
     public static By moreAvilablePrices(Integer index) {
 		return By.xpath("//div[@id='search-item-"+index+"']//a[text()='More Prices Available']");
 	}
-    
+    public static By Insightpartnumber = By.xpath("//div[@class='cart__item']//a//following-sibling::p[1]");
+    public static By MfrPartNumber = By.xpath("//div[@class='cart__item']//a//following-sibling::p[2]");
     public static By MORE_AVAILABLE_PRICE_IN_PRODUCT_INFO=By.xpath("//div[@class='prod-description-bottom']//a[text()='More Prices Available']");
     public static By CART_LABEL_ON_CART_PAGE=By.xpath("//h1[@class='shopping-cart__header-title'][text()='Cart']");
     public static By DEFAULT_CONTARCT=By.xpath("//div[@id='search-item-0']//p[@class='sewp-prices' and  contains(text(),'U.S. COMMUNITIE...')]");

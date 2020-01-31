@@ -577,7 +577,8 @@ List<String> orderdetails = new ArrayList<String>();
 	public void billingAddressContinueButton() throws Throwable{
 		//scrollToBottomWithCordinate("100");
 		//clickUntil(CONTINUE_BTN,CONTINUE_BTN,"Continue button of Shipping address");
-		 click(CONTINUE_BTN,"Continue button of Billing address");// clicking continue in Shipping address ,Shipping options
+		Thread.sleep(4000);
+		click(CONTINUE_BTN,"Continue button of Billing address");// clicking continue in Shipping address ,Shipping options
 		 Thread.sleep(1000);
 	  }
 	/**
@@ -1423,7 +1424,7 @@ List<String> orderdetails = new ArrayList<String>();
 	public void createQuote(String quoteName) throws Throwable{
 		clickUntil(CartObj.SAVE_AS_QUOTE,QUOTE_NAME ,"Save as quote Link");
 		type(QUOTE_NAME,quoteName, "Quote name");
-		scrollToBottomWithCordinate("800");
+		scrollToBottomWithCordinate("600");
 		click(SAVE_AS_QUOTE_BTN, "save as quote button");
 		if(isElementPresent(SAVE_QUOTE_MSG, "Success message")){
 			 reporter.SuccessReport("Verify Success message", "Save as Quote - Successful message displayed","");

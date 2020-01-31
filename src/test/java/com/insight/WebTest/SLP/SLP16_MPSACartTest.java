@@ -16,6 +16,7 @@ import com.insight.Lib.SLPLib;
 import com.insight.Lib.SearchLib;
 import com.insight.Lib.ShipBillPayLib;
 import com.insight.accelerators.ReportControl;
+import com.insight.accelerators.TestEngineWeb;
 import com.insight.googledrive.ReportStatus;
 import com.insight.utilities.TestUtil;
 
@@ -46,6 +47,8 @@ public class SLP16_MPSACartTest extends SLPLib{
 				ReportControl.intRowCount = intCounter;
 				Hashtable<String, String> data = TestUtil.getDataByRowNo("SLP16_MPSACart", TestData, "SLP",
 						intCounter);
+				TestEngineWeb.reporter.initTestCaseDescription("MPSACart");
+				
 				// Test Steps execution
 				try {
 					fnOpenTest();

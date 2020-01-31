@@ -92,17 +92,26 @@ public class QTH11_ConvertQuote3rdPartyCarrierTest extends QuoteHistoryLib {
 
 					// Enable Quotes Check Box
 					cmtLib.setPermissions(data.get("Menu_Name"), data.get("Set_Permission"));
+					cmtLib.setPermissions(data.get("Menu_Name"), data.get("Set_Permission1"));
+					cmtLib.setPermissions(data.get("Menu_Name"), data.get("Set_Permission2"));
+					cmtLib.setPermissions(data.get("Menu_Name"), data.get("Set_Permission3"));
 					cmtLib.clickOnloginAs();
 					switchToChildWindow();
-					cmtLib.loginVerification(data.get("ContactName"));				
-												
+					cmtLib.loginVerification(data.get("ContactName"));		
 					canadaLib.clickOnSideMenuSelectAccountToolOptions(data.get("Tools_Menu"),
 							data.get("Tools_Menu_DD"));
-					verifyQuoteHistory();				      
-				
-					//quick search
+					verifyQuoteHistory();
 					orderLib.searchByInQuoteHistory(QuoteNum,data.get("Quote_DD_option"));
 					verifyQuoteDetails();
+					
+					
+					
+					
+												
+									      
+				
+					//quick search
+					
 					scrollToBottomWithCordinate("500");
 					orderLib.convertQuote();
 					canadaLib.verifyPlaceCartLabel();

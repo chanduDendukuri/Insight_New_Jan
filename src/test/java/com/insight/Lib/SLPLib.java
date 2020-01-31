@@ -44,11 +44,10 @@ public class SLPLib extends SLPObj {
 		String Proratedprice = getText(Priceincart(PartNum), "Price in cart page").replace("$", "").replace("USD", "");
 		Double actualProratedprice = Double.valueOf(Proratedprice);
 		if (Proratedprice.equals(Actualprice) && actualProratedprice >= Actualprice) {
-			reporter.failureReport("Prorartion::", "ProratedPrice Matches With Actual Price:", "USD $"+Proratedprice);
+			reporter.failureReport("Prorartion::", "ProratedPrice Matches With Actual Price:","Product Actual Price: "+Actualprice+ "Prorated price USD $"+Proratedprice);
 		} else {
 			reporter.SuccessReport("Prorartion::",
-					"ProratedPrice Matches does not With Actual Price. Proratedprice- USD $" + Proratedprice + "",
-					"Actualprice:: USD $" + Actualprice + "");
+					" Prorated Price is displayed ","Product Actual Price: " +Actualprice+ "Prorated price USD $"+Proratedprice);
 		}
 	}
 
@@ -64,8 +63,8 @@ public class SLPLib extends SLPObj {
 			reporter.failureReport("Prorartion::", "ProratedPrice Matches With Actual Price:", Subtotalamount);
 		} else {
 			reporter.SuccessReport("Prorartion::",
-					"ProratedPrice Matches does not With Actual Price. Proratedprice-" + Subtotalamount + "",
-					"Actualprice:: " + Actualprice + "");
+					"ProratedPrice does not Matches With Actual Price."," Proratedprice-" + Subtotalamount +  
+					"  Actualprice:: " + Actualprice + "");
 
 		}
 	}
@@ -82,8 +81,8 @@ public class SLPLib extends SLPObj {
 			reporter.failureReport("Prorartion::", "ProratedPrice Matches With Actual Price:", Proratedprice);
 		} else {
 			reporter.SuccessReport("Prorartion::",
-					"ProratedPrice Matches does not With Actual Price. Proratedprice-" + Proratedprice + "",
-					"Actualprice:: " + Actualprice + "");
+					"ProratedPrice Matches does not With Actual Price.", "Proratedprice-" + Proratedprice +
+					"  Actualprice:: " + Actualprice + "");
 		}
 	}
 
