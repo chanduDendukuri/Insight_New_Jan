@@ -15,6 +15,7 @@ import org.openqa.selenium.WebElement;
 
 import com.insight.ObjRepo.CommonObj;
 import com.insight.ObjRepo.OrderHistoryObj;
+import com.insight.ObjRepo.OrderObj;
 import com.insight.ObjRepo.CommonObj;
 
 public class OrderHistoryLib extends OrderHistoryObj {
@@ -49,7 +50,7 @@ public class OrderHistoryLib extends OrderHistoryObj {
 		click(setAdvancedSearchOption(text), "");
 		type(ADVANCED_SEARCH_VALUE, value, "value");
 		click(SEARCH_BUTTON, "search button");
-
+         Thread.sleep(5000);
 		// verifySearchResultsAreDisplayed();
 	}
 
@@ -742,5 +743,16 @@ public class OrderHistoryLib extends OrderHistoryObj {
 			reporter.failureReport("Verify the Validate only Australia cities in Results", "Results contain other than Australia cities", "",driver);
 		
 		}
+	}
+	
+	
+	public void getFirstOrderNumber() throws Throwable {
+		String orderNumber=getText(OrderObj.FIRST_ORDER_NUMBER, "Order Number");
+		if(orderNumber!=null) {
+			reporter.SuccessReport("Verify order displayed in order history", "Recent OrdersSearch Results are Exists","Order number"+orderNumber+"  - First Record on Search Results for Recent Orders" );
+		}else {
+			reporter.failureReport("Verify order displayed in order history", "Recent Orders Search Results are not displayed", "", driver);
+		}
+		
 	}
 }
