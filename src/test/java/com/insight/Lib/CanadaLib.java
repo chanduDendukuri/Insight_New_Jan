@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import com.insight.report.ReporterConstants;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.mortbay.log.Log;
@@ -1753,5 +1754,119 @@ public void getEwrVlaue() throws Throwable{
 public void clickOnSearchButtonInRecentOrders() throws Throwable{
 		click(btnSearchButton,"Search Button");
 }
+public String getInvoiceDetails() throws Throwable{
+		return getText(INVOICE_Details,"Invoice Details");
+}
+
+public void selectStartDateFromInvoiceHistoryCalenaer(String date) throws Throwable{
+	String sday=date.split(" ")[0];
+	String smonth=date.split(" ")[1];
+	String syear=date.split(" ")[2];
+	reporter.SuccessReport("Start date ", "Start Date", date);
+
+	click(startDateCalendarFiekd,"Start date");
+	click(startDateCalendar,"clicking on year");
+	click(startMonthCalendar,"click on year");
+	click(startyearPreviousicon,"Previous year");
+	click(startYearSelection(syear),"Year selection");
+
+	click(startMonthSelection(smonth),"Month");
+	click(startdateSelection(sday),"date");
+
+
+}
+	public void selectEndDateFromInvoiceHistoryCalenaer(String date) throws Throwable{
+		String sday=date.split(" ")[0];
+		String smonth=date.split(" ")[1];
+		String syear=date.split(" ")[2];
+		reporter.SuccessReport("End date ", "Start Date", date);
+
+		click(endDateCalendarFiekd,"End date");
+		click(endDateCalendar,"clicking on year");
+		click(endMonthCalendar,"click on year");
+		if(!isVisibleOnly(endYearSelection(syear),"Year")) {
+			click(endyearPreviousicon,"Previous year");
+		}
+		click(endYearSelection(syear),"Year selection");
+
+		click(endMonthSelection(smonth),"Month");
+		click(enddateSelection(sday),"date");
+	}
+
+public void getInvoiceNumbersFromResults() throws Throwable{
+		if(!isVisibleOnly(lblErrorMessage,"Error Message")) {
+			List<WebElement> invNum = driver.findElements(lnkInvoiceNumberFromResults);
+
+			for (int i = 0; i <invNum.size(); i++) {
+				reporter.SuccessReport("Total number of records", " The total number of results are ", Integer.toString(invNum.size()));
+				reporter.SuccessReport("The Invoice numbers", "Invoice number from results grid is " + i, invNum.get(i).getText());
+			}
+		}
+		else {
+			reporter.failureReport("Records not found","For the given range records are not found",getText(lblErrorMessage,"Error message"));
+
+		}
+}
+
+	public void clickOnInvoiceNumbersFromResults() throws Throwable{
+		if(!isVisibleOnly(lblErrorMessage,"Error Message")) {
+			List<WebElement> invNum = driver.findElements(lnkInvoiceNumberFromResults);
+
+			for (int i = 0; i < invNum.size(); i++) {
+				invNum.get(i).click();
+				break;
+			}
+			if(isVisibleOnly(lblInvoiceHistory,"Invoice History Page")){
+				reporter.SuccessReport("Invoice Histrory Details","History details are ",getText(lblInvoiceDetails,"Invoice history details") );
+				click(icnPrintButton,"Print button");
+				if(isVisibleOnly(invoiceNumberINPrintPopup,"Visibility of invoice history popup ")){
+					click(closeInvoiceHistoryPopup,"Close invoice history popup");
+					click(downloadPDF,"download pdf");
+				}else{
+					reporter.failureReport("Visiblity Of invoice history popup","Invoice history popup is " ,"false",driver);
+				}
+			}else{
+				reporter.failureReport("Invoice Histrory Page","Invoice History Page is not opened","False",driver);
+			}
+		}
+		else {
+			reporter.failureReport("Records not found","For the given range records are not found",getText(lblErrorMessage,"Error message"));
+
+		}
+	}
+
+	public void openDirectoryToVerifyFileExist() throws Throwable{
+/*		String strDirectory = "./DownloadedFiles/";
+
+		File resultDir = new File(strDirectory);
+		LOG.info("resultDir = " + resultDir);
+		if (!resultDir.exists()) {
+			try {
+				resultDir.mkdirs();
+			} catch (Exception e) {
+				LOG.info("Exception Encountered : " + e.getMessage());
+			}
+		}*/
+		String a = getText(invoiceHistoryNumber,"Invoice number");
+		final File folder = new File("\"./DownloadedFiles/\"");
+		File[] listOfFiles = folder.listFiles();
+		reporter.SuccessReport("DOwnlaoded file","Existing downloaded files","true");
+		/*for (File file : listOfFiles) {
+			if (file.isFile()) {
+
+				if(file.getName().contains("")){
+
+					reporter.SuccessReport("Downloaded File ","Downloaded file name is ", file.getName());
+				}
+			}*/
+		}
+
+
+
+
+
+	}
+
+
 }
 
