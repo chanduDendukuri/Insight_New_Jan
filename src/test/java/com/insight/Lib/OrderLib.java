@@ -134,6 +134,7 @@ public class OrderLib extends OrderObj{
 	 */
 	public void proceedToCheckout() throws Throwable{
 	//	commonLib.spinnerImage();
+		Thread.sleep(5000);
 		if(isElementPresent(CommonObj.CLOSEBUTTON_COOKIES,"close cookie")) {
 			click(CommonObj.CLOSEBUTTON_COOKIES, "close cookie");
 		}
