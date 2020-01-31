@@ -62,6 +62,7 @@ public class PID05_RecommendedProductsTest extends ActionEngine{
 					productdetLib.verifyPeopleWhoBoughtAlsoBought();
 					productdetLib.verifyNoRecommondedProducts();
 					commonLib.searchProduct(data.get("Search_Item1"));
+					Thread.sleep(30000);
 					productdetLib.verifyRecommondedProducts();
 					cmtLib.loginToCMTSearchWebGrpAndUser(data.get("Header"), data.get("WebGrp"),
 							data.get("LnameEmailUname"), data.get("Contact_Name"));
@@ -69,13 +70,16 @@ public class PID05_RecommendedProductsTest extends ActionEngine{
 					cmtLib.clickOnloginAs();
 					switchToChildWindow();
 					commonLib.searchProduct(data.get("Search_Item1"));
+					Thread.sleep(50000);
+					Thread.sleep(30000);
 					productdetLib.verifyRecommondedProducts();
 					productdetLib.recomendedProductMoreAvailablePriceAndVerifyContracts();
 					searchLib.selectNewcontract(data.get("Contract_Name"));
 					productdetLib.verifyContractDetails();
 					commonLib.searchProduct(data.get("Search_Item2"));
 					cartLib.selectFirstProductDisplay();
-					productdetLib.getProductNameInProductDetailPage(data.get("Search_Item3"));
+					productdetLib.getProductNameInProductDetailPage(data.get("Search_Item2"));
+					Thread.sleep(20000);
 					productdetLib.getMFRNumberInProductInfopage();
 					productdetLib.verifyContractInproductDetailPage();
 					commonLib.clickLogOutLink("Logout");
