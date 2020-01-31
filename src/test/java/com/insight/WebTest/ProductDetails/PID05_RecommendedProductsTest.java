@@ -59,32 +59,24 @@ public class PID05_RecommendedProductsTest extends ActionEngine{
 
 					commonLib.searchProduct(data.get("Search_Item"));
 					cartLib.selectFirstProductDisplay();
-					commonLib.addToCartAndVerify();
-					commonLib.continueToShopping();
+					productdetLib.verifyPeopleWhoBoughtAlsoBought();
+					productdetLib.verifyNoRecommondedProducts();
 					commonLib.searchProduct(data.get("Search_Item1"));
-					commonLib.addToCartAndVerify();
-					commonLib.continueToShopping();
+					productdetLib.verifyRecommondedProducts();
 					cmtLib.loginToCMTSearchWebGrpAndUser(data.get("Header"), data.get("WebGrp"),
 							data.get("LnameEmailUname"), data.get("Contact_Name"));
 
 					cmtLib.clickOnloginAs();
 					switchToChildWindow();
 					commonLib.searchProduct(data.get("Search_Item1"));
-
-					// recomended product
+					productdetLib.verifyRecommondedProducts();
 					productdetLib.recomendedProductMoreAvailablePriceAndVerifyContracts();
-					commonLib.searchProduct(data.get("Search_Item2"));
-					cartLib.selectFirstProductDisplay();
-					// Most often purchased product
-					Thread.sleep(10000);
-					productdetLib.clickMostOftenPurchasedProduct();
-					// cartLib.selectFirstProductDisplay();
-
 					searchLib.selectNewcontract(data.get("Contract_Name"));
 					productdetLib.verifyContractDetails();
-
-					commonLib.searchProduct(data.get("Search_Item3"));
+					commonLib.searchProduct(data.get("Search_Item2"));
 					cartLib.selectFirstProductDisplay();
+					productdetLib.getProductNameInProductDetailPage(data.get("Search_Item3"));
+					productdetLib.getMFRNumberInProductInfopage();
 					productdetLib.verifyContractInproductDetailPage();
 					commonLib.clickLogOutLink("Logout");
 					//End of The Test

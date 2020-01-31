@@ -56,7 +56,7 @@ public class SLP11_CITRIXSearchTest extends SLPLib{
 						ReportControl.intRowCount = intCounter;
 						Hashtable<String, String> data = TestUtil.getDataByRowNo("SLP11_CITRIXSearch", TestData, "SLP", intCounter);
 						TestEngineWeb.reporter
-								.initTestCaseDescription("SLPProrationMicrosoft");
+								.initTestCaseDescription("CITRIXSearch");
 						reporter.SuccessReport("Iteration Number : ",
 								"**************Iteration Number::  " + intCounter + " For:: " + data.get("LoginName") + " ::and:: "
 										+ data.get("Password") + " To Validate::" + data.get("errorMessage") + "  **************","");
@@ -89,7 +89,7 @@ public class SLP11_CITRIXSearchTest extends SLPLib{
 				     	searchLib.searchInHomePage(data.get("SearchText1"));
 				     	searchLib.removeTheFilterForInStockOnly(data.get("In_Stock_Only"));
 						pipLib.verifyTheManufacturerNumberInProductDetailsPage(data.get("SearchText1"));
-						//pipLib.enterQuantityOnProductDetailsPage(data.get("Quantity"));
+						pipLib.enterQuantityOnProductDetailsPage(data.get("Quantity"));
 						commonLib.addToCartAndVerify();
 						orderLib.continueToCheckOutOnAddCart();
 						verifyCITRIXItemInCart(data.get("SearchText1"));

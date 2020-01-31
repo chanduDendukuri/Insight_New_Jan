@@ -215,7 +215,7 @@ public class CanadaObj extends ActionEngine {
 			public static By DELIVERY_OPTION = By.xpath("//div[@id='deliveryOptionsLabel']");
 			
 			public static By getQuickDate(String quickDateOption){
-				return By.xpath("//select[@id='ddlQuickDates']/*[contains(.,'"+quickDateOption+"')]");
+				src/test/java/com/insight/Lib/InvoiceHistoryLib.java				return By.xpath("//select[@id='ddlQuickDates']/*[contains(.,'"+quickDateOption+"')]");
 				
 			}
 			public static By START_DATE = By.xpath("//input[@id='ordFullStartDateAlt']");
@@ -303,4 +303,6 @@ public class CanadaObj extends ActionEngine {
 			public static By downloadPDF=By.xpath("//*[@class='icon download has-tip tip-left']");
 			public static By invoiceHistoryNumber=By.xpath("//*[@id='invoiceDetails']//dl//dt[text()='Invoice Number: ']//following-sibling::dd");
 
+
+			public static By drpSearchByInInvoiceHistory=By.xpath("//*[@class='nice-select']");
 }

@@ -44,11 +44,10 @@ public class SLPLib extends SLPObj {
 		String Proratedprice = getText(Priceincart(PartNum), "Price in cart page").replace("$", "").replace("USD", "");
 		Double actualProratedprice = Double.valueOf(Proratedprice);
 		if (Proratedprice.equals(Actualprice) && actualProratedprice >= Actualprice) {
-			reporter.failureReport("Prorartion::", "ProratedPrice Matches With Actual Price:", "USD $"+Proratedprice);
+			reporter.failureReport("Prorartion::", "ProratedPrice Matches With Actual Price:","Product Actual Price: "+Actualprice+ "Prorated price USD $"+Proratedprice);
 		} else {
 			reporter.SuccessReport("Prorartion::",
-					"ProratedPrice Matches does not With Actual Price. Proratedprice- USD $" + Proratedprice + "",
-					"Actualprice:: USD $" + Actualprice + "");
+					" Prorated Price is displayed ","Product Actual Price: " +Actualprice+ "Prorated price USD $"+Proratedprice);
 		}
 	}
 
@@ -64,8 +63,8 @@ public class SLPLib extends SLPObj {
 			reporter.failureReport("Prorartion::", "ProratedPrice Matches With Actual Price:", Subtotalamount);
 		} else {
 			reporter.SuccessReport("Prorartion::",
-					"ProratedPrice Matches does not With Actual Price. Proratedprice-" + Subtotalamount + "",
-					"Actualprice:: " + Actualprice + "");
+					"ProratedPrice does not Matches With Actual Price."," Proratedprice-" + Subtotalamount +  
+					"  Actualprice:: " + Actualprice + "");
 
 		}
 	}
@@ -82,8 +81,8 @@ public class SLPLib extends SLPObj {
 			reporter.failureReport("Prorartion::", "ProratedPrice Matches With Actual Price:", Proratedprice);
 		} else {
 			reporter.SuccessReport("Prorartion::",
-					"ProratedPrice Matches does not With Actual Price. Proratedprice-" + Proratedprice + "",
-					"Actualprice:: " + Actualprice + "");
+					"ProratedPrice Matches does not With Actual Price.", "Proratedprice-" + Proratedprice +
+					"  Actualprice:: " + Actualprice + "");
 		}
 	}
 
@@ -448,7 +447,7 @@ public class SLPLib extends SLPObj {
 		String day=date.split("-")[0];
 		String month=date.split("-")[1];
 		String year=date.split("-")[2];
-		click(DEPLOY_DATEINPOPUP,"Calnder");
+		click(DEPLOY_DATEINPOPUP,"Calender");
 		String calenderYear=getText(SELECTEDYEAR, "Selected year");
 		System.out.println("calenderYear"+calenderYear);
 		String calenderMonth=getText(SELECTED_MONTH, "Selected month");
@@ -621,7 +620,7 @@ public class SLPLib extends SLPObj {
 			if (isElementPresent(CanadaObj.SPLA_LABEL, "SPLA LABEL")) {
 				if (!isCheckBoxSelected(CanadaObj.getMySoftwareLicenseAgreementscheckBoxes(softwareAgreement))) {
 					click(CanadaObj.getMySoftwareLicenseAgreementscheckBoxes(softwareAgreement),"SPLA Details Product CheckBox");
-					click(RETRIEVE_LAST_USAGE_REPORT, "Select retrieve last usage report button");
+					clickUntil(retriveLastUsageReport(softwareAgreement), CartObj.CART_LABEL_ON_CART_PAGE,"Select retrieve last usage report button");
 				} else {
 					LOG.info("Checkbox already selected");
 				}
@@ -904,7 +903,7 @@ public class SLPLib extends SLPObj {
 			if(isVisibleOnly(getDeployDateAndLicenceTypeOnPlaceOrderPage(dateorLicence, partNum), "Deploy dat and Licence")) {
 				reporter.SuccessReport("Validate Deployment date and License Type", "Validate Deployment date and License Type", "Deployment Date for Insight Part #: "+partNum+" Date: "+dateorLicence);
 			}else {
-				reporter.failureReport("Validate Deployment date and License Type", "Validate Deployment date and License Type", "");
+				reporter.failureReport("Validate Deployment date and License Type", "Validate Deployment date and License Type","" ,driver);
 			}
 		}
 		
@@ -999,9 +998,9 @@ public class SLPLib extends SLPObj {
 			 */
 			public void verifyManufacturerRequirementsOnPlaceOrderScreen(int i) throws Throwable {
 				List <WebElement> element=driver.findElements(By.xpath("//section[@class='line-level__section']["+i+"]//div//label"));
-					  for(int j=i;j<=element.size();j++){
-						  if(isVisible(mfrRequirementsOnPlaceOrderPage(i,j), "MFR requirements")) {
-								String Mfrreq=getText(mfrRequirementsOnPlaceOrderPage(i,j), "MFR requirements");
+					  for(int j=1;j<=element.size();j++){
+						  if(isVisible(mfrRequirementsOnPlaceOrderPage(j),"MFR requirements")) {
+								String Mfrreq=getText(mfrRequirementsOnPlaceOrderPage(j), "MFR requirements");
 								reporter.SuccessReport("Verify Manufacturer Requirements ", "Manufacturer Requirements Exists and Verified", Mfrreq);
 							}	else {
 								reporter.failureReport("Verify Manufacturer Requirements ", "Manufacturer Requirements does not  Exists","",driver );

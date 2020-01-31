@@ -50,14 +50,10 @@ public class QTH04_QuoteHistoryVLMQuoteTest extends QuoteHistoryLib {
 									TestEngineWeb.reporter.initTestCaseDescription("QuoteHistoryVLMQuote");
 
 
-							CMTLib cmtLib = new CMTLib();
-							SearchLib searchLib = new SearchLib();
-							OrderLib orderLib=new OrderLib();
-							CanadaLib canadaLib=new CanadaLib();
-							CartLib cartLib=new CartLib();
-							InvoiceHistoryLib invoiceHistoryLib = new InvoiceHistoryLib();
-							MarriottIntlCorpLib marriottIntlCorpLib=new MarriottIntlCorpLib();
-							CommonLib commonLib = new CommonLib();
+							CMTLib cmtLib = new CMTLib();							
+							CanadaLib canadaLib=new CanadaLib();				
+							
+						 CommonLib commonLib = new CommonLib();
 							cmtLib.loginToCMTSearchWebGrpAndUser(data.get("Header"), data.get("WebGrp"),
 									data.get("LnameEmailUname"), data.get("ContactName"));
 						//	cmtLib.setPermissions(data.get("Menu_Name"), data.get("Set_Permission1"));
@@ -68,8 +64,8 @@ public class QTH04_QuoteHistoryVLMQuoteTest extends QuoteHistoryLib {
 							canadaLib.clickOnSideMenuSelectAccountToolOptions(data.get("Tools_Menu"),  data.get("Tools_Menu_DD"));							
 							verifyQuoteHistory();
 							String QuoteNumber = GetQuoteNumberfromQuoteHistory();
-							quickSearchAndVerifySearchResults(data.get("SearchBy"),QuoteNumber);
-							verifyAndClickQuoteNumberOnHistory(QuoteNumber);
+							quickSearchAndVerifySearchResults(data.get("SearchBy"),data.get("Number"));
+							verifyAndClickQuoteNumberOnHistory(data.get("Number"));
 							verifyQuoteDetails();						
 							verifyConvertQuoteButton();	
 							verifyErrorMsg();

@@ -739,7 +739,7 @@ public class ProductDetailLib extends ProductDetailObj {
 	 */
 		public void verifyContractInproductDetailPage() throws Throwable {
 			if(isElementPresent(CONTRACT_IN_PRODUCTDETAIL, "contract in product detail")) {
-				reporter.SuccessReport("Products Details Page", "Contract exists", "");
+				reporter.SuccessReport("Products Details Page", "Contract exists", getText(CONTRACT_IN_PRODUCTDETAIL,"Contract in Product Detail Page"));
 		}
 			else {
 				reporter.failureReport("Products Details Page", "Contract does not exists", "");
@@ -825,7 +825,7 @@ public class ProductDetailLib extends ProductDetailObj {
 	 */
 	public void clicksubmitandverifyerrormsgreviewsubmissionform() throws Throwable {
 		click(SUBMIT_BUTTON,"Submit");
-		if (isElementPresent(REVIEWSERROR_MSG, "Reviews Submission Form")){
+		if (isElementPresent(REVIEWSERROR_MSG, "Reviews Submission Form"+getText(REVIEWSERROR_MSG,"Error Msg"))){
 			click(SUBMISSIONFORMCLOSE,"Close Button");
 			reporter.SuccessReport("Reviews Error Msg", "Reviews Error Msg Exists", "");
 		}
@@ -858,11 +858,10 @@ public class ProductDetailLib extends ProductDetailObj {
 	}
 	
 	public void recomendedProductMoreAvailablePriceAndVerifyContracts() throws Throwable {
-		
+		click(MOREAVAILABLE_PRICES,"More Available Prices");
+		waitForVisibilityOfElement(MOREAVAILABLEPRICESPOPUP, "More Available Prices POPUP");
 			String result = null;
 			boolean flag = true;
-			click(RECOMENDED_PRODUCT_MPRE_AVAILABLE_PRICE, "More prices available link");
-			
 			if (flag) {
 				List<WebElement> myList = driver.findElements(productsDisplayInfoObj.ALL_CONTRACT_PRICES);
 				List<String> all_elements_text = new ArrayList<>();
@@ -876,8 +875,9 @@ public class ProductDetailLib extends ProductDetailObj {
 						reporter.SuccessReport("Verify the contract prices displayed ",
 								"contract price is displayed as : " , result);
 					}
+				}
 					
-					if (isElementPresent(productsDisplayInfoObj.OPEN_MARKET, "Open Market")) {
+					/*if (isElementPresent(productsDisplayInfoObj.OPEN_MARKET, "Open Market")) {
 						String openMarket = getText(productsDisplayInfoObj.OPEN_MARKET, "Open Market"); // To get the open market price to verify
 						if(result.contains(openMarket)){
 						reporter.SuccessReport("Verify the Open Market price",
@@ -889,11 +889,10 @@ public class ProductDetailLib extends ProductDetailObj {
 						reporter.SuccessReport("Verify the Your price",
 								"Your price is displayed as : " , yourPrice);
 				  }
-				}
-				click(productsDisplayInfoObj.CLOSE_CONTRACTS_POPUP, "close popup");
-			} else {
-				reporter.failureReport("Verify the Open Market price", "Open Market price is not displayed","");
+				}*/
 			}
+				click(productsDisplayInfoObj.CLOSE_CONTRACTS_POPUP, "close popup");
+			
 		}
 	
 	public void clickMostOftenPurchasedProduct() throws Throwable {
@@ -1008,19 +1007,24 @@ public class ProductDetailLib extends ProductDetailObj {
 		click(ACCESSORIESADDTOCART,"Add to cart Button of:: Mfr Num #"+MfrNum+" in accessories Tab");
 		return MfrNumumber[0].trim();
 	}
+	
 	public void clickOnAccessories() throws Throwable{
 		click(ACCESSORIESTAB,"ACCESSORIES Tab");
-	}	
+	}
+	
 	public void clickOnSpecification() throws Throwable{
 	click(SPECIFICATIONS_TAB,"Specification Tab");
 	}
+	
 	public void clickonAddWarentyincartPage()throws Throwable{
-		click(ADDWARRENTIEINCARTPAGE,"Add warranty in Cart Page");
-		waitForVisibilityOfElement(WARENTYPOPUP,"Add Warrenties Popup");
+	click(ADDWARRENTIEINCARTPAGE,"Add warranty in Cart Page");
+	 waitForVisibilityOfElement(WARENTYPOPUP,"Add Warrenties Popup");
 	 click(RDIOBUTTONOFWARRENTY,"Radio Button of Warrenty");
 	 click(ADDTOCARTBUTTONINWARRENTIESPOPUP,"Add To Cart Button in Warrenties PopUp");
+	 waitForVisibilityOfElement(CartObj.CART_LABEL_ON_CART_PAGE,"Cart Page");
 	 isElementPresent(ADDEDWARRENTY,"Added Warrenty"+getText(ADDEDWARRENTY,"Added Warrenty Name").trim());
 	}
+	
 	public String clickOnWarrentiesTabAddToCart() throws Throwable{
 		String MfrNum=getText(MFRNUMOFWARRENTY,"MfrNum of Warrenty").replace("Insight Part #:", " ").replace("Mfr Part #:", " ").replace("|", "").trim();
 		System.out.println(MfrNum);
@@ -1030,7 +1034,29 @@ public class ProductDetailLib extends ProductDetailObj {
 	}
 	
 	
+	public void verifyPeopleWhoBoughtAlsoBought() throws Throwable {		
+		if (isVisibleOnly(PEOPLEWHOBOUGHTS, "People who bought also bought")) {	
+			reporter.SuccessReport("Verify People who bought also bought", "People who bought also bought Exists","");
+		} else {
+			reporter.failureReport("Verify People who bought also bought", "People who bought also bought does not Exists","");
+		}	
+			}
 	
+	
+	public void verifyRecommondedProducts() throws Throwable {		
+		if (isVisibleOnly(RECOMENDED_PRODUCTS, "recommonded Products")) {	
+			reporter.SuccessReport("Verify Recommended with Printers", "Recommended with Printers Exists","");
+		} else {
+			reporter.failureReport("Verify Recommended with Printers", "Recommended with Printers does not Exists","");
+		}	
+			}
+	public void verifyNoRecommondedProducts() throws Throwable {		
+		if (isVisibleOnly(RECOMENDED_PRODUCTS, "recommonded Products")) {
+			reporter.failureReport("Verify Recommended with Printers", "Recommended with Printers does not Exists","");
+		} else {
+			reporter.SuccessReport("Verify Recommended with Printers", "Recommended with Printers Exists","");
+		}	
+			}
 	
 	
 }

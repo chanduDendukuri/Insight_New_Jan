@@ -72,7 +72,6 @@ public class PID07_ProductDetailTabsTest extends ActionEngine{
 				productdetLib.verifySpecifications(data.get("Tab1"));
 				productdetLib.verifySpecifications(data.get("Tab2"));
 				productdetLib.verifySpecifications(data.get("Tab3"));
-				productdetLib.verifySpecifications(data.get("Tab4"));
 				Thread.sleep(3000);
 				scrollUp();
 				commonLib.clickCart();
