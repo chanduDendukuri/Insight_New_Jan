@@ -171,6 +171,8 @@ public class CartObj extends CommonObj{
 	public static By deleteButton(String cartName) {
 		return By.xpath("//h3[text()='"+cartName+"']//parent::div//parent::div//button[@class='c-button  c-button--link c-button--small']");
 	}
+	public static By DELETEBTN=By.xpath("//div//button[@class='c-button  c-button--link c-button--small']");
+
 	public static By YES_BUTTON_INCONFORMATION_POP_UP=By.xpath("//button[@class='c-button  c-button--primary']");
 	public static By DELETE_CART_MEASSAGE=By.xpath("//div[@class='c-no-saves']//strong");
 	

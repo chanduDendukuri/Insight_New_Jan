@@ -1039,6 +1039,23 @@ public class ShipBillPayLib extends ShipBillPayObj {
 				reporter.SuccessReport("verify saved carts and delete", "saved carts already deleted", "");
 			}
 		}
+
+		public void deletesavedcartsortamplates() throws Throwable {
+			List<WebElement> myList = driver.findElements(CartObj.DELETEBTN);
+			if (isElementPresent(CartObj.DELETEBTN, "error message")) {
+			for (int i = 0; i < myList.size(); i++) {
+			 myList.get(i).click();
+			 waitForVisibilityOfElement(CartObj.YES_BUTTON_INCONFORMATION_POP_UP, "Yes in conformation pop up");
+				click(CartObj.YES_BUTTON_INCONFORMATION_POP_UP, "Yes in conformation pop up");
+				waitForVisibilityOfElement(CartObj.DELETE_CART_MEASSAGE, "ACCOUNT TOOLS");
+			}
+			reporter.SuccessReport("verifying Saved Carts\tamplates", "Saved carts Exists and Deleted: " , "");
+				} else {
+					reporter.SuccessReport("verifying Saved Carts\\tamplates", "Saved carts does not exists: ", "");
+				}
+		}
+		
+		
 			public void verifyPartNumInProductDetailPage(String Partnum) throws Throwable {
 				if (isVisibleOnly(partNum(Partnum), "PartNum")) {
 						reporter.SuccessReport("verify PartNum In ProductDetail Page::", "PartNum  Exists", Partnum);
@@ -1254,7 +1271,12 @@ public class ShipBillPayLib extends ShipBillPayObj {
 			}
 		}
 		public void selectCarrierandGrounOption(String carrier) throws Throwable {
+			if(isVisibleOnly(OrderObj.SELECTCARRIERDD_FEDEX,"FedEx DD")) {
+				clickUntil(OrderObj.SELECTCARRIERDD_FEDEX,OrderObj.verifyCarrier(carrier), "carrier Drop down");	
+			}
+			if(isVisibleOnly(OrderObj.SELECT_CARRIER_DD,"FedEx DD")) {
 			clickUntil(OrderObj.SELECT_CARRIER_DD,OrderObj.verifyCarrier(carrier), "carrier Drop down");
+			}
 			if (isElementPresent(OrderObj.verifyCarrier(carrier), "shipping carrier in Dropdown"+carrier)) {
 				click(OrderObj.verifyCarrier(carrier), "From Carrier Drop down"+carrier);
 			}

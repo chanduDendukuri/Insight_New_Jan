@@ -86,6 +86,7 @@ public class OrderObj extends ActionEngine{
 	// ORDER & ITEM INFORMATION  >>> Shipping Options
 	public static By SHIPPING_CARRIER_REQUIRED_MSG=By.xpath("//span[@class='columns iw-message__text'][contains(text(),'A shipping carrier is required')]");
 	public static By SELECT_CARRIER_DD=By.xpath("//div[@class='Select-value']//span[contains(text(),'No carrier preference')]");
+	public static By SELECTCARRIERDD_FEDEX=By.xpath("//div[@class='Select-value']//span[contains(text(),'FedEx')]");
 	public static By SELECT_UPS_CARRIER=By.xpath("//div[@class='Select-menu-outer']//div[@class='Select-option'][contains(text(),'UPS')]");
 	public static By CARRIER_PRICE_RADIO_BTN=By.xpath("//input[@type='radio']");
 	public static By UPLOAD_FILE=By.xpath("//input[@id='fileUpload']/following::div//label[@for='fileUpload']");
