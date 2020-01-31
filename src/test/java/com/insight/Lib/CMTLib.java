@@ -232,7 +232,7 @@ public class CMTLib extends CMTObj {
 	 * @throws Throwable
 	 */
 	public void hoverOnManageWebGroupsAndSelectOptions(String ManageWebGrpOptions) throws Throwable {
-
+		Thread.sleep(3000);
 		mouseHover(MANAGE_WEBGRP, "Manage Web group");
 		click(getManageWebGroupDDLinks(ManageWebGrpOptions), "Change Web group option: " + ManageWebGrpOptions);
 	}
