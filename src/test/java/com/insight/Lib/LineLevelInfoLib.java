@@ -726,6 +726,7 @@ public class LineLevelInfoLib extends LineLevelInfoObj{
 		String option=getSelectedDropdownOption(COUNTRY);
 		if (option.equals(country)) {	
 			Log.info("Country already selected"+country);
+			reporter.SuccessReport("Country", "Country selected", country);
 		}else{
 			click(COUNTRY,"COUNTRY");
 		    selectByVisibleText(COUNTRY, country, "country");
