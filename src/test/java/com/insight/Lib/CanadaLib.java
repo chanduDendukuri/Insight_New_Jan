@@ -1851,14 +1851,14 @@ public void getInvoiceNumbersFromResults() throws Throwable{
 		final File folder = new File("\"./DownloadedFiles/\"");
 		File[] listOfFiles = folder.listFiles();
 		reporter.SuccessReport("DOwnlaoded file","Existing downloaded files","true");
-		/*for (File file : listOfFiles) {
+		for (File file : listOfFiles) {
 			if (file.isFile()) {
 
 				if(file.getName().contains("")){
 
 					reporter.SuccessReport("Downloaded File ","Downloaded file name is ", file.getName());
 				}
-			}*/
+			}
 		}
 
 
@@ -1866,7 +1866,7 @@ public void getInvoiceNumbersFromResults() throws Throwable{
 
 
 	}
-
-
 }
+
+
 
