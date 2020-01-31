@@ -80,10 +80,8 @@ public class QTH11_ConvertQuote3rdPartyCarrierTest extends QuoteHistoryLib {
 					Homelib.clickSideBarSmart();
 					Homelib.clickClosthedocument(QuoteNum);
 					Thread.sleep(4000);
-					//Homelib.clickYesButtontocloseDocument();
-					Thread.sleep(4000);
-					Homelib.clickClosthedocument(data.get("DoccumentType"));//Create Document
-					//Homelib.clickYesButtontocloseDocument();
+					Homelib.clickYesButtontocloseDocument();
+					
 					navigateTo("https://uat1.insight.com/en_US/home.html");
 					acceptAlert();
 					Thread.sleep(4000);
