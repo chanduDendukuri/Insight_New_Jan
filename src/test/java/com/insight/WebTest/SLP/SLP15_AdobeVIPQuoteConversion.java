@@ -59,7 +59,7 @@ public class SLP15_AdobeVIPQuoteConversion extends SLPLib{
 						ReportControl.intRowCount = intCounter;
 						Hashtable<String, String> data = TestUtil.getDataByRowNo("SLP15_AdobeVIPQuoteConversion", TestData, "SLP", intCounter);
 						TestEngineWeb.reporter
-								.initTestCaseDescription("SLPProrationMicrosoft");
+								.initTestCaseDescription("AdobeVIPQuoteConversion");
 						reporter.SuccessReport("Iteration Number : ",
 								"**************Iteration Number::  " + intCounter + " For:: " + data.get("LoginName") + " ::and:: "
 										+ data.get("Password") + " To Validate::" + data.get("errorMessage") + "  **************","");
