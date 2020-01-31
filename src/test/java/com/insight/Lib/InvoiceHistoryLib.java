@@ -73,7 +73,7 @@ public class InvoiceHistoryLib extends InvoiceHistoryObj {
 	 */
 	public void clickOnAdvancedSearch() throws Throwable {
 		clickUntil(ADVANCED_SEARCH,START_DATE_CALENDER,"Advanced search","Advanced Search");
-		Thread.sleep(5000);
+		Thread.sleep(6000);
 	}
 	
 	/**
@@ -121,7 +121,7 @@ public class InvoiceHistoryLib extends InvoiceHistoryObj {
 		reporter.SuccessReport("Selected Date ", "Selected Date is ",date);
 		 JavascriptExecutor js = (JavascriptExecutor) driver;
 		 js.executeScript("window.scrollTo(0, -document.body.scrollHeight);");
-		 Thread.sleep(3000);
+		 Thread.sleep(8000);
 		if(click(START_DATE_CALENDER, "Start date calender",day)) {
 			reporter.SuccessReport("Selected Date ", "Selected Date is ","");
 		}
@@ -1028,6 +1028,7 @@ return status;
 	public void clickOnSearchUnderAdvancedSearch() throws Throwable
 	{
 			click(btnsearchUnderAdvancedSearch, "search button under advanced search");
+			Thread.sleep(10000);
 	}
 	public void verifyQuoteHistoryReults() throws Throwable {
 		isVisibleOnly(lblExpirationDate, "quote history results");
