@@ -122,7 +122,7 @@ public class SLP17_MPSAEndToEndTest extends SLPLib{
                 String refNumber = orderLib.getQuoteReferenceNumber();
                 clickQuoteHistoryLink();
 		        Thread.sleep(5000);
-		        orderLib.searchByInQuoteHistory(refNumber,data.get("DD_Option"));
+		        orderLib.searchByInQuoteHistory(refNumber,data.get("DD_Option1"));
 				// verify quote details on prorated product in Quote details
 				verifyMSPAProductsProratedOnQuoteDetailsScreen();
 				orderLib.convertQuote();

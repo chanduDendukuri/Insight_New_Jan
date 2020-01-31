@@ -331,8 +331,7 @@ public class ShipBillPayLib extends ShipBillPayObj {
 	}
 
 	public void ReviewrequisitionnumPage() throws Throwable {
-		ClickRviewrequesition();
-		clickUntil(PLACE_REQUISITION_BUTTON, OrderObj.RECEIPT_LABEL, "Place requisition button is clicked");
+	    clickUntil(PLACE_REQUISITION_BUTTON, OrderObj.RECEIPT_LABEL, "Place requisition button is clicked");
 		Thread.sleep(3000);
 		if (isElementPresent(OrderObj.RECEIPT_LABEL, "Recipt Page is Opened")) {
 			waitForVisibilityOfElement(REFERENCE_NUMBER, "Reference Number");
