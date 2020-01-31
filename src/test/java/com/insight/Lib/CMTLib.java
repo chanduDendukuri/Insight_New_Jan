@@ -232,7 +232,7 @@ public class CMTLib extends CMTObj {
 	 * @throws Throwable
 	 */
 	public void hoverOnManageWebGroupsAndSelectOptions(String ManageWebGrpOptions) throws Throwable {
-
+		Thread.sleep(3000);
 		mouseHover(MANAGE_WEBGRP, "Manage Web group");
 		click(getManageWebGroupDDLinks(ManageWebGrpOptions), "Change Web group option: " + ManageWebGrpOptions);
 	}
@@ -2099,6 +2099,9 @@ public  void verifyDashboard()throws Throwable {
 			reporter.failureReport("Verify Product Standards Page", "Product Standards Page is Not Loaded", "", driver);
 	}
 
+	
+	
+	
 	public void addNewRepDetails(String Email, String Phone, String Fax) throws Throwable {
 		if (isVisibleOnly(ADD_NEW_REP, "Add New Rep Details")) {
 			reporter.SuccessReport("Click on Add New Rep Link", "Add New Rep Link is available", "");

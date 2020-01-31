@@ -353,5 +353,6 @@ public class OrderObj extends ActionEngine{
 	 public static By airOptionInShipmentOptionsPage = By.xpath("//*[text()='Air']");
 	 public static By airPriceValueInShipmentOptionsPage = By.xpath("//*[text()='Air']//..//span[@class='iw-currency']");
 	 public static By canadaGroundInSummary = By.xpath("(//*[@class='cart-summary__totals']//*[@class='columns cart-summary__label']//*[text()='Canada Ground'])[2]");
+	 public static By ORDER_DATE=By.xpath("//label[contains(text(),'Date ordered:')]//p");
 }
 

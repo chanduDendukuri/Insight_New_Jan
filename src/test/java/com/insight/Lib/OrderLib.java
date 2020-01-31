@@ -1744,11 +1744,14 @@ List<String> orderdetails = new ArrayList<String>();
 			// Reference number verification
 			if (isElementPresent(REFERENCE_ORDER_NUM, "Reference number")) {
 				referenceNum = getText(REFERENCE_ORDER_NUM, "Reference number").replace("(In process)", " ").trim();
-				if (referenceNum.isEmpty()) {
-					reporter.failureReport("Verify the Reference number ", "The reference number is null or empty. ","");
-
-				} else
-					reporter.SuccessReport("Verify the Reference number ", "The reference number: " + referenceNumber,"");
+				/*
+				 * if (referenceNum.isEmpty()) {
+				 * reporter.failureReport("Verify the Reference number ",
+				 * "The reference number is null or empty. ","");
+				 * 
+				 * } else reporter.SuccessReport("Verify the Reference number ",
+				 * "The reference number: " + referenceNumber,"");
+				 */
 			}
 		}
 		return referenceNum;
@@ -2348,4 +2351,9 @@ List<String> orderdetails = new ArrayList<String>();
 
 		}
 	}
+	public void getOrderDate() throws Throwable
+	{
+		getText(ORDER_DATE, "Reference date");
+	}
+	
 	}

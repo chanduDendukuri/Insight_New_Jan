@@ -10,6 +10,7 @@ import com.insight.Lib.CanadaLib;
 import com.insight.Lib.CartLib;
 import com.insight.Lib.ChinaLib;
 import com.insight.Lib.CommonLib;
+import com.insight.Lib.OrderHistoryLib;
 import com.insight.Lib.OrderLib;
 import com.insight.Lib.ProductDetailLib;
 import com.insight.Lib.ProductDisplayInfoLib;
@@ -27,7 +28,9 @@ public class REQ01_EndToEndTest extends ChinaLib{
 	SearchLib searchLib = new SearchLib();
 	OrderLib orderLib = new OrderLib();
 	RequisitionProcessingLib ReqLib = new RequisitionProcessingLib();
-	   
+	ProductDisplayInfoLib prodinfo=new ProductDisplayInfoLib();
+	CartLib cartLib = new CartLib();
+	OrderHistoryLib orderhistory=new OrderHistoryLib();
 	// #############################################################################################################
 		// # Name of the Test : REQ01_EndToEnd
 		// # Migration Author : Cigniti Technologies
@@ -66,22 +69,31 @@ public class REQ01_EndToEndTest extends ChinaLib{
 						cmtLib.loginAsAdminCMT();
 
 						searchLib.searchInHomePage(data.get("SearchItem"));
+						searchLib.verifyBreadCrumbInSearchResultsPage(data.get("SearchItem"));
+						
+						prodinfo.getPartNumberInSearchResultsPage();
 
 						// Add a item to cart >> proceed To Checkout >> place order >>
 						// Verify the review order details,Receipt Order And Date
 						commonLib.addFirstDisplyedItemToCartAndVerify();
 						orderLib.continueToCheckOutOnAddCart();
+						cartLib.verifyCartPageAvailablity();
 						// Add 2nd product to the cart
 						searchLib.searchInHomePage(data.get("SearchItem1"));
+						searchLib.verifyBreadCrumbInSearchResultsPage(data.get("SearchItem1"));
+						prodinfo.getPartNumberInSearchResultsPage();
 						commonLib.addFirstDisplyedItemToCartAndVerify();
 						orderLib.continueToCheckOutOnAddCart();
+						cartLib.verifyCartPageAvailablity();
 						// Select web requestor group name from dropdown
 						ReqLib.selectRequestorGroupName(data.get("ReqName"));
 						orderLib.proceedToCheckout();
 
 						orderLib.continueButtonOnAdditionalInformationSection();
 						orderLib.clickContinueOnLineLevelInfo(); // Click continue on Line
-																	// level Info
+						/////
+						
+						// level Info
 						ReqLib.clearPhoneNumber();
 						orderLib.shippingBillPayContinueButton(); // Click continue on
 																	// shipping address
@@ -94,20 +106,24 @@ public class REQ01_EndToEndTest extends ChinaLib{
 						orderLib.clickOnReviewRequisitionButton();
 						orderLib.verifyPlaceOrderLabel();
 						orderLib.clickOnPlaceRequisitionButton();
+					
 						// Verify Receipt
 						Thread.sleep(4000);
 						orderLib.verifyReceiptVerbiage();
 						String RefNumber = orderLib.getTextfromReferenceNumber();
+						orderLib.getOrderDate();
+						commonLib.clickLogOutLink(data.get("header1"));
 
 						// LogIN with 2nd User
 						cmtLib.navigateBackToCMT();
+						
 						cmtLib.hoverOnManageWebGroupsAndSelectOptions(data.get("Manage_Web_Grp_Options"));
 						cmtLib.searchForaUserAndSelect(data.get("LnameEmailUname1"), data.get("ContactName1")); // app1
 						cmtLib.loginAsAdminCMT();
 						searchLib.verifyAccountToolForOrderMenuItem(data.get("toolsMenuName"), data.get("dropDown"));
 						orderLib.verifyandClickonRefLink(RefNumber);
 						orderLib.verifyApprovalManagmentandClickUpdate();
-
+						commonLib.clickLogOutLink(data.get("header1"));
 						// LogIN with 3rd User
 						cmtLib.navigateBackToCMT();
 						cmtLib.hoverOnManageWebGroupsAndSelectOptions(data.get("Manage_Web_Grp_Options"));
@@ -116,7 +132,7 @@ public class REQ01_EndToEndTest extends ChinaLib{
 						searchLib.verifyAccountToolForOrderMenuItem(data.get("toolsMenuName"), data.get("dropDown"));
 						orderLib.verifyandClickonRefLink(RefNumber);
 						orderLib.verifyApprovalManagmentandClickUpdate();
-
+						commonLib.clickLogOutLink(data.get("header1"));
 						// LogIN with 2nd User in order to verify approved reference link
 						cmtLib.navigateBackToCMT();
 						cmtLib.hoverOnManageWebGroupsAndSelectOptions(data.get("Manage_Web_Grp_Options"));
@@ -124,6 +140,7 @@ public class REQ01_EndToEndTest extends ChinaLib{
 						cmtLib.loginAsAdminCMT();
 						searchLib.verifyAccountToolForOrderMenuItem(data.get("toolsMenuName"), data.get("dropDown"));
 						ReqLib.verifyorderNumLinkinReqHistoryPage(RefNumber);
+						commonLib.clickLogOutLink(data.get("header1"));
 
 						// LogIN with 5th User
 						cmtLib.navigateBackToCMT();
@@ -132,19 +149,41 @@ public class REQ01_EndToEndTest extends ChinaLib{
 						cmtLib.loginAsAdminCMT();
 						searchLib.verifyAccountToolForOrderMenuItem(data.get("toolsMenuName"), data.get("dropDown"));
 						orderLib.verifyandClickonRefLink(RefNumber);
+						commonLib.clickLogOutLink(data.get("header1"));
+						
+						
+						cmtLib.navigateBackToCMT();
+						cmtLib.hoverOnManageWebGroupsAndSelectOptions(data.get("Manage_Web_Grp_Options"));
+						cmtLib.searchForaUserAndSelect(data.get("LnameEmailUname3"), data.get("ContactName3")); // app4
+						cmtLib.loginAsAdminCMT();
+						searchLib.verifyAccountToolForOrderMenuItem(data.get("toolsMenuName"), data.get("dropDown"));
+						orderLib.verifyandClickonRefLink(RefNumber);					
 						ReqLib.enterPOandPORelease(data.get("PONum"), data.get("PORelese"));
 						// get PO and POrelase numbers
 						String PO = data.get("PONum");
 						String PORelease = data.get("PORelese");
 						ReqLib.enterPOandPOReleaseandUpdate();
+						commonLib.clickLogOutLink(data.get("header1"));
+						///////
+						/////
 						// LogIN with 1st User
 						cmtLib.navigateBackToCMT();
 						cmtLib.hoverOnManageWebGroupsAndSelectOptions(data.get("Manage_Web_Grp_Options"));
-						cmtLib.searchForaUserAndSelect(data.get("LnameEmailUname"), data.get("ContactName")); // req1
+						cmtLib.searchForaUserAndSelect(data.get("LnameEmailUname"), data.get("ContactName"));
+						cmtLib.verifyWebGroupsManagementUsers();
+						
+						// req1
 						cmtLib.loginAsAdminCMT();
 						searchLib.verifyAccountToolForOrderMenuItem(data.get("toolsMenuName"), data.get("dropDown1")); // Order
-																														// history
-																														// page
+						orderhistory.verifyOrderHistoryPage();	
+						orderhistory.selectQuickSearchDropdown(data.get("sortby"), RefNumber);
+						//orderhistory.verifySearchResultsAreDisplayed();
+						orderhistory.clickOnFirstOrderHistoryResult();
+						
+						// history
+						
+						/////
+						
 						// Verifying PO Numbers
 						ReqLib.verifyPOandPORelease(RefNumber, PO, PORelease);
 						// Logout
