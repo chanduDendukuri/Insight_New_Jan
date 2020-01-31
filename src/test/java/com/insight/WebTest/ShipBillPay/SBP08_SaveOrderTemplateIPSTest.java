@@ -116,14 +116,12 @@ public class SBP08_SaveOrderTemplateIPSTest extends ShipBillPayLib{
 				orderLib.shippingBillPayContinueButton();
 				verifyNewAddress();
 				shipbLib.Selectshippingcarrier();
-				shipbLib.clickstoredAddress(data.get("Text"));
+				shipbLib.VerifyCreatedAddress(data.get("Text"));
 				orderLib.billingAddressContinueButton(); 
 				//Deletesavedcarts
 				shipbLib.Deletesavedcarts(Tamplate, data.get("toolsMenuName"), data.get("dropDown"));
 				commonLib.clickLogOutLink(data.get("Logout_Header"));
-				// permissions unchek
-				cmtLib.navigateBackToCMT();
-				cmtLib.setPermissionsToDisable(data.get("Menu_Name"), data.get("Set_Permission"));
+				
 
 				} catch (Exception e) {
 					ReportStatus.blnStatus = false;
