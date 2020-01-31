@@ -63,7 +63,7 @@ public class SBP08_SaveOrderTemplateIPSTest extends ShipBillPayLib{
 				cmtLib.setPermissions(data.get("Menu_Name"), data.get("Set_Permission"));
 				cmtLib.loginAsAdminCMT();
 				canadaLib.clickOnSideMenuSelectAccountToolOptions(data.get("toolsMenuName"),data.get("dropDown"));	
-				deleteCart("");
+				//deleteCart("");
 				commonLib.searchProduct(data.get("Search_Item1"));
 				verifyPartNumInProductDetailPage(data.get("Search_Item1"));
 				VerifyQuantity();
@@ -82,6 +82,10 @@ public class SBP08_SaveOrderTemplateIPSTest extends ShipBillPayLib{
 				cartLib.clickOnContinueButtonInAddInformtion();
 				shipbLib.enterReportingDetailsInLineLevelInfoSection(data.get("REPORTING FIELD_4"),
 						data.get("REPORTING FIELD_5"),data.get("Wg_LNL_Txt"));
+				Thread.sleep(3000);
+				scrollBottom();
+				scrollBottom();
+				Thread.sleep(3000);
 				clickExpand();
 				verifyCopiedText();
 				orderLib.clickContinueOnLineLevelInfo();
@@ -112,14 +116,12 @@ public class SBP08_SaveOrderTemplateIPSTest extends ShipBillPayLib{
 				orderLib.shippingBillPayContinueButton();
 				verifyNewAddress();
 				shipbLib.Selectshippingcarrier();
-				shipbLib.clickstoredAddress(data.get("Text"));
+				shipbLib.VerifyCreatedAddress(data.get("Text"));
 				orderLib.billingAddressContinueButton(); 
 				//Deletesavedcarts
 				shipbLib.Deletesavedcarts(Tamplate, data.get("toolsMenuName"), data.get("dropDown"));
 				commonLib.clickLogOutLink(data.get("Logout_Header"));
-				// permissions unchek
-				cmtLib.navigateBackToCMT();
-				cmtLib.setPermissionsToDisable(data.get("Menu_Name"), data.get("Set_Permission"));
+				
 
 				} catch (Exception e) {
 					ReportStatus.blnStatus = false;

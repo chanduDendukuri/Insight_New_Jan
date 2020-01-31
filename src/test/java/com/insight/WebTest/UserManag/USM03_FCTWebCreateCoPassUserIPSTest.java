@@ -140,7 +140,6 @@ public class USM03_FCTWebCreateCoPassUserIPSTest  extends UserManagementLib {
 							cmtLib.verifyDDPermission(data.get("Permision5"),data.get("Option"));
 							//cmtLib.verifyDDPermission(data.get("Permision6"),data.get("Option"));
 							cmtLib.verifyDDPermission(data.get("Permision7"),data.get("Option2"));
-							cmtLib.updateUser();
 							cmtLib.clickCheckOutSettings(data.get("Manage_Web_Grp_Options1"));
 							verifydefualtLinkedAcc(data.get("Account_Number"));
 							cmtLib.clickCheckOutSettings(data.get("Check_out_Settings"));

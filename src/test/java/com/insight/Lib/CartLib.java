@@ -231,40 +231,42 @@ public class CartLib extends ActionEngine {
 		click(CartObj.QUICK_CHECKOUT, "quick check out");
 		Thread.sleep(10000);
 		waitForVisibilityOfElement(CartObj.PLACE_ORDER_PAGE_TEXT, "place order page");
-		if (isElementPresent(CartObj.PLACE_ORDER_PAGE_TEXT, "place order page")) {
-			reporter.SuccessReport("Place order ", "Place order page is opened ", "");
-		} else {
-			reporter.failureReport("Place order ", "Place order page is not opened ", "", driver);
+		if(isElementPresent(CartObj.PLACE_ORDER_PAGE_TEXT, "place order page")) {
+			reporter.SuccessReport("Place order page", "place order page is loaded", "page Details:Place order");
 		}
+		else {
+			reporter.SuccessReport("Place order page", "place order page is not loaded", "");
+		}
+		
 		if (isElementPresent(CartObj.validationsInPlaceOrderPage(shippingCompany), "Shipping Company")) {
-			reporter.SuccessReport("Shipping Company", "Shipping company is present", shippingCompany);
+			reporter.SuccessReport("Shipping Company", "Shipping company is present", "Shipping Address - "+shippingCompany);
 
 		} else {
 			reporter.failureReport("Shipping Company", "Shipping company is not present", shippingCompany, driver);
 		}
 		if (isElementPresent(CartObj.validationsInPlaceOrderPage(shippingCarrier), "Shipping Carrier")) {
-			reporter.SuccessReport("Shipping Carrier", "Shipping Carrier is present", shippingCarrier);
+			reporter.SuccessReport("Shipping Carrier", "Shipping Carrier is present", "Shipping Options -" +shippingCarrier);
 
 		} else {
 			reporter.failureReport("Shipping Carrier", "Shipping Carrier is not present", shippingCarrier, driver);
 		}
 
 		if (isElementPresent(CartObj.validationsInPlaceOrderPage(NotificationMail), "Notification Mail")) {
-			reporter.SuccessReport("Notification Mail", "Notification Mail is present", NotificationMail);
+			reporter.SuccessReport("Notification Mail", "Notification Mail is present", "Notification email(s):" +NotificationMail);
 
 		} else {
 			reporter.failureReport("Notification Mail", "Notification Mail is not present", NotificationMail, driver);
 		}
 
 		if (isElementPresent(CartObj.validationsInPlaceOrderPage(BillingAddresses), "Billing Addresses")) {
-			reporter.SuccessReport("Billing Addresses", "Billing Addresses is present", BillingAddresses);
+			reporter.SuccessReport("Billing Addresses", "Billing Addresses is present", "Billing Address - "+BillingAddresses);
 
 		} else {
 			reporter.failureReport("NBilling Addresses", "Billing Addresses is not present", BillingAddresses, driver);
 		}
 
 		if (isElementPresent(CartObj.validationsInPlaceOrderPage(PaymentType), "Payment Type")) {
-			reporter.SuccessReport("Payment Type", "Payment Type is present", PaymentType);
+			reporter.SuccessReport("Payment Type", "Payment Type is present", "Billing Address - "+PaymentType);
 
 		} else {
 			reporter.failureReport("Payment Type", "Payment Type" + PaymentType + "is not present", "", driver);
@@ -281,9 +283,10 @@ public class CartLib extends ActionEngine {
 	 */
 	public void clickOnFavouriteShippingAddressesandSelectanAddresses(String shippingAddresses) throws Throwable {
 		waitForVisibilityOfElement(CartObj.FAVOURITE_SHIPPING_ADDRESSES_DROPDOWN, "Favourite shipping addresses");
-		click(CartObj.FAVOURITE_SHIPPING_ADDRESSES_DROPDOWN, "Favourite shipping addresses");
+		//click(CartObj.FAVOURITE_SHIPPING_ADDRESSES_DROPDOWN, "Favourite shipping addresses");
+		clickUntil(CartObj.FAVOURITE_SHIPPING_ADDRESSES_DROPDOWN,CartObj.selectFavouriteShippingAdresses(shippingAddresses), "Favourite shipping addresses");
 		click(CartObj.selectFavouriteShippingAdresses(shippingAddresses), "Shipping Adresses");
-
+		Thread.sleep(5000);
 	}
 
 	/*
@@ -308,7 +311,7 @@ public class CartLib extends ActionEngine {
 			reporter.failureReport("Place order ", "Place order page is not opened ", "", driver);
 		}
 		if (isElementPresent(CartObj.validationsInPlaceOrderPage(shippingCompany), "Shipping Company")) {
-			reporter.SuccessReport("Shipping Company", "Shipping company is present", shippingCompany);
+			reporter.SuccessReport("Shipping Company", "Shipping company is present", "Shipping Address - "+shippingCompany);
 
 		} else {
 			reporter.failureReport("Shipping Company", "Shipping company" + shippingCompany + "is not present",
@@ -1785,7 +1788,11 @@ public class CartLib extends ActionEngine {
 			reporter.failureReport("Verify cart page", "Cart page is not displayed", "", driver);
 		}
 	}
-
+public void getpartnumberIncartpage() throws Throwable {
+	getText(CartObj.Insightpartnumber, "Insightpartnumber");
+	getText(CartObj.MfrPartNumber, "Insightpartnumber");
+	
+}
 	/**
 	 * This method is to verify the contract is present in the cart page.
 	 * 

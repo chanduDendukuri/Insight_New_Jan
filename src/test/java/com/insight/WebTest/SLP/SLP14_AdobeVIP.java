@@ -55,7 +55,7 @@ public class SLP14_AdobeVIP extends SLPLib{
 					ReportControl.intRowCount = intCounter;
 					Hashtable<String, String> data = TestUtil.getDataByRowNo("SLP14_AdobeVIP", TestData, "SLP", intCounter);
 					TestEngineWeb.reporter
-							.initTestCaseDescription("SLPProrationMicrosoft");
+							.initTestCaseDescription("AdobeVIP");
 					reporter.SuccessReport("Iteration Number : ",
 							"**************Iteration Number::  " + intCounter + " For:: " + data.get("LoginName") + " ::and:: "
 									+ data.get("Password") + " To Validate::" + data.get("errorMessage") + "  **************","");

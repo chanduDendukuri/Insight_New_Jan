@@ -407,6 +407,7 @@ public class ShipBillPayLib extends ShipBillPayObj {
 		} else {
 			reporter.failureReport("Stored address is Not selected", "Stored address is Not selected", "");
 		}
+		getText(SHIPPING_ADDRES,"Shiping address Company"+Text).trim();
 		click(CONTINUE_BUTTONSTOREDADDRESS, "continue Button of Stored Address");
 
 	}
@@ -556,7 +557,7 @@ public class ShipBillPayLib extends ShipBillPayObj {
 			String Addres=getText(SHIPPING_ADDRES,"Shiping address").trim();
 			//String Addres1=getText(SHIPPING_ADDRESES,"Shiping address").trim();
 			//String Addres2=getText(SHIPPING_ADDRESESSECONDLINE,"Shiping address").trim();
-			reporter.SuccessReport("Verify created address ", "Creted Address Is Verified successfully", Company+ Addres);
+			reporter.SuccessReport("Verify New address ", "New Is Verified successfully", Company+ Addres);
 		} else {
 			reporter.failureReport("New Address Is Not Created", "New Address Is Not Created", "");
 		}
@@ -1150,7 +1151,7 @@ public class ShipBillPayLib extends ShipBillPayObj {
 			click(Date(date),"Today::"+date+"");
 			}
 		public void clickExpand()throws Throwable{
-			click(EXPAND_LNL,"Line Level Section");
+			clickUntil(EXPAND_LNL,WG_LNL_TEXT,"Line Level Section");
 		}
 		/**
 		 * This method is to add products By Quick shop

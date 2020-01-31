@@ -55,7 +55,7 @@ public class SLP03_SPLA_NoSPLA4uTest extends SLPLib{
 						ReportControl.intRowCount = intCounter;
 						Hashtable<String, String> data = TestUtil.getDataByRowNo("SLP03_SPLA_NoSPLA4uTest", TestData, "SLP", intCounter);
 						TestEngineWeb.reporter
-								.initTestCaseDescription("SLPProrationMicrosoft");
+								.initTestCaseDescription("SPLA_NoSPLA4uTest");
 						reporter.SuccessReport("Iteration Number : ",
 								"**************Iteration Number::  " + intCounter + " For:: " + data.get("LoginName") + " ::and:: "
 										+ data.get("Password") + " To Validate::" + data.get("errorMessage") + "  **************","");

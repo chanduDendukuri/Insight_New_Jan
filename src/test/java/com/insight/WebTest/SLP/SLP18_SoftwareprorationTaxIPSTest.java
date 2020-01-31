@@ -6,12 +6,15 @@ import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 import com.insight.Lib.CMTLib;
+import com.insight.Lib.CanadaLib;
 import com.insight.Lib.CartLib;
 import com.insight.Lib.CommonLib;
 import com.insight.Lib.MarriottIntlCorpLib;
 import com.insight.Lib.OrderLib;
+import com.insight.Lib.ProductDisplayInfoLib;
 import com.insight.Lib.SLPLib;
 import com.insight.accelerators.ReportControl;
+import com.insight.accelerators.TestEngineWeb;
 import com.insight.googledrive.ReportStatus;
 import com.insight.utilities.TestUtil;
 
@@ -42,6 +45,12 @@ public class SLP18_SoftwareprorationTaxIPSTest extends SLPLib {
 			ReportControl.intRowCount = intCounter;
 			Hashtable<String, String> data = TestUtil.getDataByRowNo("SLP18_SoftwareprorationTaxIPS", TestData, "SLP",
 					intCounter);
+			TestEngineWeb.reporter.initTestCaseDescription("SoftwareprorationTaxIPS");
+		      reporter.SuccessReport("Iteration Number : ",
+				"**************Iteration Number::  " + intCounter + " For:: " + data.get("LoginName") + " ::and:: "
+						+ data.get("Password") + " To Validate::" + data.get("errorMessage") + "  **************","");
+			
+			
 			// Test Steps execution
 			try {
 				fnOpenTest();
@@ -49,6 +58,9 @@ public class SLP18_SoftwareprorationTaxIPSTest extends SLPLib {
 				CommonLib commonLib = new CommonLib();
 				OrderLib orderLib = new OrderLib();
 				CartLib cartLib = new CartLib();
+				ProductDisplayInfoLib pipLib=new ProductDisplayInfoLib();
+				CanadaLib canadaLib=new CanadaLib();
+				
 				cmtLib.loginToCMT(data.get("Header"));
 				cmtLib.searchForWebGroup(data.get("WebGrp"));
 				cmtLib.clickOnTheWebGroup(data.get("WebGrp_Name"));
@@ -56,29 +68,33 @@ public class SLP18_SoftwareprorationTaxIPSTest extends SLPLib {
 				cmtLib.searchForaUserAndSelect(data.get("LnameEmailUname"), data.get("ContactName"));
 				cmtLib.setPermissions(data.get("Menu_Name"), data.get("Set_Permission"));
 				cmtLib.loginAsAdminCMT();
+				
+				// Login Verification 
+				cmtLib.loginVerification(data.get("ContactName"));
 				commonLib.searchProduct(data.get("PartNum"));
+				pipLib.verifyTheManufacturerNumberInProductDetailsPage(data.get("PartNum"));
+				pipLib.enterQuantityOnProductDetailsPage(data.get("Quantity"));
 				String price=getpricefromProductdetailpage();
 				Double Actualprice = Double.parseDouble(price.replace("$", "").replace("USD", ""));
-				
 				commonLib.addToCartAndVerify();
-				commonLib.clickCart();
+				orderLib.continueToCheckOutOnAddCart();
+				canadaLib.verifyPlaceCartLabel();
 				verifyProrationincartpage(data.get("PartNum"), Actualprice);
 				orderLib.proceedToCheckout();
-				orderLib.clickContinueOnLineLevelInfo();
-				orderLib.shippingBillPayContinueButton();
-				orderLib.shippingBillPayContinueButton();
-				orderLib.termsInPaymentInfo(data.get("PONumber"));
-				verifyProrationinplaceorderpage(data.get("Subtotal"), Actualprice);
-				String amount = cartLib.getSummaryAmountInCart().replace("$", "");
-				orderLib.placeOrderAndVerifyReceiptOrderAndDate(amount);
-				verifyProrationinrecieptpage(Actualprice);
-				cmtLib.navigateBackToCMT();
-				cmtLib.hoverOverMasterGroupAndSelectChangeGrp();
-				cmtLib.searchForWebGroup(data.get("WebGrp"));
-				cmtLib.clickOnTheWebGroup(data.get("WebGrp_Name"));
-				cmtLib.hoverOnManageWebGroupsAndSelectOptions(data.get("ManageWebGrpOptions"));
-				cmtLib.searchForaUserAndSelect(data.get("LnameEmailUname"), data.get("ContactName"));
-				cmtLib.setPermissionsToDisable(data.get("Menu_Name"), data.get("Set_Permission"));
+				
+				 //orderLib.clickOnAdditionalInfoContinueButton();
+				 orderLib.clickContinueOnLineLevelInfo();   // Click continue on Line level Info
+				 canadaLib.verifySBP();
+				 orderLib.clickContinueOnShippingAddress();
+				//orderLib.shippingOptionsCarrierSelection();
+				 orderLib.billingAddressContinueButton(); // Billing address continue button
+				 orderLib.termsInPaymentInfo(data.get("PONumber"),data.get("POReleaseNumber"));
+				 verifyProrationinplaceorderpage(data.get("Subtotal"), Actualprice);
+				 String amount = cartLib.getSummaryAmountInCart();
+				 orderLib.placeOrderAndVerifyReceiptOrderAndDate(amount);
+				 verifyProrationinrecieptpage(Actualprice);
+				 commonLib.clickLogOutLink(data.get("Logout"));
+				
 			} catch (Exception e) {
 				ReportStatus.blnStatus = false;
 				//gErrorMessage = e.getMessage();

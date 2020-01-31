@@ -400,6 +400,7 @@ public static By lnkDeleteProductGroups=By.xpath("//*[text()=' Delete Product Gr
 			.xpath("//div[@class='addNewRepTextboxDiv']//input[@id='addNewRepPhoneNumberBox']");
 	public static By FAX_NUMBER = By.xpath("//div[@class='addNewRepTextboxDiv']//input[@id='addNewRepfaxNumBox']");
 	public static By BROWSE = By.xpath("");
+	public static By INFORMATIONREP=By.xpath("//textarea[@id='addNewRepPhotoBox']");
 	public static By REP_UPDATE = By.xpath("//a[@id='repSaveId']//span[text()='UPDATE']");
 	public static By REP_ADD_SUCCESS_MESSAGE = By.xpath(
 			"//div[@id='addRepSuccessOrError']//div[@class='successUpdated' and text()='New rep has been added successfully']");
