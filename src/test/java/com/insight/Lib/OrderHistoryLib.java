@@ -743,4 +743,8 @@ public class OrderHistoryLib extends OrderHistoryObj {
 		
 		}
 	}
+	public void clickOnFirstOrderHistoryResult() throws Throwable
+	{
+		click(lnkOrderNumberInOrderHistory, "First order number in order history");
+	}
 }
