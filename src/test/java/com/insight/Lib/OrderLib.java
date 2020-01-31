@@ -134,6 +134,7 @@ public class OrderLib extends OrderObj{
 	 */
 	public void proceedToCheckout() throws Throwable{
 	//	commonLib.spinnerImage();
+		Thread.sleep(5000);
 		if(isElementPresent(CommonObj.CLOSEBUTTON_COOKIES,"close cookie")) {
 			click(CommonObj.CLOSEBUTTON_COOKIES, "close cookie");
 		}
@@ -520,7 +521,17 @@ List<String> orderdetails = new ArrayList<String>();
 	public void continueButtonOnAdditionalInformationSection() throws Throwable{
 		click(OrderObj.CONTINUE_BTN, "Continue button Additional Info Section");
 	}
-	
+	public void VerifyShippingCarrierdetails() throws Throwable {
+		String Carrier = getText(QuoteHistoryLib.txt_Carrier, "Carrier");
+		String ShippingEstimate = getText(QuoteHistoryLib.txt_EstimateShipping, "EstimateShipping");
+		String Payment = getText(QuoteHistoryLib.txt_Paymentdd, "Paymentdd");
+		
+	}
+	public void VerifyPlaceOrderdetails() throws Throwable {
+		String frieght =  getText(QuoteHistoryLib.txt_frieght, "frieght");
+		String CurrencyCodeAndAmount = getText(QuoteHistoryLib.CurrencyCodeAndAmount, "CurrencyCodeAndAmount");
+		String FrieghtCost = getText(QuoteHistoryLib.txt_frieghtCost, "frieghtCost");
+	}
 	/**
 	 * This method is to verify the save Order template link in the Order review/ Place order page
 	 * @throws Throwable
@@ -1422,6 +1433,9 @@ List<String> orderdetails = new ArrayList<String>();
 	 * @throws Throwable
 	 */
 	public void createQuote(String quoteName) throws Throwable{
+		
+		scrollToBottomWithCordinate("-3");
+		scrollToWebElement(CartObj.SAVE_AS_QUOTE);
 		clickUntil(CartObj.SAVE_AS_QUOTE,QUOTE_NAME ,"Save as quote Link");
 		type(QUOTE_NAME,quoteName, "Quote name");
 		scrollToBottomWithCordinate("600");
@@ -1731,11 +1745,14 @@ List<String> orderdetails = new ArrayList<String>();
 			// Reference number verification
 			if (isElementPresent(REFERENCE_ORDER_NUM, "Reference number")) {
 				referenceNum = getText(REFERENCE_ORDER_NUM, "Reference number").replace("(In process)", " ").trim();
-				if (referenceNum.isEmpty()) {
-					reporter.failureReport("Verify the Reference number ", "The reference number is null or empty. ","");
-
-				} else
-					reporter.SuccessReport("Verify the Reference number ", "The reference number: " + referenceNumber,"");
+				/*
+				 * if (referenceNum.isEmpty()) {
+				 * reporter.failureReport("Verify the Reference number ",
+				 * "The reference number is null or empty. ","");
+				 * 
+				 * } else reporter.SuccessReport("Verify the Reference number ",
+				 * "The reference number: " + referenceNumber,"");
+				 */
 			}
 		}
 		return referenceNum;
@@ -2335,4 +2352,9 @@ List<String> orderdetails = new ArrayList<String>();
 
 		}
 	}
+	public void getOrderDate() throws Throwable
+	{
+		getText(ORDER_DATE, "Reference date");
+	}
+	
 	}

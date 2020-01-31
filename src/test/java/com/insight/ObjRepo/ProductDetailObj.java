@@ -152,7 +152,7 @@ public class ProductDetailObj extends ActionEngine {
 	public static By PAYMENT_TERMS = By.xpath("//td[text()='Payment Terms']//following-sibling::td");
 	public static By DELIVERY = By.xpath("//td[text()='Delivery ']//following-sibling::td");
 	public static By RETURN_INFO = By.xpath("//td[text()='Return Information ']//following-sibling::td");
-	public static By CONTRACT_IN_PRODUCTDETAIL = By.xpath("//div[@class='sewp-prices']");
+	public static By CONTRACT_IN_PRODUCTDETAIL = By.xpath("(//p[@class='sewp-prices'])[2]");
 	
 	//recently viewed
 	public static By FIRSTPRODUCT_MFRPARTNUM = By.xpath("//div[@id='search-item-0']//p[@class='prod-part-number show-for-medium-up']");
@@ -173,5 +173,8 @@ public class ProductDetailObj extends ActionEngine {
      public static By RDIOBUTTONOFWARRENTY=By.xpath("//input[@name='warrantyItemRadio']");
    public static By ADDTOCARTBUTTONINWARRENTIESPOPUP=By.xpath("//button[@class='button expanded no-margin-bot']");
    public static By ADDEDWARRENTY=By.xpath("//p[@class='selected-warranty__item-desc']");
-
+   public static By PEOPLEWHOBOUGHTS=By.xpath("//h3[text()='People who bought also bought']");
+   public static By RECOMENDED_PRODUCTS=By.xpath("//h3[@id='recs-carousel-title' and contains(text(),'Recommended with Printers')]");
+   public static By MOREAVAILABLE_PRICES=By.xpath("//h3[@id='recs-carousel-title' and contains(text(),'Recommended with Printers')]/parent::div//div/section/div/a/following-sibling::p");
+ public static By MOREAVAILABLEPRICESPOPUP=By.xpath("//div[@class='row js-modal-prices-contract-selection']");
 }

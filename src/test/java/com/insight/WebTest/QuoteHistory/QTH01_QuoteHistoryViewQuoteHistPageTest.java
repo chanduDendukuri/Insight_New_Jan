@@ -50,7 +50,7 @@ public class QTH01_QuoteHistoryViewQuoteHistPageTest extends QuoteHistoryLib {
 								Hashtable<String, String> data = TestUtil.getDataByRowNo("TC_QTH01QuoteHistoryViewQuoteHistPage", TestDataInsight, "Quote_History", intCounter);
 								TestEngineWeb.reporter.initTestCaseDescription("QuoteHistoryViewQuoteHistPage");
 
- List<String> quotedetails = new ArrayList<>();
+						List<String> quotedetails = new ArrayList<>();
 						CMTLib cmtLib = new CMTLib();
 						SearchLib searchLib = new SearchLib();
 						OrderLib orderLib=new OrderLib();

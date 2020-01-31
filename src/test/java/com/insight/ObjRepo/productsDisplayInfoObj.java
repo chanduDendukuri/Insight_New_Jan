@@ -245,7 +245,7 @@ public static By txtQuanityNumberInWarrentyPage = By.xpath("(//*[@class=' cart-i
     
     public static By OPEN_MARKET=By.xpath("//div[@class='large-12 columns js-modal-pick-contract']//label[contains(.,'OPEN MARKET')]");
     public static By YOUR_PRICE=By.xpath("//div[@class='large-12 columns js-modal-pick-contract']//label[contains(.,'YOUR PRICE')]");
-    public static By ALL_CONTRACT_PRICES=By.xpath("//div[@class='large-12 columns js-modal-pick-contract']//label");
+    public static By ALL_CONTRACT_PRICES=By.xpath("//input[@type='radio']/parent::label");
     public static By CLOSE_CONTRACTS_POPUP =By.xpath("//a[@class='close-reveal-modal']");
     public static By DEFAULT_PRICE_OF_PRODUCT=By.xpath("//div[@id='search-item-0']//p[@class='prod-price']");
     public static By USD_PRICE=By.xpath("//div[@class='row js-more-prices-list'][1]//label");

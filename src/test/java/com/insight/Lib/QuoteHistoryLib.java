@@ -568,7 +568,16 @@ scrollUp();
 			reporter.failureReport("Verify  Quote Details Results", "  Quote Details Page Doesnot  Exist", "");		
 		}
 	}
-	
+	public void verifypartnumberInQuotedetails() throws Throwable{
+		String MFRpart = getText(mfrPartInQuotedetails, "mfrPartInQuotedetails");
+		String InsightPart = getText(InsightPartInQuotedetails, "InsightPart");
+		if(MFRpart!=null && InsightPart!=null) {
+			reporter.SuccessReport("Part details: ", "Part details exist as expected", ""+MFRpart+""+InsightPart+"");
+		}
+		else {
+			reporter.failureReport("Part details: ", "Part details exist as expected", "");
+		}
+	}
 
 	/**
 	 * Method is used to verify Delete this quote icon

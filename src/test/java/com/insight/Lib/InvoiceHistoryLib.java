@@ -1,5 +1,6 @@
 package com.insight.Lib;
 
+import org.omg.PortableServer.THREAD_POLICY_ID;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
@@ -15,6 +16,7 @@ import com.google.gdata.data.codesearch.File;
 import com.insight.ObjRepo.CanadaObj;
 import com.insight.ObjRepo.InvoiceHistoryObj;
 import com.insight.ObjRepo.productsDisplayInfoObj;
+import org.testng.reporters.VerboseReporter;
 
 public class InvoiceHistoryLib extends InvoiceHistoryObj {
 	
@@ -36,7 +38,7 @@ public class InvoiceHistoryLib extends InvoiceHistoryObj {
 		if (isVisibleOnly(CanadaObj.SEARCHBY_DROPDOWN, "Quick Search")) {
 
 			//click(CanadaObj.SEARCHBY_DROPDOWN, "SearchBy");
-
+			click(CanadaLib.drpSearchByDropdownValue,"Search bY Dropdown Value");
 			click(CanadaObj.getSearchByTextOrder(searchBy), "Search By");
 			click(CanadaObj.QUICK_SEARCH_TEXT, "Click on Text");
 			type(CanadaObj.QUICK_SEARCH_TEXT, text, "Text ");
@@ -48,6 +50,14 @@ public class InvoiceHistoryLib extends InvoiceHistoryObj {
 			if (isVisibleOnly(searchResultsTable, "search results table")) {
 					reporter.SuccessReport("Verify search results in Invoice hisory page  ",
 							" search results are displayed",searchBy);
+					List<WebElement> record = driver.findElements(getInvoiceNumber);
+					for(int i=0;i < record.size();i++){
+						record.get(i).getText();
+						reporter.SuccessReport("Product Details are ","Given value is matched wtih how mnay ",record.get(i).getText());
+
+					}
+
+
 			}else {
 				
 					reporter.failureReport("Verify search results in Invoice hisory page   ",
@@ -63,7 +73,7 @@ public class InvoiceHistoryLib extends InvoiceHistoryObj {
 	 */
 	public void clickOnAdvancedSearch() throws Throwable {
 		clickUntil(ADVANCED_SEARCH,START_DATE_CALENDER,"Advanced search","Advanced Search");
-		Thread.sleep(5000);
+		Thread.sleep(6000);
 	}
 	
 	/**
@@ -111,7 +121,7 @@ public class InvoiceHistoryLib extends InvoiceHistoryObj {
 		reporter.SuccessReport("Selected Date ", "Selected Date is ",date);
 		 JavascriptExecutor js = (JavascriptExecutor) driver;
 		 js.executeScript("window.scrollTo(0, -document.body.scrollHeight);");
-		 Thread.sleep(3000);
+		 Thread.sleep(8000);
 		if(click(START_DATE_CALENDER, "Start date calender",day)) {
 			reporter.SuccessReport("Selected Date ", "Selected Date is ","");
 		}
@@ -1018,6 +1028,7 @@ return status;
 	public void clickOnSearchUnderAdvancedSearch() throws Throwable
 	{
 			click(btnsearchUnderAdvancedSearch, "search button under advanced search");
+			Thread.sleep(10000);
 	}
 	public void verifyQuoteHistoryReults() throws Throwable {
 		isVisibleOnly(lblExpirationDate, "quote history results");
@@ -1127,6 +1138,11 @@ return status;
 			 reporter.failureReport("Excel download verification","Could not export excel file","", driver);
 		 }
 	}
+
+public boolean verifyInvoiceHistoryLabel() throws Throwable{
+		return isVisibleOnly(headerInvoiceHistory,"Invoice History");
+}
+
 	public void clickOnSearchByInInvoiceHistory() throws Throwable
 	{
 		Thread.sleep(3000);

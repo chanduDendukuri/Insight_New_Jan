@@ -744,6 +744,7 @@ public class OrderHistoryLib extends OrderHistoryObj {
 		
 		}
 	}
+
 	
 	
 	public void getFirstOrderNumber() throws Throwable {
@@ -753,6 +754,11 @@ public class OrderHistoryLib extends OrderHistoryObj {
 		}else {
 			reporter.failureReport("Verify order displayed in order history", "Recent Orders Search Results are not displayed", "", driver);
 		}
-		
+	}
+
+	public void clickOnFirstOrderHistoryResult() throws Throwable
+	{
+		click(lnkOrderNumberInOrderHistory, "First order number in order history");
+
 	}
 }

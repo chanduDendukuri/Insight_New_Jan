@@ -10,6 +10,7 @@ import com.insight.Lib.CanadaLib;
 import com.insight.Lib.CartLib;
 import com.insight.Lib.ChinaLib;
 import com.insight.Lib.CommonLib;
+import com.insight.Lib.OrderHistoryLib;
 import com.insight.Lib.OrderLib;
 import com.insight.Lib.ProductDetailLib;
 import com.insight.Lib.ProductDisplayInfoLib;
@@ -30,7 +31,7 @@ public class REQ06_NOForceRequestorEnterCCTest extends ChinaLib{
 	ProductDisplayInfoLib prodLib = new ProductDisplayInfoLib();
 	OrderLib orderLib = new OrderLib();
 	RequisitionProcessingLib ReqLib = new RequisitionProcessingLib();
-	   
+	OrderHistoryLib orderhistory=new OrderHistoryLib(); 
 
 	   
 	// #############################################################################################################
@@ -67,17 +68,21 @@ public class REQ06_NOForceRequestorEnterCCTest extends ChinaLib{
 						cmtLib.loginToCMT(data.get("Header"));
 						cmtLib.searchForWebGroup(data.get("WebGrp"));
 						cmtLib.clickOnTheWebGroup(data.get("WebGrp_Name"));
+						cmtLib.verifyManageWebGroupSettings();
 						cmtLib.hoverOnManageWebGroupsAndSelectOptions(data.get("Manage_Web_Grp_Options"));
 						// LogIN with 1st User
 						cmtLib.searchForaUserAndSelect(data.get("LnameEmailUname"), data.get("ContactName")); // uftrequestor@mailnator.com
+						cmtLib.verifyWebGroupsManagementUsers();
 						cmtLib.setPermissions(data.get("menuName"), data.get("userPermissions"));
 						cmtLib.loginAsAdminCMT();
 
 						searchLib.searchInHomePage(data.get("SearchItem"));
-
+						searchLib.verifyBreadCrumbInSearchResultsPage(data.get("SearchItem"));
+						prodInfoLib.getPartNumberInSearchResultsPage();
 						// Add a item to cart >> proceed To Checkout
 						commonLib.addFirstDisplyedItemToCartAndVerify();
 						orderLib.continueToCheckOutOnAddCart();
+						cartLib.verifyCartPageAvailablity();
 
 						// Select web requestor group name from dropdown
 						ReqLib.selectRequestorGroupName(data.get("ReqName"));
@@ -86,6 +91,7 @@ public class REQ06_NOForceRequestorEnterCCTest extends ChinaLib{
 						orderLib.continueButtonOnAdditionalInformationSection();
 						orderLib.clickContinueOnLineLevelInfo(); // Click continue on Line
 																	// level Info
+						//
 						ReqLib.clearPhoneNumber();
 						orderLib.shippingBillPayContinueButton(); // Click continue on
 																	// shipping address
@@ -100,22 +106,25 @@ public class REQ06_NOForceRequestorEnterCCTest extends ChinaLib{
 						// Login with the same user
 						cmtLib.navigateBackToCMT();
 						cmtLib.hoverOnManageWebGroupsAndSelectOptions(data.get("Manage_Web_Grp_Options"));
-						cmtLib.hoverOnManageWebGroupsAndSelectOptions(data.get("Manage_Web_Grp_Options"));
 						// LogIN with 1st User
 						cmtLib.searchForaUserAndSelect(data.get("LnameEmailUname"), data.get("ContactName")); // uftrequestor@mailnator.com
 						cmtLib.setPermissionsToDisable(data.get("menuName"), data.get("userPermissions"));
 						cmtLib.loginAsAdminCMT();
 
 						searchLib.searchInHomePage(data.get("SearchItem"));
-
+						searchLib.verifyBreadCrumbInSearchResultsPage(data.get("SearchItem"));
+						prodInfoLib.getPartNumberInSearchResultsPage();
 						// Add a item to cart >> proceed To Checkout >> place order >>
 						// Verify the review order details,Receipt Order And Date
+						
 						commonLib.addFirstDisplyedItemToCartAndVerify();
 						orderLib.continueToCheckOutOnAddCart();
+						cartLib.verifyCartPageAvailablity();
 
 						// Select web requestor group name from dropdown
 						ReqLib.selectRequestorGroupName(data.get("ReqName"));
 						orderLib.proceedToCheckout();
+						
 
 						orderLib.continueButtonOnAdditionalInformationSection();
 						orderLib.clickContinueOnLineLevelInfo(); // Click continue on Line
@@ -135,6 +144,8 @@ public class REQ06_NOForceRequestorEnterCCTest extends ChinaLib{
 						Thread.sleep(4000);
 						orderLib.verifyReceiptVerbiage();
 						String RefNumber = orderLib.getTextfromReferenceNumber();
+						orderLib.getOrderDate();
+						commonLib.clickLogOutLink(data.get("header1"));
 
 						// LogIN with 2nd User for Approve Requisition
 						cmtLib.navigateBackToCMT();
@@ -144,6 +155,7 @@ public class REQ06_NOForceRequestorEnterCCTest extends ChinaLib{
 						searchLib.verifyAccountToolForOrderMenuItem(data.get("toolsMenuName"), data.get("dropDown"));
 						orderLib.verifyandClickonRefLink(RefNumber);
 						orderLib.verifyApprovalManagmentandClickUpdate();
+						commonLib.clickLogOutLink(data.get("header1"));
 
 						// LogIN with 3rd User for Approve Requisition
 						cmtLib.navigateBackToCMT();
@@ -153,7 +165,7 @@ public class REQ06_NOForceRequestorEnterCCTest extends ChinaLib{
 						searchLib.verifyAccountToolForOrderMenuItem(data.get("toolsMenuName"), data.get("dropDown"));
 						orderLib.verifyandClickonRefLink(RefNumber);
 						orderLib.verifyApprovalManagmentandClickUpdate();
-
+						commonLib.clickLogOutLink(data.get("header1"));
 						// LogIN with 3rd User for final Approval
 						cmtLib.navigateBackToCMT();
 						cmtLib.hoverOnManageWebGroupsAndSelectOptions(data.get("Manage_Web_Grp_Options"));
@@ -164,8 +176,15 @@ public class REQ06_NOForceRequestorEnterCCTest extends ChinaLib{
 						orderLib.verifyApprovalManagmentandClickUpdate();
 						ReqLib.enterNewCardInformation(data.get("cardtype"), data.get("cardNum"), data.get("cardName"),
 								data.get("month"), data.get("year"));
-						orderLib.verifyOrderNumberExists(RefNumber);
 						ReqLib.verifyApproveRequisitionStatus();
+						//orderLib.verifyOrderNumberExists(RefNumber);
+						scrollUp();
+						searchLib.verifyAccountToolForOrderMenuItem(data.get("toolsMenuName"), data.get("dropDown1")); // Order
+						orderhistory.verifyOrderHistoryPage();	
+						orderhistory.selectQuickSearchDropdown(data.get("sortby"), RefNumber);
+						//orderhistory.verifySearchResultsAreDisplayed();
+						orderhistory.clickOnFirstOrderHistoryResult();
+						
 						// Logout
 						commonLib.clickLogOutLink(data.get("header1"));
 						// fnCloseTest();
