@@ -92,7 +92,7 @@ public class SBP08_SaveOrderTemplateIPSTest extends ShipBillPayLib{
 				shipbLib.clickstoredAddress(data.get("Text"));
 				orderLib.shippingBillPayContinueButton();
 				verifyNewAddress();
-				shipbLib.Selectshippingcarrier();
+				selectCarrierandGrounOption(data.get("Carrier"));
 				shipbLib.clickstoredAddress(data.get("Text"));
 				orderLib.billingAddressContinueButton(); 
 				orderLib.selectPaymentInfoMethodCreditCard(data.get("cardNumber"), data.get("cardName"), data.get("month"),
@@ -113,11 +113,11 @@ public class SBP08_SaveOrderTemplateIPSTest extends ShipBillPayLib{
 						data.get("REPORTING FIELD_5"),data.get("Wg_LNL_Txt"));
 				verifyCopiedText();
 				orderLib.clickContinueOnLineLevelInfo();
-				shipbLib.clickstoredAddress(data.get("Text"));
+				VerifySoldtoAddress(data.get("Text"));
 				orderLib.shippingBillPayContinueButton();
-				verifyNewAddress();
+				selectCarrierandGrounOption(data.get("Carrier"));
 				shipbLib.Selectshippingcarrier();
-				shipbLib.VerifyCreatedAddress(data.get("Text"));
+				VerifySoldtoAddress(data.get("Text"));
 				orderLib.billingAddressContinueButton(); 
 				//Deletesavedcarts
 				shipbLib.Deletesavedcarts(Tamplate, data.get("toolsMenuName"), data.get("dropDown"));

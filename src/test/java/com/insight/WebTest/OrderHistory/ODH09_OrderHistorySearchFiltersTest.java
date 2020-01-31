@@ -58,7 +58,7 @@ public class ODH09_OrderHistorySearchFiltersTest extends OrderHistoryLib {
 							cmtLib.clickOnloginAs();
 							switchToChildWindow();
 							cmtLib.loginVerification(data.get("ContactName"));
-							ivhLib.closeAccountTools();
+							//ivhLib.closeAccountTools();
 							canadaLib.clickOnSideMenuSelectAccountToolOptions(data.get("Tools_Menu"),
 									data.get("Tools_Menu_DD"));
 							verifyOrderHistoryPage();

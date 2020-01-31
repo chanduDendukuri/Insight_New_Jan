@@ -83,7 +83,8 @@ public class QTH09_ConvertSmartQuoteOnWebTest extends QuoteHistoryLib {
 					Homelib.clickOnAddToOrderButton();
 					Homelib.loadingSymbol();
 					Homelib.closebuttonInProductSearch();
-					Homelib.clickonConXSystem(data.get("ItemNum"));//000040
+					Homelib.Swipedownapplication();
+					Homelib.clickonConXSystem("000020");//000040
 					Homelib.clickDoneButton();
 					Homelib.clickSideBarSmart();
 					Homelib.clickonSaveasQuote();
