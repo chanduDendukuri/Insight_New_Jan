@@ -86,6 +86,7 @@ public class CRT16_RequestorOptionsTest extends CartLib{
 
 					commonLib.addToCartAndVerify();
 				    canadaLib.continueToCheckout();
+				    cartLib.verifyCartPageAvailablity();
 					cartLib.verifySelectRwquestorGroupDropdownIsPresent();
 					commonLib.clickLogOutLink(data.get("Logout_Header"));
 					   System.out.println("Test completed");
