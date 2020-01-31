@@ -25,6 +25,8 @@ public class CRT16_RequestorOptionsTest extends CartLib{
 	CMTLib cmtLib = new CMTLib();
 	CartLib cartLib = new CartLib();
 	CanadaLib canadaLib=new CanadaLib();
+	SearchLib search = new SearchLib();
+	ProductDisplayInfoLib prodInfoLib = new ProductDisplayInfoLib();
 
 	// #############################################################################################################
     // #    Name of the Test         : CRT16_RequestorOptions
@@ -57,10 +59,16 @@ public class CRT16_RequestorOptionsTest extends CartLib{
 					cmtLib.setPermissions(data.get("menuName"),data.get("Enable_Purchasing_Popup"));
 					cmtLib.clickOnloginAs();
 					switchToChildWindow();
+					cmtLib.loginVerification(data.get("ContactName"));
 					cmtLib.handleWelcomeToInsightBetaPopUp();
 					commonLib.searchProduct(data.get("PartNumber"));
-					commonLib.addFirstDisplyedItemToCartAndVerify();
+					
+					prodInfoLib.verifyTheManufacturerNumberInProductDetailsPage(data.get("PartNumber"));
+					search.increaseQuantity(data.get("quantity"));
+
+					commonLib.addToCartAndVerify();
 					canadaLib.continueToCheckout();
+					cartLib.verifyCartPageAvailablity();
 					cartLib.verifySaveCartAsQuoteIsPresent();
 					commonLib.clickLogOutLink(data.get("Logout_Header"));
 					cmtLib.navigateBackToCMT();
@@ -71,8 +79,12 @@ public class CRT16_RequestorOptionsTest extends CartLib{
 				    cmtLib.verifyUserandClick(data.get("ContactName1"));
 				    cmtLib.clickOnloginAs();
 				    switchToChildWindow();
+				    cmtLib.loginVerification(data.get("ContactName1"));
 				    commonLib.searchProduct(data.get("PartNumber"));
-				    commonLib.addFirstDisplyedItemToCartAndVerify();
+				    prodInfoLib.verifyTheManufacturerNumberInProductDetailsPage(data.get("PartNumber"));
+					search.increaseQuantity(data.get("quantity"));
+
+					commonLib.addToCartAndVerify();
 				    canadaLib.continueToCheckout();
 					cartLib.verifySelectRwquestorGroupDropdownIsPresent();
 					commonLib.clickLogOutLink(data.get("Logout_Header"));
