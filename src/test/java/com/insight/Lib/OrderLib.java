@@ -577,7 +577,8 @@ List<String> orderdetails = new ArrayList<String>();
 	public void billingAddressContinueButton() throws Throwable{
 		//scrollToBottomWithCordinate("100");
 		//clickUntil(CONTINUE_BTN,CONTINUE_BTN,"Continue button of Shipping address");
-		 click(CONTINUE_BTN,"Continue button of Billing address");// clicking continue in Shipping address ,Shipping options
+		Thread.sleep(4000);
+		click(CONTINUE_BTN,"Continue button of Billing address");// clicking continue in Shipping address ,Shipping options
 		 Thread.sleep(1000);
 	  }
 	/**

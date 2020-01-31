@@ -54,7 +54,7 @@ public class SLP12_CITRIXNoCITRIX4uTest extends SLPLib{
 						ReportControl.intRowCount = intCounter;
 						Hashtable<String, String> data = TestUtil.getDataByRowNo("SLP12_CITRIXNoCITRIX4u", TestData, "SLP", intCounter);
 						TestEngineWeb.reporter
-								.initTestCaseDescription("SLPProrationMicrosoft");
+								.initTestCaseDescription("CITRIXNoCITRIX4u");
 						reporter.SuccessReport("Iteration Number : ",
 								"**************Iteration Number::  " + intCounter + " For:: " + data.get("LoginName") + " ::and:: "
 										+ data.get("Password") + " To Validate::" + data.get("errorMessage") + "  **************","");

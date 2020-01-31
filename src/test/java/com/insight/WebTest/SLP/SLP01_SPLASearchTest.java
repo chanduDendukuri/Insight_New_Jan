@@ -55,7 +55,7 @@ public class SLP01_SPLASearchTest extends SLPLib{
 							ReportStatus.fnDefaultReportStatus();
 							ReportControl.intRowCount = intCounter;
 							Hashtable<String, String> data = TestUtil.getDataByRowNo("SLP01_SPLASearch", TestData, "SLP", intCounter);
-							TestEngineWeb.reporter.initTestCaseDescription(" SearchIncludingChina ");
+							TestEngineWeb.reporter.initTestCaseDescription(" SPLASearch ");
 							reporter.SuccessReport("Iteration Number : ","**************Iteration Number::  " + intCounter + " For:: " + data.get("LoginName") + " ::and:: "
 											+ data.get("Password") + " To Validate::" + data.get("errorMessage") + "  **************","");
 							// Login to CMT
