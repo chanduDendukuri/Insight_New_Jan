@@ -25,7 +25,8 @@ public class CRT25_QuickCheckOutTest extends CartLib {
 	CMTLib cmtLib = new CMTLib();
 	CartLib cartLib = new CartLib();
 	CanadaLib canadaLib=new CanadaLib();
-
+	ProductDisplayInfoLib prodInfoLib=new ProductDisplayInfoLib();
+	SearchLib searchLib = new SearchLib();
 	// #############################################################################################################
 	// # Name of the Test : CRT25_QuickCheckOutTest
 	// # Migration Author : Cigniti Technologies
@@ -53,15 +54,25 @@ public class CRT25_QuickCheckOutTest extends CartLib {
 					Hashtable<String, String> data = TestUtil.getDataByRowNo("CRT25_QuickCheckOut", TestDataInsight,
 							"Web_Cart", intCounter);
 					TestEngineWeb.reporter.initTestCaseDescription("QuickCheckOut");
-					cmtLib.loginToCMTSearchWebGrpAndUser(data.get("Header"), data.get("WebGrp"),
-							data.get("LnameEmailUname"), data.get("ContactName"));
+					//cmtLib.loginToCMTSearchWebGrpAndUser(data.get("Header"), data.get("WebGrp"),
+							//data.get("LnameEmailUname"), data.get("ContactName"));
 					
+					cmtLib.loginToCMT(data.get("Header"));
+					cmtLib.searchForWebGroup(data.get("WebGrp"));
+					cmtLib.clickOnTheWebGroup(data.get("WebGrp_Name"));
+					cmtLib.setCustomerLevelPermissionsOFF(data.get("Customer_Permissions_OFF"));
+					// reference num creation---TU_StoredcardtestUser
+					cmtLib.hoverOnManageWebGroupsAndSelectOptions(data.get("ManageWebGrpOptions"));
+					cmtLib.searchForaUserAndSelect(data.get("LnameEmailUname"), data.get("ContactName"));
 					cmtLib.clickOnloginAs();
 					switchToChildWindow();
+					cmtLib.loginVerification(data.get("ContactName"));
 					commonLib.searchProduct(data.get("PartNumber"));
+					searchLib.verifyBreadCrumbInSearchResultsPage(data.get("PartNumber"));
+					prodInfoLib.getPartNumberInSearchResultsPage();
 					commonLib.addFirstDisplyedItemToCartAndVerify();
 					canadaLib.continueToCheckout();
-					
+					cartLib.verifyCartPageAvailablity();
 					cartLib.clickQuickCheckOutandVerify(data.get("ShippingCompany"), data.get("ShippingCarrier"),
 							data.get("NotificationMail"), data.get("BillingAddresses"), data.get("PaymentType"));
 					commonLib.spinnerImage();

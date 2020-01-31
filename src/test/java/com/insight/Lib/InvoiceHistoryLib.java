@@ -1,5 +1,6 @@
 package com.insight.Lib;
 
+import org.omg.PortableServer.THREAD_POLICY_ID;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
@@ -15,6 +16,7 @@ import com.google.gdata.data.codesearch.File;
 import com.insight.ObjRepo.CanadaObj;
 import com.insight.ObjRepo.InvoiceHistoryObj;
 import com.insight.ObjRepo.productsDisplayInfoObj;
+import org.testng.reporters.VerboseReporter;
 
 public class InvoiceHistoryLib extends InvoiceHistoryObj {
 	
@@ -36,7 +38,7 @@ public class InvoiceHistoryLib extends InvoiceHistoryObj {
 		if (isVisibleOnly(CanadaObj.SEARCHBY_DROPDOWN, "Quick Search")) {
 
 			//click(CanadaObj.SEARCHBY_DROPDOWN, "SearchBy");
-
+			click(CanadaLib.drpSearchByDropdownValue,"Search bY Dropdown Value");
 			click(CanadaObj.getSearchByTextOrder(searchBy), "Search By");
 			click(CanadaObj.QUICK_SEARCH_TEXT, "Click on Text");
 			type(CanadaObj.QUICK_SEARCH_TEXT, text, "Text ");
@@ -48,6 +50,14 @@ public class InvoiceHistoryLib extends InvoiceHistoryObj {
 			if (isVisibleOnly(searchResultsTable, "search results table")) {
 					reporter.SuccessReport("Verify search results in Invoice hisory page  ",
 							" search results are displayed",searchBy);
+					List<WebElement> record = driver.findElements(getInvoiceNumber);
+					for(int i=0;i < record.size();i++){
+						record.get(i).getText();
+						reporter.SuccessReport("Product Details are ","Given value is matched wtih how mnay ",record.get(i).getText());
+
+					}
+
+
 			}else {
 				
 					reporter.failureReport("Verify search results in Invoice hisory page   ",
@@ -1127,6 +1137,11 @@ return status;
 			 reporter.failureReport("Excel download verification","Could not export excel file","", driver);
 		 }
 	}
+
+public boolean verifyInvoiceHistoryLabel() throws Throwable{
+		return isVisibleOnly(headerInvoiceHistory,"Invoice History");
+}
+
 	public void clickOnSearchByInInvoiceHistory() throws Throwable
 	{
 		Thread.sleep(3000);

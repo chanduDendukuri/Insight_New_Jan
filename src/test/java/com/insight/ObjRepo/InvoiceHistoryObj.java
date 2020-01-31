@@ -168,4 +168,7 @@ public static By selectDateFromCalender(String date) {
 	}
 	public static By INVOICE_NUMBER =By.xpath("//*[@id='invoiceSearch']/tbody/tr/td/a");
 	public static By INVOICE_STATUS=By.xpath("(//*[@id='invoiceSearch']/tbody/tr/td[5])[1]");
+
+	public static By headerInvoiceHistory =By.xpath("//h2[text()='Invoice History']");
+	public static By getInvoiceNumber = By.xpath("//*[@id=\"invoiceSearch\"]//tbody//td//span//following-sibling::a");
 }
