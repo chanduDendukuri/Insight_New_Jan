@@ -1207,8 +1207,9 @@ public class ShipBillPayLib extends ShipBillPayObj {
 		public void selectCarrier(String carrier) throws Throwable {
 			clickUntil(OrderObj.SELECTARRIER,OrderObj.verifyCarrier(carrier), "carrier Drop down");
 			if (isElementPresent(OrderObj.verifyCarrier(carrier), "shipping carrier in Dropdown"+carrier)) {
-				click(OrderObj.verifyCarrier(carrier), "Carrier From Drop down"+carrier);
+				click(OrderObj.verifyCarrier(carrier), "From Carrier Drop down"+carrier);
 			}
+			
 		}
 		public void shippingOptionsCarrierSelection() throws Throwable{
 			click(CONTINUE_BTN, "Continue button of Shipping Options");
@@ -1245,5 +1246,23 @@ public class ShipBillPayLib extends ShipBillPayObj {
 			}
 		}
 		
+		public void VerifySoldtoAddress(String Company) throws Throwable {
+			Thread.sleep(4000);
+			if (isVisibleOnly(CREATEDADDRES(Company), "Sold-To Shipping Address")) {
+				Thread.sleep(4000);
+				getText(SHIPPING_ADDRES,"Shiping address").trim();
+			}
+		}
+		public void selectCarrierandGrounOption(String carrier) throws Throwable {
+			clickUntil(OrderObj.SELECTARRIER,OrderObj.verifyCarrier(carrier), "carrier Drop down");
+			if (isElementPresent(OrderObj.verifyCarrier(carrier), "shipping carrier in Dropdown"+carrier)) {
+				click(OrderObj.verifyCarrier(carrier), "From Carrier Drop down"+carrier);
+			}
+			if(driver.findElement(GROUND_CAREER).isSelected()) {
+				reporter.SuccessReport("Verify "+carrier+" is Selected" ,"Select a Carrier Option Exist and Verified", carrier+" Ground - USD $30.46");	
+			}else {
+				click(GROUND_CAREER,"Ground- USD $30.46Option Exists and Selected");
+			}
+		}
 }
 

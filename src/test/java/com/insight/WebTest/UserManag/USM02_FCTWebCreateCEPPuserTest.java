@@ -91,8 +91,8 @@ public class USM02_FCTWebCreateCEPPuserTest extends UserManagementLib {
 							cmtLib.clickOnUserURL();
 							//refreshPage();
 							//cmtLib.verifyCreateAnAccountPage();
-							commonLib.clickLogOutLink(data.get("Logout_Header"));
-							navigateTo("https://uat1.insight.com/insightweb/endUser/createAccount?authKey=wSNU%2F3UlR5o%3D");
+							//commonLib.clickLogOutLink(data.get("Logout_Header"));
+							//navigateTo("https://uat1.insight.com/insightweb/endUser/createAccount?authKey=wSNU%2F3UlR5o%3D");
 							mic.handleinsightpopup();
 							refreshPage();
 							cmtLib.enterAdressesInCreateAnAccount(data.get("Adressess2"));

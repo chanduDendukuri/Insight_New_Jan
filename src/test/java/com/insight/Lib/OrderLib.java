@@ -521,7 +521,17 @@ List<String> orderdetails = new ArrayList<String>();
 	public void continueButtonOnAdditionalInformationSection() throws Throwable{
 		click(OrderObj.CONTINUE_BTN, "Continue button Additional Info Section");
 	}
-	
+	public void VerifyShippingCarrierdetails() throws Throwable {
+		String Carrier = getText(QuoteHistoryLib.txt_Carrier, "Carrier");
+		String ShippingEstimate = getText(QuoteHistoryLib.txt_EstimateShipping, "EstimateShipping");
+		String Payment = getText(QuoteHistoryLib.txt_Paymentdd, "Paymentdd");
+		
+	}
+	public void VerifyPlaceOrderdetails() throws Throwable {
+		String frieght =  getText(QuoteHistoryLib.txt_frieght, "frieght");
+		String CurrencyCodeAndAmount = getText(QuoteHistoryLib.CurrencyCodeAndAmount, "CurrencyCodeAndAmount");
+		String FrieghtCost = getText(QuoteHistoryLib.txt_frieghtCost, "frieghtCost");
+	}
 	/**
 	 * This method is to verify the save Order template link in the Order review/ Place order page
 	 * @throws Throwable
