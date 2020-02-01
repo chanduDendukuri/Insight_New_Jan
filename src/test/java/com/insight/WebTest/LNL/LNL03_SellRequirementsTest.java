@@ -12,6 +12,7 @@ import com.insight.Lib.LineLevelInfoLib;
 import com.insight.Lib.OrderLib;
 import com.insight.Lib.ProductDetailLib;
 import com.insight.Lib.ProductDisplayInfoLib;
+import com.insight.Lib.SLPLib;
 import com.insight.Lib.SearchLib;
 import com.insight.Lib.ShipBillPayLib;
 import com.insight.accelerators.ReportControl;
@@ -30,6 +31,7 @@ public class LNL03_SellRequirementsTest extends LineLevelInfoLib{
 	ShipBillPayLib sbpLib=new ShipBillPayLib();
 	CanadaLib canadaLib=new CanadaLib();
 	InvoiceHistoryLib ivhLib=new InvoiceHistoryLib();
+	SLPLib slpLib=new SLPLib();
 
 	   
 	    // #############################################################################################################
@@ -70,18 +72,21 @@ public class LNL03_SellRequirementsTest extends LineLevelInfoLib{
 						cmtLib.loginAsAdminCMT();
 						// Login Verification 
 						cmtLib.loginVerification(data.get("ContactName"));
-						ivhLib.closeAccountTools();
 						// account tools >> Software License Agreements
 						clickOnAccountToolsAndVerifyOptionsnotDisplayed(data.get("Tools_Menu"), data.get("Tools_Menu_DD"));
 						
 						// search for a part number
 						searchLib.searchInHomePage(data.get("SearchText1"));
+						pipLib.verifyTheManufacturerNumberInProductDetailsPage(data.get("SearchText1"));
+						pipLib.enterQuantityOnProductDetailsPage(data.get("Quantity"));
 						commonLib.addToCartAndVerify();
 						orderLib.continueToCheckOutOnAddCart();
 						cartLib.verifyItemInCartByInsightPart(data.get("SearchText1"));
 						
 						// Search For another part
 						searchLib.searchInHomePage(data.get("SearchText2"));
+						pipLib.verifyTheManufacturerNumberInProductDetailsPage(data.get("SearchText2"));
+						pipLib.enterQuantityOnProductDetailsPage(data.get("Quantity"));
 						commonLib.addToCartAndVerify();
 						orderLib.continueToCheckOutOnAddCart();
 						cartLib.verifyItemInCartByInsightPart(data.get("SearchText2"));
@@ -121,28 +126,31 @@ public class LNL03_SellRequirementsTest extends LineLevelInfoLib{
 						// Enable Browse My Software License Agreements - ON
 						cmtLib.setPermissions(data.get("Menu_Name"), data.get("Set_Permission3"));
 						cmtLib.loginAsAdminCMT();
-						ivhLib.closeAccountTools();
 						// account tools >> verify Software License Agreements displayed
 						commonLib.clickOnAccountToolsAndClickOnProductGrp(data.get("Tools_Menu"), data.get("Tools_Menu_DD"));
 						// Select Software  Lic Agreements
 				     	canadaLib.selectSPLADetailsProductCheckBox(data.get("SPLA"));
 						// verify search results and select first product
-				     	searchLib.verifysearchResultsPage();
+				     	slpLib.verifysearchResultsPageForSLP();
 				     	verifyProratedPriceMessageOnSearchResultsPage();
 				     	
 				       // search for a part number
 						searchLib.searchInHomePage(data.get("SearchText1"));
+						pipLib.verifyTheManufacturerNumberInProductDetailsPage(data.get("SearchText1"));
+						pipLib.enterQuantityOnProductDetailsPage(data.get("Quantity"));
 						commonLib.addToCartAndVerify();
 						orderLib.continueToCheckOutOnAddCart();
 						cartLib.verifyItemInCartByInsightPart(data.get("SearchText1"));
-						canadaLib.verifyProratedPrice();
+						//canadaLib.verifyProratedPrice();
 						
 						// Search For another part
 						searchLib.searchInHomePage(data.get("SearchText3"));
+						pipLib.verifyTheManufacturerNumberInProductDetailsPage(data.get("SearchText3"));
+						pipLib.enterQuantityOnProductDetailsPage(data.get("Quantity"));
 						commonLib.addToCartAndVerify();
 						orderLib.continueToCheckOutOnAddCart();
 						cartLib.verifyItemInCartByInsightPart(data.get("SearchText3"));
-						canadaLib.verifyProratedPrice();
+						//canadaLib.verifyProratedPrice();
 						
 						orderLib.proceedToCheckout(); // proceed to check out 
 						orderLib.clickOnAdditionalInfoContinueButton();
