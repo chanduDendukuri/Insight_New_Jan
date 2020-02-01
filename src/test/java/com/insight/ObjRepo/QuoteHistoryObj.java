@@ -79,8 +79,8 @@ public class QuoteHistoryObj extends ActionEngine {
 	 public static By DELETE = By.xpath("//a[@data-tooltip='delete']");
 	 public static By QUOTEHISTORY = By.xpath("//h2[contains(.,'Quote History')]");
 	 public static By QUOTEDETAILS = By.xpath("//h2[contains(.,'Quote Details')]");
-	 public static By mfrPartInQuotedetails= By.xpath("//*[@id=\"js-quote-detail\"]/main/table/tbody/tr/td[1]/text()");
-	 public static By InsightPartInQuotedetails = By.xpath("//*[@id=\"js-quote-detail\"]/main/table/tbody/tr/td[2]");
+	 public static By mfrPartInQuotedetails= By.xpath("//*[@id='js-quote-detail']/main/table/tbody/tr/td[1]/text()");
+	 public static By InsightPartInQuotedetails = By.xpath("//*[@id='js-quote-detail']/main/table/tbody/tr/td[2]");
 	 public static By getQuickSearchQuoteFormTable(String QuoteNumber){
 		 return By.xpath("//table[@id='quoteSearch']//tbody//tr//td//a[contains(.,'"+QuoteNumber+"')]");
 	 }

@@ -1480,8 +1480,9 @@ List<String> orderdetails = new ArrayList<String>();
 	 */
 	public void searchByInQuoteHistory(String refNumber,String quoteDDOption) throws Throwable{
 		Thread.sleep(2000);// Waiting for the quote to load
+		((JavascriptExecutor) driver).executeScript("window.scrollBy(0, 200)", "");
 		clickUntil(SEARCH_BY_DD,getSearchByQuoteHistoryDDOption(quoteDDOption), "Search drop down");
-		click(getSearchByQuoteHistoryDDOption(quoteDDOption), "Quote search by option");
+		//click(getSearchByQuoteHistoryDDOption(quoteDDOption), "Quote search by option");
 		type(SEARCH_NUMBER,refNumber , "Reference number");
 		//System.out.println(refNumber+refNumber);
 		click(SEARCH_BTN, "search button");
