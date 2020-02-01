@@ -104,6 +104,7 @@ public class CommonObj extends ActionEngine{
 	public static By SAVEDCART=By.xpath("//div[@class='sidebar-nav']//a[text()='Saved Carts / Order Templates']");	
 	public static By VIEW_CART_PRODUCT_GROUP=By.xpath("//a[@title='View Cart >>']");
 	public static By QUANTITY_COMPANY_STANDARDS=By.xpath("//table[@id='prodGroupTable']//td//input[@type='text']");
+
 	
 
 	
@@ -200,4 +201,5 @@ public class CommonObj extends ActionEngine{
     public static By FirstProductDescription=By.xpath("(//*[text()='Description']/following::a)[1]");
     public static By btnAddToOrder=By.xpath("//*[text()='ADD TO ORDER']");
     public static By lnkViewCart=By.xpath("//*[text()='View Cart >>']");
+public static By closePopup=By.xpath("//*[@id='cookieModal']//a[@aria-label='Close']");
 }

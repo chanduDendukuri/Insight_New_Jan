@@ -90,9 +90,9 @@ public class CAN14_NoDiscoverCardTest extends CanadaLib  {
 if(visibilityOfReferenceNoInRequestionSearch()) {
 	clickOnReferenceNoLink();
 	verifyApprovalManagementHeader();
-	scrollToBottomWithCordinate("100");
+	scrollToBottomWithCordinate("800");
 	clickOnUpdateButton();
-	scrollToBottomWithCordinate("200");
+	scrollToBottomWithCordinate("220");
 	clickOnEnterNewCard();
 
 	verifyNoDiscoverCard(data.get("ProcurementCard"));
@@ -121,10 +121,11 @@ if(visibilityOfReferenceNoInRequestionSearch()) {
 						cartLib.verifyItemInCart(partNumber1);
 
 						orderLib.proceedToCheckout();
-						cartLib.clickOnContinueButtonInAddInformtion();
+						orderLib.clickOnAdditionalInfoContinueButton();
 						canadaLib.verifySBP();
 						orderLib.shippingBillPayContinueButton();
-						orderLib.shippingOptionsCarrierSelection(); // Click continue on shipping options
+						orderLib.shippingOptionsCarrierSelection();
+						// Click continue on shipping options
 						orderLib.billingAddressContinueButton();
 						//orderLib.termsInPaymentInfo(data.get("PONumber"), data.get("POReleaseNumber"));
 						//orderLib.termsInPaymentInfo("7989517711", "8886366331");
@@ -135,11 +136,13 @@ if(visibilityOfReferenceNoInRequestionSearch()) {
 						orderLib.getNoCardErrorMessage();
 
 						mic.SwitchWebGroup(data.get("webGroup"));
+
 						if(driver.getCurrentUrl().contains("uat1")){
 							reporter.SuccessReport("URL Swithing","URL is switched from canada to US",driver.getCurrentUrl());
 						}else{
 							reporter.failureReport("URL Swithing","URL is switched from canada to US",driver.getCurrentUrl(),driver);
 						}
+
 						shipbLib.PaymentandCardsTextverify(data.get("Tools_Menu"), data.get("Tools_Menu_DD"), data.get("tabName2"));
 						//clickOnEnterACard(data.get("Creditcard"));
 						clickOnEnterNewCard();
