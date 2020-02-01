@@ -2,20 +2,10 @@ package com.insight.WebTest.Canada;
 
 import java.util.Hashtable;
 
+import com.insight.Lib.*;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
-import com.insight.Lib.CMTLib;
-import com.insight.Lib.CanadaLib;
-import com.insight.Lib.CartLib;
-import com.insight.Lib.CommonLib;
-import com.insight.Lib.MarriottIntlCorpLib;
-import com.insight.Lib.OrderLib;
-import com.insight.Lib.ProductDetailLib;
-import com.insight.Lib.ProductDisplayInfoLib;
-import com.insight.Lib.SearchLib;
-import com.insight.Lib.SewpLib;
-import com.insight.Lib.ShipBillPayLib;
 import com.insight.accelerators.ReportControl;
 import com.insight.accelerators.TestEngineWeb;
 import com.insight.googledrive.ReportStatus;
@@ -66,15 +56,129 @@ public class CAN14_NoDiscoverCardTest extends CanadaLib  {
 			CartLib cartLib = new CartLib();
 			OrderLib orderLib = new OrderLib();
 			CanadaLib canadaLib = new CanadaLib();
+						RequisitionProcessingLib req = new RequisitionProcessingLib();
+						ProductDisplayInfoLib prodinfo = new ProductDisplayInfoLib();
 
 			navigateTo("https://ca-uat1.insight.com/insightweb/login");
 			canadaLib.CandaHomePageVerification();
 			cmtLib.loginAsEndUser(data.get("EndUSER"),data.get("Password"));
-			Thread.sleep(2000);
-				
+			Thread.sleep(9000);
+			//Canada verification
+
+						shipbLib.verifyWEbsiteIsCannada();
+						//canadaLib.getWeGrpDDValues();
+
 			shipbLib.PaymentandCardsTextverify(data.get("Tools_Menu"), data.get("Tools_Menu_DD"), data.get("tabName2"));
-			clickOnEnterACard(data.get("Creditcard"));
-			verifyNoDiscoverCard(data.get("ProcurementCard"));
+			//clickOnEnterACard(data.get("Creditcard"));
+						scrollToBottomWithCordinate("100");
+
+						clickOnEnterNewCard();
+						clickOnCancelButton();
+						scrollToBottomWithCordinate("-100");
+						canadaLib.clickOnSideMenuSelectAccountToolOptions("Orders","My Requisition History" );
+						//canadaLib.clickOnSideMenuSelectAccountToolOptions(data.get("Tools_Menu1"),data.get("Tools_Menu_DD1"));
+						req.clickExpandSearchIcon();
+
+						selectStartDateFromCal( "1 December 2018");
+						scrollToBottomWithCordinate("160");
+						selectEndDateFromCal( "1 December 2019");
+						//selectStartDateFromCal( data.get("date"));
+						enterReferenceNumber("59151231");
+						//enterReferenceNumber(data.get("Refno"));
+
+						clickOnSearchButtonInRequestionSearch();
+if(visibilityOfReferenceNoInRequestionSearch()) {
+	clickOnReferenceNoLink();
+	verifyApprovalManagementHeader();
+	scrollToBottomWithCordinate("100");
+	clickOnUpdateButton();
+	scrollToBottomWithCordinate("200");
+	clickOnEnterNewCard();
+
+	verifyNoDiscoverCard(data.get("ProcurementCard"));
+
+	getListOfCardTypes();
+}else{
+	reporter.failureReport("No Records found","No Records found","",driver);
+}
+//****************************************************  code ************************************************************************************************
+
+						//commonLib.searchProduct(data.get("Search_Item"));
+						commonLib.searchProduct("Workstations");
+						//searchLib.verifyTheResultsForSearchTerm(data.get("Search_Item"));
+						searchLib.verifyTheResultsForSearchTerm("Workstations");
+						searchLib.removeTheFilterForInStockOnly("filter");
+						prodinfo.getPartNumberInSearchResultsPage();
+						commonLib.addFirstDisplyedItemToCartAndVerify();
+
+						String partNumber1 = cartLib.getPartNumber();
+						System.out.println("partNumber1"+partNumber1);
+//						//commonLib.continueToShopping();
+//						commonLib.clickCart();
+						canadaLib.continueToCheckout();
+						cartLib.verifyCartPageAvailablity();
+						prodinfo.verifyCartPageAndPartDetails();
+						cartLib.verifyItemInCart(partNumber1);
+
+						orderLib.proceedToCheckout();
+						cartLib.clickOnContinueButtonInAddInformtion();
+						canadaLib.verifySBP();
+						orderLib.shippingBillPayContinueButton();
+						orderLib.shippingOptionsCarrierSelection(); // Click continue on shipping options
+						orderLib.billingAddressContinueButton();
+						//orderLib.termsInPaymentInfo(data.get("PONumber"), data.get("POReleaseNumber"));
+						//orderLib.termsInPaymentInfo("7989517711", "8886366331");
+					/*	orderLib.selectPaymentInfoMethodCreditCard(data.get("cardNumber"), data.get("cardName"), data.get("month"),
+								data.get("year"),data.get("PO_Number"),data.get("POReleaseNumber"));*/
+						orderLib.selectPaymentInfoMethodCreditCard("6011111111111117", "Chandu Dendukuri","12",
+								"2020","01919","123");
+						orderLib.getNoCardErrorMessage();
+
+						mic.SwitchWebGroup(data.get("webGroup"));
+						if(driver.getCurrentUrl().contains("uat1")){
+							reporter.SuccessReport("URL Swithing","URL is switched from canada to US",driver.getCurrentUrl());
+						}else{
+							reporter.failureReport("URL Swithing","URL is switched from canada to US",driver.getCurrentUrl(),driver);
+						}
+						shipbLib.PaymentandCardsTextverify(data.get("Tools_Menu"), data.get("Tools_Menu_DD"), data.get("tabName2"));
+						//clickOnEnterACard(data.get("Creditcard"));
+						clickOnEnterNewCard();
+						//clickOnCompanyLink();
+
+						commonLib.searchProduct("Workstations");
+						//searchLib.verifyTheResultsForSearchTerm(data.get("Search_Item"));
+						searchLib.verifyTheResultsForSearchTerm("Workstations");
+						searchLib.removeTheFilterForInStockOnly("filter");
+						prodinfo.getPartNumberInSearchResultsPage();
+						commonLib.addFirstDisplyedItemToCartAndVerify();
+
+						String partNumber2 = cartLib.getPartNumber();
+						System.out.println("partNumber1"+partNumber2);
+//						//commonLib.continueToShopping();
+//						commonLib.clickCart();
+						canadaLib.continueToCheckout();
+						cartLib.verifyCartPageAvailablity();
+						prodinfo.verifyCartPageAndPartDetails();
+						cartLib.verifyItemInCart(partNumber2);
+
+						orderLib.proceedToCheckout();
+						cartLib.clickOnContinueButtonInAddInformtion();
+						canadaLib.verifySBP();
+						orderLib.shippingBillPayContinueButton();
+						orderLib.shippingOptionsCarrierSelection(); // Click continue on shipping options
+						orderLib.billingAddressContinueButton();
+						//orderLib.termsInPaymentInfo(data.get("PONumber"), data.get("POReleaseNumber"));
+						//orderLib.termsInPaymentInfo("7989517711", "8886366331");
+					/*	orderLib.selectPaymentInfoMethodCreditCard(data.get("cardNumber"), data.get("cardName"), data.get("month"),
+								data.get("year"),data.get("PO_Number"),data.get("POReleaseNumber"));*/
+						orderLib.selectPaymentInfoMethodCreditCard("6011111111111117", "Chandu Dendukuri","12",
+								"2020","01919","123");
+						orderLib.clickOnReviewOrderButton();
+
+						//verify place order
+						//Discovery card availability nneeds to be verifed in shipbill page
+
+//*************************************************************************** OLD CODE ****************************************************************************
 			commonLib.searchProduct(data.get("ProductName"));
 			commonLib.addFirstDisplyedItemToCartAndVerify();				
 			continueToCheckout();			

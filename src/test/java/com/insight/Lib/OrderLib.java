@@ -2352,6 +2352,18 @@ List<String> orderdetails = new ArrayList<String>();
 
 		}
 	}
+
+	public void getNoCardErrorMessage() throws Throwable{
+		if(isVisibleOnly(discoverCardErrorMessage,"Error message"))
+		{
+			reporter.SuccessReport("Error message","Given card is not supported ",getText(discoverCardErrorMessage,"Error message"));
+		}else{
+			reporter.failureReport("Error message","Given card is not supported ",getText(discoverCardErrorMessage,"Error message"),driver);
+
+		}
+
+	}
+
 	public void getOrderDate() throws Throwable
 	{
 		getText(ORDER_DATE, "Reference date");

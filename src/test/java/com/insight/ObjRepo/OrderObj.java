@@ -355,6 +355,9 @@ public class OrderObj extends ActionEngine{
 	 public static By airPriceValueInShipmentOptionsPage = By.xpath("//*[text()='Air']//..//span[@class='iw-currency']");
 	 public static By canadaGroundInSummary = By.xpath("(//*[@class='cart-summary__totals']//*[@class='columns cart-summary__label']//*[text()='Canada Ground'])[2]");
 
+	 public static By discoverCardErrorMessage = By.xpath("//*[text()='Discover card type is not supported']");
+
+
      public static By FIRST_ORDER_NUMBER=By.xpath("(//a[@class='orders__link order-card-header__link'])[1]");
 
 	 public static By ORDER_DATE=By.xpath("//label[contains(text(),'Date ordered:')]//p");

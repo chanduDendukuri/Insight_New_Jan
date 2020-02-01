@@ -122,7 +122,6 @@ public class QTH11_ConvertQuote3rdPartyCarrierTest extends QuoteHistoryLib {
 					orderLib.VerifyShippingCarrierdetails();
 					orderLib.clickOnReviewOrderButton();
 					orderLib.VerifyPlaceOrderdetails();
-
 					String summaryAmount = cartLib.getSummaryAmountInCart();
 					orderLib.placeOrderAndVerifyReceiptOrderAndDateQuoteHistory(summaryAmount);
 					
