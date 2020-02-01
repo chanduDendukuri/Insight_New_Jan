@@ -54,7 +54,7 @@ public class CanadaObj extends ActionEngine {
 	}
 
 	public static By getSearchByTextOrder(String searchBy) {
-		return By.xpath("//div[@class='nice-select  open' or 'nice-select open']//ul/li[contains(text(),'" + searchBy + "')]");
+		return By.xpath("//div[@class='nice-select  open' or 'nice-select open']//ul/li[text()='" + searchBy + "']");
 	}
 
 	// summary amounts in cart
@@ -303,6 +303,6 @@ public class CanadaObj extends ActionEngine {
 			public static By downloadPDF=By.xpath("//*[@class='icon download has-tip tip-left']");
 			public static By invoiceHistoryNumber=By.xpath("//*[@id='invoiceDetails']//dl//dt[text()='Invoice Number: ']//following-sibling::dd");
 
-
+			public static By drpSearchBy=By.xpath("//*[@id='invQuickNumber']/option");
 			public static By drpSearchByInInvoiceHistory=By.xpath("//*[@class='nice-select']");
 }
