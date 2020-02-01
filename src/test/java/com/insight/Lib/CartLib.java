@@ -32,6 +32,7 @@ public class CartLib extends ActionEngine {
 	ShipBillPayLib shipbLib = new ShipBillPayLib();
 	InvoiceHistoryLib ivhLib=new InvoiceHistoryLib();
 	CanadaLib canadaLib=new CanadaLib();
+	LineLevelInfoLib lnlLib=new LineLevelInfoLib();
 	String openMarketPrice;
 
 	/**
@@ -557,6 +558,7 @@ public class CartLib extends ActionEngine {
 	 * @throws Throwable
 	 */
 	public void addLineLevelInformationInCheckOut(String rP_LNL_Txt) throws Throwable {
+		lnlLib.verifyOrderAndItemInfoBreadCrumb();
 		if (isElementPresent(OrderObj.LINE_LEVEL_INFO, "Line level information link")) {
 			click(OrderObj.LINE_LEVEL_INFO, "Line Level Information");
 			if (isElementPresent(OrderObj.SMART_TRACKER_LABEL, "Smart tracker in LL info section")) {

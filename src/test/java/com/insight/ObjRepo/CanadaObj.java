@@ -54,7 +54,7 @@ public class CanadaObj extends ActionEngine {
 	}
 
 	public static By getSearchByTextOrder(String searchBy) {
-		return By.xpath("//div[@class='nice-select  open' or 'nice-select open']//ul/li[contains(text(),'" + searchBy + "')]");
+		return By.xpath("//div[@class='nice-select  open' or 'nice-select open']//ul/li[text()='" + searchBy + "']");
 	}
 
 	// summary amounts in cart
@@ -215,7 +215,11 @@ public class CanadaObj extends ActionEngine {
 			public static By DELIVERY_OPTION = By.xpath("//div[@id='deliveryOptionsLabel']");
 			
 			public static By getQuickDate(String quickDateOption){
+<<<<<<< HEAD
 							return By.xpath("//select[@id='ddlQuickDates']/*[contains(.,'"+quickDateOption+"')]");
+=======
+						return By.xpath("//select[@id='ddlQuickDates']/*[contains(.,'"+quickDateOption+"')]");
+>>>>>>> 12625bbafb788fd8ce27e80ea44436b3b2d49a36
 				
 			}
 			public static By START_DATE = By.xpath("//input[@id='ordFullStartDateAlt']");
@@ -303,7 +307,7 @@ public class CanadaObj extends ActionEngine {
 			public static By downloadPDF=By.xpath("//*[@class='icon download has-tip tip-left']");
 			public static By invoiceHistoryNumber=By.xpath("//*[@id='invoiceDetails']//dl//dt[text()='Invoice Number: ']//following-sibling::dd");
 
-
+			public static By drpSearchBy=By.xpath("//*[@id='invQuickNumber']/option");
 			public static By drpSearchByInInvoiceHistory=By.xpath("//*[@class='nice-select']");
 			public static By drpWebGrpDrpDwn = By.xpath("//span[text()='Web Group – Canada - Praxair'] | //span[contains(text(),'Web Group –')]//..//following-sibling::div//ul//li");
 			public static By getCanadaFlagAvailability=By.xpath("//*[@id='flag-ca']");

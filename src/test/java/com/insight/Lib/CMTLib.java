@@ -232,7 +232,7 @@ public class CMTLib extends CMTObj {
 	 * @throws Throwable
 	 */
 	public void hoverOnManageWebGroupsAndSelectOptions(String ManageWebGrpOptions) throws Throwable {
-
+		Thread.sleep(3000);
 		mouseHover(MANAGE_WEBGRP, "Manage Web group");
 		click(getManageWebGroupDDLinks(ManageWebGrpOptions), "Change Web group option: " + ManageWebGrpOptions);
 	}
@@ -2521,7 +2521,7 @@ public  void verifyDashboard()throws Throwable {
 	 */
 	public void verifyInactiveSmartTrackerError() throws Throwable {
 		if (isElementPresent(INACTIVE_SMART_TRACKER_ERROR, "smart tracker error")) {
-			reporter.SuccessReport("verify smart tracker error", "Smart tracker inactive error is diaplayed ", "");
+			reporter.SuccessReport("verify smart tracker error", "Smart tracker inactive error is diaplayed ", "Smart Tracker Status:Inactive");
 		} else {
 			reporter.failureReport("verify smart tracker error", "Smart tracker inactive error is not diaplayed ", "",
 					driver);

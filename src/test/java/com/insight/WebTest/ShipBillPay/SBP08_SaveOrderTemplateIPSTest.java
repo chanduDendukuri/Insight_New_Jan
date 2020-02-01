@@ -63,7 +63,7 @@ public class SBP08_SaveOrderTemplateIPSTest extends ShipBillPayLib{
 				cmtLib.setPermissions(data.get("Menu_Name"), data.get("Set_Permission"));
 				cmtLib.loginAsAdminCMT();
 				canadaLib.clickOnSideMenuSelectAccountToolOptions(data.get("toolsMenuName"),data.get("dropDown"));	
-				//deleteCart("");
+				deletesavedcartsortamplates();
 				commonLib.searchProduct(data.get("Search_Item1"));
 				verifyPartNumInProductDetailPage(data.get("Search_Item1"));
 				VerifyQuantity();
@@ -92,7 +92,7 @@ public class SBP08_SaveOrderTemplateIPSTest extends ShipBillPayLib{
 				shipbLib.clickstoredAddress(data.get("Text"));
 				orderLib.shippingBillPayContinueButton();
 				verifyNewAddress();
-				shipbLib.Selectshippingcarrier();
+				selectCarrierandGrounOption(data.get("Carrier"));
 				shipbLib.clickstoredAddress(data.get("Text"));
 				orderLib.billingAddressContinueButton(); 
 				orderLib.selectPaymentInfoMethodCreditCard(data.get("cardNumber"), data.get("cardName"), data.get("month"),
@@ -101,10 +101,11 @@ public class SBP08_SaveOrderTemplateIPSTest extends ShipBillPayLib{
 				String Tamplate="CartTemplate"+getRandomNumeric(4);
 				//Template
 				SaveasTemplete(Tamplate);
+				scrollUp();
 				canadaLib.clickOnSideMenuSelectAccountToolOptions(data.get("toolsMenuName"),data.get("dropDown"));	
 				savecartContinueToCheckout(Tamplate);
-				cartLib.verifyItemInCart(data.get("searchitem1"));
-				cartLib.verifyItemInCart(data.get("searchitem2"));
+				//cartLib.verifyItemInCart(data.get("searchitem1"));
+				//cartLib.verifyItemInCart(data.get("searchitem2"));
 				orderLib.proceedToCheckout();
 				shipbLib.Addadtionalinformation(data.get("wG_HDL_Txt"), data.get("emailToEnter"), data.get("A"));
 				cartLib.clickOnContinueButtonInAddInformtion();
@@ -112,14 +113,15 @@ public class SBP08_SaveOrderTemplateIPSTest extends ShipBillPayLib{
 						data.get("REPORTING FIELD_5"),data.get("Wg_LNL_Txt"));
 				verifyCopiedText();
 				orderLib.clickContinueOnLineLevelInfo();
-				shipbLib.clickstoredAddress(data.get("Text"));
+				VerifySoldtoAddress(data.get("Text"));
 				orderLib.shippingBillPayContinueButton();
-				verifyNewAddress();
+				selectCarrierandGrounOption(data.get("Carrier"));
 				shipbLib.Selectshippingcarrier();
-				shipbLib.VerifyCreatedAddress(data.get("Text"));
+				VerifySoldtoAddress(data.get("Text"));
 				orderLib.billingAddressContinueButton(); 
+				scrollUp();
 				//Deletesavedcarts
-				shipbLib.Deletesavedcarts(Tamplate, data.get("toolsMenuName"), data.get("dropDown"));
+				shipbLib.Deletesavedcarts(data.get("toolsMenuName"), data.get("dropDown"),Tamplate);
 				commonLib.clickLogOutLink(data.get("Logout_Header"));
 				
 

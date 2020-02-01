@@ -977,6 +977,7 @@ public class CanadaLib extends CanadaObj {
 	}
 
 
+
 	/*
 	 * PURPOSE OF METHOD : click on Next button on create account page
 	 * adresses
@@ -1009,34 +1010,65 @@ public class CanadaLib extends CanadaObj {
 	}
 
 
-	/*
-	 * PURPOSE OF METHOD : click on Next button on create account page
-	 * adresses
-	 *
-	 * @author : CIGNITI
-	 */
-	public void selectJobTitle(String jobTitle) throws Throwable {
-		waitForVisibilityOfElement(JOBTITLE, "JobTitle");
-		if (isElementPresent(JOBTITLE, "Jobtitle", true)) {
-			selectByValue(JOBTITLE, jobTitle, "Select");
-		}
+/*
 
+*/
+/*
+ * PURPOSE OF METHOD : verification of country displayed 
+ * adresses
+ * 
+ * @author : CIGNITI
+ *//*
+
+public void verifyCountryDisplayed(String actualCountry) throws Throwable {
+	
+	waitForVisibilityOfElement(COUNTRY, "Country");
+	if (isVisibleOnly(COUNTRY, "Country")) {		
+	String expectedCountryName=driver.findElement(COUNTRY).getAttribute("innerText"); 
+	if(actualCountry.equalsIgnoreCase(expectedCountryName)){
+		reporter.SuccessReport("Verify Verify Country should default based on domain  ", "Verified country displayed as expected ", "");
 	}
-
-	/*
-	 * PURPOSE OF METHOD : Selects Option
-	 * adresses
-	 *
-	 * @author : CIGNITI
-	 */
-	public void selectOption() throws Throwable {
-		waitForVisibilityOfElement(COORPORATE_ENTERPRISE, "JobTitle");
-		if (isElementPresent(COORPORATE_ENTERPRISE, "OtherOptions", true)) {
-			click(COORPORATE_ENTERPRISE, "Select ");
-
-		}
-
+	
+	else
+	{
+		reporter.failureReport("Verify Verify Country should default based on domain  ", " Verified country is not displayed as expected ", "",driver);
+	  }
+	 }
 	}
+*/
+
+
+/*
+ * PURPOSE OF METHOD : click on Next button on create account page
+ * adresses
+ * 
+ * @author : CIGNITI
+ */
+public void selectJobTitle(String jobTitle) throws Throwable {
+	waitForVisibilityOfElement(JOBTITLE, "JobTitle");
+	if (isElementPresent(JOBTITLE, "Jobtitle", true)){
+		//selectByValue(JOBTITLE, jobTitle, "Select");
+		click(JOBTITLE, "Jobtitle");
+		selectByVisibleText(JOBTITLE, jobTitle, "jobTitle");
+	}else {
+		reporter.failureReport("Job Title", "Jobtitle field does not exists", "", driver);
+	}
+}
+
+/*
+ * PURPOSE OF METHOD : Selects Option 
+ * adresses
+ * 
+ * @author : CIGNITI
+ */
+public void selectOption() throws Throwable {
+	waitForVisibilityOfElement(COORPORATE_ENTERPRISE, "JobTitle");
+	if (isElementPresent(COORPORATE_ENTERPRISE, "OtherOptions", true)){
+		click(COORPORATE_ENTERPRISE, "I am shopping for: Corporate/Enterprise");
+	}else {
+		reporter.failureReport("Verify option : I am shopping for: Corporate/Enterprise  ", "option : I am shopping for: Corporate/Enterprise does not exists", "", driver);
+	}
+}
 
 
 	/*
@@ -1084,6 +1116,8 @@ public class CanadaLib extends CanadaObj {
 		if (isVisibleOnly(MarriottIntlCorpObj.PHONE, "Phone Number")) {
 			click(MarriottIntlCorpObj.PHONE, "Phone Number");
 			type(MarriottIntlCorpObj.PHONE, phone, "Phone Number");
+		}else {
+			reporter.failureReport("Verify Phone number fields exists", "Phone number field does not exists", "", driver);
 		}
 		return phone;
 	}
@@ -1099,13 +1133,15 @@ public class CanadaLib extends CanadaObj {
 		if (isVisibleOnly(MarriottIntlCorpObj.NAME, "Name")) {
 			click(MarriottIntlCorpObj.NAME, "Name");
 			type(MarriottIntlCorpObj.NAME, name, "Name");
+		}else {
+			reporter.failureReport("Verify Name fields exists", "Name field does not exists", "", driver);
 		}
 		return name;
 	}
 
-	public void addShippingAddress(String name, String userName, String street1, String city, String state, String zipcode)
-
-			throws Throwable {
+/*
+<<<<<<< HEAD
+	public void addShippingAddress(String name, String userName, String street1, String city, String state, String zipcode) throws Throwable {
 
 		waitForVisibilityOfElement(COMPANY_NAME, "Company Name");
 		if (isVisibleOnly(COMPANY_NAME, "Company Name")) {
@@ -1130,15 +1166,41 @@ public class CanadaLib extends CanadaObj {
 
 		}
 
-	}
+*/
 
+public void addShippingAddress(String name, String userName,String street1,String city,String state,String zipcode) throws Throwable {
+
+	waitForVisibilityOfElement(COMPANY_NAME, "Company Name");
+	if (isVisibleOnly(COMPANY_NAME, "Company Name")) {
+		click(COMPANY_NAME, "Company Name");
+		type(COMPANY_NAME, name, "Company Name");
+		clearData(ATTENTION);
+		click(ATTENTION, "attention");
+		type(ATTENTION, "ShipTo: " + "UFT" + userName, "attention");
+		clearData(STREET1);
+		click(STREET1, "street1");
+		type(STREET1, street1, "street1");
+
+		clearData(CITY);
+		click(CITY, "CITY");
+		type(CITY, city, "CITY");
+
+		selectByValue(STATE, state, "CITY");
+		clearData(ZIPCODE);
+		click(ZIPCODE, "zipcode");
+		type(ZIPCODE, zipcode, "zipcode");
+
+	} else {
+		reporter.failureReport("Company name field ", "Company name field is not present", "", driver);
+	}
+}
 	/*
 	 * PURPOSE OF METHOD : Selects Option
 	 * adresses
 	 *
 	 * @author : CIGNITI
 	 */
-	public void verifyShippingMethod(String shipMehtod) throws Throwable {
+	public void verifyShippingMethod(String shipMehtod)throws Throwable {
 		waitForVisibilityOfElement(getCarriers(shipMehtod), "JobTitle");
 		if (isElementPresent(getCarriers(shipMehtod), "OtherOptions", true)) {
 
