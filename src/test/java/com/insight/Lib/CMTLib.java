@@ -2520,7 +2520,7 @@ public  void verifyDashboard()throws Throwable {
 	 */
 	public void verifyInactiveSmartTrackerError() throws Throwable {
 		if (isElementPresent(INACTIVE_SMART_TRACKER_ERROR, "smart tracker error")) {
-			reporter.SuccessReport("verify smart tracker error", "Smart tracker inactive error is diaplayed ", "");
+			reporter.SuccessReport("verify smart tracker error", "Smart tracker inactive error is diaplayed ", "Smart Tracker Status:Inactive");
 		} else {
 			reporter.failureReport("verify smart tracker error", "Smart tracker inactive error is not diaplayed ", "",
 					driver);

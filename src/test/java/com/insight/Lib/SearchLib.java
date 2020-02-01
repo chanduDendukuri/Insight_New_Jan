@@ -249,8 +249,8 @@ public class SearchLib extends CommonObj {
 	public void filterSelectionInProductsSearchPage(String filter) throws Throwable {
 
 		String result = null;
-		JSClick(productsDisplayInfoObj.getFilterSelection(filter), "filter Name : "+filter);
-		//clickUntil(productsDisplayInfoObj.getFilterSelection(filter),productsDisplayInfoObj.FILTER_ITEM, "filter Name");
+		//JSClick(productsDisplayInfoObj.getFilterSelection(filter), "filter Name : "+filter);
+		clickUntil(productsDisplayInfoObj.getFilterSelection(filter),productsDisplayInfoObj.FILTER_ITEM, "filter Name");
 		/*scrollBottom();
 		scrollToBottom();
 		click(productsDisplayInfoObj.getFilterSelection(filter), "filter Name : "+filter);*/

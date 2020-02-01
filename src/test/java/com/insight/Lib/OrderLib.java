@@ -1089,7 +1089,7 @@ List<String> orderdetails = new ArrayList<String>();
 	public void verifyReceiptVerbiage() throws Throwable{
 		Thread.sleep(3000);
 		if(isElementPresent(THANK_YOU_FOR_ORDER_MSG, "Thank you message") || isElementPresent(THANK_YOU_FOR_ORDER_REQUEST_MSG, "Thank you message")){
-			reporter.SuccessReport("Verify Receipt Verbiage", "Thank you for order message displayed","");
+			reporter.SuccessReport("Verify Receipt Verbiage", "Thank you for order message displayed","Order Confirmation Page");
 		}else{
 			reporter.failureReport("Verify Receipt Verbiage", "Thank you for order message not displayed","",driver);
 		}

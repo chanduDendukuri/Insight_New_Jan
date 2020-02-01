@@ -1020,9 +1020,12 @@ public void verifyCountryDisplayed(String actualCountry) throws Throwable {
 public void selectJobTitle(String jobTitle) throws Throwable {
 	waitForVisibilityOfElement(JOBTITLE, "JobTitle");
 	if (isElementPresent(JOBTITLE, "Jobtitle", true)){
-		selectByValue(JOBTITLE, jobTitle, "Select");
+		//selectByValue(JOBTITLE, jobTitle, "Select");
+		click(JOBTITLE, "Jobtitle");
+		selectByVisibleText(JOBTITLE, jobTitle, "jobTitle");
+	}else {
+		reporter.failureReport("Job Title", "Jobtitle field does not exists", "", driver);
 	}
-	
 }
 
 /*
@@ -1034,7 +1037,7 @@ public void selectJobTitle(String jobTitle) throws Throwable {
 public void selectOption() throws Throwable {
 	waitForVisibilityOfElement(COORPORATE_ENTERPRISE, "JobTitle");
 	if (isElementPresent(COORPORATE_ENTERPRISE, "OtherOptions", true)){
-		click(COORPORATE_ENTERPRISE, "Select ");
+		click(COORPORATE_ENTERPRISE, "I am shopping for: Corporate/Enterprise");
 	}else {
 		reporter.failureReport("Verify option : I am shopping for: Corporate/Enterprise  ", "option : I am shopping for: Corporate/Enterprise does not exists", "", driver);
 	}
@@ -1085,6 +1088,8 @@ public void selectOption() throws Throwable {
 		if (isVisibleOnly(MarriottIntlCorpObj.PHONE, "Phone Number")) {
 			click(MarriottIntlCorpObj.PHONE, "Phone Number");
 			type(MarriottIntlCorpObj.PHONE, phone, "Phone Number");
+		}else {
+			reporter.failureReport("Verify Phone number fields exists", "Phone number field does not exists", "", driver);
 		}
 		return phone;
 	}
@@ -1099,6 +1104,8 @@ public void selectOption() throws Throwable {
 		if (isVisibleOnly(MarriottIntlCorpObj.NAME, "Name")) {
 			click(MarriottIntlCorpObj.NAME, "Name");
 			type(MarriottIntlCorpObj.NAME, name, "Name");
+		}else {
+			reporter.failureReport("Verify Name fields exists", "Name field does not exists", "", driver);
 		}
 		return name;
 	}
@@ -1127,7 +1134,8 @@ public void addShippingAddress(String name, String userName,String street1,Strin
 		click(ZIPCODE, "zipcode");
 		type(ZIPCODE, zipcode, "zipcode");	
 		
-		
+	}else {
+		reporter.failureReport("Company name field ", "Company name field is not present", "", driver);
 	}
 
 }
