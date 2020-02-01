@@ -66,7 +66,7 @@ public class IVH08_InvoiceHistoryDetailsTest extends InvoiceHistoryLib {
 					 canadaLib.clickOnSideMenuSelectAccountToolOptions(data.get("Tools_Menu"),
 					 data.get("Tools_Menu_DD"));
 					 canadaLib.verifyInvoiceHistoryPageOpened();
-					 canadaLib.clickOnInvoiceHistory();
+					 //canadaLib.clickOnInvoiceHistory();
 					 invoiceHistoryLib.quickSearchAndVerifySearchResults(data.get("SelectInvoice"),
 					 data.get("InvoiceNumber"));
 					 canadaLib.invoiceNumberLink();
@@ -81,7 +81,7 @@ public class IVH08_InvoiceHistoryDetailsTest extends InvoiceHistoryLib {
 					 canadaLib.clickOnSideMenuSelectAccountToolOptions(data.get("Tools_Menu"),
 					 data.get("Tools_Menu_DD"));
 					 canadaLib.verifyInvoiceHistoryPageOpened();
-					 canadaLib.clickOnInvoiceHistory();
+					// canadaLib.clickOnInvoiceHistory();
 					 invoiceHistoryLib.quickSearchAndVerifySearchResults(data.get("SelectInvoice"),
 					 data.get("InvoiceNumber1"));
 					 String invoiceNumber=canadaLib.getInvoiceNumber();
