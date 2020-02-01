@@ -848,6 +848,8 @@ public class CommonLib extends ActionEngine{
 			 reporter.failureReport("Verify ADD TO CART IN PRODUCT DISPLAY PAGE", "ADD TO CART BUTTON NOT displayed", "", driver);
 		}
 	}
+
+
 	
 
 }

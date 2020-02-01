@@ -669,6 +669,7 @@ public  void verifyDashboard()throws Throwable {
 		type(CartObj.USER_NAME, userName, "user name");
 		waitForVisibilityOfElement(CartObj.PASSWORD, "Password");
 		type(CartObj.PASSWORD, password, "Password");
+		acceptCookies();
 		click(CartObj.LOG_IN_BUTTON, "LOG IN BUTTON");
 
 	}
@@ -3632,6 +3633,8 @@ public void verifySetPermissionsDisabled(String userPermissions) throws Throwabl
 		}
 	}
 
-
+	public void acceptCookies() throws Throwable{
+		click(CommonObj.AcceptAlerts,"Accept Cookies");
+	}
 }
 

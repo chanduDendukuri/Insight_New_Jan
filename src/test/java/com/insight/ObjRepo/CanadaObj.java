@@ -215,7 +215,7 @@ public class CanadaObj extends ActionEngine {
 			public static By DELIVERY_OPTION = By.xpath("//div[@id='deliveryOptionsLabel']");
 			
 			public static By getQuickDate(String quickDateOption){
-				src/test/java/com/insight/Lib/InvoiceHistoryLib.java				return By.xpath("//select[@id='ddlQuickDates']/*[contains(.,'"+quickDateOption+"')]");
+							return By.xpath("//select[@id='ddlQuickDates']/*[contains(.,'"+quickDateOption+"')]");
 				
 			}
 			public static By START_DATE = By.xpath("//input[@id='ordFullStartDateAlt']");
@@ -305,4 +305,40 @@ public class CanadaObj extends ActionEngine {
 
 
 			public static By drpSearchByInInvoiceHistory=By.xpath("//*[@class='nice-select']");
+			public static By drpWebGrpDrpDwn = By.xpath("//span[text()='Web Group – Canada - Praxair'] | //span[contains(text(),'Web Group –')]//..//following-sibling::div//ul//li");
+			public static By getCanadaFlagAvailability=By.xpath("//*[@id='flag-ca']");
+			public static By getUSFlagAvailability=By.xpath("//*[@id='flag-us']");
+
+			public static By btnCancel = By.xpath("//*[@title='Cancel']");
+
+			public static By icnStartDateCal=By.xpath("//*[@id='Start_dt']//following-sibling::img");
+			public static By icnEndDateCal=By.xpath("//*[@id='End_dt']//following-sibling::img");
+
+			//this is to get Year from start date cale
+			public static By monthOnStartDateCal (String month){
+				return By.xpath("//*[@class='ui-datepicker-title']//span[text()='"+month+"']");
+			}
+			public static By YearOnStartDateCal(String year){
+				return By.xpath("//*[@class='ui-datepicker-title']//span[text()='"+year+"']");
+			}
+			//To get Month from start cal
+			public static By lblMonth =By.xpath("//*[@class='ui-datepicker-month']");
+			public static By lblYear=By.xpath("//*[@class='ui-datepicker-year']");
+			//previous month/year icon
+			public static By backYearIcon= By.cssSelector("[id='ui-datepicker-div'] div a[title='Prev']");
+			//Select Date from calendar
+			public static By dateFromCal(String day){
+				return	By.xpath("//td[@data-handler='selectDay']//a[text()='"+day+"']");
+			}
+			public static By btnDone=By.xpath("//button[@type='button' and text()='Done']");
+			public static By yearMonth = By.xpath("//*[@class='ui-datepicker-title']");
+			public static By referenceno=By.xpath("//*[@id='ref_num']");
+			public static By requistionSearchButton=By.xpath("(//*[text()='SEARCH'])[1]");
+			public static By lnkReferenceNo=By.xpath("(//*[@id='reqSearch']//tbody//tr[2]//a[1])[1]");
+			public static By ApprovalManagmentHeader=By.xpath("//h1[text()='Approval Management']");
+			public static By btnUpdateButton=By.xpath("//*[@title='Update']");
+			public static By btnEnterNewCard = By.xpath("//*[text()='Enter New Card'] | //div[@class='row whiteBackground storeCardContainer']//div//div/a[text()='Enter a new card']");
+			public static By PaymentTypedpdn = By.xpath("//select[@id='insightPaymentcardType']");
+			public static By PaymentTypedpdnOptions = By.xpath("//select[@id='insightPaymentcardType']/option");
+
 }

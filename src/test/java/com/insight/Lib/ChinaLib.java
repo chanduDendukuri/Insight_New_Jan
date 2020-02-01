@@ -1,4 +1,5 @@
 package com.insight.Lib;
+import java.awt.font.TextHitInfo;
 import java.util.List;
 
 import org.openqa.selenium.By;
@@ -100,5 +101,10 @@ public class ChinaLib extends ChinaObj{
 	public void continueToCheckoutChina() throws Throwable {
 		if (isElementPresent(CONTINUE_TO_CHECKOUT_CHINA, "Continue to check out"))
 			click(CONTINUE_TO_CHECKOUT_CHINA, "Continue to check out");
+	}
+	public void clickOnConnectionslink() throws Throwable {
+		if (isVisibleOnly(lnkConnection, "Connections link")){
+			click(lnkConnection, "Connections link");
+	}
 	}
 }

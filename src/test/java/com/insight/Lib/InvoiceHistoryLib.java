@@ -32,7 +32,7 @@ public class InvoiceHistoryLib extends InvoiceHistoryObj {
 
 		Thread.sleep(10000);
 		
-		clickOnSearchByInInvoiceHistory();
+		//clickOnSearchByInInvoiceHistory();
 
 		waitForVisibilityOfElement(CanadaObj.SEARCHBY_DROPDOWN, "Quick Search");
 		if (isVisibleOnly(CanadaObj.SEARCHBY_DROPDOWN, "Quick Search")) {
