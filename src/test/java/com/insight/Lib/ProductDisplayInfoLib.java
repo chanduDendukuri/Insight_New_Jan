@@ -886,9 +886,9 @@ public void getSummaryCartDetails() throws Throwable{
 	  String price=getText(PRICE_IN_PROD_DETAILS, "Product detail price");
 	  Thread.sleep(3000);
 	  if(Actualprice.equals(price)){
-		  reporter.SuccessReport("Verify the product price", "Product price is displayed in the detail page and is same as product search results page.Price is :  ", Actualprice);
+		  reporter.SuccessReport("Verify the product price", "Product price is displayed in the detail page and is same as product search results page.Price is :  ", price);
 	  }else{
-		  reporter.failureReport("Verify the product price", "Product price is not displayed or not same as product search results page.", "",driver);
+		  reporter.failureReport("Verify the product price", "Product price is not displayed or not same as product search results page.", price,driver);
 	  }
 	}
 	

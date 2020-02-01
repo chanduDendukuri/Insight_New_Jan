@@ -41,7 +41,7 @@ public class CommonObj extends ActionEngine{
     public static By PASSWORD = By.id("password");
     public static By LOG_IN_BUTTON = By.id("login-submit-button");
     public static By CLOSE=By.xpath("//a[@class='close-reveal-modal']");
-    
+    public static By AcceptAlerts=By.xpath("//*[@id='onetrust-accept-btn-handler']");
     
     //Shop all products
     public static By SHOP_ALL_PRODUCTS_MENUS_LIST=By.xpath("//ul//a[@class='linkHighlight']");

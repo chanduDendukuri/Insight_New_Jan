@@ -669,6 +669,7 @@ public  void verifyDashboard()throws Throwable {
 		type(CartObj.USER_NAME, userName, "user name");
 		waitForVisibilityOfElement(CartObj.PASSWORD, "Password");
 		type(CartObj.PASSWORD, password, "Password");
+		acceptCookies();
 		click(CartObj.LOG_IN_BUTTON, "LOG IN BUTTON");
 
 	}
@@ -2520,7 +2521,7 @@ public  void verifyDashboard()throws Throwable {
 	 */
 	public void verifyInactiveSmartTrackerError() throws Throwable {
 		if (isElementPresent(INACTIVE_SMART_TRACKER_ERROR, "smart tracker error")) {
-			reporter.SuccessReport("verify smart tracker error", "Smart tracker inactive error is diaplayed ", "");
+			reporter.SuccessReport("verify smart tracker error", "Smart tracker inactive error is diaplayed ", "Smart Tracker Status:Inactive");
 		} else {
 			reporter.failureReport("verify smart tracker error", "Smart tracker inactive error is not diaplayed ", "",
 					driver);
@@ -3632,6 +3633,8 @@ public void verifySetPermissionsDisabled(String userPermissions) throws Throwabl
 		}
 	}
 
-
+	public void acceptCookies() throws Throwable{
+		click(CommonObj.AcceptAlerts,"Accept Cookies");
+	}
 }
 

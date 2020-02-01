@@ -42,7 +42,6 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
-import com.github.javafaker.Faker;
 import com.insight.report.ConfigFileReadWrite;
 import com.insight.report.ReporterConstants;
 import com.insight.utilities.Xls_Reader;
@@ -634,10 +633,10 @@ public class ActionEngine extends TestEngineWeb {
 		} finally {
 			Thread.sleep(3000);
 			if (!flag) {
-				reporter.failureReport("Verify : " + expText, actText + " is not present in the element : ", expText,driver);
+				reporter.failureReport("Verify : " + expText, actText + " is not present : ", expText,driver);
 				//return false;
 			} else {
-				reporter.SuccessReport("Verify : " + expText, actText + " is  present in the element : ",expText);
+				reporter.SuccessReport("Verify : " + expText, actText + " is  present : ",expText);
 			}
 		}
 	}
@@ -1018,7 +1017,7 @@ public class ActionEngine extends TestEngineWeb {
 				}
 			} else {
 				LOG.info("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
-				reporter.SuccessReport("Enter text in :: " + locatorName, msgTypeSuccess,testData);
+				reporter.SuccessReport("Enter text in :: " + locatorName, msgTypeSuccess,locatorName+" "+testData);
 			}
 			reportIndicator = true;
 		}

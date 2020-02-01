@@ -88,8 +88,8 @@ public class CAN16_InvoiceHistoryClassTest extends ActionEngine  {
 								invoice.clickOnAdvancedSearch();
 								invoice.clickOnAdvancedSearchSearchButton();
 								scrollToBottomWithCordinate("160");
-								canadaLib.selectStartDateFromInvoiceHistoryCalenaer("1 Nov 2018");
-								canadaLib.selectEndDateFromInvoiceHistoryCalenaer("1 Nov 2019");
+								canadaLib.selectStartDateFromInvoiceHistoryCalenaer(data.get("From_Date"));
+								canadaLib.selectEndDateFromInvoiceHistoryCalenaer(data.get("End_Date"));
 								//invoice.selectEndDateInRecentHistory(data.get("End_Date"));
 								// invoice.datePickerEndDateCalender(data.get("End_Date"));
 								canadaLib.clickOnSearchButtonInRecentOrders();
