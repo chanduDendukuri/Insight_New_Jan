@@ -3634,7 +3634,9 @@ public void verifySetPermissionsDisabled(String userPermissions) throws Throwabl
 	}
 
 	public void acceptCookies() throws Throwable{
-		click(CommonObj.AcceptAlerts,"Accept Cookies");
+	if(isVisibleOnly(CommonObj.AcceptAlerts,"Accept Cookies")) {
+		click(CommonObj.AcceptAlerts, "Accept Cookies");
+	}
 	}
 }
 
