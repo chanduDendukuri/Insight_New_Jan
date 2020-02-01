@@ -155,7 +155,7 @@ public class LineLevelInfoLib extends LineLevelInfoObj{
 	 */
 	public void verifyRP_HDL_TxtOnPlaceOrderPage(String RP_HDL_Txt) throws Throwable{
 		if(isElementPresent(getRP_HDL_TxtInPlaceOrderPage(RP_HDL_Txt),"RP_HDL_Txt")){
-			reporter.SuccessReport("Verify RP_HDL_Txt On Place Order Page", "RP_HDL_Txt On Place Order Page is present", "");
+			reporter.SuccessReport("Verify RP_HDL_Txt On Place Order Page", "RP_HDL_Txt On Place Order Page is present", "Header Level Smart Trackers: "+RP_HDL_Txt);
 			
 		}else{
 			reporter.failureReport("Verify RP_HDL_Txt On Place Order Page", "RP_HDL_Txt On Place Order Page is not present", "",driver);
@@ -169,7 +169,7 @@ public class LineLevelInfoLib extends LineLevelInfoObj{
 	 */
 	public void verifyRP_LNL_TxtOnPlaceOrderPage(String RP_LNL_Txt) throws Throwable{
 		if(isElementPresent(getRP_LNL_TxtInPlaceOrderpage(RP_LNL_Txt),"RP_HDL_Txt")){
-			reporter.SuccessReport("Verify RP_LNL_Txt On Place Order Page", "RP_LNL_Txt On Place Order Page is present", "");
+			reporter.SuccessReport("Verify RP_LNL_Txt On Place Order Page", "RP_LNL_Txt On Place Order Page is present", "Line Level Smart Trackers: RP_LNL_Txt: "+RP_LNL_Txt);
 			
 		}else{
 			reporter.failureReport("Verify RP_LNL_Txt On Place Order Page", "RP_LNL_Txt On Place Order Page is not present", "",driver);
@@ -183,7 +183,7 @@ public class LineLevelInfoLib extends LineLevelInfoObj{
 	 */
 	public void verifyRP_HDL_TxtOnReceiptPage(String RP_HDL_Txt) throws Throwable{
 		if(isElementPresent(getRP_HDL_TxtOnReceiptPage(RP_HDL_Txt),"RP_HDL_Txt")){
-			reporter.SuccessReport("Verify RP_HDL_Txt On Receipt Page", "RP_HDL_Txt On Receipt Page is present", "");
+			reporter.SuccessReport("Verify RP_HDL_Txt On Receipt Page", "RP_HDL_Txt On Receipt Page is present", "Header Level Smart Trackers: "+RP_HDL_Txt);
 			
 		}else{
 			reporter.failureReport("Verify RP_HDL_Txt On Receipt Page", "RP_HDL_Txt OnReceipt Page is not present", "",driver);
@@ -196,7 +196,7 @@ public class LineLevelInfoLib extends LineLevelInfoObj{
 	 */
 	public void verifyRP_LNL_TxtOnReceiptPage(String RP_LNL_Txt) throws Throwable{
 		if(isElementPresent(getRP_LNL_TxtOnReceiptPage(RP_LNL_Txt),"RP_HDL_Txt")){
-			reporter.SuccessReport("Verify RP_LNL_Txt On Receipt Page", "RP_LNL_Txt On Receipt Page is present", "");
+			reporter.SuccessReport("Verify RP_LNL_Txt On Receipt Page", "RP_LNL_Txt On Receipt Page is present", "Line Level Smart Trackers: RP_LNL_Txt: "+RP_LNL_Txt);
 			
 		}else{
 			reporter.failureReport("Verify RP_LNL_Txt On Receipt Page", "RP_LNL_Txt On PReceipt Page is not present", "",driver);
@@ -231,6 +231,8 @@ public class LineLevelInfoLib extends LineLevelInfoObj{
 		Thread.sleep(2000);
 		if(isElementPresent(ADDRESS_VALIDATION_SAVE_BTN, "shipping address validation save")){
 			click(ADDRESS_VALIDATION_SAVE_BTN, "save button");
+		}else {
+			reporter.failureReport("Verify Save address button on search shipping address page", "Save address button on search shipping address page doest not exists", "", driver);
 		}
 		Thread.sleep(2000);
 	}
@@ -741,8 +743,6 @@ public class LineLevelInfoLib extends LineLevelInfoObj{
 		commonLib.spinnerImage();
 		if(isElementPresent(OrderObj.PROCEED_TO_CHECKOUT, "Proceed to checkout") && isEnabled(OrderObj.PROCEED_TO_CHECKOUT, "Proceed to checkout")){
 			clickUntil(OrderObj.PROCEED_TO_CHECKOUT, OrderObj.ORDER_ITEM_INFO_LABEl, "Proceed to checkout");
-			reporter.failureReport("Verify the Proceed to checkout button visibility","Proceed to checkout is visible and clicked","Clicked on Proceed to checkout ",driver);
-
 		}else{
 			reporter.failureReport("Verify the Proceed to checkout button visibility","Proceed to checkout is not visible or disabled","",driver);
 		}

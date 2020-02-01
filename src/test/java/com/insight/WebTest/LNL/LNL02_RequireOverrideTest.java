@@ -66,17 +66,22 @@ public class LNL02_RequireOverrideTest extends LineLevelInfoLib{
 						cmtLib.loginAsAdminCMT();
 						// search for a product
 						searchLib.searchInHomePage(data.get("SearchText"));
+						searchLib.verifyBreadCrumbInSearchResultsPage(data.get("SearchText"));
+						String partNumber=pipLib.getPartNumberInSearchResultsPage();
 						pipLib.selectFirstProductAddToCartAndVerifyCart();
+						pipLib.verifyCartPageAndPartDetails();
 						orderLib.proceedToCheckout();
 						cartLib.addAdditionalInformationInCheckOut(data.get("Url"), data.get("RP_HDL_Txt"));
 						cartLib.addLineLevelInformationInCheckOut(data.get("RP_LNL_Txt"));
+						canadaLib.verifySBP();
+						orderLib.enterAttentionField(data.get("Card_Name"));
 						orderLib.clearPhnumberInShippinAddress();
-						orderLib.shippingBillPayContinueButton();  // continue button on Shipping address
+						orderLib.clickContinueOnShippingAddress();  // continue button on Shipping address
 						orderLib.shippingOptionsCarrierSelection();  // carrier selection or continue in shipping options
-						orderLib.shippingBillPayContinueButton();  // Continue on billing address section
+						orderLib.billingAddressContinueButton();  // Continue on billing address section
 						orderLib.selectPaymentInfoMethodCreditCard(data.get("Card_Number").toString(), data.get("Card_Name"),data.get("Month"), data.get("Year"),data.get("PO_Number"),data.get("POReleaseNumber"));
 						orderLib.clickOnReviewOrderButton();
-						
+						orderLib.verifyPlaceOrderLabel();
 						// Verify RP_HDL_Txt and RP_LNL_Txt text on PO page
 						verifyRP_HDL_TxtOnPlaceOrderPage(data.get("RP_HDL_Txt"));
 						verifyRP_LNL_TxtOnPlaceOrderPage(data.get("RP_LNL_Txt"));

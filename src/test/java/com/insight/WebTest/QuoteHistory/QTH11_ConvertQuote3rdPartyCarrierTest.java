@@ -121,7 +121,7 @@ public class QTH11_ConvertQuote3rdPartyCarrierTest extends QuoteHistoryLib {
 					orderLib.selectPaymentInfoMethodCreditCard(data.get("cardNumber"),data.get("cardName"),data.get("month"),data.get("year"),data.get("PO_Number"),data.get("POReleaseNumber"));
 					orderLib.VerifyShippingCarrierdetails();
 					orderLib.clickOnReviewOrderButton();
-					VerifyPlaceOrderdetails()
+					orderLib.VerifyPlaceOrderdetails();
 					String summaryAmount = cartLib.getSummaryAmountInCart();
 					orderLib.placeOrderAndVerifyReceiptOrderAndDateQuoteHistory(summaryAmount);
 					
