@@ -58,12 +58,17 @@ public class IVH01_InvoiceQuickSearchTest extends InvoiceHistoryLib {
 					cmtLib.loginVerification(data.get("ContactName"));
 					canadaLib.clickOnSideMenuSelectAccountToolOptions(data.get("Tools_Menu"),
 							data.get("Tools_Menu_DD"));
-					canadaLib.verifyInvoiceHistoryPageOpened();
-					canadaLib.clickOnInvoiceHistory();
+					/*
+					 * canadaLib.verifyInvoiceHistoryPageOpened();
+					 * canadaLib.clickOnInvoiceHistory();
+					 */
+					invoiceHistoryLib.verifyInvoiceHistoryLabel();
 					invoiceHistoryLib.quickSearchAndVerifySearchResults(data.get("SelectOrder"),
 							data.get("OrderNumber"));
 					invoiceHistoryLib.quickSearchAndVerifySearchResults(data.get("SelectReference"),
 							data.get("ReferenceNumber"));
+					invoiceHistoryLib.quickSearchAndVerifySearchResults(data.get("SelectOrder"),
+							data.get("OrderNumber"));
 					invoiceHistoryLib.quickSearchAndVerifySearchResults(data.get("SelectPurchaseOrder"),
 							data.get("PurchaseNumber"));
 					invoiceHistoryLib.quickSearchAndVerifySearchResults(data.get("SelectInvoice"),

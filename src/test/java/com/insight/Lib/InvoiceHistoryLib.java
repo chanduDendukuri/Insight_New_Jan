@@ -38,9 +38,9 @@ public class InvoiceHistoryLib extends InvoiceHistoryObj {
 			// selectSearchBy(searchBy);
 			// click(CanadaLib.drpSearchByDropdownValue,"Search bY Dropdown Value");
 			click(CanadaObj.getSearchByTextOrder(searchBy), "Search By");
+			Thread.sleep(3000);
 			// click(CanadaObj.QUICK_SEARCH_TEXT, "Click on Text");
 			type(CanadaObj.QUICK_SEARCH_TEXT, text, "Text ");
-			Thread.sleep(5000);
 			click(CanadaObj.SEARCH, "Search");
 			Thread.sleep(5000);
 
@@ -919,7 +919,7 @@ public class InvoiceHistoryLib extends InvoiceHistoryObj {
 		int countc1 = 0;
 		int countc2 = 0;
 		int countc3 = 0;
-		for (int i = 0; i <= myList.size(); i++) {
+		for (int i = 0; i < myList.size(); i++) {
 			String tree = myList.get(i).getAttribute("id");
 			String status = myList.get(i).getAttribute("checked");
 
