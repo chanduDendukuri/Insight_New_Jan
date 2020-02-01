@@ -215,11 +215,9 @@ public class CanadaObj extends ActionEngine {
 			public static By DELIVERY_OPTION = By.xpath("//div[@id='deliveryOptionsLabel']");
 			
 			public static By getQuickDate(String quickDateOption){
-<<<<<<< HEAD
+
 							return By.xpath("//select[@id='ddlQuickDates']/*[contains(.,'"+quickDateOption+"')]");
-=======
-						return By.xpath("//select[@id='ddlQuickDates']/*[contains(.,'"+quickDateOption+"')]");
->>>>>>> 12625bbafb788fd8ce27e80ea44436b3b2d49a36
+
 				
 			}
 			public static By START_DATE = By.xpath("//input[@id='ordFullStartDateAlt']");
