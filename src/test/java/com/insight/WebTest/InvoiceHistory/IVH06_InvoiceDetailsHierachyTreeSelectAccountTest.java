@@ -67,6 +67,7 @@ public class IVH06_InvoiceDetailsHierachyTreeSelectAccountTest extends InvoiceHi
 							scrollUp();
 							verifySelectedOptionInAccountSelectionDD(data.get("Default_Option"));
 							closeAccountHirearchyDropdow();
+							scrollBottom();
 							setAccountHirerachydropdown(data.get("GGP"));
 							clickShowAccountHirerachy();
 							verifyAccountHirearchyPopUp();
@@ -79,7 +80,7 @@ public class IVH06_InvoiceDetailsHierachyTreeSelectAccountTest extends InvoiceHi
 							// ######## custom list of accounts ################################
 							
 							// ######## GGP ################################
-	
+							scrollBottom();
 							setAccountHirerachydropdown(data.get("GGP"));
 							clickShowAccountHirerachy();
 							verifyAccountHirearchyPopUp();

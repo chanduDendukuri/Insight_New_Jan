@@ -319,7 +319,7 @@ public class CanadaLib extends CanadaObj {
 	 * @throws Throwable
 	 */
 	public void clickOnSideMenuSelectAccountToolOptions(String toolsMenuName, String dropDown) throws Throwable {
-		Thread.sleep(20000);
+		Thread.sleep(2000);
 		if (isVisibleOnly(InvoiceHistoryLib.COSE_ACCOUNT_TOOLS, "close account tools")) {
 			click(InvoiceHistoryLib.COSE_ACCOUNT_TOOLS, "close account tools");
 		}
@@ -329,6 +329,7 @@ public class CanadaLib extends CanadaObj {
 
 		//((JavascriptExecutor) WebDriver).executeAsyncScript(100,1000);
 		click(getAccountToolsMenu(toolsMenuName), "Account tools menu::" + toolsMenuName + "");
+		Thread.sleep(3000);
 		click(CommonObj.getAccountToolsDD(toolsMenuName, dropDown), "Select account tools::" + dropDown + "");
 	}
 

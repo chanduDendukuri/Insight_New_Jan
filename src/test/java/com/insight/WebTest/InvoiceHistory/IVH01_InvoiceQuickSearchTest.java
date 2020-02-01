@@ -90,7 +90,7 @@ public class IVH01_InvoiceQuickSearchTest extends InvoiceHistoryLib {
 					canadaLib.clickOnSideMenuSelectAccountToolOptions(data.get("Tools_Menu"),
 							data.get("Tools_Menu_DD"));
 					canadaLib.verifyInvoiceHistoryPageOpened();
-					canadaLib.clickOnInvoiceHistory();
+					//canadaLib.clickOnInvoiceHistory();
 					invoiceHistoryLib.quickSearchAndVerifySearchResults(data.get("SelectOrder"),
 							data.get("OrderNumber"));
 					invoiceHistoryLib.quickSearchAndVerifySearchResults(data.get("SelectReference"),
@@ -117,7 +117,7 @@ public class IVH01_InvoiceQuickSearchTest extends InvoiceHistoryLib {
 					canadaLib.clickOnSideMenuSelectAccountToolOptions(data.get("Tools_Menu"),
 							data.get("Tools_Menu_DD"));
 					canadaLib.verifyInvoiceHistoryPageOpened();
-					canadaLib.clickOnInvoiceHistory();
+				//	canadaLib.clickOnInvoiceHistory();
 					invoiceHistoryLib.quickSearchAndVerifySearchResults(data.get("SelectOrder"),
 							data.get("OrderNumber"));
 					invoiceHistoryLib.quickSearchAndVerifySearchResults(data.get("SelectReference"),
@@ -143,7 +143,7 @@ public class IVH01_InvoiceQuickSearchTest extends InvoiceHistoryLib {
 					canadaLib.clickOnSideMenuSelectAccountToolOptions(data.get("Tools_Menu"),
 							data.get("Tools_Menu_DD"));
 					canadaLib.verifyInvoiceHistoryPageOpened();
-					canadaLib.clickOnInvoiceHistory();
+					//canadaLib.clickOnInvoiceHistory();
 					invoiceHistoryLib.quickSearchAndVerifySearchResults(data.get("SelectOrder"),
 							data.get("OrderNumber"));
 					invoiceHistoryLib.quickSearchAndVerifySearchResults(data.get("SelectReference"),

@@ -253,8 +253,10 @@ public class InvoiceHistoryLib extends InvoiceHistoryObj {
 	 * @throws Throwable
 	 */
 	public void setAccountHirerachydropdown(String option) throws Throwable {
+		Thread.sleep(2000);
 		click(ACCOUNT_SELECTION_DROPDOWN, "Account hirerachy dropdown");
-		click(accountSelectionHirerachyOption(option), "");
+		Thread.sleep(2000);
+		click(accountSelectionHirerachyOption(option), "Account heirarchy option");
 	}
 
 	public void closeAccountHirearchyDropdow() throws Throwable {
