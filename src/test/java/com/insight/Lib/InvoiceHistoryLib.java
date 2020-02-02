@@ -30,7 +30,7 @@ public class InvoiceHistoryLib extends InvoiceHistoryObj {
 	 */
 	public void quickSearchAndVerifySearchResults(String searchBy, String text) throws Throwable {
 		Thread.sleep(10000);
-		//clickOnSearchByInInvoiceHistory();
+
 		waitForVisibilityOfElement(CanadaObj.SEARCHBY_DROPDOWN, "Quick Search");
 		if (isVisibleOnly(CanadaObj.SEARCHBY_DROPDOWN, "Quick Search")) {
 
@@ -38,9 +38,9 @@ public class InvoiceHistoryLib extends InvoiceHistoryObj {
 			// selectSearchBy(searchBy);
 			// click(CanadaLib.drpSearchByDropdownValue,"Search bY Dropdown Value");
 			click(CanadaObj.getSearchByTextOrder(searchBy), "Search By");
+			Thread.sleep(3000);
 			// click(CanadaObj.QUICK_SEARCH_TEXT, "Click on Text");
 			type(CanadaObj.QUICK_SEARCH_TEXT, text, "Text ");
-			Thread.sleep(5000);
 			click(CanadaObj.SEARCH, "Search");
 			Thread.sleep(5000);
 
@@ -253,8 +253,10 @@ public class InvoiceHistoryLib extends InvoiceHistoryObj {
 	 * @throws Throwable
 	 */
 	public void setAccountHirerachydropdown(String option) throws Throwable {
+		Thread.sleep(2000);
 		click(ACCOUNT_SELECTION_DROPDOWN, "Account hirerachy dropdown");
-		click(accountSelectionHirerachyOption(option), "");
+		Thread.sleep(2000);
+		click(accountSelectionHirerachyOption(option), "Account heirarchy option");
 	}
 
 	public void closeAccountHirearchyDropdow() throws Throwable {
@@ -897,7 +899,7 @@ public class InvoiceHistoryLib extends InvoiceHistoryObj {
 	public void verifyAccountHirearchyPopUp() throws Throwable {
 		boolean status = false;
 		if (isVisibleOnly(ACCOUNT_HIERARCHY_POP_UP, "Account hirearchy pop up")) {
-			status = false;
+			status =true;
 			String s1 = Boolean.toString(status);
 			reporter.SuccessReport("Verify the Account Hierarchy Tree Popup on ", "Account Hierarchy Tree Popup Exists",
 					s1);
@@ -911,18 +913,20 @@ public class InvoiceHistoryLib extends InvoiceHistoryObj {
 	}
 
 	public void verifyTree() throws Throwable {
+		Thread.sleep(6000);
 
 		// waitForVisibilityOfElement(HIERARCHY_TREE, "Hierarchy tree");
 		List<WebElement> myList = driver.findElements(HIERARCHY_TREE);
-		for (int i = 0; i <= myList.size(); i++) {
+		int countc0 = 0;
+		int countc1 = 0;
+		int countc2 = 0;
+		int countc3 = 0;
+		for (int i = 0; i < myList.size(); i++) {
 			String tree = myList.get(i).getAttribute("id");
 			String status = myList.get(i).getAttribute("checked");
 
 			System.out.println("tree" + tree);
-			int countc0 = 0;
-			int countc1 = 0;
-			int countc2 = 0;
-			int countc3 = 0;
+			
 			if (tree.contains("c0")) {
 				if (countc0 == 0) {
 					reporter.SuccessReport("Verify Tree Fields on Insight Invoice or Order History Page ",
@@ -985,6 +989,7 @@ public class InvoiceHistoryLib extends InvoiceHistoryObj {
 	 * @throws Throwable
 	 */
 	public void closeHierarchyPopUp() throws Throwable {
+		Thread.sleep(5000);
 		click(CLOSE_HIERARCHY_POP_UP, "Close hierarchy pop up");
 		Thread.sleep(3000);
 	}

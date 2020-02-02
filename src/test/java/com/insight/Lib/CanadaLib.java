@@ -319,16 +319,38 @@ public class CanadaLib extends CanadaObj {
 	 * @throws Throwable
 	 */
 	public void clickOnSideMenuSelectAccountToolOptions(String toolsMenuName, String dropDown) throws Throwable {
-		Thread.sleep(20000);
+		Thread.sleep(2000);
+
+		if (isVisibleOnly(CommonObj.CLOSEBUTTON_COOKIES, "close cookie")) {
+			click(CommonObj.CLOSEBUTTON_COOKIES, "close cookie");
+		}
+
 		if (isVisibleOnly(InvoiceHistoryLib.COSE_ACCOUNT_TOOLS, "close account tools")) {
 			click(InvoiceHistoryLib.COSE_ACCOUNT_TOOLS, "close account tools");
 		}
-		click(CommonObj.ACCOUNT_TOOLS, "Account tools menu icon");
+		//click(CommonObj.ACCOUNT_TOOLS, "Account tools menu icon");
+		if (isElementClickable(CommonObj.ACCOUNT_TOOLS,2, "Account tools menu icon")) {
+			click(CommonObj.ACCOUNT_TOOLS, "Account tools menu icon");
+		}else {
+			scrollToBottomWithCordinate("150");
+			if (isElementClickable(CommonObj.ACCOUNT_TOOLS,2, "Account tools menu icon")) {
+				click(CommonObj.ACCOUNT_TOOLS, "Account tools menu icon");
+			}else {
+				scrollToBottomWithCordinate("-300");
+				if (isElementClickable(CommonObj.ACCOUNT_TOOLS,3, "Account tools menu icon")) {
+					click(CommonObj.ACCOUNT_TOOLS, "Account tools menu icon");
+				}else {
+					reporter.failureReport("Account tools menu icon", "Account tools menu icon not displayed", "");
+				}
+				
+			}
+		}
 		//WebElement element = driver.findElement(by);
-		scrollToBottomWithCordinate("150");
+//		scrollToBottomWithCordinate("150");
 
 		//((JavascriptExecutor) WebDriver).executeAsyncScript(100,1000);
 		click(getAccountToolsMenu(toolsMenuName), "Account tools menu::" + toolsMenuName + "");
+		Thread.sleep(3000);
 		click(CommonObj.getAccountToolsDD(toolsMenuName, dropDown), "Select account tools::" + dropDown + "");
 	}
 
@@ -1313,13 +1335,15 @@ public void addShippingAddress(String name, String userName,String street1,Strin
 	 * @throws Throwable
 	 */
 	public void clickOnReportOptions(String reportOption) throws Throwable {
-		click(STANDARD_REPORT, "Standard Report");
-		waitForVisibilityOfElement(getReportOptions(reportOption), "Standard Report Options");
-		if (isElementPresent(getReportOptions(reportOption), "Standard Report Options", true)) {
-			click(getReportOptions(reportOption), "Enter A Card Button");
-			reporter.SuccessReport("Click " + reportOption + " on Reports Page",
-					"" + reportOption + " Reports Page exists  ", "");
-		} else {
+
+		click(STANDARD_REPORT,"Standard Report");
+		waitForVisibilityOfElement(getReportOptions(reportOption), "Standard Report Options::"+reportOption);
+		if (isElementPresent(getReportOptions(reportOption), "Standard Report Options", true)){
+		click(getReportOptions(reportOption), "Enter A Card Button:"+reportOption);
+		reporter.SuccessReport("Click "+reportOption+" on Reports Page" ,
+				""+reportOption+" Reports Page exists  ", reportOption);
+		}
+	else {
 			reporter.failureReport("Click " + reportOption + " on Reports Page", " " + reportOption + " Reports Page exists  ", "", driver);
 		}
 	}

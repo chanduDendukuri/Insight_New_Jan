@@ -554,6 +554,24 @@ scrollUp();
 			reporter.failureReport("Verify Quote History Results", "  Quote History Results  Doesnot Exist", "");	
 		}
 	}
+	public void verifyRecentOrders() throws Throwable {
+		waitForVisibilityOfElement(RecentOrders, "RecentOrders");
+		if (isElementPresent(RecentOrders, "Quote History ")) {
+			reporter.SuccessReport("Verify Quote History Results", "  Quote History Results  Exist", "");		
+		}
+		else{
+			reporter.failureReport("Verify Quote History Results", "  Quote History Results  Doesnot Exist", "");	
+		}
+	}
+	public void VerifyOrderdetails() throws Throwable {
+		String OrderNUmber1 = getText(OrderNumber, "OrderNumber");
+		if(OrderNUmber1!="") {
+			click(OrderNumber, "OrderNumber", OrderNUmber1);
+			waitForVisibilityOfElement(Orderdetails, "Orderdetails");
+			String frieghtcost = getText(txtFrieghtInOrderdetails, "txtFrieghtInOrderdetails");
+			String estimatecost = getText(estimatecostinOrderdetails, "estimatecostinOrderdetails");
+		}
+	}
 	/**
 	 * Method is used to verify Quote History present
 	 * 
@@ -569,10 +587,11 @@ scrollUp();
 		}
 	}
 	public void verifypartnumberInQuotedetails() throws Throwable{
-		String MFRpart = getText(mfrPartInQuotedetails, "mfrPartInQuotedetails");
+		scrollToBottomWithCordinate("110");
+		String MFRpart1 = getText(mfrPartInQuotedetails, "mfrPartInQuotedetails");
 		String InsightPart = getText(InsightPartInQuotedetails, "InsightPart");
-		if(MFRpart!=null && InsightPart!=null) {
-			reporter.SuccessReport("Part details: ", "Part details exist as expected", ""+MFRpart+""+InsightPart+"");
+		if(MFRpart1!="" && InsightPart!="") {
+			reporter.SuccessReport("Part details: ", "Part details exist as expected", ""+MFRpart1+""+InsightPart+"");
 		}
 		else {
 			reporter.failureReport("Part details: ", "Part details exist as expected", "");

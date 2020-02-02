@@ -54,6 +54,7 @@ public class SBP08_SaveOrderTemplateIPSTest extends ShipBillPayLib{
 				OrderLib orderLib = new OrderLib();
 				ShipBillPayLib shipbLib = new ShipBillPayLib();
 				CanadaLib canadaLib = new CanadaLib();
+				
 				// login
 				cmtLib.loginToCMT(data.get("Header"));
 				cmtLib.searchForWebGroup(data.get("WebGrp"));
@@ -62,6 +63,7 @@ public class SBP08_SaveOrderTemplateIPSTest extends ShipBillPayLib{
 				cmtLib.searchForaUserAndSelect(data.get("LnameEmailUname"), data.get("ContactName"));
 				cmtLib.setPermissions(data.get("Menu_Name"), data.get("Set_Permission"));
 				cmtLib.loginAsAdminCMT();
+				
 				canadaLib.clickOnSideMenuSelectAccountToolOptions(data.get("toolsMenuName"),data.get("dropDown"));	
 				deletesavedcartsortamplates();
 				commonLib.searchProduct(data.get("Search_Item1"));
@@ -91,7 +93,6 @@ public class SBP08_SaveOrderTemplateIPSTest extends ShipBillPayLib{
 				orderLib.clickContinueOnLineLevelInfo();
 				shipbLib.clickstoredAddress(data.get("Text"));
 				orderLib.shippingBillPayContinueButton();
-				verifyNewAddress();
 				selectCarrierandGrounOption(data.get("Carrier"));
 				shipbLib.clickstoredAddress(data.get("Text"));
 				orderLib.billingAddressContinueButton(); 
@@ -113,11 +114,10 @@ public class SBP08_SaveOrderTemplateIPSTest extends ShipBillPayLib{
 						data.get("REPORTING FIELD_5"),data.get("Wg_LNL_Txt"));
 				verifyCopiedText();
 				orderLib.clickContinueOnLineLevelInfo();
-				VerifySoldtoAddress(data.get("Text"));
+				VerifySoldtoAddress();
 				orderLib.shippingBillPayContinueButton();
 				selectCarrierandGrounOption(data.get("Carrier"));
-				shipbLib.Selectshippingcarrier();
-				VerifySoldtoAddress(data.get("Text"));
+				VerifySoldtoAddress();
 				orderLib.billingAddressContinueButton(); 
 				scrollUp();
 				//Deletesavedcarts

@@ -79,6 +79,7 @@ public class REQ06_NOForceRequestorEnterCCTest extends ChinaLib{
 						searchLib.searchInHomePage(data.get("SearchItem"));
 						searchLib.verifyBreadCrumbInSearchResultsPage(data.get("SearchItem"));
 						prodInfoLib.getPartNumberInSearchResultsPage();
+						scrollBottom();
 						// Add a item to cart >> proceed To Checkout
 						commonLib.addFirstDisplyedItemToCartAndVerify();
 						orderLib.continueToCheckOutOnAddCart();
@@ -116,7 +117,7 @@ public class REQ06_NOForceRequestorEnterCCTest extends ChinaLib{
 						prodInfoLib.getPartNumberInSearchResultsPage();
 						// Add a item to cart >> proceed To Checkout >> place order >>
 						// Verify the review order details,Receipt Order And Date
-						
+						scrollBottom();
 						commonLib.addFirstDisplyedItemToCartAndVerify();
 						orderLib.continueToCheckOutOnAddCart();
 						cartLib.verifyCartPageAvailablity();

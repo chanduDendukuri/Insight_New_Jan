@@ -10,6 +10,7 @@ import com.insight.Lib.CanadaLib;
 import com.insight.Lib.CartLib;
 import com.insight.Lib.CommonLib;
 import com.insight.Lib.OrderLib;
+import com.insight.Lib.SearchLib;
 import com.insight.Lib.ShipBillPayLib;
 import com.insight.accelerators.ReportControl;
 import com.insight.accelerators.TestEngineWeb;
@@ -53,6 +54,7 @@ public class SBP03_ASNShipNotesTest extends ShipBillPayLib{
 				CartLib cartLib = new CartLib();
 				OrderLib orderLib = new OrderLib();
 				CanadaLib canadaLib = new CanadaLib();
+				SearchLib searchLib = new SearchLib();
 
 				//Login
 				cmtLib.loginToCMT(data.get("Header"));
@@ -76,6 +78,7 @@ public class SBP03_ASNShipNotesTest extends ShipBillPayLib{
 				Thread.sleep(8000);
 				cartLib.verifyShipmentNotificationInCheckoutDefaultsIsNotPresent();
 				commonLib.searchProduct(data.get("Search_Item"));
+				searchLib.verifyBreadCrumbInSearchResultsPage(data.get("Search_Item"));
 				commonLib.addFirstDisplyedItemToCartAndVerify();
 				canadaLib.continueToCheckout();
 				orderLib.proceedToCheckout();
