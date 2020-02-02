@@ -30,5 +30,7 @@ public class ChinaObj extends ActionEngine{
 	  public static By getLanguangeOption(String language){
 		  return By.xpath("//select[@name='selectLanguage']//option[@value='"+language+"']"); // select by value
 	  }
-	  public static By CONTINUE_TO_CHECKOUT_CHINA=By.xpath("//a[text()='Continue to Checkout']");	
+	  public static By CONTINUE_TO_CHECKOUT_CHINA=By.xpath("//a[text()='Continue to Checkout']");
+
+	  public static By lnkConnection=By.xpath("//*[text()='Connexion' and contains(@class,'top__link')]");
 }

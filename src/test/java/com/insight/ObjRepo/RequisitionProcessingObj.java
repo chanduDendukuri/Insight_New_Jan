@@ -183,7 +183,7 @@ public class RequisitionProcessingObj extends CommonObj {
 	
 		public static By CANCEL_REQSTNBTN= By.xpath("//a[@id='cancelReq']/span[contains(text(),'CANCEL REQUISITION')]");
 		public static By CANCELTN_STATUSMESSAGE= By.xpath("//div[@id='serach_msgbar2'][contains(text(),'Requisition Status Update Successful')]");
-		public static By EXPANDSEARCH= By.xpath("//div[@id='expndsearch1']");
+		public static By EXPANDSEARCH= By.xpath("//div[@id='expndsearch1']/a");
 		
 		
 		

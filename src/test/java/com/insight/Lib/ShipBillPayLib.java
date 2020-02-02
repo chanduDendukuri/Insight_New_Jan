@@ -96,12 +96,12 @@ public class ShipBillPayLib extends ShipBillPayObj {
 		click(CommonObj.getAccountToolsDD(toolsMenuName, dropDown), "Select account tools");// -----Personalization,User
 																							// Profile
 		click(CommonObj.getFavoritesTabs(tabName), "Payments And Cards Tab is clicked");
-		String textinPaymentandcards = getText(PaymentandcardsText, "Payment cards text");
-		if (isElementPresent(PaymentandcardsText, "payments and cards Msg")) {
+		String textinPaymentandcards = getText(defaultCreditCard, "Payment cards text");
+		if (isElementPresent(defaultCreditCard, "payments and cards Msg")) {
 			reporter.SuccessReport("Verify Payment cards Msg", "Payments And Cards msg", textinPaymentandcards);
 		} else {
 			reporter.failureReport("Payments And Cards Msg is not visible", "Payments And Cards Msg is not visible",
-					"");
+					"",driver);
 		}
 	}
 
@@ -1262,6 +1262,11 @@ public class ShipBillPayLib extends ShipBillPayObj {
 				reporter.failureReport("verify Defualt Address::",
 						"Unable to Verify No Defualt Address Adresses", "");
 			}
+		}
+
+
+		public void clickOnCanadaWebGrp() throws Throwable{
+			click(ShipBillPayObj.CANNADA_WEBSITE,"webGoup","");
 		}
 		
 		public void VerifySoldtoAddress() throws Throwable {

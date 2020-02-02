@@ -222,9 +222,12 @@ public static By PROCUREMENTCARD_OPTION=By.xpath("//select[@id='payAllowedSel']/
 public static By ALLOWED_OPTIONS = By.xpath("//select[@id='shipAllowedSel']");
 public static By OPTION(String Option) {
 return By.xpath("//select[@id='payAllowedSel']/option[contains(text(),'"+Option+"')]");
+
 }
 public static By COMPANY=By.xpath("//div[@class='iw-set-as-my-default iw-set-as-my-default__show']/p[1]");
 public static By ADDRESS=By.xpath("//div[@class='iw-set-as-my-default iw-set-as-my-default__show']/p[2]");
+public static By defaultCreditCard = By.xpath("//h3[contains(text(),'Stored Credit Cards')]/following-sibling::p");
+
 }
 
 

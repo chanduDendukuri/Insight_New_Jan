@@ -421,7 +421,7 @@ public class MarriottIntlCorpLib extends MarriottIntlCorpObj {
 			waitForVisibilityOfElement(SWITCHED_WEBGRPONDASHBOARD(webgrp), "DashBoard");
 			reporter.SuccessReport("Switch to WebGroup", "WebGroup is Switched to " + webgrp + "", "");
 		} else {
-			reporter.failureReport("Switch to WebGroup", "WebGroup is unable to Switch", "");
+			reporter.failureReport("Switch to WebGroup", "WebGroup is unable to Switch", "",driver);
 		}
 	}
 	public void getandVerifyWebGroupName(String expectedWebGroupname) throws Throwable {

@@ -72,7 +72,7 @@ public class REQ01_EndToEndTest extends ChinaLib{
 						searchLib.verifyBreadCrumbInSearchResultsPage(data.get("SearchItem"));
 						
 						prodinfo.getPartNumberInSearchResultsPage();
-
+						scrollBottom();
 						// Add a item to cart >> proceed To Checkout >> place order >>
 						// Verify the review order details,Receipt Order And Date
 						commonLib.addFirstDisplyedItemToCartAndVerify();
@@ -81,12 +81,14 @@ public class REQ01_EndToEndTest extends ChinaLib{
 						// Add 2nd product to the cart
 						searchLib.searchInHomePage(data.get("SearchItem1"));
 						searchLib.verifyBreadCrumbInSearchResultsPage(data.get("SearchItem1"));
+						//scrollBottom();
 						prodinfo.getPartNumberInSearchResultsPage();
 						commonLib.addFirstDisplyedItemToCartAndVerify();
 						orderLib.continueToCheckOutOnAddCart();
 						cartLib.verifyCartPageAvailablity();
 						// Select web requestor group name from dropdown
 						ReqLib.selectRequestorGroupName(data.get("ReqName"));
+						scrollBottom();
 						orderLib.proceedToCheckout();
 
 						orderLib.continueButtonOnAdditionalInformationSection();

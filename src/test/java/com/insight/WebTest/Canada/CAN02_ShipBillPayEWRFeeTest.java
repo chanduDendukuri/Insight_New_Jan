@@ -100,7 +100,7 @@ public class CAN02_ShipBillPayEWRFeeTest extends CanadaLib{
 									cartLib.verifyItemInCart(partNumber2);
 
 						// proceed to check out
-						orderLib.proceedToCheckout();
+								orderLib.proceedToCheckout();
 									cartLib.clickOnContinueButtonInAddInformtion();
 									canadaLib.verifySBP();
 									orderLib.shippingBillPayContinueButton();
