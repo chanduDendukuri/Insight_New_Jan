@@ -3,6 +3,7 @@ package com.insight.Lib;
 import java.util.List;
 
 import org.mortbay.log.Log;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 
@@ -282,8 +283,11 @@ public class LineLevelInfoLib extends LineLevelInfoObj{
 	 * @throws Throwable
 	 */
 	public void verifyContractSpecificInfoOnPlaceOrderPage() throws Throwable{
+		List <WebElement> element=driver.findElements(CONTRACT_SPECIFIC_REPORTING_FIELDS);
 		if(isElementPresent(CONTRACT_SPECIFIC_INFO_LABEL, "contract spcific info")){
-			reporter.SuccessReport("Verify contract specific info", "contract specific info is present in place order page", "");
+			for(int i=0;i<=element.size();i++) {
+				reporter.SuccessReport("Verify contract specific info", "contract specific info is present in place order page", element.get(i).getText());
+			}
 		}else{
 			reporter.failureReport("Verify contract specific info", "contract specific info is not present in place order page", "",driver);
 		}
@@ -314,9 +318,11 @@ public class LineLevelInfoLib extends LineLevelInfoObj{
 	 * @throws Throwable
 	 */
 	public void enterRP_LNL_Date() throws Throwable{
+		
 		if(isElementPresent(RP_LNL_DATE_PICKER, "RP_LNL_DATE_PICKER")){
 			click(RP_LNL_DATE_PICKER, "Calnder");
-			click(RP_LNL_DATE_TODAY_DATE, "RP_LNL_DATE_TODAY_DATE");
+			click(RP_LNL_DATE_TODAY_DATE, "RP_LNL_DATE_TODAY_DATE",getText(RP_LNL_DATE_TODAY_DATE, "Today date"));
+			getAttributeByValue(DATE_AFTER_SELECTION, "date selection");
 		}else{
 			reporter.failureReport("verify RP_LNL_DATE_PICKER", "RP_LNL_DATE_PICKER is not visible", "", driver);
 		}
@@ -440,16 +446,16 @@ public class LineLevelInfoLib extends LineLevelInfoObj{
 		List<WebElement> myList = driver.findElements(productsDisplayInfoObj.STOCK_IN_SEARCH_RESULTS);
 		if(myList.size()>0){
 		for(i=0;i<myList.size();i++){
-			stockNumber=getText(productsDisplayInfoObj.getProductStockNumber(i), "Stock Number").replace("in stock", "").trim();
-			if(stockNumber.isEmpty() || stockNumber==null){
-				
-				reporter.failureReport("Verify the stock number for products displayed", "Stok number is empty or null for "+i+ " product","",driver);
-			}else{
-				reporter.SuccessReport("Verify the stock number for products displayed", "Stock number is displayed for " +i+ " Product as :"+stockNumber, "");
+			stockNumber=myList.get(i).getText();
+			if(stockNumber.contains("in stock")){
+				reporter.SuccessReport("Verify the stock number for products displayed", "Stock number is displayed for " +i+ " Product as :"+stockNumber, "Stock :"+stockNumber);
 				prodnum=getText(productsDisplayInfoObj.getPartNumber(i), "product name");
 				click(productsDisplayInfoObj.getproductName(i),"product stock");
+				break;
+			}else{
+				// do nothing
 			}
-			break;
+			
 		  }
 		}	
 		else{
@@ -745,8 +751,19 @@ public class LineLevelInfoLib extends LineLevelInfoObj{
 			clickUntil(OrderObj.PROCEED_TO_CHECKOUT, OrderObj.ORDER_ITEM_INFO_LABEl, "Proceed to checkout");
 		}else{
 			reporter.failureReport("Verify the Proceed to checkout button visibility","Proceed to checkout is not visible or disabled","",driver);
+	}
 		}
+	
+	/*
+	 *Verify the Stock Value on Cart Page and product details 
+	 */
+	public void verifyStockNumberOnProductDetailsAndCart(String cartStock, String productDetailsStock) throws Throwable {
+		if(productDetailsStock.equals(cartStock)) {
+			reporter.SuccessReport("Verify the Stock Val on Cart Page", "Stock Val Showing on Product Deatils Page and Stock Val in the Cart Page are Same", "Stock Val on Product Details "+productDetailsStock+"  Stock Val on Cart Page: "+cartStock);
+		}else {
+			reporter.failureReport("Verify the Stock Val on Cart Page", "Stock Val Showing on Product Deatils Page and Stock Val in the Cart Page are notSame", "Stock Val on Product Details "+productDetailsStock+"  Stock Val on Cart Page: "+cartStock, driver);
 		}
+	}
 }
 
 
