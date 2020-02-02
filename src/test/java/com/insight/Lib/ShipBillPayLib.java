@@ -1116,10 +1116,9 @@ public class ShipBillPayLib extends ShipBillPayObj {
 			public String currentDate() {
 				LocalDate today = LocalDate.now();
 				String newDate = today.format(DateTimeFormatter.ofPattern("d-MMMM-uuuu"));
-				String date[]=newDate.split("-");
-				System.out.println("newDate" + date[0]);
-				return date[0];
-
+		          String date[]=newDate.split("-");
+                 System.out.println("newDate" + date[0]);
+                     return date[0];
 			}
 
 			
@@ -1166,7 +1165,14 @@ public class ShipBillPayLib extends ShipBillPayObj {
 
 		}
      public void clickonTodayDate(String date)throws Throwable{
-			click(Date(date),"Today::"+date+"");
+    	 if(isVisibleOnly(Date(date),"Today Date")) {
+    	 LocalDate today = LocalDate.now();
+    	 String newDate = today.format(DateTimeFormatter.ofPattern("d-MMMM-uuuu"));
+		click(Date(date),"Today::"+date+"");
+		reporter.SuccessReport("Selecte Today Date from Calender", "Today Date from Calender",
+					newDate);
+			
+    	 }
 			}
 		public void clickExpand()throws Throwable{
 			clickUntil(EXPAND_LNL,WG_LNL_TEXT,"Line Level Section");
