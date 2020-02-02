@@ -117,7 +117,7 @@ public class SBP08_SaveOrderTemplateIPSTest extends ShipBillPayLib{
 				VerifySoldtoAddress();
 				orderLib.shippingBillPayContinueButton();
 				selectCarrierandGrounOption(data.get("Carrier"));
-				verifyNewAddress();
+				VerifySoldtoAddress();
 				orderLib.billingAddressContinueButton(); 
 				scrollUp();
 				//Deletesavedcarts

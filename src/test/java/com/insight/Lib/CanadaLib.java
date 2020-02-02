@@ -320,6 +320,9 @@ public class CanadaLib extends CanadaObj {
 	 */
 	public void clickOnSideMenuSelectAccountToolOptions(String toolsMenuName, String dropDown) throws Throwable {
 		Thread.sleep(2000);
+		if (isVisibleOnly(CommonObj.CLOSEBUTTON_COOKIES, "close cookie")) {
+			click(CommonObj.CLOSEBUTTON_COOKIES, "close cookie");
+		}
 		if (isVisibleOnly(InvoiceHistoryLib.COSE_ACCOUNT_TOOLS, "close account tools")) {
 			click(InvoiceHistoryLib.COSE_ACCOUNT_TOOLS, "close account tools");
 		}

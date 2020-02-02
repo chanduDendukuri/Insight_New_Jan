@@ -882,7 +882,7 @@ public class ShipBillPayLib extends ShipBillPayObj {
 		click(Deletesavedcart(cartName), "Add to cart");
 		// ADDEDTOCART_POPUP
 		waitForVisibilityOfElement(DIALOGUEBOX_DELETECART, "Delete Cart");
-		click(YESBUTTON_DELETECART, "Continue To Checkout");
+		click(YESBUTTON_DELETECART, "Yes Delete Cart Button");
 		
 	}
 	public void ClickRviewrequesition()throws Throwable {
