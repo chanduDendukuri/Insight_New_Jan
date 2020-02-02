@@ -320,10 +320,28 @@ public class CanadaLib extends CanadaObj {
 	 */
 	public void clickOnSideMenuSelectAccountToolOptions(String toolsMenuName, String dropDown) throws Throwable {
 		Thread.sleep(2000);
+		//scrollToBottomWithCordinate("150");
+
 		if (isVisibleOnly(InvoiceHistoryLib.COSE_ACCOUNT_TOOLS, "close account tools")) {
 			click(InvoiceHistoryLib.COSE_ACCOUNT_TOOLS, "close account tools");
 		}
-		click(CommonObj.ACCOUNT_TOOLS, "Account tools menu icon");
+		//click(CommonObj.ACCOUNT_TOOLS, "Account tools menu icon");
+		if (isElementClickable(CommonObj.ACCOUNT_TOOLS,2, "Account tools menu icon")) {
+			click(CommonObj.ACCOUNT_TOOLS, "Account tools menu icon");
+		}else {
+			scrollToBottomWithCordinate("150");
+			if (isElementClickable(CommonObj.ACCOUNT_TOOLS,2, "Account tools menu icon")) {
+				click(CommonObj.ACCOUNT_TOOLS, "Account tools menu icon");
+			}else {
+				scrollToBottomWithCordinate("-300");
+				if (isElementClickable(CommonObj.ACCOUNT_TOOLS,3, "Account tools menu icon")) {
+					click(CommonObj.ACCOUNT_TOOLS, "Account tools menu icon");
+				}else {
+					reporter.failureReport("Account tools menu icon", "Account tools menu icon not displayed", "");
+				}
+				
+			}
+		}
 		//WebElement element = driver.findElement(by);
 		scrollToBottomWithCordinate("150");
 
