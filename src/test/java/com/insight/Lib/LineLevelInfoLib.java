@@ -271,7 +271,7 @@ public class LineLevelInfoLib extends LineLevelInfoObj{
 	 */
 	public void clickOnLinelevelInfoOptionalLink() throws Throwable{
 		if(isElementPresent(OrderObj.LINE_LEVEL_INFO, "Line level information link")){
-			reporter.SuccessReport("verify Line level information optional link", "Line level information link exists", "");
+			reporter.SuccessReport("verify Line level information optional link", "Line level information optional link exists but not required", "");
 			click(OrderObj.LINE_LEVEL_INFO, "Line level information link");
 		}else{
 			reporter.failureReport("verify Line level information optional link", "Line level information link does not exists", "",driver);
@@ -473,30 +473,29 @@ public class LineLevelInfoLib extends LineLevelInfoObj{
 		List<WebElement> element = driver.findElements(getTotalInputFieldsInLLI(partNum));
 		if(element.size()>0){
 			if(isElementPresent(getContactEmailLLInfo(partNum),"email contact") && !getAttributeByValue(getContactEmailLLInfo(partNum),"email contact").isEmpty() && getAttributeByValue(getContactEmailLLInfo(partNum),"email contact").equals(email)){
-				reporter.SuccessReport("Verify Smart Trakers email contact Exists and Sorted", "Smart Trakers email contact Exists and Sorted for "+partNum+" part number", "");
+				reporter.SuccessReport("Verify Smart Trakers email contact Exists and Sorted", "Smart Trakers email contact Exists and Sorted for "+partNum+" part number", "Email :  "+email);
 			}else{
 				reporter.failureReport("Verify Smart Trakers email contact Exists and Sorted", "Smart Trakers email contact does not Exists or not Sorted in order for "+partNum+" part number", "", driver);
 			  }
 			
 			if(isElementPresent(getgetRP_LNL_TxtByPartNum(partNum),"RP_LNL_Txt") && !getAttributeByValue(getgetRP_LNL_TxtByPartNum(partNum),"RP_LNL_Txt").isEmpty() && getAttributeByValue(getgetRP_LNL_TxtByPartNum(partNum),"RP_LNL_Txt").equals(rP_LNL_Txt)){
-				reporter.SuccessReport("Verify Smart Trakers RP_LNL_Txt Exists and Sorted", "Smart Trakers RP_LNL_Txt Exists and Sorted for "+partNum+" part number", "");
+				reporter.SuccessReport("Verify Smart Trakers RP_LNL_Txt Exists and Sorted", "Smart Trakers RP_LNL_Txt Exists and Sorted for "+partNum+" part number", "RP_LNL_Txt : "+rP_LNL_Txt);
 			}else{
 				reporter.failureReport("Verify Smart Trakers RP_LNL_Txt Exists and Sorted", "Smart Trakers RP_LNL_Txt does not  Exists or not Sorted in order for "+partNum+" part number", "", driver);
 			  }
 			
 			if(isElementPresent(getRP_LNL_TodayDate(partNum),"RP_LNL_TODAY_DATE") && !getAttributeByValue(getRP_LNL_TodayDate(partNum),"RP_LNL_TODAY_DATE").isEmpty() && getAttributeByValue(getRP_LNL_TodayDate(partNum),"RP_LNL_TODAY_DATE").equals(getCurrentDateTime("dd-MMM-yyyy"))){
-				reporter.SuccessReport("Verify Smart Trakers RP_LNL_TODAY_DATE Exists and Sorted", "Smart Trakers RP_LNL_TODAY_DATE Exists and Sorted for "+partNum+" part number", "");
+				reporter.SuccessReport("Verify Smart Trakers RP_LNL_TODAY_DATE Exists and Sorted", "Smart Trakers RP_LNL_TODAY_DATE Exists and Sorted for "+partNum+" part number", "Date: "+getAttributeByValue(getRP_LNL_TodayDate(partNum),"RP_LNL_TODAY_DATE"));
 			}else{
 				reporter.failureReport("Verify Smart Trakers RP_LNL_TODAY_DATE Exists and Sorted", "Smart Trakers RP_LNL_TODAY_DATE does not Exists or not Sorted in order for "+partNum+" part number", "", driver);
 			  }
 			
 			if(isElementPresent(RP_LNL_Lst_DD,"RP_LNL_Lst_DD") && !getAttributeByValue(RP_LNL_Lst_DD,"RP_LNL_Lst_DD").isEmpty() && getAttributeByValue(RP_LNL_Lst_DD,"RP_LNL_Lst_DD").equals(rP_LNL_Lst_DD)){
-				reporter.SuccessReport("Verify Smart Trakers RP_LNL_Lst_DD Exists and Sorted", "Smart Trakers RP_LNL_Lst_DD Exists and Sorted for "+partNum+" part number", "");
+				reporter.SuccessReport("Verify Smart Trakers RP_LNL_Lst_DD Exists and Sorted", "Smart Trakers RP_LNL_Lst_DD Exists and Sorted for "+partNum+" part number", "RP_LNL_Lst_DD : "+rP_LNL_Lst_DD);
 			}else{
 				reporter.failureReport("Verify Smart Trakers RP_LNL_Lst_DD Exists and Sorted", "Smart Trakers RP_LNL_Lst_DD does not Exists or not Sorted in order for "+partNum+" part number", "", driver);
 			  }
 			}
-			
 			}
 		
 	/**
