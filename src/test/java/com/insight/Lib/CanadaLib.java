@@ -320,7 +320,10 @@ public class CanadaLib extends CanadaObj {
 	 */
 	public void clickOnSideMenuSelectAccountToolOptions(String toolsMenuName, String dropDown) throws Throwable {
 		Thread.sleep(2000);
-		//scrollToBottomWithCordinate("150");
+
+		if (isVisibleOnly(CommonObj.CLOSEBUTTON_COOKIES, "close cookie")) {
+			click(CommonObj.CLOSEBUTTON_COOKIES, "close cookie");
+		}
 
 		if (isVisibleOnly(InvoiceHistoryLib.COSE_ACCOUNT_TOOLS, "close account tools")) {
 			click(InvoiceHistoryLib.COSE_ACCOUNT_TOOLS, "close account tools");
@@ -343,7 +346,7 @@ public class CanadaLib extends CanadaObj {
 			}
 		}
 		//WebElement element = driver.findElement(by);
-		scrollToBottomWithCordinate("150");
+//		scrollToBottomWithCordinate("150");
 
 		//((JavascriptExecutor) WebDriver).executeAsyncScript(100,1000);
 		click(getAccountToolsMenu(toolsMenuName), "Account tools menu::" + toolsMenuName + "");
@@ -1332,13 +1335,15 @@ public void addShippingAddress(String name, String userName,String street1,Strin
 	 * @throws Throwable
 	 */
 	public void clickOnReportOptions(String reportOption) throws Throwable {
-		click(STANDARD_REPORT, "Standard Report");
-		waitForVisibilityOfElement(getReportOptions(reportOption), "Standard Report Options");
-		if (isElementPresent(getReportOptions(reportOption), "Standard Report Options", true)) {
-			click(getReportOptions(reportOption), "Enter A Card Button");
-			reporter.SuccessReport("Click " + reportOption + " on Reports Page",
-					"" + reportOption + " Reports Page exists  ", "");
-		} else {
+
+		click(STANDARD_REPORT,"Standard Report");
+		waitForVisibilityOfElement(getReportOptions(reportOption), "Standard Report Options::"+reportOption);
+		if (isElementPresent(getReportOptions(reportOption), "Standard Report Options", true)){
+		click(getReportOptions(reportOption), "Enter A Card Button:"+reportOption);
+		reporter.SuccessReport("Click "+reportOption+" on Reports Page" ,
+				""+reportOption+" Reports Page exists  ", reportOption);
+		}
+	else {
 			reporter.failureReport("Click " + reportOption + " on Reports Page", " " + reportOption + " Reports Page exists  ", "", driver);
 		}
 	}

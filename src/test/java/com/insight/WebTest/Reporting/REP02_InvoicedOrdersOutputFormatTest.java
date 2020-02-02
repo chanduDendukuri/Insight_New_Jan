@@ -61,9 +61,11 @@ public class REP02_InvoicedOrdersOutputFormatTest extends ReportingLib {
 							InvoiceHistoryLib invoiceHistoryLib = new InvoiceHistoryLib();
 							MarriottIntlCorpLib marriottIntlCorpLib=new MarriottIntlCorpLib();
 							CommonLib commonLib = new CommonLib();
+							
 							cmtLib.loginToCMTSearchWebGrpAndUser(data.get("Header"), data.get("WebGrp"), data.get("LnameEmailUname"),data.get("ContactName"));
 							cmtLib.setPermissionsToDisable(data.get("Menu_Name"), data.get("Set_Permission1"));
 							cmtLib.setPermissionsToDisable(data.get("Menu_Name"), data.get("Set_Permission2"));
+							cmtLib.setPermissions(data.get("Menu_Name"), data.get("Set_Permission3"));
 							cmtLib.permissionFromDD(data.get("Set_Permission3"), data.get("Permission_Dropdown_Option"));
 							cmtLib.loginAsAdminCMT();
 							canadaLib.clickOnSideMenuSelectAccountToolOptions(data.get("Tools_Menu"),data.get("Tools_Menu_DD"));	
@@ -71,7 +73,9 @@ public class REP02_InvoicedOrdersOutputFormatTest extends ReportingLib {
 							canadaLib.verifyReportsPage();
 							canadaLib.verifySelectReport(data.get("SelectReport"));							
 							canadaLib.clickOnAccountSelections(data.get("AccountSelectionOpt"));							
-							invoiceHistoryLib.verifyTree();			
+							ParentCheckboxClicked();
+							grandParentCheckboxClicked();
+							verifySoldTos();		
 							canadaLib.clickOnDeliveryMethod(data.get("DeliveryMethod"));
 							enterEmails(data.get("Emails"));
 							canadaLib.clickOnRun();	

@@ -65,6 +65,7 @@ public class REP04_AdHocReporOutputFormatTest extends ReportingLib {
 							data.get("LnameEmailUname"), data.get("ContactName"));
 					cmtLib.setPermissionsToDisable(data.get("Menu_Name"), data.get("Set_Permission1"));
 					cmtLib.setPermissionsToDisable(data.get("Menu_Name"), data.get("Set_Permission2"));
+					cmtLib.setPermissions(data.get("Menu_Name"), data.get("Set_Permission3"));
 					cmtLib.permissionFromDD(data.get("Set_Permission3"), data.get("Permission_Dropdown_Option"));
 					cmtLib.loginAsAdminCMT();
 					canadaLib.clickOnSideMenuSelectAccountToolOptions(data.get("Tools_Menu"),
@@ -73,7 +74,7 @@ public class REP04_AdHocReporOutputFormatTest extends ReportingLib {
 					canadaLib.verifyReportsPage();
 					canadaLib.verifySelectReport(data.get("SelectReport"));
 					canadaLib.clickOnAccountSelections(data.get("AccountSelectionOpt"));
-					invoiceHistoryLib.verifyTree();
+					ParentCheckboxClicked();
 					canadaLib.clickOnDeliveryMethod(data.get("DeliveryMethod"));
 					enterEmails(data.get("Emails"));
 					canadaLib.clickOnRun();
@@ -82,7 +83,7 @@ public class REP04_AdHocReporOutputFormatTest extends ReportingLib {
 					enterTemplates(data.get("TemplateName"));
 					clickOnSave();
 					verifyReportTemplates();
-					expandReportTemplateAndVerify(data.get("TemplateName"));
+					expandReportTemplateAndVerify(data.get("TemplateName"));		
 					clickOnDelete(data.get("SelectReport"));
 					
 					canadaLib.clickOnSideMenuSelectAccountToolOptions(data.get("Tools_Menu"),
@@ -97,7 +98,6 @@ public class REP04_AdHocReporOutputFormatTest extends ReportingLib {
 					commonLib.spinnerImage();
 					List<String> excelOptions= Arrays.asList(data.get("ExcelOptions").split(","));
 				    canadaLib.verifyDownloadedReportExcelFile(excelOptions,data.get("ReportOption"));
-					
 				    commonLib.clickLogOutLink(data.get("Logout_Header"));
 								} catch (Exception e) {
 									ReportStatus.blnStatus = false;
