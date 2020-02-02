@@ -714,9 +714,9 @@ public  void verifyDashboard()throws Throwable {
 	 */
 	public void permissionFromDD(String userPermission, String optionDD) throws Throwable {
 		if (!isCheckBoxSelected(getUserPermission(userPermission))){
-			click(getPermissionDropDowns(userPermission), "permission drop down");
+			click(getPermissionDropDowns(userPermission), "permission drop down::"+userPermission);
 		}
-		selectByVisibleText(getPermissionDropDowns(userPermission), optionDD, "permission drop down");
+		selectByVisibleText(getPermissionDropDowns(userPermission), optionDD, "permission drop down::"+optionDD);
 		click(UPDATE_USER_BTN, "Update user button");
 		if (isElementPresent(PERMISSION_UPDATE_MSG, "update sucessful message")) {
 			reporter.SuccessReport("Verify the Sucess message ", "Permissions Updated Succesfully", "");

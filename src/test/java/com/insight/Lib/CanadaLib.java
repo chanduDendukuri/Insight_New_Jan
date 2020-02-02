@@ -328,7 +328,7 @@ public class CanadaLib extends CanadaObj {
 		}
 		click(CommonObj.ACCOUNT_TOOLS, "Account tools menu icon");
 		//WebElement element = driver.findElement(by);
-		scrollToBottomWithCordinate("150");
+//		scrollToBottomWithCordinate("150");
 
 		//((JavascriptExecutor) WebDriver).executeAsyncScript(100,1000);
 		click(getAccountToolsMenu(toolsMenuName), "Account tools menu::"+toolsMenuName+"");
@@ -1261,11 +1261,11 @@ public void clickOnEnterACard(String cardOpt) throws Throwable {
 	 */
 	public void clickOnReportOptions(String reportOption) throws Throwable {
 		click(STANDARD_REPORT,"Standard Report");
-		waitForVisibilityOfElement(getReportOptions(reportOption), "Standard Report Options");
+		waitForVisibilityOfElement(getReportOptions(reportOption), "Standard Report Options::"+reportOption);
 		if (isElementPresent(getReportOptions(reportOption), "Standard Report Options", true)){
-		click(getReportOptions(reportOption), "Enter A Card Button");
+		click(getReportOptions(reportOption), "Enter A Card Button:"+reportOption);
 		reporter.SuccessReport("Click "+reportOption+" on Reports Page" ,
-				""+reportOption+" Reports Page exists  ", "");
+				""+reportOption+" Reports Page exists  ", reportOption);
 		}
 		else{
 			reporter.failureReport("Click "+reportOption+" on Reports Page" ," "+reportOption+" Reports Page exists  ", "",driver);
@@ -1297,10 +1297,10 @@ public void clickOnEnterACard(String cardOpt) throws Throwable {
 	 * @throws Throwable
 	 */
 	public void verifySelectReport(String selectReport) throws Throwable {
-		waitForVisibilityOfElement(getSelectAReport(selectReport), "Select A Report");
+		waitForVisibilityOfElement(getSelectAReport(selectReport), "Select A Report::"+selectReport);
 		if (isElementPresent(getSelectAReport(selectReport), "Select A Report", true)){
 		reporter.SuccessReport("Verify  "+selectReport+" is Default to Select Report on Reports Page",
-				"Select Report Defaulted to "+selectReport+" Reports", "");
+				"Select Report Defaulted to "+selectReport+" Reports", selectReport);
 		}
 		else{
 			reporter.failureReport("Verify  "+selectReport+" is Default to Select Report on Reports Page",
@@ -1366,10 +1366,10 @@ public void clickOnEnterACard(String cardOpt) throws Throwable {
 	 * @throws Throwable
 	 */
 	public void verifyScheduleReport(String scheduleOption) throws Throwable {
-		waitForVisibilityOfElement(getScheduleReport(scheduleOption), "Schedule Report Option ");
+		waitForVisibilityOfElement(getScheduleReport(scheduleOption), "Schedule Report Option::"+scheduleOption);
 		if (isVisibleOnly(getScheduleReport(scheduleOption), "Select A Report")){
 		reporter.SuccessReport("Verify Schedule Report is Defaulted to 'Run Report Now' on Reports Page",
-				"Schedule Report is Defaulted to 'Run Report Now'", "");
+				"Schedule Report is Defaulted to 'Run Report Now'", scheduleOption);
 		}
 		else{
 			reporter.failureReport("Verify Schedule Report Defaulted to 'Run Report Now' on Reports Page",
@@ -1401,10 +1401,9 @@ public void clickOnEnterACard(String cardOpt) throws Throwable {
 	public void clickOnAccountSelections(String accountSelctionOtion) throws Throwable {
 		waitForVisibilityOfElement(ACCOUT_SELECTION, "Select Account selections");
 		if (isVisibleOnly(ACCOUT_SELECTION, "Select Account selections")){
-			
 			selectByVisibleText(ACCOUT_SELECTION,accountSelctionOtion,"Account Selections");
 		reporter.SuccessReport("Verify  "+accountSelctionOtion+" is selected to Account Selections on Reports Page",
-				"Account Selections are selected to "+accountSelctionOtion+"", "");
+				"Account Selections are selected to "+accountSelctionOtion+"",accountSelctionOtion);
 		}
 		else {
 			reporter.failureReport("Verify  "+accountSelctionOtion+" is selected to Select Report on Reports Page",
@@ -1418,10 +1417,10 @@ public void clickOnEnterACard(String cardOpt) throws Throwable {
 	 * @throws Throwable
 	 */
 	public void verifyQuickDateOption(String quickDateOption) throws Throwable {
-		waitForVisibilityOfElement(getQuickDate(quickDateOption), "Delivery Option");
+		waitForVisibilityOfElement(getQuickDate(quickDateOption), "Delivery Option::"+quickDateOption);
 		if (isVisibleOnly(getQuickDate(quickDateOption), "Delivery Option")){
 		reporter.SuccessReport("Verify Quick Date Options is Defaulted to 'Current Month' on Reports Page",
-				"Quick Date is Defaulted to 'Current Month'", "");
+				"Quick Date is Defaulted to 'Current Month'", quickDateOption);
 		}
 		else{
 			reporter.failureReport("Verify Quick Date Options is Defaulted to "+quickDateOption+" on Reports Page",
