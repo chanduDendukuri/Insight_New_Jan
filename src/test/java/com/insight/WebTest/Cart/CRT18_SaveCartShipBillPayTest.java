@@ -10,6 +10,7 @@ import com.insight.Lib.CanadaLib;
 import com.insight.Lib.CartLib;
 import com.insight.Lib.ChinaLib;
 import com.insight.Lib.CommonLib;
+import com.insight.Lib.LineLevelInfoLib;
 import com.insight.Lib.OrderLib;
 import com.insight.Lib.ProductDetailLib;
 import com.insight.Lib.ProductDisplayInfoLib;
@@ -28,6 +29,7 @@ public class CRT18_SaveCartShipBillPayTest extends CartLib {
 	CanadaLib canadaLib = new CanadaLib();
 	SearchLib search = new SearchLib();
 	ProductDisplayInfoLib prodInfoLib = new ProductDisplayInfoLib();
+	LineLevelInfoLib lineLevelLib=new LineLevelInfoLib();
 
 	// #############################################################################################################
 	// # Name of the Test : CRT18_SaveCartShipBillPay
@@ -80,10 +82,10 @@ public class CRT18_SaveCartShipBillPayTest extends CartLib {
 					canadaLib.verifyPlaceCartLabel();
 					String cartName="QTPCart"+getRandomNumeric(4);
 					cartLib.clickOnSaveCartContentAndSaveCart(cartName);
-					cartLib.openSavedCartFromTools(cartName);
-					//commonLib.clickCart();
-					//commonLib.verifyCartIsEMpty();
 					//cartLib.openSavedCartFromTools(cartName);
+					commonLib.clickCart();
+				    commonLib.verifyCartIsEMpty();
+					cartLib.openSavedCartFromTools(cartName);
 					cartLib.addToCartInSavedCart(cartName);
 					canadaLib.verifyPlaceCartLabel();
 					commonLib.clickLogOutLink(data.get("Logout_Header"));
@@ -101,11 +103,15 @@ public class CRT18_SaveCartShipBillPayTest extends CartLib {
 				    cartLib.openSavedCartFromTools(cartName);
 				    cartLib.addToCartInSavedCart(cartName);
 				    orderLib.proceedToCheckout();
+				    lineLevelLib.verifyOrderAndItemInfoBreadCrumb();
 				    cartLib.clickOnContinueButtonInAddInformtion();
 				    cartLib.addLineLevelInformationInCheckOut(data.get("RP_LNL_Txt"));
+				    canadaLib.verifySBP();
 				    cartLib.clearPhoneFieldInCheckOut();
 					cartLib.shippingBillPayInCheckOut(data.get("Card_Number").toString(), data.get("Card_Name"), data.get("Month"), data.get("Year"),data.get("PONumber"),data.get("POReleaseNumber"));
+					canadaLib.verifyPlaceCartLabel();
 					cartLib.verifyItemInCart(data.get("Search_Item"));
+					prodInfoLib.verifyCartPageAndPartDetailsForRecentlyItem();
 					cartLib.openSavedCartFromTools(cartName);
 					cartLib.deleteCartFromAccountTools(cartName);
 					commonLib.clickLogOutLink(data.get("Logout_Header"));
