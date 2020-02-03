@@ -357,13 +357,14 @@ public class CartLib extends ActionEngine {
 		
 		click(CartObj.ACCOUNT_TOOLS, "ACCOUNT TOOLS");
 		click(CartObj.TOOLS, "TOOLS");
+		
+		click(CartObj.SAVEDCART, "SAVED CART");
 		if(isElementPresent(CartObj.SAVED_CART_CONTENTS_HEADER, "Saved cart or orfer templates")) {
 			reporter.SuccessReport("Saved carts/ ORDER TEMPLATES", "page is saved carts", "Saved carts/ ORDER TEMPLATES");
 		}
 		else {
 			reporter.failureReport("Saved carts/ ORDER TEMPLATES", "page is not saved carts","", driver);
 		}
-		click(CartObj.SAVEDCART, "SAVED CART");
 		isElementPresent(CartObj.SAVED_CART_TEXT, "Saved cart");
 //		click(CartObj.loadCart(cartName), "Load cart");
 //		if (isElementPresent(CartObj.CURRIENCES, "Curriences are displayed")) {

@@ -26,6 +26,8 @@ public class CRT18_SaveCartShipBillPayTest extends CartLib {
 	CartLib cartLib = new CartLib();
 	OrderLib orderLib = new OrderLib();
 	CanadaLib canadaLib = new CanadaLib();
+	SearchLib search = new SearchLib();
+	ProductDisplayInfoLib prodInfoLib = new ProductDisplayInfoLib();
 
 	// #############################################################################################################
 	// # Name of the Test : CRT18_SaveCartShipBillPay
@@ -54,16 +56,29 @@ public class CRT18_SaveCartShipBillPayTest extends CartLib {
 										"Web_Cart", intCounter);
 								TestEngineWeb.reporter.initTestCaseDescription("SaveCartShipBillPay");
 					
-					cmtLib.loginToCMTSearchWebGrpAndUser(data.get("Header"), data.get("WebGrp"), data.get("LnameEmailUname"), data.get("ContactName"));
+					//cmtLib.loginToCMTSearchWebGrpAndUser(data.get("Header"), data.get("WebGrp"), data.get("LnameEmailUname"), data.get("ContactName"));
+								cmtLib.loginToCMT(data.get("Header"));
+								cmtLib.searchForWebGroup(data.get("WebGrp"));
+								cmtLib.clickOnTheWebGroup(data.get("WebGrp_Name"));
+								cmtLib.hoverOnManageWebGroupsAndSelectOptions(data.get("Manage_Web_Grp_Options"));
+								cmtLib.searchForaUserAndSelect(data.get("LnameEmailUname"), data.get("ContactName"));
+								cmtLib.clickOnRolesAndPermissionsAndSetPermission(data.get("Menu_Name"), data.get("Set_Permission"));
+								cmtLib.setPermissions(data.get("Menu_Name"), data.get("Enable_Purchasing_Popup"));
 					cmtLib.clickOnRolesAndPermissionsAndSetPermission(data.get("Menu_Name"), data.get("Set_Permission"));
 					cmtLib.setPermissions(data.get("Menu_Name"),data.get("Enable_Purchasing_Popup"));
 					cmtLib.clickOnloginAs();
 					switchToChildWindow();
-					cartLib.verifyCartIsEmpty();
+					cmtLib.loginVerification(data.get("ContactName"));
+					commonLib.clickOnAccountToolsAndClickOnProductGrp(data.get("Tools_Menu"),
+							data.get("Tools_Menu_DD"));
+					cartLib.deleteSavedCartFromAccountTools();
 					commonLib.searchProduct(data.get("Search_Item"));
+					prodInfoLib.verifyTheManufacturerNumberInProductDetailsPage(data.get("PartNumber"));
+					search.increaseQuantity(data.get("quantity"));
 					commonLib.addToCartAndVerify();
 					canadaLib.continueToCheckout();
-					String cartName=getRandomString(5)+'@';
+					canadaLib.verifyPlaceCartLabel();
+					String cartName="QTPCart"+getRandomNumeric(4);
 					cartLib.clickOnSaveCartContentAndSaveCart(cartName);
 					commonLib.clickCart();
 					commonLib.verifyCartIsEMpty();
