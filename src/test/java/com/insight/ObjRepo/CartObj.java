@@ -161,7 +161,7 @@ public class CartObj extends CommonObj{
 	public static By SAVED_CART_TEXT=By.xpath("//h2[text()='Saved carts']");
 	public static By LOAD_CART=By.xpath("//button[@class='c-button  c-button--inline-link c-saved-cart__btn']");
 	public static By SAVED_CART_CANCEL_BTN=By.xpath("//button[@type='button'][contains(text(),'Cancel')]");
-	
+	public static By CLEAR_MY_DRAFT_SAVED=By.xpath("//input[@name='clearCheckbox']");
 	
 	public static By loadCart(String cartName) {
 		return By.xpath("//h3[text()='"+cartName+"']//parent::div//button[@class='c-button  c-button--inline-link c-saved-cart__btn']");
@@ -171,11 +171,12 @@ public class CartObj extends CommonObj{
 	public static By deleteButton(String cartName) {
 		return By.xpath("//h3[text()='"+cartName+"']//parent::div//parent::div//button[@class='c-button  c-button--link c-button--small']");
 	}
+	public static By DELETE_CART=By.xpath("//div[@class='o-grid  o-grid--center  c-saved-cart__row']//div//button[@class='c-button  c-button--link c-button--small']");
 	public static By DELETEBTN=By.xpath("//div//button[@class='c-button  c-button--link c-button--small']");
-
+	public static By CART_NAME=By.xpath("//h3[@class='c-saved-cart__heading']");
 	public static By YES_BUTTON_INCONFORMATION_POP_UP=By.xpath("//button[@class='c-button  c-button--primary']");
 	public static By DELETE_CART_MEASSAGE=By.xpath("//div[@class='c-no-saves']//strong");
-	
+	public static By NO_SAVED_CART_MESSAGE=By.xpath("//strong[text()='No saved carts or order templates exist.']");
 	public static By addToCartInSavedCart(String cartName) {
 		return By.xpath("//h3[text()='"+cartName+"']//parent::div//parent::div//button[text()='Add to cart']");
 	}
@@ -282,6 +283,7 @@ public static By SHIPMENT_NOTIFICATION=By.xpath("//textarea[@id='shipmentNotific
 public static By UPDATE_BUTTON=By.xpath("//input[@id='updateChkoutDef']");
 public static By ERROR_MESSAGE=By.xpath("//div[@class='input-error alert']");
 public static By MESSAGE_NOTE=By.xpath("//span[@class='alert-info-note']");
+public static By SUCESS_MESSAGE_NOTE=By.xpath("//div[@class='alert successGreen']");
 
 ////////////////////////////////////CARTINVENTORY////////////////////////
 public static By Current_product_groups =By.xpath("//div[@id='csProductGroupsHeading']");
