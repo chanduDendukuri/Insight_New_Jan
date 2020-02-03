@@ -1171,7 +1171,7 @@ public class CartLib extends ActionEngine {
 	 */
 	public void verifyContractNameInCart(String contractName) throws Throwable {
 		if (driver.findElement(CartObj.getContractNameInCart(contractName)).isDisplayed()) {
-			reporter.SuccessReport("verifying item added to cart :: ", " with contract name-", contractName);
+			reporter.SuccessReport("verifying item added to cart :: ", " with contract name-", "Contract : "+contractName);
 		} else {
 			reporter.failureReport("verifying item is not added to cart :: ", " with contract name-", contractName,
 					driver);

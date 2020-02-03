@@ -381,6 +381,9 @@ List<String> orderdetails = new ArrayList<String>();
 	 * @return
 	 * @throws Throwable
 	 */
+	public void VerifyFrieghtdetails() {
+		
+	}
 	public List<String> placeOrderAndVerifyReceiptOrderAndDateQuoteHistory(String totalSummary) throws Throwable { 
 	List<String> orderdetails = new ArrayList<String>();
 		clickUntil(PLACE_ORDER_BTN, RECEIPT_LABEL,"Place order button");
@@ -531,6 +534,9 @@ List<String> orderdetails = new ArrayList<String>();
 		String frieght =  getText(QuoteHistoryLib.txt_frieght, "frieght");
 		String CurrencyCodeAndAmount = getText(QuoteHistoryLib.CurrencyCodeAndAmount, "CurrencyCodeAndAmount");
 		String FrieghtCost = getText(QuoteHistoryLib.txt_frieghtCost, "frieghtCost");
+	}
+	public void clickOnPlaceOrder() throws Throwable {
+		click(QuoteHistoryLib.btn_PlaceOrder, "PlaceOrder", "");
 	}
 	/**
 	 * This method is to verify the save Order template link in the Order review/ Place order page
@@ -1482,7 +1488,7 @@ List<String> orderdetails = new ArrayList<String>();
 		Thread.sleep(2000);// Waiting for the quote to load
 		((JavascriptExecutor) driver).executeScript("window.scrollBy(0, 200)", "");
 		clickUntil(SEARCH_BY_DD,getSearchByQuoteHistoryDDOption(quoteDDOption), "Search drop down");
-		//click(getSearchByQuoteHistoryDDOption(quoteDDOption), "Quote search by option");
+		click(getSearchByQuoteHistoryDDOption(quoteDDOption), "Quote search by option");
 		type(SEARCH_NUMBER,refNumber , "Reference number");
 		//System.out.println(refNumber+refNumber);
 		click(SEARCH_BTN, "search button");

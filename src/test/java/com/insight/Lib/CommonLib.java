@@ -204,6 +204,9 @@ public class CommonLib extends ActionEngine{
 		public void searchProduct(String SearchItem) throws Throwable
 		{	
 			Thread.sleep(20000);
+			if (isVisibleOnly(CommonObj.CLOSEBUTTON_COOKIES, "close cookie")) {
+				click(CommonObj.CLOSEBUTTON_COOKIES, "close cookie");
+			}
 			waitForVisibilityOfElement(CartObj.SEARCH,"SEARCH FIELD");
 
 			//type(CartObj.SEARCH,SearchItem,"SEARCHFIELD");
@@ -243,7 +246,7 @@ public class CommonLib extends ActionEngine{
 		{	
 			Thread.sleep(5000);
 			 if(isElementPresent(CartObj.ADD_TO_CART_IN_PRODUCT_DISPLAY," ADD TO CART IN PRODUCT DISPLAY")) {
-				click(CartObj.ADD_TO_CART_IN_PRODUCT_DISPLAY," ADD TO CART IN PRODUCT DISPLAY");
+				clickUntil(CartObj.ADD_TO_CART_IN_PRODUCT_DISPLAY,CartObj.ADD_TO_CART_SUCCESS_MESSAGE," ADD TO CART IN PRODUCT DISPLAY");
 				Thread.sleep(10000);
 				waitForVisibilityOfElement(CartObj.ADD_TO_CART_SUCCESS_MESSAGE,"ADD TO CART SUCCESS MESSAGE");					
 				 if(isElementPresent(CartObj.ADD_TO_CART_SUCCESS_MESSAGE,"ADD TO CART SUCCESS MESSAGE")){

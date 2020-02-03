@@ -4,6 +4,7 @@ import java.awt.Desktop;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FilenameFilter;
+import java.io.StringReader;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -31,6 +32,9 @@ import com.insight.ObjRepo.SewpObj;
 import com.insight.ObjRepo.ShipBillPayObj;
 import com.insight.ObjRepo.productsDisplayInfoObj;
 import com.insight.utilities.DynamicTestDataGenerator;
+
+import javax.xml.transform.Source;
+import javax.xml.transform.stream.StreamSource;
 
 public class CanadaLib extends CanadaObj {
 
@@ -320,13 +324,31 @@ public class CanadaLib extends CanadaObj {
 	 */
 	public void clickOnSideMenuSelectAccountToolOptions(String toolsMenuName, String dropDown) throws Throwable {
 		Thread.sleep(2000);
+
 		if (isVisibleOnly(CommonObj.CLOSEBUTTON_COOKIES, "close cookie")) {
 			click(CommonObj.CLOSEBUTTON_COOKIES, "close cookie");
 		}
+
 		if (isVisibleOnly(InvoiceHistoryLib.COSE_ACCOUNT_TOOLS, "close account tools")) {
 			click(InvoiceHistoryLib.COSE_ACCOUNT_TOOLS, "close account tools");
 		}
-		click(CommonObj.ACCOUNT_TOOLS, "Account tools menu icon");
+		//click(CommonObj.ACCOUNT_TOOLS, "Account tools menu icon");
+		if (isElementClickable(CommonObj.ACCOUNT_TOOLS,2, "Account tools menu icon")) {
+			click(CommonObj.ACCOUNT_TOOLS, "Account tools menu icon");
+		}else {
+			scrollToBottomWithCordinate("150");
+			if (isElementClickable(CommonObj.ACCOUNT_TOOLS,2, "Account tools menu icon")) {
+				click(CommonObj.ACCOUNT_TOOLS, "Account tools menu icon");
+			}else {
+				scrollToBottomWithCordinate("-300");
+				if (isElementClickable(CommonObj.ACCOUNT_TOOLS,3, "Account tools menu icon")) {
+					click(CommonObj.ACCOUNT_TOOLS, "Account tools menu icon");
+				}else {
+					reporter.failureReport("Account tools menu icon", "Account tools menu icon not displayed", "");
+				}
+				
+			}
+		}
 		//WebElement element = driver.findElement(by);
 //		scrollToBottomWithCordinate("150");
 
@@ -1868,11 +1890,13 @@ public void addShippingAddress(String name, String userName,String street1,Strin
 		}
 	}
 
-	public void clickOnInvoiceNumbersFromResults() throws Throwable {
+	public String clickOnInvoiceNumbersFromResults() throws Throwable {
+		String a=null;
 		if (!isVisibleOnly(lblErrorMessage, "Error Message")) {
 			List<WebElement> invNum = driver.findElements(lnkInvoiceNumberFromResults);
 
 			for (int i = 0; i < invNum.size(); i++) {
+				a=invNum.get(i).getText();
 				invNum.get(i).click();
 				break;
 			}
@@ -1892,34 +1916,24 @@ public void addShippingAddress(String name, String userName,String street1,Strin
 			reporter.failureReport("Records not found", "For the given range records are not found", getText(lblErrorMessage, "Error message"));
 
 		}
+		return a;
 	}
 
-	public void openDirectoryToVerifyFileExist() throws Throwable {
-/*		String strDirectory = "./DownloadedFiles/";
-
-		File resultDir = new File(strDirectory);
-		LOG.info("resultDir = " + resultDir);
-		if (!resultDir.exists()) {
-			try {
-				resultDir.mkdirs();
-			} catch (Exception e) {
-				LOG.info("Exception Encountered : " + e.getMessage());
-			}
-		}*/
-		String a = getText(invoiceHistoryNumber, "Invoice number");
-		final File folder = new File("\"./DownloadedFiles/\"");
+	public void openDirectoryToVerifyFileExist(String name) throws Throwable {
+		//final File folder = new File("./DownloadedFiles/");
+		final File folder = new File("./DownloadedFiles/");
 		File[] listOfFiles = folder.listFiles();
-		reporter.SuccessReport("DOwnlaoded file", "Existing downloaded files", "true");
-		for (File file : listOfFiles) {
-			if (file.isFile()) {
-
-				if (file.getName().contains("")) {
-
-					reporter.SuccessReport("Downloaded File ", "Downloaded file name is ", file.getName());
-				}
+		for (final File fileEntry : folder.listFiles()) {
+			/*if (fileEntry.isDirectory()) {
+				listFilesForFolder(fileEntry);
+			} else {*/
+				if(fileEntry.getName().contains("name")){
+					System.out.println(fileEntry.getName());
+					reporter.SuccessReport("Downloaded files ", "Downloaded file",  fileEntry.getName()  );
+				}else{
+					reporter.failureReport("Downloaded files ", "Downloaded file",  fileEntry.getName() +"is not exist",driver  );
 			}
 		}
-
 
 	}
 
