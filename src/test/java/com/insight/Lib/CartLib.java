@@ -180,19 +180,27 @@ public class CartLib extends ActionEngine {
 		isElementPresent(CartObj.SAVE_CART_CONTENTS, "Save cart contents");
 		click(CartObj.SAVE_CART_CONTENTS, "Save cart contents");
 		waitForVisibilityOfElement(CartObj.SAVE_CART_CONTENTS_POPUP, "SAVE CART CONTENTS POPUP");
-		click(CartObj.SAVE_BUTTON, "Save button");
-		if (isElementPresent(CartObj.SAVE_CART_ERROR_MESSAGE, "Save cart error message")) {
-			reporter.SuccessReport("Save cart error message ", "Please enter a name for your cart message is displayed",
-					"");
-		} else {
-			reporter.failureReport("Save cart error message ",
-					"Please enter a name for your cart message is not displayed", "", driver);
-
-		}
+//		click(CartObj.SAVE_BUTTON, "Save button");
+//		if (isElementPresent(CartObj.SAVE_CART_ERROR_MESSAGE, "Save cart error message")) {
+//			reporter.SuccessReport("Save cart error message ", "Please enter a name for your cart message is displayed",
+//					"");
+//		} else {
+//			reporter.failureReport("Save cart error message ",
+//					"Please enter a name for your cart message is not displayed", "", driver);
+//
+//		}
 		// String cartName=getRandomString(5)+'@';
 		Thread.sleep(5000);
 		clearData(CartObj.SAVE_CART_INPUT_FIELD);
+		
 		type(CartObj.SAVE_CART_INPUT_FIELD, cartName, "cart name");
+		if(isCheckBoxSelected(CartObj.CLEAR_MY_DRAFT_SAVED)) {
+			reporter.SuccessReport("Clear my cart after save Checkbox", "Clear my cart after save Checkbox exist", "Clear my cart after save: on");
+		}
+		else {
+			click(CartObj.CLEAR_MY_DRAFT_SAVED,"Clear my drafts check box");
+			reporter.SuccessReport("Clear my cart after save Checkbox", "Clear my cart after save Checkbox exist", "Clear my cart after save: on");
+		}
 		click(CartObj.SAVE_BUTTON, "Save button");
 		waitForVisibilityOfElement(CartObj.CART_SAVED_SUCESS_MESSAGE, "cart save sucess message");
 		if (isElementPresent(CartObj.CART_SAVED_SUCESS_MESSAGE, "Save cart sucess message")) {
@@ -351,13 +359,13 @@ public class CartLib extends ActionEngine {
 		click(CartObj.TOOLS, "TOOLS");
 		click(CartObj.SAVEDCART, "SAVED CART");
 		isElementPresent(CartObj.SAVED_CART_TEXT, "Saved cart");
-		click(CartObj.loadCart(cartName), "Load cart");
-		if (isElementPresent(CartObj.CURRIENCES, "Curriences are displayed")) {
-			reporter.SuccessReport("Curriences are displayed ", "Curriences are successfully displayed", "");
-		} else {
-			reporter.failureReport("Curriences are displayed ", "Curriences are not displayed", "", driver);
-
-		}
+//		click(CartObj.loadCart(cartName), "Load cart");
+//		if (isElementPresent(CartObj.CURRIENCES, "Curriences are displayed")) {
+//			reporter.SuccessReport("Curriences are displayed ", "Curriences are successfully displayed", "");
+//		} else {
+//			reporter.failureReport("Curriences are displayed ", "Curriences are not displayed", "", driver);
+//
+//		}
 
 	}
 
@@ -545,7 +553,7 @@ public class CartLib extends ActionEngine {
 		verify_url(driver, url);
 		if (isElementPresent(OrderObj.ORDER_ITEM_INFO_LABEl, "order and inforamtion page")
 				&& isElementPresent(OrderObj.RP_HDL_Txt, "RP_HDL_Txt")) {
-			type(OrderObj.RP_HDL_Txt, rP_HDL_Txt, "RP_HDL_Txt text box");
+			type(OrderObj.RP_HDL_Txt, rP_HDL_Txt, "Smart Tracker name:");
 			click(OrderObj.CONTINUE_BTN, "additional information::Continue button");
 		}
 	}
@@ -562,7 +570,7 @@ public class CartLib extends ActionEngine {
 		if (isElementPresent(OrderObj.LINE_LEVEL_INFO, "Line level information link")) {
 			click(OrderObj.LINE_LEVEL_INFO, "Line Level Information");
 			if (isElementPresent(OrderObj.SMART_TRACKER_LABEL, "Smart tracker in LL info section")) {
-				type(OrderObj.RP_LNL_Txt, rP_LNL_Txt, "RP_LNL_Txt text box");
+				type(OrderObj.RP_LNL_Txt, rP_LNL_Txt, "Smart Tracker name:");
 				click(OrderObj.LLI_CONTINUE_BTN, "Continue button");
 			}
 		}
@@ -577,7 +585,7 @@ public class CartLib extends ActionEngine {
 	public void clearPhoneFieldInCheckOut() throws Throwable {
 		if (isElementPresent(CartObj.PHONE_FIELD, "Phone field")) {
 			clearData(CartObj.PHONE_FIELD);
-			click(OrderObj.CONTINUE_BTN, "Continue button");
+			click(OrderObj.CONTINUE_BTN, "Continue in shipping addresses section");
 			Thread.sleep(2000);
 		}
 	}
@@ -749,12 +757,32 @@ public class CartLib extends ActionEngine {
 		click((CartObj.deleteButton(cartName)), "Delete cart");
 		waitForVisibilityOfElement(CartObj.YES_BUTTON_INCONFORMATION_POP_UP, "Yes in conformation pop up");
 		click(CartObj.YES_BUTTON_INCONFORMATION_POP_UP, "Yes in conformation pop up");
-		waitForVisibilityOfElement(CartObj.DELETE_CART_MEASSAGE, "ACCOUNT TOOLS");
-		if (isElementPresent(CartObj.DELETE_CART_MEASSAGE, "Delete cart sucess meassage")) {
-			reporter.SuccessReport("Delete cart meassage ", "Cart is sucessfully deleted", "");
-		} else {
-			reporter.failureReport("Delete cart meassage ", "Cart is sucessfully not deleted", "", driver);
-
+		reporter.SuccessReport("Delete cart meassage ", "Cart is sucessfully deleted", cartName);
+		//waitForVisibilityOfElement(CartObj.DELETE_CART_MEASSAGE, "ACCOUNT TOOLS");
+//		if (isElementPresent(CartObj.DELETE_CART_MEASSAGE, "Delete cart sucess meassage")) {
+//			reporter.SuccessReport("Delete cart meassage ", "Cart is sucessfully deleted", cartName);
+//		} else {
+//			reporter.failureReport("Delete cart meassage ", "Cart is sucessfully not deleted", "", driver);
+//
+//		}
+	}
+	
+	public void deleteSavedCartFromAccountTools() throws Throwable {
+		if(isElementPresent(CartObj.NO_SAVED_CART_MESSAGE, "No Saved carts or order templates exists")) {
+			reporter.SuccessReport("AccountTools/Saved carts", "No Saved carts or order templates exists", "No Saved carts or order templates exists");
+		}
+		else {
+			List<WebElement> myList = driver.findElements(CartObj.DELETE_CART);
+			List<WebElement> myList1 = driver.findElements(CartObj.CART_NAME);
+			for (int i = 0; i < myList.size(); i++) {
+				myList.get(i).click();
+				waitForVisibilityOfElement(CartObj.YES_BUTTON_INCONFORMATION_POP_UP, "Yes in conformation pop up");
+				click(CartObj.YES_BUTTON_INCONFORMATION_POP_UP, "Yes in conformation pop up","Saved Carts: "+myList1.get(i).getText());
+				//waitForVisibilityOfElement(CartObj.DELETE_CART_MEASSAGE, "ACCOUNT TOOLS");
+				reporter.SuccessReport("Delete cart meassage ", "Save Cart name Exist and Deleted", "Saved Carts: "+myList1.get(i).getText());
+				Thread.sleep(5000);
+				
+			}
 		}
 	}
 
