@@ -26,6 +26,7 @@ public class CRT17_SaveCartLineLevelTest extends CartLib {
 	CMTLib cmtLib = new CMTLib();
 	CartLib cartLib = new CartLib();
 	CanadaLib canadaLib = new CanadaLib();
+	SearchLib searchLib = new SearchLib();
 	ProductDisplayInfoLib prodInfoLib = new ProductDisplayInfoLib();
 	LineLevelInfoLib lineLevelLib=new LineLevelInfoLib();
 	// #############################################################################################################
@@ -56,8 +57,13 @@ public class CRT17_SaveCartLineLevelTest extends CartLib {
 					TestEngineWeb.reporter.initTestCaseDescription("SaveCartLineLevel");
 
 					OrderLib orderLib = new OrderLib();
-					cmtLib.loginToCMTSearchWebGrpAndUser(data.get("Header"), data.get("WebGrp"),
-							data.get("LnameEmailUname"), data.get("ContactName"));
+					//cmtLib.loginToCMTSearchWebGrpAndUser(data.get("Header"), data.get("WebGrp"),
+							//data.get("LnameEmailUname"), data.get("ContactName"));
+					cmtLib.loginToCMT(data.get("Header"));
+					cmtLib.searchForWebGroup(data.get("WebGrp"));
+					cmtLib.clickOnTheWebGroup(data.get("WebGrp_Name"));
+					cmtLib.hoverOnManageWebGroupsAndSelectOptions(data.get("Manage_Web_Grp_Options"));
+					cmtLib.searchForaUserAndSelect(data.get("LnameEmailUname"), data.get("ContactName"));
 					cmtLib.clickOnRolesAndPermissionsAndSetPermission(data.get("Menu_Name"), data.get("Set_Permission"));
 					cmtLib.setPermissions(data.get("Menu_Name"), data.get("Enable_Purchasing_Popup"));
 					cmtLib.clickOnloginAs();
@@ -67,6 +73,7 @@ public class CRT17_SaveCartLineLevelTest extends CartLib {
 							data.get("Tools_Menu_DD"));
 					cartLib.deleteSavedCartFromAccountTools();
 					commonLib.searchProduct(data.get("PartNumber"));
+					searchLib.verifyBreadCrumbInSearchResultsPage(data.get("PartNumber"));
 					prodInfoLib.getPartNumberInSearchResultsPage();
 					commonLib.addFirstDisplyedItemToCartAndVerify();
 					canadaLib.continueToCheckout();
