@@ -501,6 +501,9 @@ public class CommonLib extends ActionEngine{
 		 */
 		public void clickOnAccountToolsAndClickOnProductGrp(String toolsMenuName, String dropDown ) throws Throwable{
 			Thread.sleep(20000);
+			if (isVisibleOnly(CommonObj.CLOSEBUTTON_COOKIES, "close cookie")) {
+				click(CommonObj.CLOSEBUTTON_COOKIES, "close cookie");
+			}
 			if(isElementPresent(InvoiceHistoryLib.COSE_ACCOUNT_TOOLS, "close account tools")) {
 				click(InvoiceHistoryLib.COSE_ACCOUNT_TOOLS, "close account tools");
 			} 

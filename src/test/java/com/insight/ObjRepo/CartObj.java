@@ -282,6 +282,7 @@ public static By SHIPMENT_NOTIFICATION=By.xpath("//textarea[@id='shipmentNotific
 public static By UPDATE_BUTTON=By.xpath("//input[@id='updateChkoutDef']");
 public static By ERROR_MESSAGE=By.xpath("//div[@class='input-error alert']");
 public static By MESSAGE_NOTE=By.xpath("//span[@class='alert-info-note']");
+public static By SUCESS_MESSAGE_NOTE=By.xpath("//div[@class='alert successGreen']");
 
 ////////////////////////////////////CARTINVENTORY////////////////////////
 public static By Current_product_groups =By.xpath("//div[@id='csProductGroupsHeading']");

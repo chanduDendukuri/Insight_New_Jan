@@ -430,16 +430,16 @@ public class CartLib extends ActionEngine {
 		}
 	}
 
-	public void enterMailIdToNotificationFieldAndVerifyErrorMessage(String mail) throws Throwable {
+	public void enterMailIdToNotificationFieldAndVerifySuccessMessage(String mail) throws Throwable {
 		clearData(CartObj.SHIPMENT_NOTIFICATION);
 		type(CartObj.SHIPMENT_NOTIFICATION, mail, "ASN field");
 		click(CartObj.UPDATE_BUTTON, "Update button");
 		Thread.sleep(3000);
-		String errorMessage = getText(CartObj.ERROR_MESSAGE, "Error meassage");
-		if (isElementPresent(CartObj.ERROR_MESSAGE, "Error meassage")) {
+		String errorMessage = getText(CartObj.SUCESS_MESSAGE_NOTE, "Success meassage");
+		if (isElementPresent(CartObj.SUCESS_MESSAGE_NOTE, "Success meassage")) {
 
-			reporter.SuccessReport("Verify Shipment Notification Recipients Field error message",
-					"Shipment Notification Recipients Field Error Message in Checkout Defaults - Account Tools",
+			reporter.SuccessReport("Verify Set Three Emails Separated by Semi-Colons in Shipment Notification Recipients Field in Checkout Defaults",
+					"Expected Three Emails Separated by Semi-Colons in Shipment Notification Recipients Field in Checkout Defaults Exists and Value Entered::"+mail,
 					errorMessage);
 		} else {
 			reporter.failureReport("Verify Shipment Notification Recipients Field error message",
@@ -449,17 +449,17 @@ public class CartLib extends ActionEngine {
 
 	}
 
-	public void enterMailIdToNotificationFieldAndVerifyMessageNote(String mail) throws Throwable {
+	public void enterMailIdToNotificationFieldAndVerifyErrorMessageNote(String mail) throws Throwable {
 		clearData(CartObj.SHIPMENT_NOTIFICATION);
 		type(CartObj.SHIPMENT_NOTIFICATION, mail, "ASN field");
 		click(CartObj.UPDATE_BUTTON, "Update button");
-		String messageNote = getText(CartObj.MESSAGE_NOTE, "Error meassage");
-		if (isElementPresent(CartObj.MESSAGE_NOTE, "Error meassage")) {
+		String messageNote = getText(CartObj.ERROR_MESSAGE, "Error meassage");
+		if (isElementPresent(CartObj.ERROR_MESSAGE, "Error meassage")) {
 
-			reporter.SuccessReport("Verify Shipment Notification Recipients Field Error Message",
-					"Shipment Notification Recipients Field Error Message in Checkout Defaults - Account Tools"
-							+ messageNote,
-					"");
+			reporter.SuccessReport("Verify the Shipment Notification Recipients Field Error Message in Checkout Defaults - Account Tools",
+					"Shipment Notification Recipients Field Error Message in Checkout Defaults - Account Tools Exists and Value Returned"
+							,
+							messageNote);
 		} else {
 			reporter.failureReport("Verify Shipment Notification Recipients Field error message",
 					"Shipment Notification Recipients Field Error Message in Checkout Defaults - Account Tools", "",
@@ -485,9 +485,14 @@ public class CartLib extends ActionEngine {
 	}
 
 	public void verifyEmailAsInFormat(String emailToVerify) throws Throwable {
+		if(isVisibleOnly(CartObj.verifyEmail(emailToVerify), "Email " + emailToVerify)) {
+			String Email1=driver.findElement(CartObj.verifyEmail(emailToVerify)).getAttribute("value");
+			reporter.SuccessReport("Verify Checkout Default Email1 Format",
+					"Expected Checkout Default Email1 Format Exists and Value Returned", Email1);	
+		}
 		if (isElementPresent(CartObj.verifyEmail(emailToVerify), "Email " + emailToVerify)) {
-			reporter.SuccessReport("Verify Shipment Notification Email" + emailToVerify + " Format on Ship bill page",
-					"Shipment Notification email Exists as expected ", emailToVerify);
+			reporter.SuccessReport("Verify Shipment Notification Email Format on Ship bill page",
+					"Shipment Notification email1 Exists as expected", emailToVerify);
 		} else {
 			reporter.failureReport("Verify Shipment Notification Email " + emailToVerify + " Format on Ship bill page",
 					"Shipment Notification email is not as expected", "", driver);
@@ -617,7 +622,7 @@ public class CartLib extends ActionEngine {
 
 	public void verifyNotificationEmailInShippingAdresses(String email) throws Throwable {
 		if (isElementPresent(CartObj.verifyNotificationEmailInShippingAdresses(email), "Verifying email")) {
-			reporter.SuccessReport("Verify Notification emails on Place Order page", "is present", email);
+			reporter.SuccessReport("Verify the Notification emails on Place Order page", "Notification emails on Place Order page Exists and Value Returned", email);
 		}
 	}
 
