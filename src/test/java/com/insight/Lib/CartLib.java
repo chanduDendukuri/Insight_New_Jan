@@ -357,15 +357,22 @@ public class CartLib extends ActionEngine {
 		
 		click(CartObj.ACCOUNT_TOOLS, "ACCOUNT TOOLS");
 		click(CartObj.TOOLS, "TOOLS");
+		
 		click(CartObj.SAVEDCART, "SAVED CART");
+		if(isElementPresent(CartObj.SAVED_CART_CONTENTS_HEADER, "Saved cart or orfer templates")) {
+			reporter.SuccessReport("Saved carts/ ORDER TEMPLATES", "page is saved carts", "Saved carts/ ORDER TEMPLATES");
+		}
+		else {
+			reporter.failureReport("Saved carts/ ORDER TEMPLATES", "page is not saved carts","", driver);
+		}
 		isElementPresent(CartObj.SAVED_CART_TEXT, "Saved cart");
-//		click(CartObj.loadCart(cartName), "Load cart");
-//		if (isElementPresent(CartObj.CURRIENCES, "Curriences are displayed")) {
-//			reporter.SuccessReport("Curriences are displayed ", "Curriences are successfully displayed", "");
-//		} else {
-//			reporter.failureReport("Curriences are displayed ", "Curriences are not displayed", "", driver);
-//
-//		}
+		click(CartObj.loadCart(cartName), "Load cart");
+		if (isElementPresent(CartObj.CURRIENCES, "Curriences are displayed")) {
+			reporter.SuccessReport("Click on load cart ", "Saved cart exists and selected", "");
+		} else {
+			reporter.failureReport("Click on load cart ", "Saved cart does not exist", "", driver);
+
+		}
 
 	}
 
@@ -755,7 +762,15 @@ public class CartLib extends ActionEngine {
 		
 		click(CartObj.ACCOUNT_TOOLS, "ACCOUNT TOOLS");
 		click(CartObj.TOOLS, "TOOLS");
+		
 		click(CartObj.SAVEDCART, "SAVED CART");
+		Thread.sleep(5000);
+		if(isElementPresent(CartObj.SAVED_CART_CONTENTS_HEADER, "Saved cart or orfer templates")) {
+			reporter.SuccessReport("Saved carts/ ORDER TEMPLATES", "page is saved carts", "Saved carts/ ORDER TEMPLATES");
+		}
+		else {
+			reporter.failureReport("Saved carts/ ORDER TEMPLATES", "page is not saved carts","", driver);
+		}
 		click((CartObj.deleteButton(cartName)), "Delete cart");
 		waitForVisibilityOfElement(CartObj.YES_BUTTON_INCONFORMATION_POP_UP, "Yes in conformation pop up");
 		click(CartObj.YES_BUTTON_INCONFORMATION_POP_UP, "Yes in conformation pop up");
@@ -770,6 +785,12 @@ public class CartLib extends ActionEngine {
 	}
 	
 	public void deleteSavedCartFromAccountTools() throws Throwable {
+		if(isElementPresent(CartObj.SAVED_CART_CONTENTS_HEADER, "Saved cart or orfer templates")) {
+			reporter.SuccessReport("Saved carts/ ORDER TEMPLATES", "page is saved carts", "Saved carts/ ORDER TEMPLATES");
+		}
+		else {
+			reporter.failureReport("Saved carts/ ORDER TEMPLATES", "page is not saved carts","", driver);
+		}
 		if(isElementPresent(CartObj.NO_SAVED_CART_MESSAGE, "No Saved carts or order templates exists")) {
 			reporter.SuccessReport("AccountTools/Saved carts", "No Saved carts or order templates exists", "No Saved carts or order templates exists");
 		}
