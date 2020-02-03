@@ -109,8 +109,7 @@ public class SBP03_ASNShipNotesTest extends ShipBillPayLib{
 				orderLib.proceedToCheckout();
 				cartLib.clickOnContinueButtonInAddInformtion();
 				orderLib.clickContinueOnLineLevelInfo();
-				cartLib.shippingOptionsCarrierSelectionInCheckOut(data.get("Carrier_Option"));
-				cartLib.selectShippingMeethod(data.get("Shipping_Method"));
+				orderLib.shippingBillPayContinueButton();
 				cartLib.verifyEmailAsInFormat(data.get("Email1_To_verify"));
 				cartLib.verifyEmailAsInFormat(data.get("Email2_To_verify"));
 				cartLib.verifyEmailAsInFormat(data.get("Email3_To_verify"));
