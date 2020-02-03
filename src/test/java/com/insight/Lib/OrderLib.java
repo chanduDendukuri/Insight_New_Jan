@@ -1734,9 +1734,9 @@ List<String> orderdetails = new ArrayList<String>();
 	public void verifyPONumberisEmpty() throws Throwable {
 		String PONum = getText(PO_NUMBER, "P.O. Number");
 		if (PONum.isEmpty()) {
-			reporter.SuccessReport("Delete PO Number in Ship, Bill & Pay Page", "PO Number Field Exists and Deleted","");
+			reporter.SuccessReport("Delete PO Number in Ship, Bill & Pay Page", "PO Number Field Exists and Deleted","PO Number:"+PONum);
 		} else
-			reporter.failureReport("Delete PO Number in Ship, Bill & Pay Page", "PONumber Field does not Exist","");
+			reporter.failureReport("Delete PO Number in Ship, Bill & Pay Page", "PONumber Field does not Exist","PO Number:"+PONum);
 
 	}
 
@@ -1791,14 +1791,26 @@ List<String> orderdetails = new ArrayList<String>();
 	 * 
 	 * @throws Throwable
 	 */
-	public void verifySmartTrackerHeaderInOrderDetails() throws Throwable {
-		if (isElementPresent(SMARTRAKER_HDR, "Smart Tracker Header")) {
+	public void verifySmartTrackerHeaderInOrderDetails(String RP_LNL_Txt_Text) throws Throwable {
+		if (isElementPresent(SMARTRAKER_HDR( RP_LNL_Txt_Text), "Smart Tracker Header")) {
 			reporter.SuccessReport("Header Level Smart Trackers Verification", "Header Level Smart Tracker exists","");
 		} else
 			reporter.failureReport("Header Level Smart Trackers Verification",
 					"Header Level Smart Tracker Does not Exist","");
 	}
+/**
+ * 
+ * @param RP_LNL_Txt_Text
+ * @throws Throwable
+ */
 
+	public void verifySmartTrackerHeaderInCustomerDetails(String RP_HDL_Txt_Text) throws Throwable {
+		if (isElementPresent(SMARTRAKER_HDR_CUSTOMERDETAILS( RP_HDL_Txt_Text), "Smart Tracker Header")) {
+			reporter.SuccessReport(" Smart Trackers Verification in customer details page", "Header Level Smart Tracker exists in customer details page","");
+		} else
+			reporter.failureReport(" Smart Trackers Verification in customer details page",
+					"Header Level Smart Tracker Does not Exist in customer details page","");
+	}
 	/**
 	 * 
 	 * @throws Throwable
