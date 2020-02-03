@@ -528,12 +528,11 @@ public class CartLib extends ActionEngine {
 	 */
 	public void enterInvalidAddtionalNotificationEmailAndVerifyErrorMessage(String emailToEnter) throws Throwable {
 		// clearData(CartObj.ADDITIONAL_NOTIFICATION_EMAIL);
-		type(CartObj.ADDITIONAL_NOTIFICATION_EMAIL, emailToEnter, "additional notification email" + emailToEnter);
+		type(CartObj.ADDITIONAL_NOTIFICATION_EMAIL, emailToEnter, "additional notification email");
 		click(CartObj.ADD_ADDITIONAL_NOTIFICATION_EMAIL, "Add additional notification email");
 		Thread.sleep(5000);
-		String errorMessage = getText(CartObj.ERROR_MESSAGE_INVALID_EMAIL, "Error message");
-		if (isElementPresent(CartObj.ERROR_MESSAGE_INVALID_EMAIL, "Error message")) {
-			reporter.SuccessReport("Verify error message for invalid mail", "Error message", errorMessage);
+		if (isVisibleOnly(CartObj.ERROR_MESSAGE_INVALID_EMAIL, "Error message")) {
+			reporter.SuccessReport("Verify error message for invalid mail", "Error message", getText(CartObj.ERROR_MESSAGE_INVALID_EMAIL, "Error message"));
 		}
 		clearData(CartObj.clearNotificationEmail(emailToEnter));
 	}
@@ -633,7 +632,7 @@ public class CartLib extends ActionEngine {
 	}
 
 	public void verifyNotificationEmailInShippingAdresses(String email) throws Throwable {
-		if (isElementPresent(CartObj.verifyNotificationEmailInShippingAdresses(email), "Verifying email")) {
+		if (isVisibleOnly(CartObj.verifyNotificationEmailInShippingAdresses(email), "Verifying email")) {
 			reporter.SuccessReport("Verify the Notification emails on Place Order page", "Notification emails on Place Order page Exists and Value Returned", email);
 		}
 	}
