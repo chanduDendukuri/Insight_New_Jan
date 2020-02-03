@@ -495,13 +495,10 @@ public class CartLib extends ActionEngine {
 	public void verifyEmailAsInFormat(String emailToVerify) throws Throwable {
 		if(isVisibleOnly(CartObj.verifyEmail(emailToVerify), "Email " + emailToVerify)) {
 			String Email1=driver.findElement(CartObj.verifyEmail(emailToVerify)).getAttribute("value");
-			reporter.SuccessReport("Verify Checkout Default Email1 Format",
-					"Expected Checkout Default Email1 Format Exists and Value Returned", Email1);	
-		}
-		if (isElementPresent(CartObj.verifyEmail(emailToVerify), "Email " + emailToVerify)) {
 			reporter.SuccessReport("Verify Shipment Notification Email Format on Ship bill page",
-					"Shipment Notification email1 Exists as expected", emailToVerify);
-		} else {
+					"Shipment Notification email1 Exists as expected", Email1);	
+		}
+		else {
 			reporter.failureReport("Verify Shipment Notification Email " + emailToVerify + " Format on Ship bill page",
 					"Shipment Notification email is not as expected", "", driver);
 		}
@@ -541,7 +538,7 @@ public class CartLib extends ActionEngine {
 	 */
 	public void enterValidAddtionalEmail(String emailToEnter) throws Throwable {
 		// clearData(CartObj.ADDITIONAL_NOTIFICATION_EMAIL);
-		type(CartObj.ADDITIONAL_NOTIFICATION_EMAIL, emailToEnter, "additional notification email" + emailToEnter);
+		type(CartObj.ADDITIONAL_NOTIFICATION_EMAIL, emailToEnter, "additional notification email");
 
 	}
 

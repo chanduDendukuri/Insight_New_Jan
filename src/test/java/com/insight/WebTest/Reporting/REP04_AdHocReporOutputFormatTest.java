@@ -68,7 +68,7 @@ public class REP04_AdHocReporOutputFormatTest extends ReportingLib {
 					cmtLib.setPermissions(data.get("Menu_Name"), data.get("Set_Permission3"));
 					cmtLib.permissionFromDD(data.get("Set_Permission3"), data.get("Permission_Dropdown_Option"));
 					cmtLib.loginAsAdminCMT();
-					canadaLib.clickOnSideMenuSelectAccountToolOptions(data.get("Tools_Menu"),
+					commonLib.clickOnAccountToolsAndClickOnProductGrp(data.get("Tools_Menu"),
 							data.get("Tools_Menu_DD"));
 					canadaLib.clickOnReportOptions(data.get("ReportOption"));
 					canadaLib.verifyReportsPage();
@@ -84,9 +84,8 @@ public class REP04_AdHocReporOutputFormatTest extends ReportingLib {
 					clickOnSave();
 					verifyReportTemplates();
 					expandReportTemplateAndVerify(data.get("TemplateName"));		
-					clickOnDelete(data.get("SelectReport"));
-					
-					canadaLib.clickOnSideMenuSelectAccountToolOptions(data.get("Tools_Menu"),
+					//clickOnDelete(data.get("SelectReport"));
+					commonLib.clickOnAccountToolsAndClickOnProductGrp(data.get("Tools_Menu"),
 							data.get("Tools_Menu_DD"));
 					canadaLib.clickOnReportOptions(data.get("ReportOption"));
 					canadaLib.verifyReportsPage();
@@ -95,7 +94,8 @@ public class REP04_AdHocReporOutputFormatTest extends ReportingLib {
 					canadaLib.clickOnDeliveryMethod(data.get("DeliveryMethod1"));
 					canadaLib.clickOnDeliveryFormat(data.get("DeliveryFormat"));
 					canadaLib.clickOnRun();	
-					commonLib.spinnerImage();
+					//commonLib.spinnerImage();
+					Thread.sleep(50000);
 					List<String> excelOptions= Arrays.asList(data.get("ExcelOptions").split(","));
 				    canadaLib.verifyDownloadedReportExcelFile(excelOptions,data.get("ReportOption"));
 				    commonLib.clickLogOutLink(data.get("Logout_Header"));
