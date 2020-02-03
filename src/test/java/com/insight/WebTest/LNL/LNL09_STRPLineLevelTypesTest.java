@@ -68,14 +68,16 @@ public class LNL09_STRPLineLevelTypesTest extends LineLevelInfoLib{
 						
 						// Add first item  >> RAM 
 						searchLib.searchInHomePage(data.get("SearchText1"));
+						searchLib.verifyBreadCrumbInSearchResultsPage(data.get("SearchText1"));
 						cartLib.selectFirstProductDisplay();
 						String partNumber1=prodLib.getMFRNumberInProductInfopage();
 						commonLib.addToCartAndVerify();
 						orderLib.continueToCheckOutOnAddCart();
 						cartLib.verifyItemInCart(partNumber1);
 						
-						// Add second item  >> Workstations
+						// Add second item  >> monitors
 						searchLib.searchInHomePage(data.get("SearchText2"));
+						searchLib.verifyBreadCrumbInSearchResultsPage(data.get("SearchText2"));
 						cartLib.selectFirstProductDisplay();
 						String partNumber2=prodLib.getMFRNumberInProductInfopage();
 						commonLib.addToCartAndVerify();
@@ -84,6 +86,7 @@ public class LNL09_STRPLineLevelTypesTest extends LineLevelInfoLib{
 						
 						// Add second item  >> Laser Printers
 						searchLib.searchInHomePage(data.get("SearchText3"));
+						searchLib.verifyBreadCrumbInSearchResultsPage(data.get("SearchText3"));
 						cartLib.selectFirstProductDisplay();
 						String partNumber3=prodLib.getMFRNumberInProductInfopage();
 						commonLib.addToCartAndVerify();
@@ -92,6 +95,7 @@ public class LNL09_STRPLineLevelTypesTest extends LineLevelInfoLib{
 						
 						// Proceed to check out
 						orderLib.proceedToCheckout();
+						verifyOrderAndItemInfoBreadCrumb();
 						orderLib.continueButtonOnAdditionalInformationSection();
 						
 						// Verify Line level info for all the 3 items added
