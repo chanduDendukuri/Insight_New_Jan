@@ -839,4 +839,27 @@ public class EndUserFeaturesLib extends EndUserFeaturesObj{
 		reporter.SuccessReport("Selected Permissions"," selected Permission count is " +j+1," selected Permission count is "+j+1);
 
 	}
+
+	public void getResultsFromCurrentAccountPage() throws Throwable {
+		if(!isVisibleOnly(noResultsAvailable,"No Results found")) {
+			int a = 0;
+			if (isVisibleOnly(accountResults, "Accounts Results")) {
+				List<WebElement> acountList = driver.findElements(accountResults);
+				if (acountList.size() <= 4) {
+					a = acountList.size();
+				} else {
+					a = 4;
+
+				}
+				for (int i = 0; i < a; i++) {
+
+					reporter.SuccessReport("Account results ", " Account results are ", acountList.get(i).getText());
+				}
+			}
+		}else{
+			reporter.SuccessReport("No Results found ","No Results found message appeared ",getText(noResultsAvailable,"No Results found"));
+		}
+
+
+	}
 }
