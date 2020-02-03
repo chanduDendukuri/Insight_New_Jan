@@ -78,7 +78,7 @@ public class LNL08_STNoSmartTrackerRequiredTest extends LineLevelInfoLib{
 								orderLib.proceedToCheckout();
 								verifyOrderAndItemInfoBreadCrumb();
 								orderLib.continueButtonOnAdditionalInformationSection();
-								
+								verifyLineLevelInfoOptionalIsPresent(partNumber1);
 								clickOnLinelevelInfoOptionalLink();
 								orderLib.clickContinueOnLineLevelInfo();  // Click continue on LLI
 								canadaLib.verifySBP();

@@ -490,11 +490,14 @@ public class CommonLib extends ActionEngine{
 			if(isElementPresent(InvoiceHistoryLib.COSE_ACCOUNT_TOOLS, "close account tools")) {
 				click(InvoiceHistoryLib.COSE_ACCOUNT_TOOLS, "close account tools");
 			}
+			if (isVisibleOnly(CommonObj.CLOSEBUTTON_COOKIES, "close cookie")) {
+				click(CommonObj.CLOSEBUTTON_COOKIES, "close cookie");
+			}
 			
 			   click(CommonObj.ACCOUNT_TOOLS, "Account tools menu icon");
-			   click(CommonObj.getAccountToolsMenu(toolsMenuName), "Account tools menu");
-			   click(CommonObj.getAccountToolsDD(toolsMenuName, dropDown), "Select account tools");
-			   click(CommonObj.getCompanyStandardsProductGroup(productGroup, productName), "select product from product group");
+			   click(CommonObj.getAccountToolsMenu(toolsMenuName), "Account tools menu : "+toolsMenuName,toolsMenuName);
+			   click(CommonObj.getAccountToolsDD(toolsMenuName, dropDown), "Select account tools: "+dropDown);
+			   click(CommonObj.getCompanyStandardsProductGroup(productGroup, productName), "select product from product group : "+productGroup+" Product name :"+productName);
 		}
 		/**
 		 * This method is to click on the Account tools from the side menu and click on product group.
