@@ -72,20 +72,30 @@ public class LNL11_LineLevellDataIPPTest  extends LineLevelInfoLib{
 								// Search for part or product >> 20L50011US
 								searchLib.searchInHomePage(data.get("SearchText"));
 								commonLib.verifyDisplayedProductDetails(data.get("SearchText"));
+								pipLib.enterQuantityOnProductDetailsPage(data.get("Quantity"));
 								commonLib.addToCartAndVerify();
+								orderLib.continueToCheckOutOnAddCart();
+								canadaLib.verifyPlaceCartLabel();
+								cartLib.verifyItemAddedInCartByMfrNumber(data.get("SearchText"));
+								pipLib.verifyCartPageAndPartDetails();
+								orderLib.addWarrantyInCartPage();
+								
 							    // Warranty number : 5WS0T36152 
-								orderLib.continueToCheckOutAddWarrantyAndVerifyTheCart(data.get("warranty_Number"));
+								//orderLib.continueToCheckOutAddWarrantyAndVerifyTheCart(data.get("warranty_Number"));
 								//  remove added warranty
 								orderLib.clickRemoveWarrantyLink();
 								canadaLib.verifyPlaceCartLabel();
 								orderLib.proceedToCheckout();
+								verifyOrderAndItemInfoBreadCrumb();
 								orderLib.continueButtonOnAdditionalInformationSection();
+								clickOnLineLevelOptionalLinkByPartNum(data.get("SearchText"));
+								enter_rP_LNL_Txt(data.get("RP_LNL_Txt"));
 								orderLib.clickContinueOnLineLevelInfo();
 								canadaLib.verifySBP();
 								orderLib.clearPhnumberInShippinAddress();
-								orderLib.shippingBillPayContinueButton(); // Click continue on shipping address Section
-								orderLib.shippingBillPayContinueButton(); // Click continue on Shipping options Section
-								orderLib.shippingBillPayContinueButton(); //Click continue on Billing address Section
+								orderLib.clickContinueOnShippingAddress(); // Click continue on shipping address Section
+								orderLib.shippingOptionsCarrierSelection(); // Click continue on Shipping options Section
+								orderLib.billingAddressContinueButton(); //Click continue on Billing address Section
 								orderLib.selectPaymentInfoMethodCreditCard(data.get("Card_Number").toString(), data.get("Card_Name"),data.get("Month"), data.get("Year"),data.get("PO_Number"),data.get("POReleaseNumber"));  // VISA card
 								orderLib.clickOnReviewOrderButton();
 								verifywarrantyOnPlaceOrderPage("NotAvailable");
@@ -98,11 +108,12 @@ public class LNL11_LineLevellDataIPPTest  extends LineLevelInfoLib{
 								// Search for part or product >> 20L50011US
 								searchLib.searchInHomePage(data.get("SearchText"));
 								commonLib.verifyDisplayedProductDetails(data.get("SearchText"));
+								pipLib.enterQuantityOnProductDetailsPage(data.get("Quantity"));
 								commonLib.addToCartAndVerify();
 								orderLib.continueToCheckOutOnAddCart();
 								cartLib.verifyItemInCart(data.get("SearchText"));
 								verifyWarrantyDescOncartpage("OFF");
-								
+								prodDetailsLib.verifyNoRecommondedProducts();
 								// Logout
 								commonLib.clickLogOutLink(data.get("Logout"));
 								

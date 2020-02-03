@@ -72,7 +72,7 @@ public class SLP16_MPSACartTest extends SLPLib{
 					cmtLib.loginVerification(data.get("ContactName"));
 					Thread.sleep(3000);
 					//navigate to SLP
-					canadaLib.clickOnSideMenuSelectAccountToolOptions(data.get("Tools_Menu"),data.get("Tools_Menu_DD"));
+					commonLib.clickOnAccountToolsAndClickOnProductGrp(data.get("Tools_Menu"),data.get("Tools_Menu_DD"));
 					Thread.sleep(2000);
 					canadaLib.selectSPLADetailsProductCheckBox(data.get("SPLA"));
 					Thread.sleep(4000);

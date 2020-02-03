@@ -72,7 +72,7 @@ public class CRT25_QuickCheckOutTest extends CartLib {
 					prodInfoLib.getPartNumberInSearchResultsPage();
 					commonLib.addFirstDisplyedItemToCartAndVerify();
 					canadaLib.continueToCheckout();
-					cartLib.verifyCartPageAvailablity();
+					canadaLib.verifyPlaceCartLabel();
 					cartLib.clickQuickCheckOutandVerify(data.get("ShippingCompany"), data.get("ShippingCarrier"),
 							data.get("NotificationMail"), data.get("BillingAddresses"), data.get("PaymentType"));
 					commonLib.spinnerImage();

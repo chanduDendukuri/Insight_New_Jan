@@ -69,7 +69,9 @@ public class EUF01_FCTWebEndUserManageSoldtosTest extends EndUserFeaturesLib{
 						cmtLib.clickOnloginAs();
 						switchToChildWindow();
 						ivhLib.closeAccountTools();
-						canadaLib.clickOnSideMenuSelectAccountToolOptions(data.get("Tools_Menu"),
+						/*canadaLib.clickOnSideMenuSelectAccountToolOptions(data.get("Tools_Menu"),
+								data.get("Tools_Menu_DD"));*/
+						commonLib.clickOnAccountToolsAndClickOnProductGrp(data.get("Tools_Menu"),
 								data.get("Tools_Menu_DD"));
 						clickOnTabInUserProfile(data.get("Tab_Name"));
 						verifyLoggedInAs(data.get("LnameEmailUname"));
@@ -84,6 +86,7 @@ public class EUF01_FCTWebEndUserManageSoldtosTest extends EndUserFeaturesLib{
 						clickOnPageNumber(data.get("Page_Number_3"));
 						clickOnPageNumber(data.get("Page_Number_5"));
 						searchForAvailableAccount(data.get("Account_Name"));
+						getResultsFromCurrentAccountPage();
 						clickSwitchAccountLink();
 						clickContinueButton();
 						cmtLib.navigateBackToCMT();
@@ -95,27 +98,100 @@ public class EUF01_FCTWebEndUserManageSoldtosTest extends EndUserFeaturesLib{
 						cmtLib.clickOnloginAs();
 						switchToChildWindow();
 						ivhLib.closeAccountTools();
-						canadaLib.clickOnSideMenuSelectAccountToolOptions(data.get("Tools_Menu"),
+						/*canadaLib.clickOnSideMenuSelectAccountToolOptions(data.get("Tools_Menu"),
+
+
+								data.get("Tools_Menu_DD"));*/
+
+//BOS
+						commonLib.clickOnAccountToolsAndClickOnProductGrp(data.get("Tools_Menu"),
 								data.get("Tools_Menu_DD"));
 						clickOnTabInUserProfile(data.get("Tab_Name"));
 						verifyLoggedInAs(data.get("LnameEmailUname"));
 						searchForAvailableAccount(data.get("Account_Name1"));
-						verifySearchResults();
+						getResultsFromCurrentAccountPage();
+						clickSwitchAccountLink();
+						clickContinueButton();
+//MAR
+/*
+						cmtLib.navigateBackToCMT();
+						cmtLib.hoverOverMasterGroupAndSelectChangeGrp();
+						cmtLib.searchForWebGroup(data.get("WebGrp"));
+						cmtLib.manageUsers();
+						cmtLib.searchUsers(data.get("LnameEmailUname"));
+						cmtLib.verifyUserandClick(data.get("ContactName"));
+						cmtLib.clickOnloginAs();
+						switchToChildWindow();
+						ivhLib.closeAccountTools();
+*/
+						/*canadaLib.clickOnSideMenuSelectAccountToolOptions(data.get("Tools_Menu"),
+
+
+								data.get("Tools_Menu_DD"));*/
+
+//BOS
+						commonLib.clickOnAccountToolsAndClickOnProductGrp(data.get("Tools_Menu"),
+								data.get("Tools_Menu_DD"));
+						clickOnTabInUserProfile(data.get("Tab_Name"));
+						verifyLoggedInAs(data.get("LnameEmailUname"));
+
+
 						searchForAvailableAccount(data.get("Account_Name2"));
-						verifySearchResults();
+						getResultsFromCurrentAccountPage();
+						clickSwitchAccountLink();
+						clickContinueButton();
+//XYZ
+						commonLib.clickOnAccountToolsAndClickOnProductGrp(data.get("Tools_Menu"),
+								data.get("Tools_Menu_DD"));
+						clickOnTabInUserProfile(data.get("Tab_Name"));
+						verifyLoggedInAs(data.get("LnameEmailUname"));
+						searchForAvailableAccount(data.get("Account_Name3"));
+						getResultsFromCurrentAccountPage();
+						//clickSwitchAccountLink();
+						//clickContinueButton();
+						scrollToBottomWithCordinate("-650");
+
+//Hi
+						commonLib.clickOnAccountToolsAndClickOnProductGrp(data.get("Tools_Menu"),
+								data.get("Tools_Menu_DD"));
+						scrollToBottomWithCordinate("-450");
+						clickOnTabInUserProfile(data.get("Tab_Name"));
+						verifyLoggedInAs(data.get("LnameEmailUname"));
+						searchForAvailableAccount(data.get("Account_Name4"));
+						getResultsFromCurrentAccountPage();
+						clickSwitchAccountLink();
+						clickContinueButton();
+
+						/*verifySearchResults();
 						scrollUp();
 						verifyRemoveDefualtLinkandSelect();
 						verifyDefaultAccountIsRemoved();
 						cmtLib.navigateBackToCMT();
 						cmtLib.clickOnloginAs();
 						switchToChildWindow();
-						
-						canadaLib.clickOnSideMenuSelectAccountToolOptions(data.get("Tools_Menu"),
+
+						commonLib.clickOnAccountToolsAndClickOnProductGrp(data.get("Tools_Menu"),
 								data.get("Tools_Menu_DD"));
+
+
 						scrollUp();
 						clickOnTabInUserProfile(data.get("Tab_Name"));
 						clickSwitchAccountLink();
 						clickContinueButton();
+*/						commonLib.clickLogOutLink(data.get("Logout_Header"));//fnCloseTest();
+
+				/*		cmtLib.loginToCMTSearchWebGrpAndUser(data.get("Header"), data.get("WebGrp"),
+								data.get("LnameEmailUname"), data.get("ContactName"));
+						cmtLib.clickOnloginAs();
+						switchToChildWindow();
+						//ivhLib.closeAccountTools();
+						cmtLib.loginVerification(data.get("ContactName"));
+
+
+						*//*canadaLib.clickOnSideMenuSelectAccountToolOptions(data.get("Tools_Menu"),
+								data.get("Tools_Menu_DD"));*//*
+						commonLib.clickOnAccountToolsAndClickOnProductGrp(data.get("Tools_Menu"),
+								data.get("Tools_Menu_DD"));*/
 					} catch (Exception e) {
 						ReportStatus.blnStatus = false;
 						//gErrorMessage = e.getMessage();

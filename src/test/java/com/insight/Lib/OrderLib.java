@@ -2022,7 +2022,7 @@ List<String> orderdetails = new ArrayList<String>();
 	
 	public void clickRemoveWarrantyLink() throws Throwable{
 		if(isElementPresent(REMOVE_WARRANTY_LINK, "Remove warranty link")){
-			clickUntil(REMOVE_WARRANTY_LINK, ADD_WARRANTY_LINK,"Remove warranty ");
+			clickUntil(REMOVE_WARRANTY_LINK, ADD_WARRANTY_LINK,"Remove warranty","Warranty removed");
 		}else{
 			reporter.failureReport("Verify remove warranty link ", "Remove warranty link dose not exists", "", driver);
 			

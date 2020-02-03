@@ -307,7 +307,7 @@ public class LineLevelInfoLib extends LineLevelInfoObj{
 	 */
 	public void verifyOrderAndItemInfoBreadCrumb() throws Throwable{
 		if(isElementPresent(OrderObj.ORDER_ITEM_INFO_LABEl, "Order And Item Info BreadCrumb")){
-			reporter.SuccessReport("Verify Order And Item Info BreadCrumb", "Order And Item Info BreadCrumb is present", "");
+			reporter.SuccessReport("Verify Order And Item Info BreadCrumb", "Order And Item Info BreadCrumb is present", "PageDetails : Order and item information");
 		}else{
 			reporter.failureReport("Verify Order And Item Info BreadCrumb", "Order And Item Info BreadCrumb is not present ", "",driver);
 		}
@@ -362,7 +362,7 @@ public class LineLevelInfoLib extends LineLevelInfoObj{
 	 */
 	public void clickOnLineLevelOptionalLinkByPartNum(String partNum) throws Throwable{
 		if(isElementPresent(getLineLevelOptionalLink(partNum), "Line level optional link")){
-			click(getLineLevelOptionalLink(partNum),"Line level optional link for "+partNum);
+			click(getLineLevelOptionalLink(partNum),"Line level optional link for part Number # "+partNum);
 		}else{
 			reporter.failureReport("verify line level optional link present", "Line level info optional link does not exists for "+partNum, "", driver);
 		}
@@ -533,7 +533,7 @@ public class LineLevelInfoLib extends LineLevelInfoObj{
 			
 		case "NotAvailable":
 			if(isElementNotPresent(LINE_LEVEL_INO_LABEL, "Line level info")){
-				reporter.SuccessReport("Verify line levle info present", "Line level information is not present", "");
+				reporter.SuccessReport("Verify line levle info present", "Linelevel information Does Not Exist", "");
 			}else{
 				reporter.failureReport("Verify line levle info present", "Line level information is present", "", driver);
 			}
@@ -761,6 +761,24 @@ public class LineLevelInfoLib extends LineLevelInfoObj{
 			reporter.SuccessReport("Verify the Stock Val on Cart Page", "Stock Val Showing on Product Deatils Page and Stock Val in the Cart Page are Same", "Stock Val on Product Details "+productDetailsStock+"  Stock Val on Cart Page: "+cartStock);
 		}else {
 			reporter.failureReport("Verify the Stock Val on Cart Page", "Stock Val Showing on Product Deatils Page and Stock Val in the Cart Page are notSame", "Stock Val on Product Details "+productDetailsStock+"  Stock Val on Cart Page: "+cartStock, driver);
+		}
+	}
+	
+	/**
+	 * Method is to verify selected the diversity Partner 
+	 * @param diversityPartner
+	 * @throws Throwable
+	 */
+	public void verifyDiversityPartner(String partNum,String actualDiversity) throws Throwable{
+		if(isElementPresent(DiversityPartner(partNum), "DIVERSITY PARTNER")){
+			String diversityOption=getSelectedDropdownOption(DiversityPartner(partNum));
+			if(actualDiversity.equals(diversityOption)) {
+				reporter.SuccessReport("Verify diversity Partner exists", "diversity Partner option exists", "Diversity partner Selected item :"+diversityOption);
+			}else {
+				reporter.failureReport("Verify diversity Partner exists", " Selected diversity Partner option does not exists", "",driver);
+			}
+		}else{
+			reporter.failureReport("Verify diversity Partner exists", " diversity Partner option does not exists", "",driver);
 		}
 	}
 }

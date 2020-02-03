@@ -117,4 +117,6 @@ public class EndUserFeaturesObj extends ActionEngine{
         return By.xpath("//*[contains(text(),'Payment Method')]//..//..//div//ul//li[text()='"+option+"']");
     }
     public static By lblCurrentAddressResults=By.xpath("//div[@class='medium-4 columns currentAcctLvl']");
+    public static By accountResults=By.xpath("//*[@id='searchAcctResults'] //tbody//tr//td[@class='footable-visible footable-first-column']");
+    public static By noResultsAvailable=By.xpath("//*[text()='No results were found based on your search criteria']");
 }

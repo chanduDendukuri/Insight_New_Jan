@@ -71,6 +71,7 @@ public class LNL12_SaveLineLevelDataTest extends LineLevelInfoLib{
 						// Add 2 items  >> RAM 
 						for(i=0;i<2;i++){
 							searchLib.searchInHomePage(data.get("SearchText1"));
+							searchLib.verifyBreadCrumbInSearchResultsPage(data.get("SearchText1"));
 							cartLib.selectFirstProductDisplay();
 							partNumber1=prodLib.getMFRNumberInProductInfopage();
 							commonLib.addToCartAndVerify();
@@ -90,6 +91,8 @@ public class LNL12_SaveLineLevelDataTest extends LineLevelInfoLib{
 						
 						// search item >> RAM
 						searchLib.searchInHomePage(data.get("SearchText1"));
+						pipLib.getPartNumberInSearchResultsPage();
+						searchLib.verifyBreadCrumbInSearchResultsPage(data.get("SearchText1"));
 						cartLib.selectFirstProductDisplay();
 						String partNumber2=prodLib.getMFRNumberInProductInfopage();
 						commonLib.addToCartAndVerify();
@@ -99,6 +102,7 @@ public class LNL12_SaveLineLevelDataTest extends LineLevelInfoLib{
 
 						// Add second item  >> Laser Printers
 						searchLib.searchInHomePage(data.get("SearchText2"));
+						searchLib.verifyBreadCrumbInSearchResultsPage(data.get("SearchText2"));
 						cartLib.selectFirstProductDisplay();
 						String partNumber3=prodLib.getMFRNumberInProductInfopage();
 						commonLib.addToCartAndVerify();
@@ -107,13 +111,21 @@ public class LNL12_SaveLineLevelDataTest extends LineLevelInfoLib{
 						
 						// Proceed to check out
 						orderLib.proceedToCheckout();
+						verifyOrderAndItemInfoBreadCrumb();
 						String[] partNum={partNumber2,partNumber3};
 						for(i=0;i<2;i++){
 							verifyLineLevelInfoOptionalIsPresent(partNum[i]);
 						}
 						clickOnLineLevelOptionalLinkByPartNum(partNumber3);
 						selectDiversityPartner(data.get("Diversity_Partner"),partNumber3);
-						
+						orderLib.clickContinueOnLineLevelInfo();
+			            // Return to cart
+						scrollUp();
+						canadaLib.clickReturnToCart();
+						orderLib.proceedToCheckout();
+						verifyOrderAndItemInfoBreadCrumb();
+						clickOnLineLevelOptionalLinkByPartNum(partNumber3);
+						verifyDiversityPartner(partNumber3, data.get("Diversity_Partner"));
 						commonLib.clickLogOutLink(data.get("Logout"));
 						
 					} catch (Exception e) {
