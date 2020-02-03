@@ -366,13 +366,13 @@ public class CartLib extends ActionEngine {
 			reporter.failureReport("Saved carts/ ORDER TEMPLATES", "page is not saved carts","", driver);
 		}
 		isElementPresent(CartObj.SAVED_CART_TEXT, "Saved cart");
-//		click(CartObj.loadCart(cartName), "Load cart");
-//		if (isElementPresent(CartObj.CURRIENCES, "Curriences are displayed")) {
-//			reporter.SuccessReport("Curriences are displayed ", "Curriences are successfully displayed", "");
-//		} else {
-//			reporter.failureReport("Curriences are displayed ", "Curriences are not displayed", "", driver);
-//
-//		}
+		click(CartObj.loadCart(cartName), "Load cart");
+		if (isElementPresent(CartObj.CURRIENCES, "Curriences are displayed")) {
+			reporter.SuccessReport("Click on load cart ", "Saved cart exists and selected", "");
+		} else {
+			reporter.failureReport("Click on load cart ", "Saved cart does not exist", "", driver);
+
+		}
 
 	}
 

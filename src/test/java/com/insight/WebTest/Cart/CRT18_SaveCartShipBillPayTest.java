@@ -80,16 +80,22 @@ public class CRT18_SaveCartShipBillPayTest extends CartLib {
 					canadaLib.verifyPlaceCartLabel();
 					String cartName="QTPCart"+getRandomNumeric(4);
 					cartLib.clickOnSaveCartContentAndSaveCart(cartName);
-					commonLib.clickCart();
-					commonLib.verifyCartIsEMpty();
 					cartLib.openSavedCartFromTools(cartName);
+					//commonLib.clickCart();
+					//commonLib.verifyCartIsEMpty();
+					//cartLib.openSavedCartFromTools(cartName);
+					cartLib.addToCartInSavedCart(cartName);
+					canadaLib.verifyPlaceCartLabel();
 					commonLib.clickLogOutLink(data.get("Logout_Header"));
 					cmtLib.navigateBackToCMT();
+					cmtLib.navigateBackToCMT();
+					
 				    cmtLib.hoverOverMasterGroupAndSelectChangeGrp();
 				    cmtLib.searchForWebGroup(data.get("WebGrp"));
-				    cmtLib.manageUsers();
-				    cmtLib.searchUsers(data.get("LnameEmailUname"));
-				    cmtLib.verifyUserandClick(data.get("ContactName"));
+				    cmtLib.clickOnTheWebGroup(data.get("WebGrp_Name"));
+				   
+				    cmtLib.hoverOnManageWebGroupsAndSelectOptions(data.get("Manage_Web_Grp_Options"));
+				    cmtLib.searchForaUserAndSelect(data.get("LnameEmailUname"), data.get("ContactName"));
 				    cmtLib.clickOnloginAs();
 				    switchToChildWindow();
 				    cartLib.openSavedCartFromTools(cartName);
