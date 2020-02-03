@@ -162,7 +162,7 @@ public class CartObj extends CommonObj{
 	public static By LOAD_CART=By.xpath("//button[@class='c-button  c-button--inline-link c-saved-cart__btn']");
 	public static By SAVED_CART_CANCEL_BTN=By.xpath("//button[@type='button'][contains(text(),'Cancel')]");
 	public static By CLEAR_MY_DRAFT_SAVED=By.xpath("//input[@name='clearCheckbox']");
-	
+	public static By SAVED_CART_CONTENTS_HEADER=By.xpath("//h1[text()='Saved carts/Order templates']");
 	public static By loadCart(String cartName) {
 		return By.xpath("//h3[text()='"+cartName+"']//parent::div//button[@class='c-button  c-button--inline-link c-saved-cart__btn']");
 	}
