@@ -94,8 +94,8 @@ public class CAN16_InvoiceHistoryClassTest extends ActionEngine  {
 								// invoice.datePickerEndDateCalender(data.get("End_Date"));
 								canadaLib.clickOnSearchButtonInRecentOrders();
 								canadaLib.getInvoiceNumbersFromResults();
-								canadaLib.clickOnInvoiceNumbersFromResults();
-								canadaLib.openDirectoryToVerifyFileExist();
+								String a=canadaLib.clickOnInvoiceNumbersFromResults();
+								canadaLib.openDirectoryToVerifyFileExist(a);
 								commonLib.clickLogOutLink(data.get("Logout_Header"));//fnCloseTest();
 
 
