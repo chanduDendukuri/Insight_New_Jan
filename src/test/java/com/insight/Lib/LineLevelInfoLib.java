@@ -3,6 +3,7 @@ package com.insight.Lib;
 import java.util.List;
 
 import org.mortbay.log.Log;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 
@@ -120,7 +121,7 @@ public class LineLevelInfoLib extends LineLevelInfoObj{
 	 */
 	public void verifyProratedPriceMessageOnSearchResultsPage() throws Throwable{
 		if(isElementPresent(PRORATED_PRICE_MSG_SEARCH_RESULTS, "prorated price message")){
-			reporter.SuccessReport("verify SOFTWARE AGREEMENT Prorated Price Message On Search Results Page", "Message exists", "");
+			reporter.SuccessReport("verify SOFTWARE AGREEMENT Prorated Price Message On Search Results Page", "Message exists", "Message : The price displayed will be prorated in the cart based on the remaining agreement period.");
 		}else{
 			reporter.failureReport("verify SOFTWARE AGREEMENT Prorated Price Message On Search Results Page", "Message does not exists", "",driver);
 		}
@@ -140,9 +141,9 @@ public class LineLevelInfoLib extends LineLevelInfoObj{
 		}
 		
 		click(CommonObj.ACCOUNT_TOOLS, "Account tools menu icon");
-		   click(CommonObj.getAccountToolsMenu(toolsMenuName), "Account tools menu");
+		   click(CommonObj.getAccountToolsMenu(toolsMenuName), "Account tools menu "+toolsMenuName);
 		   if(isElementNotPresent(CommonObj.getAccountToolsDD(toolsMenuName, dropDown), "account tools")){
-			   reporter.SuccessReport("Verify options displayed", "Account tools aoptions not displayed","");
+			   reporter.SuccessReport("Verify options displayed", "Account tools aoptions displayed",toolsMenuName);
 		   }else{
 			   reporter.failureReport("Verify options displayed", "Account tools aoptions  displayed","",driver); 
 		   }	   
@@ -155,7 +156,7 @@ public class LineLevelInfoLib extends LineLevelInfoObj{
 	 */
 	public void verifyRP_HDL_TxtOnPlaceOrderPage(String RP_HDL_Txt) throws Throwable{
 		if(isElementPresent(getRP_HDL_TxtInPlaceOrderPage(RP_HDL_Txt),"RP_HDL_Txt")){
-			reporter.SuccessReport("Verify RP_HDL_Txt On Place Order Page", "RP_HDL_Txt On Place Order Page is present", "");
+			reporter.SuccessReport("Verify RP_HDL_Txt On Place Order Page", "RP_HDL_Txt On Place Order Page is present", "Header Level Smart Trackers: "+RP_HDL_Txt);
 			
 		}else{
 			reporter.failureReport("Verify RP_HDL_Txt On Place Order Page", "RP_HDL_Txt On Place Order Page is not present", "",driver);
@@ -169,7 +170,7 @@ public class LineLevelInfoLib extends LineLevelInfoObj{
 	 */
 	public void verifyRP_LNL_TxtOnPlaceOrderPage(String RP_LNL_Txt) throws Throwable{
 		if(isElementPresent(getRP_LNL_TxtInPlaceOrderpage(RP_LNL_Txt),"RP_HDL_Txt")){
-			reporter.SuccessReport("Verify RP_LNL_Txt On Place Order Page", "RP_LNL_Txt On Place Order Page is present", "");
+			reporter.SuccessReport("Verify RP_LNL_Txt On Place Order Page", "RP_LNL_Txt On Place Order Page is present", "Line Level Smart Trackers: RP_LNL_Txt: "+RP_LNL_Txt);
 			
 		}else{
 			reporter.failureReport("Verify RP_LNL_Txt On Place Order Page", "RP_LNL_Txt On Place Order Page is not present", "",driver);
@@ -183,7 +184,7 @@ public class LineLevelInfoLib extends LineLevelInfoObj{
 	 */
 	public void verifyRP_HDL_TxtOnReceiptPage(String RP_HDL_Txt) throws Throwable{
 		if(isElementPresent(getRP_HDL_TxtOnReceiptPage(RP_HDL_Txt),"RP_HDL_Txt")){
-			reporter.SuccessReport("Verify RP_HDL_Txt On Receipt Page", "RP_HDL_Txt On Receipt Page is present", "");
+			reporter.SuccessReport("Verify RP_HDL_Txt On Receipt Page", "RP_HDL_Txt On Receipt Page is present", "Header Level Smart Trackers: "+RP_HDL_Txt);
 			
 		}else{
 			reporter.failureReport("Verify RP_HDL_Txt On Receipt Page", "RP_HDL_Txt OnReceipt Page is not present", "",driver);
@@ -196,7 +197,7 @@ public class LineLevelInfoLib extends LineLevelInfoObj{
 	 */
 	public void verifyRP_LNL_TxtOnReceiptPage(String RP_LNL_Txt) throws Throwable{
 		if(isElementPresent(getRP_LNL_TxtOnReceiptPage(RP_LNL_Txt),"RP_HDL_Txt")){
-			reporter.SuccessReport("Verify RP_LNL_Txt On Receipt Page", "RP_LNL_Txt On Receipt Page is present", "");
+			reporter.SuccessReport("Verify RP_LNL_Txt On Receipt Page", "RP_LNL_Txt On Receipt Page is present", "Line Level Smart Trackers: RP_LNL_Txt: "+RP_LNL_Txt);
 			
 		}else{
 			reporter.failureReport("Verify RP_LNL_Txt On Receipt Page", "RP_LNL_Txt On PReceipt Page is not present", "",driver);
@@ -231,6 +232,8 @@ public class LineLevelInfoLib extends LineLevelInfoObj{
 		Thread.sleep(2000);
 		if(isElementPresent(ADDRESS_VALIDATION_SAVE_BTN, "shipping address validation save")){
 			click(ADDRESS_VALIDATION_SAVE_BTN, "save button");
+		}else {
+			reporter.failureReport("Verify Save address button on search shipping address page", "Save address button on search shipping address page doest not exists", "", driver);
 		}
 		Thread.sleep(2000);
 	}
@@ -268,7 +271,7 @@ public class LineLevelInfoLib extends LineLevelInfoObj{
 	 */
 	public void clickOnLinelevelInfoOptionalLink() throws Throwable{
 		if(isElementPresent(OrderObj.LINE_LEVEL_INFO, "Line level information link")){
-			reporter.SuccessReport("verify Line level information optional link", "Line level information link exists", "");
+			reporter.SuccessReport("verify Line level information optional link", "Line level information optional link exists but not required", "");
 			click(OrderObj.LINE_LEVEL_INFO, "Line level information link");
 		}else{
 			reporter.failureReport("verify Line level information optional link", "Line level information link does not exists", "",driver);
@@ -280,8 +283,11 @@ public class LineLevelInfoLib extends LineLevelInfoObj{
 	 * @throws Throwable
 	 */
 	public void verifyContractSpecificInfoOnPlaceOrderPage() throws Throwable{
+		List <WebElement> element=driver.findElements(CONTRACT_SPECIFIC_REPORTING_FIELDS);
 		if(isElementPresent(CONTRACT_SPECIFIC_INFO_LABEL, "contract spcific info")){
-			reporter.SuccessReport("Verify contract specific info", "contract specific info is present in place order page", "");
+			for(int i=0;i<=element.size();i++) {
+				reporter.SuccessReport("Verify contract specific info", "contract specific info is present in place order page", element.get(i).getText());
+			}
 		}else{
 			reporter.failureReport("Verify contract specific info", "contract specific info is not present in place order page", "",driver);
 		}
@@ -312,9 +318,11 @@ public class LineLevelInfoLib extends LineLevelInfoObj{
 	 * @throws Throwable
 	 */
 	public void enterRP_LNL_Date() throws Throwable{
+		
 		if(isElementPresent(RP_LNL_DATE_PICKER, "RP_LNL_DATE_PICKER")){
 			click(RP_LNL_DATE_PICKER, "Calnder");
-			click(RP_LNL_DATE_TODAY_DATE, "RP_LNL_DATE_TODAY_DATE");
+			click(RP_LNL_DATE_TODAY_DATE, "RP_LNL_DATE_TODAY_DATE",getText(RP_LNL_DATE_TODAY_DATE, "Today date"));
+			getAttributeByValue(DATE_AFTER_SELECTION, "date selection");
 		}else{
 			reporter.failureReport("verify RP_LNL_DATE_PICKER", "RP_LNL_DATE_PICKER is not visible", "", driver);
 		}
@@ -414,7 +422,7 @@ public class LineLevelInfoLib extends LineLevelInfoObj{
 		if(isElementPresent(getCountryOfUsageDD(partNum), "CountryOfUsage")){
 			reporter.SuccessReport("Verify CountryOfUsage DropDown", "Country Of Usage DropDown is present", "");
 		}else{
-			reporter.failureReport("Verify CountryOfUsage DropDown", "Country Of Usage DropDown is not present", "");
+			reporter.failureReport("Verify CountryOfUsage DropDown", "Country Of Usage DropDown is not present", "",driver);
 		}
 	}
 	
@@ -438,16 +446,16 @@ public class LineLevelInfoLib extends LineLevelInfoObj{
 		List<WebElement> myList = driver.findElements(productsDisplayInfoObj.STOCK_IN_SEARCH_RESULTS);
 		if(myList.size()>0){
 		for(i=0;i<myList.size();i++){
-			stockNumber=getText(productsDisplayInfoObj.getProductStockNumber(i), "Stock Number").replace("in stock", "").trim();
-			if(stockNumber.isEmpty() || stockNumber==null){
-				
-				reporter.failureReport("Verify the stock number for products displayed", "Stok number is empty or null for "+i+ " product","",driver);
-			}else{
-				reporter.SuccessReport("Verify the stock number for products displayed", "Stock number is displayed for " +i+ " Product as :"+stockNumber, "");
+			stockNumber=myList.get(i).getText();
+			if(stockNumber.contains("in stock")){
+				reporter.SuccessReport("Verify the stock number for products displayed", "Stock number is displayed for " +i+ " Product as :"+stockNumber, "Stock :"+stockNumber);
 				prodnum=getText(productsDisplayInfoObj.getPartNumber(i), "product name");
 				click(productsDisplayInfoObj.getproductName(i),"product stock");
+				break;
+			}else{
+				// do nothing
 			}
-			break;
+			
 		  }
 		}	
 		else{
@@ -465,30 +473,29 @@ public class LineLevelInfoLib extends LineLevelInfoObj{
 		List<WebElement> element = driver.findElements(getTotalInputFieldsInLLI(partNum));
 		if(element.size()>0){
 			if(isElementPresent(getContactEmailLLInfo(partNum),"email contact") && !getAttributeByValue(getContactEmailLLInfo(partNum),"email contact").isEmpty() && getAttributeByValue(getContactEmailLLInfo(partNum),"email contact").equals(email)){
-				reporter.SuccessReport("Verify Smart Trakers email contact Exists and Sorted", "Smart Trakers email contact Exists and Sorted for "+partNum+" part number", "");
+				reporter.SuccessReport("Verify Smart Trakers email contact Exists and Sorted", "Smart Trakers email contact Exists and Sorted for "+partNum+" part number", "Email :  "+email);
 			}else{
 				reporter.failureReport("Verify Smart Trakers email contact Exists and Sorted", "Smart Trakers email contact does not Exists or not Sorted in order for "+partNum+" part number", "", driver);
 			  }
 			
 			if(isElementPresent(getgetRP_LNL_TxtByPartNum(partNum),"RP_LNL_Txt") && !getAttributeByValue(getgetRP_LNL_TxtByPartNum(partNum),"RP_LNL_Txt").isEmpty() && getAttributeByValue(getgetRP_LNL_TxtByPartNum(partNum),"RP_LNL_Txt").equals(rP_LNL_Txt)){
-				reporter.SuccessReport("Verify Smart Trakers RP_LNL_Txt Exists and Sorted", "Smart Trakers RP_LNL_Txt Exists and Sorted for "+partNum+" part number", "");
+				reporter.SuccessReport("Verify Smart Trakers RP_LNL_Txt Exists and Sorted", "Smart Trakers RP_LNL_Txt Exists and Sorted for "+partNum+" part number", "RP_LNL_Txt : "+rP_LNL_Txt);
 			}else{
 				reporter.failureReport("Verify Smart Trakers RP_LNL_Txt Exists and Sorted", "Smart Trakers RP_LNL_Txt does not  Exists or not Sorted in order for "+partNum+" part number", "", driver);
 			  }
 			
 			if(isElementPresent(getRP_LNL_TodayDate(partNum),"RP_LNL_TODAY_DATE") && !getAttributeByValue(getRP_LNL_TodayDate(partNum),"RP_LNL_TODAY_DATE").isEmpty() && getAttributeByValue(getRP_LNL_TodayDate(partNum),"RP_LNL_TODAY_DATE").equals(getCurrentDateTime("dd-MMM-yyyy"))){
-				reporter.SuccessReport("Verify Smart Trakers RP_LNL_TODAY_DATE Exists and Sorted", "Smart Trakers RP_LNL_TODAY_DATE Exists and Sorted for "+partNum+" part number", "");
+				reporter.SuccessReport("Verify Smart Trakers RP_LNL_TODAY_DATE Exists and Sorted", "Smart Trakers RP_LNL_TODAY_DATE Exists and Sorted for "+partNum+" part number", "Date: "+getAttributeByValue(getRP_LNL_TodayDate(partNum),"RP_LNL_TODAY_DATE"));
 			}else{
 				reporter.failureReport("Verify Smart Trakers RP_LNL_TODAY_DATE Exists and Sorted", "Smart Trakers RP_LNL_TODAY_DATE does not Exists or not Sorted in order for "+partNum+" part number", "", driver);
 			  }
 			
 			if(isElementPresent(RP_LNL_Lst_DD,"RP_LNL_Lst_DD") && !getAttributeByValue(RP_LNL_Lst_DD,"RP_LNL_Lst_DD").isEmpty() && getAttributeByValue(RP_LNL_Lst_DD,"RP_LNL_Lst_DD").equals(rP_LNL_Lst_DD)){
-				reporter.SuccessReport("Verify Smart Trakers RP_LNL_Lst_DD Exists and Sorted", "Smart Trakers RP_LNL_Lst_DD Exists and Sorted for "+partNum+" part number", "");
+				reporter.SuccessReport("Verify Smart Trakers RP_LNL_Lst_DD Exists and Sorted", "Smart Trakers RP_LNL_Lst_DD Exists and Sorted for "+partNum+" part number", "RP_LNL_Lst_DD : "+rP_LNL_Lst_DD);
 			}else{
 				reporter.failureReport("Verify Smart Trakers RP_LNL_Lst_DD Exists and Sorted", "Smart Trakers RP_LNL_Lst_DD does not Exists or not Sorted in order for "+partNum+" part number", "", driver);
 			  }
 			}
-			
 			}
 		
 	/**
@@ -726,6 +733,7 @@ public class LineLevelInfoLib extends LineLevelInfoObj{
 		String option=getSelectedDropdownOption(COUNTRY);
 		if (option.equals(country)) {	
 			Log.info("Country already selected"+country);
+			reporter.SuccessReport("Country", "Country selected", country);
 		}else{
 			click(COUNTRY,"COUNTRY");
 		    selectByVisibleText(COUNTRY, country, "country");
@@ -740,12 +748,21 @@ public class LineLevelInfoLib extends LineLevelInfoObj{
 		commonLib.spinnerImage();
 		if(isElementPresent(OrderObj.PROCEED_TO_CHECKOUT, "Proceed to checkout") && isEnabled(OrderObj.PROCEED_TO_CHECKOUT, "Proceed to checkout")){
 			clickUntil(OrderObj.PROCEED_TO_CHECKOUT, OrderObj.ORDER_ITEM_INFO_LABEl, "Proceed to checkout");
-			reporter.failureReport("Verify the Proceed to checkout button visibility","Proceed to checkout is visible and clicked","Clicked on Proceed to checkout ",driver);
-
 		}else{
 			reporter.failureReport("Verify the Proceed to checkout button visibility","Proceed to checkout is not visible or disabled","",driver);
+	}
 		}
+	
+	/*
+	 *Verify the Stock Value on Cart Page and product details 
+	 */
+	public void verifyStockNumberOnProductDetailsAndCart(String cartStock, String productDetailsStock) throws Throwable {
+		if(productDetailsStock.equals(cartStock)) {
+			reporter.SuccessReport("Verify the Stock Val on Cart Page", "Stock Val Showing on Product Deatils Page and Stock Val in the Cart Page are Same", "Stock Val on Product Details "+productDetailsStock+"  Stock Val on Cart Page: "+cartStock);
+		}else {
+			reporter.failureReport("Verify the Stock Val on Cart Page", "Stock Val Showing on Product Deatils Page and Stock Val in the Cart Page are notSame", "Stock Val on Product Details "+productDetailsStock+"  Stock Val on Cart Page: "+cartStock, driver);
 		}
+	}
 }
 
 

@@ -62,6 +62,7 @@ public class REP10_InvoicedSummaryPDFTest extends ReportingLib {
 					InvoiceHistoryLib invoiceHistoryLib = new InvoiceHistoryLib();
 					MarriottIntlCorpLib marriottIntlCorpLib = new MarriottIntlCorpLib();
 					CommonLib commonLib = new CommonLib();
+					
 					cmtLib.loginToCMTSearchWebGrpAndUser(data.get("Header"), data.get("WebGrp"),
 							data.get("LnameEmailUname"), data.get("ContactName"));
 					cmtLib.setPermissionsToDisable(data.get("Menu_Name"), data.get("Set_Permission1"));

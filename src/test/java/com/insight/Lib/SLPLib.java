@@ -44,7 +44,7 @@ public class SLPLib extends SLPObj {
 		String Proratedprice = getText(Priceincart(PartNum), "Price in cart page").replace("$", "").replace("USD", "");
 		Double actualProratedprice = Double.valueOf(Proratedprice);
 		if (Proratedprice.equals(Actualprice) && actualProratedprice >= Actualprice) {
-			reporter.failureReport("Prorartion::", "ProratedPrice Matches With Actual Price:","Product Actual Price: "+Actualprice+ "Prorated price USD $"+Proratedprice);
+			reporter.failureReport("Prorartion::", "ProratedPrice Matches With Actual Price:","Product Actual Price: "+Actualprice+ "Prorated price USD $"+Proratedprice,driver);
 		} else {
 			reporter.SuccessReport("Prorartion::",
 					" Prorated Price is displayed ","Product Actual Price: " +Actualprice+ "Prorated price USD $"+Proratedprice);
@@ -60,7 +60,7 @@ public class SLPLib extends SLPObj {
 		String Subtotalamount = getText(ShipBillPayObj.getAmountsInSummary(AmountType),"Subtotal Amount in Place Order Page").replace("$", "");
 		Double actualSubTotalAmt = Double.parseDouble(Subtotalamount);
 		if (Subtotalamount.equals(Actualprice) && actualSubTotalAmt >= Actualprice) {
-			reporter.failureReport("Prorartion::", "ProratedPrice Matches With Actual Price:", Subtotalamount);
+			reporter.failureReport("Prorartion::", "ProratedPrice Matches With Actual Price:", Subtotalamount,driver);
 		} else {
 			reporter.SuccessReport("Prorartion::",
 					"ProratedPrice does not Matches With Actual Price."," Proratedprice-" + Subtotalamount +  
@@ -78,7 +78,7 @@ public class SLPLib extends SLPObj {
 		String Proratedprice = getText(OrderObj.TOTAL_AMOUNT,"Total Amount In Reciept Page").replace("$", "");
 		Double actualProratedprice = Double.valueOf(Proratedprice);
 		if (Proratedprice.equals(Actualprice) && actualProratedprice >= Actualprice) {
-			reporter.failureReport("Prorartion::", "ProratedPrice Matches With Actual Price:", Proratedprice);
+			reporter.failureReport("Prorartion::", "ProratedPrice Matches With Actual Price:", Proratedprice,driver);
 		} else {
 			reporter.SuccessReport("Prorartion::",
 					"ProratedPrice Matches does not With Actual Price.", "Proratedprice-" + Proratedprice +
@@ -94,7 +94,7 @@ public class SLPLib extends SLPObj {
 	 */
 	public void verifyProrationPrice(double totalAmount,double Actualprice) throws Throwable{
 		if (totalAmount == Actualprice && totalAmount >= Actualprice) {
-			reporter.failureReport("Prorartion::", "ProratedPrice Matches With Actual Price:"+ totalAmount,"");
+			reporter.failureReport("Prorartion::", "ProratedPrice Matches With Actual Price:"+ totalAmount,"",driver);
 		} else {
 			reporter.SuccessReport("Prorartion::",
 					"Prorated Price is displayed. ","Proratedprice- $" + totalAmount + "  Actualprice: $" + Actualprice + "");
@@ -135,7 +135,7 @@ public class SLPLib extends SLPObj {
 		if(isElementPresent(getRequisitionApprovedMsg(refNum),"Requisition approval message")){
 			reporter.SuccessReport("Verify requisition success message", "Requisition has been approved for ref number "+refNum, "");
 		}else{
-			reporter.failureReport("Verify requisition success message", "Requisition has not approved for ref number  "+refNum, "");
+			reporter.failureReport("Verify requisition success message", "Requisition has not approved for ref number  "+refNum, "",driver);
 		}
 	}
 	
@@ -151,7 +151,7 @@ public class SLPLib extends SLPObj {
 		if (isElementPresent(deploy_date(partnum), "Deploy Date")) {
 			reporter.SuccessReport("Deploy Date::", "Deploy Date Exists As Expected in Cart Page", "Deploy Date : "+Deploydate+"");
 		} else {
-			reporter.failureReport("Deploy Date::", "Deploy Date Doesnot Exists As Expected", "");
+			reporter.failureReport("Deploy Date::", "Deploy Date Doesnot Exists As Expected", "",driver);
 		}
 
 	}
@@ -167,7 +167,7 @@ public class SLPLib extends SLPObj {
 			reporter.SuccessReport("License Type::", "License Type: New Exists in the Cart",
 					LicenseType);
 		} else {
-			reporter.failureReport("License Type::", "New  for MPSA Products in the Cart Doesnot Exists", "");
+			reporter.failureReport("License Type::", "New  for MPSA Products in the Cart Doesnot Exists", "",driver);
 		}
 
 	}
@@ -179,7 +179,7 @@ public class SLPLib extends SLPObj {
 	 */
 	public void verifylicensetypenotexists(String partnum) throws Throwable {
 		if (isElementPresent(licensetype(partnum), "License Type")) {
-			reporter.failureReport("License Type::", "New  for MPSA Products in the Cart Exists", "");
+			reporter.failureReport("License Type::", "New  for MPSA Products in the Cart Exists", "",driver);
 		} else {
 			reporter.SuccessReport("License Type::", "New  for MPSA Products in the Cart Doesnot Exists",
 					"");
@@ -207,7 +207,7 @@ public class SLPLib extends SLPObj {
 					reporter.SuccessReport("Verify the Reference number ", "The reference number: " , referenceNumber);
 				}
 			} else{
-				reporter.failureReport("Verify the Reference number ", "The reference number is null or empty.","");
+				reporter.failureReport("Verify the Reference number ", "The reference number is null or empty.","",driver);
 			}
 			
 			// Total Amount verification
@@ -219,7 +219,7 @@ public class SLPLib extends SLPObj {
 					reporter.failureReport("Verify the Total Amount ", "The Total Amount is not updated correctly. ","");
 				}
 			} else {
-				reporter.failureReport("Verify the Total Amount ", "The Total Amount is not updated. ","");
+				reporter.failureReport("Verify the Total Amount ", "The Total Amount is not updated. ","",driver);
 			}
 
 			// date ordered verification
@@ -229,7 +229,7 @@ public class SLPLib extends SLPObj {
 				if (actualDate.contains(dateOrdered)) {
 					reporter.SuccessReport("Verify the Date ordered ", " date ordered verification is successfull","");
 				} else {
-					reporter.failureReport("Verify the Date ordered ", " date ordered verification is not successfull : "+dateOrdered+" .Expected Date :",actualDate);
+					reporter.failureReport("Verify the Date ordered ", " date ordered verification is not successfull : "+dateOrdered+" .Expected Date :",actualDate,driver);
 				}
 			}
 		}
@@ -242,7 +242,7 @@ public class SLPLib extends SLPObj {
 	 */
 	public void verifycopytoallnotexists(String partnum) throws Throwable {
 		if (isElementPresent(copytoall(partnum), "Copy to All")) {
-			reporter.failureReport("Copy to All::", "Copy To All Link Cart Exists", "");
+			reporter.failureReport("Copy to All::", "Copy To All Link Cart Exists", "",driver);
 		} else {
 			reporter.SuccessReport("Copy to All::", "Copy To All Link in Cart not Exists As Expected", "");
 		}
@@ -258,7 +258,7 @@ public class SLPLib extends SLPObj {
 			clickUntil(copytoall(partnum),DEPLOY_DATEINPOPUP, "Copy to All");
 			reporter.SuccessReport("Copy to All::", "Copy To All Link Cart Exists As Expected and Selected", "");
 		} else {
-			reporter.failureReport("Copy to All::", "Copy To All Link Cart Not Exists", "");
+			reporter.failureReport("Copy to All::", "Copy To All Link Cart Not Exists", "",driver);
 		}
 	}
 	
@@ -271,7 +271,7 @@ public class SLPLib extends SLPObj {
 			if (actualDate.contains(deploydate)) {
 				reporter.SuccessReport("Deploy Date:: ", "Deploy Date is defaulted to Today's Date","Deploy Date: "+deploydate);
 			} else {
-				reporter.failureReport("Deploy Date:: ", "verification of deploy date with current date is Not successfull : "+deploydate+" .Expected Date :",actualDate);
+				reporter.failureReport("Deploy Date:: ", "verification of deploy date with current date is Not successfull : "+deploydate+" .Expected Date :",actualDate,driver);
 			}
 		}
 		return deploydate;
@@ -287,7 +287,7 @@ public class SLPLib extends SLPObj {
 			clickUntil(Change(partnum),DEPLOY_DATEINPOPUP, "Change");
 			reporter.SuccessReport("Change::", "Change Link Cart Exists As Expected and Selected", "");
 		} else {
-			reporter.failureReport("Change::", "Change Link Cart Not Exists", "");
+			reporter.failureReport("Change::", "Change Link Cart Not Exists", "",driver);
 		}
 	}
 	
@@ -308,7 +308,7 @@ public class SLPLib extends SLPObj {
 			reporter.SuccessReport("PopUpData::", "PopUpData Qty,Mfr Num and Description  Exists As Expected", "");
 		}
 			else {
-			reporter.failureReport("PopUpData::", "PopUpData Not Exists", "");
+			reporter.failureReport("PopUpData::", "PopUpData Not Exists", "",driver);
 		}
 	}
 	
@@ -322,7 +322,7 @@ public class SLPLib extends SLPObj {
 		if (PartNum.equals(partnum)) {
 			reporter.SuccessReport("PartNum::", "PartNum in popupdata Matches SerachedProduct PartNum", "");
 		} else {
-			reporter.failureReport("PartNum::", "PartNum in popupdata not Matches SerachedProduct PartNum", "");
+			reporter.failureReport("PartNum::", "PartNum in popupdata not Matches SerachedProduct PartNum", "",driver);
 		}
 	}
 	/**
@@ -345,7 +345,7 @@ public class SLPLib extends SLPObj {
 		String UpadtedLicense =getText(licensetype(partnum),"License");
 		System.out.println("UpadtedLicense::"+UpadtedLicense);
 		if (UpadtedLicense.equals(previouseLicense)) {
-			reporter.failureReport("Updated License::", "Updated License is Not Displayed", "License :"+UpadtedLicense);
+			reporter.failureReport("Updated License::", "Updated License is Not Displayed", "License :"+UpadtedLicense,driver);
 		} else {
 			reporter.SuccessReport("Updated License::", "License is Updated and Displayed", "License :"+UpadtedLicense);
 		}
@@ -363,7 +363,7 @@ public class SLPLib extends SLPObj {
 		if (isVisibleOnly(unpaidLicenseType(partnum), "license type")) {
 			reporter.SuccessReport("Updated License::", "License is Updated and Displayed", "License type of Insight part :"+partnum+ " is "+UnpaidLicense);
 		} else {
-			reporter.failureReport("Updated License::", "Updated License is Not Displayed", "License :"+UnpaidLicense);
+			reporter.failureReport("Updated License::", "Updated License is Not Displayed", "License :"+UnpaidLicense,driver);
 		}
 	}
 	
@@ -434,7 +434,7 @@ public class SLPLib extends SLPObj {
 		if (isElementPresent(Prorationtext(Partnum), "Proration Text")) {
 			reporter.SuccessReport("Proration Text::", "Proration Text Exists", ""+ProrationText+"");
 		} else {
-			reporter.failureReport("Proration Text::", "Proration Text not Exists", "");
+			reporter.failureReport("Proration Text::", "Proration Text not Exists", "",driver);
 		}
 	}
 	
@@ -499,7 +499,7 @@ public class SLPLib extends SLPObj {
 			  reporter.SuccessReport("Verify send_cart in Export Cart Excel File", "send_cart Exists", "Sheet Name: send_cart");
 			  
 		  }else{
-			  reporter.failureReport("Verify send_cart in Export Cart Excel File", "send_cart does not Exists", "");
+			  reporter.failureReport("Verify send_cart in Export Cart Excel File", "send_cart does not Exists", "",driver);
 		  }
 		  wb.close();
 		  if (file.exists()) {
@@ -513,7 +513,7 @@ public class SLPLib extends SLPObj {
 		public void verifyProccedToCheckOutbuttonExists() throws Throwable{
 			commonLib.spinnerImage();
 			if(isElementPresent(OrderLib.PROCEED_TO_CHECKOUT, "Proceed to checkout") && isEnabled(OrderLib.PROCEED_TO_CHECKOUT, "Proceed to checkout")){
-				reporter.failureReport("Verify proceed to checkout button", "Proceed to checkout button exists","");
+				reporter.failureReport("Verify proceed to checkout button", "Proceed to checkout button exists","",driver);
 			}else{
 				reporter.SuccessReport("Verify proceed to checkout button", "Proceed to checkout button does not exists", "");
 			}
@@ -527,7 +527,7 @@ public class SLPLib extends SLPObj {
 			if(isElementPresent(USER_REQUIRES_APPROVAL_MSG, "user requires alert message")){
 				reporter.SuccessReport("Verify Alert message displayed on CART Page", "Alert Exists", getText(USER_REQUIRES_APPROVAL_MSG, "approvel message"));
 			}else{
-				reporter.failureReport("Verify Alert message displayed on CART Page", "Alert does not Exists", "");
+				reporter.failureReport("Verify Alert message displayed on CART Page", "Alert does not Exists", "",driver,driver);
 			}
 		}
 		
@@ -539,7 +539,7 @@ public class SLPLib extends SLPObj {
 			if(isElementPresent(CITRIX_ITEMS_IN_CART, "Citrix item")){
 				reporter.SuccessReport("Verify CITRIX item in cart", "CITRIX Product is Existed and Verified", "");
 			}else{
-				reporter.failureReport("Verify CITRIX item in cart", "CITRIX Product does not exist", "");
+				reporter.failureReport("Verify CITRIX item in cart", "CITRIX Product does not exist", "",driver);
 			}
 		}
 		
@@ -551,7 +551,7 @@ public class SLPLib extends SLPObj {
 			if(isElementPresent(NON_CITRIX_ITEMS_REMOVE_MESSAGE, "NON CITRIX ITEMS REMOVE MESSAGE")){
 				reporter.SuccessReport("Verify NON CITRIX Past Message on CART Page", "In order to report usage please remove items that do not apply to the selected service provider Exist", "Message: In order to report usage please remove items that do not apply to the selected service provider");
 			}else{
-				reporter.failureReport("Verify NON CITRIX Past Message on CART Page", "In order to report usage please remove items that do not apply to the selected service provider Not Exists", "");
+				reporter.failureReport("Verify NON CITRIX Past Message on CART Page", "In order to report usage please remove items that do not apply to the selected service provider Not Exists", "",driver);
 			}
 		}
 		
@@ -578,7 +578,7 @@ public class SLPLib extends SLPObj {
 			}
 			else {
 				reporter.failureReport("Verify the Created Quote is saved in the Last Five Quotes",
-						" Created Quote is not  saved in the Last Five Quotes", "");
+						" Created Quote is not  saved in the Last Five Quotes", "",driver);
 			}
 		     }
 		
@@ -606,7 +606,7 @@ public class SLPLib extends SLPObj {
 				reporter.SuccessReport("verify reporting usage period on RECEIPT PAGE",
 						"Usage Field Exists and Verified. " + period," Report usage for:" + ""+period +"  "+enrolment);
 			} else {
-				reporter.failureReport("verify reporting usage period on RECEIPT PAGE", "Usage Field does not Exists. ", "");
+				reporter.failureReport("verify reporting usage period on RECEIPT PAGE", "Usage Field does not Exists. ", "",driver);
 			}
 			return period;
 		}
@@ -636,7 +636,7 @@ public class SLPLib extends SLPObj {
 			if(amount!=0){
 				reporter.SuccessReport("Verify amount exits or not ", "Amount exists and not equal to null", String.valueOf(amount));
 			}else{
-				reporter.failureReport("Verify amount exits or not ", "Amount does not exists", "");
+				reporter.failureReport("Verify amount exits or not ", "Amount does not exists", "",driver);
 			}
 			
 		}
@@ -649,7 +649,7 @@ public class SLPLib extends SLPObj {
 			if(isElementPresent(REPORTING_PERIOD_WARNING_MSG, "verify repoting warning message")){
 				reporter.SuccessReport("Verify reporting period warning message", "Reporting period warning message", "");
 			}else{
-				reporter.failureReport("Verify reporting period warning message", "Reporting period warning message does not exist", "");
+				reporter.failureReport("Verify reporting period warning message", "Reporting period warning message does not exist", "",driver);
 			}
 		}
 		
@@ -683,6 +683,7 @@ public class SLPLib extends SLPObj {
 			if(isVisible(getCopyAllLink(parNumber), "Copy To All")) {
 				reporter.SuccessReport("Select Copy to all items in cart on Line Level Page", "COPY TO ALL link Exists", "");
 				JSClick(getCopyAllLink(parNumber), "Copy To All");
+				Thread.sleep(4000);
 			}else {
 				reporter.failureReport("Select Copy to all items in cart on Line Level Page", "COPY TO ALL link does not Exist", "",driver);
 			}
@@ -715,7 +716,7 @@ public class SLPLib extends SLPObj {
 				clickUntil(change_field(partNum),DEPLOY_DATEINPOPUP, "Change");
 				reporter.SuccessReport("Change::", "Change Link Cart Exists As Expected and Selected", "");
 			} else {
-				reporter.failureReport("Change::", "Change Link Cart Not Exists", "");
+				reporter.failureReport("Change::", "Change Link Cart Not Exists", "",driver);
 			}
 		}
 		/*
@@ -726,7 +727,7 @@ public class SLPLib extends SLPObj {
 			if(isElementPresent(ALL_REPORTING_PERIODS_CURRENT_LABEL_CART_PAGE, "verify All Reporting Periods Current")){
 				reporter.SuccessReport("Verify All Reporting Periods Current message", "Cart Display's All Reporting Periods Current", "");
 			}else{
-				reporter.failureReport("Verify All Reporting Periods Current message", "All Reporting Periods Current message does not exist", "");
+				reporter.failureReport("Verify All Reporting Periods Current message", "All Reporting Periods Current message does not exist", "",driver);
 
 			}
 		}
@@ -735,7 +736,7 @@ public class SLPLib extends SLPObj {
 			if (isElementPresent(DEPLOYEDDATE_CARTPAGE, "Deploy Date")) {
 				deploydate = getText(DEPLOYEDDATE_CARTPAGE, "Date ordered");
 				if (deploydate.isEmpty()) {
-					reporter.failureReport("Verify the Deploy Date in cart page ", "The Deploy Date is null or empty. ","");
+					reporter.failureReport("Verify the Deploy Date in cart page ", "The Deploy Date is null or empty. ","",driver);
 
 				} else
 					reporter.SuccessReport("Verify the Deploy Date in cart page", "The Deploy Date: " , deploydate);
@@ -748,7 +749,7 @@ public class SLPLib extends SLPObj {
 			if (isElementPresent(DEPLOYEDDATE_CARTPAGE, "Deploy Date")) {
 				deploydate = getText(DEPLOYEDDATE_CARTPAGE, "Date ordered");
 				if (deploydate.isEmpty()) {
-					reporter.failureReport("Verify the Deploy Date in PlaceOrder page ", "The Deploy Date is null or empty. ","");
+					reporter.failureReport("Verify the Deploy Date in PlaceOrder page ", "The Deploy Date is null or empty. ","",driver);
 
 				} else
 					reporter.SuccessReport("Verify the Deploy Date in PlaceOrder page", "The Deploy Date: " , deploydate);
@@ -769,7 +770,7 @@ public class SLPLib extends SLPObj {
 				String PA_Value = getText(PA_fieldinplaceorderpage(i), "PA field in line level Information in Place order Page").replace("PA #:", " ").trim();
 				reporter.SuccessReport("Verify PA# Field in Place Order Page ", "PA#"+i+" Field  Exists and Verified","PA Field:PA #: "+PA_Value);
 			} else
-				reporter.failureReport("Verify PA# Field in Place Order Page", "PA# Field does not exist" , "");
+				reporter.failureReport("Verify PA# Field in Place Order Page", "PA# Field does not exist" , "",driver);
 				}
 		}
 		
@@ -802,7 +803,7 @@ public class SLPLib extends SLPObj {
 			if (isElementPresent(CommonObj.SEARCH_RESULTS_PAGE, "Search results")&& isVisibleOnly(RETURN_TO_SLP, "Return to SLP link ")) {
 				reporter.SuccessReport("Verify search results page", "Search results page displayed", "Search results ");
 			} else {
-				reporter.failureReport("Verify search results page", "Search results page not verified successfully", "");
+				reporter.failureReport("Verify search results page", "Search results page not verified successfully", "",driver);
 			}
 		}
 		
@@ -816,7 +817,7 @@ public class SLPLib extends SLPObj {
 			if(amount==0){
 				reporter.SuccessReport("Find SubTotalCurrency Code and Amount in Cart Summary on Content & resources ", "SubTotal Currency Code and Amount Exists", "Currency Code and Amount: USD$0.00");
 			}else{
-				reporter.failureReport("Find SubTotalCurrency Code and Amount in Cart Summary on Content & resources ", "SubTotal Currency Code and Amount does not exists", "");
+				reporter.failureReport("Find SubTotalCurrency Code and Amount in Cart Summary on Content & resources ", "SubTotal Currency Code and Amount does not exists", "",driver);
 			}
 		}
 		
@@ -824,7 +825,7 @@ public class SLPLib extends SLPObj {
 			if(actualPeriod.equals(expectedPeriod)) {
 				reporter.SuccessReport("Verify Usage Period ", "Cart Display's Usage Months alredy Reported Upon",actualPeriod );
 			}else{
-				reporter.failureReport("Find SubTotalCurrency Code and Amount in Cart Summary on Content & resources ", "Cart does not Display's Usage Months alredy Reported Upon", "");
+				reporter.failureReport("Find SubTotalCurrency Code and Amount in Cart Summary on Content & resources ", "Cart does not Display's Usage Months alredy Reported Upon", "",driver);
 			}
 		}
 		
@@ -854,7 +855,7 @@ public class SLPLib extends SLPObj {
 			if(mfrPart.equals(mfrNum) && Desc.equals(description) && date.equals(popupDate)) {
 				reporter.SuccessReport("Verify the data in Deploy Date POP-up", "Mnf# Part and Search Item are Same and Verfied", "Description: "+description+"  MfrNum : "+mfrNum+"  Date: "+date);
 			}else {
-				reporter.failureReport("Verify the data in Deploy Date POP-up", "Mnf# Part and Search Item are not Same", "");
+				reporter.failureReport("Verify the data in Deploy Date POP-up", "Mnf# Part and Search Item are not Same", "",driver);
 			}
 		}
 		/***
@@ -917,7 +918,7 @@ public class SLPLib extends SLPObj {
 			if(isVisibleOnly(getDeployDateAndLicenceTypeOnPlaceOrderPage(dateorLicence, partNum), "Deploy dat and Licence")) {
 				reporter.SuccessReport("Validate Deployment date and License Type", "Validate Deployment date and License Type", "Deployment Date for Insight Part #: "+partNum+" Date: "+dateorLicence);
 			}else {
-				reporter.failureReport("Validate Deployment date and License Type", "Validate Deployment date and License Type", "");
+				reporter.failureReport("Validate Deployment date and License Type", "Validate Deployment date and License Type", "",driver);
 			}
 		}
 		
@@ -926,11 +927,11 @@ public class SLPLib extends SLPObj {
 		 * @param date
 		 * @throws Throwable
 		 */
-		public void verifyProductDeployDate(String date) throws Throwable {
+		public void verifyProductDeployDate(String date,String license) throws Throwable {
 			List <WebElement> element=driver.findElements(By.xpath("//span[contains(text(),'"+date+"')]"));
 			for(i=1;i<=element.size();i++) {
-				if(isVisible(getDeployDateOnQuotePage(i,date), "date")) {
-					reporter.SuccessReport("Deploy Date Field ", "Updated Deploy Date Field on Quote screen is Exists","Deploy date :"+date );
+				if(isVisible(getDeployDateOnQuotePage(i,date), "date") && isVisible(getDeployDateOnQuotePage(i,license), "date")) {
+					reporter.SuccessReport("Deploy Date Field ", "Updated Deploy Date Field on Quote screen is Exists","Deploy date :"+date +"License :"+license);
 				}	else {
 					reporter.failureReport("Deploy Date Field ", "Updated Deploy Date Field on Quote screen does not  Exists",date,driver );
 				}
@@ -983,7 +984,7 @@ public class SLPLib extends SLPObj {
 			 if(isElementPresent(OrderLib.SAVE_QUOTE_MSG, "Success message")){
 				 reporter.SuccessReport("Verify Success message", "Save as Quote - Successful message displayed","");
 			 }else{
-				 reporter.failureReport("Verify Success message ", "Save as Quote - Successful message not displayed ",""); 
+				 reporter.failureReport("Verify Success message ", "Save as Quote - Successful message not displayed ","",driver); 
 			}
 		 }
 		 
@@ -1008,5 +1009,49 @@ public class SLPLib extends SLPObj {
 				}
 			}
 
-}
+			/**
+			 * 
+			 * @throws Throwable
+			 */
+			public void verifyProratedCart() throws Throwable {
+				waitForVisibilityOfElement(PRORATED_CART, "Canada Product Prorated Price");
+				if (isVisibleOnly(PRORATED_CART, "Product Prorated Price")) {
+					reporter.SuccessReport("Verify MPSA Products are Prorated in the Cart", "Message : MPSA Products are Prorated in the Cart", "The price displayed has been prorated based on the remaining agreement period");
+				} else {
+					reporter.failureReport("Prorated Price displayed in the Cart Page", "MPSA Products  are Not prorated", "",driver);
+				}
+			}
+			
+			/**
+			 * 
+			 * @param parNum
+			 * @param date
+			 * @throws Throwable
+			 */
+			public void verifydeployeDateinCartPageAfterDateChange(String parNum,String date)throws Throwable {
+				String DeployDate=getDeploydateOnCart(parNum);
+					if (DeployDate.contains(date)) {
+						reporter.SuccessReport("Deploy Date:: ", "verification of deploy date in cart is successfull","Deployment Date &License Type for Insight Part #:  "+parNum+"  Deploy date: "+DeployDate);
+					} else {
+						reporter.failureReport("Deploy Date:: ", "verification of deploy date is Not successfull : "+DeployDate+" .Expected Date :",date,driver);
+					}
+			}
+			
+			/**
+			 * Verify parts prorated in Quotes details screen
+			 * @throws Throwable
+			 */
+			public void verifyMSPAProductsProratedOnQuoteDetailsScreen() throws Throwable {
+				List<WebElement> element=driver.findElements(PRORATED_QUOTEDETAILS_LABEL);
+				if(isVisibleOnly(PRORATED_QUOTEDETAILS_LABEL, "MSPA prorated")) {
+					for(i=0;i<element.size();i++) {
+						String proratedProduct=getText(PRORATED_QUOTEDETAILS_LABEL, "Prorated label");
+						reporter.SuccessReport("Verify MSPA Products are Prorated in Quotes details", "MSPA Products are Prorated in Quotes details", proratedProduct);
+					}
+				}else {
+					reporter.failureReport("Verify MSPA Products are Prorated in Quotes details", "MSPA Products are not Prorated in Quotes details", "",driver);
+				   }
+				}
+			}
+
 

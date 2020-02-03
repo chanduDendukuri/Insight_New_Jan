@@ -162,4 +162,10 @@ public class SLPObj extends ActionEngine{
      public static By mfrRequirementsOnPlaceOrderPage(int j) {
     	 return By.xpath("(//section[@class='line-level__section']//div//label)["+j+"]");
      }
+     
+     public static By PRORATED_CART=By.xpath("//p[@class='proration__text' and contains(text(),'The price displayed has been prorated based on the remaining agreement period.')]");
+     
+     public static By PRORATED_QUOTEDETAILS_LABEL=By.xpath("//td[@class='footable-visible'][2][contains(.,'The price displayed may be prorated upon quote conversion based on the remaining program period.')]");
+     public static By PRORATED_PRODUCT_DESC=By.xpath("//td[@class='footable-visible'][2]//a");
+
 }

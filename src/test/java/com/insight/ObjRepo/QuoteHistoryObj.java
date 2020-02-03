@@ -79,9 +79,18 @@ public class QuoteHistoryObj extends ActionEngine {
 	 public static By DELETE = By.xpath("//a[@data-tooltip='delete']");
 	 public static By QUOTEHISTORY = By.xpath("//h2[contains(.,'Quote History')]");
 	 public static By QUOTEDETAILS = By.xpath("//h2[contains(.,'Quote Details')]");
+	 public static By mfrPartInQuotedetails= By.xpath("//*[@id='js-quote-detail']/main/table/tbody/tr/td[1]");
+	 public static By InsightPartInQuotedetails = By.xpath("//*[@id='js-quote-detail']/main/table/tbody/tr/td[2]");
 	 public static By getQuickSearchQuoteFormTable(String QuoteNumber){
 		 return By.xpath("//table[@id='quoteSearch']//tbody//tr//td//a[contains(.,'"+QuoteNumber+"')]");
 	 }
+	 public static By btn_PlaceOrder = By.xpath("(//button[contains(text(),'Place order')])[2]");
+	 public static By txt_frieght  = By.xpath("(//div[@class='columns cart-summary__label']//p[@class='no-margin-bot'])[2]");
+	 public static By txt_frieghtCost = By.xpath("(//*[@id=\"CartContainer\"]//span[@class='iw-currency'])[9]");
+	 public static By CurrencyCodeAndAmount = By.xpath("(//*[@id=\"CartContainer\"]//div/div[2]/div[2]//span[@class='iw-currency'])[8]");
+	 public static By txt_Carrier = By.xpath("//label[contains(text(),'Shipping carrier:')]//following-sibling::p");
+	 public static By txt_EstimateShipping = By.xpath("(//*[@id='CartContainer']//span[contains(text(),'Shipping estimate')]//following::span[@class='iw-currency__amount'])[1]");
+	 public static By txt_Paymentdd = By.xpath("//span[@id='react-select-8--value-item']");
 	 public static By txt_Email = By.xpath("//input[@name='licenseInformation.CONTACT_EMAIL']");
 	 public static By txt_QuoteNumber = By.xpath("//div[@id=\"js-recent-quotes-target\"]//a");
 		public static By QUICK_SEARCH_TEXT = By.xpath("//input[@id='quoQuickInputNumber']");
@@ -94,6 +103,7 @@ public class QuoteHistoryObj extends ActionEngine {
 		 public static By getContactName(String contactName){
 			 return By.xpath("//div[@class='columns small-12 medium-4']//p[contains(.,'"+contactName+"')]");
 		 }
+		 public static By RecentOrders = By.xpath("//h1[contains(text(),'Recent Orders')]"); 
 		 //Add additional information
 		 public static By BUSSINESSUNIT = By.xpath("//input[@name='smartTracker.st-578530']");	
 		 public static By OPERATIONAL_UNIT = By.xpath("//input[@name='smartTracker.st-578531']");
@@ -110,5 +120,9 @@ public class QuoteHistoryObj extends ActionEngine {
 		 public static By QuoteNameInQuoteDetails=By.xpath("(//*[text()='Quote Name:']/following::dd)[1]");
 		 public static By QuoteNumberInQuoteDetails=By.xpath("(//*[text()='Quote Number:']/following::dd)[1]");
 		 public static By AccountNumberInQuoteDetails=By.xpath("(//*[text()='Account Number:']/following::dd)[1]");
+		 public static By OrderNumber = By.xpath("(//span[contains(text(),'Order number')]//following-sibling::a)[1]");
+		 public static By Orderdetails = By.xpath("//h1[contains(text(),'Order details')]");
+		 public static By txtFrieghtInOrderdetails = By.xpath("((//div[@class='iw-summary']//div[@class='columns iw-summary__label'])//following::span[@class='iw-currency']//span[@class='iw-currency__amount'])[2]");
+		 public static By estimatecostinOrderdetails = By.xpath("((//div[@class='iw-summary']//div[@class='columns iw-summary__label'])//following::span[@class='iw-currency']//span[@class='iw-currency__amount'])[3]");
 		 
 }

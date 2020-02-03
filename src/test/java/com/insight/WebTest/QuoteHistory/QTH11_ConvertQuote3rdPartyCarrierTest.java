@@ -1,6 +1,7 @@
 package com.insight.WebTest.QuoteHistory;
 
 import java.util.Hashtable;
+import java.util.List;
 
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
@@ -80,10 +81,9 @@ public class QTH11_ConvertQuote3rdPartyCarrierTest extends QuoteHistoryLib {
 					Homelib.clickSideBarSmart();
 					Homelib.clickClosthedocument(QuoteNum);
 					Thread.sleep(4000);
-					//Homelib.clickYesButtontocloseDocument();
-					Thread.sleep(4000);
-					Homelib.clickClosthedocument(data.get("DoccumentType"));//Create Document
-					//Homelib.clickYesButtontocloseDocument();
+					Homelib.clickYesButtontocloseDocument();
+					Homelib.clickClosthedocument(data.get("SalesDoc"));
+					Homelib.clickYesButtontocloseDocument();
 					navigateTo("https://uat1.insight.com/en_US/home.html");
 					acceptAlert();
 					Thread.sleep(4000);
@@ -95,6 +95,7 @@ public class QTH11_ConvertQuote3rdPartyCarrierTest extends QuoteHistoryLib {
 					cmtLib.setPermissions(data.get("Menu_Name"), data.get("Set_Permission1"));
 					cmtLib.setPermissions(data.get("Menu_Name"), data.get("Set_Permission2"));
 					cmtLib.setPermissions(data.get("Menu_Name"), data.get("Set_Permission3"));
+					cmtLib.setPermissionsToDisable(data.get("Menu_Name"), data.get("Set_Permission4"));
 					cmtLib.clickOnloginAs();
 					switchToChildWindow();
 					cmtLib.loginVerification(data.get("ContactName"));		
@@ -103,37 +104,39 @@ public class QTH11_ConvertQuote3rdPartyCarrierTest extends QuoteHistoryLib {
 					verifyQuoteHistory();
 					orderLib.searchByInQuoteHistory(QuoteNum,data.get("Quote_DD_option"));
 					verifyQuoteDetails();
-					
-					
-					
-					
-												
-									      
-				
-					//quick search
-					
+					verifypartnumberInQuotedetails();
 					scrollToBottomWithCordinate("500");
 					orderLib.convertQuote();
 					canadaLib.verifyPlaceCartLabel();
 					//proceed to checkout
 					orderLib.proceedToCheckout();
 					cartLib.clickOnContinueButtonInAddInformtion();
-					
 					orderLib.clickContinueOnLineLevelInfo();
-					canadaLib.verifySBP();
-					orderLib.shippingBillPayContinueButton();
+					canadaLib.verifySBP();							
+					orderLib.shippingBillPayContinueButton();				      
 					//cartLib.selectCarrier(data.get("Carrier_Option"));
 					cartLib.selectShippingMeethod(data.get("Shipping_Methods"));
 					
 					orderLib.shippingBillPayContinueButton();
 					orderLib.shippingBillPayContinueButton();
 					orderLib.selectPaymentInfoMethodCreditCard(data.get("cardNumber"),data.get("cardName"),data.get("month"),data.get("year"),data.get("PO_Number"),data.get("POReleaseNumber"));
+					orderLib.VerifyShippingCarrierdetails();
 					orderLib.clickOnReviewOrderButton();
+					orderLib.VerifyPlaceOrderdetails();
+					
 					
 					String summaryAmount = cartLib.getSummaryAmountInCart();
-					orderLib.placeOrderAndVerifyReceiptOrderAndDateQuoteHistory(summaryAmount);
+					List<String> orderdetails = orderLib.placeOrderAndVerifyReceiptOrderAndDate(summaryAmount);
+					String referencenumber = orderdetails.get(0);
+					String[] RefNum = referencenumber.split(" ");
 					shipbLib.clickOrderDetailsButtonInREceipt();
-					shipbLib.verifyShippingCarrierAFterReviewOrder(data.get("Shiping_Carrier_Verify_Receipt"),data.get("Shiping_Carrier_Verify_Receipt"));
+					orderLib.VerifyShippingCarrierdetails();
+					canadaLib.clickOnSideMenuSelectAccountToolOptions(data.get("Tools_Menu"),
+							data.get("Tools_Menu_DD1"));
+					verifyRecentOrders();
+					orderLib.searchByInQuoteHistory(RefNum[0],data.get("Quote_DD_option1"));
+					VerifyOrderdetails();
+					//shipbLib.verifyShippingCarrierAFterReviewOrder(data.get("Shiping_Carrier_Verify_Receipt"),data.get("Shiping_Carrier_Verify_Receipt"));
 					commonLib.clickLogOutLink(data.get("Logout_Header"));
 						} catch (Exception e) {
 							ReportStatus.blnStatus = false;

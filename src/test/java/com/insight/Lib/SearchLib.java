@@ -213,6 +213,9 @@ public class SearchLib extends CommonObj {
 	 * @throws Throwable
 	 */
 	public void searchInHomePage(String productName) throws Throwable {
+		if (isVisibleOnly(CommonObj.CLOSEBUTTON_COOKIES, "close cookie")) {
+			click(CommonObj.CLOSEBUTTON_COOKIES, "close cookie");
+		}
 		Thread.sleep(3000);
 		waitForVisibilityOfElement(SEARCH,"Search Field");
 		typeForSearchingProduct(SEARCH,productName,"Search Text: "+productName);
@@ -249,8 +252,8 @@ public class SearchLib extends CommonObj {
 	public void filterSelectionInProductsSearchPage(String filter) throws Throwable {
 
 		String result = null;
-		JSClick(productsDisplayInfoObj.getFilterSelection(filter), "filter Name : "+filter);
-		//clickUntil(productsDisplayInfoObj.getFilterSelection(filter),productsDisplayInfoObj.FILTER_ITEM, "filter Name");
+		//JSClick(productsDisplayInfoObj.getFilterSelection(filter), "filter Name : "+filter);
+		clickUntil(productsDisplayInfoObj.getFilterSelection(filter),productsDisplayInfoObj.FILTER_ITEM, "filter Name");
 		/*scrollBottom();
 		scrollToBottom();
 		click(productsDisplayInfoObj.getFilterSelection(filter), "filter Name : "+filter);*/

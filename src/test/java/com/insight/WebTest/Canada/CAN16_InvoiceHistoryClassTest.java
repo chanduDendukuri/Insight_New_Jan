@@ -2,12 +2,10 @@ package com.insight.WebTest.Canada;
 
 import java.util.Hashtable;
 
+import com.insight.Lib.*;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
-import com.insight.Lib.CMTLib;
-import com.insight.Lib.CanadaLib;
-import com.insight.Lib.InvoiceHistoryLib;
 import com.insight.accelerators.ActionEngine;
 import com.insight.accelerators.ReportControl;
 import com.insight.accelerators.TestEngineWeb;
@@ -45,47 +43,67 @@ public class CAN16_InvoiceHistoryClassTest extends ActionEngine  {
 								ReportControl.intRowCount = intCounter;
 								Hashtable<String, String> data = TestUtil.getDataByRowNo("CAN16_InvoiceHistory", TestDataInsight,
 										"Canada", intCounter);
-								TestEngineWeb.reporter.initTestCaseDescription("InvoiceHistory");				
+								TestEngineWeb.reporter.initTestCaseDescription("InvoiceHistory");
+
+//%%%%%%%%%%%%%%%%%%%%%%%%%latest%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+								CMTLib cmtLib = new CMTLib();
+								CanadaLib canadaLib = new CanadaLib();
+								ShipBillPayLib shipbLib = new ShipBillPayLib();
+								InvoiceHistoryLib invoice = new InvoiceHistoryLib();
+								CommonLib commonLib = new CommonLib();
+								cmtLib.loginToCMT(data.get("Header"));
+								cmtLib.searchForWebGroup(data.get("WebGrp"));
+								cmtLib.clickOnTheWebGroup(data.get("MgContactName"));
+								cmtLib.verifyManageWebGroupSettings();
+								cmtLib.hoverOnManageWebGroupsAndSelectOptions(data.get("ManageWebGrpOptions"));
+								cmtLib.verifyManageWebGroupsUserManagement();
+								cmtLib.searchForaUserAndSelect(data.get("LnameEmailUname"), data.get("ContactName"));
+								//cmtLib.setPermissions(data.get("Menu_Name"), data.get("Set_Permission"));
+								cmtLib.clickOnPermissionAndRolesMenu(data.get("Menu_Name"));
+								cmtLib.permissionForDD(data.get("Set_Permission"), data.get("Permission_Drop_Down"));
+
+							/*	String[] permissions1 = data.get("Set_Permission").split(",");
+								for (i = 0; i < permissions1.length; i++) {
+									//cmtLib.setPermissions(data.get("Menu_Name"),permissions1[i]);
+									cmtLib.setPermissionsToDisable(data.get("Menu_Name"), permissions1[i]);
+								}*/
+
+								// Remove us comm default OFF
+								//cmtLib.setPermissionsToDisable(data.get("Menu_Name"), data.get("Set_Permission2"));
+
+								//cmtLib.setPermissions(data.get("Menu_Name"),data.get("Enable_Purchasing_Popup"));
+								cmtLib.clickOnloginAs();
+								switchToChildWindow();
+								cmtLib.loginVerification(data.get("ContactName"));
+								shipbLib.verifyWEbsiteIsCannada();
+								canadaLib.verifyCanadaWebgroup();
+								canadaLib.clickOnSideMenuSelectAccountToolOptions(data.get("Tools_Menu"), data.get("Tools_Menu_DD"));
+								invoice.verifyInvoiceHistoryLabel();
+								invoice.quickSearchAndVerifySearchResults(data.get("SelectOrder"), data.get("OrderNumber"));
+								invoice.quickSearchAndVerifySearchResults(data.get("SelectReference"), data.get("ReferenceNumber"));
+								invoice.quickSearchAndVerifySearchResults(data.get("SelectPurchaseOrder"), data.get("PurchaseNumber"));
+								invoice.quickSearchAndVerifySearchResults(data.get("SelectInvoice"), data.get("InvoiceNumber"));
+								invoice.quickSearchAndVerifySearchResults(data.get("SelectAssetTag"), data.get("AssetTag"));
+								invoice.quickSearchAndVerifySearchResults(data.get("SelectSerial"), data.get("SerialNumber"));
+								invoice.clickOnAdvancedSearch();
+								invoice.clickOnAdvancedSearchSearchButton();
+								scrollToBottomWithCordinate("160");
+								canadaLib.selectStartDateFromInvoiceHistoryCalenaer(data.get("From_Date"));
+								canadaLib.selectEndDateFromInvoiceHistoryCalenaer(data.get("End_Date"));
+								//invoice.selectEndDateInRecentHistory(data.get("End_Date"));
+								// invoice.datePickerEndDateCalender(data.get("End_Date"));
+								canadaLib.clickOnSearchButtonInRecentOrders();
+								canadaLib.getInvoiceNumbersFromResults();
+								canadaLib.clickOnInvoiceNumbersFromResults();
+								canadaLib.openDirectoryToVerifyFileExist();
+								commonLib.clickLogOutLink(data.get("Logout_Header"));//fnCloseTest();
 
 
-			CMTLib cmtLib = new CMTLib();		
-			CanadaLib canadaLib=new CanadaLib();
-			InvoiceHistoryLib invoiceHistoryLib=new InvoiceHistoryLib();
-			cmtLib.loginToCMTSearchWebGrpAndUser(data.get("Header"), data.get("WebGrp"), data.get("LnameEmailUname"),
-					data.get("ContactName"));
+//%%%%%%%%%%%%%%%%%%%%%%%%%latest%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-			cmtLib.clickOnRolesAndPermissionsAndSetPermission(data.get("Menu_Name"), data.get("Set_Permission"));
-			cmtLib.loginAsAdminCMT();
-			canadaLib.clickOnSideMenuSelectAccountToolOptions(data.get("Tools_Menu"),  data.get("Tools_Menu_DD"));	
-			canadaLib.verifyInvoiceHistoryPageOpened();
-			canadaLib.clickOnInvoiceHistory();
-			invoiceHistoryLib.quickSearchAndVerifySearchResults(data.get("SelectOrder"), data.get("OrderNumber"));
-			invoiceHistoryLib.quickSearchAndVerifySearchResults(data.get("SelectReference"), data.get("ReferenceNumber"));
-			invoiceHistoryLib.quickSearchAndVerifySearchResults(data.get("SelectPurchaseOrder"), data.get("PurchaseNumber"));
-			invoiceHistoryLib.quickSearchAndVerifySearchResults(data.get("SelectInvoice"), data.get("InvoiceNumber"));
-			invoiceHistoryLib.quickSearchAndVerifySearchResults(data.get("SelectAssetTag"), data.get("AssetTag"));
-			invoiceHistoryLib.quickSearchAndVerifySearchResults(data.get("SelectSerial"), data.get("SerialNumber"));
-			invoiceHistoryLib.clickOnAdvancedSearch();
-			// calender date
-			invoiceHistoryLib.datePickerStartDateCalender(data.get("From_Date"));
-			invoiceHistoryLib.datePickerEndDateCalender(data.get("End_Date"));
-			invoiceHistoryLib.clickOnAdvancedSearchSearchButton();
-			invoiceHistoryLib.verifySearchResultsAreDisplayed();
-			String invoiceNumber=canadaLib.getInvoiceNumber();
-			invoiceHistoryLib.clickInvoicePreviewLink();
-			invoiceHistoryLib.verifyInvoicePreviewPopUp();
-			invoiceHistoryLib.verifyInvoicePreviewDetails(data.get("Invoice_details"));
-			invoiceHistoryLib.verifyInvoicePreviewShipToAndBillTo();
-			invoiceHistoryLib.verifyInvoicePreviewHeaderDetails(data.get("Header_Details"));
-			invoiceHistoryLib.verifyInvoicePreviewFootDetails(data.get("Foot_Details"));
-			invoiceHistoryLib.clickOnInvoiceFullPreview();
-			canadaLib.verifyInvoiceHistoryPageOpened();
-			canadaLib.printIcon();			
-			invoiceHistoryLib.verifyPrintPopUp();
-			 canadaLib.closeIcon();
-			 canadaLib.clickOnDownloadLink();
-			 canadaLib.verifyDownloadedFile(invoiceNumber);
-			
+
+			 //canadaLib.verifyDownloadedFile(invoiceNumber);
+
 				System.out.println("Test completed");
 				
 							} catch (Exception e) {

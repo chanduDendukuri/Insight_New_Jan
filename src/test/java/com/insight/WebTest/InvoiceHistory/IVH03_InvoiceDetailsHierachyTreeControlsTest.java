@@ -65,6 +65,7 @@ public class IVH03_InvoiceDetailsHierachyTreeControlsTest extends InvoiceHistory
 					// ######## GGP Level ################################
 					verifySelectedOptionInAccountSelectionDD(data.get("Default_Option"));
 					closeAccountHirearchyDropdow();
+					scrollBottom();
 					setAccountHirerachydropdown(data.get("GGP"));
 					clickShowAccountHirerachy();
 					verifyAccountHirearchyPopUp();
@@ -73,7 +74,7 @@ public class IVH03_InvoiceDetailsHierachyTreeControlsTest extends InvoiceHistory
 					verifyRPAccountHierarchyTree();
 					closeHierarchyPopUp();
 					// ######## GGP Level default account ################################
-					
+					//scrollBottom();
 					setAccountHirerachydropdown(data.get("GGP"));
 					clickShowAccountHirerachy();
 					verifyAccountHirearchyPopUp();
@@ -83,7 +84,7 @@ public class IVH03_InvoiceDetailsHierachyTreeControlsTest extends InvoiceHistory
 					verifyDefaultSelectedAccount(data.get("Default_Account"));
 					closeHierarchyPopUp();
 					// ######## RP Level default account ################################
-
+					//scrollBottom();
 					setAccountHirerachydropdown(data.get("RP"));
 					clickShowAccountHirerachy();
 					verifyAccountHirearchyPopUp();

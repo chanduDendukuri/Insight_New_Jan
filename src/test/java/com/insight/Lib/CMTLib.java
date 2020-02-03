@@ -232,7 +232,7 @@ public class CMTLib extends CMTObj {
 	 * @throws Throwable
 	 */
 	public void hoverOnManageWebGroupsAndSelectOptions(String ManageWebGrpOptions) throws Throwable {
-
+		Thread.sleep(3000);
 		mouseHover(MANAGE_WEBGRP, "Manage Web group");
 		click(getManageWebGroupDDLinks(ManageWebGrpOptions), "Change Web group option: " + ManageWebGrpOptions);
 	}
@@ -669,6 +669,7 @@ public  void verifyDashboard()throws Throwable {
 		type(CartObj.USER_NAME, userName, "user name");
 		waitForVisibilityOfElement(CartObj.PASSWORD, "Password");
 		type(CartObj.PASSWORD, password, "Password");
+		acceptCookies();
 		click(CartObj.LOG_IN_BUTTON, "LOG IN BUTTON");
 
 	}
@@ -714,9 +715,9 @@ public  void verifyDashboard()throws Throwable {
 	 */
 	public void permissionFromDD(String userPermission, String optionDD) throws Throwable {
 		if (!isCheckBoxSelected(getUserPermission(userPermission))){
-			click(getPermissionDropDowns(userPermission), "permission drop down");
+			click(getPermissionDropDowns(userPermission), "permission drop down::"+userPermission);
 		}
-		selectByVisibleText(getPermissionDropDowns(userPermission), optionDD, "permission drop down");
+		selectByVisibleText(getPermissionDropDowns(userPermission), optionDD, "permission drop down::"+optionDD);
 		click(UPDATE_USER_BTN, "Update user button");
 		if (isElementPresent(PERMISSION_UPDATE_MSG, "update sucessful message")) {
 			reporter.SuccessReport("Verify the Sucess message ", "Permissions Updated Succesfully", "");
@@ -2099,6 +2100,9 @@ public  void verifyDashboard()throws Throwable {
 			reporter.failureReport("Verify Product Standards Page", "Product Standards Page is Not Loaded", "", driver);
 	}
 
+	
+	
+	
 	public void addNewRepDetails(String Email, String Phone, String Fax) throws Throwable {
 		if (isVisibleOnly(ADD_NEW_REP, "Add New Rep Details")) {
 			reporter.SuccessReport("Click on Add New Rep Link", "Add New Rep Link is available", "");
@@ -2517,7 +2521,7 @@ public  void verifyDashboard()throws Throwable {
 	 */
 	public void verifyInactiveSmartTrackerError() throws Throwable {
 		if (isElementPresent(INACTIVE_SMART_TRACKER_ERROR, "smart tracker error")) {
-			reporter.SuccessReport("verify smart tracker error", "Smart tracker inactive error is diaplayed ", "");
+			reporter.SuccessReport("verify smart tracker error", "Smart tracker inactive error is diaplayed ", "Smart Tracker Status:Inactive");
 		} else {
 			reporter.failureReport("verify smart tracker error", "Smart tracker inactive error is not diaplayed ", "",
 					driver);
@@ -3629,6 +3633,10 @@ public void verifySetPermissionsDisabled(String userPermissions) throws Throwabl
 		}
 	}
 
-
+	public void acceptCookies() throws Throwable{
+	if(isVisibleOnly(CommonObj.AcceptAlerts,"Accept Cookies")) {
+		click(CommonObj.AcceptAlerts, "Accept Cookies");
+	}
+	}
 }
 

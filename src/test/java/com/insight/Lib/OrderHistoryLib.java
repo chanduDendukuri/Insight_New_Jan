@@ -15,6 +15,7 @@ import org.openqa.selenium.WebElement;
 
 import com.insight.ObjRepo.CommonObj;
 import com.insight.ObjRepo.OrderHistoryObj;
+import com.insight.ObjRepo.OrderObj;
 import com.insight.ObjRepo.CommonObj;
 
 public class OrderHistoryLib extends OrderHistoryObj {
@@ -49,7 +50,7 @@ public class OrderHistoryLib extends OrderHistoryObj {
 		click(setAdvancedSearchOption(text), "");
 		type(ADVANCED_SEARCH_VALUE, value, "value");
 		click(SEARCH_BUTTON, "search button");
-
+         Thread.sleep(5000);
 		// verifySearchResultsAreDisplayed();
 	}
 
@@ -108,7 +109,7 @@ public class OrderHistoryLib extends OrderHistoryObj {
 
 		else {
 			click(SLPLib.YEAR_DROPDOWN, "year dropdown");
-			click(SLPLib.Year(year), "Selecy year");
+			click(SLPLib.Year(year), "Select year");
 			click(SLPLib.MONTH_DROPDOWN, "Month dropdown");
 			click(SLPLib.Month(month), "Select month");
 			click(Day(day), "Selecting date");
@@ -304,6 +305,7 @@ public class OrderHistoryLib extends OrderHistoryObj {
 		String result = null;
 		waitForVisibilityOfElement(SEARCH_RESULTS, "Recent orders");
 		if (isElementPresent(ORDER_NUMBER, "Order number")) {
+			scrollToBottomWithCordinate("300");
 				List<WebElement> myList = driver.findElements(ORDER_NUMBER);
 				List<String> all_elements_text = new ArrayList<>();
 				for (int i = 0; i < myList.size(); i++) {
@@ -742,5 +744,22 @@ public class OrderHistoryLib extends OrderHistoryObj {
 			reporter.failureReport("Verify the Validate only Australia cities in Results", "Results contain other than Australia cities", "",driver);
 		
 		}
+	}
+
+	
+	
+	public void getFirstOrderNumber() throws Throwable {
+		String orderNumber=getText(OrderObj.FIRST_ORDER_NUMBER, "Order Number");
+		if(orderNumber!=null) {
+			reporter.SuccessReport("Verify order displayed in order history", "Recent OrdersSearch Results are Exists","Order number"+orderNumber+"  - First Record on Search Results for Recent Orders" );
+		}else {
+			reporter.failureReport("Verify order displayed in order history", "Recent Orders Search Results are not displayed", "", driver);
+		}
+	}
+
+	public void clickOnFirstOrderHistoryResult() throws Throwable
+	{
+		click(lnkOrderNumberInOrderHistory, "First order number in order history");
+
 	}
 }

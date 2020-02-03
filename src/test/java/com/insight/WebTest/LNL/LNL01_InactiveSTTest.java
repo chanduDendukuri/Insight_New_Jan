@@ -70,26 +70,30 @@ public class LNL01_InactiveSTTest extends LineLevelInfoLib{
 						canadaLib.clickCreateButton();
 						// Search for part or product
 						searchLib.searchInHomePage(data.get("SearchText"));
+						searchLib.verifyBreadCrumbInSearchResultsPage(data.get("SearchText"));
+						String partNumber=pipLib.getPartNumberInSearchResultsPage();
 						pipLib.selectFirstProductAddToCartAndVerifyCart();
 						orderLib.proceedToCheckout();
+						verifyOrderAndItemInfoBreadCrumb();
 						// Enter add additional info
 						String contactName=canadaLib.enterNameOnAdditionalInfo();
 						canadaLib.enterPhoneOnAdditionalInfo(data.get("Phone"));
 						orderLib.continueButtonOnAdditionalInformationSection();
-						
+						canadaLib.verifySBP();
 						// enter Shipping address
 						// street1 >> 3480 Lotus Dr  // city >> PLANO // state >> Texas // zipCode >> 75075
 						canadaLib.addShippingAddress(data.get("Company_Name"), data.get("Name"), data.get("Street1"), data.get("City"), data.get("State"), data.get("Zipcode"));  
-						orderLib.shippingBillPayContinueButton(); // continue on shipping address
+						orderLib.clickContinueOnShippingAddress(); // continue on shipping address
 						// Save address  
 						acceptShippingAddressVerification();
-						orderLib.shippingBillPayContinueButton(); // continue on shipping options
+						orderLib.shippingOptionsCarrierSelection(); // continue on shipping options
 						checkSameAsShippingAddress();
-						orderLib.shippingBillPayContinueButton(); // continue on Billing  options
+						orderLib.billingAddressContinueButton(); // continue on Billing  options
 						orderLib.selectPaymentInfoMethodCreditCard(data.get("Card_Number").toString(), data.get("Card_Name"),data.get("Month"), data.get("Year"),data.get("PO_Number"),data.get("POReleaseNumber"));
 						orderLib.clickOnReviewOrderButton();
 						cartLib.getSummaryAmountInCart();
 					    canadaLib.clickPlaceOrderButton();
+					    orderLib.verifyReceiptVerbiage();
 						
 						/// Login 
 						cmtLib.clickLoginLink(data.get("Header"));
@@ -130,7 +134,7 @@ public class LNL01_InactiveSTTest extends LineLevelInfoLib{
 						// inActive smart tracker
 						cmtLib.editSmartTracker(data.get("Field_Label"));
 						cmtLib.verifyInactiveSmartTrackerError();
-						
+					  
 						// click on Line level tab
 						cmtLib.selectSmartTrackersHeaders(data.get("Smart_Header"));
 						cmtLib.clickOnAddSmartTrackerLink();
@@ -141,6 +145,11 @@ public class LNL01_InactiveSTTest extends LineLevelInfoLib{
 						// inActive smart tracker
 						cmtLib.editSmartTracker(data.get("Field_Label"));
 						cmtLib.verifyInactiveSmartTrackerError();
+						
+						
+						
+						
+						// ---------------- Link:Client Administration  ----------
 						
 						cmtLib.hoverOverMasterGroupAndSelectChangeGrp();
 						// search for user

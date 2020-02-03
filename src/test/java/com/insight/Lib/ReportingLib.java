@@ -11,6 +11,7 @@ import java.util.List;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -806,9 +807,9 @@ public class ReportingLib extends ReportsObj {
 	 */
 	public void clickOnReportOptions(String reportOption) throws Throwable {
 		click(STANDARDREPORTS, "standard reports", "standard reports");
-		waitForVisibilityOfElement(getReportOptions(reportOption), "Standard Report Options");
+		waitForVisibilityOfElement(getReportOptions(reportOption), "Standard Report Options::"+reportOption);
 		if (isElementPresent(getReportOptions(reportOption), "Standard Report Options", true)){		
-		click(getReportOptions(reportOption), "Enter A Card Button");
+		click(getReportOptions(reportOption), "Enter A Card Button "+reportOption);
 		reporter.SuccessReport("Click "+reportOption+" on Reports Page" ,
 				""+reportOption+" Reports Page exists  ", "");
 		}
@@ -816,6 +817,49 @@ public class ReportingLib extends ReportsObj {
 			reporter.failureReport("Click "+reportOption+" on Reports Page" ," "+reportOption+" Reports Page exists  ", "",driver);
 		}
 	}
+
+public void ParentCheckboxClicked()throws Throwable {
+	if(driver.findElement(PARENT_CHECKBOX).isSelected()) {
+		String Parent=driver.findElement(PARENT_CHECKBOX).getAttribute("id");
+		reporter.SuccessReport("Verify the Reporting Parent for the current soldto on Reports Page" ,"Reporting Parent for the current soldto is selected", Parent);	
+	}else {
+		reporter.failureReport("Verify the Reporting Parent for the current soldto on Reports Page" ,"Reporting Parent for the current soldto is Not Seletcted", "",driver);
+	}
 }
+public void grandParentCheckboxClicked()throws Throwable {
+	if(driver.findElement(GRANDPARENT_CHECKBOX).isSelected()) {
+		reporter.failureReport("Verify the Grand Parent for the current soldto on Reports Page" ,"Reporting Parent for the current soldto is selected","",driver);	
+	}else {
+		String Parent=driver.findElement(GRANDPARENT_CHECKBOX).getAttribute("id");
+		reporter.SuccessReport("Verify the Grand Parent for the current soldto on Reports Page" ,"Grand Parent for the current soldto is not selected",Parent);
+	}
+}
+	public void verifySoldTos()throws Throwable {
+		List<WebElement> myList = driver.findElements(SOLTOS);
+		if (isVisibleOnly(SOLTOS, "error message")) {
+		int total=myList.size();
+		for (int i = 0; i < 2; i++) {
+			driver.findElement(SOLTOS).isSelected();
+		}
+		reporter.SuccessReport("Verify the all soldto's on Reports Page" ,"1st soldto and 2nd soldto under the current soldto is selected","No.of Slected soldtos"+total);	
+		}else {
+			reporter.failureReport("Verify the all soldto's on Reports Page" ,"1st soldto and 2nd soldto under the current soldto is Not selected", "");	
+		}
+
+		
+	}	
+	
+	
+	
+	
+	
+}
+
+
+
+
+
+
+
 	
 	

@@ -83,5 +83,5 @@ public class OrderHistoryObj extends ActionEngine{
 	}
 	public static By ORDER_TOTAL_CURRENCY_CODE=By.xpath("//table[@class='iw-table']//tbody//tr/td[@class='iw-table__column text-right']//span[@class='iw-currency__code']");
 	public static By INSIGHT_AUSTRAILIA=By.xpath("//select[@name='region']//option[text()='Insight Australia']");
-	
+	public static By lnkOrderNumberInOrderHistory=By.xpath("(//div[@class='search-results']//tbody//a[@class='orders__link order-card-header__link'])[1]");
 }

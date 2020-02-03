@@ -116,7 +116,8 @@ public class InvoiceHistoryObj extends ActionEngine {
 	public static By CUSTOMER_DETAILS_TAB = By.xpath("//a[text()='Customer details']");
 	public static By SHOW_ACCOUNT_HIERARCHY = By.xpath("//a[@id='accountHierarchytoggle']");
 	public static By ACCOUNT_HIERARCHY_POP_UP = By.xpath("//div[@id='accountSelectionModal']");
-	public static By HIERARCHY_TREE = By.xpath("//*[@id='TableContent']//td[@class='wtvtd1']//input");
+	//public static By HIERARCHY_TREE = By.xpath("//*[@id='TableContent']//td[@class='wtvtd1']//input");
+	public static By HIERARCHY_TREE = By.xpath("//*[@type='checkbox']");
 	public static By CLOSE_HIERARCHY_POP_UP = By.xpath("//a[@class='button small m-b-none']");
 	public static By SELECTED_OPTION_IN_ACCOUNT_SELECTION = By.xpath("//div[@class='nice-select m-b-md open']//ul//li[@class='option selected focus']");
 	//Hierarchy pop up
@@ -168,4 +169,7 @@ public static By selectDateFromCalender(String date) {
 	}
 	public static By INVOICE_NUMBER =By.xpath("//*[@id='invoiceSearch']/tbody/tr/td/a");
 	public static By INVOICE_STATUS=By.xpath("(//*[@id='invoiceSearch']/tbody/tr/td[5])[1]");
+
+	public static By headerInvoiceHistory =By.xpath("//h2[text()='Invoice History']");
+	public static By getInvoiceNumber = By.xpath("//*[@id=\"invoiceSearch\"]//tbody//td//span//following-sibling::a");
 }

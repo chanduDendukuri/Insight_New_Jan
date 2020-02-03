@@ -32,6 +32,7 @@ public class CartLib extends ActionEngine {
 	ShipBillPayLib shipbLib = new ShipBillPayLib();
 	InvoiceHistoryLib ivhLib=new InvoiceHistoryLib();
 	CanadaLib canadaLib=new CanadaLib();
+	LineLevelInfoLib lnlLib=new LineLevelInfoLib();
 	String openMarketPrice;
 
 	/**
@@ -557,6 +558,7 @@ public class CartLib extends ActionEngine {
 	 * @throws Throwable
 	 */
 	public void addLineLevelInformationInCheckOut(String rP_LNL_Txt) throws Throwable {
+		lnlLib.verifyOrderAndItemInfoBreadCrumb();
 		if (isElementPresent(OrderObj.LINE_LEVEL_INFO, "Line level information link")) {
 			click(OrderObj.LINE_LEVEL_INFO, "Line Level Information");
 			if (isElementPresent(OrderObj.SMART_TRACKER_LABEL, "Smart tracker in LL info section")) {
@@ -1164,7 +1166,7 @@ public class CartLib extends ActionEngine {
 	 */
 	public void verifyContractNameInCart(String contractName) throws Throwable {
 		if (driver.findElement(CartObj.getContractNameInCart(contractName)).isDisplayed()) {
-			reporter.SuccessReport("verifying item added to cart :: ", " with contract name-", contractName);
+			reporter.SuccessReport("verifying item added to cart :: ", " with contract name-", "Contract : "+contractName);
 		} else {
 			reporter.failureReport("verifying item is not added to cart :: ", " with contract name-", contractName,
 					driver);

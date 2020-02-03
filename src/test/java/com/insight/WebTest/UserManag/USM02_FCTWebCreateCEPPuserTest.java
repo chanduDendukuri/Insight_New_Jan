@@ -73,9 +73,6 @@ public class USM02_FCTWebCreateCEPPuserTest extends UserManagementLib {
 							cmtLib.enterUserName(data.get("ExistingUserName"));
 							cmtLib.checkAvailability();
 							cmtLib.verifyAvailabiltyOfUserNameExists();
-							cmtLib.enterUserName(data.get("ExistingUserName2"));
-							cmtLib.checkAvailability();
-							cmtLib.verifyAvailabiltyOfUserNameExists();
                             String Username="QTPTest"+getRandomNumeric(4);							
 							cmtLib.enterUserName(Username);
 							cmtLib.checkAvailability();
@@ -89,13 +86,15 @@ public class USM02_FCTWebCreateCEPPuserTest extends UserManagementLib {
 							cmtLib.verifyDDPermission(data.get("Permision4"),data.get("Option"));
 							cmtLib.verifyDDPermission(data.get("Permision5"),data.get("Option"));
 							cmtLib.verifyDDPermission(data.get("Permision6"),data.get("Option"));
-							cmtLib.updateUser();
+							//cmtLib.updateUser();
 							cmtLib.clickInformationTab(data.get("Information_Tab"));
 							cmtLib.clickOnUserURL();
-							cmtLib.verifyCreateAnAccountPage();
+							//refreshPage();
+							//cmtLib.verifyCreateAnAccountPage();
 							//commonLib.clickLogOutLink(data.get("Logout_Header"));
-							//cmtLib.clickOnCreateanacccount();
+							//navigateTo("https://uat1.insight.com/insightweb/endUser/createAccount?authKey=wSNU%2F3UlR5o%3D");
 							mic.handleinsightpopup();
+							refreshPage();
 							cmtLib.enterAdressesInCreateAnAccount(data.get("Adressess2"));
 							cmtLib.enterCityInCreateAnAccount(data.get("City2"));
 							cmtLib.selectStateInCreateAnAccount(data.get("State2"));
@@ -106,16 +105,17 @@ public class USM02_FCTWebCreateCEPPuserTest extends UserManagementLib {
 							verifyErorrMsgOfLastName();
 							verifyErorrMsgOfPhoneNumber();
 							//User Name
-							String userName="QTPTest"+getRandomNumeric(4);
+							String Number=getRandomNumeric(4);
+							String userName="QTPTest"+Number;
 							cmtLib.verifyAvailabilityCreateAccount(data.get("CreateacUserName5"),userName);
-							String password="QTPTest"+getRandomNumeric(4);
+							String password="QTPTest"+Number;
 							cmtLib.enterPasswordInCreateAnAccount(password);
 							cmtLib.enterConfirmPasswordInCreateAnAccount(password);
-							String email="QTPTest"+getRandomNumeric(4)+"@test.com";
+							String email="QTPTest"+Number+"@test.com";
 							cmtLib.enterEmailInCreateAnAccount(email);
-							String firstName="QTPTest"+getRandomNumeric(4);
+							String firstName="QTPTest"+Number;
 							cmtLib.enterFirstNameInCreateAnAccount(firstName);
-							String lastName="QTPTest"+getRandomNumeric(4);
+							String lastName="QTPTest"+Number;
 							cmtLib.enterLastNameInCreateAnAccount(lastName);
 							cmtLib.enterPhoneNumberInCreateAnAccount(data.get("Phone_Number"));
 							//Address
@@ -123,7 +123,7 @@ public class USM02_FCTWebCreateCEPPuserTest extends UserManagementLib {
 							cmtLib.enterCityInCreateAnAccount(data.get("City"));
 							cmtLib.selectStateInCreateAnAccount(data.get("State"));
 							cmtLib.enterZipCodeInCreateAnAccount(data.get("ZipCode"));
-							String billingAccountName="QTPTest"+getRandomNumeric(4);
+							String billingAccountName="QTPTest"+Number;
 							cmtLib.enterBillingAccountNameInCreateAnAccount(billingAccountName);
 							cmtLib.clickCreateButtonInCreateAnAccount();
 							cmtLib.clickContinueButtonInCreateAnAccount();
@@ -163,7 +163,7 @@ public class USM02_FCTWebCreateCEPPuserTest extends UserManagementLib {
 							cmtLib.verifyDDPermission(data.get("Persision4"),data.get("Option"));
 							cmtLib.verifyDDPermission(data.get("Persision5"),data.get("Option"));
 							cmtLib.verifyDDPermission(data.get("Persision6"),data.get("Option"));
-							cmtLib.updateUser();
+							//cmtLib.updateUser();
 							cmtLib.hoverOnManageWebGroupsAndSelectOptions(data.get("Manage_Web_Grp_Options"));
 							
 							

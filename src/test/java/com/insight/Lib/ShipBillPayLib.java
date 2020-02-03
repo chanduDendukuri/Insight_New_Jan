@@ -96,12 +96,12 @@ public class ShipBillPayLib extends ShipBillPayObj {
 		click(CommonObj.getAccountToolsDD(toolsMenuName, dropDown), "Select account tools");// -----Personalization,User
 																							// Profile
 		click(CommonObj.getFavoritesTabs(tabName), "Payments And Cards Tab is clicked");
-		String textinPaymentandcards = getText(PaymentandcardsText, "Payment cards text");
-		if (isElementPresent(PaymentandcardsText, "payments and cards Msg")) {
+		String textinPaymentandcards = getText(defaultCreditCard, "Payment cards text");
+		if (isElementPresent(defaultCreditCard, "payments and cards Msg")) {
 			reporter.SuccessReport("Verify Payment cards Msg", "Payments And Cards msg", textinPaymentandcards);
 		} else {
 			reporter.failureReport("Payments And Cards Msg is not visible", "Payments And Cards Msg is not visible",
-					"");
+					"",driver);
 		}
 	}
 
@@ -331,8 +331,7 @@ public class ShipBillPayLib extends ShipBillPayObj {
 	}
 
 	public void ReviewrequisitionnumPage() throws Throwable {
-		ClickRviewrequesition();
-		clickUntil(PLACE_REQUISITION_BUTTON, OrderObj.RECEIPT_LABEL, "Place requisition button is clicked");
+	    clickUntil(PLACE_REQUISITION_BUTTON, OrderObj.RECEIPT_LABEL, "Place requisition button is clicked");
 		Thread.sleep(3000);
 		if (isElementPresent(OrderObj.RECEIPT_LABEL, "Recipt Page is Opened")) {
 			waitForVisibilityOfElement(REFERENCE_NUMBER, "Reference Number");
@@ -408,7 +407,8 @@ public class ShipBillPayLib extends ShipBillPayObj {
 			reporter.failureReport("Stored address is Not selected", "Stored address is Not selected", "");
 		}
 		click(CONTINUE_BUTTONSTOREDADDRESS, "continue Button of Stored Address");
-
+		getText(COMPANY,"Shiping address Company::").trim();
+		getText(ADDRESS,"Shiping address::").trim();
 	}
 
 	public void SaveCartandView(String cartName, String toolsMenuName, String dropDown) throws Throwable {
@@ -556,7 +556,7 @@ public class ShipBillPayLib extends ShipBillPayObj {
 			String Addres=getText(SHIPPING_ADDRES,"Shiping address").trim();
 			//String Addres1=getText(SHIPPING_ADDRESES,"Shiping address").trim();
 			//String Addres2=getText(SHIPPING_ADDRESESSECONDLINE,"Shiping address").trim();
-			reporter.SuccessReport("Verify created address ", "Creted Address Is Verified successfully", Company+ Addres);
+			reporter.SuccessReport("Verify New address ", "New Is Verified successfully", Company+ Addres);
 		} else {
 			reporter.failureReport("New Address Is Not Created", "New Address Is Not Created", "");
 		}
@@ -882,7 +882,7 @@ public class ShipBillPayLib extends ShipBillPayObj {
 		click(Deletesavedcart(cartName), "Add to cart");
 		// ADDEDTOCART_POPUP
 		waitForVisibilityOfElement(DIALOGUEBOX_DELETECART, "Delete Cart");
-		click(YESBUTTON_DELETECART, "Continue To Checkout");
+		click(YESBUTTON_DELETECART, "Yes Delete Cart Button");
 		
 	}
 	public void ClickRviewrequesition()throws Throwable {
@@ -1038,6 +1038,23 @@ public class ShipBillPayLib extends ShipBillPayObj {
 				reporter.SuccessReport("verify saved carts and delete", "saved carts already deleted", "");
 			}
 		}
+
+		public void deletesavedcartsortamplates() throws Throwable {
+			if (isVisibleOnly(CartObj.DELETEBTN, "Delete Button")) {
+			List<WebElement> myList = driver.findElements(CartObj.DELETEBTN);
+			for (int i = 0; i < myList.size(); i++) {
+			 myList.get(i).click();
+			 waitForVisibilityOfElement(CartObj.YES_BUTTON_INCONFORMATION_POP_UP, "Yes in conformation pop up");
+				click(CartObj.YES_BUTTON_INCONFORMATION_POP_UP, "Yes in conformation pop up");
+				waitForVisibilityOfElement(CartObj.DELETE_CART_MEASSAGE, "ACCOUNT TOOLS");
+			}
+			reporter.SuccessReport("verifying Saved Carts\tamplates", "Saved carts Exists and Deleted: " , "");
+				} else {
+					reporter.SuccessReport("verifying Saved Carts\\tamplates", "Saved carts does not exists: ", "");
+				}
+		}
+		
+		
 			public void verifyPartNumInProductDetailPage(String Partnum) throws Throwable {
 				if (isVisibleOnly(partNum(Partnum), "PartNum")) {
 						reporter.SuccessReport("verify PartNum In ProductDetail Page::", "PartNum  Exists", Partnum);
@@ -1099,10 +1116,9 @@ public class ShipBillPayLib extends ShipBillPayObj {
 			public String currentDate() {
 				LocalDate today = LocalDate.now();
 				String newDate = today.format(DateTimeFormatter.ofPattern("d-MMMM-uuuu"));
-				String date[]=newDate.split("-");
-				System.out.println("newDate" + date[0]);
-				return date[0];
-
+		          String date[]=newDate.split("-");
+                 System.out.println("newDate" + date[0]);
+                     return date[0];
 			}
 
 			
@@ -1119,7 +1135,9 @@ public class ShipBillPayLib extends ShipBillPayObj {
 			}
 			public void verifyNewAddress()throws Throwable{
 				if(isVisibleOnly(New_address,"New address")) {
-					reporter.SuccessReport("Verify New Address", "Address changed to Tempe", "910 W CARVER RD TEMPE, AZ 85284-5265 US");
+				String company=	getText(COMPANYBILLINGADDRESS,"Company ");
+				String address=	getText(ADDRESS,"Shiping address:").trim();
+					reporter.SuccessReport("Verify New Address", "New Address",company+" "+address);
 				}else {
 					reporter.SuccessReport("Verify New Addresst", "Address not Changed", "");
 
@@ -1147,10 +1165,17 @@ public class ShipBillPayLib extends ShipBillPayObj {
 
 		}
      public void clickonTodayDate(String date)throws Throwable{
-			click(Date(date),"Today::"+date+"");
+    	 if(isVisibleOnly(Date(date),"Today Date")) {
+    	 LocalDate today = LocalDate.now();
+    	 String newDate = today.format(DateTimeFormatter.ofPattern("d-MMMM-uuuu"));
+		click(Date(date),"Today::"+date+"");
+		reporter.SuccessReport("Selecte Today Date from Calender", "Today Date from Calender",
+					newDate);
+			
+    	 }
 			}
 		public void clickExpand()throws Throwable{
-			click(EXPAND_LNL,"Line Level Section");
+			clickUntil(EXPAND_LNL,WG_LNL_TEXT,"Line Level Section");
 		}
 		/**
 		 * This method is to add products By Quick shop
@@ -1206,8 +1231,9 @@ public class ShipBillPayLib extends ShipBillPayObj {
 		public void selectCarrier(String carrier) throws Throwable {
 			clickUntil(OrderObj.SELECTARRIER,OrderObj.verifyCarrier(carrier), "carrier Drop down");
 			if (isElementPresent(OrderObj.verifyCarrier(carrier), "shipping carrier in Dropdown"+carrier)) {
-				click(OrderObj.verifyCarrier(carrier), "Carrier From Drop down"+carrier);
+				click(OrderObj.verifyCarrier(carrier), "From Carrier Drop down"+carrier);
 			}
+			
 		}
 		public void shippingOptionsCarrierSelection() throws Throwable{
 			click(CONTINUE_BTN, "Continue button of Shipping Options");
@@ -1243,6 +1269,32 @@ public class ShipBillPayLib extends ShipBillPayObj {
 						"Unable to Verify No Defualt Address Adresses", "");
 			}
 		}
+
+
+		public void clickOnCanadaWebGrp() throws Throwable{
+			click(ShipBillPayObj.CANNADA_WEBSITE,"webGoup","");
+		}
 		
+		public void VerifySoldtoAddress() throws Throwable {
+				getText(COMPANY,"Shiping address Company::").trim();
+				getText(ADDRESS,"Shiping address::").trim();
+			}
+		public void selectCarrierandGrounOption(String carrier) throws Throwable {
+			if(isVisibleOnly(OrderObj.SELECTCARRIERDD_FEDEX,"FedEx DD")) {
+				clickUntil(OrderObj.SELECTCARRIERDD_FEDEX,OrderObj.verifyCarrier(carrier), "carrier Drop down");	
+			}
+			if(isVisibleOnly(OrderObj.SELECT_CARRIER_DD,"FedEx DD")) {
+			clickUntil(OrderObj.SELECT_CARRIER_DD,OrderObj.verifyCarrier(carrier), "carrier Drop down");
+			}
+			if (isElementPresent(OrderObj.verifyCarrier(carrier), "shipping carrier in Dropdown"+carrier)) {
+				click(OrderObj.verifyCarrier(carrier), "From Carrier Drop down"+carrier);
+			}
+			if(driver.findElement(GROUND_CAREER).isSelected()) {
+				reporter.SuccessReport("Verify "+carrier+" is Selected" ,"Select a Carrier Option Exist and Verified", carrier+" Ground - USD $30.46");	
+			}else {
+				click(GROUND_CAREER,"Ground- USD $30.46Option Exists and Selected");
+			}
+			click(CONTINUE_BTN, "Continue button of Shipping Options");
+		}
 }
 

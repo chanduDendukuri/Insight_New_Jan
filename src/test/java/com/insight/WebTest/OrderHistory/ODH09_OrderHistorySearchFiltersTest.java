@@ -58,7 +58,7 @@ public class ODH09_OrderHistorySearchFiltersTest extends OrderHistoryLib {
 							cmtLib.clickOnloginAs();
 							switchToChildWindow();
 							cmtLib.loginVerification(data.get("ContactName"));
-							ivhLib.closeAccountTools();
+							//ivhLib.closeAccountTools();
 							canadaLib.clickOnSideMenuSelectAccountToolOptions(data.get("Tools_Menu"),
 									data.get("Tools_Menu_DD"));
 							verifyOrderHistoryPage();
@@ -68,7 +68,7 @@ public class ODH09_OrderHistorySearchFiltersTest extends OrderHistoryLib {
 							startDateCalender(data.get("Date"));
 							clickAdvancedSearchButton();
 							spinnerImageODH();
-							scrollToBottomWithCordinate("300");
+							//scrollToBottomWithCordinate("300");
 							verifyOrderStatusResults(data.get("Order_Status_Onhold"));
 							clickClearcSearch();
 							scrollUp();
@@ -78,7 +78,7 @@ public class ODH09_OrderHistorySearchFiltersTest extends OrderHistoryLib {
 							endDateCalender(previousYearPlusThreeMonthsToCurrentDate());
 							clickAdvancedSearchButton();
 							spinnerImageODH();
-							scrollToBottomWithCordinate("300");
+							//scrollToBottomWithCordinate("300");
 							verifyOrderStatusResults(data.get("Order_Status_Inprogress"));
 							clickClearcSearch();
 							scrollUp();
@@ -88,7 +88,7 @@ public class ODH09_OrderHistorySearchFiltersTest extends OrderHistoryLib {
 							endDateCalender(previousYearPlusThreeMonthsToCurrentDate());
 							clickAdvancedSearchButton();
 							spinnerImageODH();
-							scrollToBottomWithCordinate("300");
+							//scrollToBottomWithCordinate("300");
 							verifyOrderStatusResults(data.get("Order_Status_Partially_shipped"));
 							clickClearcSearch();
 							scrollUp();
@@ -98,7 +98,7 @@ public class ODH09_OrderHistorySearchFiltersTest extends OrderHistoryLib {
 							endDateCalender(currentDate());
 							clickAdvancedSearchButton();
 							spinnerImageODH();
-							scrollToBottomWithCordinate("300");
+							//scrollToBottomWithCordinate("300");
 							verifyOrderStatusResults(data.get("Complete_Status"));
 							clickClearcSearch();
 							scrollUp();
@@ -108,7 +108,7 @@ public class ODH09_OrderHistorySearchFiltersTest extends OrderHistoryLib {
 							endDateCalender(previousYearPlusThreeMonthsToCurrentDate());
 							clickAdvancedSearchButton();
 							spinnerImageODH();
-							scrollToBottomWithCordinate("300");
+							//scrollToBottomWithCordinate("300");
 							verifyNonShippableQty(data.get("QTY"),data.get("QTY_Shipped"));
 							clickClearcSearch();
 							scrollUp();
@@ -118,7 +118,7 @@ public class ODH09_OrderHistorySearchFiltersTest extends OrderHistoryLib {
 							endDateCalender(currentDate());
 							clickAdvancedSearchButton();
 							spinnerImageODH();
-							scrollToBottomWithCordinate("300");
+							//scrollToBottomWithCordinate("300");
 							verifyOrderStatusResults(data.get("Complete_Status"));
 							clickClearcSearch();
 							scrollUp();
