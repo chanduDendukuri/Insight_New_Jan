@@ -92,6 +92,7 @@ public class ShipBillPayObj extends ActionEngine{
   public static By CREATEDADDRES(String Company){
   	return By.xpath("//label[contains(text(),'Company:')]/following-sibling::p[contains(text(),'"+Company+"')]");
   }
+  public static By COMPANYBILLINGADDRESS=By.xpath("//section[@class='section data-private billing-address']//label[contains(text(),'Company:')]/following-sibling::p[1]");
   public static By LINKEDACCOUNTSDROPDOWN=By.xpath("//select[@id='ship_linking']");
   public static By DEFUALTADRESSES=By.xpath("//td[contains(text(),'  insight ')]/following-sibling::td//input[@id='21297179_ship_defaultAddress']");
   public static By EDITBUTTON_SHIPPINGADDRES=By.xpath("//h3[contains(text(),'Shipping address')]/following-sibling::a[contains(text(),'Edit')]");
@@ -223,6 +224,8 @@ public static By OPTION(String Option) {
 return By.xpath("//select[@id='payAllowedSel']/option[contains(text(),'"+Option+"')]");
 
 }
+public static By COMPANY=By.xpath("//div[@class='iw-set-as-my-default iw-set-as-my-default__show']/p[1]");
+public static By ADDRESS=By.xpath("//div[@class='iw-set-as-my-default iw-set-as-my-default__show']/p[2]");
 public static By defaultCreditCard = By.xpath("//h3[contains(text(),'Stored Credit Cards')]/following-sibling::p");
 
 }

@@ -406,9 +406,9 @@ public class ShipBillPayLib extends ShipBillPayObj {
 		} else {
 			reporter.failureReport("Stored address is Not selected", "Stored address is Not selected", "");
 		}
-		getText(SHIPPING_ADDRES,"Shiping address Company :"+Text).trim();
 		click(CONTINUE_BUTTONSTOREDADDRESS, "continue Button of Stored Address");
-
+		getText(COMPANY,"Shiping address Company::").trim();
+		getText(ADDRESS,"Shiping address::").trim();
 	}
 
 	public void SaveCartandView(String cartName, String toolsMenuName, String dropDown) throws Throwable {
@@ -882,7 +882,7 @@ public class ShipBillPayLib extends ShipBillPayObj {
 		click(Deletesavedcart(cartName), "Add to cart");
 		// ADDEDTOCART_POPUP
 		waitForVisibilityOfElement(DIALOGUEBOX_DELETECART, "Delete Cart");
-		click(YESBUTTON_DELETECART, "Continue To Checkout");
+		click(YESBUTTON_DELETECART, "Yes Delete Cart Button");
 		
 	}
 	public void ClickRviewrequesition()throws Throwable {
@@ -1040,8 +1040,8 @@ public class ShipBillPayLib extends ShipBillPayObj {
 		}
 
 		public void deletesavedcartsortamplates() throws Throwable {
+			if (isVisibleOnly(CartObj.DELETEBTN, "Delete Button")) {
 			List<WebElement> myList = driver.findElements(CartObj.DELETEBTN);
-			if (isElementPresent(CartObj.DELETEBTN, "error message")) {
 			for (int i = 0; i < myList.size(); i++) {
 			 myList.get(i).click();
 			 waitForVisibilityOfElement(CartObj.YES_BUTTON_INCONFORMATION_POP_UP, "Yes in conformation pop up");
@@ -1116,10 +1116,9 @@ public class ShipBillPayLib extends ShipBillPayObj {
 			public String currentDate() {
 				LocalDate today = LocalDate.now();
 				String newDate = today.format(DateTimeFormatter.ofPattern("d-MMMM-uuuu"));
-				String date[]=newDate.split("-");
-				System.out.println("newDate" + date[0]);
-				return date[0];
-
+		          String date[]=newDate.split("-");
+                 System.out.println("newDate" + date[0]);
+                     return date[0];
 			}
 
 			
@@ -1136,7 +1135,9 @@ public class ShipBillPayLib extends ShipBillPayObj {
 			}
 			public void verifyNewAddress()throws Throwable{
 				if(isVisibleOnly(New_address,"New address")) {
-					reporter.SuccessReport("Verify New Address", "Address changed to Tempe", "910 W CARVER RD TEMPE, AZ 85284-5265 US");
+				String company=	getText(COMPANYBILLINGADDRESS,"Company ");
+				String address=	getText(ADDRESS,"Shiping address:").trim();
+					reporter.SuccessReport("Verify New Address", "New Address",company+" "+address);
 				}else {
 					reporter.SuccessReport("Verify New Addresst", "Address not Changed", "");
 
@@ -1164,7 +1165,14 @@ public class ShipBillPayLib extends ShipBillPayObj {
 
 		}
      public void clickonTodayDate(String date)throws Throwable{
-			click(Date(date),"Today::"+date+"");
+    	 if(isVisibleOnly(Date(date),"Today Date")) {
+    	 LocalDate today = LocalDate.now();
+    	 String newDate = today.format(DateTimeFormatter.ofPattern("d-MMMM-uuuu"));
+		click(Date(date),"Today::"+date+"");
+		reporter.SuccessReport("Selecte Today Date from Calender", "Today Date from Calender",
+					newDate);
+			
+    	 }
 			}
 		public void clickExpand()throws Throwable{
 			clickUntil(EXPAND_LNL,WG_LNL_TEXT,"Line Level Section");
@@ -1267,13 +1275,10 @@ public class ShipBillPayLib extends ShipBillPayObj {
 			click(ShipBillPayObj.CANNADA_WEBSITE,"webGoup","");
 		}
 		
-		public void VerifySoldtoAddress(String Company) throws Throwable {
-			Thread.sleep(4000);
-			if (isVisibleOnly(CREATEDADDRES(Company), "Sold-To Shipping Address")) {
-				Thread.sleep(4000);
-				getText(SHIPPING_ADDRES,"Shiping address").trim();
+		public void VerifySoldtoAddress() throws Throwable {
+				getText(COMPANY,"Shiping address Company::").trim();
+				getText(ADDRESS,"Shiping address::").trim();
 			}
-		}
 		public void selectCarrierandGrounOption(String carrier) throws Throwable {
 			if(isVisibleOnly(OrderObj.SELECTCARRIERDD_FEDEX,"FedEx DD")) {
 				clickUntil(OrderObj.SELECTCARRIERDD_FEDEX,OrderObj.verifyCarrier(carrier), "carrier Drop down");	

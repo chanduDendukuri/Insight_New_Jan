@@ -82,4 +82,7 @@ public class ReportsObj extends ActionEngine {
 	}
 	
  public static By STANDARDREPORTS=By.xpath("//label[text()='Standard Reports']//parent::span//parent::div//span");
+public static By PARENT_CHECKBOX=By.xpath("//div[@id='p2-9006465']/input[@class='wtvinput1' and @checked]");
+public static By GRANDPARENT_CHECKBOX=By.xpath("//input[@id='c1-9009688']");
+public static By SOLTOS=By.xpath("//div[@id='a2-9006465']//input[@checked]");
 }

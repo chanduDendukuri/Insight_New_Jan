@@ -67,22 +67,22 @@ public class REP09_SoftwareLicenseDetailOutputFormatTest extends ReportingLib {
 					cmtLib.loginToCMTSearchWebGrpAndUser(data.get("Header"), data.get("WebGrp"),
 							data.get("LnameEmailUname"), data.get("ContactName"));
 					cmtLib.setPermissionsToDisable(data.get("Menu_Name"), data.get("Set_Permission1"));
-				//	cmtLib.setPermissions(data.get("Menu_Name"), data.get("Set_Permission2"));
-					cmtLib.setPermissionsToDisable(data.get("Menu_Name"), data.get("Set_Permission3"));
+					cmtLib.setPermissions(data.get("Menu_Name"), data.get("Set_Permission3"));
+					cmtLib.setPermissions(data.get("Menu_Name"), data.get("Set_Permission2"));
+					cmtLib.permissionFromDD(data.get("Set_Permission3"), data.get("Permission_Dropdown_Option"));
 					cmtLib.permissionFromDD(data.get("Set_Permission2"), data.get("Permission_Dropdown_Option"));
 					cmtLib.loginAsAdminCMT();
 					canadaLib.clickOnSideMenuSelectAccountToolOptions(data.get("Tools_Menu"),
 							data.get("Tools_Menu_DD"));
+					//report Option
 					canadaLib.clickOnReportOptions(data.get("ReportOption"));
 					canadaLib.verifyReportsPage();
 					canadaLib.verifySelectReport(data.get("SelectReport"));
+					//Select Reporting Parent
 					canadaLib.clickOnAccountSelections(data.get("AccountSelectionOpt"));
-					invoiceHistoryLib.verifyTree();
-					canadaLib.clickOnAccountSelections(data.get("AccountSelectionOpt1"));
-					invoiceHistoryLib.verifyTree();
-					canadaLib.clickOnAccountSelections(data.get("AccountSelectionOpt2"));
-					invoiceHistoryLib.verifyTree();
-					
+					ParentCheckboxClicked();
+					grandParentCheckboxClicked();
+					verifySoldTos();
 					canadaLib.clickOnDeliveryMethod(data.get("DeliveryMethod"));
 					enterEmails(data.get("Emails"));
 					canadaLib.clickOnRun();	
@@ -92,7 +92,6 @@ public class REP09_SoftwareLicenseDetailOutputFormatTest extends ReportingLib {
 					clickOnSave();
 					verifyReportTemplates();
 					expandReportTemplateAndVerify(data.get("TemplateName"));		
-					
 					clickOnDelete(data.get("SelectReport"));
 					commonLib.clickLogOutLink(data.get("Logout_Header"));
 

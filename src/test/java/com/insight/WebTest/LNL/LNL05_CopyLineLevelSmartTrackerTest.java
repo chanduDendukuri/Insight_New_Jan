@@ -70,6 +70,7 @@ public class LNL05_CopyLineLevelSmartTrackerTest extends LineLevelInfoLib{
 						
 						// Search for part or product >> Thinkpad
 						searchLib.searchInHomePage(data.get("SearchText1"));
+						searchLib.verifyTheResultsForSearchTerm(data.get("SearchText1"));
 						cartLib.selectFirstProductDisplay();
 						String partNumber1=prodLib.getMFRNumberInProductInfopage();
 						commonLib.addToCartAndVerify();
@@ -78,6 +79,7 @@ public class LNL05_CopyLineLevelSmartTrackerTest extends LineLevelInfoLib{
 						
 					   // Search for 2nd product >> Workstations
 						searchLib.searchInHomePage(data.get("SearchText2"));
+						searchLib.verifyTheResultsForSearchTerm(data.get("SearchText2"));
 						cartLib.selectFirstProductDisplay();
 						String partNumber2=prodLib.getMFRNumberInProductInfopage();
 						commonLib.addToCartAndVerify();
@@ -86,6 +88,7 @@ public class LNL05_CopyLineLevelSmartTrackerTest extends LineLevelInfoLib{
 						
 					   // Search for 3rd product >> laser printers
 						searchLib.searchInHomePage(data.get("SearchText3"));
+						searchLib.verifyTheResultsForSearchTerm(data.get("SearchText3"));
 						cartLib.selectFirstProductDisplay();
 						String partNumber3=prodLib.getMFRNumberInProductInfopage();
 						commonLib.addToCartAndVerify();
@@ -135,19 +138,32 @@ public class LNL05_CopyLineLevelSmartTrackerTest extends LineLevelInfoLib{
 						// click clear for 3rd item
 						clickClearLink(partNumber3);
 						String actualEmailclear=getContactEmail(partNumber3);
-						assertTextStringMatching(actualEmailclear, "");
+						if(actualEmailclear.isEmpty()) {
+							reporter.SuccessReport("verify Email", "Email is cleared for part # "+partNumber3, "");
+						}else {
+							reporter.failureReport("verify Email", "Email is cleared", "",driver);
+						}
 						
-						// Verifying RP_LNL_Txt - second item
+						// Verifying RP_LNL_Txt - 3 item
 						String RP_LNL_TxtClear=getRP_LNL_Txt(partNumber3);
-						assertTextStringMatching(RP_LNL_TxtClear, "");
+						if(RP_LNL_TxtClear.isEmpty()) {
+							reporter.SuccessReport("verify RP_LNL_Txt", "RP_LNL_Txt is cleared for part # "+partNumber3, "");
+						}else {
+							reporter.failureReport("verify RP_LNL_Txt", "RP_LNL_Txt is cleared", "",driver);
+						}
 						
-						// Verify  RP_LNL_DATE - second item
+						// Verify  RP_LNL_DATE - 3 item
 						String RP_LNL_DATEClear=getRP_LNL_DATE_PICKER(partNumber3);
-						assertTextStringMatching(RP_LNL_DATEClear,"");
+						if(RP_LNL_DATEClear.isEmpty()) {
+							reporter.SuccessReport("verify RP_LNL_DATE", "RP_LNL_DATE is cleared for part # "+partNumber3, "");
+						}else {
+							reporter.failureReport("verify RP_LNL_DATE", "RP_LNL_DATE is cleared", "",driver);
+						}
 						scrollUp();
 						// Copy all  >> 
 						clickCopyToAllLink(partNumber1);
 						orderLib.clickContinueOnLineLevelInfo();
+						canadaLib.verifySBP();
 						// logout
 						commonLib.clickLogOutLink(data.get("Logout"));
 						

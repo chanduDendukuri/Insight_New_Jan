@@ -1,6 +1,7 @@
 package com.insight.WebTest.QuoteHistory;
 
 import java.util.Hashtable;
+import java.util.List;
 
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
@@ -122,21 +123,20 @@ public class QTH11_ConvertQuote3rdPartyCarrierTest extends QuoteHistoryLib {
 					orderLib.VerifyShippingCarrierdetails();
 					orderLib.clickOnReviewOrderButton();
 					orderLib.VerifyPlaceOrderdetails();
+					
+					
 					String summaryAmount = cartLib.getSummaryAmountInCart();
-					orderLib.placeOrderAndVerifyReceiptOrderAndDateQuoteHistory(summaryAmount);
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
+					List<String> orderdetails = orderLib.placeOrderAndVerifyReceiptOrderAndDate(summaryAmount);
+					String referencenumber = orderdetails.get(0);
+					String[] RefNum = referencenumber.split(" ");
 					shipbLib.clickOrderDetailsButtonInREceipt();
-					shipbLib.verifyShippingCarrierAFterReviewOrder(data.get("Shiping_Carrier_Verify_Receipt"),data.get("Shiping_Carrier_Verify_Receipt"));
+					orderLib.VerifyShippingCarrierdetails();
+					canadaLib.clickOnSideMenuSelectAccountToolOptions(data.get("Tools_Menu"),
+							data.get("Tools_Menu_DD1"));
+					verifyRecentOrders();
+					orderLib.searchByInQuoteHistory(RefNum[0],data.get("Quote_DD_option1"));
+					VerifyOrderdetails();
+					//shipbLib.verifyShippingCarrierAFterReviewOrder(data.get("Shiping_Carrier_Verify_Receipt"),data.get("Shiping_Carrier_Verify_Receipt"));
 					commonLib.clickLogOutLink(data.get("Logout_Header"));
 						} catch (Exception e) {
 							ReportStatus.blnStatus = false;
