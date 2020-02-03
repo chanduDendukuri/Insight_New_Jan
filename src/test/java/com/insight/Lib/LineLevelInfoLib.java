@@ -307,7 +307,7 @@ public class LineLevelInfoLib extends LineLevelInfoObj{
 	 */
 	public void verifyOrderAndItemInfoBreadCrumb() throws Throwable{
 		if(isElementPresent(OrderObj.ORDER_ITEM_INFO_LABEl, "Order And Item Info BreadCrumb")){
-			reporter.SuccessReport("Verify Order And Item Info BreadCrumb", "Order And Item Info BreadCrumb is present", "");
+			reporter.SuccessReport("Verify Order And Item Info BreadCrumb", "Order And Item Info BreadCrumb is present", "PageDetails : Order and item information");
 		}else{
 			reporter.failureReport("Verify Order And Item Info BreadCrumb", "Order And Item Info BreadCrumb is not present ", "",driver);
 		}
@@ -533,7 +533,7 @@ public class LineLevelInfoLib extends LineLevelInfoObj{
 			
 		case "NotAvailable":
 			if(isElementNotPresent(LINE_LEVEL_INO_LABEL, "Line level info")){
-				reporter.SuccessReport("Verify line levle info present", "Line level information is not present", "");
+				reporter.SuccessReport("Verify line levle info present", "Linelevel information Does Not Exist", "");
 			}else{
 				reporter.failureReport("Verify line levle info present", "Line level information is present", "", driver);
 			}

@@ -3362,11 +3362,11 @@ public class ActionEngine extends TestEngineWeb {
 			if (!status) {
 				if (reportIndicator) {
 					LOG.info("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
-					//reporter.failureReport("Enter text in :: " + locatorName, msgTypeFailure +"'" +testData+"'", driver);
+					reporter.failureReport("Enter text in :: " + locatorName, msgTypeFailure +"'" +testData+"'","", driver);
 				}
 			} else {
 				LOG.info("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
-				//reporter.SuccessReport("Enter text in :: " + locatorName, msgTypeSuccess +"'"+ testData+"'");
+				reporter.SuccessReport("Type :" + locatorName, this.msgTypeSuccess + locatorName,testData);
 			}
 			reportIndicator = true;
 		}
