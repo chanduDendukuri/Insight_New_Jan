@@ -204,6 +204,9 @@ public class CommonLib extends ActionEngine{
 		public void searchProduct(String SearchItem) throws Throwable
 		{	
 			Thread.sleep(20000);
+			if (isVisibleOnly(CommonObj.CLOSEBUTTON_COOKIES, "close cookie")) {
+				click(CommonObj.CLOSEBUTTON_COOKIES, "close cookie");
+			}
 			waitForVisibilityOfElement(CartObj.SEARCH,"SEARCH FIELD");
 
 			//type(CartObj.SEARCH,SearchItem,"SEARCHFIELD");
