@@ -75,14 +75,14 @@ public class CRT18_SaveCartShipBillPayTest extends CartLib {
 							data.get("Tools_Menu_DD"));
 					cartLib.deleteSavedCartFromAccountTools();
 					commonLib.searchProduct(data.get("Search_Item"));
-					prodInfoLib.verifyTheManufacturerNumberInProductDetailsPage(data.get("PartNumber"));
+					prodInfoLib.verifyTheManufacturerNumberInProductDetailsPage(data.get("Search_Item"));
 					search.increaseQuantity(data.get("quantity"));
 					commonLib.addToCartAndVerify();
 					canadaLib.continueToCheckout();
 					canadaLib.verifyPlaceCartLabel();
 					String cartName="QTPCart"+getRandomNumeric(4);
 					cartLib.clickOnSaveCartContentAndSaveCart(cartName);
-					//cartLib.openSavedCartFromTools(cartName);
+					
 					commonLib.clickCart();
 				    commonLib.verifyCartIsEMpty();
 					cartLib.openSavedCartFromTools(cartName);
@@ -90,7 +90,7 @@ public class CRT18_SaveCartShipBillPayTest extends CartLib {
 					canadaLib.verifyPlaceCartLabel();
 					commonLib.clickLogOutLink(data.get("Logout_Header"));
 					cmtLib.navigateBackToCMT();
-					cmtLib.navigateBackToCMT();
+					
 					
 				    cmtLib.hoverOverMasterGroupAndSelectChangeGrp();
 				    cmtLib.searchForWebGroup(data.get("WebGrp"));
