@@ -97,7 +97,7 @@ public class REP04_AdHocReporOutputFormatTest extends ReportingLib {
 					//commonLib.spinnerImage();
 					Thread.sleep(50000);
 					List<String> excelOptions= Arrays.asList(data.get("ExcelOptions").split(","));
-				    canadaLib.verifyDownloadedReportExcelFile(excelOptions,data.get("ReportOption"));
+				    canadaLib.verifyDownloadedExcelFile(excelOptions,data.get("ReportOption"));
 				    commonLib.clickLogOutLink(data.get("Logout_Header"));
 								} catch (Exception e) {
 									ReportStatus.blnStatus = false;
