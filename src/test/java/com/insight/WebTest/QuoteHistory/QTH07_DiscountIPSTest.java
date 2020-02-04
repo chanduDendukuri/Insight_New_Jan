@@ -73,7 +73,8 @@ public class QTH07_DiscountIPSTest extends QuoteHistoryLib {
 
 					cmtLib.clickOnloginAs();
 					switchToChildWindow();
-					searchLib.selectContractInCartPage(data.get("Contract"));
+					searchLib.VerifyIPSContractPage(data.get("Contract"));
+					
 
 					// Search For the Product and Add to Cart
 					searchLib.searchInHomePage(data.get("SearchItem"));
@@ -105,7 +106,7 @@ public class QTH07_DiscountIPSTest extends QuoteHistoryLib {
 					searchLib.searchInHomePage(data.get("SearchItem3"));
 					// Click on First Product
 					cartLib.selectFirstProductDisplay();
-
+					cartLib.verifyProductdetails();
 					// Click Add To Order
 					commonLib.addToCartAndVerify();
 					orderLib.continueToCheckOutOnAddCart();
@@ -116,7 +117,8 @@ public class QTH07_DiscountIPSTest extends QuoteHistoryLib {
 					commonLib.clickOnAccountToolsAndClickOnProductGrp(data.get("Tools_Menu1"),
 							data.get("Tools_Menu_DD1"));
 					verifyQuoteHistoryPageOpened();
-					quoteNumberInTable(quotedetails.get(0));ClickFirstQuoteNumber();
+					quoteNumberInTable(quotedetails.get(0));
+					ClickFirstQuoteNumber();
 					verifyMSRPPrice();
 					verifyDiscountPrice();
 					orderLib.convertQuote();
@@ -130,7 +132,7 @@ public class QTH07_DiscountIPSTest extends QuoteHistoryLib {
 							data.get("year"), data.get("poNumber"),data.get("POReleaseNumber"));
 					orderLib.clickOnReviewOrderButton();
 					
-					orderdetails=orderLib.placeOrderAndVerifyReceiptOrderAndDateQuoteHistory("$9,279.30");
+					orderdetails=orderLib.placeOrderAndVerifyReceiptOrderAndDate("");
 					commonLib.clickOnAccountToolsAndClickOnProductGrp(data.get("Tools_Menu1"),
 							data.get("Tools_Menu_DD2"));
 					String[] RN = (orderdetails.get(0)).split(" ");

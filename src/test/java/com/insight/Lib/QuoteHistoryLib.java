@@ -185,8 +185,9 @@ public void SelectWebGroupfromdd(String option) throws Throwable {
 	 */
 	public void verifyDiscount() throws Throwable {
 		waitForVisibilityOfElement(DISCOUNT, "Discount % on Products Details Page");
+		String discount = getText(DISCOUNT, "Discount % on Products Details Page");
 		if (isElementPresent(DISCOUNT, "Discount % on Products Details Page")) {
-			reporter.SuccessReport("Verify Discount % on Products Details Page", "Discount % Exist", "");
+			reporter.SuccessReport("Verify Discount % on Products Details Page", "Discount % Exist", discount);
 		} else {
 			reporter.failureReport("Verify Discount % on Products Details Page", "Discount % Not  Exist", "");
 		}
@@ -231,7 +232,7 @@ public void SelectWebGroupfromdd(String option) throws Throwable {
 			price = price.trim();
 
 			if (price != null) {
-				reporter.SuccessReport("Verify MSRP Price on Quote Details Page", "MSRP Price is Not Exists", "");
+				reporter.SuccessReport("Verify MSRP Price on Quote Details Page", "MSRP Price is Not Exists", price);
 			} else {
 				reporter.failureReport("Verify MSRP Price on Quote Details Page", "MSRP Price is Exists", "");
 			}
@@ -250,7 +251,7 @@ public void SelectWebGroupfromdd(String option) throws Throwable {
 			discount = amount[1].split(":")[1];
 
 			if (discount != null) {
-				reporter.SuccessReport("Verify Discount% on Quote Details Page", "Discount Of is Exists", "");
+				reporter.SuccessReport("Verify Discount% on Quote Details Page", "Discount Of is Exists", discount);
 			} else {
 				reporter.failureReport("Verify Discount% on Quote Details Page", "Discount Of is Not Exists", "");
 			}
@@ -586,7 +587,7 @@ scrollUp();
 			reporter.failureReport("Verify  Quote Details Results", "  Quote Details Page Doesnot  Exist", "");		
 		}
 	}
-	public void verifypartnumberInQuotedetails() throws Throwable{
+	public void verifypartnumberInQuotedetailsforQTH11() throws Throwable{
 		scrollToBottomWithCordinate("110");
 		String MFRpart1 = getText(mfrPartInQuotedetails, "mfrPartInQuotedetails");
 		String InsightPart = getText(InsightPartInQuotedetails, "InsightPart");
@@ -597,7 +598,27 @@ scrollUp();
 			reporter.failureReport("Part details: ", "Part details exist as expected", "");
 		}
 	}
-
+	public void verifypartnumberInQuotedetails(String Material) throws Throwable{
+		scrollToBottomWithCordinate("110");
+		String MFRpart1 = getText(mfrPartInQuotedetails, "mfrPartInQuotedetails");
+		String InsightPart = getText(InsightPartInQuotedetails, "InsightPart");
+		if(MFRpart1.equals(Material) && InsightPart.equals(Material)) {
+			reporter.SuccessReport("Part details: ", "Part details exist as expected", ""+MFRpart1+""+InsightPart+"");
+		}
+		else {
+			reporter.failureReport("Part details: ", "Part details exist as expected", "");
+		}
+	}
+public void VerifyPartnumbersinCartpage(String Material) throws Throwable{
+	String MFRpart1 = getText(mfrPartInCartdetails, "mfrPartInQuotedetails");
+	String InsightPart = getText(InsightPartInCartdetails, "InsightPart");
+	if(MFRpart1.equals(Material) && InsightPart.equals(Material)) {
+		reporter.SuccessReport("Part details: ", "Part details exist as expected", ""+MFRpart1+""+InsightPart+"");
+	}
+	else {
+		reporter.failureReport("Part details: ", "Part details exist as expected", "");
+	}
+}
 	/**
 	 * Method is used to verify Delete this quote icon
 	 * 
@@ -696,9 +717,9 @@ scrollUp();
 	 * @throws Throwable
 	 */
 	public void verifyErrorMsg() throws Throwable {
-	
+	String errortext = getText(ERROR_MSG, "Error Msg Present");
 		if (isElementPresent(ERROR_MSG, "Error Msg Present")) {
-			reporter.SuccessReport("Verify  Erorr Message", "Error Message is present", "");	
+			reporter.SuccessReport("Verify  Erorr Message", "Error Message is present", errortext);	
 		}
 		else{
 		
@@ -712,9 +733,9 @@ scrollUp();
 	 * @throws Throwable
 	 */
 	public void verifyQuickShopErrorMsg() throws Throwable {
-	
+	String ErrorMessage = getText(QUICKSHOP_ERROR_MSG, "Error Msg Present");
 		if (isElementPresent(QUICKSHOP_ERROR_MSG, "Error Msg Present")) {
-			reporter.SuccessReport("Verify quick shop Erorr Message", " quick shop Error Message is present", "");	
+			reporter.SuccessReport("Verify quick shop Erorr Message", " quick shop Error Message is present", ErrorMessage);	
 		}
 		else{
 		

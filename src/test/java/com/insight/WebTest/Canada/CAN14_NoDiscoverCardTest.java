@@ -63,7 +63,7 @@ public class CAN14_NoDiscoverCardTest extends CanadaLib  {
 			canadaLib.CandaHomePageVerification();
 			cmtLib.loginAsEndUser(data.get("EndUSER"),data.get("Password"));
 			Thread.sleep(9000);
-			//Canada verification
+//Canada verification
 
 						shipbLib.verifyWEbsiteIsCannada();
 						//canadaLib.getWeGrpDDValues();
@@ -75,7 +75,8 @@ public class CAN14_NoDiscoverCardTest extends CanadaLib  {
 						clickOnEnterNewCard();
 						clickOnCancelButton();
 						scrollToBottomWithCordinate("-100");
-						canadaLib.clickOnSideMenuSelectAccountToolOptions("Orders","My Requisition History" );
+						//canadaLib.clickOnSideMenuSelectAccountToolOptions("Orders","My Requisition History" );
+						commonLib.clickOnAccountToolsAndClickOnProductGrp("Orders","My Requisition History" );
 						//canadaLib.clickOnSideMenuSelectAccountToolOptions(data.get("Tools_Menu1"),data.get("Tools_Menu_DD1"));
 						req.clickExpandSearchIcon();
 
@@ -146,7 +147,7 @@ if(visibilityOfReferenceNoInRequestionSearch()) {
 						shipbLib.PaymentandCardsTextverify(data.get("Tools_Menu"), data.get("Tools_Menu_DD"), data.get("tabName2"));
 						//clickOnEnterACard(data.get("Creditcard"));
 						clickOnEnterNewCard();
-						//clickOnCompanyLink();
+//clickOnCompanyLink();
 
 						commonLib.searchProduct("Workstations");
 						//searchLib.verifyTheResultsForSearchTerm(data.get("Search_Item"));
@@ -178,8 +179,8 @@ if(visibilityOfReferenceNoInRequestionSearch()) {
 								"2020","01919","123");
 						orderLib.clickOnReviewOrderButton();
 
-						//verify place order
-						//Discovery card availability nneeds to be verifed in shipbill page
+//verify place order
+//Discovery card availability nneeds to be verifed in shipbill page
 
 //*************************************************************************** OLD CODE ****************************************************************************
 			commonLib.searchProduct(data.get("ProductName"));

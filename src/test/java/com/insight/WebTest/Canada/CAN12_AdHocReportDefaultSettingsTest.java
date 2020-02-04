@@ -1,5 +1,6 @@
 package com.insight.WebTest.Canada;
 
+import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.Hashtable;
 import java.util.List;
@@ -48,16 +49,7 @@ public class CAN12_AdHocReportDefaultSettingsTest extends CanadaLib{
 			//	CommonLib commonLib = new CommonLib();
 				CMTLib cmtLib = new CMTLib();
 				CanadaLib canadaLib = new CanadaLib();
-			//	OrderLib orderLib = new OrderLib();
-			/*	cmtLib.loginToCMTSearchWebGrpAndUser(data.get("Header"), data.get("WebGrp"), data.get("LnameEmailUname"),data.get("ContactName"));
-				cmtLib.clickOnRolesAndPermissionsAndSetPermission(data.get("Menu_Name"), data.get("Set_Permission"));
-				cmtLib.loginAsAdminCMT();
-
-							commonLib.clickOnAccountToolsAndClickOnProductGrp(data.get("Tools_Menu"),
-									data.get("Tools_Menu_DD"));*/
-							//clickOnReportOptions(data.get("ReportOption"));
-
-
+				CommonCanadaLib commonCanadaLib = new CommonCanadaLib();
 							cmtLib.loginToCMT(data.get("Header"));
 							cmtLib.searchForWebGroup(data.get("WebGrp"));
 							cmtLib.clickOnTheWebGroup(data.get("MgContactName"));
@@ -77,7 +69,7 @@ public class CAN12_AdHocReportDefaultSettingsTest extends CanadaLib{
 
 							commonLib.clickOnAccountToolsAndClickOnProductGrp(data.get("Tools_Menu"),
 									data.get("Tools_Menu_DD"));
-							verifyReportsPage();
+							//verifyReportsPage();
 							clickOnReportOptions(data.get("ReportOption"));
 	//####################################################### Old COde##################
 							verifyReportsPage();
@@ -85,21 +77,47 @@ public class CAN12_AdHocReportDefaultSettingsTest extends CanadaLib{
 				verifyAccountSelections(data.get("AccountSelections"));
 				verifyFilterbyCurrency(data.get("Currency"));
 			//	verifyFilterOption();
-							ccp.veriffySelectedUser();
+							boolean checkBoxSelected =ccp.verifySelectedUser();
+							assertTrue(checkBoxSelected,"Convert all transactions to  check box was selected");
+							assertTrue(ccp.verifyDefaultScheduleReportNow(data.get("ScheduleOption")),"Default value is Scheduled Option ");
+							verifyDeliveryOption();
+							clickOnDeliveryMethod(data.get("DeliveryMethod"));
+							ccp.getListOfDeliveryMethodsOption();
+							clickOnDeliveryFormat(data.get("DeliveryFormat"));
+							ccp.getListOfDeliveryFormatOption();
+							ccp.clickOnReportNameDD();
+							ccp.getListOfReportNameOption();
+							ccp.clickOnDeliveryFormatDD();
+							ccp.getDeliveryDateFormatDDOptions();
+							clickOnAccountSelections(data.get("AccountSelections"));
+							verifyQuickDateOption(data.get("QuickDateOptions"));
+							ccp.clickOnDateRangeDD();
+							ccp.getDateRangeDDOptions();
 
-				verifyScheduleReport(data.get("ScheduleOption"));
-				verifyDeliveryOption();
-				clickOnAccountSelections(data.get("AccountSelections"));
-				verifyQuickDateOption(data.get("QuickDateOptions"));
-				verifyCustomDate();
-				verifyFilterOrder();
-				verifySmartcheck();
-				verifyAllFields();
-				clickOnDeliveryMethod(data.get("DeliveryMethod"));
-				clickOnDeliveryFormat(data.get("DeliveryFormat"));
-				clickOnRun();	
-				List<String> excelOptions= Arrays.asList(data.get("ExcelOptions").split(","));
-			    verifyDownloadedReportExcelFile(excelOptions,data.get("ReportOption"));
+							String StartDate = ccp.getDefaultStartDate();
+							String day = StartDate.split("-")[0];
+							String month = StartDate.split("-")[1];
+							String year = StartDate.split("-")[2];
+							String endDate=ccp.getDefaultEndDate();
+							String eday = endDate.split("-")[0];
+							String emonth = endDate.split("-")[1];
+							String eyear = endDate.split("-")[2];
+							LocalDate today = LocalDate.now();
+							String Currentyear = today.toString().split("-")[0];
+							String currentMonth=ccp.currentMonthComparision();
+							String date = today.toString().split("-")[2];
+							assertTrue(day.equals("01") && year.equals(Currentyear) && month.equalsIgnoreCase(currentMonth),"Default Start date is Starting of the month " );
+							assertTrue(eday.equals(date) && year.equals(Currentyear) && month.equalsIgnoreCase(currentMonth),"Default End date is Current date" );
+							assertTrue(ccp.verifyInvoiceDateDefaultCheck(),"By default Invoice date check box was selected");
+							assertTrue(!ccp.verifySMART_CHECK(),"By default SmartCheck was not selected");
+							verifyFilterOrder();
+							ccp.addAvailableItemsToAllowItems();
+							clickOnRun();
+							String a = data.get("ReportOption");
+							List<String> excelOptions= Arrays.asList(data.get("ExcelOptions").split(","));
+							canadaLib.openDirectoryToVerifyFileExist(a);
+							verifyDownloadedReportExcelFile(excelOptions,data.get("ReportOption"));
+
 			    commonLib.clickLogOutLink(data.get("Logout_Header"));
 				System.out.println("Test completed");
 				

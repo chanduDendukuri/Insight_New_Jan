@@ -10,6 +10,7 @@ import com.insight.Lib.CanadaLib;
 import com.insight.Lib.CartLib;
 import com.insight.Lib.ChinaLib;
 import com.insight.Lib.CommonLib;
+import com.insight.Lib.LineLevelInfoLib;
 import com.insight.Lib.OrderLib;
 import com.insight.Lib.ProductDetailLib;
 import com.insight.Lib.ProductDisplayInfoLib;
@@ -25,7 +26,10 @@ public class CRT23_LoginFromCartPricingTest extends CartLib{
 	CMTLib cmtLib = new CMTLib();
 	CartLib cartLib = new CartLib();
 	CanadaLib canadaLib = new CanadaLib();
-
+	SearchLib searchLib = new SearchLib();
+	ProductDisplayInfoLib prodInfoLib = new ProductDisplayInfoLib();
+	LineLevelInfoLib lineLevelLib=new LineLevelInfoLib();
+	OrderLib orderLib = new OrderLib();
 	// #############################################################################################################
     // #    Name of the Test         : CRT23_LoginFromCartPricing
     // #    Migration Author         : Cigniti Technologies
@@ -53,27 +57,42 @@ public class CRT23_LoginFromCartPricingTest extends CartLib{
 								Hashtable<String, String> data = TestUtil.getDataByRowNo("CRT23_LoginFromCartPricing", TestDataInsight,
 										"Web_Cart", intCounter);
 								TestEngineWeb.reporter.initTestCaseDescription("LoginFromCartPricing");
+					
+					commonLib.searchProduct(data.get("Search_Item"));
+					searchLib.verifyBreadCrumbInSearchResultsPage(data.get("Search_Item"));
+					prodInfoLib.getPartNumberInSearchResultsPage();
+					commonLib.addFirstDisplyedItemToCartAndVerify();
+					
+					String listPrice=prodInfoLib.getFirtProductListPrice().split(" ")[1];
+					System.out.println("listPrice"+listPrice);
+					canadaLib.continueToCheckout();
+					cmtLib.handleWelcomeToInsightBetaPopUp();
+					commonLib.clickCart();
+					
+					canadaLib.verifyPlaceCartLabel();
+					prodInfoLib.verifyCartPageAndPartDetailsForRecentlyItem();
+					String summaryAmountNonLoggedIn=cartLib.getSummaryAmountInCart();
+					System.out.println("summaryAmountNonLoggedIn"+summaryAmountNonLoggedIn);
+					if(listPrice.equalsIgnoreCase(summaryAmountNonLoggedIn)) {
+						reporter.SuccessReport("Verify the Non LoggedIn list price in cart", "list price same as in cart", summaryAmountNonLoggedIn);
+					}
+					else {
+						reporter.failureReport("Verify the Non LoggedIn list price in cart", "list price is not same as in cart", summaryAmountNonLoggedIn);
+					}
+					orderLib.proceedToCheckout();
 					cmtLib.loginAsEndUserInMainPage(data.get("Header"),data.get("User_Name"),data.get("Password"));
-					commonLib.searchProduct(data.get("Search_Item"));
-					commonLib.addToCartAndVerify();
-					String priceInLogin=cartLib.getTotalPrice();
-					//commonLib.clickCart();
-					canadaLib.continueToCheckout();
-					cartLib.verifyItemInCart(data.get("Search_Item"));
-					String summaryAmountInLogin=cartLib.getSummaryAmountInCart();
+					
+					orderLib.continueButtonOnAdditionalInformationSection();
+					String priceLogin=cartLib.getSummaryAmountInCart();
+					if(priceLogin.equalsIgnoreCase(summaryAmountNonLoggedIn)) {
+						reporter.SuccessReport("Verify the Non LoggedIn and LoggedIn list price in SBP Page", "	LoggedIn price changed in SBP Page", "LoggedIn Price: "+priceLogin+"and Non-LoggedIn price: "+summaryAmountNonLoggedIn);
+					}
+					else {
+						reporter.failureReport("Verify the Non LoggedIn and LoggedIn list price in SBP Page", "	LoggedIn price same in SBP Page", "LoggedIn Price: "+priceLogin+"and Non-LoggedIn price: "+summaryAmountNonLoggedIn);
+					}
+					commonLib.clickCart();
+					canadaLib.verifyPlaceCartLabel();
 					commonLib.emptyCartAndVerify();
-					commonLib.clickLogOutLink(data.get("Logout_Header"));
-					commonLib.searchProduct(data.get("Search_Item"));
-					commonLib.addToCartAndVerify();
-					String priceWithoutLogin=cartLib.getTotalPrice();
-					//commonLib.clickCart();
-					canadaLib.continueToCheckout();
-					cartLib.verifyItemInCart(data.get("Search_Item"));
-					String summaryAmountWithoutLogin=cartLib.getSummaryAmountInCart();
-					System.out.println("summaryAmountInLogin"+summaryAmountInLogin);
-					System.out.println("summaryAmountWithoutLogin"+summaryAmountWithoutLogin);
-					cartLib.VerifyLoginPriceAndNonLoginPrice(priceInLogin,priceWithoutLogin);
-					cartLib.verifySummaryPriceInLoginAndNonLogin(summaryAmountInLogin,summaryAmountWithoutLogin);
 					System.out.println("Test completed");
 
 							} catch (Exception e) {

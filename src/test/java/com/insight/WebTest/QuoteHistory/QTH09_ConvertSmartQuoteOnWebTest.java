@@ -54,11 +54,11 @@ public class QTH09_ConvertSmartQuoteOnWebTest extends QuoteHistoryLib {
 		
 					CMTLib cmtLib = new CMTLib();
 					CanadaLib canadaLib = new CanadaLib();
-					InvoiceHistoryLib invoiceHistoryLib = new InvoiceHistoryLib();
+					
 					CommonLib commonLib = new CommonLib();
 					HomeLib Homelib=new HomeLib();
 					loginLib loginlib=new loginLib();					
-					SearchLib searchLib = new SearchLib();
+					
 					OrderLib orderLib=new OrderLib();					
 					CartLib cartLib=new CartLib();
 					ShipBillPayLib sbpLib=new ShipBillPayLib();
@@ -94,15 +94,16 @@ public class QTH09_ConvertSmartQuoteOnWebTest extends QuoteHistoryLib {
 					Thread.sleep(4000);
 					Homelib.clickSideBarSmart();
 					Homelib.clickClosthedocument(QuoteNum);
-					Thread.sleep(4000);
-					//Homelib.clickYesButtontocloseDocument();
-					Thread.sleep(4000);
+					
+					Homelib.clickYesButtontocloseDocument();
+					
 					navigateTo("https://uat1.insight.com/en_US/home.html");
 					acceptAlert();
 					cmtLib.loginToCMTSearchWebGrpAndUser(data.get("Header"), data.get("WebGrp"),
 							data.get("LnameEmailUname"), data.get("ContactName"));
 					// Enable Quotes Check Box
 					cmtLib.setPermissions(data.get("Menu_Name"), data.get("Set_Permission"));
+					cmtLib.setPermissionsToDisable(data.get("Menu_Name"), "Enable Only My Quote Tracking");
 					cmtLib.clickOnloginAs();
 					switchToChildWindow();
 					cmtLib.loginVerification(data.get("ContactName"));				
@@ -111,9 +112,10 @@ public class QTH09_ConvertSmartQuoteOnWebTest extends QuoteHistoryLib {
 			        quickSearchAndVerifySearchResults(data.get("SearchBy"),QuoteNum);
 					verifyAndClickQuoteNumberOnHistory(QuoteNum);
 					verifyQuoteDetails();	
-					
+					verifypartnumberInQuotedetails(data.get("Material1"));
 					orderLib.convertQuote();
 					cartLib.verifyCartBreadCrumb();
+					VerifyPartnumbersinCartpage(data.get("Material1"));
 					// Proceed to checkout
 					orderLib.proceedToCheckout();
 					orderLib.clickOnAdditionalInfoContinueButton() ;

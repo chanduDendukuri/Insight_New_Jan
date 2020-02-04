@@ -336,7 +336,7 @@ public class CanadaLib extends CanadaObj {
 		}
 		//click(CommonObj.ACCOUNT_TOOLS, "Account tools menu icon");
 		if (isElementClickable(CommonObj.ACCOUNT_TOOLS,2, "Account tools menu icon")) {
-			click(CommonObj.ACCOUNT_TOOLS, "Account tools menu icon");
+			//click(CommonObj.ACCOUNT_TOOLS, "Account tools menu icon");
 		}else {
 			scrollToBottomWithCordinate("150");
 			if (isElementClickable(CommonObj.ACCOUNT_TOOLS,2, "Account tools menu icon")) {
@@ -352,8 +352,8 @@ public class CanadaLib extends CanadaObj {
 			}
 		}
 		//WebElement element = driver.findElement(by);
-//		scrollToBottomWithCordinate("150");
-
+		scrollToBottomWithCordinate("-150");
+Thread.sleep(2000);
 		//((JavascriptExecutor) WebDriver).executeAsyncScript(100,1000);
 		click(getAccountToolsMenu(toolsMenuName), "Account tools menu::" + toolsMenuName + "");
 		Thread.sleep(3000);
@@ -866,8 +866,13 @@ public class CanadaLib extends CanadaObj {
 	}
 
 	public void continueToCheckout() throws Throwable {
+		if(isVisible(CONTINUE_TO_CHECKOUT, "Continue to checkout")) {
+			//reporter.SuccessReport("Continue to checkout button", "Continue to checkout button is visible", "");
 		click(CONTINUE_TO_CHECKOUT, "Continue to checkout");
-		Thread.sleep(10000);
+		Thread.sleep(10000);}
+		else {
+			reporter.failureReport("Continue to checkout button", "Continue to checkout button is not visible", "", driver);
+		}
 	}
 
 	public void verifyReceiptOrderAndDate(String totalSummary) throws Throwable {
@@ -1427,7 +1432,7 @@ public void addShippingAddress(String name, String userName,String street1,Strin
 		waitForVisibilityOfElement(getFilterByCurrency(currency), "Select A Report");
 		if (isElementPresent(getFilterByCurrency(currency), "Select A Report")) {
 			reporter.SuccessReport("Verify 'Convert all transactions to' is Default to CAD on Reports Page",
-					"Convert all transactions to' Amount is Not Default to CAD", "true");
+					"Convert all transactions to' Amount is Default to CAD", "true");
 		} else {
 			reporter.failureReport("Verify 'Convert all transactions to' is Default to CAD on Reports Page",
 					"'Convert all transactions to' Amount is Not Default to CAD", "", driver);
@@ -1588,15 +1593,19 @@ public void addShippingAddress(String name, String userName,String street1,Strin
 	 *
 	 * @throws Throwable
 	 */
-	public void verifySmartcheck() throws Throwable {
+	public boolean verifySmartcheck() throws Throwable {
+		boolean status= false;
 		waitForVisibilityOfElement(SMART_CHECK, "Smart Check");
 		if (isVisibleOnly(SMART_CHECK, "Smart Check")) {
+			status=true;
 			reporter.SuccessReport("Verify Smart Tracker Check Box on Reports Page",
 					"Smart Tracker Check Box Exists and UnChecked", "");
 		} else {
+			status=false;
 			reporter.failureReport("Verify Smart Tracker Check Box on Reports Page",
 					"Smart Tracker Check Box Exists and Checked", "", driver);
 		}
+		return status;
 	}
 
 
@@ -1948,7 +1957,7 @@ public void addShippingAddress(String name, String userName,String street1,Strin
 					System.out.println(fileEntry.getName());
 					reporter.SuccessReport("Downloaded files ", "Downloaded file",  fileEntry.getName()  );
 				}else{
-					reporter.failureReport("Downloaded files ", "Downloaded file",  fileEntry.getName() +"is not exist",driver  );
+					//reporter.failureReport("Downloaded files ", "Downloaded file",  fileEntry.getName() +"is not exist",driver  );
 			}
 		}
 
