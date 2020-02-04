@@ -61,17 +61,6 @@ public class CAN16_InvoiceHistoryClassTest extends ActionEngine  {
 								//cmtLib.setPermissions(data.get("Menu_Name"), data.get("Set_Permission"));
 								cmtLib.clickOnPermissionAndRolesMenu(data.get("Menu_Name"));
 								cmtLib.permissionForDD(data.get("Set_Permission"), data.get("Permission_Drop_Down"));
-
-							/*	String[] permissions1 = data.get("Set_Permission").split(",");
-								for (i = 0; i < permissions1.length; i++) {
-									//cmtLib.setPermissions(data.get("Menu_Name"),permissions1[i]);
-									cmtLib.setPermissionsToDisable(data.get("Menu_Name"), permissions1[i]);
-								}*/
-
-								// Remove us comm default OFF
-								//cmtLib.setPermissionsToDisable(data.get("Menu_Name"), data.get("Set_Permission2"));
-
-								//cmtLib.setPermissions(data.get("Menu_Name"),data.get("Enable_Purchasing_Popup"));
 								cmtLib.clickOnloginAs();
 								switchToChildWindow();
 								cmtLib.loginVerification(data.get("ContactName"));
