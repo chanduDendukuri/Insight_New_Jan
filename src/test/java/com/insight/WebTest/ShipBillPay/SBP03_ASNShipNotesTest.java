@@ -98,6 +98,7 @@ public class SBP03_ASNShipNotesTest extends ShipBillPayLib{
 				cartLib.clickCheckoutDefaults();
 				commonLib.spinnerImage();
 				cartLib.verifyShipmentNotificationInCheckoutDefaults();
+				cartLib.verifyPreviousShipmentNotificationInCheckoutDefaults(data.get("Default_Email"));
 				cartLib.enterMailIdToNotificationFieldAndVerifyErrorMessageNote(data.get("Error_Msg"));
 				Thread.sleep(5000);
 				cartLib.enterMailIdToNotificationFieldAndVerifySuccessMessage(data.get("Success_Msg"));
@@ -115,9 +116,8 @@ public class SBP03_ASNShipNotesTest extends ShipBillPayLib{
 				cartLib.verifyEmailAsInFormat(data.get("Email3_To_verify"));
 				cartLib.clickAddAdditionalNotificationEmail();
 				cartLib.enterInvalidAddtionalNotificationEmailAndVerifyErrorMessage(data.get("Invalid_Email1"));
-				cartLib.enterInvalidAddtionalNotificationEmailAndVerifyErrorMessage(data.get("Invalid_Email2"));
 				cartLib.clickAddAdditionalNotificationEmail();
-				cartLib.enterValidAddtionalEmail(data.get("Valid_Email2"));
+				cartLib.enterValidAddtionalEmail(data.get("Invalid_Email2"));
 				Thread.sleep(3000);
 				cartLib.shippingBillPayInCheckOut(data.get("Card_Number").toString(), data.get("Card_Name"),
 						data.get("Month"), data.get("Year"), data.get("PONumber"),data.get("POReleaseNumber"));
@@ -125,8 +125,7 @@ public class SBP03_ASNShipNotesTest extends ShipBillPayLib{
 				cartLib.verifyNotificationEmailInShippingAdresses(data.get("Email1_To_verify"));
 				cartLib.verifyNotificationEmailInShippingAdresses(data.get("Email2_To_verify"));
 				cartLib.verifyNotificationEmailInShippingAdresses(data.get("Email3_To_verify"));
-				cartLib.verifyNotificationEmailInShippingAdresses(data.get("Valid_Email1"));
-				cartLib.verifyNotificationEmailInShippingAdresses(data.get("Valid_Email2"));
+				cartLib.verifyNotificationEmailInShippingAdresses(data.get("Invalid_Email2"));
 				Thread.sleep(3000);
 				String summaryAmount = cartLib.getSummaryAmountInCart();
 				orderLib.placeOrderAndVerifyReceiptOrderAndDate(summaryAmount);
