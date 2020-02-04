@@ -263,18 +263,21 @@ public class ProductDetailLib extends ProductDetailObj {
 	 * @return
 	 * @throws Throwable
 	 */
-	public void Verifyrecentlyvieweditems() throws Throwable {
-
+	public ArrayList<String> Verifyrecentlyvieweditems() throws Throwable {
+		//List<String> x = new ArrayList<String>();
+		ArrayList<String> x = new ArrayList<>();
 		waitForVisibilityOfElement(RECENTLYVIEWD_PRODUCTS, "Recently Viewd");
 		List<WebElement> myList2 = driver.findElements(RECENTLYVIEWD_PRODUCTS);
 		for (int i = 0; i < myList2.size(); i++) {
 			if (myList2.get(i).isDisplayed()) {
 				reporter.SuccessReport("Recently viewd products ::", "" + myList2.get(i).getText() + "", "Total No.Of Recently Viewd Products::"+ myList2.size()+"");
+			x.add(myList2.get(i).getText());
 			} else {
 				reporter.failureReport("Recently viewd products Not Displayed ",
 						"Recently viewd products Not Displayed", "");
 			}
 		}
+		return x;
 	}
 
 	/**
@@ -444,7 +447,7 @@ public class ProductDetailLib extends ProductDetailObj {
 	
 	/**
 	 * This method is used to verify products are in stock
-	 * @param option
+	 // @param option
 	 * @throws Throwable
 	 */
 	public void verifyAvailability( ) throws Throwable {
@@ -492,7 +495,7 @@ public class ProductDetailLib extends ProductDetailObj {
 	}
 	/**
 	 * This method is used to click on unlimeted availability product
-	 * @param option
+	 // @param option
 	 * @throws Throwable
 	 */
 	public void selectUnlimetedAvailabilityProduct() throws Throwable {
