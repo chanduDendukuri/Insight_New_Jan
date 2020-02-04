@@ -22,6 +22,9 @@ public class CommonCanadaPage extends ActionEngine{
     public static By AllowedFieldsList = By.xpath("//*[@id='AdHocAllowedSel']//option");
     public static By addLeftToRight = By.xpath("//*[@id='manageReq_LtoR']");
 
+    public static By lblHPINC=By.xpath("//*[@aria-label='Filter By Manufacturers']//div[@id='js-mfr-filter-items']//label//span[@data-gtm-info='HP INC']");
+    public static By HPINCBreadCramb=By.xpath("//*[@class='filter-item js-filter-item']//a[contains(text(),'HP INC')]");
+
 
 
 

@@ -110,9 +110,10 @@ public class CRT18_SaveCartShipBillPayTest extends CartLib {
 				    canadaLib.verifySBP();
 				    cartLib.clearPhoneFieldInCheckOut();
 					cartLib.shippingBillPayInCheckOut(data.get("Card_Number").toString(), data.get("Card_Name"), data.get("Month"), data.get("Year"),data.get("PONumber"),data.get("POReleaseNumber"));
-					canadaLib.verifyPlaceCartLabel();
-					cartLib.verifyItemInCart(data.get("Search_Item"));
-					prodInfoLib.verifyCartPageAndPartDetailsForRecentlyItem();
+					
+					orderLib.verifyPlaceOrderLabel();
+					//cartLib.verifyItemInCart(data.get("Search_Item"));
+					//prodInfoLib.verifyCartPageAndPartDetailsForRecentlyItem();
 					cartLib.openSavedCartFromTools(cartName);
 					cartLib.deleteCartFromAccountTools(cartName);
 					commonLib.clickLogOutLink(data.get("Logout_Header"));

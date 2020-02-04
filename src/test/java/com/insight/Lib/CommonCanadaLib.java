@@ -155,4 +155,10 @@ public class CommonCanadaLib extends CommonCanadaPage {
             reporter.SuccessReport("Available items to allow items", " all the items are added to allowed" ,"true");
         }
     }
+    public void selectHPINCRadioButton() throws Throwable{
+        click(lblHPINC,"HP INC lable","HP INC");
+    }
+    public boolean verifyHPLICBreadCrumbAvailability() throws Throwable{
+        return isVisibleOnly(HPINCBreadCramb,"HP INC BreadCrumb");
+    }
 }

@@ -2,16 +2,9 @@ package com.insight.WebTest.Canada;
 
 import java.util.Hashtable;
 
+import com.insight.Lib.*;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
-import com.insight.Lib.CanadaLib;
-import com.insight.Lib.CartLib;
-import com.insight.Lib.ChinaLib;
-import com.insight.Lib.CommonLib;
-import com.insight.Lib.OrderLib;
-import com.insight.Lib.ProductDetailLib;
-import com.insight.Lib.ProductDisplayInfoLib;
-import com.insight.Lib.SearchLib;
 import com.insight.accelerators.ReportControl;
 import com.insight.accelerators.TestEngineWeb;
 import com.insight.googledrive.ReportStatus;
@@ -27,6 +20,7 @@ public class CAN18_SearchIncludingFrenchTest extends  CanadaLib{
 	OrderLib orderLib=new OrderLib();
 	ProductDetailLib prodLib=new ProductDetailLib();
 	CanadaLib canadaLib = new CanadaLib();
+	CommonCanadaLib ccp = new CommonCanadaLib();
 	
 			// #############################################################################################################
 			// #       Name of the Test         :  CAN18_SearchIncludingFrench
@@ -55,14 +49,9 @@ public class CAN18_SearchIncludingFrenchTest extends  CanadaLib{
 												"Canada", intCounter);
 										TestEngineWeb.reporter.initTestCaseDescription("SearchIncludingFrench");
 										chinaLib.selectLanguageOnHomePage(data.get("Country"), data.get("Language"));
-										verifyCountry(data.get("Country_Code"));
-							//navigateToApplication("CANADA");
-							// select language and country
-
 										chinaLib.clickOnConnectionslink();
 										navigateToApplication("CANADA");
-							//shipbLib.verifyWEbsiteIsCannada();
-
+										assertTrue(driver.getCurrentUrl().contains("CA"),"Launched url is CANADA");
 
 
 
@@ -76,9 +65,14 @@ public class CAN18_SearchIncludingFrenchTest extends  CanadaLib{
 										// Verify Best Match option
 										canadaLib.verifySortOption(data.get("Sort_Option"));
 										// select Filter HP INC
-										searchLib.filterSelectionInProductsSearchPage(data.get("Manufacturer"));
+										scrollToBottomWithCordinate("520");
+										ccp.selectHPINCRadioButton();
+
+										//searchLib.filterSelectionInProductsSearchPage(data.get("Manufacturer"));
 										Thread.sleep(3000);
-										chinaLib.verifyManufacturerOnSearchResultsPage(data.get("Manufacturer"));
+										scrollToBottomWithCordinate("-12000");
+										assertTrue(ccp.verifyHPLICBreadCrumbAvailability(),"Availability of HP LIC bread crumb");
+										//chinaLib.verifyManufacturerOnSearchResultsPage(data.get("Manufacturer"));
 										Thread.sleep(3000);
 										String firstProdPrice=pipLib.getFirtProductListPrice();
 										cartLib.selectFirstProductDisplay();
@@ -100,9 +94,10 @@ public class CAN18_SearchIncludingFrenchTest extends  CanadaLib{
 										// Verify new part added
 										Thread.sleep(3000);
 										//chinaLib.addAnotherPartInCompareProductsPage(data.get("Part_Number"));
-										chinaLib.addAnotherPartInCompareProductsPage("L9K20UT#ABA");
+										chinaLib.addAnotherPartInCompareProductsPage("30B4S2YU01");
 										//chinaLib.verifyPartNumberAddedInCompareProductListPage(data.get("Part_Number"));
-										chinaLib.verifyPartNumberAddedInCompareProductListPage("L9K20UT#ABA");
+										//chinaLib.verifyPartNumberAddedInCompareProductListPage("L9K20UT#ABA");
+										chinaLib.verifyPartNumberAddedInCompareProductListPage("30B4S2YU01");
 										// Verify number of products displayed
 										chinaLib.verifyCompareProductsPage(itemscount+1);
 										// Remove first product
