@@ -146,11 +146,6 @@ public class LNL01_InactiveSTTest extends LineLevelInfoLib{
 						cmtLib.editSmartTracker(data.get("Field_Label"));
 						cmtLib.verifyInactiveSmartTrackerError();
 						
-						
-						
-						
-						// ---------------- Link:Client Administration  ----------
-						
 						cmtLib.hoverOverMasterGroupAndSelectChangeGrp();
 						// search for user
 						cmtLib.searchForUser(userName);
