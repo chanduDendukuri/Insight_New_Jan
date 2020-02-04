@@ -998,8 +998,11 @@ public class CanadaLib extends CanadaObj {
 	 */
 	public void clickCustomCheckBox() throws Throwable {
 		waitForVisibilityOfElement(CUSTOM_CHECKBOX, "Custom Check box");
-		click(CUSTOM_CHECKBOX, "Custom Check box");
-
+		if(isCheckBoxSelected(CUSTOM_CHECKBOX)) {
+			reporter.SuccessReport("custom check box selected", "custom check box selected", "");
+		}else {
+			click(CUSTOM_CHECKBOX, "Custom Check box");
+		}
 	}
 
 
