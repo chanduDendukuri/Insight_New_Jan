@@ -26,16 +26,6 @@ import com.insight.googledrive.ReportStatus;
 import com.insight.utilities.TestUtil;
 
 public class REP06_OverallSalesHistOutputFormatTest extends ReportingLib {
-	CMTLib cmtLib = new CMTLib();
-	CommonLib commonLib = new CommonLib();
-	CartLib cartLib = new CartLib();
-	SearchLib searchLib = new SearchLib();
-	ProductDetailLib prodDetailsLib = new ProductDetailLib();
-	OrderLib orderLib = new OrderLib();
-	ProductDisplayInfoLib pipLib = new ProductDisplayInfoLib();
-	SewpLib sewpLib = new SewpLib();
-	ShipBillPayLib shipbLib = new ShipBillPayLib();
-	MarriottIntlCorpLib mic = new MarriottIntlCorpLib();
 
 	@Parameters({ "StartRow", "EndRow", "nextTestJoin" })
 	@Test
@@ -57,33 +47,25 @@ public class REP06_OverallSalesHistOutputFormatTest extends ReportingLib {
 					TestEngineWeb.reporter.initTestCaseDescription("OverallSalesHistOutputFormat");
 	
 					CMTLib cmtLib = new CMTLib();
-					SearchLib searchLib = new SearchLib();
-					OrderLib orderLib = new OrderLib();
 					CanadaLib canadaLib = new CanadaLib();
-					CartLib cartLib = new CartLib();
-					MarriottIntlCorpLib mic = new MarriottIntlCorpLib();
-					InvoiceHistoryLib invoiceHistoryLib = new InvoiceHistoryLib();
-					MarriottIntlCorpLib marriottIntlCorpLib = new MarriottIntlCorpLib();
-					
 					CommonLib commonLib = new CommonLib();
+					
 					cmtLib.loginToCMTSearchWebGrpAndUser(data.get("Header"), data.get("WebGrp"),
 							data.get("LnameEmailUname"), data.get("ContactName"));
 					cmtLib.setPermissionsToDisable(data.get("Menu_Name"), data.get("Set_Permission1"));
 					cmtLib.setPermissionsToDisable(data.get("Menu_Name"), data.get("Set_Permission2"));
+					cmtLib.setPermissions(data.get("Menu_Name"), data.get("Set_Permission3"));
 					cmtLib.permissionFromDD(data.get("Set_Permission3"), data.get("Permission_Dropdown_Option"));
 					cmtLib.loginAsAdminCMT();
-					canadaLib.clickOnSideMenuSelectAccountToolOptions(data.get("Tools_Menu"),
+					commonLib.clickOnAccountToolsAndClickOnProductGrp(data.get("Tools_Menu"),
 							data.get("Tools_Menu_DD"));
 					canadaLib.clickOnReportOptions(data.get("ReportOption"));
 					canadaLib.verifyReportsPage();
 					canadaLib.verifySelectReport(data.get("SelectReport"));
 					canadaLib.clickOnAccountSelections(data.get("AccountSelectionOpt"));
-					invoiceHistoryLib.verifyTree();
-					canadaLib.clickOnAccountSelections(data.get("AccountSelectionOpt1"));
-					invoiceHistoryLib.verifyTree();
-					canadaLib.clickOnAccountSelections(data.get("AccountSelectionOpt2"));
-					invoiceHistoryLib.verifyTree();
-					
+					ParentCheckboxClicked();
+					grandParentCheckboxClicked();
+					verifySoldTos();
 					canadaLib.clickOnDeliveryMethod(data.get("DeliveryMethod"));
 					enterEmails(data.get("Emails"));
 					canadaLib.clickOnRun();	
