@@ -700,9 +700,9 @@ public class LineLevelInfoLib extends LineLevelInfoObj{
 	public void verifyCartBundlesInOrderDetailsPage(int itemNum) throws Throwable{
 		List<WebElement> element=driver.findElements(ORDER_DETAILS_ITEM_BUNDLES);
 		if(element.size()==itemNum){
-			reporter.SuccessReport("Verify cart bundles in the order details page", " Bundle items Exists", "");
+			reporter.SuccessReport("Verify cart bundles in the order details page", " Bundle items and individual lines Exists " , "No.of individual lines: "+itemNum);
 		}else{
-			reporter.failureReport("Verify cart bundles in the order details page", " Bundle items does not Exists", "",driver);
+			reporter.failureReport("Verify cart bundles in the order details page", " Bundle items and individual lines does not Exists", "",driver);
 		}
 	}
 	
@@ -715,7 +715,7 @@ public class LineLevelInfoLib extends LineLevelInfoObj{
 	public void verifyBundleIsAddedToCart(String bundle) throws Throwable{	
 		waitForVisibilityOfElement(getBundlesAdded(bundle),"Bundle");
 		if(isElementPresent(getBundlesAdded(bundle),"Bundle",true)) {
-			reporter.SuccessReport("Verify  Bundle ", "Bundle field exists", "Bundle: "+bundle);
+			reporter.SuccessReport("Verify  Bundle ", "Bundle field exists and split into individual lines", "Bundle: "+bundle);
 		}
 		else {
 			reporter.failureReport("Verify  Bundle  on Cart", "Bundle field Not Exist", "",driver);
