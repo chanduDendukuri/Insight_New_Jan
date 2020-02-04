@@ -72,6 +72,7 @@ public class CRT16_RequestorOptionsTest extends CartLib{
 					search.increaseQuantity(data.get("quantity"));
 
 					commonLib.addToCartAndVerify();
+					prodInfoLib.verifyCartPageAndPartDetailsForRecentlyItem();
 					canadaLib.continueToCheckout();
 					canadaLib.verifyPlaceCartLabel();
 					cartLib.verifySaveCartAsQuoteIsPresent();
@@ -92,6 +93,7 @@ public class CRT16_RequestorOptionsTest extends CartLib{
 					search.increaseQuantity(data.get("quantity"));
 
 					commonLib.addToCartAndVerify();
+					prodInfoLib.verifyCartPageAndPartDetailsForRecentlyItem();
 				    canadaLib.continueToCheckout();
 				    canadaLib.verifyPlaceCartLabel();
 					cartLib.verifySelectRwquestorGroupDropdownIsPresent();
