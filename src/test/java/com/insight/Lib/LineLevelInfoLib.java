@@ -661,7 +661,7 @@ public class LineLevelInfoLib extends LineLevelInfoObj{
 	 */
 	public void clickOnSplitIntoIndividualLines() throws Throwable{
 		if(isElementPresent(SPLIT_INTO_INDIVIDUAL_LINES_LINK,"Split into lines link")){
-			clickUntil(SPLIT_INTO_INDIVIDUAL_LINES_LINK, CommonObj.SPINNER_IMAGE, "Split into lines link");
+			clickUntil(SPLIT_INTO_INDIVIDUAL_LINES_LINK, CommonObj.SPINNER_IMAGE, "Split into individual lines link");
 		}else{
 			reporter.failureReport("Verify Split into link exists", "Split into link does not exists", "", driver);
 		}
@@ -673,7 +673,7 @@ public class LineLevelInfoLib extends LineLevelInfoObj{
 	 */
 	public void verifySplitLineItemsLabel() throws Throwable{
 		if(isElementPresent(TWO_LINE_ITEMS_LABEL,"Line items label")){
-			reporter.SuccessReport("Verify line items", "Line itmes exists", "");
+			reporter.SuccessReport("Verify line items", "Line itmes exists", "Split into 2 individual lines");
 		}else{
 			reporter.failureReport("Verify line items", "Line itmes does exists", "",driver);
 		}
@@ -686,9 +686,9 @@ public class LineLevelInfoLib extends LineLevelInfoObj{
 	public void verifyItemDescOnOrderDetailsPage(int itemNum) throws Throwable{
 		List<WebElement> element=driver.findElements(ORDER_DETAILS_ITEMS);
 		if(element.size()==itemNum){
-			reporter.SuccessReport("Verify Split into individual lines in Order Details Section", " individual lines Exists", "");
+			reporter.SuccessReport("Verify Split into individual lines in Order Details Section", " Split into " +itemNum+" individual lines Exists", "");
 		}else{
-			reporter.failureReport("Verify Split into individual lines in Order Details Section", " individual lines does not Exists", "",driver);
+			reporter.failureReport("Verify Split into individual lines in Order Details Section", " Split into individual lines does not Exists", "",driver);
 		}
 	}
 	

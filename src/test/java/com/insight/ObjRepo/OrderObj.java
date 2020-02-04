@@ -364,6 +364,7 @@ public class OrderObj extends ActionEngine{
 
 
      public static By FIRST_ORDER_NUMBER=By.xpath("(//a[@class='orders__link order-card-header__link'])[1]");
+     public static By ORDER_NUMBER_ON_ORDER_DETAILS=By.xpath("//span[@class='order-details__header-sales-doc-number']");
 
 	 public static By ORDER_DATE=By.xpath("//label[contains(text(),'Date ordered:')]//p");
 
