@@ -161,4 +161,25 @@ public class CommonCanadaLib extends CommonCanadaPage {
     public boolean verifyHPLICBreadCrumbAvailability() throws Throwable{
         return isVisibleOnly(HPINCBreadCramb,"HP INC BreadCrumb");
     }
+
+    public boolean validateNames(String expectedName, String actualName) throws Throwable
+    {
+       /* reporter.SuccessReport("String Searched::","", expectedName);
+        reporter.SuccessReport("Result Found::","", actualName);*/
+        String[] names = expectedName.split(" ");
+        for(int index = 0; index < names.length; index++)
+        {
+            if(!actualName.toLowerCase().contains(names[index].toLowerCase()))
+            {
+                reporter.failureReport("Result Validation","Searched String is "+expectedName+
+                        " mismatched with result found "+actualName,"false",driver);
+                return false;
+            }else{
+                reporter.SuccessReport("Result Validation","Searched String is "+expectedName+
+                        " mismatched with result found "+actualName,expectedName+ "and " + actualName + " Both are matched" );
+            }
+        }
+        return true;
+    }
+
 }
