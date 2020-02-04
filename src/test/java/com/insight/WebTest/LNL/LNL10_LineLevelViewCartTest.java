@@ -82,11 +82,14 @@ public class LNL10_LineLevelViewCartTest extends LineLevelInfoLib{
 							// search for part or product >> KV3-00367-SLP
 							searchLib.searchInHomePage(data.get("SearchText"));
 							commonLib.verifyDisplayedProductDetails(data.get("SearchText"));
+							pipLib.enterQuantityOnProductDetailsPage(data.get("Quantity"));
 							// Cart verification
 							commonLib.addToCartAndVerify();
 							orderLib.continueToCheckOutOnAddCart();
+							canadaLib.verifyPlaceCartLabel();
 							cartLib.verifyItemInCartByInsightPart(data.get("SearchText"));
 							orderLib.proceedToCheckout();
+							verifyOrderAndItemInfoBreadCrumb();
 							orderLib.continueButtonOnAdditionalInformationSection();
 							// Verify line level info exists
 							verifyLineLevelInfoExists("Available");

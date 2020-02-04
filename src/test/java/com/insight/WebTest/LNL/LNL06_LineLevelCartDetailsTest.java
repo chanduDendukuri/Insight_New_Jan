@@ -13,6 +13,7 @@ import com.insight.Lib.LineLevelInfoLib;
 import com.insight.Lib.OrderLib;
 import com.insight.Lib.ProductDetailLib;
 import com.insight.Lib.ProductDisplayInfoLib;
+import com.insight.Lib.SLPLib;
 import com.insight.Lib.SearchLib;
 import com.insight.Lib.ShipBillPayLib;
 import com.insight.accelerators.ReportControl;
@@ -22,7 +23,7 @@ import com.insight.utilities.TestUtil;
 
 public class LNL06_LineLevelCartDetailsTest extends LineLevelInfoLib{
 	
-	// Initilizing libraries
+	// Initializing libraries
 	CMTLib cmtLib = new CMTLib();
 	CommonLib commonLib = new CommonLib();
 	CartLib cartLib = new CartLib();
@@ -33,6 +34,7 @@ public class LNL06_LineLevelCartDetailsTest extends LineLevelInfoLib{
 	ShipBillPayLib sbpLib=new ShipBillPayLib();
 	CanadaLib canadaLib=new CanadaLib();
 	ProductDetailLib prodLib=new ProductDetailLib();
+	SLPLib slpLib=new SLPLib();
 	   
 	    // #############################################################################################################
 		// #       Name of the Test         : LNL06_LineLevelCartDetails
@@ -100,26 +102,28 @@ public class LNL06_LineLevelCartDetailsTest extends LineLevelInfoLib{
 						// Select Software  Lic Agreements >MICROSOFT SELECT PLUS
 				     	canadaLib.selectSPLADetailsProductCheckBox(data.get("SPLA"));
 				    	// verify search results and select first product
-				     	searchLib.verifysearchResultsPage();
+				     	slpLib.verifysearchResultsPageForSLP();
 				     	
 				     // Search for part or product >> H22-00489-SLP
 						searchLib.searchInHomePage(data.get("SearchText2"));
 						commonLib.verifyDisplayedProductDetails(data.get("SearchText2"));
+						pipLib.enterQuantityOnProductDetailsPage(data.get("Quantity"));
 						// Cart verification
 						commonLib.addToCartAndVerify();
 						orderLib.continueToCheckOutOnAddCart();
 						cartLib.verifyItemInCartByInsightPart(data.get("SearchText2"));
 						orderLib.proceedToCheckout();
+						verifyOrderAndItemInfoBreadCrumb();
 						orderLib.continueButtonOnAdditionalInformationSection();
 						verifyCountryOfUsageDD(data.get("SearchText2"));
 						commonLib.clickLogOutLink(data.get("Logout"));
 						// navigate back to cmt
 						cmtLib.navigateBackToCMT();
 						
-						
-						cmtLib.hoverOverMasterGroupAndSelectChangeGrp();
+						/*cmtLib.hoverOverMasterGroupAndSelectChangeGrp();
 						cmtLib.searchForWebGroup(data.get("WebGrp"));
-						cmtLib.clickOnTheWebGroup(data.get("WebGrp_Name"));
+						cmtLib.clickOnTheWebGroup(data.get("WebGrp_Name"));*/
+						cmtLib.hoverOnManageWebGroupsAndSelectOptions(data.get("Manage_Web_Grp_Options1"));
 						// Display Insight Warehouse Inventory - ON
 						cmtLib.setCustomerLevelPermissionsON(data.get("Set_Permission3"));
 						cmtLib.hoverOnManageWebGroupsAndSelectOptions(data.get("Manage_Web_Grp_Options"));
@@ -129,25 +133,28 @@ public class LNL06_LineLevelCartDetailsTest extends LineLevelInfoLib{
 						
 						// Search for part or product >> Printers
 						searchLib.searchInHomePage(data.get("SearchText3"));
+						searchLib.verifyTheResultsForSearchTerm(data.get("SearchText3"));
 						String[] prod=verifyTheStockNumbersInSearchResultsPageAndSelectProduct();
-						String stockNum=prod[1];
+						String stockNum=prod[1].replace(" in stock", "");
 						// Cart verification
 						String partNumberPrinter1=prodLib.getInsightPartNumberInProductInfopage();
 						commonLib.addToCartAndVerify();
 						orderLib.continueToCheckOutOnAddCart();
 						cartLib.verifyItemInCartByInsightPart(partNumberPrinter1);
+						pipLib.verifyCartPageAndPartDetails();
 						
 						// Verify Stock 
 						String cartStock=getStockNumberInCart().replace("Stock: ", "").replace(",", "").trim();
-						assertTextStringMatching(stockNum, cartStock);
+						verifyStockNumberOnProductDetailsAndCart(cartStock,stockNum);
 						commonLib.clickLogOutLink(data.get("Logout")); // Logout
 						
 						// navigate back to CMT
 						cmtLib.navigateBackToCMT();
-						cmtLib.hoverOverMasterGroupAndSelectChangeGrp();
+						/*cmtLib.hoverOverMasterGroupAndSelectChangeGrp();
 						cmtLib.searchForWebGroup(data.get("WebGrp"));
-						cmtLib.clickOnTheWebGroup(data.get("WebGrp_Name"));
-						// Display Insight Warehouse Inventory - OFF
+						cmtLib.clickOnTheWebGroup(data.get("WebGrp_Name"));*/
+						cmtLib.hoverOnManageWebGroupsAndSelectOptions(data.get("Manage_Web_Grp_Options1"));
+						// Display Insight Warehouse Inventory - OFF --display_sap_quantity
 						cmtLib.setCustomerLevelPermissionsOFF(data.get("Set_Permission3"));
 						cmtLib.hoverOnManageWebGroupsAndSelectOptions(data.get("Manage_Web_Grp_Options"));
 						cmtLib.searchForaUserAndSelect(data.get("LnameEmailUname"), data.get("ContactName"));
@@ -156,17 +163,26 @@ public class LNL06_LineLevelCartDetailsTest extends LineLevelInfoLib{
 						
 						// Search for part or product >> Printers
 						searchLib.searchInHomePage(data.get("SearchText3"));
+						searchLib.verifyBreadCrumbInSearchResultsPage(data.get("SearchText3"));
 						String[] products=verifyTheStockNumbersInSearchResultsPageAndSelectProduct();
-						String stockNum1=products[1].replace(",", "");
+						String stockNum1=products[1].replace(" in stock", "").replace(",", "");
 						// Cart verification
 						String partNumberPrinter2=prodLib.getInsightPartNumberInProductInfopage();
 						commonLib.addToCartAndVerify();
 						orderLib.continueToCheckOutOnAddCart();
 						cartLib.verifyItemInCartByInsightPart(partNumberPrinter2);
+						pipLib.verifyCartPageAndPartDetails();
 						
 						// Verify Stock 
 						String cartStock1=getStockNumberInCart().replace("Stock: ", "").replace(",", "").trim();
-						assertTextStringMatching(stockNum1, cartStock1);
+						//assertTextStringMatching(stockNum1, cartStock1);
+						verifyStockNumberOnProductDetailsAndCart(cartStock1, stockNum1);
+						
+						if(Integer.valueOf(stockNum1)>Integer.valueOf(stockNum)) {
+							reporter.SuccessReport("Verify the Stock Val on Cart Page", "Stock Val are Verified", "Stock Val on Cart Page with WareHouse Permisson as OFF :"+stockNum1+ " Val on Cart Page with WareHouse Permisson as ON: "+stockNum);
+						}else {
+							reporter.failureReport("Verify the Stock Val on Cart Page", "Stock Val are not Verified", "Stock Val on Cart Page with WareHouse Permisson as OFF :"+stockNum1+ " Val on Cart Page with WareHouse Permisson as ON: "+stockNum, driver);
+						}
 						commonLib.clickLogOutLink(data.get("Logout")); // Logout
 						
 					} catch (Exception e) {

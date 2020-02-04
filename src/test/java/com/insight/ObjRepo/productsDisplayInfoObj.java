@@ -131,6 +131,7 @@ public class productsDisplayInfoObj extends CommonObj{
     public static By INSIGHT_PART_NUMBER_PROD_DETAILS=By.xpath("//div[@id='js-product-detail-pricing-target']//td[contains(.,' Insight # ')]");
     public static By STOCK_NUMBER_OF_FIRST_PROD=By.xpath("//div[@id='search-item-0']//p[@class='prod-stock']");
     public static By STOCK_IN_SEARCH_RESULTS=By.xpath("//p[@class='prod-stock'][contains(.,'Call for Availability') or contains(.,'in stock')]");
+    public static By IN_STOCK=By.xpath("//p[@class='prod-stock'][contains(.,'in stock')]");
     public static By STOCK_NUMBER_IN_PROD_DETAIL=By.xpath("//p[@id='product-avalialability-by-warehouse']");
     public static By STOCK_AVAILABILITY_IN_COMPANY_STANDARDS=By.xpath("//a[contains(@href,'.insight.com/us/en/terms-conditions/stock-status.html')]");
     public static By MNR_NUM_OVERVIEW=By.xpath("//div[@id='tpl-specs-overview-target']//td[contains(.,'Mfr. #')]/following-sibling::td");

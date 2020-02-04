@@ -6,8 +6,11 @@ import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 import com.insight.Lib.CMTLib;
+import com.insight.Lib.CanadaLib;
 import com.insight.Lib.CartLib;
 import com.insight.Lib.CommonLib;
+import com.insight.Lib.OrderLib;
+import com.insight.Lib.ProductDisplayInfoLib;
 import com.insight.accelerators.ReportControl;
 import com.insight.accelerators.TestEngineWeb;
 import com.insight.googledrive.ReportStatus;
@@ -17,7 +20,9 @@ public class CRT22_CartInventoryTest extends CartLib {
 	CommonLib commonLib = new CommonLib();
 	CMTLib cmtLib = new CMTLib();
 	CartLib cartLib = new CartLib();
-
+	ProductDisplayInfoLib prodInfoLib = new ProductDisplayInfoLib();
+	CanadaLib canadaLib = new CanadaLib();
+	OrderLib orderLib = new OrderLib();
 	// #############################################################################################################
 	// # Name of the Test : CRT22_CartInventory
 	// # Migration Author : Cigniti Technologies
@@ -50,16 +55,25 @@ public class CRT22_CartInventoryTest extends CartLib {
 					cmtLib.hoverOnManageWebGroupsAndSelectOptions(data.get("ManageWebGrpOptions"));
 					cmtLib.searchForaUserAndSelect(data.get("LnameEmailUname"), data.get("ContactName"));
 					cmtLib.loginAsAdminCMT();
+					cmtLib.loginVerification(data.get("ContactName"));
 					commonLib.searchProduct(data.get("searchItem"));
+					prodInfoLib.verifyTheManufacturerNumberInProductDetailsPage(data.get("searchItem"));
+					COICSIPrice();
 					String Text=getTextProductdetailPageAndVerifyCSICOI();
 					verifyCOICSI(Text,data.get("COIText"),data.get("CSIText"));
 					commonLib.searchProduct(data.get("searchItem1"));
+					COICSIPrice();
 					String Text1=getTextProductdetailPageAndVerifyCSICOI();
 					verifyCOICSI(Text1,data.get("COIText"),data.get("CSIText"));
 					cartLib.verifyCOIpart(data.get("toolsMenuName"), data.get("dropDown"), data.get("productGroup"),
 							data.get("productName"), data.get("COIText"));
-					cartLib.verifyCSIpart(data.get("toolsMenuName"), data.get("dropDown"), data.get("productGroup"),
-							data.get("productName"), data.get("CSIText"));
+					//cartLib.verifyCSIpart(data.get("toolsMenuName"), data.get("dropDown"), data.get("productGroup"),
+							//data.get("productName"), data.get("CSIText"));
+					//commonLib.clickCart();
+					canadaLib.verifyPlaceCartLabel();
+					prodInfoLib.verifyCartPageAndPartDetailsForRecentlyItem();
+					coiInCartPage();
+					orderLib.stockInCartPage();
 					commonLib.clickLogOutLink("Logout");
 					System.out.println("Test completed");
 

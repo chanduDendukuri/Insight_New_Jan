@@ -68,6 +68,7 @@ public class LNL08_STNoSmartTrackerRequiredTest extends LineLevelInfoLib{
 								cmtLib.loginAsAdminCMT();
 								// Add first item  >> RAM 
 								searchLib.searchInHomePage(data.get("SearchText1"));
+								searchLib.verifyBreadCrumbInSearchResultsPage(data.get("SearchText1"));
 								cartLib.selectFirstProductDisplay();
 								String partNumber1=prodLib.getMFRNumberInProductInfopage();
 								commonLib.addToCartAndVerify();
@@ -75,10 +76,12 @@ public class LNL08_STNoSmartTrackerRequiredTest extends LineLevelInfoLib{
 								cartLib.verifyItemInCart(partNumber1);
 								// Proceed to check out
 								orderLib.proceedToCheckout();
+								verifyOrderAndItemInfoBreadCrumb();
 								orderLib.continueButtonOnAdditionalInformationSection();
-								
+								verifyLineLevelInfoOptionalIsPresent(partNumber1);
 								clickOnLinelevelInfoOptionalLink();
 								orderLib.clickContinueOnLineLevelInfo();  // Click continue on LLI
+								canadaLib.verifySBP();
 								orderLib.shippingBillPayContinueButton(); // Click continue on shipping address Section
 								orderLib.shippingBillPayContinueButton(); // Click continue on Shipping options Section
 								orderLib.shippingBillPayContinueButton(); //Click continue on Billing address Section

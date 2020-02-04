@@ -81,6 +81,8 @@ public class QuoteHistoryObj extends ActionEngine {
 	 public static By QUOTEDETAILS = By.xpath("//h2[contains(.,'Quote Details')]");
 	 public static By mfrPartInQuotedetails= By.xpath("//*[@id='js-quote-detail']/main/table/tbody/tr/td[1]");
 	 public static By InsightPartInQuotedetails = By.xpath("//*[@id='js-quote-detail']/main/table/tbody/tr/td[2]");
+	 public static By mfrPartInCartdetails= By.xpath("(//p[@class='cart__item-part cart__font-size--sm'][contains(text(),'Mfr Part')])[1]");
+	 public static By InsightPartInCartdetails = By.xpath("(//p[@class='cart__item-part cart__font-size--sm'][contains(text(),'Insight Part')])[1]");
 	 public static By getQuickSearchQuoteFormTable(String QuoteNumber){
 		 return By.xpath("//table[@id='quoteSearch']//tbody//tr//td//a[contains(.,'"+QuoteNumber+"')]");
 	 }
@@ -97,7 +99,7 @@ public class QuoteHistoryObj extends ActionEngine {
 		 public static By getQuoteNumberFRomQuickSearchHistory(String quoteNumber){
 			 return By.xpath("//table[@id='quoteSearch']//tbody//tr//td//a[contains(text(),'"+quoteNumber+"')]");
 		 }
-		 public static By ERROR_MSG = By.xpath("//strong[@class='alert']");
+		 public static By ERROR_MSG = By.xpath("//div[@class='alert']");
 		 public static By QUICKSHOP_ERROR_MSG = By.xpath("//span[@class='columns iw-message__text']");
 		 
 		 public static By getContactName(String contactName){

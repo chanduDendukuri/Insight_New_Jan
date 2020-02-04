@@ -1251,7 +1251,7 @@ public void getSummaryCartDetails() throws Throwable{
 		System.out.println(partNumber);
 		if (!partNumber.isEmpty()) {
 			reporter.SuccessReport("Verify the product part Number", "Product part Number is displayed as : ",
-					partNumber);
+					"part Number # : "+partNumber);
 		} else {
 			reporter.failureReport("Verify the product part Number", "Product part Number is not displayed", "",driver);
 		}

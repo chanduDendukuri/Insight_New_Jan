@@ -587,7 +587,7 @@ scrollUp();
 			reporter.failureReport("Verify  Quote Details Results", "  Quote Details Page Doesnot  Exist", "");		
 		}
 	}
-	public void verifypartnumberInQuotedetails() throws Throwable{
+	public void verifypartnumberInQuotedetailsforQTH11() throws Throwable{
 		scrollToBottomWithCordinate("110");
 		String MFRpart1 = getText(mfrPartInQuotedetails, "mfrPartInQuotedetails");
 		String InsightPart = getText(InsightPartInQuotedetails, "InsightPart");
@@ -598,7 +598,27 @@ scrollUp();
 			reporter.failureReport("Part details: ", "Part details exist as expected", "");
 		}
 	}
-
+	public void verifypartnumberInQuotedetails(String Material) throws Throwable{
+		scrollToBottomWithCordinate("110");
+		String MFRpart1 = getText(mfrPartInQuotedetails, "mfrPartInQuotedetails");
+		String InsightPart = getText(InsightPartInQuotedetails, "InsightPart");
+		if(MFRpart1.equals(Material) && InsightPart.equals(Material)) {
+			reporter.SuccessReport("Part details: ", "Part details exist as expected", ""+MFRpart1+""+InsightPart+"");
+		}
+		else {
+			reporter.failureReport("Part details: ", "Part details exist as expected", "");
+		}
+	}
+public void VerifyPartnumbersinCartpage(String Material) throws Throwable{
+	String MFRpart1 = getText(mfrPartInCartdetails, "mfrPartInQuotedetails");
+	String InsightPart = getText(InsightPartInCartdetails, "InsightPart");
+	if(MFRpart1.equals(Material) && InsightPart.equals(Material)) {
+		reporter.SuccessReport("Part details: ", "Part details exist as expected", ""+MFRpart1+""+InsightPart+"");
+	}
+	else {
+		reporter.failureReport("Part details: ", "Part details exist as expected", "");
+	}
+}
 	/**
 	 * Method is used to verify Delete this quote icon
 	 * 
@@ -697,9 +717,9 @@ scrollUp();
 	 * @throws Throwable
 	 */
 	public void verifyErrorMsg() throws Throwable {
-	
+	String errortext = getText(ERROR_MSG, "Error Msg Present");
 		if (isElementPresent(ERROR_MSG, "Error Msg Present")) {
-			reporter.SuccessReport("Verify  Erorr Message", "Error Message is present", "");	
+			reporter.SuccessReport("Verify  Erorr Message", "Error Message is present", errortext);	
 		}
 		else{
 		
@@ -713,9 +733,9 @@ scrollUp();
 	 * @throws Throwable
 	 */
 	public void verifyQuickShopErrorMsg() throws Throwable {
-	
+	String ErrorMessage = getText(QUICKSHOP_ERROR_MSG, "Error Msg Present");
 		if (isElementPresent(QUICKSHOP_ERROR_MSG, "Error Msg Present")) {
-			reporter.SuccessReport("Verify quick shop Erorr Message", " quick shop Error Message is present", "");	
+			reporter.SuccessReport("Verify quick shop Erorr Message", " quick shop Error Message is present", ErrorMessage);	
 		}
 		else{
 		

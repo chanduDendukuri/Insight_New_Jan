@@ -1049,12 +1049,13 @@ public class ProductDetailLib extends ProductDetailObj {
 		} else {
 			reporter.failureReport("Verify Recommended with Printers", "Recommended with Printers does not Exists","");
 		}	
-			}
+	}
+			
 	public void verifyNoRecommondedProducts() throws Throwable {		
 		if (isVisibleOnly(RECOMENDED_PRODUCTS, "recommonded Products")) {
-			reporter.failureReport("Verify Recommended with Printers", "Recommended with Printers does not Exists","");
+			reporter.failureReport("Verify Recommended with Printers", "Recommended  products Exists","");
 		} else {
-			reporter.SuccessReport("Verify Recommended with Printers", "Recommended with Printers Exists","");
+			reporter.SuccessReport("Verify Recommended with Printers", "Recommended proucts does not Exists","");
 		}	
 			}
 	

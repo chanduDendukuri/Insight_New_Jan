@@ -161,8 +161,8 @@ public class CartObj extends CommonObj{
 	public static By SAVED_CART_TEXT=By.xpath("//h2[text()='Saved carts']");
 	public static By LOAD_CART=By.xpath("//button[@class='c-button  c-button--inline-link c-saved-cart__btn']");
 	public static By SAVED_CART_CANCEL_BTN=By.xpath("//button[@type='button'][contains(text(),'Cancel')]");
-	
-	
+	public static By CLEAR_MY_DRAFT_SAVED=By.xpath("//input[@name='clearCheckbox']");
+	public static By SAVED_CART_CONTENTS_HEADER=By.xpath("//h1[text()='Saved carts/Order templates']");
 	public static By loadCart(String cartName) {
 		return By.xpath("//h3[text()='"+cartName+"']//parent::div//button[@class='c-button  c-button--inline-link c-saved-cart__btn']");
 	}
@@ -171,11 +171,12 @@ public class CartObj extends CommonObj{
 	public static By deleteButton(String cartName) {
 		return By.xpath("//h3[text()='"+cartName+"']//parent::div//parent::div//button[@class='c-button  c-button--link c-button--small']");
 	}
+	public static By DELETE_CART=By.xpath("//div[@class='o-grid  o-grid--center  c-saved-cart__row']//div//button[@class='c-button  c-button--link c-button--small']");
 	public static By DELETEBTN=By.xpath("//div//button[@class='c-button  c-button--link c-button--small']");
-
+	public static By CART_NAME=By.xpath("//h3[@class='c-saved-cart__heading']");
 	public static By YES_BUTTON_INCONFORMATION_POP_UP=By.xpath("//button[@class='c-button  c-button--primary']");
 	public static By DELETE_CART_MEASSAGE=By.xpath("//div[@class='c-no-saves']//strong");
-	
+	public static By NO_SAVED_CART_MESSAGE=By.xpath("//strong[text()='No saved carts or order templates exist.']");
 	public static By addToCartInSavedCart(String cartName) {
 		return By.xpath("//h3[text()='"+cartName+"']//parent::div//parent::div//button[text()='Add to cart']");
 	}
@@ -282,6 +283,7 @@ public static By SHIPMENT_NOTIFICATION=By.xpath("//textarea[@id='shipmentNotific
 public static By UPDATE_BUTTON=By.xpath("//input[@id='updateChkoutDef']");
 public static By ERROR_MESSAGE=By.xpath("//div[@class='input-error alert']");
 public static By MESSAGE_NOTE=By.xpath("//span[@class='alert-info-note']");
+public static By SUCESS_MESSAGE_NOTE=By.xpath("//div[@class='alert successGreen']");
 
 ////////////////////////////////////CARTINVENTORY////////////////////////
 public static By Current_product_groups =By.xpath("//div[@id='csProductGroupsHeading']");
@@ -295,6 +297,10 @@ public static  By verificationText(String product)
 {
 return By.xpath("//td[@class='stock width70']//a[contains(text(),'"+product+"')]");
 }
+public static By DESCRIPTION=By.xpath("//table[@id='prodGroupTable']//div//a");
+public static By STOCK=By.xpath("//table[@id='prodGroupTable']//tr//td[2]//a");
+public static By CHECK_BOX=By.xpath("//table[@id='prodGroupTable']//tr//td[5]//input");
+public static By COI_IN_CART=By.xpath("//div[@class='columns medium-flex-child-grow cart__table-col--item']//div//div//div[@class='columns flex-child-auto medium-flex-child-shrink cart__table-col cart__table-col--coi']//span");
 public static By ADD_Checkbox_forCOIproducts=By.xpath("//div[@id='selectedProductGroupContent']//td[contains(text(),'COI Price:')]/following-sibling::td//input[@type='checkbox']");
 public static By Productname_at_cart=By.xpath("//h4[@class='cart__item-heading']");
 
@@ -325,7 +331,8 @@ public static By Productname_at_cart=By.xpath("//h4[@class='cart__item-heading']
   public static By QUANTITY_IN_CART=By.xpath("//label[text()='Item quantity']/following-sibling::input[@class=' cart-item__qty align-self-middle text-center']");
   public static By INAVLID_PART_NO_QUICK_SHOP_ERROR_MESSAGE=By.xpath("//div[@class='columns small-12 large-3 print-5 print-offset-7']//span[contains(text(),'Please enter a valid part number')]");
   public static By CSICOI_PRODUCTDEATILPG = By.xpath("//p[@class='prod-stock']");
-
+  public static By CSI_COI_PRODUCT_PRICE=By.xpath("//p[@class='ips-price-contract']");
+  
   public static By CART_PROD_DESC_RECENTLYADDEDTEM=By.xpath("(//div[@class='columns flex-child-auto cart__table-col--desc text-left']/a/h4)[2] | (//div[@class='columns flex-child-auto cart__table-col--desc text-left']/a/h4)");
   public static By CART_PROD_TOTAL_PRICE_RECENTLYADDEDTEM=By.xpath("(//div[@class='columns flex-child-auto medium-flex-child-shrink cart__table-col cart__table-col--total medium-text-right']//span[@class='iw-currency__amount'])[2] | (//div[@class='columns flex-child-auto medium-flex-child-shrink cart__table-col cart__table-col--total medium-text-right']//span[@class='iw-currency__amount'])");
   public static By CART_PROD_UNIT_PRICE_RECENTLYADDEDTEM=By.xpath(" (//div[@class='columns flex-child-auto medium-flex-child-shrink cart__table-col cart__table-col--price medium-text-right small-negative-left-margin']//span[@class='iw-currency__amount'])[2] |  (//div[@class='columns flex-child-auto medium-flex-child-shrink cart__table-col cart__table-col--price medium-text-right small-negative-left-margin']//span[@class='iw-currency__amount'])");

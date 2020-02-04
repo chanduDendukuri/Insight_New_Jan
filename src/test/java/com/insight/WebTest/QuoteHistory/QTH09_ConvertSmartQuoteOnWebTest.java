@@ -94,9 +94,9 @@ public class QTH09_ConvertSmartQuoteOnWebTest extends QuoteHistoryLib {
 					Thread.sleep(4000);
 					Homelib.clickSideBarSmart();
 					Homelib.clickClosthedocument(QuoteNum);
-					Thread.sleep(4000);
-					//Homelib.clickYesButtontocloseDocument();
-					Thread.sleep(4000);
+					
+					Homelib.clickYesButtontocloseDocument();
+					
 					navigateTo("https://uat1.insight.com/en_US/home.html");
 					acceptAlert();
 					cmtLib.loginToCMTSearchWebGrpAndUser(data.get("Header"), data.get("WebGrp"),
@@ -112,9 +112,10 @@ public class QTH09_ConvertSmartQuoteOnWebTest extends QuoteHistoryLib {
 			        quickSearchAndVerifySearchResults(data.get("SearchBy"),QuoteNum);
 					verifyAndClickQuoteNumberOnHistory(QuoteNum);
 					verifyQuoteDetails();	
-					
+					verifypartnumberInQuotedetails(data.get("Material1"));
 					orderLib.convertQuote();
 					cartLib.verifyCartBreadCrumb();
+					VerifyPartnumbersinCartpage(data.get("Material1"));
 					// Proceed to checkout
 					orderLib.proceedToCheckout();
 					orderLib.clickOnAdditionalInfoContinueButton() ;

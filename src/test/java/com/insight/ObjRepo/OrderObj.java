@@ -297,7 +297,12 @@ public class OrderObj extends ActionEngine{
 			public static By tabNameinOrderDetails(String TabName){
 				return By.xpath("//nav[@class='order-details__tabs hide-for-print']/a[contains(text(),'"+TabName+"')]");
 			}
-			public static By SMARTRAKER_HDR =By.xpath("//h4[@class='line-item-info__subheading'][contains(text(),'SmartTracker')]");
+			public static By SMARTRAKER_HDR(String RP_LNL_Txt_Text) {
+			return By.xpath("//h4[@class='line-item-info__subheading'][contains(text(),'SmartTracker')]/following::div/span[contains(text(),'RP_LNL_Txt')]/following::div/span[contains(text(),'"+RP_LNL_Txt_Text+"')]");
+}
+			public static By SMARTRAKER_HDR_CUSTOMERDETAILS(String RP_HDL_Txt_Text) {
+				return By.xpath("//span[@class='customer-detail__label'][contains(text(),'RP_HDL_Txt')]/following::div/span[contains(text(),'"+RP_HDL_Txt_Text+"')]");
+	}
 			public static By NAME_FIELD =By.xpath("//span[@class='form__label__text'][contains(text(),'Name')]");
 			public static By PHONE_FIELD =By.xpath("//span[@class='form__label__text'][contains(text(),'Phone')]");
 			public static By EMAIL_FIELD =By.xpath("//span[@class='form__label__text'][contains(text(),'Email')]");
@@ -367,5 +372,12 @@ public class OrderObj extends ActionEngine{
 
 	 public static By ORDER_DATE=By.xpath("//label[contains(text(),'Date ordered:')]//p");
 
+	 public static By lineItemInfoValues=By.xpath("//*[@class='line-item-info__value']");
+	 public static By HeaderLevelcustomerDetailsLablevalue=By.xpath("//*[@class='customer-detail__label' and contains(text(),'RP_HDL_Lst')]/..//following-sibling::div//span");
+	 public static By HeaderLevelcustomerDetailsLablevalueForHDLTxt=By.xpath("//*[@class='customer-detail__label' and contains(text(),'RP_HDL_Txt')]/..//following-sibling::div//span");
+
+	 public static By dynamicHeaderLevelCustomerDetailsValues(String val){
+	 	return By.xpath("//*[@class='customer-detail__label' and contains(text(),'RP_HDL_'"+val+"'')]/..//following-sibling::div//span");
+	 }
 }
 

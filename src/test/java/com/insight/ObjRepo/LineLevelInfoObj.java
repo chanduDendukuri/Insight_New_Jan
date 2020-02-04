@@ -74,11 +74,14 @@ public class LineLevelInfoObj extends ActionEngine{
 	 // Place order
 	 public static By CONTRACT_SPECIFIC_INFO_LABEL=By.xpath("//section[@class='line-level__section']//h4[contains(text(),'Contract specific information')]");
 	 public static By EDIT_LINE_LEVEL_INFO=By.xpath("//span[@class='cart-item__info'][contains(text(),' Edit line level information')]");
+	 public static By CONTRACT_SPECIFIC_REPORTING_FIELDS=By.xpath("//div[@class='line-level']//label[@class='form__label--readonly']");
 	 
 	 // smart Tracker
 	 public static By RP_LNL_Lst_DD=By.xpath("//select[@class='form__field form__select ']");
 	 public static By RP_LNL_DATE_PICKER=By.xpath("//input[@class='form__field date-picker__input']");
-	 public static By RP_LNL_DATE_TODAY_DATE=By.xpath("//div[@class='react-datepicker__day react-datepicker__day--keyboard-selected react-datepicker__day--today']");
+	 public static By RP_LNL_DATE_TODAY_DATE=By.xpath("//div[@class='react-datepicker__day react-datepicker__day--keyboard-selected react-datepicker__day--today react-datepicker__day--weekend']");
+	public static By DATE_AFTER_SELECTION=By.xpath("//input[@class='form__field date-picker__input']");
+	 
 	 
 	 public static By getRP_LNL_TodayDate(String partNum){
 	 	return By.xpath("//p[contains(.,'Insight Part #: "+partNum+"')]/following::div[@class='row expanded is-collapse-child'][1]//input[@class='form__field date-picker__input']");
