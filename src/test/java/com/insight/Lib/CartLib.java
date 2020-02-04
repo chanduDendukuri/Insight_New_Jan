@@ -21,6 +21,7 @@ import com.insight.ObjRepo.OrderObj;
 import com.insight.ObjRepo.ShipBillPayObj;
 import com.insight.ObjRepo.productsDisplayInfoObj;
 import com.insight.accelerators.ActionEngine;
+import com.thoughtworks.selenium.webdriven.commands.GetText;
 
 import static com.insight.ObjRepo.CartObj.lblCartLebel;
 
@@ -34,6 +35,7 @@ public class CartLib extends ActionEngine {
 	CanadaLib canadaLib=new CanadaLib();
 	LineLevelInfoLib lnlLib=new LineLevelInfoLib();
 	String openMarketPrice;
+	
 
 	/**
 	 * PURPOSE: This method is to verify Quick Shop With Valid Single PartNumber in
@@ -1682,52 +1684,47 @@ public class CartLib extends ActionEngine {
 		isElementPresent(CartObj.Current_product_groups, " Current Product Groups page is opened");
 		click(CommonObj.getCompanyStandardsProductGroup(productGroup, productName),
 				"select product from product group");
-		List<WebElement> myList = driver.findElements(CartObj.verificationText(Text_COI));
-		for (int i = 0; i < myList.size(); i++) {
-
-			if (myList.get(i).isDisplayed()) {
-
-				reporter.SuccessReport("Products With COI", "" + myList.get(i).getText() + "are displayed", "");
-			} else {
-				reporter.failureReport("Product With COI", "" + myList.get(i).getText() + "are not displayed", "",
-						driver);
-			}
+		String description=getText(CartObj.DESCRIPTION, "Description");
+		String stock=getText(CartObj.STOCK, "Stock");
+		reporter.SuccessReport("Check the Stock in Configuration Section on Product Standards Page", "Product Stock is Exists", "Part: "+description+"Stock: "+stock);
+		if(isVisible(CartObj.CHECK_BOX, "Check box")) {
+			click(CartObj.CHECK_BOX, "Check box");
+		}
+		else {
+			reporter.failureReport("Checkbox status", "check box is not visible", "", driver);
 		}
 		Thread.sleep(2000);
-		List<WebElement> myList1 = driver.findElements(CartObj.ADD_Checkbox_forCOIproducts);
-		int l1 = myList1.size();
-		for (int i = 0; i < myList1.size(); i++) {
-			if (myList1.get(i).isDisplayed()) {
-				myList1.get(i).click();
-				reporter.SuccessReport("Add Check Box is Clicked", "Add Check Box is Clicked", "");
-			} else {
-				reporter.failureReport("Add Check Box is Not Clicked ", "Add Check Box Not is Clicked", "", driver);
-			}
-		}
+		
 		click(CommonObj.ADD_TO_ORDER, "ADD To Order Button is Clicked");
 		Thread.sleep(3000);
-		click(CartObj.closeicon_addtocart, "Add to cart Popup is Closed");
-		commonLib.clickCart();
-		Thread.sleep(5000);
-		List<WebElement> myList2 = driver.findElements(CartObj.Productname_at_cart);
-		int l2 = myList2.size();
-		if (l1 == l2) {
-			reporter.SuccessReport("Products with COI added to CART", "Products with COI added to CART", "");
-		} else {
-			reporter.failureReport("Products with COI not added to CART", "Products with COI not added to CART", "",
-					driver);
+		if(isVisibleOnly(CommonObj.VIEW_CART_PRODUCT_GROUP, "View cart Link")){
+			click(CommonObj.VIEW_CART_PRODUCT_GROUP, "View cart Link","View cart Link");
+			reporter.SuccessReport("verify View cart Link on Items added to cart Popup on Company standards", "View cart Link is visible and clicked","");
+		}else{
+			reporter.failureReport("verify View cart Link on Items added to cart Popup on Company standards", "View cart Link is not visible","");
 		}
-		Thread.sleep(2000);
-		click(CartObj.EMPTY_CART, "Cart is Empty");
+		
+		
 	}
+	public void coiInCartPage() throws Throwable {
+		String partNumber=getText(CartObj.Cart_Prod_Insight_Part_Number,"part number");
+		String coi=getText(CartObj.COI_IN_CART,"COI in cart page");
+		if(partNumber!=null) {
+			reporter.SuccessReport("Check Product with COI Value in the Cart Page", "Product with COI Value are Exists and As Expectedin the Cart", "Part Number:"+partNumber +"COI: "+coi);
+		}
+		else {
+			reporter.failureReport("Check Product with COI Value in the Cart Page", "Product with COI Value are not Exists","", driver);
+		}
+		
+	}
+	
 	
 	/**
 	 * 
 	 * @param toolsMenuName
 	 * @param dropDown
 	 * @param productGroup
-	 * @param productName
-	 * @param Text_COI
+	 * @param productName	 * @param Text_COI
 	 * @throws Throwable
 	 */
 	public void verifyCSIpart(String toolsMenuName, String dropDown, String productGroup, String productName,
@@ -1971,13 +1968,16 @@ public void getpartnumberIncartpage() throws Throwable {
 
 	
 	public String getTextProductdetailPageAndVerifyCSICOI() throws Throwable {
-		String Text = getText(CartObj.CSICOI_PRODUCTDEATILPG,"CSI or COI text in Product Deatil Page");
+		String Text = getText(CartObj.CSICOI_PRODUCTDEATILPG,"Product with CSI/COI Stock:");
 		String CSIorCOIText[]=Text.split("\\|");
 		System.out.println(CSIorCOIText[1]);
 		return CSIorCOIText[1];
 		
 	}
-	
+	public void COICSIPrice() throws Throwable {
+		getText(CartObj.CSI_COI_PRODUCT_PRICE, "Product with COI/CSI Price: ");
+		
+	}
 	public void verifyCOICSI(String TEXT,String COI,String CSI) throws Throwable {			
 		if(TEXT.contains(COI)) {
 			reporter.SuccessReport("Product Deatil Page::","Product with COI/CSI Price in the Product Details Page", ""+TEXT+"");
