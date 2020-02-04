@@ -19,6 +19,7 @@ public class ODP15_OrderswithMultipleBOMsRequisitionTest extends OrderLib{
 	CartLib cartLib = new CartLib();
 	ProductDisplayInfoLib prodLib = new ProductDisplayInfoLib();
 	OrderLib orderLib =new OrderLib();
+	CanadaLib canadaLib= new CanadaLib();
 
 	// #############################################################################################################
 	// #    Name of the Test         : ODP15_OrderswithMultipleBOMsRequisition
@@ -65,11 +66,10 @@ public class ODP15_OrderswithMultipleBOMsRequisitionTest extends OrderLib{
 						proceedToCheckout();
 						clickOnAdditionalInfoContinueButton();
 						// Click continue on shipping address
-						shippingOptionsCarrierSelection();
-						scrollToBottom();
-						shippingBillPayContinueButton(); // Click continue on shipping
-						// options
+						canadaLib.verifySBP();
 						shippingBillPayContinueButton();
+						shippingOptionsCarrierSelection();
+						billingAddressContinueButton();
 						addNewCardInPayment(data.get("cardNumber"), data.get("cardName"), data.get("month"), data.get("year"),
 								data.get("poNumebr"),data.get("POReleaseNumber"));
 						clickOnReviewRequisitionButton();
@@ -101,8 +101,9 @@ public class ODP15_OrderswithMultipleBOMsRequisitionTest extends OrderLib{
 						cmtLib.loginAsAdminCMT();
 						searchLib.verifyAccountToolsFromSideMenuAndClick(data.get("toolsMenuName"), data.get("dropDown1"));
 						clickonorderNumLinkinRecentorders(RefNumber);
-						verifyPartNumberInOrderdetails(data.get("item1"));
-
+						verifyPartNumberInOrderdetails(data.get("item1"),data.get("Product Des"));
+						// Logout 
+						commonLib.clickLogOutLink(data.get("Logout"));
 						// fnCloseTest();
 						System.out.println("Test completed");
 					} catch (Exception e) {

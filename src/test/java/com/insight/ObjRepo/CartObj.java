@@ -312,6 +312,9 @@ public static By Productname_at_cart=By.xpath("//h4[@class='cart__item-heading']
    public static By ADDRESS_PRINT_POPUP=By.xpath("//div[@class='row cart-print-header__address']//h5/following-sibling::span");
    public static By CLOSE_ICON_PRINT_POPUP=By.xpath(" //section[@class='cart-print-header undefined']//span[@class='cart-print-header__icon--close ion-ios-close-empty']");
    
+   //order details page
+   public static By productDes=By.xpath("//h3[@class='item-details__desc']");
+   public static By productPartNum=By.xpath("//h3[@class='item-details__desc']/following::span[@class='item-details__part']");
    // Verify Cart 
    public static By currencytype=By.xpath("//*[@class='iw-currency__code']");
    public static By CART_PROD_DESC=By.xpath("//div[@class='columns flex-child-auto cart__table-col--desc text-left']/a/h4");
@@ -320,7 +323,7 @@ public static By Productname_at_cart=By.xpath("//h4[@class='cart__item-heading']
    public static By CART_PROD_TOTAL_PRICE=By.xpath("//div[@class='columns flex-child-auto medium-flex-child-shrink cart__table-col cart__table-col--total medium-text-right']//span[@class='iw-currency__amount']");
    public static By CART_PROD_UNIT_PRICE=By.xpath(" //div[@class='columns flex-child-auto medium-flex-child-shrink cart__table-col cart__table-col--price medium-text-right small-negative-left-margin']//span[@class='iw-currency__amount']");
 
-   public static By getPartNuminOrderdetails= By.xpath("//div[@class='bundle-header']/following::div/span[@class='item-details__part']/span[@class='nowrap item-details__part-number']");
+   public static By getPartNuminOrderdetails= By.xpath("//h3[@class='item-details__desc']/following::span[@class='item-details__part']");
  
    public static By NUMBER_PICKER_IN_PRODUCTQA_DISPLAY_PAGE = By.xpath("//input[@id='product-detail-order-number-picker']/parent::div/button[@class='number-picker-up ion-arrow-up-b']"); 
   public static By TRASH_ICON = By.xpath("//span[@class='ion-trash-a cart__trash-icon']");

@@ -268,13 +268,16 @@ public class OrderObj extends ActionEngine{
 	 public static By EXIST_PHNMBR=By.xpath("//input[@name='existingAddressAttention.phone']");
 	 
 	 public static By COPY_TOALL_LNK =By.xpath("//span[@class='vertical-separator']/following::a[contains(text(),'Copy to all')][1]");
-		public static By REPORTINGFIELDS_CART =By.xpath("//h4[@class='line-level__subheading']/following::div/div/label[contains(text(),'REPORTING FIELD 4')]");
+		public static By REPORTINGFIELDS4_CART =By.xpath("(//h4[@class='line-level__subheading']/following::div/div/label[contains(text(),'REPORTING FIELD 4')])[1]");
+		public static By REPORTINGFIELDS5_CART =By.xpath("(//h4[@class='line-level__subheading']/following::div/div/label[contains(text(),'REPORTING FIELD 5')])[1]");
+		public static By REPORTINGFIELDS6_CART =By.xpath("(//h4[@class='line-level__subheading']/following::div/div/label[contains(text(),'REPORTING FIELD 6')])[1]");
 		public static By orderlinkInOrderHistory(String refNum){
 			return By.xpath("//td[contains(text(),'"+refNum+"')]/preceding-sibling::td/div");
 		}
 			public static By REPORTINGFIELD4_ORDERHISTORY =By.xpath("//span[@class='line-item-info__label'][contains(text(),'REPORTING FIELD 4')]");
 			public static By REPORTINGFIELD5_ORDERHISTORY =By.xpath("//span[@class='line-item-info__label'][contains(text(),'REPORTING FIELD 5')]");
 			public static By REPORTINGFIELD6_ORDERHISTORY =By.xpath("//span[@class='line-item-info__label'][contains(text(),'REPORTING FIELD 6')]");
+			public static By REPORTINGFIELD_ALL_ORDERHISTORY =By.xpath("(//h4[@class='line-item-info__subheading']/parent::div)[1]");
 			public static By PLACE_REQUISITION_BTN =By.xpath("//section[@class='cart cart']/following::div[@class='cart-summary-container']/div/div[3]/div/div/div/button");
 			public static By APPROVAL_MNGMNT_HDR_UPDATEPAGE =By.xpath("//div[@id='searchRequisition']/div/h1[contains(text(),'Approval Management')]");
 			public static By APPROVAL_MNGMNT_HDR1 = By.xpath("//div[@id='denyMessage']/following::h1[contains(text(),'Approval Management')]");
