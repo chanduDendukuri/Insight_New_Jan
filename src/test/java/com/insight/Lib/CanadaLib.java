@@ -330,7 +330,7 @@ public class CanadaLib extends CanadaObj {
 		}
 		//click(CommonObj.ACCOUNT_TOOLS, "Account tools menu icon");
 		if (isElementClickable(CommonObj.ACCOUNT_TOOLS,2, "Account tools menu icon")) {
-			click(CommonObj.ACCOUNT_TOOLS, "Account tools menu icon");
+			//click(CommonObj.ACCOUNT_TOOLS, "Account tools menu icon");
 		}else {
 			scrollToBottomWithCordinate("150");
 			if (isElementClickable(CommonObj.ACCOUNT_TOOLS,2, "Account tools menu icon")) {

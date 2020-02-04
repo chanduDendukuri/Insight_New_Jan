@@ -1786,7 +1786,13 @@ public class CartLib extends ActionEngine {
 		if (waitForVisibilityOfElement(CartObj.CART_LABEL_ON_CART_PAGE, "cart page")) {
 			
 			reporter.SuccessReport("Verify cart page", "User successfully navigated to cart page", "PageDetails : Cart");
-		} else {
+		} 
+		else if(isElementNotPresent(CartObj.CART_LABEL_ON_CART_PAGE, "cart page")){
+			 refreshPage();
+			 waitForVisibilityOfElement(CartObj.CART_LABEL_ON_CART_PAGE, "cart page");
+		}
+			 else {
+		
 			reporter.failureReport("Verify cart page", "Cart page is not displayed", "", driver);
 		}
 	}

@@ -104,7 +104,7 @@ public class QTH11_ConvertQuote3rdPartyCarrierTest extends QuoteHistoryLib {
 					verifyQuoteHistory();
 					orderLib.searchByInQuoteHistory(QuoteNum,data.get("Quote_DD_option"));
 					verifyQuoteDetails();
-					verifypartnumberInQuotedetails();
+					verifypartnumberInQuotedetailsforQTH11();
 					scrollToBottomWithCordinate("500");
 					orderLib.convertQuote();
 					canadaLib.verifyPlaceCartLabel();

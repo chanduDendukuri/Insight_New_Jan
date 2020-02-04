@@ -1440,8 +1440,8 @@ List<String> orderdetails = new ArrayList<String>();
 	 */
 	public void createQuote(String quoteName) throws Throwable{
 		
-		scrollToBottomWithCordinate("-3");
-		scrollToWebElement(CartObj.SAVE_AS_QUOTE);
+		scrollToBottomWithCordinate("-300");
+		//scrollToWebElement(CartObj.SAVE_AS_QUOTE);
 		clickUntil(CartObj.SAVE_AS_QUOTE,QUOTE_NAME ,"Save as quote Link");
 		type(QUOTE_NAME,quoteName, "Quote name");
 		scrollToBottomWithCordinate("600");
