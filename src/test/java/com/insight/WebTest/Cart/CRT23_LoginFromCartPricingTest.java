@@ -29,6 +29,7 @@ public class CRT23_LoginFromCartPricingTest extends CartLib{
 	SearchLib searchLib = new SearchLib();
 	ProductDisplayInfoLib prodInfoLib = new ProductDisplayInfoLib();
 	LineLevelInfoLib lineLevelLib=new LineLevelInfoLib();
+	OrderLib orderLib = new OrderLib();
 	// #############################################################################################################
     // #    Name of the Test         : CRT23_LoginFromCartPricing
     // #    Migration Author         : Cigniti Technologies
@@ -56,36 +57,42 @@ public class CRT23_LoginFromCartPricingTest extends CartLib{
 								Hashtable<String, String> data = TestUtil.getDataByRowNo("CRT23_LoginFromCartPricing", TestDataInsight,
 										"Web_Cart", intCounter);
 								TestEngineWeb.reporter.initTestCaseDescription("LoginFromCartPricing");
-					//cmtLib.loginAsEndUserInMainPage(data.get("Header"),data.get("User_Name"),data.get("Password"));
+					
 					commonLib.searchProduct(data.get("Search_Item"));
 					searchLib.verifyBreadCrumbInSearchResultsPage(data.get("Search_Item"));
 					prodInfoLib.getPartNumberInSearchResultsPage();
 					commonLib.addFirstDisplyedItemToCartAndVerify();
-					//commonLib.addToCartAndVerify();
-					//String priceInLogin=cartLib.getTotalPriceInSearchResults();
-					String priceInLogin=prodInfoLib.getFirtProductListPrice();
+					
+					String listPrice=prodInfoLib.getFirtProductListPrice().split(" ")[1];
+					System.out.println("listPrice"+listPrice);
 					canadaLib.continueToCheckout();
+					cmtLib.handleWelcomeToInsightBetaPopUp();
 					commonLib.clickCart();
-					//cartLib.verifyItemInCart(data.get("Search_Item"));
+					
 					canadaLib.verifyPlaceCartLabel();
 					prodInfoLib.verifyCartPageAndPartDetailsForRecentlyItem();
-					String summaryAmountInLogin=cartLib.getSummaryAmountInCart();
-					if(priceInLogin.equalsIgnoreCase(summaryAmountInLogin)) {
-						
+					String summaryAmountNonLoggedIn=cartLib.getSummaryAmountInCart();
+					System.out.println("summaryAmountNonLoggedIn"+summaryAmountNonLoggedIn);
+					if(listPrice.equalsIgnoreCase(summaryAmountNonLoggedIn)) {
+						reporter.SuccessReport("Verify the Non LoggedIn list price in cart", "list price same as in cart", summaryAmountNonLoggedIn);
 					}
+					else {
+						reporter.failureReport("Verify the Non LoggedIn list price in cart", "list price is not same as in cart", summaryAmountNonLoggedIn);
+					}
+					orderLib.proceedToCheckout();
+					cmtLib.loginAsEndUserInMainPage(data.get("Header"),data.get("User_Name"),data.get("Password"));
+					
+					orderLib.continueButtonOnAdditionalInformationSection();
+					String priceLogin=cartLib.getSummaryAmountInCart();
+					if(priceLogin.equalsIgnoreCase(summaryAmountNonLoggedIn)) {
+						reporter.SuccessReport("Verify the Non LoggedIn and LoggedIn list price in SBP Page", "	LoggedIn price changed in SBP Page", "LoggedIn Price: "+priceLogin+"and Non-LoggedIn price: "+summaryAmountNonLoggedIn);
+					}
+					else {
+						reporter.failureReport("Verify the Non LoggedIn and LoggedIn list price in SBP Page", "	LoggedIn price same in SBP Page", "LoggedIn Price: "+priceLogin+"and Non-LoggedIn price: "+summaryAmountNonLoggedIn);
+					}
+					commonLib.clickCart();
+					canadaLib.verifyPlaceCartLabel();
 					commonLib.emptyCartAndVerify();
-					commonLib.clickLogOutLink(data.get("Logout_Header"));
-					commonLib.searchProduct(data.get("Search_Item"));
-					commonLib.addToCartAndVerify();
-					String priceWithoutLogin=cartLib.getTotalPrice();
-					//commonLib.clickCart();
-					canadaLib.continueToCheckout();
-					cartLib.verifyItemInCart(data.get("Search_Item"));
-					String summaryAmountWithoutLogin=cartLib.getSummaryAmountInCart();
-					System.out.println("summaryAmountInLogin"+summaryAmountInLogin);
-					System.out.println("summaryAmountWithoutLogin"+summaryAmountWithoutLogin);
-					cartLib.VerifyLoginPriceAndNonLoginPrice(priceInLogin,priceWithoutLogin);
-					cartLib.verifySummaryPriceInLoginAndNonLogin(summaryAmountInLogin,summaryAmountWithoutLogin);
 					System.out.println("Test completed");
 
 							} catch (Exception e) {
