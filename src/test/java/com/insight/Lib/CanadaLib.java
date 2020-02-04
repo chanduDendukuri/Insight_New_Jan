@@ -12,6 +12,8 @@ import java.util.Date;
 import java.util.List;
 
 import com.insight.report.ReporterConstants;
+
+import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.mortbay.log.Log;
@@ -1684,7 +1686,6 @@ public void addShippingAddress(String name, String userName,String street1,Strin
 	 */
 	public void verifyDownloadedReportExcelFile(List<String> actualData, String filePath) throws Throwable {
 		Thread.sleep(10000);
-		Thread.sleep(10000);
 		File root = new File(System.getProperty("user.dir") + "\\" + "DownloadedFiles" + "\\");
 		FilenameFilter beginswithm = new FilenameFilter() {
 			public boolean accept(File directory, String filename) {
@@ -1694,26 +1695,29 @@ public void addShippingAddress(String name, String userName,String street1,Strin
 		File[] files = root.listFiles(beginswithm);
 
 		if (files[0] != null) {
-			// PATH
-
-			// load file
-			FileInputStream fis = new FileInputStream(files[0]);
-			// Load workbook
-			XSSFWorkbook wb = new XSSFWorkbook(fis);
-			List<String> expectedData = new ArrayList<String>();
-			XSSFSheet sh1 = wb.getSheetAt(0);
-			String data1 = sh1.getRow(0).getCell(0).getStringCellValue();
-			expectedData.add(data1);
-			if (sh1.getRow(2).getCell(0).getStringCellValue() != null) {
-				String data3 = sh1.getRow(2).getCell(0).getStringCellValue();
+			
+			  // PATH
+			  
+			  // load file
+			 FileInputStream fis = new FileInputStream(files[0]); // Load
+			  Workbook  wb = new XSSFWorkbook(fis);
+			  List<String> expectedData =new ArrayList<String>();
+			  XSSFSheet sh1 = (XSSFSheet) wb.getSheetAt(0); 
+			  String data1 = sh1.getRow(0).getCell(0).getStringCellValue();
+			  expectedData.add(data1);
+			  if
+			  (sh1.getRow(2).getCell(0).getStringCellValue() != null) {
+				String data3 =sh1.getRow(2).getCell(0).getStringCellValue(); 
 				expectedData.add(data3);
-			} else {
-				String data3 = sh1.getRow(3).getCell(0).getStringCellValue();
-				expectedData.add(data3);
-			}
-
-			Assert.assertEquals(actualData, expectedData);
-			reporter.SuccessReport("Verify the Excel Data ", "Excel Data is present as expected", "");
+			 
+			
+			  } else {
+			String data3 = sh1.getRow(3).getCell(0).getStringCellValue();
+			  expectedData.add(data3); }
+			  
+			  Assert.assertEquals(actualData, expectedData);
+			 
+			reporter.SuccessReport("Verify the Excel Downloaded", "Excel sheet is present as expected", "");
 
 		}
 	}
@@ -2070,6 +2074,21 @@ public void addShippingAddress(String name, String userName,String street1,Strin
 	public boolean visibilityOfReferenceNoInRequestionSearch() throws Throwable{
 
 		return	isVisibleOnly(lnkReferenceNo,"Search");
+	}
+	public void verifyDownloadedExcelFile(List<String> actualData, String filePath) throws Throwable {
+		Thread.sleep(10000);
+		File root = new File(System.getProperty("user.dir") + "\\" + "DownloadedFiles" + "\\");
+		FilenameFilter beginswithm = new FilenameFilter() {
+			public boolean accept(File directory, String filename) {
+				return filename.startsWith(filePath);
+			}
+		};
+		File[] files = root.listFiles(beginswithm);
+
+		if (files[0] != null) {
+			reporter.SuccessReport("Verify the Excel Downloaded", "Excel sheet is present as expected", "");
+
+		}
 	}
 
 }

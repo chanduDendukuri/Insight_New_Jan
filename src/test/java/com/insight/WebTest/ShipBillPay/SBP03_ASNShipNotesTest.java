@@ -116,7 +116,6 @@ public class SBP03_ASNShipNotesTest extends ShipBillPayLib{
 				cartLib.clickAddAdditionalNotificationEmail();
 				cartLib.enterInvalidAddtionalNotificationEmailAndVerifyErrorMessage(data.get("Invalid_Email1"));
 				cartLib.enterInvalidAddtionalNotificationEmailAndVerifyErrorMessage(data.get("Invalid_Email2"));
-				cartLib.enterValidAddtionalEmail(data.get("Valid_Email1"));
 				cartLib.clickAddAdditionalNotificationEmail();
 				cartLib.enterValidAddtionalEmail(data.get("Valid_Email2"));
 				Thread.sleep(3000);

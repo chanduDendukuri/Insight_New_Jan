@@ -570,7 +570,7 @@ public  void verifyDashboard()throws Throwable {
 			reporter.SuccessReport(userPermissions, "check box already checked::" + userPermissions + " ON",
 					userPermissions + " ON");
 		} else {
-			click(getUserPermission(userPermissions), "User permissions: " + userPermissions);
+			click(getUserPermission(userPermissions), "User permissions: " + userPermissions+ "ON");
 			click(UPDATE_USER_BTN, "Update user button");
 			waitForVisibilityOfElement(PERMISSION_UPDATE_MSG, "PERMISSION UPDATE MSG");
 			if (isElementPresent(PERMISSION_UPDATE_MSG, "update sucessful message")) {
