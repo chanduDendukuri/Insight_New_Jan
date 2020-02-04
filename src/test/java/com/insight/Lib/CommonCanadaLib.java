@@ -3,6 +3,7 @@ package com.insight.Lib;
 import com.insight.ObjRepo.CommonCanadaPage;
 
 import  com.insight.ObjRepo.CanadaObj;
+import com.insight.ObjRepo.CommonObj;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 
@@ -10,6 +11,7 @@ import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 import java.util.WeakHashMap;
+import com.insight.ObjRepo.CommonCanadaPage;
 
 public class CommonCanadaLib extends CommonCanadaPage {
     public boolean verifySelectedUser() throws Throwable{
@@ -180,6 +182,30 @@ public class CommonCanadaLib extends CommonCanadaPage {
             }
         }
         return true;
+    }
+
+    public void clickOnAccountToolsAndClickOnProductGrp(String toolsMenuName) throws Throwable{
+        Thread.sleep(20000);
+        if (isVisibleOnly(CommonObj.CLOSEBUTTON_COOKIES, "close cookie")) {
+            click(CommonObj.CLOSEBUTTON_COOKIES, "close cookie");
+        }
+        if(isElementPresent(InvoiceHistoryLib.COSE_ACCOUNT_TOOLS, "close account tools")) {
+            click(InvoiceHistoryLib.COSE_ACCOUNT_TOOLS, "close account tools");
+        }
+
+    }
+
+    public void getListOfCardTypesFoavailable() throws Throwable{
+        click(CanadaObj.PaymentTypedpdn,"Payment Type drp");
+        List<WebElement> card = driver.findElements(CanadaObj.PaymentTypedpdnOptions);
+        for(int i=0;i<card.size();i++){
+            if(card.get(i).getText().equalsIgnoreCase("Discover Credit Card")){
+                reporter.SuccessReport("Discover Credit card","Availability of Discover Credit card ", "true");
+            }else{
+                reporter.failureReport("Discover card","Availability of Discover credit card is  "," available card is "+card.get(i).getText(),driver);
+            }
+
+        }
     }
 
 }
