@@ -70,7 +70,6 @@ public class LNL02_RequireOverrideTest extends LineLevelInfoLib{
 						String partNumber=pipLib.getPartNumberInSearchResultsPage();
 						pipLib.selectFirstProductAddToCartAndVerifyCart();
 						pipLib.verifyCartPageAndPartDetails();
-						scrollToBottom();
 						scrollBottom();
 						orderLib.proceedToCheckout();
 						cartLib.addAdditionalInformationInCheckOut(data.get("Url"), data.get("RP_HDL_Txt"));

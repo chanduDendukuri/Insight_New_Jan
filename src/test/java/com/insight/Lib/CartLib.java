@@ -1930,9 +1930,9 @@ public void getpartnumberIncartpage() throws Throwable {
 	public void verifyProductGroupQuantityInCart(List<String> quantity, String expectedQty) throws Throwable {
 		for (i = 0; i < quantity.size(); i++) {
 			if (quantity.get(i).equals(expectedQty)) {
-				reporter.SuccessReport("Verify product Quantity ", "Product Quantity : ", "");
+				reporter.SuccessReport("Verify product Quantity ", "Product Quantity verification is successfull for ("+i+") product", "Quantity is: "+expectedQty);
 			} else {
-				reporter.failureReport("Verify product Quantity ", "Product Quantity verification failed. Actual is: ",
+				reporter.failureReport("Verify product Quantity ", "Product Quantity verification failed. Actual is: "+quantity.get(i),
 						"", driver);
 			}
 		}
