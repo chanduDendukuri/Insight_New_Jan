@@ -570,7 +570,7 @@ public  void verifyDashboard()throws Throwable {
 			reporter.SuccessReport(userPermissions, "check box already checked::" + userPermissions + " ON",
 					userPermissions + " ON");
 		} else {
-			click(getUserPermission(userPermissions), "User permissions: " + userPermissions);
+			click(getUserPermission(userPermissions), "User permissions: " + userPermissions+ "ON");
 			click(UPDATE_USER_BTN, "Update user button");
 			waitForVisibilityOfElement(PERMISSION_UPDATE_MSG, "PERMISSION UPDATE MSG");
 			if (isElementPresent(PERMISSION_UPDATE_MSG, "update sucessful message")) {
@@ -699,7 +699,7 @@ public  void verifyDashboard()throws Throwable {
 	}
 
 	public void loginAsEndUserInMainPage(String header, String username, String password) throws Throwable {
-		clickLoginLink(header);
+		//clickLoginLink(header);
 		// if (driver.findElement(CartObj.POP_UP_EMAILID).isDisplayed()) {
 		// handleWelcomeToInsightBetaPopUp();
 		// }
@@ -2563,6 +2563,7 @@ public  void verifyDashboard()throws Throwable {
 	public void checkLinkedAccountCheckBox(String accountNum) throws Throwable {
 		if (isCheckBoxSelected(getLinkedAccountsCheckBox(accountNum))) {
 			Log.info("Check box already selected");
+			reporter.SuccessReport("Verify linked accounts checkbox", "Linked accounts check box already checked", "Linked account check box checked");
 		} else {
 			click(getLinkedAccountsCheckBox(accountNum), "Account linked check box");
 		}

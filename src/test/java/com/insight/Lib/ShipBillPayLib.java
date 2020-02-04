@@ -398,7 +398,7 @@ public class ShipBillPayLib extends ShipBillPayObj {
 	public void clickstoredAddress(String Text) throws Throwable {
 		click(STOREDADDRESS_LINK, "stored Address Link");
 		click(SEARCH_FIELD,"Searc Field");
-		type(SEARCH_FIELD,Text,"Search Field");
+		type(SEARCH_FIELD,Text,"");
 		click(search_Button,"Search Button");
 		click(RADIOBUTTON_DEFUALTADDRESS,"Click Radio Button");
 		if (driver.findElement(RADIOBUTTON_DEFUALTADDRESS).isSelected()) {
@@ -879,7 +879,7 @@ public class ShipBillPayLib extends ShipBillPayObj {
 		click(CommonObj.getAccountToolsDD(toolsMenuName, dropDown), "Select account tools");
 		// SAVEDCART
 		waitForVisibilityOfElement(SAVEDCART(cartName), "SAVED CART::" + cartName + "");
-		click(Deletesavedcart(cartName), "Add to cart");
+		click(Deletesavedcart(cartName), "Delete Cart");
 		// ADDEDTOCART_POPUP
 		waitForVisibilityOfElement(DIALOGUEBOX_DELETECART, "Delete Cart");
 		click(YESBUTTON_DELETECART, "Yes Delete Cart Button");
@@ -1296,5 +1296,69 @@ public class ShipBillPayLib extends ShipBillPayObj {
 			}
 			click(CONTINUE_BTN, "Continue button of Shipping Options");
 		}
+		
+		public void reportingField4infoExists(String Reportingfield4)throws Throwable {
+			if(isVisibleOnly(OrderObj.REPORTING_FIELD_4,"")) {
+				String Data=driver.findElement(OrderObj.REPORTING_FIELD_4).getAttribute("value");
+				if(Data.contains(Reportingfield4)) {
+				reporter.SuccessReport("Verify Reporting Field 4" ,"Previously Enter Data Exists", Data);		
+			}else {
+				reporter.failureReport("Verify Reporting Field 4" ,"Previously Enter Data Not Exists","",driver);
+			}
+			}
+		}
+		public void reportingField5infoExists(String Reportingfield5)throws Throwable {
+			if(isVisibleOnly(OrderObj.REPORTING_FIELD_5,"")) {
+				String Data=driver.findElement(OrderObj.REPORTING_FIELD_5).getAttribute("value");
+				if(Data.contains(Reportingfield5)) {
+				reporter.SuccessReport("Verify Reporting Field 5" ,"Previously Enter Data Exists", Data);		
+			}else {
+				reporter.failureReport("Verify Reporting Field 5" ,"Previously Enter Data Not Exists","",driver);
+			}
+			}
+		}
+		public void reportingFieldWG_LNLinfoExists(String WG_LNL)throws Throwable {
+			if(isVisibleOnly(ShipBillPayObj.WG_LNL,"")) {
+				String Data=driver.findElement(ShipBillPayObj.WG_LNL).getAttribute("value");
+				if(Data.contains(WG_LNL)) {
+				reporter.SuccessReport("Verify WG_LNL" ,"Previously Entered Data Exists", Data);		
+			}else {
+				reporter.failureReport("Verify WG_LNL" ,"Previously Entered Data Not Exists","",driver);
+			}
+			}
+		}
+		public void copyToall()throws Throwable {
+		click(CopyToALL,"Copt To ALL Exixts and Clicked");
+		}
+		
+		public void WG_HDL_TxtinfoExists(String WG_HDL_Txt)throws Throwable {
+			if(isVisibleOnly(OrderObj.WG_HDL_Txt,"")) {
+				String Data=driver.findElement(OrderObj.WG_HDL_Txt).getAttribute("value");
+				if(Data.contains(WG_HDL_Txt)) {
+				reporter.failureReport("Verify WG_HDL_Txt in Addtional info" ,"Previously Enter Data Exists", "",driver);		
+			}else {
+				reporter.SuccessReport("Verify WG_HDL_Txt in Addtional info" ,"Previously Enter Data Not Exists","");
+			}
+			}
+		}
+		
+		public void emailinfoExists(String email)throws Throwable {
+			if(isVisibleOnly(CartObj.ADDITIONAL_NOTIFICATION_EMAIL,"")) {
+				String Data=driver.findElement(CartObj.ADDITIONAL_NOTIFICATION_EMAIL).getAttribute("value");
+				if(Data.contains(email)) {
+				reporter.failureReport("Verify Email in  additional Info" ,"Previously Enter Data Exists", "",driver);		
+			}else {
+				reporter.SuccessReport("Verify Email in additional Info" ,"Previously Enter Data Not Exists","");
+			}
+			}
+		}	
+		
+		
+		
+		
+		
+		
+		
+		
 }
 

@@ -76,6 +76,7 @@ public class CRT17_SaveCartLineLevelTest extends CartLib {
 					searchLib.verifyBreadCrumbInSearchResultsPage(data.get("PartNumber"));
 					prodInfoLib.getPartNumberInSearchResultsPage();
 					commonLib.addFirstDisplyedItemToCartAndVerify();
+					
 					canadaLib.continueToCheckout();
 					canadaLib.verifyPlaceCartLabel();
 					prodInfoLib.verifyCartPageAndPartDetailsForRecentlyItem();
@@ -88,7 +89,7 @@ public class CRT17_SaveCartLineLevelTest extends CartLib {
 					cartLib.shippingBillPayInCheckOut(data.get("Card_Number").toString(), data.get("Card_Name"),
 							data.get("Month"), data.get("Year"), data.get("PONumber"),data.get("POReleaseNumber"));
 					cartLib.verifyRpHdlTxt(data.get("RP_HDL_Txt"));
-					//cartLib.verifyRpLnllTxt(data.get("RP_LNL_Txt"));
+					cartLib.verifyRpLnllTxt(data.get("RP_LNL_Txt"));
 					String cartName = "QTPSaveCartLineLevel"+getRandomNumeric(4);
 					cartLib.clickOnSaveCartContentAndSaveCart(cartName);
 					

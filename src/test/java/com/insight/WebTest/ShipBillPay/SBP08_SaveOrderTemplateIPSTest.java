@@ -64,7 +64,7 @@ public class SBP08_SaveOrderTemplateIPSTest extends ShipBillPayLib{
 				cmtLib.setPermissions(data.get("Menu_Name"), data.get("Set_Permission"));
 				cmtLib.loginAsAdminCMT();
 				
-				canadaLib.clickOnSideMenuSelectAccountToolOptions(data.get("toolsMenuName"),data.get("dropDown"));	
+				commonLib.clickOnAccountToolsAndClickOnProductGrp(data.get("toolsMenuName"),data.get("dropDown"));	
 				deletesavedcartsortamplates();
 				commonLib.searchProduct(data.get("Search_Item1"));
 				verifyPartNumInProductDetailPage(data.get("Search_Item1"));
@@ -103,15 +103,19 @@ public class SBP08_SaveOrderTemplateIPSTest extends ShipBillPayLib{
 				//Template
 				SaveasTemplete(Tamplate);
 				scrollUp();
-				canadaLib.clickOnSideMenuSelectAccountToolOptions(data.get("toolsMenuName"),data.get("dropDown"));	
+				commonLib.clickOnAccountToolsAndClickOnProductGrp(data.get("toolsMenuName"),data.get("dropDown"));	
 				savecartContinueToCheckout(Tamplate);
 				//cartLib.verifyItemInCart(data.get("searchitem1"));
 				//cartLib.verifyItemInCart(data.get("searchitem2"));
 				orderLib.proceedToCheckout();
-				shipbLib.Addadtionalinformation(data.get("wG_HDL_Txt"), data.get("emailToEnter"), data.get("A"));
+				shipbLib.emailinfoExists(data.get("emailToEnter"));
+				shipbLib.WG_HDL_TxtinfoExists(data.get("wG_HDL_Txt"));
 				cartLib.clickOnContinueButtonInAddInformtion();
-				shipbLib.enterReportingDetailsInLineLevelInfoSection(data.get("REPORTING FIELD_4"),
-						data.get("REPORTING FIELD_5"),data.get("Wg_LNL_Txt"));
+				shipbLib.reportingField4infoExists(data.get("REPORTING FIELD_4"));
+				shipbLib.reportingField5infoExists(data.get("REPORTING FIELD_5"));
+				shipbLib.reportingFieldWG_LNLinfoExists(data.get("Wg_LNL_Txt"));
+				clickExpand();
+				shipbLib.copyToall();
 				verifyCopiedText();
 				orderLib.clickContinueOnLineLevelInfo();
 				VerifySoldtoAddress();

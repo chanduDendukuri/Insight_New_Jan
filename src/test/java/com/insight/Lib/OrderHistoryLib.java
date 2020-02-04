@@ -48,7 +48,7 @@ public class OrderHistoryLib extends OrderHistoryObj {
 		Thread.sleep(4000);
 		click(QUICK_SEARCH_DROPDOWN, "Quick search");
 		click(setAdvancedSearchOption(text), "");
-		type(ADVANCED_SEARCH_VALUE, value, "value");
+		type(ADVANCED_SEARCH_VALUE, value, "Number");
 		click(SEARCH_BUTTON, "search button");
          Thread.sleep(5000);
 		// verifySearchResultsAreDisplayed();
@@ -748,18 +748,29 @@ public class OrderHistoryLib extends OrderHistoryObj {
 
 	
 	
-	public void getFirstOrderNumber() throws Throwable {
+	public String getFirstOrderNumber() throws Throwable {
 		String orderNumber=getText(OrderObj.FIRST_ORDER_NUMBER, "Order Number");
 		if(orderNumber!=null) {
 			reporter.SuccessReport("Verify order displayed in order history", "Recent OrdersSearch Results are Exists","Order number"+orderNumber+"  - First Record on Search Results for Recent Orders" );
 		}else {
 			reporter.failureReport("Verify order displayed in order history", "Recent Orders Search Results are not displayed", "", driver);
 		}
+		return orderNumber;
 	}
 
 	public void clickOnFirstOrderHistoryResult() throws Throwable
 	{
 		click(lnkOrderNumberInOrderHistory, "First order number in order history");
 
+	}
+	
+	public void getOrderNumberOnOrderDetailsPageAndVerify(String actualOrderNum) throws Throwable {
+		String orderNum=getText(OrderObj.ORDER_NUMBER_ON_ORDER_DETAILS,"order number in order details page" ).trim();
+		String orderNumActual=actualOrderNum.replaceFirst("0", "");
+		if(orderNumActual.equals(orderNum)) {
+			reporter.SuccessReport("Verify order number in order details page", "Order number exists in order details page", "Order Number : "+orderNum);
+		}else {
+			reporter.failureReport("Verify order number in order details page", "Order number does not exists in order details page", "",driver);
+		}
 	}
 }

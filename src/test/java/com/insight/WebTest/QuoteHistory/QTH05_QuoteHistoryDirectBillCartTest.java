@@ -53,13 +53,11 @@ public class QTH05_QuoteHistoryDirectBillCartTest  extends QuoteHistoryLib {
 
 	 
 							CMTLib cmtLib = new CMTLib();
-							SearchLib searchLib = new SearchLib();
+							
 							OrderLib orderLib=new OrderLib();
 							CanadaLib canadaLib=new CanadaLib();
 							CartLib cartLib=new CartLib();
-							ShipBillPayLib shipbLib = new ShipBillPayLib();
-							InvoiceHistoryLib invoiceHistoryLib = new InvoiceHistoryLib();
-							MarriottIntlCorpLib marriottIntlCorpLib=new MarriottIntlCorpLib();
+							
 							CommonLib commonLib = new CommonLib();
 							cmtLib.loginToCMTSearchWebGrpAndUser(data.get("Header"), data.get("WebGrp"),
 									data.get("LnameEmailUname"), data.get("ContactName"));
@@ -82,8 +80,10 @@ public class QTH05_QuoteHistoryDirectBillCartTest  extends QuoteHistoryLib {
 							canadaLib.clickOnSideMenuSelectAccountToolOptions(data.get("Tools_Menu"),  data.get("Tools_Menu_DD"));							
 							verifyQuoteHistory();
 							String QuoteNumber = GetQuoteNumberfromQuoteHistory();
-							quickSearchAndVerifySearchResults(data.get("SearchBy"),data.get("Quote_RFNumber"));
-							verifyAndClickQuoteNumberOnHistory(data.get("QuoteNumber"));
+							//quickSearchAndVerifySearchResults(data.get("SearchBy"),data.get("Quote_RFNumber"));
+							quickSearchAndVerifySearchResults(data.get("SearchBy"),refNumber);
+							//verifyAndClickQuoteNumberOnHistory(data.get("QuoteNumber"));
+							verifyAndClickQuoteNumberOnHistory(QuoteNumber);
 							verifyQuoteDetails();						
 							verifyConvertQuoteButton();	
 							verifyErrorMsg();

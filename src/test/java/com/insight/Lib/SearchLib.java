@@ -5,6 +5,7 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Set;
 
+import org.apache.commons.collections.functors.IfClosure;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
@@ -1074,12 +1075,23 @@ public class SearchLib extends CommonObj {
 				
 		   }	
 	}	
-	
+	public void VerifyIPSContractPage(String contractName)throws Throwable{
+		clickUntil(CONTRACT_DD, getContractsFromDD(contractName), "contract drop down");
+		click(getContractsFromDD(contractName),"Selected contract name");
+		String Contracttitle = getText(title_Contracttitle, "Contracttitle");
+		if(Contracttitle.contains(contractName)) {
+			reporter.SuccessReport("Title", "IPS Contract Page Loaded", Contracttitle);
+		}
+		else {
+			reporter.failureReport("Title", "IPS Contract Page not Loaded","");
+		}
+	}
 	/**
 	 * 
 	 * @param contractName
 	 * @throws Throwable
 	 */
+	
 	public void selectContractInCartPage(String contractName) throws Throwable{
 		clickUntil(CONTRACT_DD, getContractsFromDD(contractName), "contract drop down");
 		click(getContractsFromDD(contractName),"Selected contract name");
@@ -1095,9 +1107,15 @@ public class SearchLib extends CommonObj {
 	public void selectContractInCartPageforTcQTH07(String contractName) throws Throwable{
 		clickUntil(CONTRACT_DD, getContractsFromDD(contractName), "contract drop down");
 		click(getContractsFromDD(contractName),"Selected contract name");
-		click(CartObj.CART,"CART");
-		Thread.sleep(2000);
-		String title = getText(CONTRACT_VERIFY,"Contract Name title in cart").replace("# 1-SAMPLE - ABBR TITLE", "");
+		//click(CartObj.CART,"CART");
+		//Thread.sleep(2000);
+		String title = getText(title_Contracttitle,"Contract Name title in cart");
+		if(title!="") {
+			reporter.SuccessReport("Contract Link", "Contract Link Exists and Clicked", title);
+		}
+		else {
+			reporter.SuccessReport("Contract Link", "Contract Link not Exists","");
+		}
 		
 	}
 	/**

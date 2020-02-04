@@ -54,8 +54,7 @@ public class CRT25_QuickCheckOutTest extends CartLib {
 					Hashtable<String, String> data = TestUtil.getDataByRowNo("CRT25_QuickCheckOut", TestDataInsight,
 							"Web_Cart", intCounter);
 					TestEngineWeb.reporter.initTestCaseDescription("QuickCheckOut");
-					//cmtLib.loginToCMTSearchWebGrpAndUser(data.get("Header"), data.get("WebGrp"),
-							//data.get("LnameEmailUname"), data.get("ContactName"));
+					
 					
 					cmtLib.loginToCMT(data.get("Header"));
 					cmtLib.searchForWebGroup(data.get("WebGrp"));
@@ -71,8 +70,10 @@ public class CRT25_QuickCheckOutTest extends CartLib {
 					searchLib.verifyBreadCrumbInSearchResultsPage(data.get("PartNumber"));
 					prodInfoLib.getPartNumberInSearchResultsPage();
 					commonLib.addFirstDisplyedItemToCartAndVerify();
+					
 					canadaLib.continueToCheckout();
 					canadaLib.verifyPlaceCartLabel();
+					prodInfoLib.verifyCartPageAndPartDetailsForRecentlyItem();
 					cartLib.clickQuickCheckOutandVerify(data.get("ShippingCompany"), data.get("ShippingCarrier"),
 							data.get("NotificationMail"), data.get("BillingAddresses"), data.get("PaymentType"));
 					commonLib.spinnerImage();

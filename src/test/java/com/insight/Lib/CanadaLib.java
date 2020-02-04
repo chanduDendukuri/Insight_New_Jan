@@ -12,6 +12,8 @@ import java.util.Date;
 import java.util.List;
 
 import com.insight.report.ReporterConstants;
+
+import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.mortbay.log.Log;
@@ -334,7 +336,7 @@ public class CanadaLib extends CanadaObj {
 		}
 		//click(CommonObj.ACCOUNT_TOOLS, "Account tools menu icon");
 		if (isElementClickable(CommonObj.ACCOUNT_TOOLS,2, "Account tools menu icon")) {
-			click(CommonObj.ACCOUNT_TOOLS, "Account tools menu icon");
+			//click(CommonObj.ACCOUNT_TOOLS, "Account tools menu icon");
 		}else {
 			scrollToBottomWithCordinate("150");
 			if (isElementClickable(CommonObj.ACCOUNT_TOOLS,2, "Account tools menu icon")) {
@@ -350,8 +352,8 @@ public class CanadaLib extends CanadaObj {
 			}
 		}
 		//WebElement element = driver.findElement(by);
-//		scrollToBottomWithCordinate("150");
-
+		scrollToBottomWithCordinate("-150");
+Thread.sleep(2000);
 		//((JavascriptExecutor) WebDriver).executeAsyncScript(100,1000);
 		click(getAccountToolsMenu(toolsMenuName), "Account tools menu::" + toolsMenuName + "");
 		Thread.sleep(3000);
@@ -864,8 +866,13 @@ public class CanadaLib extends CanadaObj {
 	}
 
 	public void continueToCheckout() throws Throwable {
+		if(isVisible(CONTINUE_TO_CHECKOUT, "Continue to checkout")) {
+			//reporter.SuccessReport("Continue to checkout button", "Continue to checkout button is visible", "");
 		click(CONTINUE_TO_CHECKOUT, "Continue to checkout");
-		Thread.sleep(10000);
+		Thread.sleep(10000);}
+		else {
+			reporter.failureReport("Continue to checkout button", "Continue to checkout button is not visible", "", driver);
+		}
 	}
 
 	public void verifyReceiptOrderAndDate(String totalSummary) throws Throwable {
@@ -998,8 +1005,11 @@ public class CanadaLib extends CanadaObj {
 	 */
 	public void clickCustomCheckBox() throws Throwable {
 		waitForVisibilityOfElement(CUSTOM_CHECKBOX, "Custom Check box");
-		click(CUSTOM_CHECKBOX, "Custom Check box");
-
+		if(isCheckBoxSelected(CUSTOM_CHECKBOX)) {
+			reporter.SuccessReport("custom check box selected", "custom check box selected", "");
+		}else {
+			click(CUSTOM_CHECKBOX, "Custom Check box");
+		}
 	}
 
 
@@ -1376,13 +1386,18 @@ public void addShippingAddress(String name, String userName,String street1,Strin
 	 * @throws Throwable
 	 */
 	public void verifySelectReport(String selectReport) throws Throwable {
+		boolean status = false;
 		waitForVisibilityOfElement(getSelectAReport(selectReport), "Select A Report");
-		if (isElementPresent(getSelectAReport(selectReport), "Select A Report", true)) {
+		if (isVisibleOnly(getSelectAReport(selectReport), "Select A Report")) {
+			status=true;
+			String a = Boolean.toString(status);
 			reporter.SuccessReport("Verify  " + selectReport + " is Default to Select Report on Reports Page",
-					"Select Report Defaulted to " + selectReport + " Reports", "");
+					"Select Report Defaulted to " + selectReport + " Reports", a);
 		} else {
+			status = false;
+			String a = Boolean.toString(status);
 			reporter.failureReport("Verify  " + selectReport + " is Default to Select Report on Reports Page",
-					"Select Report Not Defaulted to " + selectReport + " Reports", "", driver);
+					"Select Report Not Defaulted to " + selectReport + " Reports", a, driver);
 		}
 	}
 
@@ -1392,13 +1407,18 @@ public void addShippingAddress(String name, String userName,String street1,Strin
 	 * @throws Throwable
 	 */
 	public void verifyAccountSelections(String account) throws Throwable {
+		boolean status = false;
 		waitForVisibilityOfElement(getAccountSelections(account), "Select A Report");
-		if (isElementPresent(getAccountSelections(account), "Select A Report", true)) {
+		if (isVisibleOnly(getAccountSelections(account), "Select A Report")) {
+			status=true;
+			String a = Boolean.toString(status);
 			reporter.SuccessReport("Verify  " + account + " is Default to Account Selections on Reports Page",
-					"Account Selections are  Defaulted to " + account + "", "");
+					"Account Selections are  Defaulted to " + account + "", a);
 		} else {
+			status=false;
+			String a = Boolean.toString(status);
 			reporter.failureReport("Verify  " + account + " is Default to Select Report on Reports Page",
-					"Account Selections are Not Defaulted to " + account + "", "", driver);
+					"Account Selections are Not Defaulted to " + account + "", a, driver);
 		}
 	}
 
@@ -1412,7 +1432,7 @@ public void addShippingAddress(String name, String userName,String street1,Strin
 		waitForVisibilityOfElement(getFilterByCurrency(currency), "Select A Report");
 		if (isElementPresent(getFilterByCurrency(currency), "Select A Report")) {
 			reporter.SuccessReport("Verify 'Convert all transactions to' is Default to CAD on Reports Page",
-					"Convert all transactions to' Amount is Not Default to CAD", "true");
+					"Convert all transactions to' Amount is Default to CAD", "true");
 		} else {
 			reporter.failureReport("Verify 'Convert all transactions to' is Default to CAD on Reports Page",
 					"'Convert all transactions to' Amount is Not Default to CAD", "", driver);
@@ -1573,15 +1593,19 @@ public void addShippingAddress(String name, String userName,String street1,Strin
 	 *
 	 * @throws Throwable
 	 */
-	public void verifySmartcheck() throws Throwable {
+	public boolean verifySmartcheck() throws Throwable {
+		boolean status= false;
 		waitForVisibilityOfElement(SMART_CHECK, "Smart Check");
 		if (isVisibleOnly(SMART_CHECK, "Smart Check")) {
+			status=true;
 			reporter.SuccessReport("Verify Smart Tracker Check Box on Reports Page",
 					"Smart Tracker Check Box Exists and UnChecked", "");
 		} else {
+			status=false;
 			reporter.failureReport("Verify Smart Tracker Check Box on Reports Page",
 					"Smart Tracker Check Box Exists and Checked", "", driver);
 		}
+		return status;
 	}
 
 
@@ -1674,7 +1698,6 @@ public void addShippingAddress(String name, String userName,String street1,Strin
 	 */
 	public void verifyDownloadedReportExcelFile(List<String> actualData, String filePath) throws Throwable {
 		Thread.sleep(10000);
-		Thread.sleep(10000);
 		File root = new File(System.getProperty("user.dir") + "\\" + "DownloadedFiles" + "\\");
 		FilenameFilter beginswithm = new FilenameFilter() {
 			public boolean accept(File directory, String filename) {
@@ -1684,26 +1707,29 @@ public void addShippingAddress(String name, String userName,String street1,Strin
 		File[] files = root.listFiles(beginswithm);
 
 		if (files[0] != null) {
-			// PATH
-
-			// load file
-			FileInputStream fis = new FileInputStream(files[0]);
-			// Load workbook
-			XSSFWorkbook wb = new XSSFWorkbook(fis);
-			List<String> expectedData = new ArrayList<String>();
-			XSSFSheet sh1 = wb.getSheetAt(0);
-			String data1 = sh1.getRow(0).getCell(0).getStringCellValue();
-			expectedData.add(data1);
-			if (sh1.getRow(2).getCell(0).getStringCellValue() != null) {
-				String data3 = sh1.getRow(2).getCell(0).getStringCellValue();
+			
+			  // PATH
+			  
+			  // load file
+			 FileInputStream fis = new FileInputStream(files[0]); // Load
+			  Workbook  wb = new XSSFWorkbook(fis);
+			  List<String> expectedData =new ArrayList<String>();
+			  XSSFSheet sh1 = (XSSFSheet) wb.getSheetAt(0); 
+			  String data1 = sh1.getRow(0).getCell(0).getStringCellValue();
+			  expectedData.add(data1);
+			  if
+			  (sh1.getRow(2).getCell(0).getStringCellValue() != null) {
+				String data3 =sh1.getRow(2).getCell(0).getStringCellValue(); 
 				expectedData.add(data3);
-			} else {
-				String data3 = sh1.getRow(3).getCell(0).getStringCellValue();
-				expectedData.add(data3);
-			}
-
-			Assert.assertEquals(actualData, expectedData);
-			reporter.SuccessReport("Verify the Excel Data ", "Excel Data is present as expected", "");
+			 
+			
+			  } else {
+			String data3 = sh1.getRow(3).getCell(0).getStringCellValue();
+			  expectedData.add(data3); }
+			  
+			  Assert.assertEquals(actualData, expectedData);
+			 
+			reporter.SuccessReport("Verify the Excel Downloaded", "Excel sheet is present as expected", "");
 
 		}
 	}
@@ -1931,7 +1957,7 @@ public void addShippingAddress(String name, String userName,String street1,Strin
 					System.out.println(fileEntry.getName());
 					reporter.SuccessReport("Downloaded files ", "Downloaded file",  fileEntry.getName()  );
 				}else{
-					reporter.failureReport("Downloaded files ", "Downloaded file",  fileEntry.getName() +"is not exist",driver  );
+					//reporter.failureReport("Downloaded files ", "Downloaded file",  fileEntry.getName() +"is not exist",driver  );
 			}
 		}
 
@@ -2060,6 +2086,21 @@ public void addShippingAddress(String name, String userName,String street1,Strin
 	public boolean visibilityOfReferenceNoInRequestionSearch() throws Throwable{
 
 		return	isVisibleOnly(lnkReferenceNo,"Search");
+	}
+	public void verifyDownloadedExcelFile(List<String> actualData, String filePath) throws Throwable {
+		Thread.sleep(10000);
+		File root = new File(System.getProperty("user.dir") + "\\" + "DownloadedFiles" + "\\");
+		FilenameFilter beginswithm = new FilenameFilter() {
+			public boolean accept(File directory, String filename) {
+				return filename.startsWith(filePath);
+			}
+		};
+		File[] files = root.listFiles(beginswithm);
+
+		if (files[0] != null) {
+			reporter.SuccessReport("Verify the Excel Downloaded", "Excel sheet is present as expected", "");
+
+		}
 	}
 
 }

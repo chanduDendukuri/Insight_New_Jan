@@ -103,6 +103,7 @@ public class LNL04_CopyLineLevelDataIPSTest  extends LineLevelInfoLib{
 						cartLib.verifyContractNameInCart(data.get("Contract_Name1"));
 						
 						// Select new contract  - Open Market 
+				        // *** verify US contract in the cart *****///&&&&&&&&&&&&&&&&&&&&&&&&&&&		
 						searchLib.selectContract(data.get("Contract_Name2"));
 						// Verify contract page
 						pipLib.verifyWelcomePage();
@@ -116,13 +117,14 @@ public class LNL04_CopyLineLevelDataIPSTest  extends LineLevelInfoLib{
 						canadaLib.verifyPlaceCartLabel();
 						cartLib.verifyItemInCartByInsightPart(mfrNumber4);
 						
+						// *** verify 3 contracts in the cart *****///&&&&&&&&&&&&&&&&&&&&&&&&&&&	
 						
 						// Verify selected contract in cart page
 						cartLib.verifyContractNameInCart(data.get("OpenMarket"));
 						cartLib.verifyContractNameInCart(data.get("Contract_Name1"));
 						orderLib.proceedToCheckout();  // Proceed to checkout
 						orderLib.enterReportingDetailsInLineLevelInfo(data.get("REPORTING_FIELD_4"), data.get("REPORTING_FIELD_5"), data.get("REPORTING_FIELD_6"));
-						//selectDiversityPartner(data.get("Diversity_Partner1"),mfrNumber3);
+						selectDiversityPartner(data.get("Diversity_Partner1"),mfrNumber3);
 						clickOnLinelevelInfoOptionalLink();
 						orderLib.clickContinueOnLineLevelInfo(); // click continue on LLI 
 						
@@ -137,12 +139,13 @@ public class LNL04_CopyLineLevelDataIPSTest  extends LineLevelInfoLib{
 						clickOnLineLevelOptionalLinkByPartNum(mfrNumber1);
 						//selectDiversityPartner(data.get("Diversity_Partner2"),mfrNumber3);
 						clickCopyToAllLink(mfrNumber1);
-						verifyContractSpecificInfoOnPlaceOrderPage();
+						
+						//verifyContractSpecificInfoOnPlaceOrderPage();
 						/*clickOnLineLevelOptionalLinkByPartNum(mfrNumber2);
 						verifyDiversityPartnerexists(data.get("Diversity_Partner2"),mfrNumber2);*/
 						clickClearLink(mfrNumber1);
 						scrollUp();
-						clickClearLink(mfrNumber3);
+						//clickClearLink(mfrNumber3);
 						String reportingfield4= getReportingField4();
 						String reportingfield5= getReportingField5();
 						String reportingfield6= getReportingField6();
@@ -151,9 +154,21 @@ public class LNL04_CopyLineLevelDataIPSTest  extends LineLevelInfoLib{
 						assertTextStringMatching(reportingfield5, "");
 						assertTextStringMatching(reportingfield6, "");
 						orderLib.enterReportingDetailsInLineLevelInfo(data.get("REPORTING_FIELD_4"), data.get("REPORTING_FIELD_5"), data.get("REPORTING_FIELD_6"));
-						selectDiversityPartner(data.get("Diversity_Partner1"),mfrNumber3);
+						// select second options from DD 
+						selectDiversityPartner(data.get("Diversity_Partner1"),mfrNumber2);
+						clickCopyToAllLink(mfrNumber2);
+			
+						// click on 3rd part and check out all the fields copied 
+						// clear all in 3rd part - all parts fields will be cleared
+						// make sure data is cleared
+						// go back to 1st one and make sure all the fields are cleared
+						// fill all the reporting fields in 1st part
+						
 						orderLib.clickContinueOnLineLevelInfo(); // click continue on LLI 
-						verifyContractSpecificInfoOnPlaceOrderPage();
+						
+						// verify the reporting fields are exists
+						
+						
 						commonLib.clickLogOutLink(data.get("Logout"));
 						
 					} catch (Exception e) {
