@@ -634,9 +634,9 @@ public class CartLib extends ActionEngine {
 
 	public void shippingBillPayInCheckOut(String cardNumber, String cardName, String month, String year,
 			String PONumber,String PORealeseNumber) throws Throwable {
-		click(OrderObj.CONTINUE_BTN, "Continue button of Payment Options"); // clicking continue in Shipping address
+		click(OrderObj.CONTINUE_BTN, "Continue button of Shipping Options"); // clicking continue in Shipping address
 		Thread.sleep(2000);
-		click(OrderObj.CONTINUE_BTN, "Continue button of Payment Options");// clicking continue in Shipping options
+		click(OrderObj.CONTINUE_BTN, "Continue button of Billing Address");// clicking continue in Shipping options
 		Thread.sleep(2000);
 		click(OrderObj.PAYMENT_METHOD_DD, "payment method drop down");
 		click(OrderObj.PAYMENT_METHOD_SELECTION, "payment method selection");
