@@ -66,7 +66,8 @@ public class CAN16_InvoiceHistoryClassTest extends ActionEngine  {
 								cmtLib.loginVerification(data.get("ContactName"));
 								shipbLib.verifyWEbsiteIsCannada();
 								canadaLib.verifyCanadaWebgroup();
-								canadaLib.clickOnSideMenuSelectAccountToolOptions(data.get("Tools_Menu"), data.get("Tools_Menu_DD"));
+								//canadaLib.clickOnSideMenuSelectAccountToolOptions(data.get("Tools_Menu"), data.get("Tools_Menu_DD"));
+								commonLib.clickOnAccountToolsAndClickOnProductGrp(data.get("Tools_Menu"), data.get("Tools_Menu_DD") );
 								invoice.verifyInvoiceHistoryLabel();
 								invoice.quickSearchAndVerifySearchResults(data.get("SelectOrder"), data.get("OrderNumber"));
 								invoice.quickSearchAndVerifySearchResults(data.get("SelectReference"), data.get("ReferenceNumber"));
