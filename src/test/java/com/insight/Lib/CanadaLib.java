@@ -866,8 +866,13 @@ public class CanadaLib extends CanadaObj {
 	}
 
 	public void continueToCheckout() throws Throwable {
+		if(isVisible(CONTINUE_TO_CHECKOUT, "Continue to checkout")) {
+			reporter.SuccessReport("Continue to checkout button", "Continue to checkout button is visible", "");
 		click(CONTINUE_TO_CHECKOUT, "Continue to checkout");
-		Thread.sleep(10000);
+		Thread.sleep(10000);}
+		else {
+			reporter.failureReport("Continue to checkout button", "Continue to checkout button is not visible", "", driver);
+		}
 	}
 
 	public void verifyReceiptOrderAndDate(String totalSummary) throws Throwable {
@@ -1000,8 +1005,11 @@ public class CanadaLib extends CanadaObj {
 	 */
 	public void clickCustomCheckBox() throws Throwable {
 		waitForVisibilityOfElement(CUSTOM_CHECKBOX, "Custom Check box");
-		click(CUSTOM_CHECKBOX, "Custom Check box");
-
+		if(isCheckBoxSelected(CUSTOM_CHECKBOX)) {
+			reporter.SuccessReport("custom check box selected", "custom check box selected", "");
+		}else {
+			click(CUSTOM_CHECKBOX, "Custom Check box");
+		}
 	}
 
 
