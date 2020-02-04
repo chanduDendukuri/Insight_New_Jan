@@ -699,7 +699,7 @@ public  void verifyDashboard()throws Throwable {
 	}
 
 	public void loginAsEndUserInMainPage(String header, String username, String password) throws Throwable {
-		clickLoginLink(header);
+		//clickLoginLink(header);
 		// if (driver.findElement(CartObj.POP_UP_EMAILID).isDisplayed()) {
 		// handleWelcomeToInsightBetaPopUp();
 		// }

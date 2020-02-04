@@ -2206,7 +2206,16 @@ List<String> orderdetails = new ArrayList<String>();
 		
 		return getText(CartObj.CART_PROD_DESC_RECENTLYADDEDTEM,"Product description of recently added item");
 	}
-	
+	public void stockInCartPage() throws Throwable {
+		String partNumber=getText(CartObj.Cart_Prod_Insight_Part_Number,"part number");
+		String stock=getCartProductStockForRecentlyAddedItem();
+		if(partNumber!=null) {
+			reporter.SuccessReport("Check Product with stock Value in the Cart Page", "Product with stock Value are Exists and As Expectedin the Cart", "Part Number:"+partNumber +"Stock: "+stock);
+		}
+		else {
+			reporter.failureReport("Check Product with stock Value in the Cart Page", "Product with stock Value are not Exists","", driver);
+		}
+	}
 	/**
 	 * 
 	 * @return
