@@ -1708,7 +1708,7 @@ List<String> orderdetails = new ArrayList<String>();
 		click(CommonObj.ACCOUNT_TOOLS, "Account tools menu icon");
 		click(CommonObj.getAccountToolsMenu(toolsMenuName), "Account tools menu");
 		click(CommonObj.getAccountToolsDD(toolsMenuName, dropDown), "Select account tool");
-		//click(orderlinkInOrderHistory(refNum), "select placed order from recent orders");
+		click(orderlinkInOrderHistory(refNum), "select placed order from recent orders");
 		Thread.sleep(1000);
 		/*
 		 * if (isElementPresent(REPORTINGFIELD4_ORDERHISTORY, "Add items check box")) {
