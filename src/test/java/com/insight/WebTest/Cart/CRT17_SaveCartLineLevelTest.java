@@ -76,6 +76,7 @@ public class CRT17_SaveCartLineLevelTest extends CartLib {
 					searchLib.verifyBreadCrumbInSearchResultsPage(data.get("PartNumber"));
 					prodInfoLib.getPartNumberInSearchResultsPage();
 					commonLib.addFirstDisplyedItemToCartAndVerify();
+					
 					canadaLib.continueToCheckout();
 					canadaLib.verifyPlaceCartLabel();
 					prodInfoLib.verifyCartPageAndPartDetailsForRecentlyItem();

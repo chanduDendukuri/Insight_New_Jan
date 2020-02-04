@@ -72,9 +72,10 @@ public class CRT16_RequestorOptionsTest extends CartLib{
 					search.increaseQuantity(data.get("quantity"));
 
 					commonLib.addToCartAndVerify();
-					prodInfoLib.verifyCartPageAndPartDetailsForRecentlyItem();
+					
 					canadaLib.continueToCheckout();
 					canadaLib.verifyPlaceCartLabel();
+					prodInfoLib.verifyCartPageAndPartDetailsForRecentlyItem();
 					cartLib.verifySaveCartAsQuoteIsPresent();
 					commonLib.clickLogOutLink(data.get("Logout_Header"));
 					cmtLib.navigateBackToCMT();
@@ -93,9 +94,10 @@ public class CRT16_RequestorOptionsTest extends CartLib{
 					search.increaseQuantity(data.get("quantity"));
 
 					commonLib.addToCartAndVerify();
-					prodInfoLib.verifyCartPageAndPartDetailsForRecentlyItem();
+					
 				    canadaLib.continueToCheckout();
 				    canadaLib.verifyPlaceCartLabel();
+				    prodInfoLib.verifyCartPageAndPartDetailsForRecentlyItem();
 					cartLib.verifySelectRwquestorGroupDropdownIsPresent();
 					commonLib.clickLogOutLink(data.get("Logout_Header"));
 					   System.out.println("Test completed");
