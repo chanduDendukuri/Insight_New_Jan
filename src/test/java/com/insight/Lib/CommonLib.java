@@ -245,8 +245,11 @@ public class CommonLib extends ActionEngine{
 		public void addToCartAndVerify() throws Throwable
 		{	
 			Thread.sleep(5000);
+			scrollBottom();
+			scrollToBottomWithCordinate("300");
 			 if(isElementPresent(CartObj.ADD_TO_CART_IN_PRODUCT_DISPLAY," ADD TO CART IN PRODUCT DISPLAY")) {
-				clickUntil(CartObj.ADD_TO_CART_IN_PRODUCT_DISPLAY,CartObj.ADD_TO_CART_SUCCESS_MESSAGE," ADD TO CART IN PRODUCT DISPLAY");
+				 
+				click(CartObj.ADD_TO_CART_IN_PRODUCT_DISPLAY," ADD TO CART IN PRODUCT DISPLAY");
 				Thread.sleep(10000);
 				waitForVisibilityOfElement(CartObj.ADD_TO_CART_SUCCESS_MESSAGE,"ADD TO CART SUCCESS MESSAGE");					
 				 if(isElementPresent(CartObj.ADD_TO_CART_SUCCESS_MESSAGE,"ADD TO CART SUCCESS MESSAGE")){

@@ -458,6 +458,19 @@ public class CartLib extends ActionEngine {
 					"ASN Field does not Exist", "", driver);
 		}
 	}
+	public void verifyPreviousShipmentNotificationInCheckoutDefaults(String previousemail) throws Throwable {
+
+		if (isVisibleOnly(CartObj.SHIPMENT_NOTIFICATION, "ASN field")) {
+		String Email=getText(CartObj.SHIPMENT_NOTIFICATION,"Shipment Notification");
+		if(Email.contains(previousemail)) {
+			reporter.SuccessReport("Verify Defualt mail in ASN Field  Account Management - Account Tools Page", "In ASN Field is Defualt Email Exist as Expected",
+					Email);
+		} else {
+			reporter.failureReport("erify Defualt mail in ASN Field   Account Management - Account Tools Page",
+					"ASN Field Email does not Exist", "", driver);
+		}
+		}
+	}
 
 	public void enterMailIdToNotificationFieldAndVerifySuccessMessage(String mail) throws Throwable {
 		clearData(CartObj.SHIPMENT_NOTIFICATION);
@@ -509,7 +522,7 @@ public class CartLib extends ActionEngine {
 					"Shipment Notification  Confirm via email is Exists", "", driver);
 		} else {
 			reporter.SuccessReport("Verify Shipment Notification  Confirm via email Ship Bill Page",
-					"Shipment Notification  Confirm via email is Exists", "");
+					"Shipment Notification  Confirm via email Not Exists as Expected", "");
 		}
 	}
 

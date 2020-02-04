@@ -743,6 +743,9 @@ List<String> orderdetails = new ArrayList<String>();
 	 * @throws Throwable
 	 */
 	public void enterReportingDetailsInLineLevelInfo(String reportingField4,String reportingField5,String reportingField6) throws Throwable{
+		if(isElementPresent(OrderObj.ORDER_ITEM_INFO_LABEl, "order and inforamtion page")){
+			reporter.SuccessReport("Verify Line Level/Ship Bill & Pay/Line Level/Place Requisition/Place Order Page", "Order and item information Page not loaded", "");
+		type(REPORTING_FIELD_4, reportingField4, "Reporting Field 4");
 		if(isElementPresent(REPORTING_FIELD_4, "Reporting Field 4")){
 		type(REPORTING_FIELD_4, reportingField4, "Reporting Field 4");
 		type(REPORTING_FIELD_5, reportingField5, "Reporting Field 5");
@@ -752,7 +755,28 @@ List<String> orderdetails = new ArrayList<String>();
 		}else{
 			reporter.failureReport("Verify reporting fields displayed in the Line level information section","Reporting fields are not displayed Line level information","");
 		}
+		}
 	}
+	
+	/**
+	 * 
+	 * @throws Throwable
+	 */
+	public void verifyReportingFieldsInOrderDetails(String REPORTINGFIELD_5,String REPORTINGFIELD_6) throws Throwable {
+		if (isElementPresent(REPORTINGFIELD_ALL_ORDERHISTORY, "Reorting fileds in order details page")) {
+			String Reporting_field = getText(REPORTINGFIELD_ALL_ORDERHISTORY, "Order Number");
+			if (Reporting_field.contains(REPORTINGFIELD_5)) {
+			reporter.SuccessReport("Verify reporting fields displayed in the order details section","Reporting field5 are displayed and existes in order details section","");
+		} else
+			reporter.failureReport("Verify reporting fields displayed in the order details section","Reporting field5 are not displayed and doesn't exists in order details section","",driver);
+			if (Reporting_field.contains(REPORTINGFIELD_6)) {
+				reporter.SuccessReport("Verify reporting fields displayed in the order details section","Reporting field6 are displayed and existes in order details section","");
+			} else
+				reporter.failureReport("Verify reporting fields displayed in the order details section","Reporting field6 are not displayed and doesn't exists in order details section","",driver);
+		}
+	}
+		
+	
 	/**
 	 * This method is to add shipping address details.
 	 * @param companyname
@@ -1646,15 +1670,22 @@ List<String> orderdetails = new ArrayList<String>();
 	  * @throws Throwable
 	  */
 	 public void verifyLineLvlInfoReportingFieldsInCartPage() throws Throwable{
-			if(isElementPresent(REPORTINGFIELDS_CART, "Reporting Fields in cart page")){
-				List<WebElement> fieldsList=driver.findElements(REPORTINGFIELDS_CART);
-		         for (int i = 0; i < fieldsList.size(); i++) {
-			         if(fieldsList.get(i).isSelected()){
-				reporter.SuccessReport("Verify reporting fields cart page","REPORTING FIELDS 4,5 and 6 exists in cart page","");
+			if(isElementPresent(REPORTINGFIELDS4_CART, "Reporting Fields in cart page")){
+			/*
+			 * List<WebElement> fieldsList=driver.findElements(REPORTINGFIELDS_CART(j)); for
+			 * (int i = 4; i < 7; i++) { if(fieldsList.get(i).isSelected()){
+			 */
+				reporter.SuccessReport("Verify reporting fields cart page","REPORTING FIELDS 4 exists in cart page","");
 			}else
-				reporter.failureReport("Verify reporting fields cart page","REPORTING FIELDS 4,5 and 6 doesn't exists in cart page","");
-			}
-			}
+				reporter.failureReport("Verify reporting fields cart page","REPORTING FIELDS 4 doesn't exists in cart page","",driver);
+	      if(isElementPresent(REPORTINGFIELDS5_CART, "Reporting Fields in cart page")){
+		 reporter.SuccessReport("Verify reporting fields cart page","REPORTING FIELDS 5 exists in cart page","");
+		}else
+			reporter.failureReport("Verify reporting fields cart page","REPORTING FIELDS 5 doesn't exists in cart page","",driver);
+	      if(isElementPresent(REPORTINGFIELDS6_CART, "Reporting Fields in cart page")){
+	 		 reporter.SuccessReport("Verify reporting fields cart page","REPORTING FIELDS 6 exists in cart page","");
+	 		}else
+	 			reporter.failureReport("Verify reporting fields cart page","REPORTING FIELDS 6 doesn't exists in cart page","",driver);
 	}
 
 
@@ -1676,45 +1707,39 @@ List<String> orderdetails = new ArrayList<String>();
 		}
 		click(CommonObj.ACCOUNT_TOOLS, "Account tools menu icon");
 		click(CommonObj.getAccountToolsMenu(toolsMenuName), "Account tools menu");
-		click(CommonObj.getAccountToolsDD(toolsMenuName, dropDown), "Select account tools");
-		click(orderlinkInOrderHistory(refNum), "select placed order from recent orders");
+		click(CommonObj.getAccountToolsDD(toolsMenuName, dropDown), "Select account tool");
+		//click(orderlinkInOrderHistory(refNum), "select placed order from recent orders");
 		Thread.sleep(1000);
-		if (isElementPresent(REPORTINGFIELD4_ORDERHISTORY, "Add items check box")) {
-			List<WebElement> myList4 = driver.findElements(REPORTINGFIELD4_ORDERHISTORY);
-			for (int j = 0; j < myList4.size(); j++) {
-				if (myList4.get(j).isDisplayed()) {
-					reporter.SuccessReport("Verify Reporting Field4 in the Order Details",
-							"Reporting Fields are Exist and Verfied","");
-				} else
-					reporter.failureReport("Verify Reporting Field4 in the Order Details",
-							"Reporting Fields are Not Exist","");
-				if (isElementPresent(REPORTINGFIELD5_ORDERHISTORY, "Add items check box")) {
-					List<WebElement> myList1 = driver.findElements(REPORTINGFIELD5_ORDERHISTORY);
-					for (int k = 0; k < myList1.size(); k++) {
-						if (myList1.get(j).isDisplayed()) {
-							reporter.SuccessReport("Verify Reporting Field5 in the Order Details",
-									"Reporting Fields are Exist and Verfied","");
-						} else
-							reporter.failureReport("Verify Reporting Field5 in the Order Details",
-									"Reporting Fields are Not Exist","");
-					}
-					if (isElementPresent(REPORTINGFIELD6_ORDERHISTORY, "Add items check box")) {
-						List<WebElement> myList = driver.findElements(REPORTINGFIELD6_ORDERHISTORY);
-						for (int k = 0; k < myList.size(); k++) {
-							if (myList.get(j).isDisplayed()) {
-								reporter.SuccessReport("Verify Reporting Field6 in the Order Details",
-										"Reporting Fields are Exist and Verfied","");
-							} else
-								reporter.failureReport("Verify Reporting Field6 in the Order Details",
-										"Reporting Fields are Not Exist","");
-
-						}
-
-					}
-				}
-
-			}
-		}
+		/*
+		 * if (isElementPresent(REPORTINGFIELD4_ORDERHISTORY, "Add items check box")) {
+		 * List<WebElement> myList4 = driver.findElements(REPORTINGFIELD4_ORDERHISTORY);
+		 * for (int j = 0; j < myList4.size(); j++) { if (myList4.get(j).isDisplayed())
+		 * { reporter.SuccessReport("Verify Reporting Field4 in the Order Details",
+		 * "Reporting Fields are Exist and Verfied",""); } else
+		 * reporter.failureReport("Verify Reporting Field4 in the Order Details",
+		 * "Reporting Fields are Not Exist",""); if
+		 * (isElementPresent(REPORTINGFIELD5_ORDERHISTORY, "Add items check box")) {
+		 * List<WebElement> myList1 = driver.findElements(REPORTINGFIELD5_ORDERHISTORY);
+		 * for (int k = 0; k < myList1.size(); k++) { if (myList1.get(j).isDisplayed())
+		 * { reporter.SuccessReport("Verify Reporting Field5 in the Order Details",
+		 * "Reporting Fields are Exist and Verfied",""); } else
+		 * reporter.failureReport("Verify Reporting Field5 in the Order Details",
+		 * "Reporting Fields are Not Exist",""); } if
+		 * (isElementPresent(REPORTINGFIELD6_ORDERHISTORY, "Add items check box")) {
+		 * List<WebElement> myList = driver.findElements(REPORTINGFIELD6_ORDERHISTORY);
+		 * for (int k = 0; k < myList.size(); k++) { if (myList.get(j).isDisplayed()) {
+		 * reporter.SuccessReport("Verify Reporting Field6 in the Order Details",
+		 * "Reporting Fields are Exist and Verfied",""); } else
+		 * reporter.failureReport("Verify Reporting Field6 in the Order Details",
+		 * "Reporting Fields are Not Exist","");
+		 * 
+		 * }
+		 * 
+		  } }
+		 
+		  }
+		 
+		}*/
 	}
 
 	/**
@@ -1875,17 +1900,19 @@ List<String> orderdetails = new ArrayList<String>();
 	 * @param item1
 	 * @throws Throwable
 	 */
-	public void verifyPartNumberInOrderdetails(String item1) throws Throwable {
+	public void verifyPartNumberInOrderdetails(String item1,String productDes) throws Throwable {
 
 		String PartNum[] = getText(CartObj.getPartNuminOrderdetails, "Part Number item in order details page")
 				.split(",");
+		String Description[] = getText(CartObj.productDes, "Part Number item in order details page")
+				.split(",");
 		for (i = 0; i < PartNum.length; i++) {
-			if (PartNum[i].equals(item1)) {
-				reporter.SuccessReport("Verify product part Number displayed in order details",
-						"Part Number is displayed",item1);
+			if (PartNum[i].contains(item1)&& Description[i].contains(productDes)) {
+				reporter.SuccessReport("Verify product description and part Number displayed in order details",
+						"Part Number displayed as:",PartNum[i]+"  prod Description : " + Description[i]);
 			} else {
 				reporter.failureReport("Verify product part Number displayed in order details",
-						"Part Number displayed is : " + PartNum + " .Expected is: " , item1);
+						"Part Number displayed is :",PartNum[i]+"  prod Description : " + Description[i]);
 			}
 		}
 	}
@@ -2087,6 +2114,7 @@ List<String> orderdetails = new ArrayList<String>();
 			reporter.failureReport("Verify the part added to cart ", "Part is not added to cart.", "", driver);
 		}
    }
+	
 	
 	public void enterAttentionField(String text) throws Throwable {
 		if(isVisibleOnly(ATTENTION, "Attention")) {

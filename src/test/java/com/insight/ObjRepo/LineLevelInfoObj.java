@@ -79,7 +79,7 @@ public class LineLevelInfoObj extends ActionEngine{
 	 // smart Tracker
 	 public static By RP_LNL_Lst_DD=By.xpath("//select[@class='form__field form__select ']");
 	 public static By RP_LNL_DATE_PICKER=By.xpath("//input[@class='form__field date-picker__input']");
-	 public static By RP_LNL_DATE_TODAY_DATE=By.xpath("//div[@class='react-datepicker__day react-datepicker__day--keyboard-selected react-datepicker__day--today react-datepicker__day--weekend']");
+	 public static By RP_LNL_DATE_TODAY_DATE=By.xpath("//div[@class='react-datepicker__day react-datepicker__day--keyboard-selected react-datepicker__day--today react-datepicker__day--weekend' or @class='react-datepicker__day react-datepicker__day--keyboard-selected react-datepicker__day--today']");
 	public static By DATE_AFTER_SELECTION=By.xpath("//input[@class='form__field date-picker__input']");
 	 
 	 

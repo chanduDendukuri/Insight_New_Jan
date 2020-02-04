@@ -1335,9 +1335,9 @@ public class ShipBillPayLib extends ShipBillPayObj {
 			if(isVisibleOnly(OrderObj.WG_HDL_Txt,"")) {
 				String Data=driver.findElement(OrderObj.WG_HDL_Txt).getAttribute("value");
 				if(Data.contains(WG_HDL_Txt)) {
-				reporter.failureReport("Verify WG_HDL_Txt" ,"Previously Enter Data Exists", "",driver);		
+				reporter.failureReport("Verify WG_HDL_Txt in Addtional info" ,"Previously Enter Data Exists", "",driver);		
 			}else {
-				reporter.SuccessReport("Verify WG_HDL_Txt" ,"Previously Enter Data Not Exists","");
+				reporter.SuccessReport("Verify WG_HDL_Txt in Addtional info" ,"Previously Enter Data Not Exists","");
 			}
 			}
 		}
@@ -1346,9 +1346,9 @@ public class ShipBillPayLib extends ShipBillPayObj {
 			if(isVisibleOnly(CartObj.ADDITIONAL_NOTIFICATION_EMAIL,"")) {
 				String Data=driver.findElement(CartObj.ADDITIONAL_NOTIFICATION_EMAIL).getAttribute("value");
 				if(Data.contains(email)) {
-				reporter.failureReport("Verify additional Info" ,"Previously Enter Data Exists", "",driver);		
+				reporter.failureReport("Verify Email in  additional Info" ,"Previously Enter Data Exists", "",driver);		
 			}else {
-				reporter.SuccessReport("Verify additional Info" ,"Previously Enter Data Not Exists","");
+				reporter.SuccessReport("Verify Email in additional Info" ,"Previously Enter Data Not Exists","");
 			}
 			}
 		}	
