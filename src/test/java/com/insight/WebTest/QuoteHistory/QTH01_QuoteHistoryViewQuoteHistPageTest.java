@@ -75,8 +75,10 @@ public class QTH01_QuoteHistoryViewQuoteHistPageTest extends QuoteHistoryLib {
 						orderLib.continueToCheckOutOnAddCart();	
 						cmtLib.clickSaveAsQuote();	
 						cmtLib.getQuoteNameandReferenceNumber();
-						canadaLib.clickOnSideMenuSelectAccountToolOptions(data.get("Tools_Menu"),
+						/*canadaLib.clickOnSideMenuSelectAccountToolOptions(data.get("Tools_Menu"),
 								data.get("Tools_Menu_DD"));
+						*/		commonLib.clickOnAccountToolsAndClickOnProductGrp(data.get("Tools_Menu"),
+										data.get("Tools_Menu_DD"));
 						verifyQuoteHistoryPageOpened();
 						invoiceHistoryLib.clickOnAdvancedSearch();					// Perform Quote Search						
 						clickOnAdvancedSearchSearchButton();

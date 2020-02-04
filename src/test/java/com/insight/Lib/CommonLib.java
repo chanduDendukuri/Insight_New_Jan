@@ -125,7 +125,7 @@ public class CommonLib extends ActionEngine{
 		}
 		else {
 			clearData(CMTObj.DEAFULT_MAIL);
-			type(CMTObj.DEAFULT_MAIL, actualEmail, "Default ASN Email Address" +actualEmail);
+			type(CMTObj.DEAFULT_MAIL, actualEmail, "Default ASN Email Address");
 		}
 	}
 	

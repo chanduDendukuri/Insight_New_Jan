@@ -12,6 +12,8 @@ import java.util.Date;
 import java.util.List;
 
 import com.insight.report.ReporterConstants;
+
+import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.mortbay.log.Log;
@@ -1003,8 +1005,11 @@ public class CanadaLib extends CanadaObj {
 	 */
 	public void clickCustomCheckBox() throws Throwable {
 		waitForVisibilityOfElement(CUSTOM_CHECKBOX, "Custom Check box");
-		click(CUSTOM_CHECKBOX, "Custom Check box");
-
+		if(isCheckBoxSelected(CUSTOM_CHECKBOX)) {
+			reporter.SuccessReport("custom check box selected", "custom check box selected", "");
+		}else {
+			click(CUSTOM_CHECKBOX, "Custom Check box");
+		}
 	}
 
 
@@ -1381,13 +1386,18 @@ public void addShippingAddress(String name, String userName,String street1,Strin
 	 * @throws Throwable
 	 */
 	public void verifySelectReport(String selectReport) throws Throwable {
+		boolean status = false;
 		waitForVisibilityOfElement(getSelectAReport(selectReport), "Select A Report");
-		if (isElementPresent(getSelectAReport(selectReport), "Select A Report", true)) {
+		if (isVisibleOnly(getSelectAReport(selectReport), "Select A Report")) {
+			status=true;
+			String a = Boolean.toString(status);
 			reporter.SuccessReport("Verify  " + selectReport + " is Default to Select Report on Reports Page",
-					"Select Report Defaulted to " + selectReport + " Reports", "");
+					"Select Report Defaulted to " + selectReport + " Reports", a);
 		} else {
+			status = false;
+			String a = Boolean.toString(status);
 			reporter.failureReport("Verify  " + selectReport + " is Default to Select Report on Reports Page",
-					"Select Report Not Defaulted to " + selectReport + " Reports", "", driver);
+					"Select Report Not Defaulted to " + selectReport + " Reports", a, driver);
 		}
 	}
 
@@ -1397,13 +1407,18 @@ public void addShippingAddress(String name, String userName,String street1,Strin
 	 * @throws Throwable
 	 */
 	public void verifyAccountSelections(String account) throws Throwable {
+		boolean status = false;
 		waitForVisibilityOfElement(getAccountSelections(account), "Select A Report");
-		if (isElementPresent(getAccountSelections(account), "Select A Report", true)) {
+		if (isVisibleOnly(getAccountSelections(account), "Select A Report")) {
+			status=true;
+			String a = Boolean.toString(status);
 			reporter.SuccessReport("Verify  " + account + " is Default to Account Selections on Reports Page",
-					"Account Selections are  Defaulted to " + account + "", "");
+					"Account Selections are  Defaulted to " + account + "", a);
 		} else {
+			status=false;
+			String a = Boolean.toString(status);
 			reporter.failureReport("Verify  " + account + " is Default to Select Report on Reports Page",
-					"Account Selections are Not Defaulted to " + account + "", "", driver);
+					"Account Selections are Not Defaulted to " + account + "", a, driver);
 		}
 	}
 
@@ -1679,7 +1694,6 @@ public void addShippingAddress(String name, String userName,String street1,Strin
 	 */
 	public void verifyDownloadedReportExcelFile(List<String> actualData, String filePath) throws Throwable {
 		Thread.sleep(10000);
-		Thread.sleep(10000);
 		File root = new File(System.getProperty("user.dir") + "\\" + "DownloadedFiles" + "\\");
 		FilenameFilter beginswithm = new FilenameFilter() {
 			public boolean accept(File directory, String filename) {
@@ -1689,26 +1703,29 @@ public void addShippingAddress(String name, String userName,String street1,Strin
 		File[] files = root.listFiles(beginswithm);
 
 		if (files[0] != null) {
-			// PATH
-
-			// load file
-			FileInputStream fis = new FileInputStream(files[0]);
-			// Load workbook
-			XSSFWorkbook wb = new XSSFWorkbook(fis);
-			List<String> expectedData = new ArrayList<String>();
-			XSSFSheet sh1 = wb.getSheetAt(0);
-			String data1 = sh1.getRow(0).getCell(0).getStringCellValue();
-			expectedData.add(data1);
-			if (sh1.getRow(2).getCell(0).getStringCellValue() != null) {
-				String data3 = sh1.getRow(2).getCell(0).getStringCellValue();
+			
+			  // PATH
+			  
+			  // load file
+			 FileInputStream fis = new FileInputStream(files[0]); // Load
+			  Workbook  wb = new XSSFWorkbook(fis);
+			  List<String> expectedData =new ArrayList<String>();
+			  XSSFSheet sh1 = (XSSFSheet) wb.getSheetAt(0); 
+			  String data1 = sh1.getRow(0).getCell(0).getStringCellValue();
+			  expectedData.add(data1);
+			  if
+			  (sh1.getRow(2).getCell(0).getStringCellValue() != null) {
+				String data3 =sh1.getRow(2).getCell(0).getStringCellValue(); 
 				expectedData.add(data3);
-			} else {
-				String data3 = sh1.getRow(3).getCell(0).getStringCellValue();
-				expectedData.add(data3);
-			}
-
-			Assert.assertEquals(actualData, expectedData);
-			reporter.SuccessReport("Verify the Excel Data ", "Excel Data is present as expected", "");
+			 
+			
+			  } else {
+			String data3 = sh1.getRow(3).getCell(0).getStringCellValue();
+			  expectedData.add(data3); }
+			  
+			  Assert.assertEquals(actualData, expectedData);
+			 
+			reporter.SuccessReport("Verify the Excel Downloaded", "Excel sheet is present as expected", "");
 
 		}
 	}
@@ -2065,6 +2082,21 @@ public void addShippingAddress(String name, String userName,String street1,Strin
 	public boolean visibilityOfReferenceNoInRequestionSearch() throws Throwable{
 
 		return	isVisibleOnly(lnkReferenceNo,"Search");
+	}
+	public void verifyDownloadedExcelFile(List<String> actualData, String filePath) throws Throwable {
+		Thread.sleep(10000);
+		File root = new File(System.getProperty("user.dir") + "\\" + "DownloadedFiles" + "\\");
+		FilenameFilter beginswithm = new FilenameFilter() {
+			public boolean accept(File directory, String filename) {
+				return filename.startsWith(filePath);
+			}
+		};
+		File[] files = root.listFiles(beginswithm);
+
+		if (files[0] != null) {
+			reporter.SuccessReport("Verify the Excel Downloaded", "Excel sheet is present as expected", "");
+
+		}
 	}
 
 }

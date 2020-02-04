@@ -113,7 +113,7 @@ public class LNL11_LineLevellDataIPPTest  extends LineLevelInfoLib{
 								orderLib.continueToCheckOutOnAddCart();
 								cartLib.verifyItemInCart(data.get("SearchText"));
 								verifyWarrantyDescOncartpage("OFF");
-								prodDetailsLib.verifyNoRecommondedProducts();
+								
 								// Logout
 								commonLib.clickLogOutLink(data.get("Logout"));
 								
