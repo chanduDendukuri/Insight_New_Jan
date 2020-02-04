@@ -671,13 +671,15 @@ public class CartLib extends ActionEngine {
 	 * 
 	 */
 	public void verifyRpLnllTxt(String rpLnlText) throws Throwable {
-		JSScroll(CartObj.verifyRpLnlText(rpLnlText), "rpHdl Text");
-		if (isElementPresent(CartObj.verifyRpHdlText(rpLnlText), "rpHdl Text")) {
+		//JSScroll(CartObj.verifyRpLnlText(rpLnlText), "rpHdl Text");
+		scrollToBottomWithCordinate("1250");
+		if (isElementPresent(CartObj.verifyRpLnlText(rpLnlText), "rpHdl Text")) {
 			reporter.SuccessReport("Verify line level smart tracker ", "" + rpLnlText + " is displayed", rpLnlText);
 		} else {
 			reporter.failureReport("Verify line level smart tracker", "" + rpLnlText + " is not displayed", rpLnlText, driver);
 
 		}
+		scrollUp();
 	}
 
 	/**
@@ -952,7 +954,13 @@ public class CartLib extends ActionEngine {
 		return totalPrice;
 
 	}
+	public String getTotalPriceInSearchResults() throws Throwable {
+		isElementPresent(CartObj.TOTAL_PRICE_IN_SEARCH_RESULTS, "TOTAL PRICE OF ITEM ");
+		String totalPrice = getText(CartObj.TOTAL_PRICE_IN_SEARCH_RESULTS, "TOTAL PRICE OF ITEM ");
+		//totalPrice = totalPrice.split("$")[1];
 
+		return totalPrice;
+	}
 	/**
 	 * This method is to search for a web group in the CMT home page.
 	 * 

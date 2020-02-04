@@ -10,6 +10,7 @@ import com.insight.Lib.CanadaLib;
 import com.insight.Lib.CartLib;
 import com.insight.Lib.ChinaLib;
 import com.insight.Lib.CommonLib;
+import com.insight.Lib.LineLevelInfoLib;
 import com.insight.Lib.OrderLib;
 import com.insight.Lib.ProductDetailLib;
 import com.insight.Lib.ProductDisplayInfoLib;
@@ -25,7 +26,9 @@ public class CRT23_LoginFromCartPricingTest extends CartLib{
 	CMTLib cmtLib = new CMTLib();
 	CartLib cartLib = new CartLib();
 	CanadaLib canadaLib = new CanadaLib();
-
+	SearchLib searchLib = new SearchLib();
+	ProductDisplayInfoLib prodInfoLib = new ProductDisplayInfoLib();
+	LineLevelInfoLib lineLevelLib=new LineLevelInfoLib();
 	// #############################################################################################################
     // #    Name of the Test         : CRT23_LoginFromCartPricing
     // #    Migration Author         : Cigniti Technologies
@@ -53,14 +56,23 @@ public class CRT23_LoginFromCartPricingTest extends CartLib{
 								Hashtable<String, String> data = TestUtil.getDataByRowNo("CRT23_LoginFromCartPricing", TestDataInsight,
 										"Web_Cart", intCounter);
 								TestEngineWeb.reporter.initTestCaseDescription("LoginFromCartPricing");
-					cmtLib.loginAsEndUserInMainPage(data.get("Header"),data.get("User_Name"),data.get("Password"));
+					//cmtLib.loginAsEndUserInMainPage(data.get("Header"),data.get("User_Name"),data.get("Password"));
 					commonLib.searchProduct(data.get("Search_Item"));
-					commonLib.addToCartAndVerify();
-					String priceInLogin=cartLib.getTotalPrice();
-					//commonLib.clickCart();
+					searchLib.verifyBreadCrumbInSearchResultsPage(data.get("Search_Item"));
+					prodInfoLib.getPartNumberInSearchResultsPage();
+					commonLib.addFirstDisplyedItemToCartAndVerify();
+					//commonLib.addToCartAndVerify();
+					//String priceInLogin=cartLib.getTotalPriceInSearchResults();
+					String priceInLogin=prodInfoLib.getFirtProductListPrice();
 					canadaLib.continueToCheckout();
-					cartLib.verifyItemInCart(data.get("Search_Item"));
+					commonLib.clickCart();
+					//cartLib.verifyItemInCart(data.get("Search_Item"));
+					canadaLib.verifyPlaceCartLabel();
+					prodInfoLib.verifyCartPageAndPartDetailsForRecentlyItem();
 					String summaryAmountInLogin=cartLib.getSummaryAmountInCart();
+					if(priceInLogin.equalsIgnoreCase(summaryAmountInLogin)) {
+						
+					}
 					commonLib.emptyCartAndVerify();
 					commonLib.clickLogOutLink(data.get("Logout_Header"));
 					commonLib.searchProduct(data.get("Search_Item"));
