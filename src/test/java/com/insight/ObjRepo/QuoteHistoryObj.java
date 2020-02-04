@@ -122,7 +122,7 @@ public class QuoteHistoryObj extends ActionEngine {
 		 public static By QuoteNameInQuoteDetails=By.xpath("(//*[text()='Quote Name:']/following::dd)[1]");
 		 public static By QuoteNumberInQuoteDetails=By.xpath("(//*[text()='Quote Number:']/following::dd)[1]");
 		 public static By AccountNumberInQuoteDetails=By.xpath("(//*[text()='Account Number:']/following::dd)[1]");
-		 public static By OrderNumber = By.xpath("(//span[contains(text(),'Order number')]//following-sibling::a)[1]");
+		 public static By OrderNumber = By.xpath("//h1[contains(text(),'Order details')]//following-sibling::span");
 		 public static By Orderdetails = By.xpath("//h1[contains(text(),'Order details')]");
 		 public static By txtFrieghtInOrderdetails = By.xpath("((//div[@class='iw-summary']//div[@class='columns iw-summary__label'])//following::span[@class='iw-currency']//span[@class='iw-currency__amount'])[2]");
 		 public static By estimatecostinOrderdetails = By.xpath("((//div[@class='iw-summary']//div[@class='columns iw-summary__label'])//following::span[@class='iw-currency']//span[@class='iw-currency__amount'])[3]");

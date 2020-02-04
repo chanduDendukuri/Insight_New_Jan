@@ -352,8 +352,8 @@ public class CanadaLib extends CanadaObj {
 			}
 		}
 		//WebElement element = driver.findElement(by);
-//		scrollToBottomWithCordinate("150");
-
+		scrollToBottomWithCordinate("-150");
+Thread.sleep(2000);
 		//((JavascriptExecutor) WebDriver).executeAsyncScript(100,1000);
 		click(getAccountToolsMenu(toolsMenuName), "Account tools menu::" + toolsMenuName + "");
 		Thread.sleep(3000);

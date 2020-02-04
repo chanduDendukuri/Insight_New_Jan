@@ -185,8 +185,9 @@ public void SelectWebGroupfromdd(String option) throws Throwable {
 	 */
 	public void verifyDiscount() throws Throwable {
 		waitForVisibilityOfElement(DISCOUNT, "Discount % on Products Details Page");
+		String discount = getText(DISCOUNT, "Discount % on Products Details Page");
 		if (isElementPresent(DISCOUNT, "Discount % on Products Details Page")) {
-			reporter.SuccessReport("Verify Discount % on Products Details Page", "Discount % Exist", "");
+			reporter.SuccessReport("Verify Discount % on Products Details Page", "Discount % Exist", discount);
 		} else {
 			reporter.failureReport("Verify Discount % on Products Details Page", "Discount % Not  Exist", "");
 		}
@@ -231,7 +232,7 @@ public void SelectWebGroupfromdd(String option) throws Throwable {
 			price = price.trim();
 
 			if (price != null) {
-				reporter.SuccessReport("Verify MSRP Price on Quote Details Page", "MSRP Price is Not Exists", "");
+				reporter.SuccessReport("Verify MSRP Price on Quote Details Page", "MSRP Price is Not Exists", price);
 			} else {
 				reporter.failureReport("Verify MSRP Price on Quote Details Page", "MSRP Price is Exists", "");
 			}
@@ -250,7 +251,7 @@ public void SelectWebGroupfromdd(String option) throws Throwable {
 			discount = amount[1].split(":")[1];
 
 			if (discount != null) {
-				reporter.SuccessReport("Verify Discount% on Quote Details Page", "Discount Of is Exists", "");
+				reporter.SuccessReport("Verify Discount% on Quote Details Page", "Discount Of is Exists", discount);
 			} else {
 				reporter.failureReport("Verify Discount% on Quote Details Page", "Discount Of is Not Exists", "");
 			}

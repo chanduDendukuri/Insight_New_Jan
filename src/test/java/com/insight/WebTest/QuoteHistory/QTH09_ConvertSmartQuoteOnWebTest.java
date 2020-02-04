@@ -54,11 +54,11 @@ public class QTH09_ConvertSmartQuoteOnWebTest extends QuoteHistoryLib {
 		
 					CMTLib cmtLib = new CMTLib();
 					CanadaLib canadaLib = new CanadaLib();
-					InvoiceHistoryLib invoiceHistoryLib = new InvoiceHistoryLib();
+					
 					CommonLib commonLib = new CommonLib();
 					HomeLib Homelib=new HomeLib();
 					loginLib loginlib=new loginLib();					
-					SearchLib searchLib = new SearchLib();
+					
 					OrderLib orderLib=new OrderLib();					
 					CartLib cartLib=new CartLib();
 					ShipBillPayLib sbpLib=new ShipBillPayLib();
@@ -103,6 +103,7 @@ public class QTH09_ConvertSmartQuoteOnWebTest extends QuoteHistoryLib {
 							data.get("LnameEmailUname"), data.get("ContactName"));
 					// Enable Quotes Check Box
 					cmtLib.setPermissions(data.get("Menu_Name"), data.get("Set_Permission"));
+					cmtLib.setPermissionsToDisable(data.get("Menu_Name"), "Enable Only My Quote Tracking");
 					cmtLib.clickOnloginAs();
 					switchToChildWindow();
 					cmtLib.loginVerification(data.get("ContactName"));				

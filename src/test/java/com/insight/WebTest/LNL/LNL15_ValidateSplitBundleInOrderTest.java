@@ -78,10 +78,12 @@ public class LNL15_ValidateSplitBundleInOrderTest extends LineLevelInfoLib{
 						commonLib.verifyBundleIsAddedToCart();
 						commonLib.updateCartQuantity(data.get("Quantity"));
 						// Verify quantity updated
+						Thread.sleep(4000);
 				     	List<String> quantity = orderLib.getCartProductQuantityForBundleOfProducts();
 						cartLib.verifyProductGroupQuantityInCart(quantity, data.get("Quantity"));
 						// Proceed to check out
 						orderLib.proceedToCheckout();
+						verifyOrderAndItemInfoBreadCrumb();
 				     	orderLib.continueButtonOnAdditionalInformationSection();
 				     	clickOnSplitIntoIndividualLines();
 				     	verifySplitLineItemsLabel();
@@ -90,8 +92,8 @@ public class LNL15_ValidateSplitBundleInOrderTest extends LineLevelInfoLib{
 				     	orderLib.clickContinueOnLineLevelInfo();
 				     	canadaLib.verifySBP();
 				     	orderLib.shippingBillPayContinueButton(); // Click continue on shipping address Section
-						orderLib.shippingBillPayContinueButton(); // Click continue on Shipping options Section
-						orderLib.shippingBillPayContinueButton(); //Click continue on Billing address Section
+						orderLib.selectShippingOptionsCarrierSection(); // Click continue on Shipping options Section
+						orderLib.billingAddressContinueButton(); //Click continue on Billing address Section
 						orderLib.selectPaymentInfoMethodCreditCard(data.get("Card_Number").toString(), data.get("Card_Name"),data.get("Month"), data.get("Year"),data.get("PO_Number"),data.get("POReleaseNumber"));  // VISA card
                         orderLib.clickOnReviewOrderButton();
 						
@@ -101,14 +103,15 @@ public class LNL15_ValidateSplitBundleInOrderTest extends LineLevelInfoLib{
 						String refNumber=orderLib.getTextfromReferenceNumber();
 						//Verify Receipt
 						orderLib.verifyReceiptVerbiage();
-						
 						canadaLib.clickOnSideMenuSelectAccountToolOptions(data.get("Tools_Menu2"),data.get("Tools_Menu_DD2"));
 						odhLib.verifyOrderHistoryPage();
 						odhLib.selectQuickSearchDropdown(data.get("Search_By"),refNumber);
 						commonLib.spinnerImage();
 						odhLib.verifySearchResultsAreDisplayed();
+						String orderNumber=odhLib.getFirstOrderNumber();
 						odhLib.clickOrderNumber();
 						invoiceHistoryLib.verifyOrderDetailsPage();
+						odhLib.getOrderNumberOnOrderDetailsPageAndVerify(orderNumber);
 						int itemNo=Integer.valueOf(data.get("Quantity"));
 						verifyCartBundlesInOrderDetailsPage(itemNo);
 						commonLib.clickLogOutLink(data.get("Logout"));
