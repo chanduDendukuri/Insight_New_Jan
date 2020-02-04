@@ -612,7 +612,7 @@ scrollUp();
 public void VerifyPartnumbersinCartpage(String Material) throws Throwable{
 	String MFRpart1 = getText(mfrPartInCartdetails, "mfrPartInQuotedetails");
 	String InsightPart = getText(InsightPartInCartdetails, "InsightPart");
-	if(MFRpart1.equals(Material) && InsightPart.equals(Material)) {
+	if(MFRpart1.contains(Material) && InsightPart.contains(Material)) {
 		reporter.SuccessReport("Part details: ", "Part details exist as expected", ""+MFRpart1+""+InsightPart+"");
 	}
 	else {
