@@ -217,7 +217,7 @@ public class CartObj extends CommonObj{
 		return By.xpath("//input[@type='email' and @value='"+email+"']");
 	}
 	
-	public static By ERROR_MESSAGE_INVALID_EMAIL=By.xpath("//div[@class='form__field-msg form__field-msg--error']");
+	public static By ERROR_MESSAGE_INVALID_EMAIL=By.xpath("//div[@class='form__field-msg form__field-msg--error' and contains(text(),'Please')]");
 	public static By verifyNotificationEmailInShippingAdresses(String notificationEmail) {
 		return By.xpath("//p[text()='"+notificationEmail+"']");
 	}
