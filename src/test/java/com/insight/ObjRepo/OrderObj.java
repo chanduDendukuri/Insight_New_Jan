@@ -245,6 +245,11 @@ public class OrderObj extends ActionEngine{
 	 public static By QUOTE_DETAILS_PAGE_LABEL=By.xpath("//header//h2[contains(text(),'Quote Details')]");
      public static By CONVERT_QUOTE_BTN=By.xpath("//p[@id='convertQuote']//a");
 	 public static By EDIT_QUOTE=By.xpath("//a[@class='icon edit has-tip tip-top']");
+	 public static By dd_recentorder = By.name("searchBy");
+	 public static By dd_option_recentorders(String option) {
+		 return By.xpath("//option[contains(text(),'"+option+"')]");
+				 
+	 }
 	 
 	 
 	 // Approval Management

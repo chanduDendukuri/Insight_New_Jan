@@ -384,7 +384,7 @@ List<String> orderdetails = new ArrayList<String>();
 	public void VerifyFrieghtdetails() {
 		
 	}
-	public List<String> placeOrderAndVerifyReceiptOrderAndDateQuoteHistory(String totalSummary) throws Throwable { 
+	public List<String> placeOrderAndVerifyReceiptOrderAndDateQuoteHistory() throws Throwable { 
 	List<String> orderdetails = new ArrayList<String>();
 		clickUntil(PLACE_ORDER_BTN, RECEIPT_LABEL,"Place order button");
 		Thread.sleep(3000);
@@ -405,19 +405,8 @@ List<String> orderdetails = new ArrayList<String>();
 				reporter.failureReport("Verify the Reference number ", "The reference number is null or empty.","",driver);
 			}
 			
-			// Total Amount verification
-			if (isElementPresent(TOTAL_AMOUNT, "Total Amount")) {
-				String totalAmount = getText(TOTAL_AMOUNT, "Total Amount");
-				if(totalSummary.equals(totalAmount)){
-					orderdetails.add(totalAmount);
-					reporter.SuccessReport("Verify the Total Amount ", "The Total Amount verification is successfull: " , "Total amount : "+totalAmount);
-				}else{
-					reporter.failureReport("Verify the Total Amount ", "The Total Amount is not updated correctly. ","",driver);
-				}
-			} else {
-				reporter.failureReport("Verify the Total Amount ", "The Total Amount is not updated. ","",driver);
-			}
-
+			
+			
 			// date ordered verification
 			if (isElementPresent(DATE_ORDERED, "Date ordered")) {
 				String dateOrdered = getText(DATE_ORDERED, "Date ordered");
@@ -1503,7 +1492,23 @@ List<String> orderdetails = new ArrayList<String>();
 
 		}
 	}
-	
+	public void searchByInRecentOrders(String refNumber,String quoteDDOption) throws Throwable{
+		Thread.sleep(2000);// Waiting for the quote to load
+		selectByVisibleText(dd_recentorder, quoteDDOption, "refNumber");
+		type(SEARCH_NUMBER,refNumber , "Reference number");
+		//System.out.println(refNumber+refNumber);
+		click(SEARCH_BTN, "search button");
+		Thread.sleep(20000);
+		clickUntil(SEARCH_BTN,QUOTE_NUMBER_HISTORY_PAGE, "search button");
+		((JavascriptExecutor) driver).executeScript("window.scrollBy(0, 200)", "");
+		click(QUOTE_NUMBER_HISTORY_PAGE, "Quote Number");
+		if(isElementPresent(QUOTE_DETAILS_PAGE_LABEL, "Quote details page")){
+			reporter.SuccessReport("Verify Quote details page", "Quote details page is displayed","");
+		 }else{
+			 reporter.failureReport("Verify Quote details page", "Quote details page not displayed",""); 
+
+		}
+	}
 	/**
 	 * Click on convert Quote
 	 * @throws Throwable

@@ -1292,7 +1292,17 @@ public class CartLib extends ActionEngine {
 		clickUntil(productsDisplayInfoObj.FIRST_PROD_NAME,productsDisplayInfoObj.BACK_TO_RESULTS, "First product in search results page displayed and clicked "+ProdName,"Product name : "+ProdName);
 		waitForVisibilityOfElement(productsDisplayInfoObj.BACK_TO_RESULTS, "Back to results");
 	}
-
+public void verifyProductdetails() throws Throwable {
+	String produtname = getText(productsDisplayInfoObj.FirstprodName, "First product in search results page");
+	String PartNumber  = getText(productsDisplayInfoObj.PartNumberInprodutdetailsPage,"PartNumber");
+	if(produtname!=""&&PartNumber!="") {
+		reporter.SuccessReport("Search Results:", "Product Details are Displayed", produtname);
+		reporter.SuccessReport("Search Results:", "Product Details are Displayed", PartNumber);
+	}
+	else {
+		reporter.failureReport("Search Results:", "Product Details are not Displayed", "");
+	}
+}
 	/**
 	 * This method is to verify the added product group is displayed in the cart
 	 * screen.

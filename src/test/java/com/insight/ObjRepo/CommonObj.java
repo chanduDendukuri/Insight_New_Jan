@@ -153,7 +153,7 @@ public class CommonObj extends ActionEngine{
 	//contract
 	public static By CONTRACT_DD=By.xpath("//div[@class='c-header__middle']//button[@id='contractDropdown']");
 	public static By SELECTED_CONTRACT=By.xpath("//div[@class='c-header__middle']//button[@id='contractDropdown']//span");
-    
+    public static By title_Contracttitle = By.xpath("//div[@id='ipsContractDetailTitle']");
 	public static By getContractsFromDD(String contractName){
 		return By.xpath("//li[@class='o-list-bare__item  c-header-account-menu__item']//button[contains(text(),'"+contractName+"')]");
 	}
