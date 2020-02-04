@@ -1376,13 +1376,18 @@ public void addShippingAddress(String name, String userName,String street1,Strin
 	 * @throws Throwable
 	 */
 	public void verifySelectReport(String selectReport) throws Throwable {
+		boolean status = false;
 		waitForVisibilityOfElement(getSelectAReport(selectReport), "Select A Report");
-		if (isElementPresent(getSelectAReport(selectReport), "Select A Report", true)) {
+		if (isVisibleOnly(getSelectAReport(selectReport), "Select A Report")) {
+			status=true;
+			String a = Boolean.toString(status);
 			reporter.SuccessReport("Verify  " + selectReport + " is Default to Select Report on Reports Page",
-					"Select Report Defaulted to " + selectReport + " Reports", "");
+					"Select Report Defaulted to " + selectReport + " Reports", a);
 		} else {
+			status = false;
+			String a = Boolean.toString(status);
 			reporter.failureReport("Verify  " + selectReport + " is Default to Select Report on Reports Page",
-					"Select Report Not Defaulted to " + selectReport + " Reports", "", driver);
+					"Select Report Not Defaulted to " + selectReport + " Reports", a, driver);
 		}
 	}
 
@@ -1392,13 +1397,18 @@ public void addShippingAddress(String name, String userName,String street1,Strin
 	 * @throws Throwable
 	 */
 	public void verifyAccountSelections(String account) throws Throwable {
+		boolean status = false;
 		waitForVisibilityOfElement(getAccountSelections(account), "Select A Report");
-		if (isElementPresent(getAccountSelections(account), "Select A Report", true)) {
+		if (isVisibleOnly(getAccountSelections(account), "Select A Report")) {
+			status=true;
+			String a = Boolean.toString(status);
 			reporter.SuccessReport("Verify  " + account + " is Default to Account Selections on Reports Page",
-					"Account Selections are  Defaulted to " + account + "", "");
+					"Account Selections are  Defaulted to " + account + "", a);
 		} else {
+			status=false;
+			String a = Boolean.toString(status);
 			reporter.failureReport("Verify  " + account + " is Default to Select Report on Reports Page",
-					"Account Selections are Not Defaulted to " + account + "", "", driver);
+					"Account Selections are Not Defaulted to " + account + "", a, driver);
 		}
 	}
 
