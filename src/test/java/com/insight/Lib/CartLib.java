@@ -501,7 +501,7 @@ public class CartLib extends ActionEngine {
 					"Shipment Notification  Confirm via email is Exists", "", driver);
 		} else {
 			reporter.SuccessReport("Verify Shipment Notification  Confirm via email Ship Bill Page",
-					"Shipment Notification  Confirm via email is Exists", "");
+					"Shipment Notification  Confirm via email Not Exists as Expected", "");
 		}
 	}
 
