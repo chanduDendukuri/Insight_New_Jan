@@ -371,9 +371,9 @@ public class CartLib extends ActionEngine {
 		else {
 			reporter.failureReport("Saved carts/ ORDER TEMPLATES", "page is not saved carts","", driver);
 		}
-		isElementPresent(CartObj.SAVED_CART_TEXT, "Saved cart");
+		//isElementPresent(CartObj.SAVED_CART_TEXT, "Saved cart");
 		click(CartObj.loadCart(cartName), "Load cart");
-		if (isElementPresent(CartObj.CURRIENCES, "Curriences are displayed")) {
+		if (isElementPresent(CartObj.CURRIENCES, "cart is loaded")) {
 			reporter.SuccessReport("Click on load cart ", "Saved cart exists and selected", "");
 		} else {
 			reporter.failureReport("Click on load cart ", "Saved cart does not exist", "", driver);
@@ -390,7 +390,13 @@ public class CartLib extends ActionEngine {
 	public void addToCartInSavedCart(String cartName) throws Throwable {
 		click(CartObj.addToCartInSavedCart(cartName), "Add to cart in saved cart");
 		waitForVisibilityOfElement(CartObj.CONTINUE_TO_CHECKOUT, "Continue to check out");
-		click(CartObj.CONTINUE_TO_CHECKOUT, "Continue to check out");
+		if(isVisible(CartObj.CONTINUE_TO_CHECKOUT, "Continue to check out")) {
+			click(CartObj.CONTINUE_TO_CHECKOUT, "Continue to check out");
+		}
+		else {
+			reporter.failureReport("Continue to checkout button in saved carts/ order templates page", "Continue to checkout button is not visible", "", driver);
+		}
+		
 	}
 
 	/**
@@ -651,9 +657,9 @@ public class CartLib extends ActionEngine {
 	 */
 	public void verifyRpHdlTxt(String rpHdlText) throws Throwable {
 		if (isElementPresent(CartObj.verifyRpHdlText(rpHdlText), "rpHdl Text")) {
-			reporter.SuccessReport("Verify smart tracker ", "" + rpHdlText + " is displayed", "");
+			reporter.SuccessReport("Verify header level smart tracker ", "" + rpHdlText + " is displayed", "");
 		} else {
-			reporter.failureReport("Verify smart tracker", "" + rpHdlText + " is not displayed", "", driver);
+			reporter.failureReport("Verify header level smart tracker", "" + rpHdlText + " is not displayed", "", driver);
 
 		}
 	}
@@ -665,11 +671,11 @@ public class CartLib extends ActionEngine {
 	 * 
 	 */
 	public void verifyRpLnllTxt(String rpLnlText) throws Throwable {
-		JSScroll(CartObj.verifyRpHdlText(rpLnlText), "rpHdl Text");
+		JSScroll(CartObj.verifyRpLnlText(rpLnlText), "rpHdl Text");
 		if (isElementPresent(CartObj.verifyRpHdlText(rpLnlText), "rpHdl Text")) {
-			reporter.SuccessReport("Verify smart tracker ", "" + rpLnlText + " is displayed", rpLnlText);
+			reporter.SuccessReport("Verify line level smart tracker ", "" + rpLnlText + " is displayed", rpLnlText);
 		} else {
-			reporter.failureReport("Verify smart tracker", "" + rpLnlText + " is not displayed", rpLnlText, driver);
+			reporter.failureReport("Verify line level smart tracker", "" + rpLnlText + " is not displayed", rpLnlText, driver);
 
 		}
 	}

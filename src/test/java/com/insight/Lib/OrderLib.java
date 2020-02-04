@@ -947,13 +947,13 @@ List<String> orderdetails = new ArrayList<String>();
 	public void verifyPlaceOrderLabel() throws Throwable {
 		boolean status=false;
 
-		if (isElementPresent(PLACEORDER_LABL, "Cart header label displayed")) {
+		if (isElementPresent(PLACEORDER_LABL, "Place order label displayed")) {
 			status= true;
 			String s1 = Boolean.toString(status);
-			reporter.SuccessReport("Verify wether user navigates to cart page or not",
+			reporter.SuccessReport("Verify whether user navigates to Place order page or not",
 					"User successfully navigated to Place order page","PageDetails : Place order is " + status);
 		} else {
-			reporter.failureReport("Verify wether user navigates to cart page or not",
+			reporter.failureReport("Verify whether user navigates to Place order page or not",
 					"User not navigated to Place Order page","PageDetails :Place order is " + status,driver);
 		}
 	}
