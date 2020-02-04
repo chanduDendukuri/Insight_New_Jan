@@ -867,7 +867,7 @@ public class CanadaLib extends CanadaObj {
 
 	public void continueToCheckout() throws Throwable {
 		if(isVisible(CONTINUE_TO_CHECKOUT, "Continue to checkout")) {
-			reporter.SuccessReport("Continue to checkout button", "Continue to checkout button is visible", "");
+			//reporter.SuccessReport("Continue to checkout button", "Continue to checkout button is visible", "");
 		click(CONTINUE_TO_CHECKOUT, "Continue to checkout");
 		Thread.sleep(10000);}
 		else {
