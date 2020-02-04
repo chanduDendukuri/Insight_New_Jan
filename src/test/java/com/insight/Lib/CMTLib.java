@@ -2563,6 +2563,7 @@ public  void verifyDashboard()throws Throwable {
 	public void checkLinkedAccountCheckBox(String accountNum) throws Throwable {
 		if (isCheckBoxSelected(getLinkedAccountsCheckBox(accountNum))) {
 			Log.info("Check box already selected");
+			reporter.SuccessReport("Verify linked accounts checkbox", "Linked accounts check box already checked", "Linked account check box checked");
 		} else {
 			click(getLinkedAccountsCheckBox(accountNum), "Account linked check box");
 		}
