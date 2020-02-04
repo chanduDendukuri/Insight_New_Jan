@@ -15,6 +15,7 @@ import com.insight.Lib.OrderHistoryLib;
 import com.insight.Lib.OrderLib;
 import com.insight.Lib.ProductDetailLib;
 import com.insight.Lib.ProductDisplayInfoLib;
+import com.insight.Lib.SLPLib;
 import com.insight.Lib.SearchLib;
 import com.insight.Lib.ShipBillPayLib;
 import com.insight.accelerators.ReportControl;
@@ -35,6 +36,7 @@ public class LNL14_ValidateSplitFeatureinOrderTest extends LineLevelInfoLib{
 	CanadaLib canadaLib=new CanadaLib();
 	OrderHistoryLib odhLib=new OrderHistoryLib();
 	InvoiceHistoryLib invoiceHistoryLib = new InvoiceHistoryLib();
+	SLPLib slpLib=new SLPLib();
 	
 	   
 	    // #############################################################################################################
@@ -77,18 +79,19 @@ public class LNL14_ValidateSplitFeatureinOrderTest extends LineLevelInfoLib{
 						// Select Software  Lic Agreements
 				     	canadaLib.selectSPLADetailsProductCheckBox(data.get("SPLA"));
 				        // verify search results and select first product
-				     	searchLib.verifysearchResultsPage();
+				     	slpLib.verifysearchResultsPageForSLP();
 				     	pipLib.changeFirstProductQuantity(data.get("Quantity"));
 				     	commonLib.addFirstDisplyedItemToCartAndVerify();
 				     	orderLib.continueToCheckOutOnAddCart();
 				     	orderLib.proceedToCheckout();
+				     	verifyOrderAndItemInfoBreadCrumb();
 				     	orderLib.continueButtonOnAdditionalInformationSection();
 				     	clickOnSplitIntoIndividualLines();
 				     	verifySplitLineItemsLabel();
 				     	orderLib.clickContinueOnLineLevelInfo();
 				     	canadaLib.verifySBP();
 				     	orderLib.shippingBillPayContinueButton(); // Click continue on shipping address Section
-						orderLib.shippingBillPayContinueButton(); // Click continue on Billing address Section
+						orderLib.billingAddressContinueButton(); // Click continue on Billing address Section
 						orderLib.selectPaymentInfoMethodCreditCard(data.get("Card_Number").toString(), data.get("Card_Name"),data.get("Month"), data.get("Year"),data.get("PO_Number"),data.get("POReleaseNumber"));  // VISA card
 						orderLib.clickOnReviewOrderButton();
 						
@@ -99,18 +102,20 @@ public class LNL14_ValidateSplitFeatureinOrderTest extends LineLevelInfoLib{
 						String refNumber=orderLib.getTextfromReferenceNumber();
 						//Verify Receipt
 						orderLib.verifyReceiptVerbiage();
-						canadaLib.clickOnSideMenuSelectAccountToolOptions(data.get("Tools_Menu2"),data.get("Tools_Menu_DD2"));
+					    commonLib.clickOnAccountToolsAndClickOnProductGrp(data.get("Tools_Menu2"),data.get("Tools_Menu_DD2"));
+					    
 						// Order quick search
 						odhLib.verifyOrderHistoryPage();
 						odhLib.selectQuickSearchDropdown(data.get("Search_By"),refNumber);
 						commonLib.spinnerImage();
 						odhLib.verifySearchResultsAreDisplayed();
+						String orderNumber=odhLib.getFirstOrderNumber();
 						odhLib.clickOrderNumber();
 						invoiceHistoryLib.verifyOrderDetailsPage();
+						odhLib.getOrderNumberOnOrderDetailsPageAndVerify(orderNumber);
 						int itemNo=Integer.valueOf(data.get("Quantity"));
 						verifyItemDescOnOrderDetailsPage(itemNo);
 						commonLib.clickLogOutLink(data.get("Logout"));
-						
 						
 					} catch (Exception e) {
 						ReportStatus.blnStatus = false;
