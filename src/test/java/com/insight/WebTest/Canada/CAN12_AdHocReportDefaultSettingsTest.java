@@ -4,20 +4,11 @@ import java.util.Arrays;
 import java.util.Hashtable;
 import java.util.List;
 
+import com.insight.Lib.*;
+import com.insight.ObjRepo.CommonCanadaPage;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
-import com.insight.Lib.CMTLib;
-import com.insight.Lib.CanadaLib;
-import com.insight.Lib.CartLib;
-import com.insight.Lib.CommonLib;
-import com.insight.Lib.MarriottIntlCorpLib;
-import com.insight.Lib.OrderLib;
-import com.insight.Lib.ProductDetailLib;
-import com.insight.Lib.ProductDisplayInfoLib;
-import com.insight.Lib.SearchLib;
-import com.insight.Lib.SewpLib;
-import com.insight.Lib.ShipBillPayLib;
 import com.insight.accelerators.ReportControl;
 import com.insight.accelerators.TestEngineWeb;
 import com.insight.googledrive.ReportStatus;
@@ -35,6 +26,7 @@ public class CAN12_AdHocReportDefaultSettingsTest extends CanadaLib{
 	SewpLib sewpLib=new SewpLib();
 	ShipBillPayLib shipbLib=new ShipBillPayLib();
 	MarriottIntlCorpLib mic=new MarriottIntlCorpLib();
+	CommonCanadaLib ccp = new CommonCanadaLib();
 	
 	@Parameters({ "StartRow", "EndRow", "nextTestJoin" })
 	@Test
@@ -55,17 +47,46 @@ public class CAN12_AdHocReportDefaultSettingsTest extends CanadaLib{
 							TestEngineWeb.reporter.initTestCaseDescription("AdHocReportDefaultSettings");
 			//	CommonLib commonLib = new CommonLib();
 				CMTLib cmtLib = new CMTLib();
+				CanadaLib canadaLib = new CanadaLib();
 			//	OrderLib orderLib = new OrderLib();
-				cmtLib.loginToCMTSearchWebGrpAndUser(data.get("Header"), data.get("WebGrp"), data.get("LnameEmailUname"),data.get("ContactName"));
+			/*	cmtLib.loginToCMTSearchWebGrpAndUser(data.get("Header"), data.get("WebGrp"), data.get("LnameEmailUname"),data.get("ContactName"));
 				cmtLib.clickOnRolesAndPermissionsAndSetPermission(data.get("Menu_Name"), data.get("Set_Permission"));
 				cmtLib.loginAsAdminCMT();
-				mic.clickAccountTools(data.get("Tools_Menu"),data.get("Tools_Menu_DD"));	
-				clickOnReportOptions(data.get("ReportOption"));
-				verifyReportsPage();
+
+							commonLib.clickOnAccountToolsAndClickOnProductGrp(data.get("Tools_Menu"),
+									data.get("Tools_Menu_DD"));*/
+							//clickOnReportOptions(data.get("ReportOption"));
+
+
+							cmtLib.loginToCMT(data.get("Header"));
+							cmtLib.searchForWebGroup(data.get("WebGrp"));
+							cmtLib.clickOnTheWebGroup(data.get("MgContactName"));
+							cmtLib.verifyManageWebGroupSettings();
+							cmtLib.hoverOnManageWebGroupsAndSelectOptions(data.get("ManageWebGrpOptions"));
+							cmtLib.verifyManageWebGroupsUserManagement();
+							cmtLib.searchForaUserAndSelect(data.get("LnameEmailUname"), data.get("ContactName"));
+							//cmtLib.setPermissions(data.get("Menu_Name"), data.get("Set_Permission"));
+							cmtLib.clickOnPermissionAndRolesMenu(data.get("Menu_Name"));
+							cmtLib.permissionForDD(data.get("Set_Permission"), data.get("Permission_Drop_Down"));
+							cmtLib.clickOnloginAs();
+							switchToChildWindow();
+							cmtLib.loginVerification(data.get("ContactName"));
+							shipbLib.verifyWEbsiteIsCannada();
+							canadaLib.verifyCanadaWebgroup();
+							//canadaLib.clickOnSideMenuSelectAccountToolOptions(data.get("Tools_Menu"), data.get("Tools_Menu_DD"));
+
+							commonLib.clickOnAccountToolsAndClickOnProductGrp(data.get("Tools_Menu"),
+									data.get("Tools_Menu_DD"));
+							verifyReportsPage();
+							clickOnReportOptions(data.get("ReportOption"));
+	//####################################################### Old COde##################
+							verifyReportsPage();
 				verifySelectReport(data.get("SelectReport"));
 				verifyAccountSelections(data.get("AccountSelections"));
 				verifyFilterbyCurrency(data.get("Currency"));
-				verifyFilterOption();
+			//	verifyFilterOption();
+							ccp.veriffySelectedUser();
+
 				verifyScheduleReport(data.get("ScheduleOption"));
 				verifyDeliveryOption();
 				clickOnAccountSelections(data.get("AccountSelections"));
