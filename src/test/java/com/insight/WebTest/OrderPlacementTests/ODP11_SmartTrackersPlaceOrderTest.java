@@ -86,15 +86,22 @@ public class ODP11_SmartTrackersPlaceOrderTest extends OrderLib{
 						placeOrderAndVerifyReceiptOrderAndDate(summaryAmountInLogin);
 						String RefNumber= orderLib.getTextfromReferenceNumber();
 						//Verifying order details
+					//	scrollToBottomWithCordinate("110");
 						clickOrderDetailsLinkOnReceiptPage();
 						searchLib.verifyAccountToolsFromSideMenuAndClick(data.get("toolsMenuName"),data.get("dropDown"));
+					scrollToBottomWithCordinate("110");
 						clickonorderNumLinkinRecentorders(RefNumber);
 						//Order details Page verification
+						getLineItemInfoValues();
 						verifytabsinOrderDetailsPage(data.get("TabName"));//order details
 						verifySmartTrackerHeaderInOrderDetails(data.get("rP_LNL_Txt"));
 						verifytabsinOrderDetailsPage(data.get("TabName1"));// customer details
 						verifySmartTrackerHeaderInCustomerDetails(data.get("RP_HDL_Txt"));
-						// Logout 
+
+						getHeaderLevelItemInfo();
+					/*getHeaderLevelItemsInforDynamically("Txt"); //data.get("linetxt");
+					getHeaderLevelItemsInforDynamically("Lst");*///data.get("lineLst");
+						// Logout
 						commonLib.clickLogOutLink(data.get("Logout"));
 						System.out.println("Test completed");
 					} catch (Exception e) {

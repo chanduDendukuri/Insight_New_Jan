@@ -305,7 +305,13 @@ public class CartLib extends ActionEngine {
 	 */
 	public void clickOnQuickCheckout() throws Throwable {
 		waitForVisibilityOfElement(CartObj.QUICK_CHECKOUT, "quick check out");
-		click(CartObj.QUICK_CHECKOUT, "quick check out");
+		if(isVisible(CartObj.QUICK_CHECKOUT, "quick check out")) {
+			click(CartObj.QUICK_CHECKOUT, "quick check out");
+
+		}
+		else {
+			reporter.failureReport("Quick checkout in cart page", "Quick check out button is not visible", "", driver);
+		}
 	}
 
 	/*

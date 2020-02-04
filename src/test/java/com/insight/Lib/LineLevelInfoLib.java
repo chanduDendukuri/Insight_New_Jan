@@ -100,7 +100,7 @@ public class LineLevelInfoLib extends LineLevelInfoObj{
 	 * @throws Throwable
 	 */
 	public void clickClearLink(String partNum) throws Throwable{
-		click(getClearLink(partNum), "part number");
+		click(getClearLink(partNum), "Clear link of part # "+partNum);
 	}
 	
 	/**

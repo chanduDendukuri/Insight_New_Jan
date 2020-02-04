@@ -80,6 +80,7 @@ public class CRT18_SaveCartShipBillPayTest extends CartLib {
 					commonLib.addToCartAndVerify();
 					canadaLib.continueToCheckout();
 					canadaLib.verifyPlaceCartLabel();
+					prodInfoLib.verifyCartPageAndPartDetailsForRecentlyItem();
 					String cartName="QTPCart"+getRandomNumeric(4);
 					cartLib.clickOnSaveCartContentAndSaveCart(cartName);
 					

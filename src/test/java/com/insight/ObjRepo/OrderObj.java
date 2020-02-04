@@ -367,5 +367,12 @@ public class OrderObj extends ActionEngine{
 
 	 public static By ORDER_DATE=By.xpath("//label[contains(text(),'Date ordered:')]//p");
 
+	 public static By lineItemInfoValues=By.xpath("//*[@class='line-item-info__value']");
+	 public static By HeaderLevelcustomerDetailsLablevalue=By.xpath("//*[@class='customer-detail__label' and contains(text(),'RP_HDL_Lst')]/..//following-sibling::div//span");
+	 public static By HeaderLevelcustomerDetailsLablevalueForHDLTxt=By.xpath("//*[@class='customer-detail__label' and contains(text(),'RP_HDL_Txt')]/..//following-sibling::div//span");
+
+	 public static By dynamicHeaderLevelCustomerDetailsValues(String val){
+	 	return By.xpath("//*[@class='customer-detail__label' and contains(text(),'RP_HDL_'"+val+"'')]/..//following-sibling::div//span");
+	 }
 }
 
