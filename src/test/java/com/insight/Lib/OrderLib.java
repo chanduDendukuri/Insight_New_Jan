@@ -1496,17 +1496,17 @@ List<String> orderdetails = new ArrayList<String>();
 	public void searchByInRecentOrders(String refNumber,String quoteDDOption) throws Throwable{
 		Thread.sleep(2000);// Waiting for the quote to load
 		selectByVisibleText(dd_recentorder, quoteDDOption, "refNumber");
-		type(SEARCH_NUMBER,refNumber , "Reference number");
+		type(SearchBytextfield,refNumber , "Reference number");
 		//System.out.println(refNumber+refNumber);
-		click(SEARCH_BTN, "search button");
+		click(SEARCH_BTNInRecentOrders, "search button");
 		Thread.sleep(20000);
-		clickUntil(SEARCH_BTN,QUOTE_NUMBER_HISTORY_PAGE, "search button");
+		clickUntil(SEARCH_BTNInRecentOrders,RecentOrders_historyorders, "search button");
 		((JavascriptExecutor) driver).executeScript("window.scrollBy(0, 200)", "");
-		click(QUOTE_NUMBER_HISTORY_PAGE, "Quote Number");
-		if(isElementPresent(QUOTE_DETAILS_PAGE_LABEL, "Quote details page")){
-			reporter.SuccessReport("Verify Quote details page", "Quote details page is displayed","");
+		click(RecentOrders_historyorders, "Quote Number");
+		if(isElementPresent(labelRecentorders, "Recentorders page")){
+			reporter.SuccessReport("Verify Recentorders page", "Recentorders page is displayed","");
 		 }else{
-			 reporter.failureReport("Verify Quote details page", "Quote details page not displayed",""); 
+			 reporter.failureReport("Verify Recentorders page", "Recentorders page not displayed",""); 
 
 		}
 	}
