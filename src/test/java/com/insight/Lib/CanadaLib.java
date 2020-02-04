@@ -1424,7 +1424,7 @@ public void addShippingAddress(String name, String userName,String street1,Strin
 		waitForVisibilityOfElement(getFilterByCurrency(currency), "Select A Report");
 		if (isElementPresent(getFilterByCurrency(currency), "Select A Report")) {
 			reporter.SuccessReport("Verify 'Convert all transactions to' is Default to CAD on Reports Page",
-					"Convert all transactions to' Amount is Not Default to CAD", "true");
+					"Convert all transactions to' Amount is Default to CAD", "true");
 		} else {
 			reporter.failureReport("Verify 'Convert all transactions to' is Default to CAD on Reports Page",
 					"'Convert all transactions to' Amount is Not Default to CAD", "", driver);
@@ -1585,15 +1585,19 @@ public void addShippingAddress(String name, String userName,String street1,Strin
 	 *
 	 * @throws Throwable
 	 */
-	public void verifySmartcheck() throws Throwable {
+	public boolean verifySmartcheck() throws Throwable {
+		boolean status= false;
 		waitForVisibilityOfElement(SMART_CHECK, "Smart Check");
 		if (isVisibleOnly(SMART_CHECK, "Smart Check")) {
+			status=true;
 			reporter.SuccessReport("Verify Smart Tracker Check Box on Reports Page",
 					"Smart Tracker Check Box Exists and UnChecked", "");
 		} else {
+			status=false;
 			reporter.failureReport("Verify Smart Tracker Check Box on Reports Page",
 					"Smart Tracker Check Box Exists and Checked", "", driver);
 		}
+		return status;
 	}
 
 
@@ -1945,7 +1949,7 @@ public void addShippingAddress(String name, String userName,String street1,Strin
 					System.out.println(fileEntry.getName());
 					reporter.SuccessReport("Downloaded files ", "Downloaded file",  fileEntry.getName()  );
 				}else{
-					reporter.failureReport("Downloaded files ", "Downloaded file",  fileEntry.getName() +"is not exist",driver  );
+					//reporter.failureReport("Downloaded files ", "Downloaded file",  fileEntry.getName() +"is not exist",driver  );
 			}
 		}
 
