@@ -10,6 +10,7 @@ import com.insight.Lib.CanadaLib;
 import com.insight.Lib.CartLib;
 import com.insight.Lib.ChinaLib;
 import com.insight.Lib.CommonLib;
+import com.insight.Lib.LineLevelInfoLib;
 import com.insight.Lib.OrderLib;
 import com.insight.Lib.ProductDetailLib;
 import com.insight.Lib.ProductDisplayInfoLib;
@@ -25,7 +26,9 @@ public class CRT17_SaveCartLineLevelTest extends CartLib {
 	CMTLib cmtLib = new CMTLib();
 	CartLib cartLib = new CartLib();
 	CanadaLib canadaLib = new CanadaLib();
-
+	SearchLib searchLib = new SearchLib();
+	ProductDisplayInfoLib prodInfoLib = new ProductDisplayInfoLib();
+	LineLevelInfoLib lineLevelLib=new LineLevelInfoLib();
 	// #############################################################################################################
 	// # Name of the Test : CRT17_SaveCartLineLevel
 	// # Migration Author : Cigniti Technologies
@@ -42,8 +45,7 @@ public class CRT17_SaveCartLineLevelTest extends CartLib {
 		int counter = 0;
 		try {
 			int intStartRow = StartRow;
-			int intEndRow = ReportControl.fnGetEndRowCunt(EndRow, "CRT17_SaveCartLineLevel", TestDataInsight,
-					"Web_Cart");
+			int intEndRow = ReportControl.fnGetEndRowCunt(EndRow, "CRT17_SaveCartLineLevel", TestDataInsight, "Web_Cart");
 			for (int intCounter = intStartRow; intCounter <= intEndRow; intCounter++) {
 				try {
 					counter = intCounter;
@@ -55,30 +57,53 @@ public class CRT17_SaveCartLineLevelTest extends CartLib {
 					TestEngineWeb.reporter.initTestCaseDescription("SaveCartLineLevel");
 
 					OrderLib orderLib = new OrderLib();
-					cmtLib.loginToCMTSearchWebGrpAndUser(data.get("Header"), data.get("WebGrp"),
-							data.get("LnameEmailUname"), data.get("ContactName"));
-					cmtLib.setPermissions(data.get("Menu_Name"), data.get("Set_Permission"));
+					//cmtLib.loginToCMTSearchWebGrpAndUser(data.get("Header"), data.get("WebGrp"),
+							//data.get("LnameEmailUname"), data.get("ContactName"));
+					cmtLib.loginToCMT(data.get("Header"));
+					cmtLib.searchForWebGroup(data.get("WebGrp"));
+					cmtLib.clickOnTheWebGroup(data.get("WebGrp_Name"));
+					cmtLib.hoverOnManageWebGroupsAndSelectOptions(data.get("Manage_Web_Grp_Options"));
+					cmtLib.searchForaUserAndSelect(data.get("LnameEmailUname"), data.get("ContactName"));
+					cmtLib.clickOnRolesAndPermissionsAndSetPermission(data.get("Menu_Name"), data.get("Set_Permission"));
 					cmtLib.setPermissions(data.get("Menu_Name"), data.get("Enable_Purchasing_Popup"));
 					cmtLib.clickOnloginAs();
 					switchToChildWindow();
+					cmtLib.loginVerification(data.get("ContactName"));
+					commonLib.clickOnAccountToolsAndClickOnProductGrp(data.get("Tools_Menu"),
+							data.get("Tools_Menu_DD"));
+					cartLib.deleteSavedCartFromAccountTools();
 					commonLib.searchProduct(data.get("PartNumber"));
+					searchLib.verifyBreadCrumbInSearchResultsPage(data.get("PartNumber"));
+					prodInfoLib.getPartNumberInSearchResultsPage();
 					commonLib.addFirstDisplyedItemToCartAndVerify();
+					
 					canadaLib.continueToCheckout();
+					canadaLib.verifyPlaceCartLabel();
+					prodInfoLib.verifyCartPageAndPartDetailsForRecentlyItem();
 					orderLib.proceedToCheckout();
+					lineLevelLib.verifyOrderAndItemInfoBreadCrumb();
 					cartLib.addAdditionalInformationInCheckOut(data.get("Url"), data.get("RP_HDL_Txt"));
 					cartLib.addLineLevelInformationInCheckOut(data.get("RP_LNL_Txt"));
+					canadaLib.verifySBP();
 					cartLib.clearPhoneFieldInCheckOut();
 					cartLib.shippingBillPayInCheckOut(data.get("Card_Number").toString(), data.get("Card_Name"),
 							data.get("Month"), data.get("Year"), data.get("PONumber"),data.get("POReleaseNumber"));
 					cartLib.verifyRpHdlTxt(data.get("RP_HDL_Txt"));
-					String cartName = getRandomString(5) + '@';
+					cartLib.verifyRpLnllTxt(data.get("RP_LNL_Txt"));
+					String cartName = "QTPSaveCartLineLevel"+getRandomNumeric(4);
 					cartLib.clickOnSaveCartContentAndSaveCart(cartName);
+					
 					commonLib.clickCart();
+					canadaLib.verifyPlaceCartLabel();
 					commonLib.verifyCartIsEMpty();
 					cartLib.openSavedCartFromTools(cartName);
 					cartLib.addToCartInSavedCart(cartName);
-					cartLib.verifyRpHdlTxtisNotPresent(data.get("RP_HDL_Txt"));
-					cartLib.verifyRpLnllTxtisNotPresent(data.get("RP_LNL_Txt"));
+					canadaLib.verifyPlaceCartLabel();
+					orderLib.proceedToCheckout();
+					lineLevelLib.verifyOrderAndItemInfoBreadCrumb();
+					//cartLib.verifyRpHdlTxtisNotPresent(data.get("RP_HDL_Txt"));
+					//cartLib.verifyRpLnllTxtisNotPresent(data.get("RP_LNL_Txt"));
+					scrollUp();
 					cartLib.openSavedCartFromTools(cartName);
 					cartLib.deleteCartFromAccountTools(cartName);
 					commonLib.clickLogOutLink(data.get("Logout_Header"));

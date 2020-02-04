@@ -22,7 +22,7 @@ import com.insight.utilities.TestUtil;
 
 public class LNL07_STLineLevelSortTest extends LineLevelInfoLib{
 
-	// Initilizing libraries
+	// Initializing libraries
 		CMTLib cmtLib = new CMTLib();
 		CommonLib commonLib = new CommonLib();
 		CartLib cartLib = new CartLib();
@@ -69,6 +69,7 @@ public class LNL07_STLineLevelSortTest extends LineLevelInfoLib{
 							
 							// Add first item  >> RAM 
 							searchLib.searchInHomePage(data.get("SearchText1"));
+							searchLib.verifyBreadCrumbInSearchResultsPage(data.get("SearchText1"));
 							cartLib.selectFirstProductDisplay();
 							String partNumber1=prodLib.getMFRNumberInProductInfopage();
 							commonLib.addToCartAndVerify();
@@ -77,6 +78,7 @@ public class LNL07_STLineLevelSortTest extends LineLevelInfoLib{
 							
 							// Add second item  >> Workstations
 							searchLib.searchInHomePage(data.get("SearchText2"));
+							searchLib.verifyBreadCrumbInSearchResultsPage(data.get("SearchText2"));
 							cartLib.selectFirstProductDisplay();
 							String partNumber2=prodLib.getMFRNumberInProductInfopage();
 							commonLib.addToCartAndVerify();
@@ -85,6 +87,7 @@ public class LNL07_STLineLevelSortTest extends LineLevelInfoLib{
 							
 							// Add second item  >> Netbooks
 							searchLib.searchInHomePage(data.get("SearchText3"));
+							searchLib.verifyBreadCrumbInSearchResultsPage(data.get("SearchText3"));
 							cartLib.selectFirstProductDisplay();
 							String partNumber3=prodLib.getMFRNumberInProductInfopage();
 							commonLib.addToCartAndVerify();
@@ -93,6 +96,7 @@ public class LNL07_STLineLevelSortTest extends LineLevelInfoLib{
 							
 							// Proceed to check out
 							orderLib.proceedToCheckout();
+							verifyOrderAndItemInfoBreadCrumb();
 							orderLib.continueButtonOnAdditionalInformationSection();
 							
 							// click on LLI 

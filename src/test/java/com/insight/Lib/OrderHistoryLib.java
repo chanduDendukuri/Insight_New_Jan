@@ -109,7 +109,7 @@ public class OrderHistoryLib extends OrderHistoryObj {
 
 		else {
 			click(SLPLib.YEAR_DROPDOWN, "year dropdown");
-			click(SLPLib.Year(year), "Selecy year");
+			click(SLPLib.Year(year), "Select year");
 			click(SLPLib.MONTH_DROPDOWN, "Month dropdown");
 			click(SLPLib.Month(month), "Select month");
 			click(Day(day), "Selecting date");
@@ -305,6 +305,7 @@ public class OrderHistoryLib extends OrderHistoryObj {
 		String result = null;
 		waitForVisibilityOfElement(SEARCH_RESULTS, "Recent orders");
 		if (isElementPresent(ORDER_NUMBER, "Order number")) {
+			scrollToBottomWithCordinate("300");
 				List<WebElement> myList = driver.findElements(ORDER_NUMBER);
 				List<String> all_elements_text = new ArrayList<>();
 				for (int i = 0; i < myList.size(); i++) {

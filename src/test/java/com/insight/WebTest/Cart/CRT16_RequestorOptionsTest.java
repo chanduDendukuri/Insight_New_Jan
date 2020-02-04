@@ -55,7 +55,12 @@ public class CRT16_RequestorOptionsTest extends CartLib{
 										"Web_Cart", intCounter);
 								TestEngineWeb.reporter.initTestCaseDescription("RequestorOptions");
 					
-					cmtLib.loginToCMTSearchWebGrpAndUser(data.get("Header"), data.get("WebGrp"), data.get("LnameEmailUname"), data.get("ContactName"));
+					//cmtLib.loginToCMTSearchWebGrpAndUser(data.get("Header"), data.get("WebGrp"), data.get("LnameEmailUname"), data.get("ContactName"));
+					cmtLib.loginToCMT(data.get("Header"));
+					cmtLib.searchForWebGroup(data.get("WebGrp"));
+					cmtLib.clickOnTheWebGroup(data.get("WebGrp_Name"));
+					cmtLib.hoverOnManageWebGroupsAndSelectOptions(data.get("Manage_Web_Grp_Options"));
+					cmtLib.searchForaUserAndSelect(data.get("LnameEmailUname"), data.get("ContactName"));
 					cmtLib.setPermissions(data.get("menuName"),data.get("Enable_Purchasing_Popup"));
 					cmtLib.clickOnloginAs();
 					switchToChildWindow();
@@ -67,16 +72,20 @@ public class CRT16_RequestorOptionsTest extends CartLib{
 					search.increaseQuantity(data.get("quantity"));
 
 					commonLib.addToCartAndVerify();
+					
 					canadaLib.continueToCheckout();
-					cartLib.verifyCartPageAvailablity();
+					canadaLib.verifyPlaceCartLabel();
+					prodInfoLib.verifyCartPageAndPartDetailsForRecentlyItem();
 					cartLib.verifySaveCartAsQuoteIsPresent();
 					commonLib.clickLogOutLink(data.get("Logout_Header"));
 					cmtLib.navigateBackToCMT();
+								
 				    cmtLib.hoverOverMasterGroupAndSelectChangeGrp();
 				    cmtLib.searchForWebGroup(data.get("WebGrp"));
-				    cmtLib.manageUsers();
-				    cmtLib.searchUsers(data.get("LnameEmailUname1"));
-				    cmtLib.verifyUserandClick(data.get("ContactName1"));
+				    cmtLib.clickOnTheWebGroup(data.get("WebGrp_Name"));
+				   
+				    cmtLib.hoverOnManageWebGroupsAndSelectOptions(data.get("Manage_Web_Grp_Options"));
+				    cmtLib.searchForaUserAndSelect(data.get("LnameEmailUname1"), data.get("ContactName1"));
 				    cmtLib.clickOnloginAs();
 				    switchToChildWindow();
 				    cmtLib.loginVerification(data.get("ContactName1"));
@@ -85,8 +94,10 @@ public class CRT16_RequestorOptionsTest extends CartLib{
 					search.increaseQuantity(data.get("quantity"));
 
 					commonLib.addToCartAndVerify();
+					
 				    canadaLib.continueToCheckout();
-				    cartLib.verifyCartPageAvailablity();
+				    canadaLib.verifyPlaceCartLabel();
+				    prodInfoLib.verifyCartPageAndPartDetailsForRecentlyItem();
 					cartLib.verifySelectRwquestorGroupDropdownIsPresent();
 					commonLib.clickLogOutLink(data.get("Logout_Header"));
 					   System.out.println("Test completed");

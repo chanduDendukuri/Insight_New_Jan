@@ -78,6 +78,7 @@ public class CommonObj extends ActionEngine{
 	 */
 
 	public static By TOTAL_PRICE_IN_POPUP = By.xpath("//*[contains(text(),'Total')]/parent::li");
+	public static By TOTAL_PRICE_IN_SEARCH_RESULTS=By.xpath("//div[@class='prod-bottom-section']//p[@class='prod-price']");
 	/* ******************************************************************************************************************
 	 * >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> LOCATORS IN Tools<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 	 * ******************************************************************************************************************

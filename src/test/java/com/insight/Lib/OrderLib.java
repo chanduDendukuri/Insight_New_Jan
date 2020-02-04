@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
+import org.omg.PortableServer.THREAD_POLICY_ID;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 
@@ -355,22 +356,22 @@ List<String> orderdetails = new ArrayList<String>();
 			} else {
 				reporter.failureReport("Verify the Total Amount ", "The Total Amount is not updated. ","",driver);
 			}
+//Discussed with Krishna and it is not required for validation hence commented By chandu
 
 			  // date ordered verification
-			if (isElementPresent(DATE_ORDERED, "Date ordered")) {
+			/*if (isElementPresent(DATE_ORDERED, "Date ordered")) {
 				String dateOrdered = getText(DATE_ORDERED, "Date ordered");
 				String actualDate = getCurrentDateTime("dd-MMM-yyyy");
 
 				
 
-				
-				if (actualDate.contains(dateOrdered)) {
+				*//*if (actualDate.contains(dateOrdered)) {
 					orderdetails.add(actualDate);
 					reporter.SuccessReport("Verify the Date ordered ", " date ordered verification is successfull","Ordered Date : "+dateOrdered);
 				} else {
 					reporter.failureReport("Verify the Date ordered ", " date ordered verification is not successfull : "+dateOrdered+" .Expected Date :",actualDate,driver);
-				}
-			}
+				}*//*
+			}*/
 		}
 		return orderdetails;
 	}
@@ -946,13 +947,13 @@ List<String> orderdetails = new ArrayList<String>();
 	public void verifyPlaceOrderLabel() throws Throwable {
 		boolean status=false;
 
-		if (isElementPresent(PLACEORDER_LABL, "Cart header label displayed")) {
+		if (isElementPresent(PLACEORDER_LABL, "Place order label displayed")) {
 			status= true;
 			String s1 = Boolean.toString(status);
-			reporter.SuccessReport("Verify wether user navigates to cart page or not",
+			reporter.SuccessReport("Verify whether user navigates to Place order page or not",
 					"User successfully navigated to Place order page","PageDetails : Place order is " + status);
 		} else {
-			reporter.failureReport("Verify wether user navigates to cart page or not",
+			reporter.failureReport("Verify whether user navigates to Place order page or not",
 					"User not navigated to Place Order page","PageDetails :Place order is " + status,driver);
 		}
 	}
@@ -1734,9 +1735,9 @@ List<String> orderdetails = new ArrayList<String>();
 	public void verifyPONumberisEmpty() throws Throwable {
 		String PONum = getText(PO_NUMBER, "P.O. Number");
 		if (PONum.isEmpty()) {
-			reporter.SuccessReport("Delete PO Number in Ship, Bill & Pay Page", "PO Number Field Exists and Deleted","");
+			reporter.SuccessReport("Delete PO Number in Ship, Bill & Pay Page", "PO Number Field Exists and Deleted","PO Number:"+PONum);
 		} else
-			reporter.failureReport("Delete PO Number in Ship, Bill & Pay Page", "PONumber Field does not Exist","");
+			reporter.failureReport("Delete PO Number in Ship, Bill & Pay Page", "PONumber Field does not Exist","PO Number:"+PONum);
 
 	}
 
@@ -1791,14 +1792,26 @@ List<String> orderdetails = new ArrayList<String>();
 	 * 
 	 * @throws Throwable
 	 */
-	public void verifySmartTrackerHeaderInOrderDetails() throws Throwable {
-		if (isElementPresent(SMARTRAKER_HDR, "Smart Tracker Header")) {
-			reporter.SuccessReport("Header Level Smart Trackers Verification", "Header Level Smart Tracker exists","");
+	public void verifySmartTrackerHeaderInOrderDetails(String RP_LNL_Txt_Text) throws Throwable {
+		if (isElementPresent(SMARTRAKER_HDR( RP_LNL_Txt_Text), "Smart Tracker Header")) {
+			reporter.SuccessReport("Header Level Smart Trackers Verification", "Header Level Smart Tracker exists",getText(SMARTRAKER_HDR( RP_LNL_Txt_Text),"Line level"));
 		} else
 			reporter.failureReport("Header Level Smart Trackers Verification",
-					"Header Level Smart Tracker Does not Exist","");
+					"Header Level Smart Tracker Does not Exist","",driver);
 	}
+/**
+ * 
+ * @param RP_LNL_Txt_Text
+ * @throws Throwable
+ */
 
+	public void verifySmartTrackerHeaderInCustomerDetails(String RP_HDL_Txt_Text) throws Throwable {
+		if (isElementPresent(SMARTRAKER_HDR_CUSTOMERDETAILS( RP_HDL_Txt_Text), "Smart Tracker Header")) {
+			reporter.SuccessReport(" Smart Trackers Verification in customer details page", "Header Level Smart Tracker exists in customer details page","");
+		} else
+			reporter.failureReport(" Smart Trackers Verification in customer details page",
+					"Header Level Smart Tracker Does not Exist in customer details page","");
+	}
 	/**
 	 * 
 	 * @throws Throwable
@@ -2010,7 +2023,7 @@ List<String> orderdetails = new ArrayList<String>();
 	
 	public void clickRemoveWarrantyLink() throws Throwable{
 		if(isElementPresent(REMOVE_WARRANTY_LINK, "Remove warranty link")){
-			clickUntil(REMOVE_WARRANTY_LINK, ADD_WARRANTY_LINK,"Remove warranty ");
+			clickUntil(REMOVE_WARRANTY_LINK, ADD_WARRANTY_LINK,"Remove warranty","Warranty removed");
 		}else{
 			reporter.failureReport("Verify remove warranty link ", "Remove warranty link dose not exists", "", driver);
 			
@@ -2375,5 +2388,20 @@ List<String> orderdetails = new ArrayList<String>();
 	{
 		getText(ORDER_DATE, "Reference date");
 	}
-	
+
+	public void getLineItemInfoValues() throws Throwable{
+		List<WebElement> linVa=driver.findElements(lineItemInfoValues);
+
+		for(int i=0;i<linVa.size();i++){
+		reporter.SuccessReport("Line Item values","Line level items are " , linVa.get(i).getText());
+		}
+	}
+	public void getHeaderLevelItemInfo() throws Throwable{
+		reporter.SuccessReport("Header Level value","RP_HDL_Lst are ",getText(HeaderLevelcustomerDetailsLablevalue,"RP_HDL_Lst is"));
+		reporter.SuccessReport("Header Level value","RP_HDL_Txt are ",getText(HeaderLevelcustomerDetailsLablevalueForHDLTxt,"RP_HDL_Txt is"));
+	}
+
+	public void getHeaderLevelItemsInforDynamically(String val) throws Throwable{
+		reporter.SuccessReport("Header Level value","RP_HDL_Lst are ",getText(dynamicHeaderLevelCustomerDetailsValues(val),"RP_HDL_Lst is"));
+	}
 	}

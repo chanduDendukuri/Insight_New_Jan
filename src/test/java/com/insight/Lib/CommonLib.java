@@ -125,7 +125,7 @@ public class CommonLib extends ActionEngine{
 		}
 		else {
 			clearData(CMTObj.DEAFULT_MAIL);
-			type(CMTObj.DEAFULT_MAIL, actualEmail, "Default ASN Email Address" +actualEmail);
+			type(CMTObj.DEAFULT_MAIL, actualEmail, "Default ASN Email Address");
 		}
 	}
 	
@@ -204,6 +204,9 @@ public class CommonLib extends ActionEngine{
 		public void searchProduct(String SearchItem) throws Throwable
 		{	
 			Thread.sleep(20000);
+			if (isVisibleOnly(CommonObj.CLOSEBUTTON_COOKIES, "close cookie")) {
+				click(CommonObj.CLOSEBUTTON_COOKIES, "close cookie");
+			}
 			waitForVisibilityOfElement(CartObj.SEARCH,"SEARCH FIELD");
 
 			//type(CartObj.SEARCH,SearchItem,"SEARCHFIELD");
@@ -243,7 +246,7 @@ public class CommonLib extends ActionEngine{
 		{	
 			Thread.sleep(5000);
 			 if(isElementPresent(CartObj.ADD_TO_CART_IN_PRODUCT_DISPLAY," ADD TO CART IN PRODUCT DISPLAY")) {
-				click(CartObj.ADD_TO_CART_IN_PRODUCT_DISPLAY," ADD TO CART IN PRODUCT DISPLAY");
+				clickUntil(CartObj.ADD_TO_CART_IN_PRODUCT_DISPLAY,CartObj.ADD_TO_CART_SUCCESS_MESSAGE," ADD TO CART IN PRODUCT DISPLAY");
 				Thread.sleep(10000);
 				waitForVisibilityOfElement(CartObj.ADD_TO_CART_SUCCESS_MESSAGE,"ADD TO CART SUCCESS MESSAGE");					
 				 if(isElementPresent(CartObj.ADD_TO_CART_SUCCESS_MESSAGE,"ADD TO CART SUCCESS MESSAGE")){
@@ -487,11 +490,14 @@ public class CommonLib extends ActionEngine{
 			if(isElementPresent(InvoiceHistoryLib.COSE_ACCOUNT_TOOLS, "close account tools")) {
 				click(InvoiceHistoryLib.COSE_ACCOUNT_TOOLS, "close account tools");
 			}
+			if (isVisibleOnly(CommonObj.CLOSEBUTTON_COOKIES, "close cookie")) {
+				click(CommonObj.CLOSEBUTTON_COOKIES, "close cookie");
+			}
 			
 			   click(CommonObj.ACCOUNT_TOOLS, "Account tools menu icon");
-			   click(CommonObj.getAccountToolsMenu(toolsMenuName), "Account tools menu");
-			   click(CommonObj.getAccountToolsDD(toolsMenuName, dropDown), "Select account tools");
-			   click(CommonObj.getCompanyStandardsProductGroup(productGroup, productName), "select product from product group");
+			   click(CommonObj.getAccountToolsMenu(toolsMenuName), "Account tools menu : "+toolsMenuName,toolsMenuName);
+			   click(CommonObj.getAccountToolsDD(toolsMenuName, dropDown), "Select account tools: "+dropDown);
+			   click(CommonObj.getCompanyStandardsProductGroup(productGroup, productName), "select product from product group : "+productGroup+" Product name :"+productName);
 		}
 		/**
 		 * This method is to click on the Account tools from the side menu and click on product group.
@@ -501,6 +507,9 @@ public class CommonLib extends ActionEngine{
 		 */
 		public void clickOnAccountToolsAndClickOnProductGrp(String toolsMenuName, String dropDown ) throws Throwable{
 			Thread.sleep(20000);
+			if (isVisibleOnly(CommonObj.CLOSEBUTTON_COOKIES, "close cookie")) {
+				click(CommonObj.CLOSEBUTTON_COOKIES, "close cookie");
+			}
 			if(isElementPresent(InvoiceHistoryLib.COSE_ACCOUNT_TOOLS, "close account tools")) {
 				click(InvoiceHistoryLib.COSE_ACCOUNT_TOOLS, "close account tools");
 			} 
