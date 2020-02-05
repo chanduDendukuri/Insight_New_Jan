@@ -67,9 +67,9 @@ public class CRT18_SaveCartShipBillPayTest extends CartLib {
 					cmtLib.clickOnRolesAndPermissionsAndSetPermission(data.get("Menu_Name"),
 							data.get("Set_Permission"));
 					cmtLib.setPermissions(data.get("Menu_Name"), data.get("Enable_Purchasing_Popup"));
-					cmtLib.clickOnRolesAndPermissionsAndSetPermission(data.get("Menu_Name"),
-							data.get("Set_Permission"));
-					cmtLib.setPermissions(data.get("Menu_Name"), data.get("Enable_Purchasing_Popup"));
+					//cmtLib.clickOnRolesAndPermissionsAndSetPermission(data.get("Menu_Name"),
+							//data.get("Set_Permission"));
+					//cmtLib.setPermissions(data.get("Menu_Name"), data.get("Enable_Purchasing_Popup"));
 					cmtLib.clickOnloginAs();
 					switchToChildWindow();
 					cmtLib.loginVerification(data.get("ContactName"));
