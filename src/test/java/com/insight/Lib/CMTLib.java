@@ -826,7 +826,7 @@ public  void verifyDashboard()throws Throwable {
 	public void clickupdateatDefaultShippingOption() throws Throwable {
 		click(UPDATE_USER_ShippingEstimations, "Update user button");
 		if (isElementPresent(SUCCESS_UPDATE_MSG, "update sucessful message")) {
-			reporter.SuccessReport("Verify the Sucess message ", "Permissions Updated Succesfully", "");
+			reporter.SuccessReport("Verify the Sucess message ", "Permissions Updated Succesfully", getText(SUCCESS_UPDATE_MSG, "Success message"));
 		} else {
 			reporter.failureReport("Verify the sucess message", "Permissions are not Updated Succesfully", "", driver);
 		}
@@ -3665,5 +3665,23 @@ public void verifySetPermissionsDisabled(String userPermissions) throws Throwabl
 		click(CommonObj.AcceptAlerts, "Accept Cookies");
 	}
 	}
-}
+	
+	public void VerifytheLinkedAccountsText() throws Throwable {
+		List<WebElement> list = driver.findElements(LINKEDACCOUNTS);
+		List<String> values = new ArrayList<String>();
+			for (i = 0; i <49; i++) {
+				if(isVisibleOnly(LinkedAccountsText,"Linked Accounts Data")) {
+					for(i=0;i<6;i++) {
+					List<WebElement> list2 = driver.findElements(LinkedAccountsText);
+					for (i = 0; i <= list2.size(); i++) {
+						String textlinkedaccount= list2.get(i).getText().trim();
+						System.out.println(textlinkedaccount);
+						values.add(textlinkedaccount);
+				}
+					reporter.SuccessReport("Verify Linked Accounts Data", "Data", "Data:"+values);
+					}
+			}
+		}
+	}
 
+}

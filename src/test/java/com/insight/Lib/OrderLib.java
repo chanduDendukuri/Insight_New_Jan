@@ -1100,6 +1100,7 @@ List<String> orderdetails = new ArrayList<String>();
 	public void verifyUploadedFileInReviewOrderPage(String FileName) throws Throwable{
 		String uploadeFile=getText(REVIEW_ORDER_UPLOADED_FILE_NAME, "file uploaded");
 		
+		
 	}
 	
 	/**
@@ -2445,8 +2446,10 @@ List<String> orderdetails = new ArrayList<String>();
 
 	public void getHeaderLevelItemsInforDynamically(String val) throws Throwable{
 		reporter.SuccessReport("Header Level value","RP_HDL_Lst are ",getText(dynamicHeaderLevelCustomerDetailsValues(val),"RP_HDL_Lst is"));
-	}
 
+	   }
+	
+	
 	public void getProductDetailsFromCartResultsGrid() throws Throwable {
 
 		List<WebElement> prodDes = driver.findElements(CartObj.productDes);
@@ -2460,3 +2463,4 @@ List<String> orderdetails = new ArrayList<String>();
 
 	}
 	}
+

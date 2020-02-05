@@ -66,12 +66,12 @@ public class CAN11_SLPProrationMicrosoftTest extends CanadaLib {
 					commonLib.searchProduct(data.get("Productname"));
 					// commonLib.spinnerImage();
 					Thread.sleep(2000);
-					canadaLib.verifyProductPrice();
-					Thread.sleep(2000);
 					commonLib.addToCartAndVerify();
+					canadaLib.verifyProductPrice();
 					String partNumber1 = cartLib.getPartNumber();
 					canadaLib.continueToCheckout();
 					// verify prorated price display
+					Thread.sleep(2000);
 					canadaLib.verifyProratedPrice();
 					// proceed to checkout
 					orderLib.proceedToCheckout();
@@ -80,14 +80,16 @@ public class CAN11_SLPProrationMicrosoftTest extends CanadaLib {
 					orderLib.shippingBillPayContinueButton();
 					Thread.sleep(1000);
 					orderLib.shippingBillPayContinueButton();
-					Thread.sleep(1000);
+					Thread.sleep(2000);
 					// Select Terms- payment method and click Review Order
-					orderLib.selectPaymentMethod(data.get("Payment_method"));
+					orderLib.termsInPaymentInfo(data.get("PONumber"),data.get("POReleaseNumber"));
+
+					//orderLib.selectPaymentMethod(data.get("Payment_method"));
 					// Verify Ship Bill Page
+					Thread.sleep(2000);
 					canadaLib.veriyProratedPriceinSBP();
 					// verify subtotal(prorated price), verify receipt, order and date
 					String summaryAmount = cartLib.getSummaryAmountInCart();
-					canadaLib.verifyReceiptOrderAndDate(summaryAmount);
 					commonLib.clickLogOutLink(data.get("Logout_Header"));
 					System.out.println("Test completed");
 					

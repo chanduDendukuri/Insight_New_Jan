@@ -86,7 +86,7 @@ public class APP04_SearchTest extends ApprovalPathLib {
 					EnterNewApprovalPath(AppPathName1);
 
 					// Select Approvers
-					SelectApprover(null);
+					SelectApprover(null,1);
 
 					// --- '>' icon
 					Add_Approver_Btn_Click();
@@ -104,7 +104,7 @@ public class APP04_SearchTest extends ApprovalPathLib {
 					EnterNewApprovalPath(AppPathName2);
 
 					// Select Approvers
-					SelectApprover(null);
+					SelectApprover(null,1);
 
 					// --- '>' icon
 					Add_Approver_Btn_Click();
@@ -139,7 +139,7 @@ public class APP04_SearchTest extends ApprovalPathLib {
 					ClickEditLinkButton(AppPathName1);
 
 					// Select Approvers and click Add
-					SelectApprover(null);
+					SelectApprover(null,1);
 
 					// Add button to add approver
 					Add_Approver_Btn_Click();
@@ -153,7 +153,7 @@ public class APP04_SearchTest extends ApprovalPathLib {
 					ClickEditLinkButton(AppPathName2);
 
 					// Select Approvers and click Add
-					SelectApprover(null);
+					SelectApprover(null,1);
 
 					// Add button to add approver
 					Add_Approver_Btn_Click();
