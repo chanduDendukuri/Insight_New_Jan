@@ -9,6 +9,7 @@ import com.insight.Lib.CMTLib;
 import com.insight.Lib.CanadaLib;
 import com.insight.Lib.CartLib;
 import com.insight.Lib.CommonLib;
+import com.insight.Lib.OrderHistoryLib;
 import com.insight.Lib.OrderLib;
 import com.insight.Lib.ProductDetailLib;
 import com.insight.Lib.ProductDisplayInfoLib;
@@ -22,6 +23,7 @@ import com.insight.utilities.TestUtil;
 public class CAN03_KeywordSearchTest extends CanadaLib{
 
 	CMTLib cmtLib = new CMTLib();
+	CanadaLib canadaLib=new CanadaLib();
 	CommonLib commonLib = new CommonLib();
 	CartLib cartLib = new CartLib();
 	SearchLib searchLib = new SearchLib();
@@ -29,6 +31,9 @@ public class CAN03_KeywordSearchTest extends CanadaLib{
 	OrderLib orderLib=new OrderLib();
 	ProductDisplayInfoLib pipLib=new ProductDisplayInfoLib();
 	ProductDetailLib productDetailLib = new ProductDetailLib();
+	OrderHistoryLib orderHistortLib=new OrderHistoryLib();
+	ProductDisplayInfoLib prodinfo=new ProductDisplayInfoLib();
+
 	SewpLib sewpLib=new SewpLib();
 	    // #############################################################################################################
 		// #       Name of the Test         :  SER03_KeywordSearch
@@ -41,7 +46,7 @@ public class CAN03_KeywordSearchTest extends CanadaLib{
 		// ###############################################################################################################
 		@Parameters({ "StartRow", "EndRow", "nextTestJoin" })
 		@Test
-		public void TC_CAN03(int StartRow, String EndRow, boolean nextTestJoin) throws Throwable {
+		public <verifyTheResultsForSearchTerm> void TC_CAN03(int StartRow, String EndRow, boolean nextTestJoin) throws Throwable {
 			int counter = 0;
 			try {
 				int intStartRow = StartRow;
@@ -58,16 +63,26 @@ public class CAN03_KeywordSearchTest extends CanadaLib{
 						
 						//	Search on HomePage
 						searchLib.searchInHomePage(data.get("SearchText1"));
-						verifySortOption(data.get("Sort_Options"));
+						searchLib.verifyBreadCrumbInSearchResultsPage(data.get("SearchText1"));
+						//verifySortOption(data.get("Sort_Option"));
+						Thread.sleep(3000);
+						canadaLib.verifySortOption(data.get("sortOption"));
+
 						
 						///	Search On Product List Page
 						searchLib.searchInHomePage(data.get("SearchText2"));
-						verifySortOption(data.get("Sort_Options"));
-						
+						searchLib.verifyBreadCrumbInSearchResultsPage(data.get("SearchText2"));
+						//verifySortOption(data.get("Sort_Option"));
+						Thread.sleep(3000);
+						canadaLib.verifySortOption(data.get("sortOption")); // Best Match
+					
 						//	Search On Product List Page
 						searchLib.searchInHomePage(data.get("SearchText3"));
-						verifySortOption(data.get("Sort_Options"));
-						
+						searchLib.verifyBreadCrumbInSearchResultsPage(data.get("SearchText3"));
+						//verifySortOption(data.get("Sort_Option"));
+						Thread.sleep(3000);
+						canadaLib.verifySortOption(data.get("sortOption"));
+
 						// Login to CMT
 						cmtLib.loginToCMT(data.get("Header"));
 						cmtLib.searchForWebGroup(data.get("WebGrp"));
@@ -84,26 +99,34 @@ public class CAN03_KeywordSearchTest extends CanadaLib{
 						cmtLib.loginAsAdminCMT();
 						
 						// Canada Home Page Verification
-						verifyCanadaWebgroup();
 						///	Search with Microsite pages ex: HP, IBM
 						searchLib.searchInHomePage(data.get("SearchText4"));
-						searchLib.verifysearchResultsPage();
-						pipLib.selectFirstProductAddToCartAndVerifyCart();
+						searchLib.verifyBreadCrumbInSearchResultsPage(data.get("SearchText4"));
+						//searchLib.verifysearchResultsPage();
+						//pipLib.selectFirstProductAddToCartAndVerifyCart();
 						
 						
 						///	Search  category ex: WorkStations
+						verifyCanadaWebgroup();
 						searchLib.searchInHomePage(data.get("SearchText5"));
-						sewpLib.clickOnAddtoCart();
-						sewpLib.clickContinueToCheckout();
+						searchLib.verifyBreadCrumbInSearchResultsPage(data.get("SearchText5"));
+						//sewpLib.clickOnAddtoCart();
+						//sewpLib.clickContinueToCheckout();
+						//searchLib.verifysearchResultsPage();
 						searchLib.searchInHomePage(data.get("SearchText6"));
+						/*orderHistortLib.verifySearchResultsAreDisplayed();
 						String desc=pipLib.getFirstProdDescription();
-						cartLib.selectFirstProductDisplay();
-						
+						Thread.sleep(3000);
 						// Verifying description on product details page 
-						pipLib.verifyShortDescriptionOnProductDetailsPage(desc);
-						
+						pipLib.verifyShortDescriptionOnProductDetailsPage(desc);*/
+						prodinfo.verifyTheManufacturerNumberInProductDetailsPage(data.get("SearchText6"));
+
+					
 						///	Search Partial Product  ID
 						searchLib.searchInHomePage(data.get("SearchText7"));
+						searchLib.verifyBreadCrumbInSearchResultsPage(data.get("SearchText7"));
+						///	Search Invalid Partial Product  ID
+						searchLib.searchInHomePage(data.get("SearchText8"));
 						verifyNoResultsFoundMessgeInProductSearchResults();
 						
 						System.out.println("Test completed");
