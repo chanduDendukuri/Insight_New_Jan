@@ -64,9 +64,9 @@ public class ODP10_SharedUsers extends OrderLib{
 					cmtLib.searchForWebGroup(data.get("WebGrp"));
 					cmtLib.clickOnTheWebGroup(data.get("WebGrp_Name"));
 					cmtLib.hoverOnManageWebGroupsAndSelectOptions(data.get("Manage_Web_Grp_Options"));
-					//cmtLib.clickOnRolesAndPermissionsAndSetPermission(data.get("menuName"), data.get("userPermission"));
-					cmtLib.setPermissions(data.get("menuName"), data.get("userPermission"));
+					//cmtLib.setPermissions(data.get("menuName"), data.get("userPermission"));
 					cmtLib.searchForaUserAndSelect(data.get("LnameEmailUname"), data.get("ContactName"));
+					cmtLib.clickOnRolesAndPermissionsAndSetPermission(data.get("menuName"), data.get("userPermission"));
 					cmtLib.loginAsAdminCMT();
 						searchLib.searchInHomePage(data.get("SearchText"));
 						searchLib.verifyBreadCrumbInSearchResultsPage(data.get("SearchText"));
@@ -88,7 +88,7 @@ public class ODP10_SharedUsers extends OrderLib{
 						clickOnReviewRequisitionButton();
 						verifyPlaceOrderLabel();
 						clickOnPlaceRequisitionButton();
-						VerifyOrderPlaceByFields();
+						//VerifyOrderPlaceByFields();
 						// Verify Receipt
 						verifyReceiptVerbiage();
 
@@ -100,8 +100,8 @@ public class ODP10_SharedUsers extends OrderLib{
 						cmtLib.searchForWebGroup(data.get("WebGrp"));
 						cmtLib.clickOnTheWebGroup(data.get("WebGrp_Name"));
 						cmtLib.hoverOnManageWebGroupsAndSelectOptions(data.get("Manage_Web_Grp_Options"));
-						cmtLib.clickOnRolesAndPermissionsAndSetPermission(data.get("menuName"), data.get("userPermission1"));
 						cmtLib.searchForaUserAndSelect(data.get("LnameEmailUname1"), data.get("ContactName1"));
+						cmtLib.clickOnRolesAndPermissionsAndSetPermission(data.get("menuName"), data.get("userPermission1"));
 						cmtLib.loginAsAdminCMT();
 						searchLib.verifyAccountToolsFromSideMenuAndClick(data.get("toolsMenuName"), data.get("dropDown"));
 						verifyandClickonRefLink(RefNumber);
@@ -112,11 +112,12 @@ public class ODP10_SharedUsers extends OrderLib{
 						cmtLib.searchForWebGroup(data.get("WebGrp"));
 						cmtLib.clickOnTheWebGroup(data.get("WebGrp_Name"));
 						cmtLib.hoverOnManageWebGroupsAndSelectOptions(data.get("Manage_Web_Grp_Options"));
-						cmtLib.clickOnRolesAndPermissionsAndSetPermission(data.get("menuName"), data.get("userPermission1"));
 						cmtLib.searchForaUserAndSelect(data.get("LnameEmailUname2"), data.get("ContactName2"));
+						cmtLib.clickOnRolesAndPermissionsAndSetPermission(data.get("menuName"), data.get("userPermission1"));
 						cmtLib.loginAsAdminCMT();
 						searchLib.verifyAccountToolsFromSideMenuAndClick(data.get("toolsMenuName"), data.get("dropDown"));
 						verifyandClickonRefLink(RefNumber);
+						VerifyOrderPlaceByFields();
 						verifyApprovalManagmentHeaderandClickonUpdateLink();
 						verifyOrderNumberExists(RefNumber);
 						
