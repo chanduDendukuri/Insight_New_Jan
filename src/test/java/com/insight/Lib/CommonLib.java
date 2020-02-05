@@ -508,6 +508,7 @@ public class CommonLib extends ActionEngine{
 		 * @throws Throwable
 		 */
 		public void clickOnAccountToolsAndClickOnProductGrp(String toolsMenuName, String dropDown ) throws Throwable{
+			acceptCookies() ;
 			Thread.sleep(20000);
 			if (isVisibleOnly(CommonObj.CLOSEBUTTON_COOKIES, "close cookie")) {
 				click(CommonObj.CLOSEBUTTON_COOKIES, "close cookie");
@@ -861,6 +862,10 @@ public class CommonLib extends ActionEngine{
 	}
 
 
-	
+	public void acceptCookies() throws Throwable{
+		if(isVisibleOnly(CommonObj.AcceptAlerts,"Accept Cookies")) {
+			click(CommonObj.AcceptAlerts, "Accept Cookies");
+		}
+	}
 
 }

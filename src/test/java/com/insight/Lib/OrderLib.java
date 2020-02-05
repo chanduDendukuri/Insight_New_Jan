@@ -2446,4 +2446,17 @@ List<String> orderdetails = new ArrayList<String>();
 	public void getHeaderLevelItemsInforDynamically(String val) throws Throwable{
 		reporter.SuccessReport("Header Level value","RP_HDL_Lst are ",getText(dynamicHeaderLevelCustomerDetailsValues(val),"RP_HDL_Lst is"));
 	}
+
+	public void getProductDetailsFromCartResultsGrid() throws Throwable {
+
+		List<WebElement> prodDes = driver.findElements(CartObj.productDes);
+		List<WebElement> partNumber = driver.findElements(CartObj.getPartNuminOrderdetails);
+		List<WebElement> totalAmount = driver.findElements(CartObj.lblTotalAmountFromCartSearchResults);
+
+		for(int i = 0;i<prodDes.size();i++){
+			reporter.SuccessReport("Product details","Cart prodcut details are ", "Product description is " + prodDes.get(i).getText() +" and Part number is " +partNumber.get(i).getText()+ " Total number for the product is " + totalAmount.get(i).getText());
+		}
+
+
+	}
 	}

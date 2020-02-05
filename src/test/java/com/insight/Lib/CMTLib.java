@@ -683,7 +683,7 @@ public  void verifyDashboard()throws Throwable {
 	 */
 	public void loginToCMTSearchWebGrpAndUser(String header, String webGrp, String lnameEmailUname, String contactName)
 			throws Throwable {
-
+		acceptCookies();
 		clickLoginLink(header);
 		if (driver.findElement(CartObj.POP_UP_EMAILID).isDisplayed()) {
 			handleWelcomeToInsightBetaPopUp();
