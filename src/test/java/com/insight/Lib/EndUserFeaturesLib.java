@@ -550,10 +550,10 @@ public class EndUserFeaturesLib extends EndUserFeaturesObj{
 	public void verifyLoggedInAs(String loggedInUser) throws Throwable {
 		String text=getText(YOU_ARE_LOGGED_IN_AS_TEXT, "You are logged in as");
 		if(text.contains(loggedInUser.toLowerCase())) {
-			reporter.SuccessReport("System displays User Name on Current Account Tab in Account Management -Account Tools Page", "User Name on Current Account Tab is Exists","");
+			reporter.SuccessReport("System displays User Name on Current Account Tab in Account Management -Account Tools Page", "User Name on Current Account Tab is Exists",loggedInUser);
 		}
 		else {
-			reporter.failureReport("System displays User Name on Current Account Tab in Account Management -Account Tools Page", "User Name on Current Account Tab is Not Exists","",driver);
+			reporter.failureReport("System displays User Name on Current Account Tab in Account Management -Account Tools Page", "User Name on Current Account Tab is Not Exists",loggedInUser,driver);
 		
 		}
 	}

@@ -179,19 +179,11 @@ public class CartLib extends ActionEngine {
 	public void clickOnSaveCartContentAndSaveCart(String cartName) throws Throwable {
 		Thread.sleep(10000);
 		commonLib.spinnerImage();
+		scrollToBottomWithCordinate("500");
 		isElementPresent(CartObj.SAVE_CART_CONTENTS, "Save cart contents");
 		click(CartObj.SAVE_CART_CONTENTS, "Save cart contents");
 		waitForVisibilityOfElement(CartObj.SAVE_CART_CONTENTS_POPUP, "SAVE CART CONTENTS POPUP");
-//		click(CartObj.SAVE_BUTTON, "Save button");
-//		if (isElementPresent(CartObj.SAVE_CART_ERROR_MESSAGE, "Save cart error message")) {
-//			reporter.SuccessReport("Save cart error message ", "Please enter a name for your cart message is displayed",
-//					"");
-//		} else {
-//			reporter.failureReport("Save cart error message ",
-//					"Please enter a name for your cart message is not displayed", "", driver);
-//
-//		}
-		// String cartName=getRandomString(5)+'@';
+
 		Thread.sleep(5000);
 		clearData(CartObj.SAVE_CART_INPUT_FIELD);
 		
@@ -202,6 +194,38 @@ public class CartLib extends ActionEngine {
 		else {
 			click(CartObj.CLEAR_MY_DRAFT_SAVED,"Clear my drafts check box");
 			reporter.SuccessReport("Clear my cart after save Checkbox", "Clear my cart after save Checkbox exist", "Clear my cart after save: on");
+		}
+		click(CartObj.SAVE_BUTTON, "Save button");
+		waitForVisibilityOfElement(CartObj.CART_SAVED_SUCESS_MESSAGE, "cart save sucess message");
+		if (isElementPresent(CartObj.CART_SAVED_SUCESS_MESSAGE, "Save cart sucess message")) {
+			reporter.SuccessReport("Save cart sucess message ",
+					"Your cart has been successfully saved message is displayed", "");
+		} else {
+			reporter.failureReport("Save cart error message ",
+					"Your cart has been successfully saved message is not displayed", "", driver);
+
+		}
+		click(CartObj.CONTINUE, "Continue button");
+	}
+
+	public void clickOnSaveCartContentAndSaveCartAndClearCartOff(String cartName) throws Throwable {
+		Thread.sleep(10000);
+		commonLib.spinnerImage();
+		scrollToBottomWithCordinate("500");
+		isElementPresent(CartObj.SAVE_CART_CONTENTS, "Save cart contents");
+		click(CartObj.SAVE_CART_CONTENTS, "Save cart contents");
+		waitForVisibilityOfElement(CartObj.SAVE_CART_CONTENTS_POPUP, "SAVE CART CONTENTS POPUP");
+
+		Thread.sleep(5000);
+		clearData(CartObj.SAVE_CART_INPUT_FIELD);
+		
+		type(CartObj.SAVE_CART_INPUT_FIELD, cartName, "cart name");
+		if(!isCheckBoxSelected(CartObj.CLEAR_MY_DRAFT_SAVED)) {
+			reporter.SuccessReport("Clear my cart after save Checkbox", "Clear my cart after save Checkbox exist", "Clear my cart after save: off");
+		}
+		else {
+			click(CartObj.CLEAR_MY_DRAFT_SAVED,"Clear my drafts check box");
+			reporter.SuccessReport("Clear my cart after save Checkbox", "Clear my cart after save Checkbox exist", "Clear my cart after save: off");
 		}
 		click(CartObj.SAVE_BUTTON, "Save button");
 		waitForVisibilityOfElement(CartObj.CART_SAVED_SUCESS_MESSAGE, "cart save sucess message");
@@ -358,6 +382,7 @@ public class CartLib extends ActionEngine {
 	 */
 	public void openSavedCartFromTools(String cartName) throws Throwable {
 		//waitForVisibilityOfElement(CartObj.ACCOUNT_TOOLS, "ACCOUNT TOOLS");
+		scrollUp();
 		Thread.sleep(10000);
 		if(isElementPresent(InvoiceHistoryLib.COSE_ACCOUNT_TOOLS, "close account tools")) {
 			click(InvoiceHistoryLib.COSE_ACCOUNT_TOOLS, "close account tools");
@@ -458,6 +483,19 @@ public class CartLib extends ActionEngine {
 					"ASN Field does not Exist", "", driver);
 		}
 	}
+	public void verifyPreviousShipmentNotificationInCheckoutDefaults(String previousemail) throws Throwable {
+
+		if (isVisibleOnly(CartObj.SHIPMENT_NOTIFICATION, "ASN field")) {
+		String Email=getText(CartObj.SHIPMENT_NOTIFICATION,"Shipment Notification");
+		if(Email.contains(previousemail)) {
+			reporter.SuccessReport("Verify Defualt mail in ASN Field  Account Management - Account Tools Page", "In ASN Field is Defualt Email Exist as Expected",
+					Email);
+		} else {
+			reporter.failureReport("erify Defualt mail in ASN Field   Account Management - Account Tools Page",
+					"ASN Field Email does not Exist", "", driver);
+		}
+		}
+	}
 
 	public void enterMailIdToNotificationFieldAndVerifySuccessMessage(String mail) throws Throwable {
 		clearData(CartObj.SHIPMENT_NOTIFICATION);
@@ -509,7 +547,7 @@ public class CartLib extends ActionEngine {
 					"Shipment Notification  Confirm via email is Exists", "", driver);
 		} else {
 			reporter.SuccessReport("Verify Shipment Notification  Confirm via email Ship Bill Page",
-					"Shipment Notification  Confirm via email is Exists", "");
+					"Shipment Notification  Confirm via email Not Exists as Expected", "");
 		}
 	}
 
@@ -578,6 +616,9 @@ public class CartLib extends ActionEngine {
 			type(OrderObj.RP_HDL_Txt, rP_HDL_Txt, "Smart Tracker name:");
 			click(OrderObj.CONTINUE_BTN, "additional information::Continue button");
 		}
+		else {
+			reporter.failureReport("order and inforamtion page", "order and inforamtion page is not loaded", "Header level smart tracker is not entered", driver);
+		}
 	}
 
 	/**
@@ -621,9 +662,9 @@ public class CartLib extends ActionEngine {
 
 	public void shippingBillPayInCheckOut(String cardNumber, String cardName, String month, String year,
 			String PONumber,String PORealeseNumber) throws Throwable {
-		click(OrderObj.CONTINUE_BTN, "Continue button of Payment Options"); // clicking continue in Shipping address
+		click(OrderObj.CONTINUE_BTN, "Continue button of Shipping Options"); // clicking continue in Shipping address
 		Thread.sleep(2000);
-		click(OrderObj.CONTINUE_BTN, "Continue button of Payment Options");// clicking continue in Shipping options
+		click(OrderObj.CONTINUE_BTN, "Continue button of Billing Address");// clicking continue in Shipping options
 		Thread.sleep(2000);
 		click(OrderObj.PAYMENT_METHOD_DD, "payment method drop down");
 		click(OrderObj.PAYMENT_METHOD_SELECTION, "payment method selection");
@@ -1860,7 +1901,7 @@ public void verifyProductdetails() throws Throwable {
 	 * @throws Throwable
 	 */
 	public void verifyCartBreadCrumb() throws Throwable {
-		if (waitForVisibilityOfElement(CartObj.CART_LABEL_ON_CART_PAGE, "cart page")) {
+		if (isElementVisible(CartObj.CART_LABEL_ON_CART_PAGE,60, "cart page")) {
 			
 			reporter.SuccessReport("Verify cart page", "User successfully navigated to cart page", "PageDetails : Cart");
 		} 
@@ -1917,9 +1958,9 @@ public void getpartnumberIncartpage() throws Throwable {
 	public void verifyProductGroupQuantityInCart(List<String> quantity, String expectedQty) throws Throwable {
 		for (i = 0; i < quantity.size(); i++) {
 			if (quantity.get(i).equals(expectedQty)) {
-				reporter.SuccessReport("Verify product Quantity ", "Product Quantity : ", "");
+				reporter.SuccessReport("Verify product Quantity ", "Product Quantity verification is successfull for ("+i+") product", "Quantity is: "+expectedQty);
 			} else {
-				reporter.failureReport("Verify product Quantity ", "Product Quantity verification failed. Actual is: ",
+				reporter.failureReport("Verify product Quantity ", "Product Quantity verification failed. Actual is: "+quantity.get(i),
 						"", driver);
 			}
 		}

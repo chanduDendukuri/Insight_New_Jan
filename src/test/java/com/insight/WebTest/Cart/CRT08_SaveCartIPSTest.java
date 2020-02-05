@@ -24,8 +24,9 @@ public class CRT08_SaveCartIPSTest extends CartLib{
 	CommonLib commonLib = new CommonLib();
 	CMTLib cmtLib = new CMTLib();
 	CartLib cartLib = new CartLib();
-	
-
+	ProductDisplayInfoLib prodInfoLib = new ProductDisplayInfoLib();
+	SearchLib search = new SearchLib();
+	CanadaLib canadaLib = new CanadaLib();
 	 // #############################################################################################################
    // #    Name of the Test         : CRT08_SaveCartIPS
    // #    Migration Author         : Cigniti Technologies
@@ -51,27 +52,52 @@ public class CRT08_SaveCartIPSTest extends CartLib{
 								Hashtable<String, String> data = TestUtil.getDataByRowNo("CRT08_SaveCartIPS", TestDataInsight,
 										"Web_Cart", intCounter);
 								TestEngineWeb.reporter.initTestCaseDescription("SaveCartIPS");
-					cmtLib.loginToCMTSearchWebGrpAndUser(data.get("header"), data.get("WebGrp"), data.get("LnameEmailUname"), data.get("ContactName"));
-					cmtLib.setPermissions(data.get("menuName"),data.get("userPermission"));
-					cmtLib.setPermissions(data.get("menuName"),data.get("Enable_Purchasing_Popup"));
+					//cmtLib.loginToCMTSearchWebGrpAndUser(data.get("header"), data.get("WebGrp"), data.get("LnameEmailUname"), data.get("ContactName"));
+					cmtLib.loginToCMT(data.get("header"));
+					cmtLib.searchForWebGroup(data.get("WebGrp"));
+					cmtLib.clickOnTheWebGroup(data.get("WebGrp_Name"));
+					cmtLib.hoverOnManageWebGroupsAndSelectOptions(data.get("Manage_Web_Grp_Options"));
+					cmtLib.searchForaUserAndSelect(data.get("LnameEmailUname"), data.get("ContactName"));
+					
+					cmtLib.setPermissions(data.get("menuName"), data.get("Enable_Purchasing_Popup"));
+					cmtLib.setPermissions(data.get("menuName"), data.get("userPermission"));
+					
 					String mainWindow = parentWindow();
 					cmtLib.clickOnloginAs();
 					switchToWindow(mainWindow);	
-					cartLib.verifyCartIsEmpty();
+					cmtLib.loginVerification(data.get("ContactName"));
+					commonLib.clickOnAccountToolsAndClickOnProductGrp(data.get("Tools_Menu"),
+							data.get("Tools_Menu_DD"));
+					cartLib.deleteSavedCartFromAccountTools();
 					commonLib.searchProduct(data.get("Search_Item"));
+					search.verifyBreadCrumbInSearchResultsPage(data.get("Search_Item"));
+					String searchItem=prodInfoLib.getPartNumberInSearchResultsPage();
 					commonLib.addFirstDisplyedItemToCartAndVerify();
-					commonLib.continueToShopping();
-					commonLib.searchProduct(data.get("Search_Item"));
-					cartLib.clickMorePricesAvilable(1);
-					cartLib.clickOnOpenMarketPrice();
-					cartLib.clickOnAddToCartInAllContractPrices();
-					commonLib.clickCart();
-					String cartName=getRandomString(5)+'@';
+					canadaLib.continueToCheckout();
+					canadaLib.verifyPlaceCartLabel();
+					prodInfoLib.verifyCartPageAndPartDetailsForRecentlyItemDynamically(searchItem);
+					
+					String cartName = "QTPTestCart"+getRandomNumeric(5);
 					cartLib.clickOnSaveCartContentAndSaveCart(cartName);
+					cartLib.verifyCartIsEmpty();
 					commonLib.clickCart();
 					commonLib.verifyCartIsEMpty();
-					cartLib.openSavedCartFromTools(cartName);
-					cartLib.deleteCartFromAccountTools(cartName);
+					
+					search.selectContractInCartPage(data.get("Contract"));
+					commonLib.searchProduct(data.get("Search_Item1"));
+					search.verifyBreadCrumbInSearchResultsPage(data.get("Search_Item1"));
+					String searchItem1=prodInfoLib.getPartNumberInSearchResultsPage();
+					commonLib.addFirstDisplyedItemToCartAndVerify();
+					canadaLib.continueToCheckout();
+					canadaLib.verifyPlaceCartLabel();
+					prodInfoLib.verifyCartPageAndPartDetailsForRecentlyItemDynamically(searchItem1);
+					String cartName1 = "SavdCart"+getRandomNumeric(5);
+					cartLib.clickOnSaveCartContentAndSaveCartAndClearCartOff(cartName1);
+					
+					commonLib.clickCart();
+					commonLib.emptyCartAndVerify();
+					cartLib.deleteSavedCartFromAccountTools();
+					commonLib.clickLogOutLink(data.get("Logout_Header"));
 					   System.out.println("Test completed");
 		 				
 							} catch (Exception e) {

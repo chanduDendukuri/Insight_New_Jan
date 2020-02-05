@@ -2,20 +2,10 @@ package com.insight.WebTest.EUF;
 
 import java.util.Hashtable;
 
+import com.insight.Lib.*;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
-import com.insight.Lib.CMTLib;
-import com.insight.Lib.CanadaLib;
-import com.insight.Lib.CartLib;
-import com.insight.Lib.CommonLib;
-import com.insight.Lib.EndUserFeaturesLib;
-import com.insight.Lib.InvoiceHistoryLib;
-import com.insight.Lib.OrderLib;
-import com.insight.Lib.ProductDetailLib;
-import com.insight.Lib.ProductDisplayInfoLib;
-import com.insight.Lib.SearchLib;
-import com.insight.Lib.ShipBillPayLib;
 import com.insight.accelerators.ReportControl;
 import com.insight.accelerators.TestEngineWeb;
 import com.insight.googledrive.ReportStatus;
@@ -34,6 +24,7 @@ public class EUF01_FCTWebEndUserManageSoldtosTest extends EndUserFeaturesLib{
 	ShipBillPayLib sbpLib=new ShipBillPayLib();
 	CanadaLib canadaLib = new CanadaLib();
 	InvoiceHistoryLib ivhLib=new InvoiceHistoryLib();
+	CommonCanadaLib ccp = new CommonCanadaLib();
 	   
 	    // #############################################################################################################
 		// #       Name of the Test         :  EUF01_FCTWebEndUserManageSoldtos
@@ -87,9 +78,20 @@ public class EUF01_FCTWebEndUserManageSoldtosTest extends EndUserFeaturesLib{
 						clickOnPageNumber(data.get("Page_Number_5"));
 						searchForAvailableAccount(data.get("Account_Name"));
 						getResultsFromCurrentAccountPage();
+						String val=ccp.getResultsValueFromCurrentAccountPage();
 						clickSwitchAccountLink();
 						clickContinueButton();
-						cmtLib.navigateBackToCMT();
+						//assertTrue(ccp.isVisibilityOfWelcomeMessage(),"Welcome message is available");
+					//	cmtLib.navigateBackToCMT();
+						ivhLib.closeAccountTools();
+						ccp.verifyLoggedInAs(data.get("ContactName"));
+						commonLib.clickOnAccountToolsAndClickOnProductGrp(data.get("Tools_Menu"),
+								data.get("Tools_Menu_DD"));
+						clickOnTabInUserProfile(data.get("Tab_Name"));
+						//verifyLoggedInAs(data.get("LnameEmailUname"));
+
+						assertTrue(ccp.getAccountNumber().contains(val),"Switched to Same account");
+/*
 						cmtLib.hoverOverMasterGroupAndSelectChangeGrp();
 						cmtLib.searchForWebGroup(data.get("WebGrp"));
 						cmtLib.manageUsers();
@@ -97,7 +99,7 @@ public class EUF01_FCTWebEndUserManageSoldtosTest extends EndUserFeaturesLib{
 						cmtLib.verifyUserandClick(data.get("ContactName"));
 						cmtLib.clickOnloginAs();
 						switchToChildWindow();
-						ivhLib.closeAccountTools();
+						ivhLib.closeAccountTools();*/
 						/*canadaLib.clickOnSideMenuSelectAccountToolOptions(data.get("Tools_Menu"),
 
 
@@ -106,6 +108,7 @@ public class EUF01_FCTWebEndUserManageSoldtosTest extends EndUserFeaturesLib{
 //BOS
 						commonLib.clickOnAccountToolsAndClickOnProductGrp(data.get("Tools_Menu"),
 								data.get("Tools_Menu_DD"));
+						scrollToBottomWithCordinate("-500");
 						clickOnTabInUserProfile(data.get("Tab_Name"));
 						verifyLoggedInAs(data.get("LnameEmailUname"));
 						searchForAvailableAccount(data.get("Account_Name1"));
@@ -178,7 +181,9 @@ public class EUF01_FCTWebEndUserManageSoldtosTest extends EndUserFeaturesLib{
 						clickOnTabInUserProfile(data.get("Tab_Name"));
 						clickSwitchAccountLink();
 						clickContinueButton();
-*/						commonLib.clickLogOutLink(data.get("Logout_Header"));//fnCloseTest();
+
+*/						Thread.sleep(3000);
+						commonLib.clickLogOutLink(data.get("Logout_Header"));//fnCloseTest();
 
 				/*		cmtLib.loginToCMTSearchWebGrpAndUser(data.get("Header"), data.get("WebGrp"),
 								data.get("LnameEmailUname"), data.get("ContactName"));

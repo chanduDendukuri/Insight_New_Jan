@@ -2,19 +2,11 @@ package com.insight.WebTest.QuoteHistory;
 
 import java.util.Hashtable;
 
+import com.insight.Lib.*;
+import com.insight.ObjRepo.CommonCanadaPage;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
-import com.insight.Lib.CMTLib;
-import com.insight.Lib.CanadaLib;
-import com.insight.Lib.CartLib;
-import com.insight.Lib.CommonLib;
-import com.insight.Lib.InvoiceHistoryLib;
-import com.insight.Lib.MarriottIntlCorpLib;
-import com.insight.Lib.OrderLib;
-import com.insight.Lib.QuoteHistoryLib;
-import com.insight.Lib.SearchLib;
-import com.insight.Lib.ShipBillPayLib;
 import com.insight.accelerators.ReportControl;
 import com.insight.accelerators.TestEngineWeb;
 import com.insight.googledrive.ReportStatus;
@@ -57,7 +49,8 @@ public class QTH05_QuoteHistoryDirectBillCartTest  extends QuoteHistoryLib {
 							OrderLib orderLib=new OrderLib();
 							CanadaLib canadaLib=new CanadaLib();
 							CartLib cartLib=new CartLib();
-							
+							CommonCanadaLib ccp=new CommonCanadaLib();
+
 							CommonLib commonLib = new CommonLib();
 							cmtLib.loginToCMTSearchWebGrpAndUser(data.get("Header"), data.get("WebGrp"),
 									data.get("LnameEmailUname"), data.get("ContactName"));
@@ -74,7 +67,8 @@ public class QTH05_QuoteHistoryDirectBillCartTest  extends QuoteHistoryLib {
 							cartLib.getpartnumberIncartpage();
 							// add product by quick shop
 							verifyAdditemsbyQuickshop(data.get("QuickShopPart"));
-							verifyQuickShopErrorMsg();
+							ccp.verifyQuickShopErrorMsg();
+							assertTrue(verifyDirectClientErrorMessageavailability(),"The required warning message is "+verifyDirectClientErrorMessage());
 							orderLib.createQuote(data.get("Quote_Name"));
 							String refNumber = orderLib.getQuoteReferenceNumber();
 							canadaLib.clickOnSideMenuSelectAccountToolOptions(data.get("Tools_Menu"),  data.get("Tools_Menu_DD"));							
