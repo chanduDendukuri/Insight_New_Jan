@@ -84,7 +84,7 @@ public class CRT23_LoginFromCartPricingTest extends CartLib{
 					
 					orderLib.continueButtonOnAdditionalInformationSection();
 					String priceLogin=cartLib.getSummaryAmountInCart();
-					if(priceLogin.equalsIgnoreCase(summaryAmountNonLoggedIn)) {
+					if(!priceLogin.trim().equalsIgnoreCase(summaryAmountNonLoggedIn.trim())) {
 						reporter.SuccessReport("Verify the Non LoggedIn and LoggedIn list price in SBP Page", "	LoggedIn price changed in SBP Page", "LoggedIn Price: "+priceLogin+"and Non-LoggedIn price: "+summaryAmountNonLoggedIn);
 					}
 					else {
