@@ -118,6 +118,8 @@ public class SBP03_ASNShipNotesTest extends ShipBillPayLib{
 				cartLib.enterInvalidAddtionalNotificationEmailAndVerifyErrorMessage(data.get("Invalid_Email1"));
 				cartLib.clickAddAdditionalNotificationEmail();
 				cartLib.enterValidAddtionalEmail(data.get("Valid_Email1"));
+				cartLib.clickAddAdditionalNotificationEmail();
+				cartLib.enterValidAddtionalEmail(data.get("Valid_Email2"));
 				Thread.sleep(3000);
 				cartLib.shippingBillPayInCheckOut(data.get("Card_Number").toString(), data.get("Card_Name"),
 						data.get("Month"), data.get("Year"), data.get("PONumber"),data.get("POReleaseNumber"));
@@ -126,6 +128,7 @@ public class SBP03_ASNShipNotesTest extends ShipBillPayLib{
 				cartLib.verifyNotificationEmailInShippingAdresses(data.get("Email2_To_verify"));
 				cartLib.verifyNotificationEmailInShippingAdresses(data.get("Email3_To_verify"));
 				cartLib.verifyNotificationEmailInShippingAdresses(data.get("Valid_Email1"));
+				cartLib.verifyNotificationEmailInShippingAdresses(data.get("Valid_Email2"));
 				Thread.sleep(3000);
 				String summaryAmount = cartLib.getSummaryAmountInCart();
 				orderLib.placeOrderAndVerifyReceiptOrderAndDate(summaryAmount);
