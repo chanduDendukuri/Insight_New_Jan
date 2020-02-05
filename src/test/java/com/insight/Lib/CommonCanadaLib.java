@@ -217,4 +217,10 @@ public class CommonCanadaLib extends CommonCanadaPage {
         }
         return ErrorMessage;
     }
+    public boolean visibilityOfReferenceNumber() throws Throwable{
+        return isVisibleOnly(lblReferenceNumberInOrderHistoryPage,"Reference Number in Order history page");
+    }
+    public String getReferenceNumberFromOrderHistoryPage() throws Throwable{
+        return getText(lblReferenceNumberInOrderHistoryPage,"Reference Number in Order history page");
+    }
 }
