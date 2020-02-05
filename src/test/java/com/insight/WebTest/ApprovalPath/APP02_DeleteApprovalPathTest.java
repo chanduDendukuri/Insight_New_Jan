@@ -80,7 +80,7 @@ public class APP02_DeleteApprovalPathTest extends ApprovalPathLib {
 					EnterNewApprovalPath(newApproverPathName);
 					
 					//Select Approvers
-					String approverAdded = SelectApprover(null);
+					String approverAdded = SelectApprover(null,10);
 					
 					Add_Approver_Btn_Click();	
 					
