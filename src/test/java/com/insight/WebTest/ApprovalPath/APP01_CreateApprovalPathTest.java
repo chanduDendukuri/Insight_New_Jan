@@ -127,7 +127,7 @@ public class APP01_CreateApprovalPathTest extends ApprovalPathLib {
 					
 					
 					// Select Approvers and click Add
-					String appName = SelectApprover(null);
+					String appName = SelectApproverAPP01(null);
 					
 					// Add button to add approver
 					Add_Approver_Btn_Click();

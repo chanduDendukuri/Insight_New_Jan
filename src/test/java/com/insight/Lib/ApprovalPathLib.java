@@ -214,7 +214,26 @@ public String RandomApprovalPathName(String Approver_Name) throws Throwable {
 		}
 		return text;
 	}
+	public String SelectApproverAPP01(String Approver_Name) throws Throwable {
+		String text = null;
+		if (Approver_Name != null) {
+			SelectSpecificApprover(Approver_Name);
+		} else {
+			// select approver name
+			List<WebElement> myList = driver.findElements(ALL_APPROVER_OPTIONS);
+			text = (myList.get(0)).getText();
 
+			if (isElementPresent(selectAppNameFromList(text), "Select Approver name from list box")) {
+				//click(selectAppNameFromList(text), "Select Approver name from list box");
+				reporter.SuccessReport("Approval Path Management Page", "Available Approvers Field Exists and Selected",
+						text);
+			} else {
+				reporter.failureReport("Approval Path Management Page", "Available Approvers Field Does Not Exist", "");
+			}
+
+		}
+		return text;
+	}
 	public void Add_Approver_Btn_Click() throws Throwable {
 		if (isElementPresent(SELECT_PATH_BUTTON, "Select Path option")) {
 			reporter.SuccessReport("Click Add on Approval Management Approval Path Management Page",
