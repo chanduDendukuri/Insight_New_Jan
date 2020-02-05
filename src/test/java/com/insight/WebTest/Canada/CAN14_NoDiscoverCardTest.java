@@ -184,10 +184,6 @@ public class CAN14_NoDiscoverCardTest extends CanadaLib {
                     orderLib.shippingOptionsCarrierSelection();
                     // Click continue on shipping options
                     orderLib.billingAddressContinueButton();
-                    //orderLib.termsInPaymentInfo(data.get("PONumber"), data.get("POReleaseNumber"));
-                    //orderLib.termsInPaymentInfo("7989517711", "8886366331");
-					/*	orderLib.selectPaymentInfoMethodCreditCard(data.get("cardNumber"), data.get("cardName"), data.get("month"),
-								data.get("year"),data.get("PO_Number"),data.get("POReleaseNumber"));*/
                     orderLib.selectPaymentInfoMethodCreditCard("6011111111111117", "Chandu Dendukuri", "12",
                             "2020", "01919", "123");
                     orderLib.clickOnReviewOrderButton();

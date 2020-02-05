@@ -623,6 +623,24 @@ public  void verifyDashboard()throws Throwable {
 					"" + userPermissions + " OFF");
 		}
 	}
+	
+	public void setMultiplePermissionsToDisable(String menuName, String userPermission) throws Throwable {
+		click(getUsersTabMenus(menuName), "Roles And Permissions");
+		String permissions[] = userPermission.split(",");
+		for (i = 0; i < permissions.length; i++) {
+			if (!isCheckBoxSelected(getUserPermission(permissions[i]))) {
+				LOG.info(userPermission + " check box already checked.");
+				reporter.SuccessReport(permissions[i] + " Permissions on WebGroup Management Page",
+						"Check Box Field Exists and diasabld", permissions[i]);
+			} else {
+				click(getUserPermission(permissions[i]), "set user permission " + permissions[i] + " is OFF ",
+						permissions[i], permissions[i]);
+			}
+		}
+
+		
+	}
+	
 	public void setPermissionsToDisableOnly( String userPermissions) throws Throwable {
 		//click(getUsersTabMenus(menuName), "Roles And Permissions");
 		if (isCheckBoxSelected(getUserPermission(userPermissions))) {
@@ -671,7 +689,7 @@ public  void verifyDashboard()throws Throwable {
 		type(CartObj.PASSWORD, password, "Password");
 		acceptCookies();
 		click(CartObj.LOG_IN_BUTTON, "LOG IN BUTTON");
-
+		Thread.sleep(10000);
 	}
 
 	/**
@@ -683,7 +701,7 @@ public  void verifyDashboard()throws Throwable {
 	 */
 	public void loginToCMTSearchWebGrpAndUser(String header, String webGrp, String lnameEmailUname, String contactName)
 			throws Throwable {
-
+		acceptCookies();
 		clickLoginLink(header);
 		if (driver.findElement(CartObj.POP_UP_EMAILID).isDisplayed()) {
 			handleWelcomeToInsightBetaPopUp();
@@ -704,6 +722,14 @@ public  void verifyDashboard()throws Throwable {
 		// handleWelcomeToInsightBetaPopUp();
 		// }
 		loginAsEndUser(username, password);
+//		String currentUrl=getCurrentUrl();
+//		System.out.println("currentUrl"+currentUrl);
+//		if(currentUrl.contains("dashboard")) {
+//			reporter.SuccessReport("Verify Insight Home Page", "Insight Home Page Exists", "");
+//		}
+//		else {
+//			reporter.failureReport("Verify Insight Home Page", "Insight Home Page does not Exists", "",driver);
+//		}
 	}
 
 	/**

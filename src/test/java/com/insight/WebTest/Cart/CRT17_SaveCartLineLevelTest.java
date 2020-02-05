@@ -74,7 +74,7 @@ public class CRT17_SaveCartLineLevelTest extends CartLib {
 					cartLib.deleteSavedCartFromAccountTools();
 					commonLib.searchProduct(data.get("PartNumber"));
 					searchLib.verifyBreadCrumbInSearchResultsPage(data.get("PartNumber"));
-					prodInfoLib.getPartNumberInSearchResultsPage();
+					String searchItem=prodInfoLib.getPartNumberInSearchResultsPage();
 					commonLib.addFirstDisplyedItemToCartAndVerify();
 					
 					canadaLib.continueToCheckout();
@@ -99,6 +99,7 @@ public class CRT17_SaveCartLineLevelTest extends CartLib {
 					cartLib.openSavedCartFromTools(cartName);
 					cartLib.addToCartInSavedCart(cartName);
 					canadaLib.verifyPlaceCartLabel();
+					prodInfoLib.verifyCartPageAndPartDetailsForRecentlyItemDynamically(searchItem);
 					orderLib.proceedToCheckout();
 					lineLevelLib.verifyOrderAndItemInfoBreadCrumb();
 					//cartLib.verifyRpHdlTxtisNotPresent(data.get("RP_HDL_Txt"));

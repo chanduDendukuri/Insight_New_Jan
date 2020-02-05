@@ -26,7 +26,8 @@ public class CRT07_SaveCartTest extends CartLib {
 	CartLib cartLib = new CartLib();
 	SearchLib searchLib = new SearchLib();
 	CanadaLib canadaLib = new CanadaLib();
-
+	ProductDisplayInfoLib prodInfoLib = new ProductDisplayInfoLib();
+	SearchLib search = new SearchLib();
 	// #############################################################################################################
 	// # Name of the Test : CRT07_SaveCart
 	// # Migration Author : Cigniti Technologies
@@ -54,44 +55,76 @@ public class CRT07_SaveCartTest extends CartLib {
 							"Web_Cart", intCounter);
 					TestEngineWeb.reporter.initTestCaseDescription("SaveCart");
 
-					cmtLib.loginToCMTSearchWebGrpAndUser(data.get("header"), data.get("WebGrp"),
-							data.get("LnameEmailUname"), data.get("ContactName"));
-					cmtLib.setPermissions(data.get("menuName"), data.get("userPermission"));
+					//cmtLib.loginToCMTSearchWebGrpAndUser(data.get("header"), data.get("WebGrp"),
+							//data.get("LnameEmailUname"), data.get("ContactName"));
+					cmtLib.loginToCMT(data.get("header"));
+					cmtLib.searchForWebGroup(data.get("WebGrp"));
+					cmtLib.clickOnTheWebGroup(data.get("WebGrp_Name"));
+					cmtLib.hoverOnManageWebGroupsAndSelectOptions(data.get("Manage_Web_Grp_Options"));
+					cmtLib.searchForaUserAndSelect(data.get("LnameEmailUname"), data.get("ContactName"));
+					
 					cmtLib.setPermissions(data.get("menuName"), data.get("Enable_Purchasing_Popup"));
+					cmtLib.setPermissions(data.get("menuName"), data.get("userPermission"));
+					cmtLib.setMultiplePermissionsToDisable(data.get("menuName"), data.get("User_Permissions"));
 					String mainWindow = parentWindow();
 					cmtLib.clickOnloginAs();
 					switchToWindow(mainWindow);
-					cartLib.verifyCartIsEmpty();
+					cmtLib.loginVerification(data.get("ContactName"));
+					commonLib.clickOnAccountToolsAndClickOnProductGrp(data.get("Tools_Menu"),
+							data.get("Tools_Menu_DD"));
+					cartLib.deleteSavedCartFromAccountTools();
 					commonLib.searchProduct(data.get("Search_Item"));
+					searchLib.verifyBreadCrumbInSearchResultsPage(data.get("Search_Item"));
+					String searchItem=prodInfoLib.getPartNumberInSearchResultsPage();
 					commonLib.addFirstDisplyedItemToCartAndVerify();
-					commonLib.continueToShopping();
-					commonLib.searchProduct(data.get("Search_Item"));
-					commonLib.addSecondDisplyedItemToCartAndVerify();
+					canadaLib.continueToCheckout();
+					canadaLib.verifyPlaceCartLabel();
+					prodInfoLib.verifyCartPageAndPartDetailsForRecentlyItemDynamically(searchItem);
+					
 					commonLib.searchProduct(data.get("Search_Item2"));
-					cartLib.selectFirstProductDisplay();
-					commonLib.addToCartAndVerify();
-					commonLib.continueToShopping();
+					String searchItem2=prodInfoLib.getPartNumberInSearchResultsPage();
+					commonLib.addFirstDisplyedItemToCartAndVerify();
+					canadaLib.continueToCheckout();
+					canadaLib.verifyPlaceCartLabel();
+					prodInfoLib.verifyCartPageAndPartDetailsForRecentlyItemDynamically(searchItem2);
+					
+					
 					commonLib.searchProduct(data.get("Search_Item3"));
-					cartLib.selectFirstProductDisplay();
+					prodInfoLib.verifyTheManufacturerNumberInProductDetailsPage(data.get("Search_Item3"));
+					search.increaseQuantity(data.get("quantity"));
 					commonLib.addToCartAndVerify();
 					canadaLib.continueToCheckout();
-					String cartName = getRandomString(5) + '@';
+					canadaLib.verifyPlaceCartLabel();
+					prodInfoLib.verifyCartPageAndPartDetailsForRecentlyItemDynamically(data.get("Search_Item3"));
+					
+					String cartName = "QTPTestCart"+getRandomNumeric(5);
 					cartLib.clickOnSaveCartContentAndSaveCart(cartName);
+					cartLib.verifyCartIsEmpty();
 					commonLib.clickCart();
 					commonLib.verifyCartIsEMpty();
+					
 					cartLib.openSavedCartFromTools(cartName);
+					cartLib.addToCartInSavedCart(cartName);
+					canadaLib.verifyPlaceCartLabel();
+					prodInfoLib.verifyCartPageAndPartDetailsForRecentlyItemDynamically(data.get("Search_Item3"));
+					
 					commonLib.clickAccountToolsFromSideMenuAndClickOnProductGrp(data.get("Tools_Menu"),
-							data.get("Tools_Menu_DD"), data.get("Product_Group"), data.get("Product_Name"));
+							data.get("Tools_Menu_DD1"), data.get("Product_Group"), data.get("Product_Name"));
 					searchLib.selectProductGroupAndVerify(data.get("Product_Group"), data.get("Product_Name"));
 					commonLib.clickCart();
 					commonLib.verifyBundleIsAddedToCart();
-					String cartName1 = getRandomString(5) + '@';
-					cartLib.clickOnSaveCartContentAndSaveCart(cartName1);
-					commonLib.clickCart();
+					String cartName1 = "SavedCart"+getRandomNumeric(5);
+					cartLib.clickOnSaveCartContentAndSaveCartAndClearCartOff(cartName1);
+					
 					cartLib.openSavedCartFromTools(cartName1);
-					cartLib.deleteCartFromAccountTools(cartName);
-					cartLib.deleteCartFromAccountTools(cartName1);
-
+					cartLib.openSavedCartFromTools(cartName);
+					commonLib.clickCart();
+					canadaLib.verifyPlaceCartLabel();
+					commonLib.emptyCartAndVerify();
+					commonLib.clickOnAccountToolsAndClickOnProductGrp(data.get("Tools_Menu"),
+							data.get("Tools_Menu_DD"));
+					cartLib.deleteSavedCartFromAccountTools();
+					commonLib.clickLogOutLink(data.get("Logout_Header"));
 					System.out.println("Test completed");
 
 				} catch (Exception e) {
