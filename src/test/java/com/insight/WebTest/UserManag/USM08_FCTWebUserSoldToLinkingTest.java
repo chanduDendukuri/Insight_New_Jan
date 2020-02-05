@@ -68,6 +68,7 @@ public class USM08_FCTWebUserSoldToLinkingTest extends UserManagementLib{
 
 							// Click on Linked Accounts
 							cmtLib.clickCheckOutSettings(data.get("Linked_Accounts"));
+							cmtLib.VerifytheLinkedAccountsText();
 							// Verify AccountName,AccountNumber,Address,AccountStatus,DefaultLogin
 							String[] headers=data.get("Linked_Account_header").split(",");
 							for(i=0;i<headers.length;i++){
