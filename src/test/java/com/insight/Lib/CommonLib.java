@@ -208,15 +208,14 @@ public class CommonLib extends ActionEngine{
 				click(CommonObj.CLOSEBUTTON_COOKIES, "close cookie");
 			}
 			waitForVisibilityOfElement(CartObj.SEARCH,"SEARCH FIELD");
-
-			//type(CartObj.SEARCH,SearchItem,"SEARCHFIELD");
-			//typeUsingJavaScriptExecutor(CartObj.SEARCH,SearchItem,"SEARCHFIELD");
-
-			//Thread.sleep(20000);
+			if(isVisible(CartObj.SEARCH,SearchItem)) {
 			typeForSearchingProduct(CartObj.SEARCH,SearchItem,SearchItem);
 
-			//click(CartObj.SEARCH_BUTTON," SEARCH BUTTON");
 			sendKeysActionsEnter(CartObj.SEARCH);
+			}
+			else {
+				reporter.failureReport("Search field", "Search field is not visible", "", driver);
+			}
 			Thread.sleep(2000);
 				
 		}

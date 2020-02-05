@@ -179,6 +179,7 @@ public class CartLib extends ActionEngine {
 	public void clickOnSaveCartContentAndSaveCart(String cartName) throws Throwable {
 		Thread.sleep(10000);
 		commonLib.spinnerImage();
+		scrollToBottomWithCordinate("500");
 		isElementPresent(CartObj.SAVE_CART_CONTENTS, "Save cart contents");
 		click(CartObj.SAVE_CART_CONTENTS, "Save cart contents");
 		waitForVisibilityOfElement(CartObj.SAVE_CART_CONTENTS_POPUP, "SAVE CART CONTENTS POPUP");
@@ -590,6 +591,9 @@ public class CartLib extends ActionEngine {
 				&& isElementPresent(OrderObj.RP_HDL_Txt, "RP_HDL_Txt")) {
 			type(OrderObj.RP_HDL_Txt, rP_HDL_Txt, "Smart Tracker name:");
 			click(OrderObj.CONTINUE_BTN, "additional information::Continue button");
+		}
+		else {
+			reporter.failureReport("order and inforamtion page", "order and inforamtion page is not loaded", "Header level smart tracker is not entered", driver);
 		}
 	}
 
