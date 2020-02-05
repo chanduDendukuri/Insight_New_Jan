@@ -67,6 +67,7 @@ public class APP02_DeleteApprovalPathTest extends ApprovalPathLib {
 					cmtLib.clickOnloginAs();
 					switchToChildWindow();
 					commonLib.spinnerImage();
+					cmtLib.loginVerification("TU_IUSAdmin TU_IUSAdmin");
 					commonLib.clickOnAccountToolsAndClickOnProductGrp(data.get("Tools_Menu"),
 							data.get("Tools_Menu_DD"));
 
@@ -75,9 +76,8 @@ public class APP02_DeleteApprovalPathTest extends ApprovalPathLib {
 					
 					// Create Create New Approval Path
 					CreateNewApprovalPathLink();
-					
-					//Enter Name
-					EnterNewApprovalPath(data.get("Approvername"));
+					String newApproverPathName = RandomApprovalPathName("QTP Testing");
+					EnterNewApprovalPath(newApproverPathName);
 					
 					//Select Approvers
 					String approverAdded = SelectApprover(null);
@@ -91,13 +91,13 @@ public class APP02_DeleteApprovalPathTest extends ApprovalPathLib {
 					ClickCreateApprovalPathButton();	
 					
 					//Verify Approval path is added in Approval Management page
-					VerifyAppovalPathCreated(data.get("Approvername"));	
+					VerifyAppovalPathCreated(newApproverPathName);	
 					
 					//Select Approval path and Delete
-					DeleteApprovers(data.get("Approvername"));	
+					DeleteApprovers(newApproverPathName);	
 					
 					//Confirm Delete
-					ConfirmDelete(data.get("Approvername"));	
+					ConfirmDelete(newApproverPathName);	
 					
 					//Verify success delete message
 					VerifySuccessDelete();

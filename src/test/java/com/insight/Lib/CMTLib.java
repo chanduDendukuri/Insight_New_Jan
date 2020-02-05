@@ -623,6 +623,24 @@ public  void verifyDashboard()throws Throwable {
 					"" + userPermissions + " OFF");
 		}
 	}
+	
+	public void setMultiplePermissionsToDisable(String menuName, String userPermission) throws Throwable {
+		click(getUsersTabMenus(menuName), "Roles And Permissions");
+		String permissions[] = userPermission.split(",");
+		for (i = 0; i < permissions.length; i++) {
+			if (!isCheckBoxSelected(getUserPermission(permissions[i]))) {
+				LOG.info(userPermission + " check box already checked.");
+				reporter.SuccessReport(permissions[i] + " Permissions on WebGroup Management Page",
+						"Check Box Field Exists and diasabld", permissions[i]);
+			} else {
+				click(getUserPermission(permissions[i]), "set user permission " + permissions[i] + " is OFF ",
+						permissions[i], permissions[i]);
+			}
+		}
+
+		
+	}
+	
 	public void setPermissionsToDisableOnly( String userPermissions) throws Throwable {
 		//click(getUsersTabMenus(menuName), "Roles And Permissions");
 		if (isCheckBoxSelected(getUserPermission(userPermissions))) {
@@ -3647,5 +3665,23 @@ public void verifySetPermissionsDisabled(String userPermissions) throws Throwabl
 		click(CommonObj.AcceptAlerts, "Accept Cookies");
 	}
 	}
-}
+	
+	public void VerifytheLinkedAccountsText() throws Throwable {
+		List<WebElement> list = driver.findElements(LINKEDACCOUNTS);
+		List<String> values = new ArrayList<String>();
+			for (i = 0; i <49; i++) {
+				if(isVisibleOnly(LinkedAccountsText,"Linked Accounts Data")) {
+					for(i=0;i<6;i++) {
+					List<WebElement> list2 = driver.findElements(LinkedAccountsText);
+					for (i = 0; i <= list2.size(); i++) {
+						String textlinkedaccount= list2.get(i).getText().trim();
+						System.out.println(textlinkedaccount);
+						values.add(textlinkedaccount);
+				}
+					reporter.SuccessReport("Verify Linked Accounts Data", "Data", "Data:"+values);
+					}
+			}
+		}
+	}
 
+}
