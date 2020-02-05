@@ -285,7 +285,7 @@ public class CMTLib extends CMTObj {
 			if (isCheckBoxSelected(getUserPermission(permissions[i]))) {
 				LOG.info(userPermission + " check box already checked.");
 				reporter.SuccessReport(permissions[i] + " Permissions on WebGroup Management Page",
-						"Check Box Field Exists and Enabled", permissions[i]);
+						"Check Box Field Exists and Enabled", permissions[i]+" ON");
 			} else {
 				click(getUserPermission(permissions[i]), "set user permission " + permissions[i] + " is ON ",
 						permissions[i], permissions[i]);
