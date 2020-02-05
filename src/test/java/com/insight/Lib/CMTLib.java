@@ -671,7 +671,7 @@ public  void verifyDashboard()throws Throwable {
 		type(CartObj.PASSWORD, password, "Password");
 		acceptCookies();
 		click(CartObj.LOG_IN_BUTTON, "LOG IN BUTTON");
-
+		Thread.sleep(10000);
 	}
 
 	/**
@@ -704,6 +704,14 @@ public  void verifyDashboard()throws Throwable {
 		// handleWelcomeToInsightBetaPopUp();
 		// }
 		loginAsEndUser(username, password);
+//		String currentUrl=getCurrentUrl();
+//		System.out.println("currentUrl"+currentUrl);
+//		if(currentUrl.contains("dashboard")) {
+//			reporter.SuccessReport("Verify Insight Home Page", "Insight Home Page Exists", "");
+//		}
+//		else {
+//			reporter.failureReport("Verify Insight Home Page", "Insight Home Page does not Exists", "",driver);
+//		}
 	}
 
 	/**
