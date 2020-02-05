@@ -101,7 +101,8 @@ public class QuoteHistoryObj extends ActionEngine {
 		 }
 		 public static By ERROR_MSG = By.xpath("//div[@class='alert']");
 		 public static By QUICKSHOP_ERROR_MSG = By.xpath("//span[@class='columns iw-message__text']");
-		 
+		 public static By DirectClientQUICKSHOP_ERROR_MSG = By.xpath("//span[@class='columns iw-message__text' and contains(text(),'system indicates that a separate agreement with the Publisher is required for the procurement of these software items. Please contact your Insight Account Executive for more information')]");
+
 		 public static By getContactName(String contactName){
 			 return By.xpath("//div[@class='columns small-12 medium-4']//p[contains(.,'"+contactName+"')]");
 		 }

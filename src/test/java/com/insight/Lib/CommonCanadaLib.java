@@ -1,9 +1,7 @@
 package com.insight.Lib;
 
-import com.insight.ObjRepo.CommonCanadaPage;
+import com.insight.ObjRepo.*;
 
-import  com.insight.ObjRepo.CanadaObj;
-import com.insight.ObjRepo.CommonObj;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 
@@ -208,4 +206,15 @@ public class CommonCanadaLib extends CommonCanadaPage {
         }
     }
 
+    public String verifyQuickShopErrorMsg() throws Throwable {
+        String ErrorMessage=null;
+        if (isElementPresent(QUICKSHOP_ERROR_MSG, "Error Msg Present")) {
+             ErrorMessage = getText(QUICKSHOP_ERROR_MSG, "Error Msg Present");
+            reporter.failureReport("Verify quick shop Error Message", " quick shop Error Message is present", ErrorMessage,driver);
+        } else {
+
+            reporter.SuccessReport("Verify quick shop Error Message", "quick shop Error Message is not present", "true",driver);
+        }
+        return ErrorMessage;
+    }
 }
