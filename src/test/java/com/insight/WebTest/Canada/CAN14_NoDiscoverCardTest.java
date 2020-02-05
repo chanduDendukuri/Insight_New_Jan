@@ -66,8 +66,10 @@ public class CAN14_NoDiscoverCardTest extends CanadaLib {
                     Thread.sleep(9000);
 //Canada verification
 
-                    shipbLib.verifyWEbsiteIsCannada();
-                    canadaLib.verifyCanadaWebgroup();
+                   // shipbLib.verifyWEbsiteIsCannada();
+                    ccp.verifyCompanyLogosAvailability();
+                    assertTrue(ccp.verifyCanadaFlagAvailability(),"Logged with Canada user");
+                  //  canadaLib.verifyCanadaWebgroup();
 
                     //canadaLib.getWeGrpDDValues();
 
@@ -187,34 +189,11 @@ public class CAN14_NoDiscoverCardTest extends CanadaLib {
                     orderLib.selectPaymentInfoMethodCreditCard("6011111111111117", "Chandu Dendukuri", "12",
                             "2020", "01919", "123");
                     orderLib.clickOnReviewOrderButton();
+                    assertTrue(ccp.verifyPlaceOrderHeader(),"Place order header is visible");
+                    assertTrue(ccp.verifyDiscoveryCardAvailability(),"Available Credit card name " + ccp.getDiscoveryCardInformation()) ;
 
 //verify place order
 //Discovery card availability nneeds to be verifed in shipbill page
-
-//*************************************************************************** OLD CODE ****************************************************************************
-                    commonLib.searchProduct(data.get("ProductName"));
-                    commonLib.addFirstDisplyedItemToCartAndVerify();
-                    continueToCheckout();
-                    orderLib.proceedToCheckout();
-                    cartLib.clickOnContinueButtonInAddInformtion();
-                    canadaLib.verifySBP();
-                    orderLib.shippingBillPayContinueButton();
-                    orderLib.shippingOptionsCarrierSelection(); // Click continue on shipping options
-                    orderLib.shippingBillPayContinueButton(); // Billing address continue button
-                    orderLib.selectPaymentInfoMethodCreditCard(data.get("cardNumber"), data.get("cardName"), data.get("month"),
-                            data.get("year"), data.get("PO_Number"), data.get("POReleaseNumber"));
-                    orderLib.clickOnReviewOrderButton();
-                    mic.SwitchWebGroup(data.get("webGroup"));
-                    verifyCountry(data.get("Country"));
-                    commonLib.searchProduct(data.get("ProductName"));
-                    commonLib.addFirstDisplyedItemToCartAndVerify();
-                    continueToCheckout();
-                    orderLib.proceedToCheckout();
-                    cartLib.clickOnContinueButtonInAddInformtion();
-                    orderLib.clickContinueOnLLIAndShipBillPaySections(); // Billing address continue button
-                    orderLib.selectPaymentInfoMethodCreditCard(data.get("discoverNumber"), data.get("cardName"), data.get("month"),
-                            data.get("year"), data.get("PO_Number"), data.get("POReleaseNumber"));
-                    orderLib.clickOnReviewOrderButton();
 
                     commonLib.clickLogOutLink(data.get("Logout_Header"));
                     System.out.println("Test completed");

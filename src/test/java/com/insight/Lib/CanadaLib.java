@@ -792,6 +792,7 @@ Thread.sleep(2000);
 	}
 
 	public void CandaHomePageVerification() throws Throwable {
+
 		if (isVisibleOnly(CANADA_FLAG, "Canada Flag")) {
 			reporter.SuccessReport("Verify Canada Web Site Login", "User is Logged into Canada Insight", "");
 		} else {
