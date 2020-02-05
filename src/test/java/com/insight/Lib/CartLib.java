@@ -701,9 +701,9 @@ public class CartLib extends ActionEngine {
 	 */
 	public void verifyRpHdlTxt(String rpHdlText) throws Throwable {
 		if (isElementPresent(CartObj.verifyRpHdlText(rpHdlText), "rpHdl Text")) {
-			reporter.SuccessReport("Verify header level smart tracker ", "" + rpHdlText + " is displayed", "");
+			reporter.SuccessReport("Verify header level smart tracker ", "" + rpHdlText + " is displayed", rpHdlText);
 		} else {
-			reporter.failureReport("Verify header level smart tracker", "" + rpHdlText + " is not displayed", "", driver);
+			reporter.failureReport("Verify header level smart tracker", "" + rpHdlText + " is not displayed", rpHdlText, driver);
 
 		}
 	}

@@ -152,20 +152,19 @@ public class CAN14_NoDiscoverCardTest extends CanadaLib {
                     assertTrue(driver.getCurrentUrl().contains("US"),"US URL launched");
 //Web group ValidationH
                   //  canadaLib.verifyCanadaWebgroup();
-                    ccp.clickOnCloseButtonOnWelcomeInsightPopup();
+                    cmtLib.handlebetaPopup();
                     shipbLib.PaymentandCardsTextverify(data.get("Tools_Menu"), data.get("Tools_Menu_DD"), data.get("tabName2"));
                     //clickOnEnterACard(data.get("Creditcard"));
-                    ccp.clickOnCloseButtonOnWelcomeInsightPopup();
+                    cmtLib.handlebetaPopup();
                     clickOnEnterNewCard();
-
+scrollToBottomWithCordinate("200");
 //verification disco();
                         getListOfCardTypes();
                     ccp.clickOnAccountToolsAndClickOnProductGrp("My Company");
                    // ccp.clickOnAccountToolsAndClickOnProductGrp(data.get("Tools_Menu1"));
-                    ccp.clickOnCloseButtonOnWelcomeInsightPopup();
+                    cmtLib.handlebetaPopup();
                     commonLib.clickOnAccountToolsAndClickOnProductGrp("Orders", "My Requisition History");
-                    ccp.clickOnCloseButtonOnWelcomeInsightPopup();
-
+                    cmtLib.handlebetaPopup();
                     commonLib.searchProduct("HP Workstations");
                     //searchLib.verifyTheResultsForSearchTerm(data.get("Search_Item"));
                     searchLib.verifyTheResultsForSearchTerm("HP Workstations");

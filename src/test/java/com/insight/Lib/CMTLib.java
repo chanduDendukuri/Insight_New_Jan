@@ -3684,4 +3684,10 @@ public void verifySetPermissionsDisabled(String userPermissions) throws Throwabl
 		}
 	}
 
+	public void handlebetaPopup() throws Throwable{
+
+		if (driver.findElement(CartObj.POP_UP_EMAILID).isDisplayed()) {
+			handleWelcomeToInsightBetaPopUp();
+		}
+	}
 }
