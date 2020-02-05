@@ -72,6 +72,7 @@ public class LNL04_CopyLineLevelDataIPSTest  extends LineLevelInfoLib{
 						searchLib.searchInHomePage(data.get("SearchText1"));
 						searchLib.verifyTheResultsForSearchTerm(data.get("SearchText1"));
 						cartLib.selectFirstProductDisplay();
+						String contractOnInfoPage1=commonLib.contractOnProductDetailPage();
 						String mfrNumber1=prodLib.getInsightPartNumberInProductInfopage();
 						commonLib.addToCartAndVerify();
 						orderLib.continueToCheckOutOnAddCart();
@@ -82,6 +83,7 @@ public class LNL04_CopyLineLevelDataIPSTest  extends LineLevelInfoLib{
 						searchLib.searchInHomePage(data.get("SearchText2"));
 						searchLib.verifyTheResultsForSearchTerm(data.get("SearchText2"));
 						cartLib.selectFirstProductDisplay();
+						String contractOnInfoPage2=commonLib.contractOnProductDetailPage();
 						String mfrNumber2=prodLib.getInsightPartNumberInProductInfopage();
 						commonLib.addToCartAndVerify();
 						orderLib.continueToCheckOutOnAddCart();
@@ -101,9 +103,9 @@ public class LNL04_CopyLineLevelDataIPSTest  extends LineLevelInfoLib{
 						cartLib.verifyItemInCartByInsightPart(mfrNumber3);
 						// Verify selected contract in cart page
 						cartLib.verifyContractNameInCart(data.get("Contract_Name1"));
+						cartLib.verifyContractNameInCart(data.get(""));   
 						
 						// Select new contract  - Open Market 
-				        // *** verify US contract in the cart *****///&&&&&&&&&&&&&&&&&&&&&&&&&&&		
 						searchLib.selectContract(data.get("Contract_Name2"));
 						// Verify contract page
 						pipLib.verifyWelcomePage();
@@ -117,11 +119,10 @@ public class LNL04_CopyLineLevelDataIPSTest  extends LineLevelInfoLib{
 						canadaLib.verifyPlaceCartLabel();
 						cartLib.verifyItemInCartByInsightPart(mfrNumber4);
 						
-						// *** verify 3 contracts in the cart *****///&&&&&&&&&&&&&&&&&&&&&&&&&&&	
-						
-						// Verify selected contract in cart page
+						// Verify selected 3 contracts in cart page
 						cartLib.verifyContractNameInCart(data.get("OpenMarket"));
 						cartLib.verifyContractNameInCart(data.get("Contract_Name1"));
+						cartLib.verifyContractNameInCart(data.get("Contract_Name1"));  
 						orderLib.proceedToCheckout();  // Proceed to checkout
 						orderLib.enterReportingDetailsInLineLevelInfo(data.get("REPORTING_FIELD_4"), data.get("REPORTING_FIELD_5"), data.get("REPORTING_FIELD_6"));
 						selectDiversityPartner(data.get("Diversity_Partner1"),mfrNumber3);
@@ -154,10 +155,20 @@ public class LNL04_CopyLineLevelDataIPSTest  extends LineLevelInfoLib{
 						assertTextStringMatching(reportingfield5, "");
 						assertTextStringMatching(reportingfield6, "");
 						orderLib.enterReportingDetailsInLineLevelInfo(data.get("REPORTING_FIELD_4"), data.get("REPORTING_FIELD_5"), data.get("REPORTING_FIELD_6"));
+						
 						// select second options from DD 
-						selectDiversityPartner(data.get("Diversity_Partner1"),mfrNumber2);
-						clickCopyToAllLink(mfrNumber2);
-			
+						selectDiversityPartner(data.get("Diversity_Partner1"),mfrNumber1);
+						clickCopyToAllLink(mfrNumber1);
+						clickOnLineLevelOptionalLinkByPartNum(mfrNumber2);
+						verifyDiversityPartnerexists(data.get("Diversity_Partner1"),mfrNumber2);
+						clickOnLineLevelOptionalLinkByPartNum(mfrNumber3);
+						verifyDiversityPartnerexists(data.get("Diversity_Partner1"),mfrNumber3);
+						clickClearLink(mfrNumber3);
+						verifyDiversityPartnerexists("Select a partner",mfrNumber3);
+						// filling all reporting fields in part 1
+						orderLib.enterReportingDetailsInLineLevelInfo(data.get("REPORTING_FIELD_4"), data.get("REPORTING_FIELD_5"), data.get("REPORTING_FIELD_6"));
+						
+						
 						// click on 3rd part and check out all the fields copied 
 						// clear all in 3rd part - all parts fields will be cleared
 						// make sure data is cleared
@@ -167,7 +178,7 @@ public class LNL04_CopyLineLevelDataIPSTest  extends LineLevelInfoLib{
 						orderLib.clickContinueOnLineLevelInfo(); // click continue on LLI 
 						
 						// verify the reporting fields are exists
-						
+						verifyContractSpecificInfoOnPlaceOrderPage();
 						
 						commonLib.clickLogOutLink(data.get("Logout"));
 						

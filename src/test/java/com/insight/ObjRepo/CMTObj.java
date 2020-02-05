@@ -525,7 +525,8 @@ public static By lnkDeleteProductGroups=By.xpath("//*[text()=' Delete Product Gr
 	public static By LinkedAccountHeaders(String header) {
 		return By.xpath("//div[@class='linkedAccountsResultsDiv']//tr//th[contains(text(),'" + header + "')]");
 	}
-
+    public static By LINKEDACCOUNTS=By.xpath("//tr[@id='linkedAccountsResultsResultsRow']");
+    public static By LinkedAccountsText=By.xpath("//tr[@id='linkedAccountsResultsResultsRow']/td");
 	public static By getDefaultLoginRadioButton(String accountNum) {
 		return By.xpath("//input[@id='" + accountNum + "_linkedAccountRadioButton']");
 	}

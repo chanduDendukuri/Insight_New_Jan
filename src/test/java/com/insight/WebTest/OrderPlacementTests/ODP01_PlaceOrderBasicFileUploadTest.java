@@ -17,8 +17,9 @@ public class ODP01_PlaceOrderBasicFileUploadTest extends OrderLib{
 	SearchLib searchLib = new SearchLib();
 	CommonLib commonLib = new CommonLib();
 	CartLib cartLib = new CartLib();
-	ProductDisplayInfoLib prodLib = new ProductDisplayInfoLib();
 	OrderLib orderLib =new OrderLib();
+	CanadaLib canadaLib=new CanadaLib();
+	ProductDetailLib prodLib=new ProductDetailLib();
 
 	// #############################################################################################################
 	// #    Name of the Test         : ODP01_PlaceOrderBasicFileUpload
@@ -59,22 +60,26 @@ public class ODP01_PlaceOrderBasicFileUploadTest extends OrderLib{
 
 						// Login As to UAT / WEB
 						searchLib.searchInHomePage(data.get("SearchText"));
-						commonLib.verifyDisplayedProductDetails(data.get("SearchText"));
-
+						searchLib.verifyBreadCrumbInSearchResultsPage(data.get("SearchText"));
+						cartLib.selectFirstProductDisplay();
+						String mfrNumber1=prodLib.getInsightPartNumberInProductInfopage();
 						// Cart verification
 						commonLib.addToCartAndVerify();
-						continueToCheckOutOnAddCart();
-						cartLib.verifyItemAddedInCartByMfrNumber(data.get("SearchText"));
-
+						orderLib.continueToCheckOutOnAddCart();
+						canadaLib.verifyPlaceCartLabel();
+						cartLib.verifyItemInCartByInsightPart(mfrNumber1);
+						prodInfoLib.verifyCartPageAndPartDetails();
+						
 						// Proceed to Checkout
 						proceedToCheckout();
 						verifyFileUploadOption(data.get("File_Path")); // Need to add verification for File upload
 
-
+						clickOnAdditionalInfoContinueButton();
 						clickContinueOnLineLevelInfo();
-						shippingBillPayContinueButton();
+						canadaLib.verifySBP();
+						clickContinueOnShippingAddress();
 						shippingOptionsCarrierSelection();
-						shippingBillPayContinueButton();
+						billingAddressContinueButton();
 						selectPaymentInfoMethodCreditCard(data.get("Card_Number").toString(), data.get("Card_Name"),
 								data.get("Month"), data.get("Year"),data.get("PO_Number"),data.get("POReleaseNumber"));
 						clickOnReviewOrderButton();
@@ -89,7 +94,7 @@ public class ODP01_PlaceOrderBasicFileUploadTest extends OrderLib{
 
 						// verifying cart in Receipt page
 						verifyYourCartOnReceiptPage(data.get("SearchText"));
-
+						prodInfoLib.verifyCartPageAndPartDetails();
 						// fnCloseTest();
 						System.out.println("Test completed");
 					} catch (Exception e) {
