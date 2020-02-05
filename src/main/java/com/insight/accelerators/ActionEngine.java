@@ -682,11 +682,11 @@ public class ActionEngine extends TestEngineWeb {
 			
 			if (!status) {
 				if (reportIndicator) {
-					reporter.failureReport("Click : " + locatorName, msgClickFailure ,locatorName, driver1);
+					reporter.failureReport("Click : " + locatorName, msgClickFailure ,"<b>"+locatorName+"/b", driver1);
 				}
 			} else {
 				
-				reporter.SuccessReport("Click : " + locatorName, "Successfully Clicked On " ,locatorName);
+				reporter.SuccessReport("Click : " + locatorName, "Successfully Clicked On " ,"<b>"+locatorName+"</b>");
 				 
 			}
 			}
@@ -1017,7 +1017,7 @@ public class ActionEngine extends TestEngineWeb {
 				}
 			} else {
 				LOG.info("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
-				reporter.SuccessReport("Enter text in :: " + locatorName, msgTypeSuccess,locatorName+" "+testData);
+				reporter.SuccessReport("Enter text in :: " + locatorName, msgTypeSuccess,locatorName+"<b> "+testData+"</b>");
 			}
 			reportIndicator = true;
 		}

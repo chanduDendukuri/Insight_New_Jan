@@ -247,5 +247,19 @@ public class CommonCanadaLib extends CommonCanadaPage {
 public String getAccountNumber() throws Throwable{
         return getText(llAccountNumber,"Account number");
 }
+    public void verifyLoggedInAs(String loggedInUser) throws Throwable {
+        String text=getText(WelcomeMessageAtAccountToolPage, "You are logged in as");
+        String str = loggedInUser;
+        String[] arrOfStr = str.split(" ");
+        String username= arrOfStr[0];
+        if(text.toUpperCase().contains(username.toUpperCase())) {
+            reporter.SuccessReport("System displays User Name on Current Account Tab in Account Management -Account Tools Page", "User Name on Current Account Tab is Exists",loggedInUser);
+        }
+        else {
+            reporter.failureReport("System displays User Name on Current Account Tab in Account Management -Account Tools Page", "User Name on Current Account Tab is Not Exists",loggedInUser,driver);
+
+        }
+    }
+
 }
 

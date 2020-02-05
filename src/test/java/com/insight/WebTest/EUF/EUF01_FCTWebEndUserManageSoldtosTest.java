@@ -84,7 +84,7 @@ public class EUF01_FCTWebEndUserManageSoldtosTest extends EndUserFeaturesLib{
 						//assertTrue(ccp.isVisibilityOfWelcomeMessage(),"Welcome message is available");
 					//	cmtLib.navigateBackToCMT();
 						ivhLib.closeAccountTools();
-						verifyLoggedInAs(data.get("LnameEmailUname"));
+						ccp.verifyLoggedInAs(data.get("ContactName"));
 						commonLib.clickOnAccountToolsAndClickOnProductGrp(data.get("Tools_Menu"),
 								data.get("Tools_Menu_DD"));
 						clickOnTabInUserProfile(data.get("Tab_Name"));
@@ -108,6 +108,7 @@ public class EUF01_FCTWebEndUserManageSoldtosTest extends EndUserFeaturesLib{
 //BOS
 						commonLib.clickOnAccountToolsAndClickOnProductGrp(data.get("Tools_Menu"),
 								data.get("Tools_Menu_DD"));
+						scrollToBottomWithCordinate("-500");
 						clickOnTabInUserProfile(data.get("Tab_Name"));
 						verifyLoggedInAs(data.get("LnameEmailUname"));
 						searchForAvailableAccount(data.get("Account_Name1"));
@@ -180,7 +181,9 @@ public class EUF01_FCTWebEndUserManageSoldtosTest extends EndUserFeaturesLib{
 						clickOnTabInUserProfile(data.get("Tab_Name"));
 						clickSwitchAccountLink();
 						clickContinueButton();
-*/						commonLib.clickLogOutLink(data.get("Logout_Header"));//fnCloseTest();
+
+*/						Thread.sleep(3000);
+						commonLib.clickLogOutLink(data.get("Logout_Header"));//fnCloseTest();
 
 				/*		cmtLib.loginToCMTSearchWebGrpAndUser(data.get("Header"), data.get("WebGrp"),
 								data.get("LnameEmailUname"), data.get("ContactName"));
