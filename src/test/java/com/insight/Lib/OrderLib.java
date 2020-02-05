@@ -359,19 +359,19 @@ List<String> orderdetails = new ArrayList<String>();
                //Discussed with Krishna and it is not required for validation hence commented By chandu
 
 			  // date ordered verification
-			  /*if (isElementPresent(DATE_ORDERED, "Date ordered")) {
+			  if (isElementPresent(DATE_ORDERED, "Date ordered")) {
 				String dateOrdered = getText(DATE_ORDERED, "Date ordered");
 				String actualDate = getCurrentDateTime("dd-MMM-yyyy");
 
 				
 
-				*//*if (actualDate.contains(dateOrdered)) {
+				if (actualDate.contains(dateOrdered)) {
 					orderdetails.add(actualDate);
 					reporter.SuccessReport("Verify the Date ordered ", " date ordered verification is successfull","Ordered Date : "+dateOrdered);
 				} else {
 					reporter.failureReport("Verify the Date ordered ", " date ordered verification is not successfull : "+dateOrdered+" .Expected Date :",actualDate,driver);
-				}*//*
-			}*/
+				}
+			}
 		}
 		return orderdetails;
 	}
