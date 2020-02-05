@@ -167,14 +167,17 @@ public class CommonCanadaLib extends CommonCanadaPage {
        /* reporter.SuccessReport("String Searched::","", expectedName);
         reporter.SuccessReport("Result Found::","", actualName);*/
         String[] names = expectedName.split(" ");
-        for (int index = 0; index < names.length; index++) {
-            if (!actualName.toLowerCase().contains(names[index].toLowerCase())) {
-                reporter.failureReport("Result Validation", "Searched String is " + expectedName +
-                        " mismatched with result found " + actualName, "false", driver);
+        for(int index = 0; index < names.length; index++)
+        {
+            if(!actualName.toLowerCase().contains(names[index].toLowerCase()))
+            {
+                reporter.failureReport("Recently Viewd Products","Searched String is "+expectedName+
+                        " mismatched with result found "+actualName,"false",driver);
                 return false;
-            } else {
-                reporter.SuccessReport("Result Validation", "Searched String is " + expectedName +
-                        " mismatched with result found " + actualName, expectedName + "and " + actualName + " Both are matched");
+            }else{
+                reporter.SuccessReport("Recently Viewd Products","Searched String ::"+expectedName+
+                        " Exists Recently Viewed Product",expectedName+ "and " + actualName + " Both are matched" );
+
             }
         }
         return true;

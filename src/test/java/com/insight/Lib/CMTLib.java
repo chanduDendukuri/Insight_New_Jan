@@ -623,6 +623,24 @@ public  void verifyDashboard()throws Throwable {
 					"" + userPermissions + " OFF");
 		}
 	}
+	
+	public void setMultiplePermissionsToDisable(String menuName, String userPermission) throws Throwable {
+		click(getUsersTabMenus(menuName), "Roles And Permissions");
+		String permissions[] = userPermission.split(",");
+		for (i = 0; i < permissions.length; i++) {
+			if (!isCheckBoxSelected(getUserPermission(permissions[i]))) {
+				LOG.info(userPermission + " check box already checked.");
+				reporter.SuccessReport(permissions[i] + " Permissions on WebGroup Management Page",
+						"Check Box Field Exists and diasabld", permissions[i]);
+			} else {
+				click(getUserPermission(permissions[i]), "set user permission " + permissions[i] + " is OFF ",
+						permissions[i], permissions[i]);
+			}
+		}
+
+		
+	}
+	
 	public void setPermissionsToDisableOnly( String userPermissions) throws Throwable {
 		//click(getUsersTabMenus(menuName), "Roles And Permissions");
 		if (isCheckBoxSelected(getUserPermission(userPermissions))) {
