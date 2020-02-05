@@ -1032,6 +1032,11 @@ public class SearchLib extends CommonObj {
 			List<WebElement> myList1=driver.findElements(ADD_ITEMS_CHECKBOX);
 			for (int j = 0; j < myList1.size(); j++) {
 				myList1.get(j).click();
+				if(myList1.get(j).isSelected()){
+			          reporter.SuccessReport("verify the check box checked or not","Check box ("+j+") is checked ","");
+		   }else {
+			   reporter.failureReport("verify the checkbox checked or not","check box is not checked","");
+		   }
 				Thread.sleep(3000);
 			}
 			click(ADD_TO_ORDER, "Add to oreder button","ADD TO ORDER");
