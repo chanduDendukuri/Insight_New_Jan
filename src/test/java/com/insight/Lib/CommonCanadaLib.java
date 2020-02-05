@@ -250,5 +250,47 @@ public class CommonCanadaLib extends CommonCanadaPage {
 public String getAccountNumber() throws Throwable{
         return getText(llAccountNumber,"Account number");
 }
+    public void verifyLoggedInAs(String loggedInUser) throws Throwable {
+        String text=getText(WelcomeMessageAtAccountToolPage, "You are logged in as");
+        String str = loggedInUser;
+        String[] arrOfStr = str.split(" ");
+        String username= arrOfStr[0];
+        if(text.toUpperCase().contains(username.toUpperCase())) {
+            reporter.SuccessReport("System displays User Name on Current Account Tab in Account Management -Account Tools Page", "User Name on Current Account Tab is Exists",loggedInUser);
+        }
+        else {
+            reporter.failureReport("System displays User Name on Current Account Tab in Account Management -Account Tools Page", "User Name on Current Account Tab is Not Exists",loggedInUser,driver);
+
+        }
+    }
+
+    public boolean verifyCanadaFlag() throws Throwable{
+        return isVisibleOnly(CAFlag,"Canada Flag");
+    }
+
+    public boolean verifyCanadaFlagAvailability() throws Throwable{
+        click(dd_WebGrp, "WebGrp dropdown", "");
+        boolean a= isVisibleOnly(CAFlagSelected,"Canada Flag");
+        click(dd_WebGrp, "WebGrp dropdown", "");
+        return a;
+    }
+    public void verifyCompanyLogosAvailability() throws Throwable{
+        click(dd_WebGrp, "WebGrp dropdown", "WebGroup ");
+       List<WebElement> logos=driver.findElements(countryLogos);
+       List<WebElement> logoName=driver.findElements(countryNames);
+       for(int i=0;i<logos.size();i++){
+          assertTrue( logos.get(i).isDisplayed(),"Country name is " + logoName.get(i).getText());
+       }
+        click(dd_WebGrp, "WebGrp dropdown", "WebGroup ");
+    }
+    public boolean verifyPlaceOrderHeader() throws Throwable{
+        return isVisibleOnly(PLACE_ORDER_PAGE_TEXT,"Place order header");
+    }
+    public boolean verifyDiscoveryCardAvailability() throws Throwable{
+        return isVisibleOnly(discoveryCardInfo,"DiscoveryCard Availablility ");
+    }
+    public String getDiscoveryCardInformation() throws Throwable{
+  return  getText(discoveryCardInfo,"DiscoveryCard Availablility ");
+    }
 }
 

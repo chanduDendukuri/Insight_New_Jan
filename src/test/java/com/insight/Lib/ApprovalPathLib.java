@@ -4,6 +4,7 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -43,7 +44,14 @@ public class ApprovalPathLib extends ApprovalPathObj {
 					"Approval Path Name Field Does Not Exist", "");
 		}
 	}
-
+public String RandomApprovalPathName(String Approver_Name) throws Throwable {
+	
+	SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+	Date date = new Date();  
+	String newApprovername = Approver_Name+formatter.format(date);
+	return newApprovername;
+	
+}
 	public String CreateNewApprovalClick() throws Throwable {
 		// select approver name
 		List<WebElement> myList = driver.findElements(ALL_APPROVER_OPTIONS);
@@ -79,6 +87,15 @@ public class ApprovalPathLib extends ApprovalPathObj {
 					"Created Approver Path is Exists and Verified", "");
 		} else {
 			reporter.failureReport("Verify Approval Path is Added on Approval Management Approval Path Management Page",
+					"Created Approver Path Does Not Exist", "");
+		}
+	}
+	public void verifySearchresults(String Approver_Name) throws Throwable {
+		if (isElementPresent(getCreatedApproverPath(Approver_Name), "Approval management page")) {
+			reporter.failureReport("Verify Approval Path is Added on Approval Management Approval Path Management Page",
+					"Created Approver Path is Exists and Verified", "");
+		} else {
+			reporter.SuccessReport("Verify Approval Path is Added on Approval Management Approval Path Management Page",
 					"Created Approver Path Does Not Exist", "");
 		}
 	}
@@ -197,7 +214,26 @@ public class ApprovalPathLib extends ApprovalPathObj {
 		}
 		return text;
 	}
+	public String SelectApproverAPP01(String Approver_Name) throws Throwable {
+		String text = null;
+		if (Approver_Name != null) {
+			SelectSpecificApprover(Approver_Name);
+		} else {
+			// select approver name
+			List<WebElement> myList = driver.findElements(ALL_APPROVER_OPTIONS);
+			text = (myList.get(0)).getText();
 
+			if (isElementPresent(selectAppNameFromList(text), "Select Approver name from list box")) {
+				//click(selectAppNameFromList(text), "Select Approver name from list box");
+				reporter.SuccessReport("Approval Path Management Page", "Available Approvers Field Exists and Selected",
+						text);
+			} else {
+				reporter.failureReport("Approval Path Management Page", "Available Approvers Field Does Not Exist", "");
+			}
+
+		}
+		return text;
+	}
 	public void Add_Approver_Btn_Click() throws Throwable {
 		if (isElementPresent(SELECT_PATH_BUTTON, "Select Path option")) {
 			reporter.SuccessReport("Click Add on Approval Management Approval Path Management Page",
@@ -300,13 +336,20 @@ public class ApprovalPathLib extends ApprovalPathObj {
 		}
 	}
 
-	public void GetFirstApprovalPath() throws Throwable {
+	public String GetFirstApprovalPath() throws Throwable {
+		String firstPathName = "";
 		if (isElementPresent(GET_FIRST_APP_PATH_NAME, "Approval management page")) {
-			String firstPathName = driver.findElement(GET_FIRST_APP_PATH_NAME).getText();
+			 firstPathName = getText(GET_FIRST_APP_PATH_NAME, "Approval management page");
 			reporter.SuccessReport(
 					"Get The First Approval Path on Approval Management Page Approver Out of Office Settings",
 					"After Creating the Approver Out", firstPathName);
 		}
+		else {
+			reporter.failureReport(
+					" The First Approval Path on Approval Management Page Approver is not available",
+					"After Creating the Approver Out", "");
+		}
+		return firstPathName;
 	}
 
 	public String GetFirstPathAddRemoveApprover() throws Throwable {
