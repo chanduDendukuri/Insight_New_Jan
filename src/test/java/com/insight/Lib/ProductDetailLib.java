@@ -304,9 +304,13 @@ public class ProductDetailLib extends ProductDetailObj {
 	 * @throws Throwable
 	 */
 	public void ClickonDeleteButtonofcustomcatalog() throws Throwable {
+		if(isVisibleOnly(DELETEBUTTON_COUSTOMCATALOG, "Delete custom catalog")) {
 		click(DELETEBUTTON_COUSTOMCATALOG, "Delete custom catalog");
 		Thread.sleep(2000);
 		acceptAlert();
+		}else {
+			reporter.SuccessReport("Verify Custom Catalog", "Custom Catalog is already deleted", "");
+		}
 	}
 
 	/**
