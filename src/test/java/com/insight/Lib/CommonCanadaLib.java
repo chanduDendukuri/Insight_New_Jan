@@ -171,12 +171,12 @@ public class CommonCanadaLib extends CommonCanadaPage {
         {
             if(!actualName.toLowerCase().contains(names[index].toLowerCase()))
             {
-                reporter.failureReport("Result Validation","Searched String is "+expectedName+
+                reporter.failureReport("Recently Viewd Products","Searched String is "+expectedName+
                         " mismatched with result found "+actualName,"false",driver);
                 return false;
             }else{
-                reporter.SuccessReport("Result Validation","Searched String is "+expectedName+
-                        " mismatched with result found "+actualName,expectedName+ "and " + actualName + " Both are matched" );
+                reporter.SuccessReport("Recently Viewd Products","Searched String ::"+expectedName+
+                        " Exists Recently Viewed Product",expectedName+ "and " + actualName + " Both are matched" );
             }
         }
         return true;

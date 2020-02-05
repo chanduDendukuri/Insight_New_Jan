@@ -270,7 +270,7 @@ public class ProductDetailLib extends ProductDetailObj {
 		List<WebElement> myList2 = driver.findElements(RECENTLYVIEWD_PRODUCTS);
 		for (int i = 0; i < myList2.size(); i++) {
 			if (myList2.get(i).isDisplayed()) {
-				reporter.SuccessReport("Recently viewd products ::", "" + myList2.get(i).getText() + "", "Total No.Of Recently Viewd Products::"+ myList2.size()+"");
+				reporter.SuccessReport("Recently viewd products ::", "" + myList2.get(i).getText() + "", "Total No.Of Products in Recently Viewed Tab::"+ myList2.size()+"");
 			x.add(myList2.get(i).getText());
 			} else {
 				reporter.failureReport("Recently viewd products Not Displayed ",
