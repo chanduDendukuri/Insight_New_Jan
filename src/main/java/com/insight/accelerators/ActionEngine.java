@@ -2467,7 +2467,26 @@ public class ActionEngine extends TestEngineWeb {
 		}
 		
 	}
-
+	protected String getmessageofAlertandaccept() throws Throwable {
+		boolean status = false;
+		String alertMessage ="";
+		try {
+			
+			WebDriverWait wait = new WebDriverWait(driver, 5);
+			wait.until(ExpectedConditions.alertIsPresent());
+			 alertMessage = driver.switchTo().alert().getText();
+			reporter.SuccessReport("Alert Message", "Popup Alert message is ", alertMessage);
+			driver.switchTo().alert().accept();
+			status = true;
+		} catch (Exception e) {
+			e.getMessage();
+		}
+		if(status){
+			String s1=Boolean.toString(status);
+			reporter.SuccessReport("Accepting Alert popup ", "Closing alert popup is ", s1);
+		}
+		return alertMessage;
+	}
 	/**
 	 * findWebElement
 	 *
