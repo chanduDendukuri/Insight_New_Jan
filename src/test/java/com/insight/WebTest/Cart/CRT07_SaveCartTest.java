@@ -109,7 +109,7 @@ public class CRT07_SaveCartTest extends CartLib {
 					prodInfoLib.verifyCartPageAndPartDetailsForRecentlyItemDynamically(data.get("Search_Item3"));
 					
 					commonLib.clickAccountToolsFromSideMenuAndClickOnProductGrp(data.get("Tools_Menu"),
-							data.get("Tools_Menu_DD"), data.get("Product_Group"), data.get("Product_Name"));
+							data.get("Tools_Menu_DD1"), data.get("Product_Group"), data.get("Product_Name"));
 					searchLib.selectProductGroupAndVerify(data.get("Product_Group"), data.get("Product_Name"));
 					commonLib.clickCart();
 					commonLib.verifyBundleIsAddedToCart();
@@ -121,7 +121,8 @@ public class CRT07_SaveCartTest extends CartLib {
 					commonLib.clickCart();
 					canadaLib.verifyPlaceCartLabel();
 					commonLib.emptyCartAndVerify();
-					
+					commonLib.clickOnAccountToolsAndClickOnProductGrp(data.get("Tools_Menu"),
+							data.get("Tools_Menu_DD"));
 					cartLib.deleteSavedCartFromAccountTools();
 					commonLib.clickLogOutLink(data.get("Logout_Header"));
 					System.out.println("Test completed");

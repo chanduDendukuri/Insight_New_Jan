@@ -382,6 +382,7 @@ public class CartLib extends ActionEngine {
 	 */
 	public void openSavedCartFromTools(String cartName) throws Throwable {
 		//waitForVisibilityOfElement(CartObj.ACCOUNT_TOOLS, "ACCOUNT TOOLS");
+		scrollUp();
 		Thread.sleep(10000);
 		if(isElementPresent(InvoiceHistoryLib.COSE_ACCOUNT_TOOLS, "close account tools")) {
 			click(InvoiceHistoryLib.COSE_ACCOUNT_TOOLS, "close account tools");
