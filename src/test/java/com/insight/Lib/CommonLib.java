@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.ss.formula.functions.T;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
@@ -868,4 +869,7 @@ public class CommonLib extends ActionEngine{
 		}
 	}
 
+	public void selectRecommendedPrinters()throws Throwable{
+
+	}
 }

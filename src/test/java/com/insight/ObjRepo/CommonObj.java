@@ -202,5 +202,6 @@ public class CommonObj extends ActionEngine{
     public static By FirstProductDescription=By.xpath("(//*[text()='Description']/following::a)[1]");
     public static By btnAddToOrder=By.xpath("//*[text()='ADD TO ORDER']");
     public static By lnkViewCart=By.xpath("//*[text()='View Cart >>']");
-public static By closePopup=By.xpath("//*[@id='cookieModal']//a[@aria-label='Close']");
+	public static By closePopup=By.xpath("//*[@id='cookieModal']//a[@aria-label='Close']");
 }
+
