@@ -336,7 +336,7 @@ public class CanadaLib extends CanadaObj {
 		}
 		//click(CommonObj.ACCOUNT_TOOLS, "Account tools menu icon");
 		if (isElementClickable(CommonObj.ACCOUNT_TOOLS,2, "Account tools menu icon")) {
-			click(CommonObj.ACCOUNT_TOOLS, "Account tools menu icon");
+			//click(CommonObj.ACCOUNT_TOOLS, "Account tools menu icon");
 		}else {
 			scrollToBottomWithCordinate("150");
 			if (isElementClickable(CommonObj.ACCOUNT_TOOLS,2, "Account tools menu icon")) {
@@ -352,8 +352,8 @@ public class CanadaLib extends CanadaObj {
 			}
 		}
 		//WebElement element = driver.findElement(by);
-//		scrollToBottomWithCordinate("150");
-
+		scrollToBottomWithCordinate("-150");
+Thread.sleep(2000);
 		//((JavascriptExecutor) WebDriver).executeAsyncScript(100,1000);
 		click(getAccountToolsMenu(toolsMenuName), "Account tools menu::" + toolsMenuName + "");
 		Thread.sleep(3000);

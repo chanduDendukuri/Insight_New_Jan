@@ -19,6 +19,8 @@ public class ODP12_ReportingFieldsIPSTest extends OrderLib{
 	CartLib cartLib = new CartLib();
 	ProductDisplayInfoLib prodLib = new ProductDisplayInfoLib();
 	OrderLib orderLib =new OrderLib();
+	CanadaLib canadaLib= new CanadaLib();
+	ProductDetailLib proddetailLib = new ProductDetailLib();
 
 	// #############################################################################################################
 	// #    Name of the Test         : ODP12_ReportingFieldsIPS
@@ -56,9 +58,7 @@ public class ODP12_ReportingFieldsIPSTest extends OrderLib{
 						cmtLib.hoverOnManageWebGroupsAndSelectOptions(data.get("Manage_Web_Grp_Options"));
 						cmtLib.searchForaUserAndSelect(data.get("LnameEmailUname"), data.get("ContactName"));
 						cmtLib.loginAsAdminCMT();
-
 						//Click on bundle Link
-
 						searchLib.selectNewcontract(data.get("contractName"));
 						searchLib.verifyAccountToolsFromSideMenuAndClickOnProductGrp(data.get("toolsMenuName"),data.get("dropDown") ,data.get("productGroup"),data.get("productName"));
 						orderLib.verifyCartHeaderLabel();
@@ -67,32 +67,38 @@ public class ODP12_ReportingFieldsIPSTest extends OrderLib{
 						//Select another contract
 						searchLib.selectContractInCartPage(data.get("contractName1"));
 						searchLib.searchInHomePage(data.get("SearchText"));
+						searchLib.verifyBreadCrumbInSearchResultsPage(data.get("SearchText"));
 						cartLib.selectFirstProductDisplay();
+						String partNum=proddetailLib.getMFRNumberInProductInfopage();
 						commonLib.addToCartAndVerify();
 						continueToCheckOutOnAddCart();
 						orderLib.verifyCartHeaderLabel();
 						//Verify contract name in cart page
 						//  commonLib.verifyContractInCart(data.get("ContractName1"));
 						proceedToCheckout();
-						enterReportingDetailsInLineLevelInfoSection(data.get("REPORTING FIELD_4"), data.get("REPORTING FIELD_5"), data.get("REPORTING FIELD_6"));
+						enterReportingDetailsInLineLevelInfo(data.get("REPORTING FIELD_4"), data.get("REPORTING FIELD_5"), data.get("REPORTING FIELD_6"));
 						orderLib.clickAndVerifyCopytoAllLink();
 						clickContinueOnLineLevelInfo();
+						canadaLib.verifySBP();
 						shippingBillPayContinueButton();
-						shippingBillPayContinueButton();
+						shippingOptionsCarrierSelection();
+						billingAddressContinueButton();
 						selectPaymentInfoMethodCreditCard(data.get("cardNumber"),data.get("cardName"),data.get("month"),data.get("year"),data.get("PO_Number"),data.get("POReleaseNumber"));
 						clickOnReviewOrderButton();
+						verifyPlaceOrderLabel();
 						//Verify reporting fields exists in cart page
 						verifyLineLvlInfoReportingFieldsInCartPage();
-
 						//Place Order
 						String summaryAmountInLogin=cartLib.getSummaryAmountInCart();
 						placeOrderAndVerifyReceiptOrderAndDate(summaryAmountInLogin);
-
-						//Verify Receipt
-						verifyReceiptVerbiage();
-						//Verifying reporting fields in order history page
+						String RefNumber= orderLib.getTextfromReferenceNumber();
+						//Verifying order details
+						clickOrderDetailsLinkOnReceiptPage();
 						verifyReportingFieldsinOrderHistoryPage(data.get("toolsMenuName1"),data.get("dropDown1") ,data.get("productGroup1"),data.get("refNum"));
-
+						verifyReportingFieldsInOrderDetails(data.get("REPORTING FIELD_5"),data.get("REPORTING FIELD_6"));
+						
+						// Logout 
+						commonLib.clickLogOutLink(data.get("Logout"));
 						// fnCloseTest();
 						System.out.println("Test completed");
 					} catch (Exception e) {

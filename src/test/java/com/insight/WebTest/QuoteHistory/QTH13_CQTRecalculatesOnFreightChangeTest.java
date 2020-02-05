@@ -2,17 +2,10 @@ package com.insight.WebTest.QuoteHistory;
 
 import java.util.Hashtable;
 
+import com.insight.Lib.*;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
-import com.insight.Lib.CMTLib;
-import com.insight.Lib.CanadaLib;
-import com.insight.Lib.CartLib;
-import com.insight.Lib.CommonLib;
-import com.insight.Lib.InvoiceHistoryLib;
-import com.insight.Lib.OrderLib;
-import com.insight.Lib.QuoteHistoryLib;
-import com.insight.Lib.ShipBillPayLib;
 import com.insight.accelerators.ReportControl;
 import com.insight.accelerators.TestEngineWeb;
 import com.insight.googledrive.ReportStatus;
@@ -57,6 +50,7 @@ public class QTH13_CQTRecalculatesOnFreightChangeTest extends QuoteHistoryLib {
 						CartLib cartLib = new CartLib();
 						OrderLib orderLib = new OrderLib();
 						QuoteHistoryLib quoteHistoryLib=new QuoteHistoryLib();
+								CommonCanadaLib ccp = new CommonCanadaLib();
 						cmtLib.loginToCMT(data.get("Header"));
 						cmtLib.searchForWebGroup(data.get("WebGrp"));
 						cmtLib.clickOnTheWebGroup(data.get("WebGrp_Name"));
@@ -121,6 +115,18 @@ public class QTH13_CQTRecalculatesOnFreightChangeTest extends QuoteHistoryLib {
 						orderLib.placeOrderAndVerifyReceiptOrderAndDate(summaryAmount);
 						shipbLib.clickOrderDetailsButtonInREceipt();
 						shipbLib.verifyShippingCarrierAFterReviewOrder(data.get("Shiping_Carrier_Verify_Receipt"),data.get("Shiping_Carrier_Verify_Receipt"));
+
+								String ReferenceNumber = shipbLib.getReferenceNum();
+								//orderLib.clickOrderDetailsLinkOnReceiptPage();
+								//verifyContactName(data.get("ContactName"));
+								//canadaLib.clickOnInvoiceHistory();
+								scrollToBottomWithCordinate("1000");
+								//canadaLib.clickOnSideMenuSelectAccountToolOptions(data.get("Tools_Menu"),  data.get("Tools_Menu_DD"));
+								canadaLib.clickOnSideMenuSelectAccountToolOptions("Orders",  "Order Tracking/History");
+								//canadaLib.clickOnInvoiceHistory();
+								//quickSearchAndVerifySearchResults(data.get("Search_Item"),ReferenceNumber);
+								orderLib.clickonorderNumLinkinRecentorders(ReferenceNumber);
+								assertTrue(ccp.getReferenceNumberFromOrderHistoryPage().equalsIgnoreCase(ReferenceNumber),"Given Reference number is exist in Order history page");
 						commonLib.clickLogOutLink(data.get("Logout_Header"));
 
 							} catch (Exception e) {

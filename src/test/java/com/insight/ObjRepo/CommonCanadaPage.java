@@ -24,6 +24,9 @@ public class CommonCanadaPage extends ActionEngine{
 
     public static By lblHPINC=By.xpath("//*[@aria-label='Filter By Manufacturers']//div[@id='js-mfr-filter-items']//label//span[@data-gtm-info='HP INC']");
     public static By HPINCBreadCramb=By.xpath("//*[@class='filter-item js-filter-item']//a[contains(text(),'HP INC')]");
+    public static By QUICKSHOP_ERROR_MSG = By.xpath("//span[@class='columns iw-message__text' and contains(text(),'Please enter')]");
+    public static By lblReferenceNumberInOrderHistoryPage = By.xpath("//*[text()='Reference number']//following-sibling::span");
+
 
 
 

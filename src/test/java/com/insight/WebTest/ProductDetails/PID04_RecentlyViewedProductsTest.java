@@ -1,20 +1,14 @@
 package com.insight.WebTest.ProductDetails;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Hashtable;
+import java.util.List;
 
+import com.insight.Lib.*;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
-import com.insight.Lib.CMTLib;
-import com.insight.Lib.CanadaLib;
-import com.insight.Lib.CartLib;
-import com.insight.Lib.ChinaLib;
-import com.insight.Lib.CommonLib;
-import com.insight.Lib.OrderLib;
-import com.insight.Lib.ProductDetailLib;
-import com.insight.Lib.ProductDisplayInfoLib;
-import com.insight.Lib.SearchLib;
-import com.insight.Lib.ShipBillPayLib;
 import com.insight.accelerators.ActionEngine;
 import com.insight.accelerators.ReportControl;
 import com.insight.accelerators.TestEngineWeb;
@@ -28,7 +22,8 @@ public class PID04_RecentlyViewedProductsTest extends ActionEngine{
 	ProductDetailLib productdetLib = new ProductDetailLib();
 	ProductDisplayInfoLib productDispinfoLib = new ProductDisplayInfoLib();
 	SearchLib searchLib = new SearchLib();
-	
+	CommonCanadaLib ccp = new CommonCanadaLib();
+
 	// #############################################################################################################
 		// # Name of the Test : PID04_RecentlyViewedProducts
 		// # Migration Author : Cigniti Technologies
@@ -56,24 +51,42 @@ public class PID04_RecentlyViewedProductsTest extends ActionEngine{
 					Hashtable<String, String> data = TestUtil.getDataByRowNo("PID04_RecentlyViewedProducts",
 							TestDataInsight, "Product_Detail", intCounter);
 					TestEngineWeb.reporter.initTestCaseDescription("RecentlyViewedProductsTest");
-					
+					List<String> x = new ArrayList<String>();
+					List<String> y = new ArrayList<String>();
+
 					commonLib.searchProduct(data.get("Search_Item1"));//HP Workstation
+
 					searchLib.verifyBreadCrumbInSearchResultsPage(data.get("Search_Item1"));
 					cartLib.selectFirstProductDisplay();
 					String Searchitem1=productdetLib.getProductNameInProductDetailPage(data.get("Search_Item1"));
 					productdetLib.VerifyrecentlyviwedproductslabelNotVisisble();
+					x.add(data.get("Search_Item1"));
 					//search item 2
 					commonLib.searchProduct(data.get("Search_Item2"));//adobe Acrobat license
 					searchLib.verifyBreadCrumbInSearchResultsPage(data.get("Search_Item2"));
 					cartLib.selectFirstProductDisplay();
 					String Searchitem2=productdetLib.getProductNameInProductDetailPage(data.get("Search_Item2")).trim();
-					productdetLib.Verifyrecentlyvieweditems();
+					ArrayList<String> z =productdetLib.Verifyrecentlyvieweditems();
+					x.add(data.get("Search_Item2"));
+					if(x.size() == z.size()) {
+						for (int i = 0; i < x.size(); i++) {
+							ccp.validateNames(x.get(i).trim(),z.get(i).trim());
+						}
+					}
 					//search item 3
 					commonLib.searchProduct(data.get("Search_Item3"));//Multifunction Printers
 					searchLib.verifyBreadCrumbInSearchResultsPage(data.get("Search_Item3"));
 					cartLib.selectFirstProductDisplay();
 					String Searchitem3=productdetLib.getProductNameInProductDetailPage(data.get("Search_Item3"));
 					productdetLib.Verifyrecentlyvieweditems();
+						x.add(Searchitem3);
+						for(int i =0 ;i<x.size();i++){
+							//System.out.println(x.get(i).);
+							System.out.println(x);
+
+						}
+					//	x.containsAll(Searchitem1,Searchitem1,Searchitem3);
+
 					productdetLib.Clickonviewdetails(Searchitem2);
 					productdetLib.Clickonviewdetails(Searchitem1);
 					//search item 4

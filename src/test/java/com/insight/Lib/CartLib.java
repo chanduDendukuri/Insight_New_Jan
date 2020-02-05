@@ -458,6 +458,19 @@ public class CartLib extends ActionEngine {
 					"ASN Field does not Exist", "", driver);
 		}
 	}
+	public void verifyPreviousShipmentNotificationInCheckoutDefaults(String previousemail) throws Throwable {
+
+		if (isVisibleOnly(CartObj.SHIPMENT_NOTIFICATION, "ASN field")) {
+		String Email=getText(CartObj.SHIPMENT_NOTIFICATION,"Shipment Notification");
+		if(Email.contains(previousemail)) {
+			reporter.SuccessReport("Verify Defualt mail in ASN Field  Account Management - Account Tools Page", "In ASN Field is Defualt Email Exist as Expected",
+					Email);
+		} else {
+			reporter.failureReport("erify Defualt mail in ASN Field   Account Management - Account Tools Page",
+					"ASN Field Email does not Exist", "", driver);
+		}
+		}
+	}
 
 	public void enterMailIdToNotificationFieldAndVerifySuccessMessage(String mail) throws Throwable {
 		clearData(CartObj.SHIPMENT_NOTIFICATION);
@@ -509,7 +522,7 @@ public class CartLib extends ActionEngine {
 					"Shipment Notification  Confirm via email is Exists", "", driver);
 		} else {
 			reporter.SuccessReport("Verify Shipment Notification  Confirm via email Ship Bill Page",
-					"Shipment Notification  Confirm via email is Exists", "");
+					"Shipment Notification  Confirm via email Not Exists as Expected", "");
 		}
 	}
 
@@ -621,9 +634,9 @@ public class CartLib extends ActionEngine {
 
 	public void shippingBillPayInCheckOut(String cardNumber, String cardName, String month, String year,
 			String PONumber,String PORealeseNumber) throws Throwable {
-		click(OrderObj.CONTINUE_BTN, "Continue button of Payment Options"); // clicking continue in Shipping address
+		click(OrderObj.CONTINUE_BTN, "Continue button of Shipping Options"); // clicking continue in Shipping address
 		Thread.sleep(2000);
-		click(OrderObj.CONTINUE_BTN, "Continue button of Payment Options");// clicking continue in Shipping options
+		click(OrderObj.CONTINUE_BTN, "Continue button of Billing Address");// clicking continue in Shipping options
 		Thread.sleep(2000);
 		click(OrderObj.PAYMENT_METHOD_DD, "payment method drop down");
 		click(OrderObj.PAYMENT_METHOD_SELECTION, "payment method selection");
@@ -1364,7 +1377,17 @@ public class CartLib extends ActionEngine {
 		clickUntil(productsDisplayInfoObj.FIRST_PROD_NAME,productsDisplayInfoObj.BACK_TO_RESULTS, "First product in search results page displayed and clicked "+ProdName,"Product name : "+ProdName);
 		waitForVisibilityOfElement(productsDisplayInfoObj.BACK_TO_RESULTS, "Back to results");
 	}
-
+public void verifyProductdetails() throws Throwable {
+	String produtname = getText(productsDisplayInfoObj.FirstprodName, "First product in search results page");
+	String PartNumber  = getText(productsDisplayInfoObj.PartNumberInprodutdetailsPage,"PartNumber");
+	if(produtname!=""&&PartNumber!="") {
+		reporter.SuccessReport("Search Results:", "Product Details are Displayed", produtname);
+		reporter.SuccessReport("Search Results:", "Product Details are Displayed", PartNumber);
+	}
+	else {
+		reporter.failureReport("Search Results:", "Product Details are not Displayed", "");
+	}
+}
 	/**
 	 * This method is to verify the added product group is displayed in the cart
 	 * screen.
@@ -1850,10 +1873,16 @@ public class CartLib extends ActionEngine {
 	 * @throws Throwable
 	 */
 	public void verifyCartBreadCrumb() throws Throwable {
-		if (waitForVisibilityOfElement(CartObj.CART_LABEL_ON_CART_PAGE, "cart page")) {
+		if (isElementVisible(CartObj.CART_LABEL_ON_CART_PAGE,60, "cart page")) {
 			
 			reporter.SuccessReport("Verify cart page", "User successfully navigated to cart page", "PageDetails : Cart");
-		} else {
+		} 
+		else if(isElementNotPresent(CartObj.CART_LABEL_ON_CART_PAGE, "cart page")){
+			 refreshPage();
+			 waitForVisibilityOfElement(CartObj.CART_LABEL_ON_CART_PAGE, "cart page");
+		}
+			 else {
+		
 			reporter.failureReport("Verify cart page", "Cart page is not displayed", "", driver);
 		}
 	}
@@ -1901,9 +1930,9 @@ public void getpartnumberIncartpage() throws Throwable {
 	public void verifyProductGroupQuantityInCart(List<String> quantity, String expectedQty) throws Throwable {
 		for (i = 0; i < quantity.size(); i++) {
 			if (quantity.get(i).equals(expectedQty)) {
-				reporter.SuccessReport("Verify product Quantity ", "Product Quantity : ", "");
+				reporter.SuccessReport("Verify product Quantity ", "Product Quantity verification is successfull for ("+i+") product", "Quantity is: "+expectedQty);
 			} else {
-				reporter.failureReport("Verify product Quantity ", "Product Quantity verification failed. Actual is: ",
+				reporter.failureReport("Verify product Quantity ", "Product Quantity verification failed. Actual is: "+quantity.get(i),
 						"", driver);
 			}
 		}

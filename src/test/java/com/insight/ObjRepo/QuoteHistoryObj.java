@@ -81,6 +81,8 @@ public class QuoteHistoryObj extends ActionEngine {
 	 public static By QUOTEDETAILS = By.xpath("//h2[contains(.,'Quote Details')]");
 	 public static By mfrPartInQuotedetails= By.xpath("//*[@id='js-quote-detail']/main/table/tbody/tr/td[1]");
 	 public static By InsightPartInQuotedetails = By.xpath("//*[@id='js-quote-detail']/main/table/tbody/tr/td[2]");
+	 public static By mfrPartInCartdetails= By.xpath("(//p[@class='cart__item-part cart__font-size--sm'][contains(text(),'Mfr Part')])[1]");
+	 public static By InsightPartInCartdetails = By.xpath("(//p[@class='cart__item-part cart__font-size--sm'][contains(text(),'Insight Part')])[1]");
 	 public static By getQuickSearchQuoteFormTable(String QuoteNumber){
 		 return By.xpath("//table[@id='quoteSearch']//tbody//tr//td//a[contains(.,'"+QuoteNumber+"')]");
 	 }
@@ -97,9 +99,10 @@ public class QuoteHistoryObj extends ActionEngine {
 		 public static By getQuoteNumberFRomQuickSearchHistory(String quoteNumber){
 			 return By.xpath("//table[@id='quoteSearch']//tbody//tr//td//a[contains(text(),'"+quoteNumber+"')]");
 		 }
-		 public static By ERROR_MSG = By.xpath("//strong[@class='alert']");
+		 public static By ERROR_MSG = By.xpath("//div[@class='alert']");
 		 public static By QUICKSHOP_ERROR_MSG = By.xpath("//span[@class='columns iw-message__text']");
-		 
+		 public static By DirectClientQUICKSHOP_ERROR_MSG = By.xpath("//span[@class='columns iw-message__text' and contains(text(),'system indicates that a separate agreement with the Publisher is required for the procurement of these software items. Please contact your Insight Account Executive for more information')]");
+
 		 public static By getContactName(String contactName){
 			 return By.xpath("//div[@class='columns small-12 medium-4']//p[contains(.,'"+contactName+"')]");
 		 }
@@ -120,7 +123,7 @@ public class QuoteHistoryObj extends ActionEngine {
 		 public static By QuoteNameInQuoteDetails=By.xpath("(//*[text()='Quote Name:']/following::dd)[1]");
 		 public static By QuoteNumberInQuoteDetails=By.xpath("(//*[text()='Quote Number:']/following::dd)[1]");
 		 public static By AccountNumberInQuoteDetails=By.xpath("(//*[text()='Account Number:']/following::dd)[1]");
-		 public static By OrderNumber = By.xpath("(//span[contains(text(),'Order number')]//following-sibling::a)[1]");
+		 public static By OrderNumber = By.xpath("//h1[contains(text(),'Order details')]//following-sibling::span");
 		 public static By Orderdetails = By.xpath("//h1[contains(text(),'Order details')]");
 		 public static By txtFrieghtInOrderdetails = By.xpath("((//div[@class='iw-summary']//div[@class='columns iw-summary__label'])//following::span[@class='iw-currency']//span[@class='iw-currency__amount'])[2]");
 		 public static By estimatecostinOrderdetails = By.xpath("((//div[@class='iw-summary']//div[@class='columns iw-summary__label'])//following::span[@class='iw-currency']//span[@class='iw-currency__amount'])[3]");

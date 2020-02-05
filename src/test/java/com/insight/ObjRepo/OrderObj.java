@@ -242,18 +242,24 @@ public class OrderObj extends ActionEngine{
      public static By SEARCH_NUMBER=By.xpath("//input[@id='quoQuickInputNumber']");
 	 public static By SEARCH_BTN=By.xpath("//input[@id='quickSearch']");
 	 public static By QUOTE_NUMBER_HISTORY_PAGE=By.xpath("//table[@id='quoteSearch']//td//span/following-sibling::a");
+	 public static By RecentOrders_historyorders = By.xpath("//table[@class='iw-table']//td//span/following-sibling::a");
 	 public static By QUOTE_DETAILS_PAGE_LABEL=By.xpath("//header//h2[contains(text(),'Quote Details')]");
      public static By CONVERT_QUOTE_BTN=By.xpath("//p[@id='convertQuote']//a");
 	 public static By EDIT_QUOTE=By.xpath("//a[@class='icon edit has-tip tip-top']");
-	 
-	 
+	 public static By dd_recentorder = By.name("searchBy");
+	 public static By dd_option_recentorders(String option) {
+		 return By.xpath("//option[contains(text(),'"+option+"')]");
+				 
+	 }
+	 public static By SearchBytextfield = By.xpath("//input[@aria-label='searchByValue']");
+	 public static By SEARCH_BTNInRecentOrders=By.xpath("//button[contains(text(),'Search')]");
 	 // Approval Management
 	 
 	// Method to get the Approval management tabs.
 	 public static By getApprovalmanagementtabs(String links){
 		 return By.xpath("//ul[@id='tab_ul']//li//a[contains(text(),'"+links+"')]");
 	 }
-	
+	public static By labelRecentorders = By.xpath("//h1[contains(text(),'Order details')]");
 	// To get the edit link of a Requestor Group
 	 public static By getRequesterGroupNameEditLink(String groupName){
 		return By.xpath("//tr//td[@id='reqname'][contains(text(), '"+groupName+"')]/following-sibling::td//a[contains(text(),'Edit')]");
@@ -268,13 +274,16 @@ public class OrderObj extends ActionEngine{
 	 public static By EXIST_PHNMBR=By.xpath("//input[@name='existingAddressAttention.phone']");
 	 
 	 public static By COPY_TOALL_LNK =By.xpath("//span[@class='vertical-separator']/following::a[contains(text(),'Copy to all')][1]");
-		public static By REPORTINGFIELDS_CART =By.xpath("//h4[@class='line-level__subheading']/following::div/div/label[contains(text(),'REPORTING FIELD 4')]");
+		public static By REPORTINGFIELDS4_CART =By.xpath("(//h4[@class='line-level__subheading']/following::div/div/label[contains(text(),'REPORTING FIELD 4')])[1]");
+		public static By REPORTINGFIELDS5_CART =By.xpath("(//h4[@class='line-level__subheading']/following::div/div/label[contains(text(),'REPORTING FIELD 5')])[1]");
+		public static By REPORTINGFIELDS6_CART =By.xpath("(//h4[@class='line-level__subheading']/following::div/div/label[contains(text(),'REPORTING FIELD 6')])[1]");
 		public static By orderlinkInOrderHistory(String refNum){
 			return By.xpath("//td[contains(text(),'"+refNum+"')]/preceding-sibling::td/div");
 		}
 			public static By REPORTINGFIELD4_ORDERHISTORY =By.xpath("//span[@class='line-item-info__label'][contains(text(),'REPORTING FIELD 4')]");
 			public static By REPORTINGFIELD5_ORDERHISTORY =By.xpath("//span[@class='line-item-info__label'][contains(text(),'REPORTING FIELD 5')]");
 			public static By REPORTINGFIELD6_ORDERHISTORY =By.xpath("//span[@class='line-item-info__label'][contains(text(),'REPORTING FIELD 6')]");
+			public static By REPORTINGFIELD_ALL_ORDERHISTORY =By.xpath("(//h4[@class='line-item-info__subheading']/parent::div)[1]");
 			public static By PLACE_REQUISITION_BTN =By.xpath("//section[@class='cart cart']/following::div[@class='cart-summary-container']/div/div[3]/div/div/div/button");
 			public static By APPROVAL_MNGMNT_HDR_UPDATEPAGE =By.xpath("//div[@id='searchRequisition']/div/h1[contains(text(),'Approval Management')]");
 			public static By APPROVAL_MNGMNT_HDR1 = By.xpath("//div[@id='denyMessage']/following::h1[contains(text(),'Approval Management')]");
@@ -364,6 +373,7 @@ public class OrderObj extends ActionEngine{
 
 
      public static By FIRST_ORDER_NUMBER=By.xpath("(//a[@class='orders__link order-card-header__link'])[1]");
+     public static By ORDER_NUMBER_ON_ORDER_DETAILS=By.xpath("//span[@class='order-details__header-sales-doc-number']");
 
 	 public static By ORDER_DATE=By.xpath("//label[contains(text(),'Date ordered:')]//p");
 

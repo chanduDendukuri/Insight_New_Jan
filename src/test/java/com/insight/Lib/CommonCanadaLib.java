@@ -1,8 +1,7 @@
 package com.insight.Lib;
 
-import com.insight.ObjRepo.CommonCanadaPage;
+import com.insight.ObjRepo.*;
 
-import  com.insight.ObjRepo.CanadaObj;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 
@@ -10,6 +9,7 @@ import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 import java.util.WeakHashMap;
+import com.insight.ObjRepo.CommonCanadaPage;
 
 public class CommonCanadaLib extends CommonCanadaPage {
     public boolean verifySelectedUser() throws Throwable{
@@ -160,5 +160,67 @@ public class CommonCanadaLib extends CommonCanadaPage {
     }
     public boolean verifyHPLICBreadCrumbAvailability() throws Throwable{
         return isVisibleOnly(HPINCBreadCramb,"HP INC BreadCrumb");
+    }
+
+    public boolean validateNames(String expectedName, String actualName) throws Throwable
+    {
+       /* reporter.SuccessReport("String Searched::","", expectedName);
+        reporter.SuccessReport("Result Found::","", actualName);*/
+        String[] names = expectedName.split(" ");
+        for(int index = 0; index < names.length; index++)
+        {
+            if(!actualName.toLowerCase().contains(names[index].toLowerCase()))
+            {
+                reporter.failureReport("Result Validation","Searched String is "+expectedName+
+                        " mismatched with result found "+actualName,"false",driver);
+                return false;
+            }else{
+                reporter.SuccessReport("Result Validation","Searched String is "+expectedName+
+                        " mismatched with result found "+actualName,expectedName+ "and " + actualName + " Both are matched" );
+            }
+        }
+        return true;
+    }
+
+    public void clickOnAccountToolsAndClickOnProductGrp(String toolsMenuName) throws Throwable{
+        Thread.sleep(20000);
+        if (isVisibleOnly(CommonObj.CLOSEBUTTON_COOKIES, "close cookie")) {
+            click(CommonObj.CLOSEBUTTON_COOKIES, "close cookie");
+        }
+        if(isElementPresent(InvoiceHistoryLib.COSE_ACCOUNT_TOOLS, "close account tools")) {
+            click(InvoiceHistoryLib.COSE_ACCOUNT_TOOLS, "close account tools");
+        }
+
+    }
+
+    public void getListOfCardTypesFoavailable() throws Throwable{
+        click(CanadaObj.PaymentTypedpdn,"Payment Type drp");
+        List<WebElement> card = driver.findElements(CanadaObj.PaymentTypedpdnOptions);
+        for(int i=0;i<card.size();i++){
+            if(card.get(i).getText().equalsIgnoreCase("Discover Credit Card")){
+                reporter.SuccessReport("Discover Credit card","Availability of Discover Credit card ", "true");
+            }else{
+                reporter.failureReport("Discover card","Availability of Discover credit card is  "," available card is "+card.get(i).getText(),driver);
+            }
+
+        }
+    }
+
+    public String verifyQuickShopErrorMsg() throws Throwable {
+        String ErrorMessage=null;
+        if (isElementPresent(QUICKSHOP_ERROR_MSG, "Error Msg Present")) {
+             ErrorMessage = getText(QUICKSHOP_ERROR_MSG, "Error Msg Present");
+            reporter.failureReport("Verify quick shop Error Message", " quick shop Error Message is present", ErrorMessage,driver);
+        } else {
+
+            reporter.SuccessReport("Verify quick shop Error Message", "quick shop Error Message is not present", "true",driver);
+        }
+        return ErrorMessage;
+    }
+    public boolean visibilityOfReferenceNumber() throws Throwable{
+        return isVisibleOnly(lblReferenceNumberInOrderHistoryPage,"Reference Number in Order history page");
+    }
+    public String getReferenceNumberFromOrderHistoryPage() throws Throwable{
+        return getText(lblReferenceNumberInOrderHistoryPage,"Reference Number in Order history page");
     }
 }
