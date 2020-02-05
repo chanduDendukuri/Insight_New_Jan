@@ -862,4 +862,15 @@ public class EndUserFeaturesLib extends EndUserFeaturesObj{
 
 
 	}
+	public void clickonRemoveDefualtLink() throws Throwable {
+		if(isVisibleOnly(REMOVEDEFUALT,"Remove default account")){
+
+			reporter.SuccessReport("System displays Remove Link on Current Account Tab in Account Management -Account Tools Page", "Remove Link on Current Account Tab is Existss",getText(REMOVEDEFUALT,"Remove default account"));
+			click(REMOVEDEFUALT,"Remove default account");
+		}
+		else {
+			reporter.failureReport("System displays Remove Link on Current Account Tab in Account Management -Account Tools Page", "Remove Link on Current Account Tab is Not Exists",getText(REMOVEDEFUALT,"Remove default account"),driver);
+
+		}
+	}
 }

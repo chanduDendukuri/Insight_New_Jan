@@ -648,6 +648,7 @@ public class CartLib extends ActionEngine {
 	public void clearPhoneFieldInCheckOut() throws Throwable {
 		if (isElementPresent(CartObj.PHONE_FIELD, "Phone field")) {
 			clearData(CartObj.PHONE_FIELD);
+			reporter.SuccessReport("Clear Phone number","Existing date was cleared","true");
 			click(OrderObj.CONTINUE_BTN, "Continue in shipping addresses section");
 			Thread.sleep(2000);
 		}
