@@ -682,11 +682,11 @@ public class ActionEngine extends TestEngineWeb {
 			
 			if (!status) {
 				if (reportIndicator) {
-					reporter.failureReport("Click : " + locatorName, msgClickFailure ,locatorName, driver1);
+					reporter.failureReport("Click : " + locatorName, msgClickFailure ,"<b>"+locatorName+"/b", driver1);
 				}
 			} else {
 				
-				reporter.SuccessReport("Click : " + locatorName, "Successfully Clicked On " ,locatorName);
+				reporter.SuccessReport("Click : " + locatorName, "Successfully Clicked On " ,"<b>"+locatorName+"</b>");
 				 
 			}
 			}
@@ -1017,7 +1017,7 @@ public class ActionEngine extends TestEngineWeb {
 				}
 			} else {
 				LOG.info("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
-				reporter.SuccessReport("Enter text in :: " + locatorName, msgTypeSuccess,locatorName+" "+testData);
+				reporter.SuccessReport("Enter text in :: " + locatorName, msgTypeSuccess,locatorName+"<b> "+testData+"</b>");
 			}
 			reportIndicator = true;
 		}
@@ -2467,7 +2467,26 @@ public class ActionEngine extends TestEngineWeb {
 		}
 		
 	}
-
+	protected String getmessageofAlertandaccept() throws Throwable {
+		boolean status = false;
+		String alertMessage ="";
+		try {
+			
+			WebDriverWait wait = new WebDriverWait(driver, 5);
+			wait.until(ExpectedConditions.alertIsPresent());
+			 alertMessage = driver.switchTo().alert().getText();
+			reporter.SuccessReport("Alert Message", "Popup Alert message is ", alertMessage);
+			driver.switchTo().alert().accept();
+			status = true;
+		} catch (Exception e) {
+			e.getMessage();
+		}
+		if(status){
+			String s1=Boolean.toString(status);
+			reporter.SuccessReport("Accepting Alert popup ", "Closing alert popup is ", s1);
+		}
+		return alertMessage;
+	}
 	/**
 	 * findWebElement
 	 *

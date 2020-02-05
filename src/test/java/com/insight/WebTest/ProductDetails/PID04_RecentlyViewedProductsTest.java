@@ -68,25 +68,19 @@ public class PID04_RecentlyViewedProductsTest extends ActionEngine{
 					String Searchitem2=productdetLib.getProductNameInProductDetailPage(data.get("Search_Item2")).trim();
 					ArrayList<String> z =productdetLib.Verifyrecentlyvieweditems();
 					x.add(data.get("Search_Item2"));
-					if(x.size() == z.size()) {
-						for (int i = 0; i < x.size(); i++) {
-							ccp.validateNames(x.get(i).trim(),z.get(i).trim());
-						}
-					}
+					
 					//search item 3
 					commonLib.searchProduct(data.get("Search_Item3"));//Multifunction Printers
 					searchLib.verifyBreadCrumbInSearchResultsPage(data.get("Search_Item3"));
 					cartLib.selectFirstProductDisplay();
 					String Searchitem3=productdetLib.getProductNameInProductDetailPage(data.get("Search_Item3"));
 					productdetLib.Verifyrecentlyvieweditems();
-						x.add(Searchitem3);
-						for(int i =0 ;i<x.size();i++){
-							//System.out.println(x.get(i).);
-							System.out.println(x);
-
+					x.add(Searchitem3);
+						if(x.size() == z.size()) {
+							for (int i = 0; i < x.size(); i++) {
+								ccp.validateNames(x.get(i).trim(),z.get(i).trim());
+							}
 						}
-					//	x.containsAll(Searchitem1,Searchitem1,Searchitem3);
-
 					productdetLib.Clickonviewdetails(Searchitem2);
 					productdetLib.Clickonviewdetails(Searchitem1);
 					//search item 4
@@ -94,21 +88,45 @@ public class PID04_RecentlyViewedProductsTest extends ActionEngine{
 					searchLib.verifyBreadCrumbInSearchResultsPage(data.get("Search_Item4"));
 					cartLib.selectFirstProductDisplay();
 					productdetLib.Verifyrecentlyvieweditems();
+					x.add(data.get("Search_Item4"));
+					if(x.size() == z.size()) {
+						for (int i = 0; i < x.size(); i++) {
+							ccp.validateNames(x.get(i).trim(),z.get(i).trim());
+						}
+					}
 					//search item 5
 					commonLib.searchProduct(data.get("Search_Item5"));//Cisco LED Flat Pannel
 					searchLib.verifyBreadCrumbInSearchResultsPage(data.get("Search_Item5"));
 					cartLib.selectFirstProductDisplay();
 					productdetLib.Verifyrecentlyvieweditems();
+					x.add(data.get("Search_Item5"));
+					if(x.size() == z.size()) {
+						for (int i = 0; i < x.size(); i++) {
+							ccp.validateNames(x.get(i).trim(),z.get(i).trim());
+						}
+					}
 					//search item 6
 					commonLib.searchProduct(data.get("Search_Item6"));//Ricoh Printer
 					searchLib.verifyBreadCrumbInSearchResultsPage(data.get("Search_Item6"));
 					cartLib.selectFirstProductDisplay();
 					productdetLib.Verifyrecentlyvieweditems();
+					x.add(data.get("Search_Item6"));
+					if(x.size() == z.size()) {
+						for (int i = 0; i < x.size(); i++) {
+							ccp.validateNames(x.get(i).trim(),z.get(i).trim());
+						}
+					}
 					//search item 7
 					commonLib.searchProduct(data.get("Search_Item7"));//Computer Cables
 					searchLib.verifyBreadCrumbInSearchResultsPage(data.get("Search_Item7"));
 					cartLib.selectFirstProductDisplay();
 					productdetLib.Verifyrecentlyvieweditems();
+					x.add(data.get("Search_Item7"));
+					if(x.size() == z.size()) {
+						for (int i = 0; i < x.size(); i++) {
+							ccp.validateNames(x.get(i).trim(),z.get(i).trim());
+						}
+					}
 					// Login
 					cmtLib.loginToCMTSearchWebGrpAndUser(data.get("Header"), data.get("WebGrp"),
 							data.get("LnameEmailUname"), data.get("Contact_Name"));

@@ -179,19 +179,11 @@ public class CartLib extends ActionEngine {
 	public void clickOnSaveCartContentAndSaveCart(String cartName) throws Throwable {
 		Thread.sleep(10000);
 		commonLib.spinnerImage();
+		scrollToBottomWithCordinate("500");
 		isElementPresent(CartObj.SAVE_CART_CONTENTS, "Save cart contents");
 		click(CartObj.SAVE_CART_CONTENTS, "Save cart contents");
 		waitForVisibilityOfElement(CartObj.SAVE_CART_CONTENTS_POPUP, "SAVE CART CONTENTS POPUP");
-//		click(CartObj.SAVE_BUTTON, "Save button");
-//		if (isElementPresent(CartObj.SAVE_CART_ERROR_MESSAGE, "Save cart error message")) {
-//			reporter.SuccessReport("Save cart error message ", "Please enter a name for your cart message is displayed",
-//					"");
-//		} else {
-//			reporter.failureReport("Save cart error message ",
-//					"Please enter a name for your cart message is not displayed", "", driver);
-//
-//		}
-		// String cartName=getRandomString(5)+'@';
+
 		Thread.sleep(5000);
 		clearData(CartObj.SAVE_CART_INPUT_FIELD);
 		
@@ -202,6 +194,38 @@ public class CartLib extends ActionEngine {
 		else {
 			click(CartObj.CLEAR_MY_DRAFT_SAVED,"Clear my drafts check box");
 			reporter.SuccessReport("Clear my cart after save Checkbox", "Clear my cart after save Checkbox exist", "Clear my cart after save: on");
+		}
+		click(CartObj.SAVE_BUTTON, "Save button");
+		waitForVisibilityOfElement(CartObj.CART_SAVED_SUCESS_MESSAGE, "cart save sucess message");
+		if (isElementPresent(CartObj.CART_SAVED_SUCESS_MESSAGE, "Save cart sucess message")) {
+			reporter.SuccessReport("Save cart sucess message ",
+					"Your cart has been successfully saved message is displayed", "");
+		} else {
+			reporter.failureReport("Save cart error message ",
+					"Your cart has been successfully saved message is not displayed", "", driver);
+
+		}
+		click(CartObj.CONTINUE, "Continue button");
+	}
+
+	public void clickOnSaveCartContentAndSaveCartAndClearCartOff(String cartName) throws Throwable {
+		Thread.sleep(10000);
+		commonLib.spinnerImage();
+		scrollToBottomWithCordinate("500");
+		isElementPresent(CartObj.SAVE_CART_CONTENTS, "Save cart contents");
+		click(CartObj.SAVE_CART_CONTENTS, "Save cart contents");
+		waitForVisibilityOfElement(CartObj.SAVE_CART_CONTENTS_POPUP, "SAVE CART CONTENTS POPUP");
+
+		Thread.sleep(5000);
+		clearData(CartObj.SAVE_CART_INPUT_FIELD);
+		
+		type(CartObj.SAVE_CART_INPUT_FIELD, cartName, "cart name");
+		if(!isCheckBoxSelected(CartObj.CLEAR_MY_DRAFT_SAVED)) {
+			reporter.SuccessReport("Clear my cart after save Checkbox", "Clear my cart after save Checkbox exist", "Clear my cart after save: off");
+		}
+		else {
+			click(CartObj.CLEAR_MY_DRAFT_SAVED,"Clear my drafts check box");
+			reporter.SuccessReport("Clear my cart after save Checkbox", "Clear my cart after save Checkbox exist", "Clear my cart after save: off");
 		}
 		click(CartObj.SAVE_BUTTON, "Save button");
 		waitForVisibilityOfElement(CartObj.CART_SAVED_SUCESS_MESSAGE, "cart save sucess message");
@@ -358,6 +382,7 @@ public class CartLib extends ActionEngine {
 	 */
 	public void openSavedCartFromTools(String cartName) throws Throwable {
 		//waitForVisibilityOfElement(CartObj.ACCOUNT_TOOLS, "ACCOUNT TOOLS");
+		scrollUp();
 		Thread.sleep(10000);
 		if(isElementPresent(InvoiceHistoryLib.COSE_ACCOUNT_TOOLS, "close account tools")) {
 			click(InvoiceHistoryLib.COSE_ACCOUNT_TOOLS, "close account tools");
@@ -590,6 +615,9 @@ public class CartLib extends ActionEngine {
 				&& isElementPresent(OrderObj.RP_HDL_Txt, "RP_HDL_Txt")) {
 			type(OrderObj.RP_HDL_Txt, rP_HDL_Txt, "Smart Tracker name:");
 			click(OrderObj.CONTINUE_BTN, "additional information::Continue button");
+		}
+		else {
+			reporter.failureReport("order and inforamtion page", "order and inforamtion page is not loaded", "Header level smart tracker is not entered", driver);
 		}
 	}
 

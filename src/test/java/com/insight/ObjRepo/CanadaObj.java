@@ -120,7 +120,7 @@ public class CanadaObj extends ActionEngine {
 	public static By SEARCH_PRODUCT = By.xpath("//input[@id= 'search-tab-banner-box-input']");
 	public static By PROD_PRICE = By.xpath("//div[@class='columns small-12']//p[@class='prod-price']");
 	public static By PRORATED_PRICE = By.xpath("//p[@class='proration__text' and contains(text(),'prorated')]");
-	public static By FINAL_PRORATED_PRICE = By.xpath("//span[@class='iw-currency__amount']");
+	public static By FINAL_PRORATED_PRICE = By.xpath("(//div[@class='row expanded align-top is-collapse-child cart__table-row text-center']//span[@class='iw-currency__amount'])[1]");
 	public static By CONTINUE_TO_CHECKOUT = By.xpath("//a[@class='button primary medium'][contains(text(),'Continue to Checkout')]");
 
 	public static By getEWRNumber(String ewr) {

@@ -1630,7 +1630,7 @@ Chandu Testing Ended
 		}
 	}
 
-	public void SuccessReport(String strStepName, String strStepDes,String input)
+	public void SuccessReport(String strStepName, String strStepDes,String input,WebDriver... driver)
 			throws Throwable {
 		//Changing the font to bold and color to GREEN for iteration headers
 		if(strStepName.contains("Iteration Number")){

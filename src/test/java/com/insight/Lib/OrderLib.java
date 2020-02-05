@@ -359,19 +359,19 @@ List<String> orderdetails = new ArrayList<String>();
                //Discussed with Krishna and it is not required for validation hence commented By chandu
 
 			  // date ordered verification
-			  /*if (isElementPresent(DATE_ORDERED, "Date ordered")) {
+			  if (isElementPresent(DATE_ORDERED, "Date ordered")) {
 				String dateOrdered = getText(DATE_ORDERED, "Date ordered");
 				String actualDate = getCurrentDateTime("dd-MMM-yyyy");
 
 				
 
-				*//*if (actualDate.contains(dateOrdered)) {
+				if (actualDate.contains(dateOrdered)) {
 					orderdetails.add(actualDate);
 					reporter.SuccessReport("Verify the Date ordered ", " date ordered verification is successfull","Ordered Date : "+dateOrdered);
 				} else {
 					reporter.failureReport("Verify the Date ordered ", " date ordered verification is not successfull : "+dateOrdered+" .Expected Date :",actualDate,driver);
-				}*//*
-			}*/
+				}
+			}
 		}
 		return orderdetails;
 	}
@@ -1709,7 +1709,7 @@ List<String> orderdetails = new ArrayList<String>();
 		click(CommonObj.ACCOUNT_TOOLS, "Account tools menu icon");
 		click(CommonObj.getAccountToolsMenu(toolsMenuName), "Account tools menu");
 		click(CommonObj.getAccountToolsDD(toolsMenuName, dropDown), "Select account tool");
-		//click(orderlinkInOrderHistory(refNum), "select placed order from recent orders");
+		click(orderlinkInOrderHistory(refNum), "select placed order from recent orders");
 		Thread.sleep(1000);
 		/*
 		 * if (isElementPresent(REPORTINGFIELD4_ORDERHISTORY, "Add items check box")) {
@@ -2446,8 +2446,21 @@ List<String> orderdetails = new ArrayList<String>();
 
 	public void getHeaderLevelItemsInforDynamically(String val) throws Throwable{
 		reporter.SuccessReport("Header Level value","RP_HDL_Lst are ",getText(dynamicHeaderLevelCustomerDetailsValues(val),"RP_HDL_Lst is"));
+
 	   }
 	
 	
-	  }
-	
+	public void getProductDetailsFromCartResultsGrid() throws Throwable {
+
+		List<WebElement> prodDes = driver.findElements(CartObj.productDes);
+		List<WebElement> partNumber = driver.findElements(CartObj.getPartNuminOrderdetails);
+		List<WebElement> totalAmount = driver.findElements(CartObj.lblTotalAmountFromCartSearchResults);
+
+		for(int i = 0;i<prodDes.size();i++){
+			reporter.SuccessReport("Product details","Cart prodcut details are ", "Product description is " + prodDes.get(i).getText() +" and Part number is " +partNumber.get(i).getText()+ " Total number for the product is " + totalAmount.get(i).getText());
+		}
+
+
+	}
+	}
+

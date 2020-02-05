@@ -350,6 +350,9 @@ public static By Productname_at_cart=By.xpath("//h4[@class='cart__item-heading']
 	public static By CART_PROD_STOCK_RECENTLYADDEDTEM_loop=By.xpath("//label[text()='Item quantity']/following-sibling::input/following::span/span[contains(text(),' Stock: ')]");
 	public static By Cart_Prod_Insight_Part_Number=By.xpath("//*[@class='cart__item-part cart__font-size--sm' and contains(text(),'Insight')]");
 
+
+	public static By lblTotalAmountFromCartSearchResults= By.xpath("//*[@class='item-body item-body--bundle']//div//div[@class='columns small-12 large-1 print-2']//div[2]//span[@class='iw-currency item-body__value']");
+
 }
     
 

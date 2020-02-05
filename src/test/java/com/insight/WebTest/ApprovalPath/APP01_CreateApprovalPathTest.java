@@ -71,8 +71,8 @@ public class APP01_CreateApprovalPathTest extends ApprovalPathLib {
 					Thread.sleep(2000);
 					switchToChildWindow();
 					commonLib.spinnerImage();
-					Thread.sleep(2000);
-					ivhLib.closeAccountTools();
+					cmtLib.loginVerification("TU_IUSAdmin TU_IUSAdmin");
+					//ivhLib.closeAccountTools();
 					commonLib.clickOnAccountToolsAndClickOnProductGrp(data.get("Tools_Menu"),
 							data.get("Tools_Menu_DD"));
 
@@ -80,59 +80,79 @@ public class APP01_CreateApprovalPathTest extends ApprovalPathLib {
 					reqProcLib.verifyApprovalManagementPage();
 
 					// Get the existing Approval path name
-					GetFirstApprovalPath();
+					String FirstApproverPath = GetFirstApprovalPath();
 
 					// Create Create New Approval Path
 					CreateNewApprovalPathLink();
-
-					// Get the Last name of Existing User to search in latter
-					// steps
-					EnterNewApprovalPath(data.get("Approvername"));
-
-					// select approval path
-					String approverName = CreateNewApprovalClick();
-
 					// Click approval path button
 					ClickCreateApprovalPathButton();
+					acceptAlert();
+					// Get the Last name of Existing User to search in latter
+					// steps
+					EnterNewApprovalPath(FirstApproverPath);
+					// select approval path
+					String approverName = CreateNewApprovalClick();
+					// Click approval path button
+					ClickCreateApprovalPathButton();
+					
+					String alerttext  = getmessageofAlertandaccept();
+					if(alerttext.equals("Approval path with this name already exist")) {
+						reporter.SuccessReport("POPUP", "POPUP Exists", alerttext);
+					}
+					else {
+						reporter.failureReport("POPUP", "POPUP not Exists", "");
+					}
+					String newApproverPathName = RandomApprovalPathName("QTP Testing");
+					EnterNewApprovalPath(newApproverPathName);
+					// select approval path
+					CreateNewApprovalClick();
+					CreateNewApprovalClick();
+					CreateNewApprovalClick();
+					// Click approval path button
+					ClickCreateApprovalPathButton();
+					// Get the created approver from search list
+					VerifyAppovalPathCreated(newApproverPathName);
 
 					// Get the Existing User Last name to Search
-					ApproverSearchTextBox(approverName.split(",")[0]);
-
+					ApproverSearchTextBox("Automation");
 					// Search button click
 					SearchClick();
-
-					// Get the created approver from search list
-					ValidateApproverFromSearch(data.get("Approvername"));
-
+					VerifyAppovalPathCreated(newApproverPathName);
 					// Click on Edit link for the created Approver
-					ClickEditLinkButton(data.get("Approvername"));
-
+					ClickEditLinkButton(newApproverPathName);
+					// select approval path
+					CreateNewApprovalClick();
+					CreateNewApprovalClick();
+					CreateNewApprovalClick();
+					
+					
 					// Select Approvers and click Add
-					String appName = SelectApprover(null);
+					String appName = SelectApproverAPP01(null);
 					
 					// Add button to add approver
 					Add_Approver_Btn_Click();
 
 					// Verify Approvers are Added to Approver path Sequence
 					VerifyApproversAdded(appName);
-
+					
 					ClickUpdateButton();
 
 					// Delete Created Approval path
-					DeleteApprovers(data.get("Approvername"));
+					DeleteApprovers(newApproverPathName);
 
 					// Confirm Delete
-					ConfirmDelete(data.get("Approvername"));
-
-					// Search for Inactive user
-					SearchUser(data.get("Approvername"));
-
-					// Verify Approval path is Retuned
-					VerifyApprovalPathReturned();
+					ConfirmDelete(newApproverPathName);
+					
+					// Get the Existing User Last name to Search
+					ApproverSearchTextBox(FirstApproverPath);
+					// Search button click
+					SearchClick();
+					verifySearchresults(newApproverPathName);
 
 					commonLib.clickLogOutLink(data.get("Logout"));
 
 					System.out.println("Test completed");
+				
 				} catch (Exception e) {
 					ReportStatus.blnStatus = false;
 				//	gErrorMessage = e.getMessage();
