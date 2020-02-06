@@ -1489,6 +1489,54 @@ public class SearchLib extends CommonObj {
 			}
 	}
 	
+	/**
+	 * This method is to select brand by alphabet for CA
+	 * 
+	 * @param url
+	 * @throws Throwable
+	 */
+	public void selectBrandByAlphabetOrderSectionForCA(String url,String brand) throws Throwable {
+		click(getShopByBrandByAlphabetForCA(brand), "brand By Alphabets");
+		Thread.sleep(2000);
+		verify_url(driver, url);
+	}
+	
+	/**
+	 * Method is to to get the Menu items in the SHOP ALL PRODUCTS/ BRANDS page for CA
+	 * and verify them.
+	 * 
+	 * @param ShopAllMenus
+	 * @throws Throwable
+	 */
+	public void verifyMenusInShopAllProductsPageForCA(String ShopAllMenus) throws Throwable {
+		String result = null;
+		// adding the menu items to list
+		List<WebElement> myList = driver.findElements(SHOP_ALL_PRODUCTS_MENUS_LIST_CA);
+		List<String> all_elements_text = new ArrayList<>();
+		for (int i = 0; i < myList.size(); i++) {
+			all_elements_text.add(myList.get(i).getText());
+			result = myList.get(i).getText();
+			String strArray[] = ShopAllMenus.split(","); // Getting test data as  list and  verifying
+			if (result.equals(strArray[i])) {
+
+				reporter.SuccessReport("Verify the results for menu items ",
+						"Menus verification is sucessfull. Expected menu item is:" , result);
+			} else {
+				reporter.failureReport("Verify the results for menu items",
+						"Expected menu item is  " + strArray[i] + "Actual menu item is: " , result);
+			}
+		}
+	}
+
+	// POPULAR_PRODUCTS_LABEL_CA
+	public void verifyPopularProductsLabel() throws Throwable {
+		if (isVisibleOnly(POPULAR_PRODUCTS_LABEL_CA, "Popular products")) {
+			reporter.SuccessReport("Verify that", "Sucessfully Popular products label is displayed " ,"Popular products");
+		} else {
+			reporter.failureReport("Verify that", "Popular products label not displayed " , "Popular products");
+		}
+	}
+	
 }
  
 

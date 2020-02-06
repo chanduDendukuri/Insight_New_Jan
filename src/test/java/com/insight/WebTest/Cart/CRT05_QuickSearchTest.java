@@ -10,9 +10,12 @@ import com.insight.Lib.CanadaLib;
 import com.insight.Lib.CartLib;
 import com.insight.Lib.ChinaLib;
 import com.insight.Lib.CommonLib;
+import com.insight.Lib.EndUserFeaturesLib;
+import com.insight.Lib.LineLevelInfoLib;
 import com.insight.Lib.OrderLib;
 import com.insight.Lib.ProductDetailLib;
 import com.insight.Lib.ProductDisplayInfoLib;
+import com.insight.Lib.SLPLib;
 import com.insight.Lib.SearchLib;
 import com.insight.Lib.ShipBillPayLib;
 import com.insight.accelerators.ReportControl;
@@ -24,7 +27,13 @@ public class CRT05_QuickSearchTest extends CartLib {
 	CommonLib commonLib = new CommonLib();
 	CartLib cartLib = new CartLib();
 	CMTLib cmtLib = new CMTLib();
-
+	SearchLib search = new SearchLib();
+	ProductDisplayInfoLib prodInfoLib = new ProductDisplayInfoLib();
+	EndUserFeaturesLib end = new EndUserFeaturesLib();
+	SLPLib slp = new SLPLib();
+	LineLevelInfoLib line = new LineLevelInfoLib();
+	OrderLib order = new OrderLib();
+	CanadaLib canadaLib = new CanadaLib();
 	// #############################################################################################################
 	// # Name of the Test : CRT05_QuickSearch
 	// # Migration Customization Author : Cigniti Technologies
@@ -52,28 +61,59 @@ public class CRT05_QuickSearchTest extends CartLib {
 					Hashtable<String, String> data = TestUtil.getDataByRowNo("CRT05_QuickSearch", TestDataInsight,
 							"Web_Cart", intCounter);
 					TestEngineWeb.reporter.initTestCaseDescription("QuickSearch");
-					cmtLib.loginToCMTSearchWebGrpAndUser(data.get("header"), data.get("WebGrp"),
-							data.get("LnameEmailUname"), data.get("ContactName"));
+					//cmtLib.loginToCMTSearchWebGrpAndUser(data.get("header"), data.get("WebGrp"),
+							//data.get("LnameEmailUname"), data.get("ContactName"));
+					cmtLib.loginToCMT(data.get("header"));
+					cmtLib.searchForWebGroup(data.get("WebGrp"));
+					cmtLib.clickOnTheWebGroup(data.get("WebGrp_Name"));
+					cmtLib.hoverOnManageWebGroupsAndSelectOptions(data.get("Manage_Web_Grp_Options"));
+					cmtLib.searchForaUserAndSelect(data.get("LnameEmailUname"), data.get("ContactName"));
 					cmtLib.setPermissions(data.get("Menu_Name"), data.get("Enable_Purchasing_Popup"));
 					cmtLib.clickOnloginAs();
 					switchToChildWindow();
+					cmtLib.loginVerification(data.get("ContactName"));
 					commonLib.searchProduct(data.get("SearchItem1"));
-					cartLib.selectFirstProductDisplay();
-
+					prodInfoLib.verifyTheManufacturerNumberInProductDetailsPage(data.get("SearchItem1"));
+					prodInfoLib.clickOnWarrantiesTabOnProductDetailsPage();
+					String manfa=prodInfoLib.getManfNumberFromWarrentiesPage(data.get("index"));
+					prodInfoLib.clickOnAddToCartButtonInWarrentiesPage(data.get("index"));
+					canadaLib.continueToCheckout();
+					canadaLib.verifyPlaceCartLabel();
+					prodInfoLib.verifyCartPageAndPartDetailsForRecentlyItemDynamically(manfa);
+					//prodInfoLib.getProductManfNumber(manfa);
+					//prodInfoLib.enterQuantityForProductsInViewCartPage(data.get("Quantity"));
+//					commonLib.clickOnUpdateLinkInViewCartPage(data.get("Quantity"));
+					
+					//cartLib.selectFirstProductDisplay();
+					clickOnProductLinkInCartPage();
+					prodInfoLib.verifyTheManufacturerNumberInProductDetailsPage(manfa);
 					commonLib.clickCart();
-
+					canadaLib.verifyPlaceCartLabel();
 					cartLib.verifyQuickShopWithValidSinglePartNumber(data.get("SearchItem2"), data.get("quantity"));
+					canadaLib.verifyPlaceCartLabel();
+					prodInfoLib.verifyCartPageAndPartDetailsForRecentlyItemDynamically(data.get("SearchItem2"));
+					
 					cartLib.verifyQuickShopWithInvalidPartNumber(data.get("SearchItem3"));
 					cartLib.verifyQuickShopWithValidSinglePartNumber(data.get("SearchItem2"), data.get("quantity"));
-					String quantity = getCartQuantity();
-					if (Integer.parseInt(data.get("quantity")) < Integer.parseInt(quantity)) {
+					String quantity = getCartQuantity(data.get("SearchItem2"));
+					if (Integer.parseInt(quantity)>Integer.parseInt(data.get("quantity"))) {
 						reporter.SuccessReport("Quantity is increased on the Cart Page",
 								"Quantity Exists and increased", "");
 					} else {
 						reporter.failureReport("Quantity is increased on the Cart Page",
 								"Quantity Exists and not increased", "");
 					}
-
+					cartLib.verifyQuickShopWithValidSinglePartNumber(data.get("SearchItem4"), data.get("quantity1"));
+					canadaLib.verifyPlaceCartLabel();
+					//prodInfoLib.verifyCartPageAndPartDetailsForRecentlyItemDynamically(data.get("Search_Item2"));
+					String quantity1 = getCartQuantity(data.get("SearchItem2"));
+					if (Integer.parseInt(quantity1)>Integer.parseInt(quantity)) {
+						reporter.SuccessReport("Quantity is increased on the Cart Page",
+								"Quantity Exists and increased", "");
+					} else {
+						reporter.failureReport("Quantity is increased on the Cart Page",
+								"Quantity Exists and not increased", "");
+					}
 					System.out.println("Test completed");
 
 				} catch (Exception e) {

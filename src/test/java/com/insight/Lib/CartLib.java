@@ -1224,13 +1224,22 @@ public class CartLib extends ActionEngine {
 		clearData(CartObj.QUICK_SHOP_QUANTITY_FIELD);
 		type(CartObj.QUICK_SHOP_QUANTITY_FIELD, quantity, "QUICK SHOP QUANTITY FIELD");
 		Thread.sleep(3000);
-		//click(CartObj.ADD_BUTTON_IN_QUICK_SHOP, "ADD BUTTON IN QUICK SHOP");
-		clickUntil(CartObj.ADD_BUTTON_IN_QUICK_SHOP, CartObj.getItemInCart(searchItem), "Add quick shop button");
+		//JSClick(CartObj.ADD_BUTTON_IN_QUICK_SHOP, "ADD BUTTON IN QUICK SHOP");
+		clickUntil(CartObj.ADD_BUTTON_IN_QUICK_SHOP, CommonObj.SPINNER_IMAGE, "Add quick shop button");
 		commonLib.spinnerImage();
-		verifyItemInCart(searchItem);
+		//verifyItemInCart(searchItem);
+		scrollUp();
 
 	}
-
+	public void clickOnProductLinkInCartPage() throws Throwable {
+		if(isVisible(CartObj.PRODUCT_LINK,"Product Link")) {
+			click(CartObj.PRODUCT_LINK,"Product Link");
+		}
+		else {
+			reporter.failureReport("Product link in cart page", "Product link in cart page is not visible", "", driver);
+		}
+		
+	}
 	public void verifyQuickShopIsDisable() throws Throwable {
 
 		if (isElementNotPresent(CartObj.QUICK_SHOP_SECTION, "quick shop section")) {
@@ -2000,8 +2009,8 @@ public void getpartnumberIncartpage() throws Throwable {
 		}
 	}
 
-	public String getCartQuantity() throws Throwable {
-		String quantity = getAttributeByValue(CartObj.QUANTITY_IN_CART, "Quantity in cart");
+	public String getCartQuantity(String partNumber) throws Throwable {
+		String quantity = getAttributeByValue(CartObj.quantityInCart(partNumber), "Quantity in cart");
 		return quantity;
 	}
 
