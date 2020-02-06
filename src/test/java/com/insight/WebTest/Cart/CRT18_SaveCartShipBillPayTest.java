@@ -119,7 +119,7 @@ public class CRT18_SaveCartShipBillPayTest extends CartLib {
 
 					orderLib.verifyPlaceOrderLabel();
 					scrollUp();
-					cartLib.openSavedCartFromTools(cartName);
+					//cartLib.openSavedCartFromTools(cartName);
 					cartLib.deleteCartFromAccountTools(cartName);
 					commonLib.clickLogOutLink(data.get("Logout_Header"));
 					System.out.println("Test completed");
