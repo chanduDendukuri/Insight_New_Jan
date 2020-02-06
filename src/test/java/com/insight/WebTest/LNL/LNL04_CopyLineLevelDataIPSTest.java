@@ -93,8 +93,8 @@ public class LNL04_CopyLineLevelDataIPSTest  extends LineLevelInfoLib{
 						// Select new contract
 						searchLib.selectNewcontract(data.get("Contract_Name1"));
 						// Search for another product >> LENOVO >>
-						searchLib.searchInHomePage(data.get("SearchText1"));
-						searchLib.verifyTheResultsForSearchTerm(data.get("SearchText1"));
+						searchLib.searchInHomePage(data.get("SearchText4"));
+						searchLib.verifyTheResultsForSearchTerm(data.get("SearchText4"));
 						cartLib.selectFirstProductDisplay();
 						String mfrNumber3=prodLib.getInsightPartNumberInProductInfopage();
 						commonLib.addToCartAndVerify();
@@ -146,7 +146,8 @@ public class LNL04_CopyLineLevelDataIPSTest  extends LineLevelInfoLib{
 						//verifyContractSpecificInfoOnPlaceOrderPage();
 						/*clickOnLineLevelOptionalLinkByPartNum(mfrNumber2);
 						verifyDiversityPartnerexists(data.get("Diversity_Partner2"),mfrNumber2);*/
-						clickClearLink(mfrNumber1);
+						scrollUp();
+						clickClearLink(mfrNumber3);
 						//scrollUp();
 						//clickClearLink(mfrNumber3);
 						String reportingfield4= getReportingField4();
@@ -162,11 +163,11 @@ public class LNL04_CopyLineLevelDataIPSTest  extends LineLevelInfoLib{
 						//clickOnLineLevelOptionalLinkByPartNum(mfrNumber1);
 						selectDiversityPartner(data.get("Diversity_Partner2"),mfrNumber1);
 						enterQTPText(mfrNumber1, data.get("QTP_Text"));
-						clickCopyToAllLink(mfrNumber1);
+						clickCopyOfSmartTracer(mfrNumber1);
 						
                          // verifying part 2 smart tracker and clearing it
 						verifyQTPTextIsPresent(mfrNumber2, data.get("QTP_Text"));
-						clickClearLink(mfrNumber2); // against smart tracker
+						clickClearLinkOfSmartTracker(mfrNumber2); // against smart tracker
 						verifyQTPTextIsPresent(mfrNumber2, "");
 						// Enter the cleared reporting fields
 						orderLib.enterReportingDetailsInLineLevelInfo(data.get("REPORTING_FIELD_4"), data.get("REPORTING_FIELD_5"), data.get("REPORTING_FIELD_6"));
@@ -177,39 +178,6 @@ public class LNL04_CopyLineLevelDataIPSTest  extends LineLevelInfoLib{
 						
 						commonLib.clickLogOutLink(data.get("Logout"));
 						
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						/*
-						verifyDiversityPartnerexists(data.get("Diversity_Partner1"),mfrNumber2);
-						clickOnLineLevelOptionalLinkByPartNum(mfrNumber3);
-						verifyDiversityPartnerexists(data.get("Diversity_Partner1"),mfrNumber3);
-						clickClearLink(mfrNumber3);
-						verifyDiversityPartnerexists("Select a partner",mfrNumber3);
-						// filling all reporting fields in part 1
-						orderLib.enterReportingDetailsInLineLevelInfo(data.get("REPORTING_FIELD_4"), data.get("REPORTING_FIELD_5"), data.get("REPORTING_FIELD_6"));
-						
-						
-						// click on 3rd part and check out all the fields copied 
-						// clear all in 3rd part - all parts fields will be cleared
-						// make sure data is cleared
-						// go back to 1st one and make sure all the fields are cleared
-						// fill all the reporting fields in 1st part
-						
-						orderLib.clickContinueOnLineLevelInfo(); // click continue on LLI 
-						
-						// verify the reporting fields are exists
-						verifyContractSpecificInfoOnPlaceOrderPage();
-						
-						commonLib.clickLogOutLink(data.get("Logout"));*/
 						
 					} catch (Exception e) {
 						ReportStatus.blnStatus = false;
@@ -230,7 +198,7 @@ public class LNL04_CopyLineLevelDataIPSTest  extends LineLevelInfoLib{
 			finally {
 	        	ReportControl.fnEnableJoin();
 				ReportStatus.fnUpdateResultStatus("CopyLineLevelDataIPS", "TC_LNL04", ReportStatus.strMethodName, counter, browser);
-				//fnCloseTest();
+				fnCloseTest();
 				ReportControl.fnNextTestJoin(nextTestJoin);
 			}
 		}
