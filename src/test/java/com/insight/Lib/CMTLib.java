@@ -2609,7 +2609,7 @@ public  void verifyDashboard()throws Throwable {
 	}
 
 	public void clickDefaultRadioButtonInLinkedAccounts() throws Throwable {
-		click(DEFAULT_LOGIN_LINKED_ACCOUNTS, "Default login");
+		click(DEFAULT_LOGIN_LINKED_ACCOUNTS, "Default login Radio button selected");
 	}
 
 	/**
