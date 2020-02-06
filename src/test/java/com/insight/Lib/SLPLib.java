@@ -939,6 +939,22 @@ public class SLPLib extends SLPObj {
 		}
 		
 		/**
+		 * 
+		 * @param date
+		 * @throws Throwable
+		 */
+		public void verifyProductDeployDateOnQuoteScreen(String date) throws Throwable {
+			List <WebElement> element=driver.findElements(By.xpath("//span[contains(text(),'"+date+"')]"));
+			for(i=1;i<=element.size();i++) {
+				if(isVisible(getDeployDateOnQuotePage(i,date), "date")) {
+					reporter.SuccessReport("Deploy Date Field ", "Updated Deploy Date Field on Quote screen is Exists","Deploy date :"+date );
+				}	else {
+					reporter.failureReport("Deploy Date Field ", "Updated Deploy Date Field on Quote screen does not  Exists",date,driver );
+				}
+			}
+		}
+		
+		/**
 		 * @param pa
 		 * @throws Throwable
 		 */

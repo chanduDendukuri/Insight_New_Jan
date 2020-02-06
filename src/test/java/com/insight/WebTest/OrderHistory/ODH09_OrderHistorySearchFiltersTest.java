@@ -75,7 +75,7 @@ public class ODH09_OrderHistorySearchFiltersTest extends OrderHistoryLib {
 							// ######## In progress status ################################
 							selectOrderStatusDropdown(data.get("Order_Status_Inprogress"));
 							startDateCalender(previousYearToCurrentDate());
-							endDateCalender(previousYearPlusThreeMonthsToCurrentDate());
+							endDateCalender(currentDate());
 							clickAdvancedSearchButton();
 							spinnerImageODH();
 							//scrollToBottomWithCordinate("300");

@@ -72,7 +72,7 @@ public class LNL04_CopyLineLevelDataIPSTest  extends LineLevelInfoLib{
 						searchLib.searchInHomePage(data.get("SearchText1"));
 						searchLib.verifyTheResultsForSearchTerm(data.get("SearchText1"));
 						cartLib.selectFirstProductDisplay();
-						String contractOnInfoPage1=commonLib.contractOnProductDetailPage();
+						commonLib.contractOnProductDetailPage();
 						String mfrNumber1=prodLib.getInsightPartNumberInProductInfopage();
 						commonLib.addToCartAndVerify();
 						orderLib.continueToCheckOutOnAddCart();
@@ -83,7 +83,7 @@ public class LNL04_CopyLineLevelDataIPSTest  extends LineLevelInfoLib{
 						searchLib.searchInHomePage(data.get("SearchText2"));
 						searchLib.verifyTheResultsForSearchTerm(data.get("SearchText2"));
 						cartLib.selectFirstProductDisplay();
-						String contractOnInfoPage2=commonLib.contractOnProductDetailPage();
+						commonLib.contractOnProductDetailPage();
 						String mfrNumber2=prodLib.getInsightPartNumberInProductInfopage();
 						commonLib.addToCartAndVerify();
 						orderLib.continueToCheckOutOnAddCart();
@@ -103,15 +103,15 @@ public class LNL04_CopyLineLevelDataIPSTest  extends LineLevelInfoLib{
 						cartLib.verifyItemInCartByInsightPart(mfrNumber3);
 						// Verify selected contract in cart page
 						cartLib.verifyContractNameInCart(data.get("Contract_Name1"));
-						cartLib.verifyContractNameInCart(data.get(""));   
+						cartLib.verifyContractNameInCart(data.get("Contract_Name"));   
 						
 						// Select new contract  - Open Market 
 						searchLib.selectContract(data.get("Contract_Name2"));
 						// Verify contract page
 						pipLib.verifyWelcomePage();
-						// Search for another product >> Workstations
-						searchLib.searchInHomePage(data.get("SearchText2"));
-						searchLib.verifyTheResultsForSearchTerm(data.get("SearchText2"));
+						// Search for another product >> thinkpads
+						searchLib.searchInHomePage(data.get("SearchText3"));
+						searchLib.verifyTheResultsForSearchTerm(data.get("SearchText3"));
 						cartLib.selectFirstProductDisplay();
 						String mfrNumber4=prodLib.getInsightPartNumberInProductInfopage();
 						commonLib.addToCartAndVerify();
@@ -122,7 +122,7 @@ public class LNL04_CopyLineLevelDataIPSTest  extends LineLevelInfoLib{
 						// Verify selected 3 contracts in cart page
 						cartLib.verifyContractNameInCart(data.get("OpenMarket"));
 						cartLib.verifyContractNameInCart(data.get("Contract_Name1"));
-						cartLib.verifyContractNameInCart(data.get("Contract_Name1"));  
+						cartLib.verifyContractNameInCart(data.get("Contract_Name"));  
 						orderLib.proceedToCheckout();  // Proceed to checkout
 						orderLib.enterReportingDetailsInLineLevelInfo(data.get("REPORTING_FIELD_4"), data.get("REPORTING_FIELD_5"), data.get("REPORTING_FIELD_6"));
 						selectDiversityPartner(data.get("Diversity_Partner1"),mfrNumber3);
@@ -145,7 +145,7 @@ public class LNL04_CopyLineLevelDataIPSTest  extends LineLevelInfoLib{
 						/*clickOnLineLevelOptionalLinkByPartNum(mfrNumber2);
 						verifyDiversityPartnerexists(data.get("Diversity_Partner2"),mfrNumber2);*/
 						clickClearLink(mfrNumber1);
-						scrollUp();
+						//scrollUp();
 						//clickClearLink(mfrNumber3);
 						String reportingfield4= getReportingField4();
 						String reportingfield5= getReportingField5();
@@ -159,7 +159,7 @@ public class LNL04_CopyLineLevelDataIPSTest  extends LineLevelInfoLib{
 						// select second options from DD 
 						selectDiversityPartner(data.get("Diversity_Partner1"),mfrNumber1);
 						clickCopyToAllLink(mfrNumber1);
-						clickOnLineLevelOptionalLinkByPartNum(mfrNumber2);
+						//clickOnLineLevelOptionalLinkByPartNum(mfrNumber2);
 						verifyDiversityPartnerexists(data.get("Diversity_Partner1"),mfrNumber2);
 						clickOnLineLevelOptionalLinkByPartNum(mfrNumber3);
 						verifyDiversityPartnerexists(data.get("Diversity_Partner1"),mfrNumber3);

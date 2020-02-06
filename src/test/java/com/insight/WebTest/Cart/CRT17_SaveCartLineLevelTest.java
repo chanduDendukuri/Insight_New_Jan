@@ -104,7 +104,7 @@ public class CRT17_SaveCartLineLevelTest extends CartLib {
 					//cartLib.verifyRpHdlTxtisNotPresent(data.get("RP_HDL_Txt"));
 					//cartLib.verifyRpLnllTxtisNotPresent(data.get("RP_LNL_Txt"));
 					scrollUp();
-					cartLib.openSavedCartFromTools(cartName);
+					//cartLib.openSavedCartFromTools(cartName);
 					cartLib.deleteCartFromAccountTools(cartName);
 					commonLib.clickLogOutLink(data.get("Logout_Header"));
 					System.out.println("Test completed");
