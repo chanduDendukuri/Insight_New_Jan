@@ -192,15 +192,15 @@ public class CanadaLib extends CanadaObj {
 	 */
 	public void verifySortOption(String sortOption) throws Throwable {
 
-		if (isVisibleOnly(productsDisplayInfoObj.getSortByOptions(sortOption), "Select sort option")) {
+		if (isElementPresent(productsDisplayInfoObj.getSortByOptions(sortOption), "Select sort option")) {
 			reporter.SuccessReport("Verify sort options in search results page",
-					"Sort option in search results verified successfully. Option is : ", sortOption);
+					"Sort option in search results verified successfully. Option is : " + sortOption,sortOption);
 		} else {
 			reporter.failureReport("Verify sort options in search results page",
-					"Sort option in search results verified successfully. Option is :" + sortOption, "", driver);
+					"Sort option in search results is not verified successfully. Option is :" + sortOption, "", driver);
 		}
 	}
-
+	
 	/**
 	 * Method is to verify the products not found message in the search results
 	 * page

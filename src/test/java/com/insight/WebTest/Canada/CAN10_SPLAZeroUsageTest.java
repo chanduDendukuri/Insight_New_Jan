@@ -56,6 +56,7 @@ public class CAN10_SPLAZeroUsageTest extends CanadaLib {
                     cmtLib.searchForWebGroup(data.get("WebGrp"));
                     cmtLib.clickOnTheWebGroup(data.get("WebGrp_Name"));
                     /// allow_unlimited_spla_ordering;off";
+                 //   commonLib.clickRolesAndPermissionsAtUserLevel();
                     cmtLib.setHostedLicensingPermissionsOFF(data.get("Set_Permission"));
                     cmtLib.hoverOnManageWebGroupsAndSelectOptions(data.get("Manage_Web_Grp_Options1"));
                     // Clear usage

@@ -131,15 +131,17 @@ public class LNL04_CopyLineLevelDataIPSTest  extends LineLevelInfoLib{
 						
 						orderLib.shippingBillPay(data.get("Card_Number").toString(), data.get("Card_Name"),data.get("Month"), data.get("Year"),data.get("PO_Number"),data.get("POReleaseNumber"));
 						// Contract Specific Information verification
-						verifyContractSpecificInfoOnPlaceOrderPage();
+						verifyContractSpecificInfoOnPlaceOrderPage(data.get("REPORTING_FIELD_4"), data.get("REPORTING_FIELD_5"), data.get("REPORTING_FIELD_6"));
 						// click on edit LLI
 						editLinelevelInfoOnPlaceOrderPage();
 						// Verify OII bread crumb
 						verifyOrderAndItemInfoBreadCrumb();
 						// click on LLI optional
 						clickOnLineLevelOptionalLinkByPartNum(mfrNumber1);
+						
+						
 						//selectDiversityPartner(data.get("Diversity_Partner2"),mfrNumber3);
-						clickCopyToAllLink(mfrNumber1);
+						//clickCopyToAllLink(mfrNumber1);
 						
 						//verifyContractSpecificInfoOnPlaceOrderPage();
 						/*clickOnLineLevelOptionalLinkByPartNum(mfrNumber2);
@@ -154,12 +156,39 @@ public class LNL04_CopyLineLevelDataIPSTest  extends LineLevelInfoLib{
 						assertTextStringMatching(reportingfield4, "");
 						assertTextStringMatching(reportingfield5, "");
 						assertTextStringMatching(reportingfield6, "");
-						orderLib.enterReportingDetailsInLineLevelInfo(data.get("REPORTING_FIELD_4"), data.get("REPORTING_FIELD_5"), data.get("REPORTING_FIELD_6"));
-						
+						//orderLib.enterReportingDetailsInLineLevelInfo(data.get("REPORTING_FIELD_4"), data.get("REPORTING_FIELD_5"), data.get("REPORTING_FIELD_6"));
+						clickOnLineLevelOptionalLinkByPartNum(mfrNumber2);
 						// select second options from DD 
-						selectDiversityPartner(data.get("Diversity_Partner1"),mfrNumber1);
+						//clickOnLineLevelOptionalLinkByPartNum(mfrNumber1);
+						selectDiversityPartner(data.get("Diversity_Partner2"),mfrNumber1);
+						enterQTPText(mfrNumber1, data.get("QTP_Text"));
 						clickCopyToAllLink(mfrNumber1);
-						//clickOnLineLevelOptionalLinkByPartNum(mfrNumber2);
+						
+                         // verifying part 2 smart tracker and clearing it
+						verifyQTPTextIsPresent(mfrNumber2, data.get("QTP_Text"));
+						clickClearLink(mfrNumber2); // against smart tracker
+						verifyQTPTextIsPresent(mfrNumber2, "");
+						// Enter the cleared reporting fields
+						orderLib.enterReportingDetailsInLineLevelInfo(data.get("REPORTING_FIELD_4"), data.get("REPORTING_FIELD_5"), data.get("REPORTING_FIELD_6"));
+						// Click continue on LNL section
+						orderLib.clickContinueOnLineLevelInfo(); 
+						// Contract Specific Information verification
+						verifyContractSpecificInfoOnPlaceOrderPage(data.get("REPORTING_FIELD_4"), data.get("REPORTING_FIELD_5"), data.get("REPORTING_FIELD_6"));
+						
+						commonLib.clickLogOutLink(data.get("Logout"));
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						/*
 						verifyDiversityPartnerexists(data.get("Diversity_Partner1"),mfrNumber2);
 						clickOnLineLevelOptionalLinkByPartNum(mfrNumber3);
 						verifyDiversityPartnerexists(data.get("Diversity_Partner1"),mfrNumber3);
@@ -180,7 +209,7 @@ public class LNL04_CopyLineLevelDataIPSTest  extends LineLevelInfoLib{
 						// verify the reporting fields are exists
 						verifyContractSpecificInfoOnPlaceOrderPage();
 						
-						commonLib.clickLogOutLink(data.get("Logout"));
+						commonLib.clickLogOutLink(data.get("Logout"));*/
 						
 					} catch (Exception e) {
 						ReportStatus.blnStatus = false;

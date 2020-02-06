@@ -57,7 +57,8 @@ public class OrderHistoryObj extends ActionEngine{
 	public static By SPINNER_IMAGE=By.xpath("//span[@class='iw-loading iw-loading__size-medium']");
 	public static By CLEAR_SEARCH=By.xpath("//button[@class='button clear search-form__btn']");
 	public static By SHIPPING_TYPE=By.xpath("//select[@name='shippingType']");
-	public static By SHIPPED_QTY=By.xpath("//table[@class='order-card-section__table']//span[@class='item-body__label']");
+	public static By SHIPPED_QTY=By.xpath("//table[@class='order-card-section__table']//div[@class='row align-middle collapse item-body__row']");
+	public static By Shipped_QtyDesc = By.xpath("//table[@class='order-card-section__table']//div[@class='item-details__text columns expand']");
 	public static By OPEN_INVOICED_ORDERS=By.xpath("//select[@name='orderType']");
 	
 	public static By END_DATE_CALENDER=By.xpath("//label[@for='endDate']//parent::div//input[@class='form__field date-picker__input']");
