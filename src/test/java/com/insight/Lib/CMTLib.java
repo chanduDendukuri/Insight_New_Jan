@@ -3666,19 +3666,22 @@ public void verifySetPermissionsDisabled(String userPermissions) throws Throwabl
 	}
 	
 	public void VerifytheLinkedAccountsText() throws Throwable {
-		List<WebElement> list = driver.findElements(LINKEDACCOUNTS);
+		//List<WebElement> list = driver.findElements(LINKEDACCOUNTS);
 		List<String> values = new ArrayList<String>();
-			for (i = 0; i <list.size(); i++) {
+			//for (i = 0; i <list.size(); i++) {
 				if(isVisibleOnly(LinkedAccountsText,"Linked Accounts Data")) {
 					List<WebElement> list2 = driver.findElements(LinkedAccountsText);
-					for (i = 0; i <list2.size()-250; i++) {
+					for (i = 0; i <50; i++) {
+						for(i=0;i<5;i++) {
 						String textlinkedaccount= list2.get(i).getText().trim();
 						System.out.println(textlinkedaccount);
 						values.add(textlinkedaccount);
+						}
 						reporter.SuccessReport("Verify Linked Accounts Data", "Data", "Data:"+values);
-				}
+						values.clear();
+						}
 			}
-		}
+	//	}
 	}
 
 	public void handlebetaPopup() throws Throwable{
