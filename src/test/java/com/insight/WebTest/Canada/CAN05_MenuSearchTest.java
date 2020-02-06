@@ -61,13 +61,14 @@ public class CAN05_MenuSearchTest extends CanadaLib{
 				
 				// Perform Menu Search For Non Logged in   >> Shop all products
 				searchLib.clickonShopAllButtonsInHeaderList(data.get("HeaderName"), data.get("ShopAll"));
-				searchLib.verifyMenusInShopAllProductsPage(data.get("Menus"));
+				searchLib.verifyMenusInShopAllProductsPageForCA(data.get("Menus"));
+				searchLib.verifyPopularProductsLabel();
 				// Shop all brands
 				searchLib.clickonShopAllButtonsInHeaderList(data.get("HeaderName"), data.get("ShopAllBrands"));
 				searchLib.selectTopBrandsInShopAllBrandsPage(data.get("BrandLogo"), data.get("Url1"));
 				// Shop all brands  >> select by alphabetical order
 				searchLib.clickonShopAllButtonsInHeaderList(data.get("HeaderName"), data.get("ShopAllBrands"));
-				searchLib.selectBrandByAlphabetOrderSection(data.get("Url2"),data.get("Brand"));
+				searchLib.selectBrandByAlphabetOrderSectionForCA(data.get("Url2"),data.get("Brand"));
 				// Login to CMT
 				cmtLib.loginToCMT(data.get("Header"));
 				cmtLib.searchForWebGroup(data.get("WebGrp"));
@@ -82,7 +83,8 @@ public class CAN05_MenuSearchTest extends CanadaLib{
 				cmtLib.loginAsAdminCMT();
 				// Perform Menu Search For Non Logged in   >> Shop all products
 				searchLib.clickonShopAllButtonsInHeaderList(data.get("HeaderName"), data.get("ShopAll"));
-				searchLib.verifyMenusInShopAllProductsPage(data.get("Menus"));
+				searchLib.verifyMenusInShopAllProductsPageForCA(data.get("Menus"));
+				searchLib.verifyPopularProductsLabel();
 				// Shop all brands
 				searchLib.clickonShopAllButtonsInHeaderList(data.get("HeaderName"), data.get("ShopAllBrands"));
 				searchLib.selectTopBrandsInShopAllBrandsPage(data.get("BrandLogo"), data.get("Url1"));
