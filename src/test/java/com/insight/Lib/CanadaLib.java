@@ -611,14 +611,17 @@ public class CanadaLib extends CanadaObj {
 	 * @throws Throwable
 	 */
 	public void selectSPLADetailsProductCheckBox(String spla) throws Throwable {
-		if (isVisibleOnly(SPLA_LABEL, "SPLA LABEL")) {
+		if (isVisibleOnly(SPLA_LABEL, "SLPA LABEL")) {
 			if (!isCheckBoxSelected(getMySoftwareLicenseAgreementscheckBoxes(spla))) {
 				click(getMySoftwareLicenseAgreementscheckBoxes(spla), "SPLA Details Product CheckBox : " + spla);
 				Thread.sleep(3000);
 				click(SELECT_PRODUCT, "Link: View Products For Selected Agreements");
 			} else {
 				LOG.info("Checkbox already selected");
+				reporter.SuccessReport("verify SLP product checkbox selected", "SLP product checkbox is already checked", "", driver);
 			}
+		}else {
+			reporter.failureReport("verify SLP label ", "SLP label is not visible", "", driver);
 		}
 	}
 

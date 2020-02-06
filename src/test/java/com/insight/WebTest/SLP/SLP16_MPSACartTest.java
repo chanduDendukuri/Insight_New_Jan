@@ -168,6 +168,13 @@ public class SLP16_MPSACartTest extends SLPLib{
 	                
 	                 verifyUpdatedUnPaidLisenceOnCartPage(data.get("PartNum2"));
 	                 verifyUpdatedUnPaidLisenceOnCartPage(data.get("PartNum3"));
+	                 String summaryAmount = cartLib.getSummaryAmountInCart();
+	                 // Place requisition
+	                 shipbLib.ReviewrequisitionnumPage();
+	                 verifyReceiptPageOrderDetails(summaryAmount);
+	                 String RefNumber= orderLib.getTextfromReferenceNumber();
+	                 orderLib.clickOrderDetailsLinkOnReceiptPage();
+	                 
 	                 commonLib.clickLogOutLink(data.get("Logout"));
 					
 				} catch (Exception e) {
