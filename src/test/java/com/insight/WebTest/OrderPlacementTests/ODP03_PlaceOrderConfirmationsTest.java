@@ -19,6 +19,10 @@ public class ODP03_PlaceOrderConfirmationsTest extends OrderLib{
 	CartLib cartLib = new CartLib();
 	ProductDisplayInfoLib prodLib = new ProductDisplayInfoLib();
 	OrderLib orderLib =new OrderLib();
+	CanadaLib canadaLib=new CanadaLib();
+	ProductDetailLib prodDetailLib=new ProductDetailLib();
+	LineLevelInfoLib lnlLib=new LineLevelInfoLib();
+	
 
 	// #############################################################################################################
 	// #    Name of the Test         : ODP03_PlaceOrderConfirmations
@@ -80,16 +84,22 @@ public class ODP03_PlaceOrderConfirmationsTest extends OrderLib{
 
 						//  Select First Product and Add to cart
 						searchLib.searchInHomePage(data.get("SearchText"));
+						searchLib.verifyBreadCrumbInSearchResultsPage(data.get("SearchText"));
+						cartLib.selectFirstProductDisplay();
+						String mfrNumber1=prodDetailLib.getInsightPartNumberInProductInfopage();
 						commonLib.addToCartAndVerify();
-						continueToCheckOutOnAddCart();
-						cartLib.verifyItemInCart(data.get("SearchText"));
+						orderLib.continueToCheckOutOnAddCart();
+						canadaLib.verifyPlaceCartLabel();
+						cartLib.verifyItemInCartByInsightPart(mfrNumber1);
 
 						proceedToCheckout(); // proceed to checkout
+						lnlLib.verifyOrderAndItemInfoBreadCrumb();
 						continueButtonOnAdditionalInformationSection();  // Click continue on Additional information Section
 						clickContinueOnLineLevelInfo(); // Click continue on Line Level information Section
-						shippingBillPayContinueButton(); // Click continue on shipping address Section
-						shippingBillPayContinueButton(); // Click continue on Shipping options Section
-						shippingBillPayContinueButton(); //Click continue on Billing address Section
+						canadaLib.verifySBP();
+						clickContinueOnShippingAddress();// Click continue on shipping address Section
+						selectShippingOptionsCarrier(); // Click continue on Shipping options Section
+						billingAddressContinueButton(); //Click continue on Billing address Section
 						selectPaymentInfoMethodCreditCard(data.get("Card_Number").toString(), data.get("Card_Name"),data.get("Month"), data.get("Year"),data.get("PO_Number"),data.get("POReleaseNumber"));
 						clickOnReviewOrderButton();
 
