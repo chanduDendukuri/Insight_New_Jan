@@ -648,6 +648,7 @@ public class CartLib extends ActionEngine {
 	public void clearPhoneFieldInCheckOut() throws Throwable {
 		if (isElementPresent(CartObj.PHONE_FIELD, "Phone field")) {
 			clearData(CartObj.PHONE_FIELD);
+			reporter.SuccessReport("Clear Phone number","Existing date was cleared","true");
 			click(OrderObj.CONTINUE_BTN, "Continue in shipping addresses section");
 			Thread.sleep(2000);
 		}
@@ -700,9 +701,9 @@ public class CartLib extends ActionEngine {
 	 */
 	public void verifyRpHdlTxt(String rpHdlText) throws Throwable {
 		if (isElementPresent(CartObj.verifyRpHdlText(rpHdlText), "rpHdl Text")) {
-			reporter.SuccessReport("Verify header level smart tracker ", "" + rpHdlText + " is displayed", "");
+			reporter.SuccessReport("Verify header level smart tracker ", "" + rpHdlText + " is displayed", rpHdlText);
 		} else {
-			reporter.failureReport("Verify header level smart tracker", "" + rpHdlText + " is not displayed", "", driver);
+			reporter.failureReport("Verify header level smart tracker", "" + rpHdlText + " is not displayed", rpHdlText, driver);
 
 		}
 	}

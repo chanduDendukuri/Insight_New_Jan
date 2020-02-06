@@ -8,7 +8,9 @@ public class ApprovalPathObj extends CommonObj {
 	public static By CREATE_APPROVALPATH_BTN = By
 			.xpath("//a[@id='CreateApprovalPath_ok_button']//span[contains(text(),'Create Approval Path')]");
 	public static By ALL_APPROVER_OPTIONS = By.xpath("//select[@id='ListFrom']//option");
-
+	public static By Click_ALL_APPROVER_OPTIONS(int i) {
+		return By.xpath("//select[@id='ListFrom']//option["+i+"]");
+	}
 	public static By selectAppNameFromList(String appName) {
 		return By.xpath("//select[@id='ListFrom']//option[contains(text(),'" + appName + "')]");
 	}
@@ -37,6 +39,9 @@ public class ApprovalPathObj extends CommonObj {
 	public static By selectAppNameFromListToRemove(String appName) {
 		return By.xpath("//div[@id='listToBox']//ol[@id='ListTo']//li[contains(text(),'" + appName + "')]");
 	}
+	public static By selectmultipleAppNameFromListToRemove(int i) {
+		return By.xpath("//div[@id='listToBox']//ol[@id='ListTo']//li[" + i + "]");
+	}
 
 	public static By getCreatedApproverPathDeleteLink(String appName) {
 		return By.xpath("//table[@id='apptempl']//td[@class='Cl_AppPathName'][contains(text(),'" + appName
@@ -63,6 +68,12 @@ public class ApprovalPathObj extends CommonObj {
 	public static By LAST_NAME_SEARCH_BTN = By.xpath("//a[@id='search_lastname_button']");
 
 	public static By GET_APPROVALPATH_COUNT = By.xpath("//table[@id='apptempl']//tbody//tr");
+	public static By Get_ApproverPathName(int i) {
+		return By.xpath("//table[@id='apptempl']//tbody//tr["+i+"]//td[@class='Cl_AppPathName']");
+	}
+	public static By Get_ApproverCount(int i) {
+		return By.xpath("//table[@id='apptempl']//tbody//tr["+i+"]//td[@class='Cl_NumApprover']");
+	}
 	public static By GET_FIRST_APP_PATH_NAME = By.xpath("(//table[@id='apptempl']//td[@class='Cl_AppPathName'])[1]");
 	public static By GET_NUMOF_APPROVERS = By.xpath("(//table[@id='apptempl']//td[@class='Cl_NumApprover'])[1]");
 	public static By ERROR_POPUP_MSG = By.xpath("//div[@id='errorPopUp']//p[contains(text(),'have open/pending')]");
