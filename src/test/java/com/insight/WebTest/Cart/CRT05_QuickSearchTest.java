@@ -106,7 +106,7 @@ public class CRT05_QuickSearchTest extends CartLib {
 					cartLib.verifyQuickShopWithValidSinglePartNumber(data.get("SearchItem4"), data.get("quantity1"));
 					canadaLib.verifyPlaceCartLabel();
 					//prodInfoLib.verifyCartPageAndPartDetailsForRecentlyItemDynamically(data.get("Search_Item2"));
-					String quantity1 = getCartQuantity(data.get("Search_Item2"));
+					String quantity1 = getCartQuantity(data.get("SearchItem2"));
 					if (Integer.parseInt(quantity1)>Integer.parseInt(quantity)) {
 						reporter.SuccessReport("Quantity is increased on the Cart Page",
 								"Quantity Exists and increased", "");

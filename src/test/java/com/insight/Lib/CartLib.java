@@ -1224,10 +1224,11 @@ public class CartLib extends ActionEngine {
 		clearData(CartObj.QUICK_SHOP_QUANTITY_FIELD);
 		type(CartObj.QUICK_SHOP_QUANTITY_FIELD, quantity, "QUICK SHOP QUANTITY FIELD");
 		Thread.sleep(3000);
-		//click(CartObj.ADD_BUTTON_IN_QUICK_SHOP, "ADD BUTTON IN QUICK SHOP");
-		clickUntil(CartObj.ADD_BUTTON_IN_QUICK_SHOP, CartObj.getItemInCart(searchItem), "Add quick shop button");
+		//JSClick(CartObj.ADD_BUTTON_IN_QUICK_SHOP, "ADD BUTTON IN QUICK SHOP");
+		clickUntil(CartObj.ADD_BUTTON_IN_QUICK_SHOP, CommonObj.SPINNER_IMAGE, "Add quick shop button");
 		commonLib.spinnerImage();
-		verifyItemInCart(searchItem);
+		//verifyItemInCart(searchItem);
+		scrollUp();
 
 	}
 	public void clickOnProductLinkInCartPage() throws Throwable {
