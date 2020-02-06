@@ -223,7 +223,9 @@ public class InvoiceHistoryLib extends InvoiceHistoryObj {
 	 * @throws Throwable
 	 */
 	public void closeAccountTools() throws Throwable {
-		click(COSE_ACCOUNT_TOOLS, "close account tools");
+		if(isVisibleOnly(COSE_ACCOUNT_TOOLS, "close account tools")) {
+			click(COSE_ACCOUNT_TOOLS, "close account tools");
+		}
 	}
 
 	/**
