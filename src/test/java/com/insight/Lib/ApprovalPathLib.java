@@ -395,9 +395,6 @@ for(int i=1;i<=count;i++) {
 				click(SELECT_REMOVEPATH_BUTTON, "Select Path option");
 			}
 			
-			
-				
-			
 		}
 	}
 

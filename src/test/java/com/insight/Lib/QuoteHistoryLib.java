@@ -726,12 +726,26 @@ public class QuoteHistoryLib extends QuoteHistoryObj {
      */
     public void verifyErrorMsg() throws Throwable {
         String errortext = getText(ERROR_MSG, "Error Msg Present");
-        if (isElementPresent(ERROR_MSG, "Error Msg Present")) {
-            reporter.SuccessReport("Verify  Erorr Message", "Error Message is present", errortext);
-        } else {
+        if(errortext!="") {
+        	if (isElementPresent(ERROR_MSG, "Error Msg Present")) {
+                reporter.SuccessReport("Verify  Erorr Message", "Error Message is present", errortext);
+            } else {
 
-            reporter.failureReport("Verify  Erorr Message", "Error Message is not present", "");
+                reporter.failureReport("Verify  Erorr Message", "Error Message is not present", "");
+            }
         }
+        else {
+        	 String errortext1 = getText(ErrorMessageforQTH05, "Error Msg Present");
+             if(errortext1!="") {
+             	if (isElementPresent(ErrorMessageforQTH05, "Error Msg Present")) {
+                     reporter.SuccessReport("Verify  Erorr Message", "Error Message is present", errortext);
+                 } else {
+
+                     reporter.failureReport("Verify  Erorr Message", "Error Message is not present", "");
+                 }
+             }
+        }
+        
     }
 
     /**
