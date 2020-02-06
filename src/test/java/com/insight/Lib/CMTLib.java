@@ -2298,13 +2298,12 @@ public  void verifyDashboard()throws Throwable {
 			click(getHostedLicensingPermissions(permissions), "Customer level permissions");
 			click(UPDATE_CUSTOMER_PERMISSIONS_BTN, "Update button");
 			if (isElementPresent(CUSTOMER_PERMISSION_UPDATE_MSG, "update sucessful message")) {
-				reporter.SuccessReport("Verify the Success message ", "Permissions Updated Succesfully", "");
+				reporter.SuccessReport("Verify the Success message ", "Permissions Updated Succesfully", permissions+" OFF");
 			} else {
-				reporter.failureReport("Verify the sucess message", "Permissions are not Updated Succesfully", "",
-						driver);
+				reporter.failureReport("Verify the sucess message", "Permissions are not Updated Succesfully", permissions +" ON",driver);
 			}
 		} else {
-			LOG.info(permissions + " check box already Unchecked.");
+			reporter.SuccessReport("Verify the Success message ", "Permissions Updated Succesfully", permissions+" OFF");
 		}
 	}
 
@@ -2421,7 +2420,7 @@ public  void verifyDashboard()throws Throwable {
 	public void AddMonthInHostedLicensingAdministrationPage(String month, String year, String type, String soldTo,
 			String salesOrg) throws Throwable {
 		waitForVisibilityOfElement(ADD_MONTH_RADIO_BTN, "add a month radi button");
-		click(ADD_MONTH_RADIO_BTN, "add a month radi button");
+		click(ADD_MONTH_RADIO_BTN, "add a month radio button");
 		type(SOLD_TO_TXT_BOX, soldTo, "soldTo");
 		type(SALES_ORG_TXT_BOX, salesOrg, "salesOrg");
 		click(MONTH, "month");

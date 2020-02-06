@@ -125,6 +125,7 @@ public class EUF01_FCTWebEndUserManageSoldtosTest extends EndUserFeaturesLib{
 						Thread.sleep(3000);
 						scrollToBottomWithCordinate("-2000");
 						clickonRemoveDefualtLink();
+						Thread.sleep(3000);
 						ccp.getRemoveSuccessMessage();
 
 						commonLib.clickLogOutLink(data.get("Logout_Header")); //fnCloseTest();
@@ -133,7 +134,7 @@ public class EUF01_FCTWebEndUserManageSoldtosTest extends EndUserFeaturesLib{
 						cmtLib.clickOnloginAs();
 						switchToChildWindow();
 						ivhLib.closeAccountTools();
-//BOS
+
 						commonLib.clickOnAccountToolsAndClickOnProductGrp(data.get("Tools_Menu"),
 								data.get("Tools_Menu_DD"));
 						//scrollToBottomWithCordinate("-500");
