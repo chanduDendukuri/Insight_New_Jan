@@ -91,7 +91,7 @@ public class ODP02_PlaceOrderBasicIPSTest extends OrderLib{
 						canadaLib.verifyPlaceCartLabel();
 						cartLib.verifyItemInCartByInsightPart(mfrNumber2);
 						commonLib.verifyContractInCart(data.get("Contract_Name"));
-						verifyCartPageAndPartDetails(2);
+						verifyCartPageAndPartDetails(0);
 						
 						// Select new contract  - Open Market 
 						searchLib.selectContract(data.get("Contract_Name2"));
@@ -106,6 +106,11 @@ public class ODP02_PlaceOrderBasicIPSTest extends OrderLib{
 						orderLib.continueToCheckOutOnAddCart();
 						canadaLib.verifyPlaceCartLabel();
 						cartLib.verifyItemInCartByInsightPart(mfrNumber4);
+						verifyCartPageAndPartDetails(0);
+						cartLib.verifyContractNameInCart(data.get("OpenMarket"));
+						cartLib.verifyContractNameInCart(data.get("Contract_Name"));
+						verifyCartPageAndPartDetails(1);
+						verifyCartPageAndPartDetails(2);
 						
 						proceedToCheckout();
 						enterReportingDetailsInLineLevelInfoSection(data.get("REPORTING FIELD_4"), data.get("REPORTING FIELD_5"), data.get("REPORTING FIELD_6"));
@@ -130,9 +135,12 @@ public class ODP02_PlaceOrderBasicIPSTest extends OrderLib{
 
 						// Verify contract on Receipt page
 						scrollToBottom();
+						prodInfoLib.verifyCartPageAndPartDetails();
 						commonLib.verifyContractInCart(data.get("Contract_Name"));
-						// fnCloseTest();
-						System.out.println("Test completed");
+						verifyCartPageAndPartDetails(1);
+						commonLib.verifyContractInCart(data.get("OpenMarket"));
+						verifyCartPageAndPartDetails(2);
+						
 					} catch (Exception e) {
 						ReportStatus.blnStatus = false;
 						//gErrorMessage = e.getMessage();
