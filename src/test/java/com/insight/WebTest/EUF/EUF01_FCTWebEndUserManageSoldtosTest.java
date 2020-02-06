@@ -137,10 +137,11 @@ public class EUF01_FCTWebEndUserManageSoldtosTest extends EndUserFeaturesLib{
 
 						commonLib.clickOnAccountToolsAndClickOnProductGrp(data.get("Tools_Menu"),
 								data.get("Tools_Menu_DD"));
-						//scrollToBottomWithCordinate("-500");
+						scrollToBottomWithCordinate("-500");
 						clickOnTabInUserProfile(data.get("Tab_Name"));
 
 						ccp.clickOnSwitchToAccountForSelectedAccountRefNum(value);
+						clickContinueButton();
 						commonLib.clickLogOutLink(data.get("Logout_Header"));
 					} catch (Exception e) {
 						ReportStatus.blnStatus = false;
