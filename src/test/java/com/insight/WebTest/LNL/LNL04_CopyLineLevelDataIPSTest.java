@@ -131,15 +131,14 @@ public class LNL04_CopyLineLevelDataIPSTest  extends LineLevelInfoLib{
 						
 						orderLib.shippingBillPay(data.get("Card_Number").toString(), data.get("Card_Name"),data.get("Month"), data.get("Year"),data.get("PO_Number"),data.get("POReleaseNumber"));
 						// Contract Specific Information verification
-						verifyContractSpecificInfoOnPlaceOrderPage(data.get("REPORTING_FIELD_4"), data.get("REPORTING_FIELD_5"), data.get("REPORTING_FIELD_6"));
-						verifyDiversityPartnerexists(data.get("Diversity_Partner2"),mfrNumber3);
+						verifyContractSpecificInfoOnPlaceOrderPage(data.get("REPORTING_FIELD_4"), data.get("REPORTING_FIELD_5"), data.get("REPORTING_FIELD_6"),data.get("Diversity_Partner1"));
+						//verifyDiversityPartnerexists(data.get("Diversity_Partner1"),mfrNumber3);
 						// click on edit LLI
 						editLinelevelInfoOnPlaceOrderPage();
 						// Verify OII bread crumb
 						verifyOrderAndItemInfoBreadCrumb();
 						// click on LLI optional
 						clickOnLineLevelOptionalLinkByPartNum(mfrNumber1);
-						
 						
 						//selectDiversityPartner(data.get("Diversity_Partner2"),mfrNumber3);
 						//clickCopyToAllLink(mfrNumber1);
@@ -149,14 +148,15 @@ public class LNL04_CopyLineLevelDataIPSTest  extends LineLevelInfoLib{
 						verifyDiversityPartnerexists(data.get("Diversity_Partner2"),mfrNumber2);*/
 						scrollUp();
 						clickClearLink(mfrNumber3);
+						Thread.sleep(4000);
 						//scrollUp();
 						//clickClearLink(mfrNumber3);
 						String reportingfield4= getReportingField4();
 						String reportingfield5= getReportingField5();
 						String reportingfield6= getReportingField6();
 						// Verifying reporting fields are empty
-						if(reportingfield4==null && reportingfield5==null && reportingfield6==null) {
-							reporter.SuccessReport("Verify contract specific info", "contract specific info is cleared", "REPORTING_FIELD_4 :"+reportingfield4+" REPORTING_FIELD_5 : "+reportingfield5 +" REPORTING_FIELD_6 : "+reportingfield6);
+						if(reportingfield4.equals("") && reportingfield5.equals("")  && reportingfield6.equals("")) {
+							reporter.SuccessReport("Verify contract specific info", "contract specific info is cleared. reporting fields are empty", "");
 						}else {
 							reporter.failureReport("Verify contract specific info", "contract specific info  not cleared", "",driver);
 						}
@@ -166,18 +166,19 @@ public class LNL04_CopyLineLevelDataIPSTest  extends LineLevelInfoLib{
 						selectDiversityPartner(data.get("Diversity_Partner2"),mfrNumber1);
 						enterQTPText(mfrNumber1, data.get("QTP_Text"));
 						clickCopyOfSmartTracer(mfrNumber1);
-						
+						Thread.sleep(4000);
                          // verifying part 2 smart tracker and clearing it
 						verifyQTPTextIsPresent(mfrNumber2, data.get("QTP_Text"));
 						clickClearLinkOfSmartTracker(mfrNumber2); // against smart tracker
 						verifyQTPTextIsPresent(mfrNumber2, "");
 						// Enter the cleared reporting fields
 						orderLib.enterReportingDetailsInLineLevelInfo(data.get("REPORTING_FIELD_4"), data.get("REPORTING_FIELD_5"), data.get("REPORTING_FIELD_6"));
+						selectDiversityPartner(data.get("Diversity_Partner1"),mfrNumber3);
 						// Click continue on LNL section
 						orderLib.clickContinueOnLineLevelInfo(); 
 						// Contract Specific Information verification
-						verifyContractSpecificInfoOnPlaceOrderPage(data.get("REPORTING_FIELD_4"), data.get("REPORTING_FIELD_5"), data.get("REPORTING_FIELD_6"));
-						verifyDiversityPartnerexists(data.get("Diversity_Partner2"),mfrNumber3);
+						verifyContractSpecificInfoOnPlaceOrderPage(data.get("REPORTING_FIELD_4"), data.get("REPORTING_FIELD_5"), data.get("REPORTING_FIELD_6"),data.get("Diversity_Partner1"));
+						//verifyDiversityPartnerexists(data.get("Diversity_Partner2"),mfrNumber3);
 						commonLib.clickLogOutLink(data.get("Logout"));
 						
 						
