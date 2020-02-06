@@ -136,9 +136,9 @@ public class OrderLib extends OrderObj{
 	public void proceedToCheckout() throws Throwable{
 	//	commonLib.spinnerImage();
 		Thread.sleep(5000);
-		if(isElementPresent(CommonObj.CLOSEBUTTON_COOKIES,"close cookie")) {
+		/*if(isElementPresent(CommonObj.CLOSEBUTTON_COOKIES,"close cookie")) {
 			click(CommonObj.CLOSEBUTTON_COOKIES, "close cookie");
-		}
+		}*/
 		if(isElementPresent(PROCEED_TO_CHECKOUT, "Proceed to checkout") && isEnabled(PROCEED_TO_CHECKOUT, "Proceed to checkout")){
 			clickUntil(PROCEED_TO_CHECKOUT, ORDER_ITEM_INFO_LABEl, "Proceed to checkout");
 			Thread.sleep(3000);
@@ -356,8 +356,6 @@ List<String> orderdetails = new ArrayList<String>();
 			} else {
 				reporter.failureReport("Verify the Total Amount ", "The Total Amount is not updated. ","",driver);
 			}
-               //Discussed with Krishna and it is not required for validation hence commented By chandu
-
 			  // date ordered verification
 			  if (isElementPresent(DATE_ORDERED, "Date ordered")) {
 				String dateOrdered = getText(DATE_ORDERED, "Date ordered");

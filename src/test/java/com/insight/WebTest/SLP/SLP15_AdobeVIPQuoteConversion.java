@@ -133,7 +133,8 @@ public class SLP15_AdobeVIPQuoteConversion extends SLPLib{
 				        
                         clickSaveasQuote();
                         // verifying deploy date on quotes screen
-                        verifyProductDeployDate(data.get("Date1"),data.get("Unpaid"));
+                        //verifyProductDeployDate(data.get("Date1"),data.get("Unpaid"));
+                        verifyProductDeployDateOnQuoteScreen(data.get("Date1"));
                         // verifying PA fields 
                         verifyPAFieldsOnQuotesScreen(data.get("PA"));
                         verifyPAFieldsOnQuotesScreen(data.get("PA1"));
@@ -145,7 +146,8 @@ public class SLP15_AdobeVIPQuoteConversion extends SLPLib{
                         String refNumber = orderLib.getQuoteReferenceNumber();
 				     	
 				        // verifying deploy date on quotes screen
-                        verifyProductDeployDate(data.get("Date1"),data.get("Unpaid"));
+                        //verifyProductDeployDate(data.get("Date1"),data.get("Unpaid"));
+                        verifyProductDeployDateOnQuoteScreen(data.get("Date1"));
                         // verifying PA fields 
                         verifyPAFieldsOnQuotesScreen(data.get("PA"));
                         verifyPAFieldsOnQuotesScreen(data.get("PA1"));

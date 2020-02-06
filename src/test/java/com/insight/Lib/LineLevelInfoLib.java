@@ -285,7 +285,7 @@ public class LineLevelInfoLib extends LineLevelInfoObj{
 	public void verifyContractSpecificInfoOnPlaceOrderPage() throws Throwable{
 		List <WebElement> element=driver.findElements(CONTRACT_SPECIFIC_REPORTING_FIELDS);
 		if(isElementPresent(CONTRACT_SPECIFIC_INFO_LABEL, "contract spcific info")){
-			for(int i=0;i<=element.size();i++) {
+			for(int i=0;i<element.size();i++) {
 				reporter.SuccessReport("Verify contract specific info", "contract specific info is present in place order page", element.get(i).getText());
 			}
 		}else{
