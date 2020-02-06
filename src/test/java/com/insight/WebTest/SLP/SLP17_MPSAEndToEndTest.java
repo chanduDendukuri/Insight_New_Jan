@@ -45,7 +45,7 @@ public class SLP17_MPSAEndToEndTest extends SLPLib{
 		int intEndRow = ReportControl.fnGetEndRowCunt(EndRow, "SLP17_MPSAEndToEnd", TestData, "SLP");
 		for (int intCounter = intStartRow; intCounter <= intEndRow; intCounter++) {
 
-			// initilizing libraries and testdata
+			// initializing libraries and testdata
 			ReportStatus.fnDefaultReportStatus();
 			ReportControl.intRowCount = intCounter;
 			Hashtable<String, String> data = TestUtil.getDataByRowNo("SLP17_MPSAEndToEnd", TestData, "SLP",
@@ -96,27 +96,28 @@ public class SLP17_MPSAEndToEndTest extends SLPLib{
 				Clickonunpaidlicense();
 				verifydeployedatewithcurrentdate();
 				verifycartDetailsWithDeployPopUpDetails(date1, prodDesc1.get(0), data.get("PartNum1"));
-				calenderforUnpaidLicense(data.get("Date1"));
+				String previousDate=invoiceHistoryLib.getPreviousDay("1");
+				calenderforUnpaidLicense(previousDate);
 		     	clickapply();
 		     	Thread.sleep(5000);
 				//  verify deploy date on cart
-		     	verifydeployeDateinCartPageAfterDateChange(data.get("PartNum1"), data.get("Date1"));
+		     	verifydeployeDateinCartPageAfterDateChange(data.get("PartNum1"), previousDate);
 		     	clickOnCopyToAllLink(data.get("PartNum1"));
 		     	
 		     	// First part verification
 		     	String date_1=getDeploydateOnCart(data.get("PartNum1"));
-		     	verifyDateAppliedToAllPartAfterCopyAll(date_1, data.get("Date1"));
+		     	verifyDateAppliedToAllPartAfterCopyAll(date_1, previousDate);
 				
 		     	// Second part deploy date verification
 		     	String date2=getDeploydateOnCart(data.get("PartNum2"));
-		     	verifyDateAppliedToAllPartAfterCopyAll(date2, data.get("Date1"));
+		     	verifyDateAppliedToAllPartAfterCopyAll(date2, previousDate);
 		     	
 		     	verifyUpdatedUnPaidLisenceOnCartPage(data.get("PartNum2"));
 		     	verifyUpdatedUnPaidLisenceOnCartPage(data.get("PartNum1"));
 		     	
 		     	clickSaveasQuote();
                 // verifying deploy date on quotes screen
-                verifyProductDeployDate(data.get("Date1"),data.get("Unpaid"));
+                verifyProductDeployDate(previousDate,data.get("Unpaid"));
 				
                 clickSaveAsQuoteButtonOnQuoteScreen();
                 String refNumber = orderLib.getQuoteReferenceNumber();
@@ -133,11 +134,11 @@ public class SLP17_MPSAEndToEndTest extends SLPLib{
 		     	
 		        // First part verification
 		     	String cartDate1=getDeploydateOnCart(data.get("PartNum1"));
-		     	verifyDateAppliedToAllPartAfterCopyAll(cartDate1, data.get("Date1"));
+		     	verifyDateAppliedToAllPartAfterCopyAll(cartDate1, previousDate);
 				
 		     	// Second part deploy date verification
 		     	String cartDate2=getDeploydateOnCart(data.get("PartNum2"));
-		     	verifyDateAppliedToAllPartAfterCopyAll(cartDate2, data.get("Date1"));
+		     	verifyDateAppliedToAllPartAfterCopyAll(cartDate2, previousDate);
 				
 		     	// Proceed to checkout
 		     	orderLib.proceedToCheckout();
@@ -152,8 +153,8 @@ public class SLP17_MPSAEndToEndTest extends SLPLib{
 				 orderLib.clickOnReviewRequisitionButton();                       
                  orderLib.verifyPlaceOrderLabel();
                  // Verify deploy date
-                 verifyDeploydateOnPlaceOrderPage(data.get("PartNum2"), data.get("Date1"));
-                 verifyDeploydateOnPlaceOrderPage(data.get("PartNum1"), data.get("Date1"));
+                 verifyDeploydateOnPlaceOrderPage(data.get("PartNum2"),previousDate);
+                 verifyDeploydateOnPlaceOrderPage(data.get("PartNum1"), previousDate);
 				
                  verifyUpdatedUnPaidLisenceOnCartPage(data.get("PartNum2"));
                  verifyUpdatedUnPaidLisenceOnCartPage(data.get("PartNum1"));
@@ -174,7 +175,7 @@ public class SLP17_MPSAEndToEndTest extends SLPLib{
 				 commonLib.clickOnInsightLogoOnHomePage();
 				 commonLib.clickOnAccountToolsAndClickOnProductGrp(data.get("Tools_Menu2"), data.get("Tools_Menu_DD3"));
 				 selectReferenceNumFromRequisitionSearchResults(RefNumber);
-				 verifyProductDeployDate(data.get("Date1"),data.get("Unpaid"));
+				 verifyProductDeployDate(previousDate,data.get("Unpaid"));
 				 
 				 selectApproveRadioButtonOnApprovalManagementPage();
 				 ReqLib.clickUpdateInApprovalManagmentPage();

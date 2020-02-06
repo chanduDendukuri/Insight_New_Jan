@@ -325,5 +325,15 @@ public String getAccountNumber() throws Throwable{
             click(closeWelcomeInsightPopup,"Welcome insight popup","Welcome insight popup");
         }
     }
+    public boolean HostedLicensingAdminPageVerification() throws Throwable{
+        return isVisibleOnly(lblHostedLicensingAdminPage,"Hosted Licensing Admin Page");
+    }
+       public boolean verifyReturnTOSoftwareLicenseAggrements() throws Throwable{
+        return isVisibleOnly(lblReturnTOSoftwareLicenseAggrements,"ReturnTOSoftwareLicenseAggrements");
+    }
+    public String getManfNumberFromProductSearchScreen() throws Throwable{
+        return getText(lblManifacturerNumberFormProductScreen,"Manufacturer number");
+    }
+
 }
 

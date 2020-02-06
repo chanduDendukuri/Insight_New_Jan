@@ -879,7 +879,7 @@ public class SLPLib extends SLPObj {
 		 * @throws Throwable
 		 */
 		public void verifyDateAppliedToAllPartAfterCopyAll(String actualDate,String expectedDate) throws Throwable {
-			if(actualDate.equals(expectedDate)) {
+			if(actualDate.replaceFirst("0", "").equals(expectedDate)) {
 				reporter.SuccessReport("Verify date is copied to all parts", "Deploy date updted  ", "Deploy Date: "+actualDate);
 			}else {
 				reporter.failureReport("Verify date is copied to all parts", "Date is not copied to all parts", "", driver);

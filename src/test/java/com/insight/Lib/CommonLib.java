@@ -324,7 +324,9 @@ public class CommonLib extends ActionEngine{
 			Thread.sleep(2000);
 			clearData(CartObj.QUANTITY);
 			type(CartObj.QUANTITY,quantity,"NUMBER OF ITEMS");
-			click(CartObj.UPDATE,"UPDATE");
+			if(isVisibleOnly(CartObj.UPDATE,"UPDATE")) {
+				click(CartObj.UPDATE, "UPDATE");
+			}
 		}
 		public boolean clickOnUpdateLinkInViewCartPage(String quan) throws Throwable{
 			boolean status=false;

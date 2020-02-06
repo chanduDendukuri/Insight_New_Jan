@@ -46,12 +46,24 @@ public class CommonObj extends ActionEngine{
     //Shop all products
     public static By SHOP_ALL_PRODUCTS_MENUS_LIST=By.xpath("//ul//a[@class='linkHighlight']");
     
+    //Shop all products for CA
+    public static By SHOP_ALL_PRODUCTS_MENUS_LIST_CA=By.xpath("//div[@class='-column-1 parsys']/div[@class='text parbase section']/h2");
+
+    //Popular products label for CA
+    public static By POPULAR_PRODUCTS_LABEL_CA=By.xpath("//div[@class='row product-summary-component']/div[@class='columns small-12']/h2");
+    
     public static By getShopAllLinksInHeaders(String shopallbtn){
     	return By.xpath("//ul//a[@class='linkHighlight'][contains(text(),'"+shopallbtn+"')]");
     }
 
     public static By getShopAllProductsByCategory(String shoppingCatogory){
     	return By.xpath("//div[@class='insight-layout section']//div[@class='result-item-wrapper']//a[@data-gtm-info='"+shoppingCatogory+"']");
+    }
+    
+    // for CA
+    public static By getShopByBrandByAlphabetForCA(String alphabetBrand){
+		return By.xpath("//div[@id='js-partner-list-containercontentinsight-weben_CAshoppartnerjcrcontentbottom-full-widthpartner_list']//div[@class='letter-container']//li//a[contains(text(),'"+alphabetBrand+"')]");
+    	
     }
     
     

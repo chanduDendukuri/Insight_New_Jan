@@ -106,44 +106,47 @@ public class LNL01_InactiveSTTest extends LineLevelInfoLib{
 						cmtLib.verifySmartTrackerPage();
 						// Add a smart tracker
 						cmtLib.clickOnAddSmartTrackerLink();
+						String date_field1 = getCurrentDateTime("dd-mmm-yyyy HH:MM:SS.ss");
 						cmtLib.addFieldLabelInSmartTracker(data.get("Field_Label"));
-						cmtLib.saveChangesAndVerify(data.get("Field_Label"));
+						cmtLib.saveChangesAndVerify(date_field1);
 						// inActive smart tracker
-						cmtLib.editSmartTracker(data.get("Field_Label"));
+						cmtLib.editSmartTracker(date_field1);
 						cmtLib.verifyInactiveSmartTrackerError();
-						
+						String date_field2 = getCurrentDateTime("dd-mmm-yyyy HH:MM:SS.ss");
 						// click on Line level tab
 						cmtLib.selectSmartTrackersHeaders(data.get("Smart_Header"));
 						cmtLib.clickOnAddSmartTrackerLink();
-						cmtLib.addFieldLabelInSmartTracker(data.get("Field_Label"));
+						cmtLib.addFieldLabelInSmartTracker(date_field2);
 						cmtLib.addSmartTrackerFieldType(data.get("Field_Type"));  // Date - type
-						cmtLib.saveChangesAndVerify(data.get("Field_Label"));
+						cmtLib.saveChangesAndVerify(date_field2);
 						
 						// inActive smart tracker
-						cmtLib.editSmartTracker(data.get("Field_Label"));
+						cmtLib.editSmartTracker(date_field2);
 						cmtLib.verifyInactiveSmartTrackerError();
 						
 						// click on Manage Reporting Parent SmartTrackers
 						refreshPage();
+						String date_field3 = getCurrentDateTime("dd-mmm-yyyy HH:MM:SS.ss");
 						cmtLib.selectmanageSmartTrackertabs(data.get("tab_Name"));
 						cmtLib.clickOnAddSmartTrackerLink();
-						cmtLib.addFieldLabelInSmartTracker(data.get("Field_Label"));
+						cmtLib.addFieldLabelInSmartTracker(date_field3);
 						cmtLib.addSmartTrackerFieldType(data.get("Field_Type"));  // Date - type
-						cmtLib.saveChangesAndVerify(data.get("Field_Label"));
+						cmtLib.saveChangesAndVerify(date_field3);
 						
 						// inActive smart tracker
-						cmtLib.editSmartTracker(data.get("Field_Label"));
+						cmtLib.editSmartTracker(date_field3);
 						cmtLib.verifyInactiveSmartTrackerError();
 					  
+						String date_field_LL = getCurrentDateTime("dd-mmm-yyyy HH:MM:SS.ss");
 						// click on Line level tab
 						cmtLib.selectSmartTrackersHeaders(data.get("Smart_Header"));
 						cmtLib.clickOnAddSmartTrackerLink();
-						cmtLib.addFieldLabelInSmartTracker(data.get("Field_Label"));
+						cmtLib.addFieldLabelInSmartTracker(date_field_LL);
 						cmtLib.addSmartTrackerFieldType(data.get("Field_Type"));  // Date - type
-						cmtLib.saveChangesAndVerify(data.get("Field_Label"));
+						cmtLib.saveChangesAndVerify(date_field_LL);
 						
 						// inActive smart tracker
-						cmtLib.editSmartTracker(data.get("Field_Label"));
+						cmtLib.editSmartTracker(date_field_LL);
 						cmtLib.verifyInactiveSmartTrackerError();
 						
 						cmtLib.hoverOverMasterGroupAndSelectChangeGrp();

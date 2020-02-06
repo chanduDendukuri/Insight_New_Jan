@@ -244,7 +244,7 @@ public class InvoiceHistoryLib extends InvoiceHistoryObj {
 		date = date.replace("0", "");
 		System.out.println("month" + month);
 		System.out.println("required" + date + " " + month + " " + year);
-		return date + " " + month + " " + year;
+		return date + "-" + month + "-" + year;
 	}
 
 	/**

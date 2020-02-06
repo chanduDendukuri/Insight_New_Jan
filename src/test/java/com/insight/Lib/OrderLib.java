@@ -136,9 +136,9 @@ public class OrderLib extends OrderObj{
 	public void proceedToCheckout() throws Throwable{
 	//	commonLib.spinnerImage();
 		Thread.sleep(5000);
-		/*if(isElementPresent(CommonObj.CLOSEBUTTON_COOKIES,"close cookie")) {
+		if(isElementPresent(CommonObj.CLOSEBUTTON_COOKIES,"close cookie")) {
 			click(CommonObj.CLOSEBUTTON_COOKIES, "close cookie");
-		}*/
+		}
 		if(isElementPresent(PROCEED_TO_CHECKOUT, "Proceed to checkout") && isEnabled(PROCEED_TO_CHECKOUT, "Proceed to checkout")){
 			clickUntil(PROCEED_TO_CHECKOUT, ORDER_ITEM_INFO_LABEl, "Proceed to checkout");
 			Thread.sleep(3000);
@@ -356,6 +356,8 @@ List<String> orderdetails = new ArrayList<String>();
 			} else {
 				reporter.failureReport("Verify the Total Amount ", "The Total Amount is not updated. ","",driver);
 			}
+               //Discussed with Krishna and it is not required for validation hence commented By chandu
+
 			  // date ordered verification
 			  if (isElementPresent(DATE_ORDERED, "Date ordered")) {
 				String dateOrdered = getText(DATE_ORDERED, "Date ordered");
@@ -1097,7 +1099,6 @@ List<String> orderdetails = new ArrayList<String>();
 	 */
 	public void verifyUploadedFileInReviewOrderPage(String FileName) throws Throwable{
 		String uploadeFile=getText(REVIEW_ORDER_UPLOADED_FILE_NAME, "file uploaded");
-		
 		
 	}
 	
@@ -2444,21 +2445,17 @@ List<String> orderdetails = new ArrayList<String>();
 
 	public void getHeaderLevelItemsInforDynamically(String val) throws Throwable{
 		reporter.SuccessReport("Header Level value","RP_HDL_Lst are ",getText(dynamicHeaderLevelCustomerDetailsValues(val),"RP_HDL_Lst is"));
-
-	   }
-	
-	
+	}
 	public void getProductDetailsFromCartResultsGrid() throws Throwable {
 
 		List<WebElement> prodDes = driver.findElements(CartObj.productDes);
 		List<WebElement> partNumber = driver.findElements(CartObj.getPartNuminOrderdetails);
 		List<WebElement> totalAmount = driver.findElements(CartObj.lblTotalAmountFromCartSearchResults);
 
-		for(int i = 0;i<prodDes.size();i++){
-			reporter.SuccessReport("Product details","Cart prodcut details are ", "Product description is " + prodDes.get(i).getText() +" and Part number is " +partNumber.get(i).getText()+ " Total number for the product is " + totalAmount.get(i).getText());
+		for (int i = 0; i < prodDes.size(); i++) {
+			reporter.SuccessReport("Product details", "Cart prodcut details are ", "Product description is " + prodDes.get(i).getText() + " and Part number is " + partNumber.get(i).getText() + " Total number for the product is " + totalAmount.get(i).getText());
 		}
 
 
 	}
 	}
-
