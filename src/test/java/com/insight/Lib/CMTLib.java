@@ -2560,9 +2560,10 @@ public  void verifyDashboard()throws Throwable {
 	 * @throws Throwable
 	 */
 	public void enterLinkedAccountSearch(String accountSearch) throws Throwable {
-		if (isElementPresent(LINKED_ACCOUNTS_SEARCH, "Linked account search")) {
-			type(LINKED_ACCOUNTS_SEARCH, accountSearch, "account Search");
+		if (isVisibleOnly(LINKED_ACCOUNTS_SEARCH, "Linked account search")) {
+			typeText(LINKED_ACCOUNTS_SEARCH, accountSearch, "");
 			click(SEARCH_ICON, "search icon");
+			reporter.SuccessReport("Web Group Management", "Under Linked Accounts Quick Find Box Exist and Value Entered", "Search Input:"+accountSearch);
 		} else {
 			reporter.failureReport("Verify linked accounts search input", "linked accounts search input is not present",
 					accountSearch, driver);
@@ -2575,8 +2576,11 @@ public  void verifyDashboard()throws Throwable {
 	 * @throws Throwable
 	 */
 	public void clearSearch() throws Throwable {
+		if(isVisibleOnly(LINKED_ACCOUNTS_SEARCH,"Linked Account Search")) {
 		clearData(LINKED_ACCOUNTS_SEARCH);
 		click(SEARCH_ICON, "search icon");
+		reporter.SuccessReport("Web Group Management", "Under Linked Accounts Results are Cleared", "");
+	}
 	}
 
 	/**
@@ -2609,7 +2613,7 @@ public  void verifyDashboard()throws Throwable {
 	}
 
 	public void clickDefaultRadioButtonInLinkedAccounts() throws Throwable {
-		click(DEFAULT_LOGIN_LINKED_ACCOUNTS, "Default login");
+		click(DEFAULT_LOGIN_LINKED_ACCOUNTS, "Default login Radio button selected");
 	}
 
 	/**
@@ -2620,7 +2624,7 @@ public  void verifyDashboard()throws Throwable {
 	public void clickUpdateButtonOnLinkedAccountsScreen() throws Throwable {
 		if (isEnabled(UPDATEUSER_BTN, "Update Button")) {
 			click(UPDATEUSER_BTN, "update button");
-			isElementPresent(LINKED_ACCOUNT_UPADTE_MSG, "update message", true);
+			isElementPresent(LINKED_ACCOUNT_UPADTE_MSG, "Update Success message", true);
 		} else {
 			reporter.failureReport("verify update button enabled", "update user button is not enabled", "", driver);
 		}
@@ -2734,8 +2738,10 @@ public  void verifyDashboard()throws Throwable {
                   int C= list.size();
                   System.out.println(C);
 		if (status.equals("Checked")) {
-			for (i = 0; i <= list.size(); i++) {
+			for (i = 0; i <= 10; i++) {
 				if (isCheckBoxSelected(LINKED_ACCOUNT_CHECKBOX)) {
+					reporter.SuccessReport("Under Linked Accounts Linking Weblist Exist and Selected",
+							"Verify Check Boxes Status:Checkbox is Checked", "");
 					// do nothing
 				} else {
 					reporter.failureReport("Verify linked account check box selected",
@@ -2743,12 +2749,14 @@ public  void verifyDashboard()throws Throwable {
 				}
 			}
 			reporter.SuccessReport("Verify linked account check box selected",
-					" linked account check boxes are selected / Checked for all the displayed users " +C, "");
+					"linked account check boxes are selected / Checked for all the displayed users " +C, "");
 		}
 
 		if (status.equals("UnChecked")) {
-			for (i = 0; i <= list.size(); i++) {
+			for (i = 0; i <=10; i++) {
 				if (!isCheckBoxSelected(LINKED_ACCOUNT_CHECKBOX)) {
+					reporter.SuccessReport("Under Linked Accounts Linking Weblist Exist and Selected",
+							"Verify Check Boxes Status:Checkbox is UnChecked", "");
 
 				} else {
 					reporter.failureReport("Verify linked account check box selected",
@@ -2756,7 +2764,7 @@ public  void verifyDashboard()throws Throwable {
 				}
 			}
 			reporter.SuccessReport("Verify linked account check box selected",
-					" linked account check boxes are not selected / unchecked for users " + i, "");
+					" linked account check boxes are not selected / unchecked for users " +list.size(), "");
 		}
 	}
 
@@ -2768,6 +2776,7 @@ public  void verifyDashboard()throws Throwable {
 	public void clickOnNextPagination() throws Throwable {
 		if (isElementVisible(PAGINATION, 5, "pagination next")) {
 			click(PAGINATION, "pagination");
+			reporter.SuccessReport("Web Group Management", "Under Linked Accounts Next Link Existed and Clicked", "Link:>>");
 		} else {
 			reporter.failureReport("Verify next in pagination", " next >> in pagination does not exist", "");
 		}
@@ -2807,12 +2816,15 @@ public  void verifyDashboard()throws Throwable {
 	 * @throws Throwable
 	 */
 	public void clickLinkedAccountCheckBox(String i) throws Throwable {
-		click(getLinkedAccountCheckBoxByIndex(i), "Linked account check box");
-
+		if(isVisibleOnly(getLinkedAccountCheckBoxByIndex(i), "Linked account check box")) {
+		click(getLinkedAccountCheckBoxByIndex(i), "Under Linked Accounts CheckBox of index "+i+" Exist and Checked");
+		String Value=driver.findElement(CMTObj.getLinkedAccountCheckBoxByIndex(i)).getAttribute("value");
+		reporter.SuccessReport("Web Group Management", "The Sold To is Linked to User", "Account Number:"+Value);
+		}
 	}
 
 	public void clickOnDefaultAccountLoginByIndex(String i) throws Throwable {
-		click(getDefaultLoginByIndex(i), "Default Login");
+		click(getDefaultLoginByIndex(i), "Last Sold TO is Linked to User");
 	}
 
 	/**
@@ -2849,10 +2861,10 @@ public  void verifyDashboard()throws Throwable {
 	 * @throws Throwable
 	 */
 	public void verifyAccountNameStartsWith(List<String> expectedName, String actualName) throws Throwable {
-		for (i = 0; i < expectedName.size(); i++) {
+		for (i = 0; i < 5; i++) {
 			if ((expectedName.get(i).toUpperCase()).startsWith(actualName)) {
 				reporter.SuccessReport("verify Account Name Starts With",
-						"Account Name verification is successfull" + expectedName.get(i), "");
+						"All Sold To Accounts Started with "+expectedName+" are Exist and Returned",  expectedName.get(i));
 			} else {
 				reporter.failureReport("verify Account Name Starts With",
 						"Account Name verification is not successfull", "", driver);
@@ -3668,19 +3680,17 @@ public void verifySetPermissionsDisabled(String userPermissions) throws Throwabl
 	public void VerifytheLinkedAccountsText() throws Throwable {
 		//List<WebElement> list = driver.findElements(LINKEDACCOUNTS);
 		List<String> values = new ArrayList<String>();
-			//for (i = 0; i <list.size(); i++) {
 				if(isVisibleOnly(LinkedAccountsText,"Linked Accounts Data")) {
 					List<WebElement> list2 = driver.findElements(LinkedAccountsText);
-					for (i = 0; i <50; i++) {
-						for(i=0;i<5;i++) {
+					for (int i = 0; i<15; i++) {
+						for (int j=0;j<5;j++) {
 						String textlinkedaccount= list2.get(i).getText().trim();
-						System.out.println(textlinkedaccount);
 						values.add(textlinkedaccount);
 						}
-						reporter.SuccessReport("Verify Linked Accounts Data", "Data", "Data:"+values);
-						values.clear();
-						}
-			}
+					reporter.SuccessReport("Web Group Management", "All Active Sold to's for the Current Web Group Displays", "AccountName,AccountNumber,Address,AccountStatus,DefaultLogin:"+values);
+					values.clear();
+					}
+				}
 	//	}
 	}
 
@@ -3689,5 +3699,15 @@ public void verifySetPermissionsDisabled(String userPermissions) throws Throwabl
 		if (driver.findElement(CartObj.POP_UP_EMAILID).isDisplayed()) {
 			handleWelcomeToInsightBetaPopUp();
 		}
+	}
+	public void verifyPageStartsWithatLinkedAccounts(String Page) throws Throwable {
+		if (isVisibleOnly(STARTPAGE, "default account address")) {
+			String SartPage=getText(STARTPAGE,"Start Page").trim();
+			if(SartPage.contains(Page)) {
+			reporter.SuccessReport("Web Group Management", "Under Linked Accounts Next Page is Exist and Displays", SartPage);
+		} else {
+			reporter.failureReport("Web Group Management", "Under Linked Accounts Next Page is Not Exist", "", driver);
+		}
+	}
 	}
 }

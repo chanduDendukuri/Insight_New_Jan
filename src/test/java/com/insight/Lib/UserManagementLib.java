@@ -53,10 +53,10 @@ public class UserManagementLib extends UserManagementObj {
 	 * Method is used to verify user is logged to canada webgroup
 	 */
 	public void verifyPagination(String intEndPaging) throws Throwable {
-		  selectByVisibleText(RECORDS,intEndPaging,"");
+		  selectByVisibleText(RECORDS,intEndPaging,"Under Linked Accounts Show Result Per Page Weblist Exist and Selected");
 		   if (isElementPresent(getPagination(intEndPaging), "Pagnation")) {
 			 
-			reporter.SuccessReport("Verify "+intEndPaging+" users are displayed ", intEndPaging+" users are displayed", "");
+			reporter.SuccessReport("Web Group Management", "Under Linked Accounts Show Result Per Page Weblist Shows "+intEndPaging+" Records Per Page ",intEndPaging);
 		 } else {
 			reporter.failureReport("Verify "+intEndPaging+" users are displayed ", intEndPaging+" users are  not displayed", "",driver);
 		}

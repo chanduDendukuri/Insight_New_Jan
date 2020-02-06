@@ -45,7 +45,7 @@ public class OrderHistoryObj extends ActionEngine{
 		return By.xpath("//label[@class='form__label']//input[contains(@name,'"+inputField+"')]");
 	}
 	public static By GENERIC_SEARCH_BUTTON=By.xpath("//button[@class='button expand generic-search__btn']");
-	public static By SEARCH_RESULTS_GENERIC_SEARCH=By.xpath("//div[@class='search-results']");
+	public static By SEARCH_RESULTS_GENERIC_SEARCH=By.xpath("//div//span[contains(text(),'Order number')]//following-sibling::a");
 	public static By TRACK_AN_ORDER_PAGE=By.xpath("//h1[text()='Track my order']");
 	
 	//advanced search
@@ -57,7 +57,8 @@ public class OrderHistoryObj extends ActionEngine{
 	public static By SPINNER_IMAGE=By.xpath("//span[@class='iw-loading iw-loading__size-medium']");
 	public static By CLEAR_SEARCH=By.xpath("//button[@class='button clear search-form__btn']");
 	public static By SHIPPING_TYPE=By.xpath("//select[@name='shippingType']");
-	public static By SHIPPED_QTY=By.xpath("//table[@class='order-card-section__table']//span[@class='item-body__label']");
+	public static By SHIPPED_QTY=By.xpath("//table[@class='order-card-section__table']//div[@class='row align-middle collapse item-body__row']");
+	public static By Shipped_QtyDesc = By.xpath("//table[@class='order-card-section__table']//div[@class='item-details__text columns expand']");
 	public static By OPEN_INVOICED_ORDERS=By.xpath("//select[@name='orderType']");
 	
 	public static By END_DATE_CALENDER=By.xpath("//label[@for='endDate']//parent::div//input[@class='form__field date-picker__input']");
@@ -67,6 +68,9 @@ public class OrderHistoryObj extends ActionEngine{
 		return By.xpath("//*[contains(text(),'"+noOfResults+"')]");
 	}
 	public static By ORDER_NUMBERS_IN_RESULT=By.xpath("//table[@class='iw-table']//tbody//a[@class='orders__link order-card-header__link']");
+	public static By Orderreuslts = By.xpath("//table[@class='iw-table']//tr[contains(@class,'iw-table__row')]//span//following-sibling::a");
+	public static By POOrderSearchResults = By.xpath("//table[@class='iw-table']//tr[contains(@class,'iw-table__row')]//td[5]");
+	public static By OrderStatusResults = By.xpath("//table[@class='iw-table']//tr[contains(@class,'iw-table__row')]//td//span[contains(@class,'order-status')]");
 	public static By SORT_RESULTS_BY=By.xpath("//span[text()='Sort results by']//parent::label//div");
 	public static By SORT_ORDER=By.xpath("//span[text()='Sort order']//parent::label//div");
 	public static By sortResultsFilter(String noOfResults) {
