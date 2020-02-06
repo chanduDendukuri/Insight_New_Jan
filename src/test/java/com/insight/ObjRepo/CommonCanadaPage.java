@@ -40,6 +40,15 @@ public class CommonCanadaPage extends ActionEngine{
     public static By countryNames = By.xpath("//*[@class='o-list-bare__item  c-header-account-menu__item']//button");
     public static By PLACE_ORDER_PAGE_TEXT=By.xpath("//h1[text()='Place order']");
     public static By discoveryCardInfo=By.xpath("//*[@class='hide-for-print icon-cards icon-cards--DISC']//span");
+    public static By removeSuccessMessage=By.xpath("//*[@class='medium-4 columns defaultAcctLvl']//div");
+    public static By getAccountReferenceNumberResult=By.xpath("//td[@class='footable-visible footable-first-column']//following-sibling::td[1]");
+    public static By SWITCH_ACCOUNT_LINK=By.xpath("//td[@class='footable-visible footable-first-column']//following-sibling::td[3]");
+    public static By accRefNumberFromDefaultAccount= By.xpath("//div[@class='medium-4 columns currentAcctLvl']//div[1]");
+    public static By TU_CASPLAAccountlink= By.xpath("//*[@class='o-list-bare__item  c-header-account-menu__item']//button[text()='TU_CASPLAAccount']");
+    public static By TU_CANoDCTestlnk= By.xpath("//*[@class='o-list-bare__item  c-header-account-menu__item']//button[text()='TU_CANoDCTest']");
+    public static By WEBGRPCHANGE_POPUP = By.xpath("//h2[contains(text(),'You are about to change your web group')]");
+    public static By CONTINUEBUTTON_WEBGRPCHANGE = By.xpath("//button[contains(text(),'Continue') and @type='button']");
+    public static By closeWelcomeInsightPopup = By.xpath("//a[@class='close-reveal-modal' and @aria-label='Close']");
 
 
 

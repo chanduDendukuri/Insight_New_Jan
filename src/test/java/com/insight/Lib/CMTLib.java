@@ -285,7 +285,7 @@ public class CMTLib extends CMTObj {
 			if (isCheckBoxSelected(getUserPermission(permissions[i]))) {
 				LOG.info(userPermission + " check box already checked.");
 				reporter.SuccessReport(permissions[i] + " Permissions on WebGroup Management Page",
-						"Check Box Field Exists and Enabled", permissions[i]);
+						"Check Box Field Exists and Enabled", permissions[i]+" ON");
 			} else {
 				click(getUserPermission(permissions[i]), "set user permission " + permissions[i] + " is ON ",
 						permissions[i], permissions[i]);
@@ -826,7 +826,7 @@ public  void verifyDashboard()throws Throwable {
 	public void clickupdateatDefaultShippingOption() throws Throwable {
 		click(UPDATE_USER_ShippingEstimations, "Update user button");
 		if (isElementPresent(SUCCESS_UPDATE_MSG, "update sucessful message")) {
-			reporter.SuccessReport("Verify the Sucess message ", "Permissions Updated Succesfully", "");
+			reporter.SuccessReport("Verify the Sucess message ", "Permissions Updated Succesfully", getText(SUCCESS_UPDATE_MSG, "Success message"));
 		} else {
 			reporter.failureReport("Verify the sucess message", "Permissions are not Updated Succesfully", "", driver);
 		}
@@ -3682,4 +3682,10 @@ public void verifySetPermissionsDisabled(String userPermissions) throws Throwabl
 		}
 	}
 
+	public void handlebetaPopup() throws Throwable{
+
+		if (driver.findElement(CartObj.POP_UP_EMAILID).isDisplayed()) {
+			handleWelcomeToInsightBetaPopUp();
+		}
+	}
 }

@@ -66,7 +66,7 @@ public class APP03_DeleteMemberTest extends ApprovalPathLib {
 					cmtLib.setPermissionsToDisable(data.get("Menu_Name"), data.get("Disable_Permission"));
 					cmtLib.clickOnloginAs();
 					switchToChildWindow();
-					commonLib.spinnerImage();
+					commonLib.spinnerImage();cmtLib.loginVerification("TU_IUSAdmin TU_IUSAdmin");
 					commonLib.clickOnAccountToolsAndClickOnProductGrp(data.get("Tools_Menu"),
 							data.get("Tools_Menu_DD"));
 
@@ -74,7 +74,7 @@ public class APP03_DeleteMemberTest extends ApprovalPathLib {
 					reqProcLib.verifyApprovalManagementPage();
 
 					// System Displays All Approval paths and Details
-					VerifyApprovalPathAndApprovers();
+					int count =VerifyApprovalPathAndApprovers();
 
 					// Get the First Approver path, Add Approver and Remove
 					String firstPathName = GetFirstPathAddRemoveApprover();
@@ -83,15 +83,13 @@ public class APP03_DeleteMemberTest extends ApprovalPathLib {
 					ClickEditLinkButton(firstPathName);
 
 					// Select Approvers and add approver
-					String approverAdded = SelectApprover(null);
+					String approverAdded = SelectApprover(null,10);
 					
 					Add_Approver_Btn_Click();
 
-					// Verify Approval path is added
-					VerifyApproversAdded(approverAdded);
 
 					// Now Remove the same user- Click Remove
-					RemoveApprovers(approverAdded);
+					RemoveApprovers(approverAdded,count);
 
 					// Update Approval path
 					ClickUpdateButton();
@@ -106,7 +104,7 @@ public class APP03_DeleteMemberTest extends ApprovalPathLib {
 					VerifyIsInEditMode();
 
 					// click remove
-					RemoveApprovers(data.get("Select_Approver"));
+					RemoveApprovers(data.get("Select_Approver"),1);
 
 					// click update
 					ClickUpdateButton();
@@ -127,7 +125,7 @@ public class APP03_DeleteMemberTest extends ApprovalPathLib {
 					VerifyIsInEditMode();
 
 					// click remove
-					RemoveApprovers(data.get("Select_Approver"));
+					RemoveApprovers(data.get("Select_Approver"),1);
 
 					// click update
 					ClickUpdateButton();

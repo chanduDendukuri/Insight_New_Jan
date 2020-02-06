@@ -64,8 +64,8 @@ public class CRT17_SaveCartLineLevelTest extends CartLib {
 					cmtLib.clickOnTheWebGroup(data.get("WebGrp_Name"));
 					cmtLib.hoverOnManageWebGroupsAndSelectOptions(data.get("Manage_Web_Grp_Options"));
 					cmtLib.searchForaUserAndSelect(data.get("LnameEmailUname"), data.get("ContactName"));
-					cmtLib.clickOnRolesAndPermissionsAndSetPermission(data.get("Menu_Name"), data.get("Set_Permission"));
-					cmtLib.setPermissions(data.get("Menu_Name"), data.get("Enable_Purchasing_Popup"));
+					//cmtLib.clickOnRolesAndPermissionsAndSetPermission(data.get("Menu_Name"), data.get("Set_Permission"));
+					//cmtLib.setPermissions(data.get("Menu_Name"), data.get("Enable_Purchasing_Popup"));
 					cmtLib.clickOnloginAs();
 					switchToChildWindow();
 					cmtLib.loginVerification(data.get("ContactName"));
@@ -92,7 +92,6 @@ public class CRT17_SaveCartLineLevelTest extends CartLib {
 					cartLib.verifyRpLnllTxt(data.get("RP_LNL_Txt"));
 					String cartName = "QTPSaveCartLineLevel"+getRandomNumeric(4);
 					cartLib.clickOnSaveCartContentAndSaveCart(cartName);
-					
 					commonLib.clickCart();
 					canadaLib.verifyPlaceCartLabel();
 					commonLib.verifyCartIsEMpty();
