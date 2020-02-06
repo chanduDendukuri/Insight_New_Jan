@@ -84,7 +84,7 @@ public class ODH10_OrderHistorySearchResultsFiltersTest extends OrderHistoryLib{
 							//######## Sort by PO and sort order Descending ################################
 							selectSortResults(data.get("Sort_PO_Number"));
 							selectSortOrder(data.get("Descending"));
-							verifyPOSearchResultsAreInAscending();
+							verifyPOSearchResultsAreInDescending();
 							//######## Sort by order status and sort order ascending ################################
 							selectSortResults(data.get("Sort_Order_Status"));
 							selectSortOrder(data.get("Ascending"));
@@ -92,7 +92,7 @@ public class ODH10_OrderHistorySearchResultsFiltersTest extends OrderHistoryLib{
 							//######## Sort by PO and sort order Descending ################################
 							selectSortResults(data.get("Sort_PO_Number"));
 							selectSortOrder(data.get("Ascending"));
-							verifyPOSearchResultsAreInAscending();
+							verifyPOSearchResultsAreInDescending();
 							
 							clickClearcSearch();
 							scrollUp();
