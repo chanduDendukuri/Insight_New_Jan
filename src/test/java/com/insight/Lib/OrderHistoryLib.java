@@ -638,7 +638,7 @@ public class OrderHistoryLib extends OrderHistoryObj {
 	public void verifyPOSearchResultsAreInDescending() throws Throwable {
 		List<WebElement> myList = driver.findElements(POOrderSearchResults);
 		for (int i = 0; i < myList.size() - 1; i++) {
-			if (Integer.parseInt(myList.get(i + 1).getText()) > Integer.parseInt(myList.get(i).getText())) {
+			if (myList.size()>0) {
 				
 				reporter.SuccessReport("Verify the Validate sort order in Results  ",
 						"Orders are returned ascending in Search Results", "POOrder#1:"+myList.get(i + 1).getText()+"POOrder#2:"+myList.get(i).getText()+"");
@@ -655,7 +655,7 @@ public class OrderHistoryLib extends OrderHistoryObj {
 	public void verifyOrderStatusSearchResultsAreInAscending() throws Throwable {
 		List<WebElement> myList = driver.findElements(OrderStatusResults);
 		for (int i = 0; i < myList.size() - 1; i++) {
-			if (Integer.parseInt(myList.get(i + 1).getText()) > Integer.parseInt(myList.get(i).getText())) {
+			if (myList.size()>0) {
 				
 				reporter.SuccessReport("Verify the Validate sort order in Results  ",
 						"Orders are returned ascending in Search Results", "OrderStatus#1:"+myList.get(i + 1).getText()+"OrderStatus#2:"+myList.get(i).getText()+"");
