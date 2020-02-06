@@ -132,6 +132,7 @@ public class LNL04_CopyLineLevelDataIPSTest  extends LineLevelInfoLib{
 						orderLib.shippingBillPay(data.get("Card_Number").toString(), data.get("Card_Name"),data.get("Month"), data.get("Year"),data.get("PO_Number"),data.get("POReleaseNumber"));
 						// Contract Specific Information verification
 						verifyContractSpecificInfoOnPlaceOrderPage(data.get("REPORTING_FIELD_4"), data.get("REPORTING_FIELD_5"), data.get("REPORTING_FIELD_6"));
+						verifyDiversityPartnerexists(data.get("Diversity_Partner2"),mfrNumber3);
 						// click on edit LLI
 						editLinelevelInfoOnPlaceOrderPage();
 						// Verify OII bread crumb
@@ -153,11 +154,12 @@ public class LNL04_CopyLineLevelDataIPSTest  extends LineLevelInfoLib{
 						String reportingfield4= getReportingField4();
 						String reportingfield5= getReportingField5();
 						String reportingfield6= getReportingField6();
-					   // Verifying reporting fields are empty
-						assertTextStringMatching(reportingfield4, "");
-						assertTextStringMatching(reportingfield5, "");
-						assertTextStringMatching(reportingfield6, "");
-						//orderLib.enterReportingDetailsInLineLevelInfo(data.get("REPORTING_FIELD_4"), data.get("REPORTING_FIELD_5"), data.get("REPORTING_FIELD_6"));
+						// Verifying reporting fields are empty
+						if(reportingfield4==null && reportingfield5==null && reportingfield6==null) {
+							reporter.SuccessReport("Verify contract specific info", "contract specific info is cleared", "REPORTING_FIELD_4 :"+reportingfield4+" REPORTING_FIELD_5 : "+reportingfield5 +" REPORTING_FIELD_6 : "+reportingfield6);
+						}else {
+							reporter.failureReport("Verify contract specific info", "contract specific info  not cleared", "",driver);
+						}
 						clickOnLineLevelOptionalLinkByPartNum(mfrNumber2);
 						// select second options from DD 
 						//clickOnLineLevelOptionalLinkByPartNum(mfrNumber1);
@@ -175,7 +177,7 @@ public class LNL04_CopyLineLevelDataIPSTest  extends LineLevelInfoLib{
 						orderLib.clickContinueOnLineLevelInfo(); 
 						// Contract Specific Information verification
 						verifyContractSpecificInfoOnPlaceOrderPage(data.get("REPORTING_FIELD_4"), data.get("REPORTING_FIELD_5"), data.get("REPORTING_FIELD_6"));
-						
+						verifyDiversityPartnerexists(data.get("Diversity_Partner2"),mfrNumber3);
 						commonLib.clickLogOutLink(data.get("Logout"));
 						
 						

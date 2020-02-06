@@ -239,6 +239,10 @@ public static By txt_QuoteDetails = By.xpath("//h2[contains(text(),'Quote Detail
 		return By.xpath("//td//a[contains(text(),'" + repName + "')]/following::td//input[@value='SECR']");
 	}
 
+	public static By saveImage(String repName) {
+		return By.xpath("//td//a[contains(text(),'"+repName+"')]/following::td//img[@alt='Save']");
+	}
+	
 	/*
 	 * *************************************************************************
 	 * *************************** >>>>>>>>>>> COMMON METHOD TO GET QUOTES CHECK
