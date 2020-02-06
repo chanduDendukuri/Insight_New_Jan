@@ -326,40 +326,18 @@ public class CanadaLib extends CanadaObj {
 	 */
 	public void clickOnSideMenuSelectAccountToolOptions(String toolsMenuName, String dropDown) throws Throwable {
 		Thread.sleep(2000);
-
-		if (isVisibleOnly(CommonObj.CLOSEBUTTON_COOKIES, "close cookie")) {
-			click(CommonObj.CLOSEBUTTON_COOKIES, "close cookie");
-		}
-
-		if (isVisibleOnly(InvoiceHistoryLib.COSE_ACCOUNT_TOOLS, "close account tools")) {
+     CommonLib cmnlib=new CommonLib();
+          cmnlib.acceptCookies() ;
+		Thread.sleep(20000);
+		if(isVisibleOnly(InvoiceHistoryLib.COSE_ACCOUNT_TOOLS, "close account tools")) {
 			click(InvoiceHistoryLib.COSE_ACCOUNT_TOOLS, "close account tools");
-		}
-		//click(CommonObj.ACCOUNT_TOOLS, "Account tools menu icon");
-		if (isElementClickable(CommonObj.ACCOUNT_TOOLS,2, "Account tools menu icon")) {
-			//click(CommonObj.ACCOUNT_TOOLS, "Account tools menu icon");
-		}else {
-			scrollToBottomWithCordinate("150");
-			if (isElementClickable(CommonObj.ACCOUNT_TOOLS,2, "Account tools menu icon")) {
-				click(CommonObj.ACCOUNT_TOOLS, "Account tools menu icon");
-			}else {
-				scrollToBottomWithCordinate("-300");
-				if (isElementClickable(CommonObj.ACCOUNT_TOOLS,3, "Account tools menu icon")) {
-					click(CommonObj.ACCOUNT_TOOLS, "Account tools menu icon");
-				}else {
-					reporter.failureReport("Account tools menu icon", "Account tools menu icon not displayed", "");
-				}
-				
-			}
-		}
-		//WebElement element = driver.findElement(by);
-		scrollToBottomWithCordinate("-150");
-Thread.sleep(2000);
-		//((JavascriptExecutor) WebDriver).executeAsyncScript(100,1000);
-		click(getAccountToolsMenu(toolsMenuName), "Account tools menu::" + toolsMenuName + "");
-		Thread.sleep(3000);
-		click(CommonObj.getAccountToolsDD(toolsMenuName, dropDown), "Select account tools::" + dropDown + "");
+		} 
+		
+		   click(CommonObj.ACCOUNT_TOOLS, "Account tools menu icon");
+		   click(CommonObj.accountToolsMenu(toolsMenuName), "Account tools menu:"+toolsMenuName);
+		   click(CommonObj.getAccountToolsDD(toolsMenuName, dropDown), "Select account tools: "+dropDown);	   
 	}
-
+	
 	public void verifyGroundIsDefaultShippingOption() throws Throwable {
 		waitForVisibilityOfElement(DEFAULT_SHIIPING_OPTION_GROUND, "default shipping option");
 		if (isCheckBoxSelected(DEFAULT_SHIIPING_OPTION_GROUND)) {

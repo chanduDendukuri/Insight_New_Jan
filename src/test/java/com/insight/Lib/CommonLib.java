@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.ss.formula.functions.T;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
@@ -509,7 +510,7 @@ public class CommonLib extends ActionEngine{
 		 */
 		public void clickOnAccountToolsAndClickOnProductGrp(String toolsMenuName, String dropDown ) throws Throwable{
 			acceptCookies() ;
-			Thread.sleep(20000);
+			Thread.sleep(10000);
 			if (isVisibleOnly(CommonObj.CLOSEBUTTON_COOKIES, "close cookie")) {
 				click(CommonObj.CLOSEBUTTON_COOKIES, "close cookie");
 			}
@@ -868,4 +869,7 @@ public class CommonLib extends ActionEngine{
 		}
 	}
 
+	public void selectRecommendedPrinters()throws Throwable{
+
+	}
 }
