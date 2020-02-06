@@ -285,7 +285,7 @@ public class LineLevelInfoLib extends LineLevelInfoObj{
 	public void verifyContractSpecificInfoOnPlaceOrderPage() throws Throwable{
 		List <WebElement> element=driver.findElements(CONTRACT_SPECIFIC_REPORTING_FIELDS);
 		if(isElementPresent(CONTRACT_SPECIFIC_INFO_LABEL, "contract spcific info")){
-			for(int i=0;i<=element.size();i++) {
+			for(int i=0;i<element.size();i++) {
 				reporter.SuccessReport("Verify contract specific info", "contract specific info is present in place order page", element.get(i).getText());
 			}
 		}else{
@@ -781,6 +781,39 @@ public class LineLevelInfoLib extends LineLevelInfoObj{
 			reporter.failureReport("Verify diversity Partner exists", " diversity Partner option does not exists", "",driver);
 		}
 	}
+	
+	
+	/**
+	 * Method is enter QTP text
+	 * @param diversityPartner
+	 * @throws Throwable
+	 */
+	public void enterQTPText(String partNum,String qtptext) throws Throwable{
+		if(isVisibleOnly(QTP_TEXT_TXTBOX(partNum), "Qtp text")){
+			type(QTP_TEXT_TXTBOX(partNum),qtptext , "QTP text", driver);
+	   }else {
+		reporter.failureReport("verify QTP text is present", "QTP text field is not present", "", driver);
+		}
+	}
+	
+	/**
+	 * verify Method is enter QTP text
+	 * @param diversityPartner
+	 * @throws Throwable
+	 */
+	public void verifyQTPTextIsPresent(String partNum,String qtptext) throws Throwable {
+		if(isVisibleOnly(QTP_TEXT_TXTBOX(partNum), "Qtp text")){
+			String actualQtpText=getAttributeByValue(QTP_TEXT_TXTBOX(partNum), "Qtp text");
+			if(qtptext.equals(actualQtpText)) {
+				reporter.SuccessReport("Verify QtpText exists", "QtpText exists", "QtpText :"+actualQtpText);
+			}else {
+				reporter.failureReport("Verify QtpText exists", " Qtp Text does not match", "",driver);
+			}
+		}else{
+			reporter.failureReport("Verify QtpText exists", " QtpText field does not exists", "",driver);
+		}
+	}
+	
 }
 
 

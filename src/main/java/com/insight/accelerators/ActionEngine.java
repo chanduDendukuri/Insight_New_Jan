@@ -1292,7 +1292,7 @@ public class ActionEngine extends TestEngineWeb {
 				//reporter.warningReport("GetText :: ", "Unable to get Text from :: " + locatorName);
 				LOG.info("GetText :: Unable to get Text from :: " + locatorName);
 			} else {
-				reporter.SuccessReport("GetText :: " + locatorName, "" + locatorName + " is :" ,text);
+				reporter.SuccessReport("GetText :: " + locatorName, "" + locatorName + " is :" ,"<b>"+text+"</b>");
 				LOG.info("Locator is Visible and text is retrieved :: " + text);
 			}
 		}

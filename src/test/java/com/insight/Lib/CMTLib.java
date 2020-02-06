@@ -285,7 +285,7 @@ public class CMTLib extends CMTObj {
 			if (isCheckBoxSelected(getUserPermission(permissions[i]))) {
 				LOG.info(userPermission + " check box already checked.");
 				reporter.SuccessReport(permissions[i] + " Permissions on WebGroup Management Page",
-						"Check Box Field Exists and Enabled", permissions[i]);
+						"Check Box Field Exists and Enabled", permissions[i]+" ON");
 			} else {
 				click(getUserPermission(permissions[i]), "set user permission " + permissions[i] + " is ON ",
 						permissions[i], permissions[i]);
@@ -826,7 +826,7 @@ public  void verifyDashboard()throws Throwable {
 	public void clickupdateatDefaultShippingOption() throws Throwable {
 		click(UPDATE_USER_ShippingEstimations, "Update user button");
 		if (isElementPresent(SUCCESS_UPDATE_MSG, "update sucessful message")) {
-			reporter.SuccessReport("Verify the Sucess message ", "Permissions Updated Succesfully", "");
+			reporter.SuccessReport("Verify the Sucess message ", "Permissions Updated Succesfully", getText(SUCCESS_UPDATE_MSG, "Success message"));
 		} else {
 			reporter.failureReport("Verify the sucess message", "Permissions are not Updated Succesfully", "", driver);
 		}
@@ -2298,13 +2298,12 @@ public  void verifyDashboard()throws Throwable {
 			click(getHostedLicensingPermissions(permissions), "Customer level permissions");
 			click(UPDATE_CUSTOMER_PERMISSIONS_BTN, "Update button");
 			if (isElementPresent(CUSTOMER_PERMISSION_UPDATE_MSG, "update sucessful message")) {
-				reporter.SuccessReport("Verify the Success message ", "Permissions Updated Succesfully", "");
+				reporter.SuccessReport("Verify the Success message ", "Permissions Updated Succesfully", permissions+" OFF");
 			} else {
-				reporter.failureReport("Verify the sucess message", "Permissions are not Updated Succesfully", "",
-						driver);
+				reporter.failureReport("Verify the sucess message", "Permissions are not Updated Succesfully", permissions +" ON",driver);
 			}
 		} else {
-			LOG.info(permissions + " check box already Unchecked.");
+			reporter.SuccessReport("Verify the Success message ", "Permissions Updated Succesfully", permissions+" OFF");
 		}
 	}
 
@@ -2421,7 +2420,7 @@ public  void verifyDashboard()throws Throwable {
 	public void AddMonthInHostedLicensingAdministrationPage(String month, String year, String type, String soldTo,
 			String salesOrg) throws Throwable {
 		waitForVisibilityOfElement(ADD_MONTH_RADIO_BTN, "add a month radi button");
-		click(ADD_MONTH_RADIO_BTN, "add a month radi button");
+		click(ADD_MONTH_RADIO_BTN, "add a month radio button");
 		type(SOLD_TO_TXT_BOX, soldTo, "soldTo");
 		type(SALES_ORG_TXT_BOX, salesOrg, "salesOrg");
 		click(MONTH, "month");
@@ -3667,21 +3666,28 @@ public void verifySetPermissionsDisabled(String userPermissions) throws Throwabl
 	}
 	
 	public void VerifytheLinkedAccountsText() throws Throwable {
-		List<WebElement> list = driver.findElements(LINKEDACCOUNTS);
+		//List<WebElement> list = driver.findElements(LINKEDACCOUNTS);
 		List<String> values = new ArrayList<String>();
-			for (i = 0; i <49; i++) {
+			//for (i = 0; i <list.size(); i++) {
 				if(isVisibleOnly(LinkedAccountsText,"Linked Accounts Data")) {
-					for(i=0;i<6;i++) {
 					List<WebElement> list2 = driver.findElements(LinkedAccountsText);
-					for (i = 0; i <= list2.size(); i++) {
+					for (i = 0; i <50; i++) {
+						for(i=0;i<5;i++) {
 						String textlinkedaccount= list2.get(i).getText().trim();
 						System.out.println(textlinkedaccount);
 						values.add(textlinkedaccount);
-				}
-					reporter.SuccessReport("Verify Linked Accounts Data", "Data", "Data:"+values);
-					}
+						}
+						reporter.SuccessReport("Verify Linked Accounts Data", "Data", "Data:"+values);
+						values.clear();
+						}
 			}
-		}
+	//	}
 	}
 
+	public void handlebetaPopup() throws Throwable{
+
+		if (driver.findElement(CartObj.POP_UP_EMAILID).isDisplayed()) {
+			handleWelcomeToInsightBetaPopUp();
+		}
+	}
 }

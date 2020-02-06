@@ -384,5 +384,7 @@ public class OrderObj extends ActionEngine{
 	 public static By dynamicHeaderLevelCustomerDetailsValues(String val){
 	 	return By.xpath("//*[@class='customer-detail__label' and contains(text(),'RP_HDL_'"+val+"'')]/..//following-sibling::div//span");
 	 }
+	 
+	 public static By SHIPPING_ADDRESS_ON_RECEIPT_PAGE=By.xpath("//div//h3[contains(text(),'Shipping address')]/following::div[1]//label[@class='form__label--readonly']");
 }
 

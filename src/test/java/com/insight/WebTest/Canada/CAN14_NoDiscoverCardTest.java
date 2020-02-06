@@ -140,8 +140,8 @@ public class CAN14_NoDiscoverCardTest extends CanadaLib {
                             "2020", "01919", "123");
                     orderLib.getNoCardErrorMessage();
 
-                    mic.SwitchWebGroup(data.get("webGroup"));
-
+                    //mic.SwitchWebGroup(data.get("webGroup"));
+                    ccp.clickOnUSAccountUnderWebGroup();
                     if (driver.getCurrentUrl().contains("uat1")) {
                         reporter.SuccessReport("URL Swithing", "URL is switched from canada to US", driver.getCurrentUrl());
                     } else {
@@ -151,18 +151,20 @@ public class CAN14_NoDiscoverCardTest extends CanadaLib {
    // Handle login popup
                     assertTrue(driver.getCurrentUrl().contains("US"),"US URL launched");
 //Web group ValidationH
-                    canadaLib.verifyCanadaWebgroup();
-
+                  //  canadaLib.verifyCanadaWebgroup();
+                    cmtLib.handlebetaPopup();
                     shipbLib.PaymentandCardsTextverify(data.get("Tools_Menu"), data.get("Tools_Menu_DD"), data.get("tabName2"));
                     //clickOnEnterACard(data.get("Creditcard"));
+                    cmtLib.handlebetaPopup();
                     clickOnEnterNewCard();
-
+scrollToBottomWithCordinate("200");
 //verification disco();
                         getListOfCardTypes();
                     ccp.clickOnAccountToolsAndClickOnProductGrp("My Company");
                    // ccp.clickOnAccountToolsAndClickOnProductGrp(data.get("Tools_Menu1"));
+                    cmtLib.handlebetaPopup();
                     commonLib.clickOnAccountToolsAndClickOnProductGrp("Orders", "My Requisition History");
-
+                    cmtLib.handlebetaPopup();
                     commonLib.searchProduct("HP Workstations");
                     //searchLib.verifyTheResultsForSearchTerm(data.get("Search_Item"));
                     searchLib.verifyTheResultsForSearchTerm("HP Workstations");

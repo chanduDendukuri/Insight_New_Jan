@@ -99,7 +99,8 @@ public class QuoteHistoryObj extends ActionEngine {
 		 public static By getQuoteNumberFRomQuickSearchHistory(String quoteNumber){
 			 return By.xpath("//table[@id='quoteSearch']//tbody//tr//td//a[contains(text(),'"+quoteNumber+"')]");
 		 }
-		 public static By ERROR_MSG = By.xpath("//div[@class='alert']");
+		 public static By ERROR_MSG = By.xpath("//strong[@class='alert']");
+		 public static By ErrorMessageforQTH05  = By.xpath("//div[@class='alert']");
 		 public static By QUICKSHOP_ERROR_MSG = By.xpath("//span[@class='columns iw-message__text']");
 		 public static By DirectClientQUICKSHOP_ERROR_MSG = By.xpath("//span[@class='columns iw-message__text' and contains(text(),'system indicates that a separate agreement with the Publisher is required for the procurement of these software items. Please contact your Insight Account Executive for more information')]");
 

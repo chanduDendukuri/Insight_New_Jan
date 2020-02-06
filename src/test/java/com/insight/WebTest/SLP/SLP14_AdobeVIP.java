@@ -162,7 +162,6 @@ public class SLP14_AdobeVIP extends SLPLib{
 					gTestStatus = false;
 					throw new RuntimeException(e);
 				}
-				
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

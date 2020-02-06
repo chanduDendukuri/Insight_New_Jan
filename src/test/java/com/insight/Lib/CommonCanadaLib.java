@@ -2,6 +2,7 @@ package com.insight.Lib;
 
 import com.insight.ObjRepo.*;
 
+import org.omg.PortableServer.THREAD_POLICY_ID;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 
@@ -292,5 +293,47 @@ public String getAccountNumber() throws Throwable{
     public String getDiscoveryCardInformation() throws Throwable{
   return  getText(discoveryCardInfo,"DiscoveryCard Availablility ");
     }
+    public void getRemoveSuccessMessage() throws Throwable{
+        getText(removeSuccessMessage,"Default account removed ");
+    }
+
+    public void clickOnSwitchToAccountForSelectedAccountRefNum(String acc) throws Throwable{
+        List<WebElement> accn = driver.findElements(getAccountReferenceNumberResult);
+        List<WebElement> swichBu = driver.findElements(SWITCH_ACCOUNT_LINK);
+
+       for (int i=0 ; i<accn.size();i++){
+           if(accn.get(i).getText().equalsIgnoreCase(acc))
+           {
+            swichBu.get(i).click();
+           }
+       }
+    }
+
+    public String getDefaultAccountNumber() throws Throwable{
+        String val =getText(accRefNumberFromDefaultAccount,"Reference Number");
+        String refNum = val.toString().split(": ")[1];
+  return refNum;
+    }
+    public void clickOnUSAccountUnderWebGroup() throws Throwable{
+        click(dd_WebGrp, "WebGrp dropdown", "WebGroup ");
+        click(TU_CANoDCTestlnk,"TU_CANoDCTestlnk","TU_CANoDCTestlnk");
+        waitForVisibilityOfElement(WEBGRPCHANGE_POPUP, "Switch To Webgrp PopUp");
+        click(CONTINUEBUTTON_WEBGRPCHANGE, "Continue");
+    }
+    public void clickOnCloseButtonOnWelcomeInsightPopup() throws Throwable{
+        if(isVisibleOnly(closeWelcomeInsightPopup,"Popup Welcome insight popup")){
+            click(closeWelcomeInsightPopup,"Welcome insight popup","Welcome insight popup");
+        }
+    }
+    public boolean HostedLicensingAdminPageVerification() throws Throwable{
+        return isVisibleOnly(lblHostedLicensingAdminPage,"Hosted Licensing Admin Page");
+    }
+       public boolean verifyReturnTOSoftwareLicenseAggrements() throws Throwable{
+        return isVisibleOnly(lblReturnTOSoftwareLicenseAggrements,"ReturnTOSoftwareLicenseAggrements");
+    }
+    public String getManfNumberFromProductSearchScreen() throws Throwable{
+        return getText(lblManifacturerNumberFormProductScreen,"Manufacturer number");
+    }
+
 }
 

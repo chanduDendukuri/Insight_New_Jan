@@ -68,6 +68,8 @@ public class EUF01_FCTWebEndUserManageSoldtosTest extends EndUserFeaturesLib{
 						verifyLoggedInAs(data.get("LnameEmailUname"));
 						verifyWebGroup(data.get("Web_Group_Name"));
 						verifyCurrentAccount();
+						String value =ccp.getDefaultAccountNumber();
+//getCurrentAccount
 						verifyRemoveDefualtLink();
 						verifyResultsDisplayedPerPage(data.get("Results_Per_Page"));
 						verifyResultsPerPagrDDOptions(data.get("Results_Per_Page_Options"));
@@ -76,7 +78,7 @@ public class EUF01_FCTWebEndUserManageSoldtosTest extends EndUserFeaturesLib{
 						selectResultsPerPageDD(data.get("Results_Per_Page_100"));
 						clickOnPageNumber(data.get("Page_Number_3"));
 						clickOnPageNumber(data.get("Page_Number_5"));
-						searchForAvailableAccount(data.get("Account_Name"));
+/*West*/				searchForAvailableAccount(data.get("Account_Name"));
 						getResultsFromCurrentAccountPage();
 						String val=ccp.getResultsValueFromCurrentAccountPage();
 						clickSwitchAccountLink();
@@ -88,115 +90,58 @@ public class EUF01_FCTWebEndUserManageSoldtosTest extends EndUserFeaturesLib{
 						commonLib.clickOnAccountToolsAndClickOnProductGrp(data.get("Tools_Menu"),
 								data.get("Tools_Menu_DD"));
 						clickOnTabInUserProfile(data.get("Tab_Name"));
-						//verifyLoggedInAs(data.get("LnameEmailUname"));
 
 						assertTrue(ccp.getAccountNumber().contains(val),"Switched to Same account");
-/*
-						cmtLib.hoverOverMasterGroupAndSelectChangeGrp();
-						cmtLib.searchForWebGroup(data.get("WebGrp"));
-						cmtLib.manageUsers();
-						cmtLib.searchUsers(data.get("LnameEmailUname"));
-						cmtLib.verifyUserandClick(data.get("ContactName"));
-						cmtLib.clickOnloginAs();
-						switchToChildWindow();
-						ivhLib.closeAccountTools();*/
-						/*canadaLib.clickOnSideMenuSelectAccountToolOptions(data.get("Tools_Menu"),
-
-
-								data.get("Tools_Menu_DD"));*/
-
-//BOS
-						commonLib.clickOnAccountToolsAndClickOnProductGrp(data.get("Tools_Menu"),
-								data.get("Tools_Menu_DD"));
-						scrollToBottomWithCordinate("-500");
-						clickOnTabInUserProfile(data.get("Tab_Name"));
-						verifyLoggedInAs(data.get("LnameEmailUname"));
-						searchForAvailableAccount(data.get("Account_Name1"));
-						getResultsFromCurrentAccountPage();
-						clickSwitchAccountLink();
-						clickContinueButton();
-//MAR
-/*
-						cmtLib.navigateBackToCMT();
-						cmtLib.hoverOverMasterGroupAndSelectChangeGrp();
-						cmtLib.searchForWebGroup(data.get("WebGrp"));
-						cmtLib.manageUsers();
-						cmtLib.searchUsers(data.get("LnameEmailUname"));
-						cmtLib.verifyUserandClick(data.get("ContactName"));
+						commonLib.clickLogOutLink(data.get("Logout_Header"));
+/*Second Login AS*/		cmtLib.navigateBackToCMT();
 						cmtLib.clickOnloginAs();
 						switchToChildWindow();
 						ivhLib.closeAccountTools();
-*/
-						/*canadaLib.clickOnSideMenuSelectAccountToolOptions(data.get("Tools_Menu"),
-
-
-								data.get("Tools_Menu_DD"));*/
-
 //BOS
 						commonLib.clickOnAccountToolsAndClickOnProductGrp(data.get("Tools_Menu"),
 								data.get("Tools_Menu_DD"));
+						//scrollToBottomWithCordinate("-500");
 						clickOnTabInUserProfile(data.get("Tab_Name"));
-						verifyLoggedInAs(data.get("LnameEmailUname"));
+						searchForAvailableAccount(data.get("Account_Name1"));
+						getResultsFromCurrentAccountPage();
 
-
+//MAR
 						searchForAvailableAccount(data.get("Account_Name2"));
 						getResultsFromCurrentAccountPage();
-						clickSwitchAccountLink();
-						clickContinueButton();
-//XYZ
-						commonLib.clickOnAccountToolsAndClickOnProductGrp(data.get("Tools_Menu"),
-								data.get("Tools_Menu_DD"));
-						clickOnTabInUserProfile(data.get("Tab_Name"));
-						verifyLoggedInAs(data.get("LnameEmailUname"));
-						searchForAvailableAccount(data.get("Account_Name3"));
+//Empty
+
+						searchForAvailableAccount(data.get("Account_Name5"));
+						//searchForAvailableAccount(" ");
 						getResultsFromCurrentAccountPage();
-						//clickSwitchAccountLink();
-						//clickContinueButton();
 						scrollToBottomWithCordinate("-650");
 
+//XYZ
+						searchForAvailableAccount(data.get("Account_Name3"));
+						getResultsFromCurrentAccountPage();
 //Hi
-						commonLib.clickOnAccountToolsAndClickOnProductGrp(data.get("Tools_Menu"),
-								data.get("Tools_Menu_DD"));
 						scrollToBottomWithCordinate("-450");
-						clickOnTabInUserProfile(data.get("Tab_Name"));
-						verifyLoggedInAs(data.get("LnameEmailUname"));
 						searchForAvailableAccount(data.get("Account_Name4"));
 						getResultsFromCurrentAccountPage();
-						clickSwitchAccountLink();
-						clickContinueButton();
+						Thread.sleep(3000);
+						scrollToBottomWithCordinate("-2000");
+						clickonRemoveDefualtLink();
+						Thread.sleep(3000);
+						ccp.getRemoveSuccessMessage();
 
-						/*verifySearchResults();
-						scrollUp();
-						verifyRemoveDefualtLinkandSelect();
-						verifyDefaultAccountIsRemoved();
+						commonLib.clickLogOutLink(data.get("Logout_Header")); //fnCloseTest();
+
 						cmtLib.navigateBackToCMT();
 						cmtLib.clickOnloginAs();
 						switchToChildWindow();
+						ivhLib.closeAccountTools();
 
 						commonLib.clickOnAccountToolsAndClickOnProductGrp(data.get("Tools_Menu"),
 								data.get("Tools_Menu_DD"));
-
-
-						scrollUp();
+						//scrollToBottomWithCordinate("-500");
 						clickOnTabInUserProfile(data.get("Tab_Name"));
-						clickSwitchAccountLink();
-						clickContinueButton();
 
-*/						Thread.sleep(3000);
-						commonLib.clickLogOutLink(data.get("Logout_Header"));//fnCloseTest();
-
-				/*		cmtLib.loginToCMTSearchWebGrpAndUser(data.get("Header"), data.get("WebGrp"),
-								data.get("LnameEmailUname"), data.get("ContactName"));
-						cmtLib.clickOnloginAs();
-						switchToChildWindow();
-						//ivhLib.closeAccountTools();
-						cmtLib.loginVerification(data.get("ContactName"));
-
-
-						*//*canadaLib.clickOnSideMenuSelectAccountToolOptions(data.get("Tools_Menu"),
-								data.get("Tools_Menu_DD"));*//*
-						commonLib.clickOnAccountToolsAndClickOnProductGrp(data.get("Tools_Menu"),
-								data.get("Tools_Menu_DD"));*/
+						ccp.clickOnSwitchToAccountForSelectedAccountRefNum(value);
+						commonLib.clickLogOutLink(data.get("Logout_Header"));
 					} catch (Exception e) {
 						ReportStatus.blnStatus = false;
 						//gErrorMessage = e.getMessage();

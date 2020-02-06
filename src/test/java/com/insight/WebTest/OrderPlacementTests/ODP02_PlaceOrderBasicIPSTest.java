@@ -17,8 +17,9 @@ public class ODP02_PlaceOrderBasicIPSTest extends OrderLib{
 	SearchLib searchLib = new SearchLib();
 	CommonLib commonLib = new CommonLib();
 	CartLib cartLib = new CartLib();
-	ProductDisplayInfoLib prodLib = new ProductDisplayInfoLib();
 	OrderLib orderLib =new OrderLib();
+	CanadaLib canadaLib=new CanadaLib();
+	ProductDetailLib prodLib=new ProductDetailLib();
 
 	// #############################################################################################################
 	// #    Name of the Test         : ODP02_PlaceOrderBasicIPS
@@ -67,22 +68,45 @@ public class ODP02_PlaceOrderBasicIPSTest extends OrderLib{
 						cmtLib.loginAsAdminCMT();
 
 						searchLib.searchInHomePage(data.get("SearchText1"));
-						commonLib.verifyDisplayedProductDetails(data.get("SearchText1"));
-
-						// Cart verification
+						searchLib.verifyBreadCrumbInSearchResultsPage(data.get("SearchText1"));
+						cartLib.selectFirstProductDisplay();
+						String mfrNumber1=prodLib.getInsightPartNumberInProductInfopage();
 						commonLib.contractOnProductDetailPage();
+						// Cart verification
 						commonLib.addToCartAndVerify();
-						continueToCheckOutOnAddCart();
+						orderLib.continueToCheckOutOnAddCart();
+						canadaLib.verifyPlaceCartLabel();
+						cartLib.verifyItemInCartByInsightPart(mfrNumber1);
+						prodInfoLib.verifyCartPageAndPartDetails();
 
 						// Select New contract
 						searchLib.selectNewcontract(data.get("Contract_Name"));
 						searchLib.searchInHomePage(data.get("SearchText2"));
-						commonLib.verifyDisplayedProductDetails(data.get("SearchText2"));
-
-						// Verify contract selected
+						searchLib.verifyBreadCrumbInSearchResultsPage(data.get("SearchText2"));
+						cartLib.selectFirstProductDisplay();
+						String mfrNumber2=prodLib.getInsightPartNumberInProductInfopage();
+						// Cart verification
 						commonLib.addToCartAndVerify();
-						continueToCheckOutOnAddCart();
+						orderLib.continueToCheckOutOnAddCart();
+						canadaLib.verifyPlaceCartLabel();
+						cartLib.verifyItemInCartByInsightPart(mfrNumber2);
 						commonLib.verifyContractInCart(data.get("Contract_Name"));
+						verifyCartPageAndPartDetails(2);
+						
+						// Select new contract  - Open Market 
+						searchLib.selectContract(data.get("Contract_Name2"));
+						// Verify contract page
+						prodInfoLib.verifyWelcomePage();
+						// Search for another product >> Workstations
+						searchLib.searchInHomePage(data.get("SearchText1"));
+						searchLib.verifyTheResultsForSearchTerm(data.get("SearchText1"));
+						cartLib.selectFirstProductDisplay();
+						String mfrNumber4=prodLib.getInsightPartNumberInProductInfopage();
+						commonLib.addToCartAndVerify();
+						orderLib.continueToCheckOutOnAddCart();
+						canadaLib.verifyPlaceCartLabel();
+						cartLib.verifyItemInCartByInsightPart(mfrNumber4);
+						
 						proceedToCheckout();
 						enterReportingDetailsInLineLevelInfoSection(data.get("REPORTING FIELD_4"), data.get("REPORTING FIELD_5"), data.get("REPORTING FIELD_6"));
 
