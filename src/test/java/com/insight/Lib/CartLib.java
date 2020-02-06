@@ -1230,7 +1230,15 @@ public class CartLib extends ActionEngine {
 		verifyItemInCart(searchItem);
 
 	}
-
+	public void clickOnProductLinkInCartPage() throws Throwable {
+		if(isVisible(CartObj.PRODUCT_LINK,"Product Link")) {
+			click(CartObj.PRODUCT_LINK,"Product Link");
+		}
+		else {
+			reporter.failureReport("Product link in cart page", "Product link in cart page is not visible", "", driver);
+		}
+		
+	}
 	public void verifyQuickShopIsDisable() throws Throwable {
 
 		if (isElementNotPresent(CartObj.QUICK_SHOP_SECTION, "quick shop section")) {
@@ -2000,8 +2008,8 @@ public void getpartnumberIncartpage() throws Throwable {
 		}
 	}
 
-	public String getCartQuantity() throws Throwable {
-		String quantity = getAttributeByValue(CartObj.QUANTITY_IN_CART, "Quantity in cart");
+	public String getCartQuantity(String partNumber) throws Throwable {
+		String quantity = getAttributeByValue(CartObj.quantityInCart(partNumber), "Quantity in cart");
 		return quantity;
 	}
 
