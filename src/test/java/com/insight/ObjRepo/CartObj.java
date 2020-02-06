@@ -10,7 +10,7 @@ public class CartObj extends CommonObj{
 	public static By LOG_IN_LINK = By.xpath("//div[@class='o-grid__item  o-grid__item--shrink  u-push-auto@desktop']/nav/ul/li/a[text()='Login']");
 	public static By POP_UP_EMAILID = By.id("cookie-email-id");	
 	public static By POP_UP_SUBMIT_BUTTON = By.id("cookie-email-submit");
-	
+	public static By PRODUCT_LINK=By.xpath("//a[@data-gtm-event='cart-item-description-link']");
 	public static By SEARCH_BUTTON_CMT_TOOL = By.id("eAdminCustomerSearchButton");	
 	public static By MANAGE_USERS_BUTTON = By.id("manageUsersButton");
 	public static By LNAME_EMAIL_USERNAME = By.id("userSearchText");
@@ -332,6 +332,9 @@ public static By Productname_at_cart=By.xpath("//h4[@class='cart__item-heading']
    public static By NUMBER_PICKER_IN_PRODUCTQA_DISPLAY_PAGE = By.xpath("//input[@id='product-detail-order-number-picker']/parent::div/button[@class='number-picker-up ion-arrow-up-b']"); 
   public static By TRASH_ICON = By.xpath("//span[@class='ion-trash-a cart__trash-icon']");
   public static By QUANTITY_IN_CART=By.xpath("//label[text()='Item quantity']/following-sibling::input[@class=' cart-item__qty align-self-middle text-center']");
+  public static By quantityInCart(String partNumber) {
+	  return By.xpath("//p[text()='"+partNumber+"']//parent::div//parent::div//label[text()='Item quantity']/following-sibling::input[@class=' cart-item__qty align-self-middle text-center']");
+  }
   public static By INAVLID_PART_NO_QUICK_SHOP_ERROR_MESSAGE=By.xpath("//div[@class='columns small-12 large-3 print-5 print-offset-7']//span[contains(text(),'Please enter a valid part number')]");
   public static By CSICOI_PRODUCTDEATILPG = By.xpath("//p[@class='prod-stock']");
   public static By CSI_COI_PRODUCT_PRICE=By.xpath("//p[@class='ips-price-contract']");
@@ -346,6 +349,8 @@ public static By Productname_at_cart=By.xpath("//h4[@class='cart__item-heading']
 	public static By CART_PROD_DESC_RECENTLYADDEDTEM_loop=By.xpath("//div[@class='columns flex-child-auto cart__table-col--desc text-left']/a/h4");
 	public static By CART_PROD_TOTAL_PRICE_RECENTLYADDEDTEM_loop=By.xpath("//div[@class='columns flex-child-auto medium-flex-child-shrink cart__table-col cart__table-col--total medium-text-right']//span[@class='iw-currency__amount']");
 	public static By CART_PROD_UNIT_PRICE_RECENTLYADDEDTEM_loop=By.xpath(" //div[@class='columns flex-child-auto medium-flex-child-shrink cart__table-col cart__table-col--price medium-text-right small-negative-left-margin']//span[@class='iw-currency__amount']");
+	public static By CART_PROD_UNIT_PRICE_RECENTLYADDEDTEM_loop1=By.xpath(" //div[contains(@class,'columns flex-child-auto medium-flex-child-shrink cart__table-col cart__table-col--price medium')]//span[@class='iw-currency__amount']");
+	
 	public static By CART_PROD_QTY_RECENTLYADDEDTEM_loop=By.xpath("//label[text()='Item quantity']/following-sibling::input[@id='iw-checkout__cart-item-quantity'] | //label[text()='Item quantity']/following-sibling::input");
 	public static By CART_PROD_STOCK_RECENTLYADDEDTEM_loop=By.xpath("//label[text()='Item quantity']/following-sibling::input/following::span/span[contains(text(),' Stock: ')]");
 	public static By Cart_Prod_Insight_Part_Number=By.xpath("//*[@class='cart__item-part cart__font-size--sm' and contains(text(),'Insight')]");

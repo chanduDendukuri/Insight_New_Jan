@@ -223,7 +223,9 @@ public class InvoiceHistoryLib extends InvoiceHistoryObj {
 	 * @throws Throwable
 	 */
 	public void closeAccountTools() throws Throwable {
-		click(COSE_ACCOUNT_TOOLS, "close account tools");
+		if(isVisibleOnly(COSE_ACCOUNT_TOOLS, "close account tools")) {
+			click(COSE_ACCOUNT_TOOLS, "close account tools");
+		}
 	}
 
 	/**
@@ -244,7 +246,7 @@ public class InvoiceHistoryLib extends InvoiceHistoryObj {
 		date = date.replace("0", "");
 		System.out.println("month" + month);
 		System.out.println("required" + date + " " + month + " " + year);
-		return date + " " + month + " " + year;
+		return date + "-" + month + "-" + year;
 	}
 
 	/**

@@ -49,6 +49,9 @@ public class CommonCanadaPage extends ActionEngine{
     public static By WEBGRPCHANGE_POPUP = By.xpath("//h2[contains(text(),'You are about to change your web group')]");
     public static By CONTINUEBUTTON_WEBGRPCHANGE = By.xpath("//button[contains(text(),'Continue') and @type='button']");
     public static By closeWelcomeInsightPopup = By.xpath("//a[@class='close-reveal-modal' and @aria-label='Close']");
+    public static By lblHostedLicensingAdminPage = By.xpath("//h1[text()='Hosted Licensing Administration']");
+    public static By lblReturnTOSoftwareLicenseAggrements = By.xpath("//*[text()='Return to My Software License Agreements']");
+    public static By lblManifacturerNumberFormProductScreen = By.xpath("//*[@class='product-specs top-horizontal']//td[2]");
 
 
 

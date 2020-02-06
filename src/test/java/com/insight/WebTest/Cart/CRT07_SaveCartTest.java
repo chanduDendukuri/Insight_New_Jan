@@ -55,8 +55,7 @@ public class CRT07_SaveCartTest extends CartLib {
 							"Web_Cart", intCounter);
 					TestEngineWeb.reporter.initTestCaseDescription("SaveCart");
 
-					//cmtLib.loginToCMTSearchWebGrpAndUser(data.get("header"), data.get("WebGrp"),
-							//data.get("LnameEmailUname"), data.get("ContactName"));
+					
 					cmtLib.loginToCMT(data.get("header"));
 					cmtLib.searchForWebGroup(data.get("WebGrp"));
 					cmtLib.clickOnTheWebGroup(data.get("WebGrp_Name"));
