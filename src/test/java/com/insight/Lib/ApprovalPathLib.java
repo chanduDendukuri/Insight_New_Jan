@@ -203,7 +203,7 @@ public String RandomApprovalPathName(String Approver_Name) throws Throwable {
 			List<WebElement> myList = driver.findElements(ALL_APPROVER_OPTIONS);
 			text = (myList.get(0)).getText();
 for(int i=1;i<=count;i++) {
-	click(Click_ALL_APPROVER_OPTIONS(i), "Select Approver name from list box");
+	click(Click_ALL_APPROVER_OPTIONS(i), myList.get(i).getText());
 }
 			if (isElementPresent(selectAppNameFromList(text), "Select Approver name from list box")) {
 				//click(selectAppNameFromList(text), "Select Approver name from list box");
@@ -647,12 +647,12 @@ for(int i=1;i<=count;i++) {
 	public void ClickEditLinkINRequestorGrpPage(String reqGrpName) throws Throwable {
 		if (isElementPresent(clickRequestorGrpEdit(reqGrpName), "Requestor Group Management page")) {
 			click(clickRequestorGrpEdit(reqGrpName), "Requestor Group Management page");
-			reporter.SuccessReport("Click Edit on Requestor Group Management Page", "Edit Link Exists and Clicked", "");
+			reporter.SuccessReport("Approval Path Report Page", "Approval Path Link Exists and Clicked", reqGrpName);
 		} else {
-			reporter.failureReport("Click Edit on Requestor Group Management Page", "Edit Link Does not Exists", "");
+			reporter.failureReport("Approval Path Report Page", "Approval Path Link not Exists and not Clicked", "");
 		}
 	}
-
+	
 	public void VerifyReqGrpInEditMode() throws Throwable {
 		if (isElementPresent(SAVE_CHANGES_BTN, "Verify Edit mode")) {
 			reporter.SuccessReport("Verify Requestor Group Management page", "Requestor Group Loads In Edit Mode", "");
@@ -826,8 +826,9 @@ for(int i=1;i<=count;i++) {
 	public void CreateApproverOut(String strApproverId, String strReplacementType, String strReplacementApproverId,
 			String strCurrDay) throws Throwable {
 		// Select Approver
+		selectByValue(createApproverType(), strApproverId, "Approver");
 		if (isElementPresent(selectApprover(strApproverId), "Approver ")) {
-			selectByValue(createApproverType(), strApproverId, "Approver");
+			
 			reporter.SuccessReport("Select Approver on Approval Management  Page Approver Out of Office Settings",
 					"Approver Field Exists and Selected", strApproverId);
 		} else {
@@ -893,28 +894,26 @@ for(int i=1;i<=count;i++) {
 
 		if (monthAndYear.equals(monthAndDateCheck)) {
 			if (isElementPresent(dayInStartDayCalender(day), "From Date ")) {
-				click(dayInStartDayCalender(day), "Day");
+				click(dayInStartDayCalender(day),""+day+ " "+monthAndYear);
 			}
 		} else {
 			while (!monthAndYear.equals(monthAndDateCheck)) {
 				if (isElementPresent(PREV_MONTH_ARROW, "From Date ")) {
-					click(PREV_MONTH_ARROW, "Day");
+					click(PREV_MONTH_ARROW, ""+day+ " "+monthAndYear);
 				}
 			}
 		}
 
 		// Verify From Date Selection
-		if (isElementPresent(START_DATE_TXTBOX, "From Date")) {
-			String fromDate = getText(START_DATE_TXTBOX, "From date value");
-			if (fromDate != null) {
-				reporter.SuccessReport("Select From Date on  Approval Management Page Approver Out of Office Settings",
-						"Selected From Date Exists", "");
-			} else {
-				reporter.failureReport("Select From Date on  Approval Management Page Approver Out of Office Settings",
-						"Selected From Date Does Not Exist", "");
-			}
-		}
-
+		/*
+		 * if (isElementPresent(START_DATE_TXTBOX, "From Date")) { String fromDate =
+		 * getText(START_DATE_TXTBOX, "From date value"); if (fromDate != null) {
+		 * reporter.
+		 * SuccessReport("Select From Date on  Approval Management Page Approver Out of Office Settings"
+		 * , "Selected From Date Exists", ""); } else { reporter.
+		 * failureReport("Select From Date on  Approval Management Page Approver Out of Office Settings"
+		 * , "Selected From Date Does Not Exist", ""); } }
+		 */
 		// Check To Date will be disabled for permanent Replace -
 		// ReplacementType
 		// To Date From Date Range Calender
@@ -940,14 +939,14 @@ for(int i=1;i<=count;i++) {
 			}
 
 			// Select Day
-			if (isElementPresent(dayInStartDayCalender(day), "From Date ")) {
-				click(dayInStartDayCalender(day), "Day");
+			if (isElementPresent(dayInStartDayCalender(day), "To Date ")) {
+				click(dayInStartDayCalender(day), "Day "+day);
 			}
 
 			// Verify To Date Selection
-			if (isElementPresent(END_DATE_TXTBOX, "To Date")) {
-				String fromDate = getText(END_DATE_TXTBOX, "To date value");
-				if (fromDate != null) {
+			/*if (isElementPresent(END_DATE_TXTBOX, "To Date")) {
+				String ToDate = getText(END_DATE_TXTBOX, "To date value");
+				if (ToDate != null) {
 					reporter.SuccessReport(
 							"Select To Date on  Approval Management Page Approver Out of Office Settings",
 							"Selected To Date Exists", "");
@@ -957,13 +956,14 @@ for(int i=1;i<=count;i++) {
 							"Selected To Date Does Not Exist", "");
 				}
 			}
+		*/
 		}
-
 		// Click on Create
 		if (isElementPresent(ADD_IMG_BTN, "Create link")) {
 			click(ADD_IMG_BTN, "Create link");
 			reporter.SuccessReport("Click Create on Approval Management Page Approver Out of Office Settings",
 					"CREATE Link Exists and Clicked", "");
+			Thread.sleep(5000);
 		} else {
 			reporter.failureReport("Click Create on Approval Management Page Approver Out of Office Settings",
 					"CREATE Link does not Exists", "");
@@ -972,11 +972,15 @@ for(int i=1;i<=count;i++) {
 	}
 
 	public void VerifyCreateApproverOut(String strApprover) throws Throwable {
+String ApproverName= getText(Approvername("approverName"), "ApproverName");
+String replacementType= getText(Approvername("replacementType"), "replacementType");
+String StartDate= getText(Approvername("StartDateId"), "StartDateId");
+String EndDate= getText(Approvername("EndDateId"), "EndDateId");
 
 		if (isElementPresent(verifyApproverOutCreated(strApprover), "Verify Approver")) {
 
 			reporter.SuccessReport("Approval Management Page Approver Out of Office Settings ",
-					"Created Approver Out Exists", "");
+					"Created Approver Out Exists", "ApproverName:"+ApproverName+"replacementType:"+replacementType+"StartDate:"+StartDate+"EndDate:"+EndDate);
 		} else {
 			reporter.failureReport("Approval Management Page Approver Out of Office Settings",
 					"Approver Out Does Not Exist", "");
