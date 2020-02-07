@@ -1452,7 +1452,7 @@ public class CartLib extends ActionEngine {
 	 */
 	public void closePrintPopUp() throws Throwable {
 		waitForVisibilityOfElement(CartObj.CLOSE_PRINT_POPUP, "CLOSE PRINT POPUP");
-		click(CartObj.CLOSE_PRINT_POPUP, "CLOSE PRINT POPUP");
+        click(CartObj.CLOSE_PRINT_POPUP, "CLOSE PRINT POPUP");
 
 	}
 
