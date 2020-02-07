@@ -1483,8 +1483,6 @@ public class ProductDisplayInfoLib extends productsDisplayInfoObj {
             }
 
         }
-        //reporter.failureReport("Results","No Matching Products available","Product is not matched with search results" + prodcut,driver);
-
 
     }
 

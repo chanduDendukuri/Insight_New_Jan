@@ -293,9 +293,9 @@ public class CommonLib extends ActionEngine{
 		public void clickCart() throws Throwable
 		{	
 			click(CartObj.CART,"CART");
-			if(isElementNotPresent(CanadaObj.CART_LABEL, "Cart header label displayed")) {
-				refreshPage();	
-			}
+//			if(isElementNotPresent(CanadaObj.CART_LABEL, "Cart header label displayed")) {
+//				refreshPage();	
+//			}
 			
 		}
 		
