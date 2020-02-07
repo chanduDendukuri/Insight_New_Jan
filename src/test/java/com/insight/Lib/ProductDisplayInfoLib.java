@@ -1298,6 +1298,31 @@ public class ProductDisplayInfoLib extends productsDisplayInfoObj {
         }
         return partNumber;
     }
+    
+    
+    public String getPartNumberExactlyInSearchResultsPage() throws Throwable {
+        String partNumber = getText(productsDisplayInfoObj.getPartNumber(0), "get product number").split("Mfr Part #:")[1];
+        System.out.println(partNumber);
+        if (!partNumber.isEmpty()) {
+            reporter.SuccessReport("Verify the product part Number", "Product part Number is displayed as : ",
+                    "part Number # : " + partNumber);
+        } else {
+            reporter.failureReport("Verify the product part Number", "Product part Number is not displayed", "", driver);
+        }
+        return partNumber;
+    }
+    
+    public String getSecondPartNumberInSearchResultsPage() throws Throwable {
+        String partNumber = getText(productsDisplayInfoObj.getPartNumber(1), "get product number").split("Mfr Part #:")[1];
+        System.out.println(partNumber);
+        if (!partNumber.isEmpty()) {
+            reporter.SuccessReport("Verify the product part Number", "Product part Number is displayed as : ",
+                    "part Number # : " + partNumber);
+        } else {
+            reporter.failureReport("Verify the product part Number", "Product part Number is not displayed", "", driver);
+        }
+        return partNumber;
+    }
 
     /**
      * Method is to verify the welcome page
@@ -1458,6 +1483,7 @@ public class ProductDisplayInfoLib extends productsDisplayInfoObj {
             }
 
         }
+        reporter.failureReport("Results","No Matching Products available","Product is not matched with search results" + prodcut,driver);
 
 
     }

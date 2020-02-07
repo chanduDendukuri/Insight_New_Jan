@@ -137,7 +137,7 @@ public class REQ02_AllowApproversEditTest extends ChinaLib{
 						ReqLib.verifyApprovalManagmentPage();
 						ReqLib.verifyAllLinksInApprovalManagmntPage();
 						ReqLib.clickUpdateInApprovalManagmentPage();
-						orderLib.verifyOrderNumberExists(RefNumber);
+						orderLib.verifyOrderNumberinManagementPage(RefNumber);
 						ReqLib.verifyApproveRequisitionStatus();
 
 						// Login with 4th user

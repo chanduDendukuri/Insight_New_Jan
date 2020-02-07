@@ -1698,13 +1698,15 @@ List<String> orderdetails = new ArrayList<String>();
 	public void verifyReportingFieldsinOrderHistoryPage(String toolsMenuName, String dropDown, String productGroup,
 			String refNum) throws Throwable {
 		Thread.sleep(20000);
-		if(isElementPresent(InvoiceHistoryObj.COSE_ACCOUNT_TOOLS, "close account tools"))
+		if(isElementPresent(InvoiceHistoryObj.COSE_ACCOUNT_TOOLS, "close account tool"))
 		{
 		click(InvoiceHistoryObj.COSE_ACCOUNT_TOOLS, "close account tools");
 		}
 		click(CommonObj.ACCOUNT_TOOLS, "Account tools menu icon");
 		click(CommonObj.getAccountToolsMenu(toolsMenuName), "Account tools menu");
 		click(CommonObj.getAccountToolsDD(toolsMenuName, dropDown), "Select account tool");
+		Thread.sleep(2000);
+		refreshPage();
 		click(orderlinkInOrderHistory(refNum), "select placed order from recent orders");
 		Thread.sleep(1000);
 		/*
@@ -1894,6 +1896,22 @@ List<String> orderdetails = new ArrayList<String>();
 
 	/**
 	 * 
+	 * @throws Throwable
+	 */
+	public void verifyOrderNumberandClickonUpdateLink() throws Throwable {
+		if (isElementPresent(APPROVAL_MNGMNT_HDR2, "ApprovalManagement Header")) {
+			reporter.SuccessReport("Verify Approval Management  Page", "Approval Management Page Exist","");
+		} else
+			reporter.failureReport("Verify Approval Management  Page", "Approval Management Page does Not Exists","");
+		click(UPDATE_BTN, "Update Button");
+		click(CONTINUE_BTNIN, "Continue Button");
+		reporter.SuccessReport("Approve Requisition", "Continue Button Exists and Clicked","");
+		
+		
+	}
+
+	/**
+	 * 
 	 * @param item1
 	 * @throws Throwable
 	 */
@@ -1956,12 +1974,13 @@ List<String> orderdetails = new ArrayList<String>();
 	 * @param RefNumber
 	 * @throws Throwable
 	 */
-	public void verifyOrderNumberExists(String RefNumber) throws Throwable {
-		String OrdNum = getText(FINAL_ORDERNMBR, "Order Number");
-		if (OrdNum.contains(RefNumber)) {
-			reporter.SuccessReport("Get The Order Number on Aproval management Page", "Order Number Exist","");
+	public void verifyOrderNumberinManagementPage(String RefNumber) throws Throwable {
+		Thread.sleep(1000);//Order 59217797 has been placed.
+		String OrdNum = getText(FINAL_ORDERNMB, "Order Number").replace("Order", "").replace("has been placed.", "").trim();
+		if (OrdNum.equals(RefNumber)) {
+			reporter.SuccessReport("Get The Order Number on Aproval management Page", "Order Number Exist in Approval Management page:"+OrdNum,"");
 		} else
-			reporter.failureReport("Get The Order Number on Aproval management Page", "Order Number Not Exists","");
+			reporter.failureReport("Get The Order Number on Aproval management Page", "Order Number Not Exists:"+OrdNum,"");
 
 	}
 
@@ -2454,5 +2473,34 @@ List<String> orderdetails = new ArrayList<String>();
 		}
 
 
+	}
+	/**
+	 * 
+	 * @throws Throwable
+	 */
+	public void VerifyOrderPlaceByFields(String Name,String Email) throws Throwable {
+		if (isElementPresent(NAME_FIELD (Name), "Name") && isElementPresent(EMAIL_FIELD(Email), "Email")
+				) {
+			reporter.SuccessReport("Verify Order Placed By fields on Cart : Ship, Bill & Pay : Place Requisition Page",
+					"Order Placed By Name:"+Name+" Email:"+Email+" Fields are Verfied", "");
+		} else {
+			reporter.failureReport("Verify Order Placed By fields on Cart : Ship, Bill & Pay : Place Requisition Page",
+					"Order Placed By Name:"+Name+" Email:"+Email+" Fields is not Verfied", "");
+		}
+	}
+
+	/**
+	 * 
+	 * @throws Throwable
+	 */
+	public void VerifycontactFieldsInCustomerDetails(String Name,String Email) throws Throwable {
+		if (isElementPresent(VERIFY_NAME_FIELD (Name), "Name") && isElementPresent(VERIFY_EMAIL(Email), "Email"))
+				 {
+			reporter.SuccessReport("Verify Order Placed By fields on Customer details Page",
+					"Order Placed By Name"+Name+" Email:"+Email+" Fields are Verfied", "");
+		} else {
+			reporter.failureReport("Verify Order Placed By fields on Customer details Page",
+					"Order Placed By Name:"+Name+" Email:"+Email+" Fields is not Verfied", "");
+		}
 	}
 	}

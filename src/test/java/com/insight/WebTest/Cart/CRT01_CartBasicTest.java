@@ -22,6 +22,8 @@ public class CRT01_CartBasicTest extends CartLib {
 	SLPLib slp = new SLPLib();
 	LineLevelInfoLib line = new LineLevelInfoLib();
 	OrderLib order = new OrderLib();
+	CommonCanadaLib ccp = new CommonCanadaLib();
+	CartLib cartLib= new CartLib();
 	// #############################################################################################################
 	// # Name of the Test : CRT01_CartBasic
 	// # Migration Author : Cigniti Technologies
@@ -158,8 +160,8 @@ public class CRT01_CartBasicTest extends CartLib {
 					cmtLib.clickOnTheWebGroup(data.get("WebGrp_Name"));
 					//cmtLib.hoverOnManageWebGroupsAndSelectOptions(data.get("Manage_Web_Grp_Options"));
 					cmtLib.hoverOnManageWebGroupsAndSelectOptions(data.get("Manage_Web_Grp_Options1"));
-					cmtLib.searchForaUserAndSelect(data.get("LnameEmailUname"), data.get("contract"));
-					cmtLib.clickOnRolesAndPermissionsAndSetPermission(data.get("Menu_Name"), data.get("userPermission"));
+					cmtLib.searchForaUserAndSelect(data.get("LnameEmailUname"), data.get("userName"));
+					cmtLib.clickOnRolesAndPermissionsAndSetPermission(data.get("menuName"), data.get("userPermission3"));
 					cmtLib.loginAsAdminCMT();
 					cmtLib.loginVerification(data.get("contract"));
 					CommonLib.searchProduct(data.get("SearchItem1"));
@@ -170,6 +172,7 @@ public class CRT01_CartBasicTest extends CartLib {
 					canadaLib.continueToCheckout();
 //adding review commentsString s1=Boolean.toString(verifyCartPageAvailablity());
 					Thread.sleep(10000);
+					prodInfoLib.verifyCartPageAndPartDetailsForRecentlyItemDynamically(data.get("SearchItem1"));
 					String s5=Boolean.toString(verifyCartPageAvailablity());
 					if(verifyCartPageAvailablity())
 					{
@@ -179,14 +182,18 @@ public class CRT01_CartBasicTest extends CartLib {
 						reporter.failureReport("Cart Landing Page", "Availability of Cart Landing Page is ",s5,driver );
 					}
 
+
 					line.proceedToCheckout();
 					order.clickOnAdditionalInfoContinueButton();
 					line.clickOnLinelevelInfoOptionalLink();
-					//shipbill page verification
+					canadaLib.verifySBP();
 					canadaLib.clickOnSideMenuSelectAccountToolOptions(data.get("Tools_Menu"),
 							data.get("Manage_Web_Grp_Options"));
 					cmtLib.selectCompanyStandardsLink();
-
+					assertTrue(ccp.verifyCompanyStandard(),"Product standard page is available");
+					ccp.addToOderInProductStandardsPage();
+					assertTrue(cartLib.verifyCartPageAvailablity(),"View Cart page loaded");
+					cmtLib.clickOnLogoutlink();
 
 					System.out.println("Test completed");
 
