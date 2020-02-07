@@ -5,6 +5,8 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FilenameFilter;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -854,13 +856,13 @@ public void grandParentCheckboxNotClicked()throws Throwable {
 			String Parent=driver.findElement(GRANDPARENT_CHECKBOX).getAttribute("id");
 			reporter.SuccessReport("Verify the Grand Parent for the current soldto on Reports Page" ,"Grand Parent for the current soldto is selected",Parent);
 		}else {
-			reporter.failureReport("Verify the Grand Parent for the current soldto on Reports Page" ,"Reporting Parent for the current soldto is not selected","",driver);	
+			reporter.failureReport("Verify the Grand Parent for the current soldto on Reports Page" ,"Grand Parent for the current soldto is not selected","",driver);	
 }
 	}
 	public void verifyGreateGrandParentCheckboxisSelected()throws Throwable {
 		if(driver.findElement(GREATEGRANDPARENT_CHECKBOX).isSelected()) {
 			String Parent=driver.findElement(GREATEGRANDPARENT_CHECKBOX).getAttribute("id");
-			reporter.SuccessReport("Verify the Greate Grand Parent for the current soldto on Reports Page" ,"Grand Parent for the current soldto is selected",Parent);
+			reporter.SuccessReport("Verify the Greate Grand Parent for the current soldto on Reports Page" ,"Greate Grand Parent for the current soldto is selected",Parent);
 		}else {
 			reporter.failureReport("Verify the Greate Grand Parent for the current soldto on Reports Page" ,"Reporting Parent for the current soldto is not selected","",driver);	
 }
@@ -868,15 +870,53 @@ public void grandParentCheckboxNotClicked()throws Throwable {
 	
 	public void verifyGreateGrandParentCheckboxisNotSelected()throws Throwable {
 		if(driver.findElement(GREATEGRANDPARENT_CHECKBOX).isSelected()) {
-			reporter.failureReport("Verify the Greate Grand Parent for the current soldto on Reports Page" ,"Reporting Parent for the current soldto is selected","",driver);	
+			reporter.failureReport("Verify the Greate Grand Parent for the current soldto on Reports Page" ,"Greate Grand Parent for the current soldto is selected","",driver);	
 		}else {
 			String Parent=driver.findElement(GREATEGRANDPARENT_CHECKBOX).getAttribute("id");
-			reporter.SuccessReport("Verify the Greate Grand Parent for the current soldto on Reports Page" ,"Grand Parent for the current soldto is not selected",Parent);
-	
-		
-		
+			reporter.SuccessReport("Verify the Greate Grand Parent for the current soldto on Reports Page" ,"Greate Grand Parent for the current soldto is not selected",Parent);
 		}
 	}
+	public void verifyDefualtCurrancyUSD()throws Throwable {
+		if(isVisibleOnly(USDCURRENCY,"USD")) {
+			reporter.SuccessReport("Verify Defualt Currency" ,"Defualt Currancy Option",getText(USDCURRENCY,"Defualt Currency"));
+		}else {
+			reporter.failureReport("Verify Defualt Currency" ,"Defualt Currancy Option is Not selected","",driver);	
+		}
+	}
+	public void verifyStartDate(String date)throws Throwable {
+		if(isVisibleOnly(STARTDATEINPUTFIELD,"StartDate")){
+			String Date=driver.findElement(ReportsObj.startDate).getAttribute("value");
+			if(Date.contains(date)) {
+				reporter.SuccessReport("Verify Strart Date" ,"Start date is Day 1 of Current Month",Date);
+			}else {
+				reporter.failureReport("Verify Strart Date" ,"Start date is Not Day 1 of Current Month","",driver);	
+			}
+			
+		}
+	}
+		public void EndDateVerification()throws Throwable {
+			LocalDate today = LocalDate.now();
+			String newDate = today.format(DateTimeFormatter.ofPattern("MM/dd/uuuu"));
+             System.out.println("newDate" +newDate);
+             if(isVisibleOnly(ENDDATEINPUTFIELD,"end date")) {
+            	String date=driver.findElement(ReportsObj.ENDDATEINPUT).getAttribute("value"); 
+            	if(date.contains(newDate))
+            	{
+    				reporter.SuccessReport("Verify End Date" ,"End date is equal to current date as Expected",date);
+            		}
+            	}else {
+    				reporter.failureReport("Verify End Date" ,"End date is equal to current date as Expected","",driver);	
+            	}
+		}
+		public void verifytheLinkedSoldTosText() throws Throwable {
+					if(isVisibleOnly(LINKEDSOLDTOS,"Linked Accounts Data")) {
+						List<WebElement> list2 = driver.findElements(LINKEDSOLDTOS);
+						for (int i = 0; i<list2.size(); i++) {
+						String textlinkedaccount= list2.get(i).getText().trim();
+						reporter.SuccessReport("Verify Selected Soltos", "Selected SolTo", textlinkedaccount);
+						}
+					}
+		}
 }
 
 

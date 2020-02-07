@@ -2515,8 +2515,14 @@ List<String> orderdetails = new ArrayList<String>();
 			reporter.failureReport("Verify Order Placed By fields on Customer details Page",
 					"Order Placed By Name:"+Name+" Email:"+Email+" Fields is not Verfied", "");
 		}
+
 	  }
 	
+	/**
+	 * Method id to verify the cart part and contract details 
+	 * @param itemNum
+	 * @throws Throwable
+	 */
 	public void verifyCartPageAndPartandContractDetails(int itemNum) throws Throwable {
 		List<String> prodDesc1 = getProductDescriptionOfCartProduct();
 		List<String> totalPrice1 = getCartProductTotalPrice();
@@ -2534,6 +2540,5 @@ List<String> orderdetails = new ArrayList<String>();
 			reporter.failureReport("Verify the part added to cart ", "Part is not added to cart.", "", driver);
 		}
    }
-	
-	
 	}
+

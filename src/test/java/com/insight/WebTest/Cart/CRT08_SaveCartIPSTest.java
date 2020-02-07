@@ -52,7 +52,7 @@ public class CRT08_SaveCartIPSTest extends CartLib{
 								Hashtable<String, String> data = TestUtil.getDataByRowNo("CRT08_SaveCartIPS", TestDataInsight,
 										"Web_Cart", intCounter);
 								TestEngineWeb.reporter.initTestCaseDescription("SaveCartIPS");
-					//cmtLib.loginToCMTSearchWebGrpAndUser(data.get("header"), data.get("WebGrp"), data.get("LnameEmailUname"), data.get("ContactName"));
+					
 					cmtLib.loginToCMT(data.get("header"));
 					cmtLib.searchForWebGroup(data.get("WebGrp"));
 					cmtLib.clickOnTheWebGroup(data.get("WebGrp_Name"));
@@ -71,6 +71,7 @@ public class CRT08_SaveCartIPSTest extends CartLib{
 					cartLib.deleteSavedCartFromAccountTools();
 					commonLib.searchProduct(data.get("Search_Item"));
 					search.verifyBreadCrumbInSearchResultsPage(data.get("Search_Item"));
+/*Review comment*/	removeInStockItems();
 					String searchItem=prodInfoLib.getPartNumberInSearchResultsPage();
 					commonLib.addFirstDisplyedItemToCartAndVerify();
 					canadaLib.continueToCheckout();
