@@ -1300,15 +1300,19 @@ public  void verifyDashboard()throws Throwable {
 		case "ON":
 			if (isCheckBoxSelected(getOrdersCheckBoxsalesreps(repName))) {
 				LOG.info("Örders check box already checked");
+				reporter.SuccessReport("Verify checkBox checked ", "Check box already Checked ", "Oders***Check Box Status:ON", driver);
 			} else {
 				click(getOrdersCheckBoxsalesreps(repName), "Orders check box selected");
+				click(saveImage(repName), "Save image icon", "");
 			}
 
 		case "OFF":
 			if (isCheckBoxSelected(getOrdersCheckBoxsalesreps(repName))) {
 				click(getOrdersCheckBoxsalesreps(repName), "Orders check box selected");
+				click(saveImage(repName), "Save image icon", "");
 			} else {
 				LOG.info("Örders check box already Un checked");
+				reporter.SuccessReport("Verify checkBox checked ", "Check box already UnChecked ", "Oders***Check Box Status:OFF", driver);
 			}
 		}
 	}
@@ -1327,13 +1331,16 @@ public  void verifyDashboard()throws Throwable {
 		case "ON":
 			if (isCheckBoxSelected(getQuotesCheckBoxOfRep(repName))) {
 				LOG.info("Quotes check box already checked");
+				
 			} else {
 				click(getQuotesCheckBoxOfRep(repName), "Quotes check box selected");
+				click(saveImage(repName), "Save image icon", "");
 			}
 
 		case "OFF":
 			if (isCheckBoxSelected(getQuotesCheckBoxOfRep(repName))) {
 				click(getQuotesCheckBoxOfRep(repName), "Quotes check box selected");
+				click(saveImage(repName), "Save image icon", "");
 			} else {
 				LOG.info("Quotes check box already Un checked");
 			}

@@ -103,6 +103,13 @@ public class LineLevelInfoLib extends LineLevelInfoObj{
 		click(getClearLink(partNum), "Clear link of part # "+partNum);
 	}
 	
+	public void clickClearLinkOfSmartTracker(String partNum) throws Throwable {
+		click(smartTrackerClearLink(partNum), "Clear link of smart tracker part num # "+partNum, "Smart tracker clear link");
+	}
+	
+	public void clickCopyOfSmartTracer(String partNum) throws Throwable {
+		click(smartTrackerCopyLink(partNum), "copy link of smart tracker", "Smart tracker copy link");
+	}
 	/**
 	 * This method is to verify the unfilled contact email error message 
 	 * @throws Throwable
@@ -282,11 +289,11 @@ public class LineLevelInfoLib extends LineLevelInfoObj{
 	 * This method is to verify the contract specific info is present in place order page
 	 * @throws Throwable
 	 */
-	public void verifyContractSpecificInfoOnPlaceOrderPage(String reportingfield4,String reportingfield5,String reportingfield6) throws Throwable{
+	public void verifyContractSpecificInfoOnPlaceOrderPage(String reportingfield4,String reportingfield5,String reportingfield6,String diversityPartner) throws Throwable{
 		List <WebElement> element=driver.findElements(CONTRACT_SPECIFIC_REPORTING_FIELDS);
 		if(isElementPresent(CONTRACT_SPECIFIC_INFO_LABEL, "contract spcific info")){
-			if(element.get(0).getText().equals(reportingfield4) && element.get(1).getText().equals(reportingfield5) && element.get(1).getText().equals(reportingfield6)) {
-				reporter.SuccessReport("Verify contract specific info", "contract specific info is present in place order page", "REPORTING_FIELD_4 :"+reportingfield4+" REPORTING_FIELD_5 : "+reportingfield5 +" REPORTING_FIELD_6 : "+reportingfield6);
+			if(element.get(0).getText().equals(reportingfield4) && element.get(1).getText().equals(reportingfield5) && element.get(2).getText().equals(reportingfield6)&& element.get(3).getText().equals(diversityPartner)) {
+				reporter.SuccessReport("Verify contract specific info", "contract specific info is present in place order page", "REPORTING_FIELD_4 :"+reportingfield4+" REPORTING_FIELD_5 : "+reportingfield5 +" REPORTING_FIELD_6 : "+reportingfield6+" Diversity partner: "+diversityPartner);
 			}else {
 				reporter.failureReport("Verify contract specific info", "contract specific info  not matches with order and item info page", "",driver);
 			}
