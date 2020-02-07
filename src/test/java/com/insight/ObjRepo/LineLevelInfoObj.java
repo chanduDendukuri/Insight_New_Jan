@@ -33,7 +33,13 @@ public class LineLevelInfoObj extends ActionEngine{
 	 public static By getClearLink(String partNum){
 		 return By.xpath("//p[contains(.,'Insight Part #: "+partNum+"')]/following::div[@class='row expanded is-collapse-child'][1]//a[contains(text(),'Clear')]");
 	 }
+	 public static By smartTrackerClearLink(String partNum) {
+		 return By.xpath("//p[contains(.,'Insight Part #: "+partNum+"')]/following::div[@class='row expanded'][3]//div[@class='columns text-right']//a[contains(.,'Clear')]");
+	 }
 	 
+	 public static By smartTrackerCopyLink(String partNum) {
+		 return By.xpath("//p[contains(.,'Insight Part #: "+partNum+"')]/following::div[@class='row expanded'][3]//div[@class='columns text-right']//a[contains(.,'Copy')]");
+	 }
 	 public static By getLineLevelOptionalLink(String partNum){
 		 return By.xpath("//p[contains(.,'Insight Part #: "+partNum+"')]/following::div[@class='row expanded is-collapse-child'][1]//h4[@class='line-level__heading line-level__heading--optional']//a");
 	 }
@@ -74,7 +80,7 @@ public class LineLevelInfoObj extends ActionEngine{
 	 // Place order
 	 public static By CONTRACT_SPECIFIC_INFO_LABEL=By.xpath("//section[@class='line-level__section']//h4[contains(text(),'Contract specific information')]");
 	 public static By EDIT_LINE_LEVEL_INFO=By.xpath("//span[@class='cart-item__info'][contains(text(),' Edit line level information')]");
-	 public static By CONTRACT_SPECIFIC_REPORTING_FIELDS=By.xpath("//div[@class='line-level']//label[@class='form__label--readonly']");
+	 public static By CONTRACT_SPECIFIC_REPORTING_FIELDS=By.xpath("//div[@class='line-level']//label[@class='form__label--readonly']//p");
 	 
 	 // smart Tracker
 	 public static By RP_LNL_Lst_DD=By.xpath("//select[@class='form__field form__select ']");
