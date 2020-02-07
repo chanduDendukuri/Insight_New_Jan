@@ -2539,6 +2539,18 @@ List<String> orderdetails = new ArrayList<String>();
 		} else {
 			reporter.failureReport("Verify the part added to cart ", "Part is not added to cart.", "", driver);
 		}
-   }
+      }
+	
+	/**
+	 * method is to verify the valid card number error message
+	 * @throws Throwable
+	 */
+	public void verifyValidCardErrorMessage() throws Throwable {
+		if(isVisibleOnly(VALID_CARD_ERROR_MSG, "valid card number error message")) {
+			reporter.SuccessReport("verify valid card error message", "Please enter valid card number message displayed", "Message : Please enter valid card number", driver);
+		}else {
+			reporter.failureReport("verify valid card error message", "Please enter valid card number message does not displayed", "", driver);
+		}
+	  }
 	}
 
