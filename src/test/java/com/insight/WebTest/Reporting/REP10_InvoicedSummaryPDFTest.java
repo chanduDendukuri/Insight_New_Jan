@@ -76,6 +76,7 @@ public class REP10_InvoicedSummaryPDFTest extends ReportingLib {
 					canadaLib.verifySelectReport(data.get("SelectReport"));
 					verifyScheduleReport();
 					verifytheLinkedSoldTosText();
+					verifyDefualtCurrancyUSD();
 					List<String> optionList = Arrays.asList(data.get("ScheduleOptions").split(","));
 					verifyScheduleReportOptions(optionList);
 					canadaLib.verifyDeliveryOption();

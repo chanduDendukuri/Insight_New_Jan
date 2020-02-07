@@ -878,7 +878,7 @@ public void grandParentCheckboxNotClicked()throws Throwable {
 	}
 	public void verifyDefualtCurrancyUSD()throws Throwable {
 		if(isVisibleOnly(USDCURRENCY,"USD")) {
-			reporter.SuccessReport("Verify Defualt Currency" ,"Defualt Currancy Option",getText(USDCURRENCY,"Defualt Currency"));
+			reporter.SuccessReport("Verify Convert All Transactions to on Reports Page" ,"Convert All Transactions Default to USD Exists",getText(USDCURRENCY,"Defualt Currency"));
 		}else {
 			reporter.failureReport("Verify Defualt Currency" ,"Defualt Currancy Option is Not selected","",driver);	
 		}
@@ -887,7 +887,7 @@ public void grandParentCheckboxNotClicked()throws Throwable {
 		if(isVisibleOnly(STARTDATEINPUTFIELD,"StartDate")){
 			String Date=driver.findElement(ReportsObj.startDate).getAttribute("value");
 			if(Date.contains(date)) {
-				reporter.SuccessReport("Verify Strart Date" ,"Start date is Day 1 of Current Month",Date);
+				reporter.SuccessReport("Verify Strart Date" ,"Start Date defaults to the first day of the current month Exists","Start Date defaults to the first day:"+Date);
 			}else {
 				reporter.failureReport("Verify Strart Date" ,"Start date is Not Day 1 of Current Month","",driver);	
 			}
@@ -910,9 +910,9 @@ public void grandParentCheckboxNotClicked()throws Throwable {
 		}
 		public void verifytheLinkedSoldTosText() throws Throwable {
 					if(isVisibleOnly(LINKEDSOLDTOS,"Linked Accounts Data")) {
-						List<WebElement> list2 = driver.findElements(LINKEDSOLDTOS);
+						List<WebElement> list2 = driver.findElements(LINKEDSOLDTO);
 						for (int i = 0; i<list2.size(); i++) {
-						String textlinkedaccount= list2.get(i).getText().trim();
+						String textlinkedaccount= list2.get(i).getAttribute("value").trim();
 						reporter.SuccessReport("Verify Selected Soltos", "Selected SolTo", textlinkedaccount);
 						}
 					}
