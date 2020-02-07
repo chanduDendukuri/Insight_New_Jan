@@ -61,10 +61,9 @@ public class CRT23_LoginFromCartPricingTest extends CartLib{
 					commonLib.searchProduct(data.get("Search_Item"));
 					searchLib.verifyBreadCrumbInSearchResultsPage(data.get("Search_Item"));
 					prodInfoLib.getPartNumberInSearchResultsPage();
-					commonLib.addFirstDisplyedItemToCartAndVerify();
-					
-					String listPrice=prodInfoLib.getFirtProductListPrice().split(" ")[1];
+					String listPrice=prodInfoLib.getFirtProductListPrice();
 					System.out.println("listPrice"+listPrice);
+					commonLib.addFirstDisplyedItemToCartAndVerify();
 					canadaLib.continueToCheckout();
 					cmtLib.handleWelcomeToInsightBetaPopUp();
 					commonLib.clickCart();
@@ -72,8 +71,9 @@ public class CRT23_LoginFromCartPricingTest extends CartLib{
 					canadaLib.verifyPlaceCartLabel();
 					prodInfoLib.verifyCartPageAndPartDetailsForRecentlyItem();
 					String summaryAmountNonLoggedIn=cartLib.getSummaryAmountInCart();
+					String currencyCode=cartLib.getCurrencyCode();
 					System.out.println("summaryAmountNonLoggedIn"+summaryAmountNonLoggedIn);
-					if(listPrice.equalsIgnoreCase(summaryAmountNonLoggedIn)) {
+					if(listPrice.equalsIgnoreCase(currencyCode +" "+summaryAmountNonLoggedIn)) {
 						reporter.SuccessReport("Verify the Non LoggedIn list price in cart", "list price same as in cart", summaryAmountNonLoggedIn);
 					}
 					else {
@@ -84,7 +84,7 @@ public class CRT23_LoginFromCartPricingTest extends CartLib{
 					
 					orderLib.continueButtonOnAdditionalInformationSection();
 					String priceLogin=cartLib.getSummaryAmountInCart();
-					if(!priceLogin.trim().equalsIgnoreCase(summaryAmountNonLoggedIn.trim())) {
+					if(!(currencyCode +" "+priceLogin.trim()).equalsIgnoreCase(currencyCode +" "+summaryAmountNonLoggedIn.trim())) {
 						reporter.SuccessReport("Verify the Non LoggedIn and LoggedIn list price in SBP Page", "	LoggedIn price changed in SBP Page", "LoggedIn Price: "+priceLogin+"and Non-LoggedIn price: "+summaryAmountNonLoggedIn);
 					}
 					else {
