@@ -71,6 +71,7 @@ public class CRT08_SaveCartIPSTest extends CartLib{
 					cartLib.deleteSavedCartFromAccountTools();
 					commonLib.searchProduct(data.get("Search_Item"));
 					search.verifyBreadCrumbInSearchResultsPage(data.get("Search_Item"));
+/*Review comment*/	removeInStockItems();
 					String searchItem=prodInfoLib.getPartNumberInSearchResultsPage();
 					commonLib.addFirstDisplyedItemToCartAndVerify();
 					canadaLib.continueToCheckout();
