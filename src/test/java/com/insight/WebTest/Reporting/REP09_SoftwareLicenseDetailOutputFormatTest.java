@@ -77,8 +77,7 @@ public class REP09_SoftwareLicenseDetailOutputFormatTest extends ReportingLib {
 					//report Option
 					canadaLib.clickOnReportOptions(data.get("ReportOption"));
 					canadaLib.verifyReportsPage();
-					String Selectreport=data.get("SelectReport")+getRandomNumeric(4);
-					canadaLib.verifySelectReport(Selectreport);
+					canadaLib.verifySelectReport(data.get("SelectReport"));
 					//Select Reporting Parent
 					canadaLib.clickOnAccountSelections(data.get("AccountSelectionOpt"));
 					ParentCheckboxClicked();
@@ -93,7 +92,7 @@ public class REP09_SoftwareLicenseDetailOutputFormatTest extends ReportingLib {
 					clickOnSave();
 					verifyReportTemplates();
 					expandReportTemplateAndVerify(data.get("TemplateName"));		
-					clickOnDelete(Selectreport);
+					clickOnDelete(data.get("SelectReport"));
 					commonLib.clickLogOutLink(data.get("Logout_Header"));
 
 

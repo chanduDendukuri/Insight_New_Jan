@@ -854,13 +854,13 @@ public void grandParentCheckboxNotClicked()throws Throwable {
 			String Parent=driver.findElement(GRANDPARENT_CHECKBOX).getAttribute("id");
 			reporter.SuccessReport("Verify the Grand Parent for the current soldto on Reports Page" ,"Grand Parent for the current soldto is selected",Parent);
 		}else {
-			reporter.failureReport("Verify the Grand Parent for the current soldto on Reports Page" ,"Reporting Parent for the current soldto is not selected","",driver);	
+			reporter.failureReport("Verify the Grand Parent for the current soldto on Reports Page" ,"Grand Parent for the current soldto is not selected","",driver);	
 }
 	}
 	public void verifyGreateGrandParentCheckboxisSelected()throws Throwable {
 		if(driver.findElement(GREATEGRANDPARENT_CHECKBOX).isSelected()) {
 			String Parent=driver.findElement(GREATEGRANDPARENT_CHECKBOX).getAttribute("id");
-			reporter.SuccessReport("Verify the Greate Grand Parent for the current soldto on Reports Page" ,"Grand Parent for the current soldto is selected",Parent);
+			reporter.SuccessReport("Verify the Greate Grand Parent for the current soldto on Reports Page" ,"Greate Grand Parent for the current soldto is selected",Parent);
 		}else {
 			reporter.failureReport("Verify the Greate Grand Parent for the current soldto on Reports Page" ,"Reporting Parent for the current soldto is not selected","",driver);	
 }
@@ -868,13 +868,10 @@ public void grandParentCheckboxNotClicked()throws Throwable {
 	
 	public void verifyGreateGrandParentCheckboxisNotSelected()throws Throwable {
 		if(driver.findElement(GREATEGRANDPARENT_CHECKBOX).isSelected()) {
-			reporter.failureReport("Verify the Greate Grand Parent for the current soldto on Reports Page" ,"Reporting Parent for the current soldto is selected","",driver);	
+			reporter.failureReport("Verify the Greate Grand Parent for the current soldto on Reports Page" ,"Greate Grand Parent for the current soldto is selected","",driver);	
 		}else {
 			String Parent=driver.findElement(GREATEGRANDPARENT_CHECKBOX).getAttribute("id");
-			reporter.SuccessReport("Verify the Greate Grand Parent for the current soldto on Reports Page" ,"Grand Parent for the current soldto is not selected",Parent);
-	
-		
-		
+			reporter.SuccessReport("Verify the Greate Grand Parent for the current soldto on Reports Page" ,"Greate Grand Parent for the current soldto is not selected",Parent);
 		}
 	}
 }
