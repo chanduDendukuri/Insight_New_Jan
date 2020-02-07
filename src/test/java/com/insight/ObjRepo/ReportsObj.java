@@ -86,5 +86,11 @@ public static By PARENT_CHECKBOX=By.xpath("//div[@id='p2-9006465']/input[@class=
 public static By GRANDPARENT_CHECKBOX=By.xpath("//input[@id='c1-9009688']");
 public static By SOLTOS=By.xpath("//div[@id='a2-9006465']//input[@checked]");
 public static By GREATEGRANDPARENT_CHECKBOX=By.xpath("//input[@id='c0-9009687']");
+public static By USDCURRENCY=By.xpath("//select[@id='currencyOptionsSelectSUPPLY']/option[@selected and contains(text(),'USD')]");
+public static By startDate=By.xpath("//div[@id='StartDateInput']//input[@aria-label='reportStartDate']/following-sibling::input");
+public static By STARTDATEINPUTFIELD=By.xpath("//div[@id='StartDateInput']//input[@aria-label='reportStartDate']");
+public static By ENDDATEINPUTFIELD=By.xpath("//div[@id='EndDateInput']//input[@aria-label='reportEndDate']");
+public static By ENDDATEINPUT=By.xpath("//div[@id='EndDateInput']//input[@aria-label='reportEndDate']/following-sibling::input");
+public static By LINKEDSOLDTOS=By.xpath("//input[@checked='checked']/parent::td//tbody/tr/td[1]");
 
 }
