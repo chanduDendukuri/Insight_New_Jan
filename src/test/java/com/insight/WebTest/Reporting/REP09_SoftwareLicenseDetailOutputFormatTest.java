@@ -82,7 +82,7 @@ public class REP09_SoftwareLicenseDetailOutputFormatTest extends ReportingLib {
 					//Select Reporting Parent
 					canadaLib.clickOnAccountSelections(data.get("AccountSelectionOpt"));
 					ParentCheckboxClicked();
-					grandParentCheckboxClicked();
+					grandParentCheckboxNotClicked();
 					verifySoldTos();
 					canadaLib.clickOnDeliveryMethod(data.get("DeliveryMethod"));
 					enterEmails(data.get("Emails"));

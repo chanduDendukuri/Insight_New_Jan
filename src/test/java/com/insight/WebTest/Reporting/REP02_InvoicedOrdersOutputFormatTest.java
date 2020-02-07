@@ -75,8 +75,18 @@ public class REP02_InvoicedOrdersOutputFormatTest extends ReportingLib {
 							canadaLib.verifySelectReport(Selectreport);							
 							canadaLib.clickOnAccountSelections(data.get("AccountSelectionOpt"));							
 							ParentCheckboxClicked();
-							grandParentCheckboxClicked();
-							verifySoldTos();		
+							grandParentCheckboxNotClicked();
+							verifySoldTos();
+							canadaLib.clickOnAccountSelections(data.get("AccountSelectionOpt2"));//Accounts under the current reporting Great Grand Parent
+							verifyGreateGrandParentCheckboxisSelected();
+							verifyGrandParentCheckboxisSelected();
+							ParentCheckboxClicked();
+							verifySoldTos();
+							canadaLib.clickOnAccountSelections(data.get("AccountSelectionOpt3"));//Accounts under the current reporting Grand Parent
+							verifyGreateGrandParentCheckboxisNotSelected();
+							verifyGrandParentCheckboxisSelected();
+							ParentCheckboxClicked();
+							verifySoldTos();
 							canadaLib.clickOnDeliveryMethod(data.get("DeliveryMethod"));
 							enterEmails(data.get("Emails"));
 							canadaLib.clickOnRun();	

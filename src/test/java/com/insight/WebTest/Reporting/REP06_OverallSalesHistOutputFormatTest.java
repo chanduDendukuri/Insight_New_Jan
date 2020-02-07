@@ -65,7 +65,7 @@ public class REP06_OverallSalesHistOutputFormatTest extends ReportingLib {
 					canadaLib.verifySelectReport(Selectreport);
 					canadaLib.clickOnAccountSelections(data.get("AccountSelectionOpt"));
 					ParentCheckboxClicked();
-					grandParentCheckboxClicked();
+					grandParentCheckboxNotClicked();
 					verifySoldTos();
 					canadaLib.clickOnDeliveryMethod(data.get("DeliveryMethod"));
 					enterEmails(data.get("Emails"));
