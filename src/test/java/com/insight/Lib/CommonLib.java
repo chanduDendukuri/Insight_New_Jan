@@ -305,6 +305,7 @@ public class CommonLib extends ActionEngine{
 		 */
 		public void verifyBundleIsAddedToCart() throws Throwable
 		{	
+			spinnerImage();
 			waitForVisibilityOfElement(CartObj.BUNDLE,"Bundle");
 			if(isElementPresent(CartObj.BUNDLE,"Bundle",true)) {
 				reporter.SuccessReport("Verify the Bundle  on Cart", "Bundle Field Exists", "Bundle-1");
