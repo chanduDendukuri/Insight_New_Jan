@@ -72,7 +72,8 @@ public class REP04_AdHocReporOutputFormatTest extends ReportingLib {
 							data.get("Tools_Menu_DD"));
 					canadaLib.clickOnReportOptions(data.get("ReportOption"));
 					canadaLib.verifyReportsPage();
-					canadaLib.verifySelectReport(data.get("SelectReport"));
+					String Selectreport=data.get("SelectReport")+getRandomNumeric(4);
+					canadaLib.verifySelectReport(Selectreport);
 					canadaLib.clickOnAccountSelections(data.get("AccountSelectionOpt"));
 					ParentCheckboxClicked();
 					canadaLib.clickOnDeliveryMethod(data.get("DeliveryMethod"));
@@ -84,12 +85,12 @@ public class REP04_AdHocReporOutputFormatTest extends ReportingLib {
 					clickOnSave();
 					verifyReportTemplates();
 					expandReportTemplateAndVerify(data.get("TemplateName"));		
-					//clickOnDelete(data.get("SelectReport"));
+					clickOnDelete(Selectreport);
 					commonLib.clickOnAccountToolsAndClickOnProductGrp(data.get("Tools_Menu"),
 							data.get("Tools_Menu_DD"));
 					canadaLib.clickOnReportOptions(data.get("ReportOption"));
 					canadaLib.verifyReportsPage();
-					canadaLib.verifySelectReport(data.get("SelectReport"));
+					canadaLib.verifySelectReport(Selectreport);
 					verifyInvoiceDateChecked() ;
 					canadaLib.clickOnDeliveryMethod(data.get("DeliveryMethod1"));
 					canadaLib.clickOnDeliveryFormat(data.get("DeliveryFormat"));
