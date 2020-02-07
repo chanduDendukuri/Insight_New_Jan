@@ -71,7 +71,6 @@ public class CAN12_AdHocReportDefaultSettingsTest extends CanadaLib{
 									data.get("Tools_Menu_DD"));
 							//verifyReportsPage();
 							clickOnReportOptions(data.get("ReportOption"));
-	//####################################################### Old COde##################
 							verifyReportsPage();
 				verifySelectReport(data.get("SelectReport"));
 				verifyAccountSelections(data.get("AccountSelections"));
@@ -117,8 +116,10 @@ public class CAN12_AdHocReportDefaultSettingsTest extends CanadaLib{
 							List<String> excelOptions= Arrays.asList(data.get("ExcelOptions").split(","));
 							canadaLib.openDirectoryToVerifyFileExist(a);
 							verifyDownloadedReportExcelFile(excelOptions,data.get("ReportOption"));
+							//cartLib.ClickExportCartAndVerify(data.get("Order_Utilities"),data.get("Sheet_Name"),data.get("Row_number"),data.get("Column_Headers"));
+						//	cartLib.verifyExportFile();
 
-			    commonLib.clickLogOutLink(data.get("Logout_Header"));
+							commonLib.clickLogOutLink(data.get("Logout_Header"));
 				System.out.println("Test completed");
 				
 			} catch (Exception e) {

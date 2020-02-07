@@ -96,31 +96,34 @@ public class ODP10_SharedUsers extends OrderLib{
 						// Logout
 						commonLib.clickLogOutLink(data.get("header1"));
 						// Login with 2nd user admin
-						cmtLib.loginToCMT(data.get("Header"));
-						cmtLib.searchForWebGroup(data.get("WebGrp"));
-						cmtLib.clickOnTheWebGroup(data.get("WebGrp_Name"));
+						cmtLib.navigateBackToCMT();
 						cmtLib.hoverOnManageWebGroupsAndSelectOptions(data.get("Manage_Web_Grp_Options"));
 						cmtLib.searchForaUserAndSelect(data.get("LnameEmailUname1"), data.get("ContactName1"));
 						cmtLib.clickOnRolesAndPermissionsAndSetPermission(data.get("menuName"), data.get("userPermission1"));
 						cmtLib.loginAsAdminCMT();
-						searchLib.verifyAccountToolsFromSideMenuAndClick(data.get("toolsMenuName"), data.get("dropDown"));
+						searchLib.verifyAccountToolForOrderMenuItem(data.get("toolsMenuName"), data.get("dropDown"));
 						verifyandClickonRefLink(RefNumber);
-						verifyApprovalManagmentHeaderandClickonUpdateLink();
+						//Verify emaild id and phone number fields
+						VerifyOrderPlaceByFields(data.get("name"),data.get("email"));
+						verifyApprovalManagmentandClickUpdate();
 						commonLib.clickLogOutLink(data.get("header1"));
 						// Login with 3rd user Approver
-						cmtLib.loginToCMT(data.get("Header"));
-						cmtLib.searchForWebGroup(data.get("WebGrp"));
-						cmtLib.clickOnTheWebGroup(data.get("WebGrp_Name"));
+						cmtLib.navigateBackToCMT();
 						cmtLib.hoverOnManageWebGroupsAndSelectOptions(data.get("Manage_Web_Grp_Options"));
 						cmtLib.searchForaUserAndSelect(data.get("LnameEmailUname2"), data.get("ContactName2"));
 						cmtLib.clickOnRolesAndPermissionsAndSetPermission(data.get("menuName"), data.get("userPermission1"));
 						cmtLib.loginAsAdminCMT();
-						searchLib.verifyAccountToolsFromSideMenuAndClick(data.get("toolsMenuName"), data.get("dropDown"));
+						searchLib.verifyAccountToolForOrderMenuItem(data.get("toolsMenuName"), data.get("dropDown"));
 						verifyandClickonRefLink(RefNumber);
-						VerifyOrderPlaceByFields();
-						verifyApprovalManagmentHeaderandClickonUpdateLink();
-						verifyOrderNumberExists(RefNumber);
-						
+						//Verify emaild id and phone number fields
+						VerifyOrderPlaceByFields(data.get("name"),data.get("email"));
+						verifyOrderNumberandClickonUpdateLink();
+						verifyOrderNumberinManagementPage(RefNumber);
+						searchLib.verifyAccountToolForOrderMenuItem(data.get("toolsMenuName"), data.get("dropDown1"));
+						refreshPage();
+						clickonorderNumLinkinRecentorders(RefNumber);
+						verifytabsinOrderDetailsPage(data.get("TabName1"));// customer details
+						VerifycontactFieldsInCustomerDetails(data.get("name"),data.get("email"));
 						commonLib.clickLogOutLink(data.get("Logout"));
 						// fnCloseTest();
 						System.out.println("Test completed");

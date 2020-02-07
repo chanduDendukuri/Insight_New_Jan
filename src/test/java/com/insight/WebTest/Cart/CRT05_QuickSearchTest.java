@@ -61,8 +61,7 @@ public class CRT05_QuickSearchTest extends CartLib {
 					Hashtable<String, String> data = TestUtil.getDataByRowNo("CRT05_QuickSearch", TestDataInsight,
 							"Web_Cart", intCounter);
 					TestEngineWeb.reporter.initTestCaseDescription("QuickSearch");
-					//cmtLib.loginToCMTSearchWebGrpAndUser(data.get("header"), data.get("WebGrp"),
-							//data.get("LnameEmailUname"), data.get("ContactName"));
+					
 					cmtLib.loginToCMT(data.get("header"));
 					cmtLib.searchForWebGroup(data.get("WebGrp"));
 					cmtLib.clickOnTheWebGroup(data.get("WebGrp_Name"));
@@ -80,11 +79,7 @@ public class CRT05_QuickSearchTest extends CartLib {
 					canadaLib.continueToCheckout();
 					canadaLib.verifyPlaceCartLabel();
 					prodInfoLib.verifyCartPageAndPartDetailsForRecentlyItemDynamically(manfa);
-					//prodInfoLib.getProductManfNumber(manfa);
-					//prodInfoLib.enterQuantityForProductsInViewCartPage(data.get("Quantity"));
-//					commonLib.clickOnUpdateLinkInViewCartPage(data.get("Quantity"));
-					
-					//cartLib.selectFirstProductDisplay();
+			
 					clickOnProductLinkInCartPage();
 					prodInfoLib.verifyTheManufacturerNumberInProductDetailsPage(manfa);
 					commonLib.clickCart();
@@ -105,7 +100,7 @@ public class CRT05_QuickSearchTest extends CartLib {
 					}
 					cartLib.verifyQuickShopWithValidSinglePartNumber(data.get("SearchItem4"), data.get("quantity1"));
 					canadaLib.verifyPlaceCartLabel();
-					//prodInfoLib.verifyCartPageAndPartDetailsForRecentlyItemDynamically(data.get("Search_Item2"));
+					/*review comment*/	prodInfoLib.verifyCartPageAndPartDetailsForRecentlyItemDynamically(data.get("SearchItem2"));
 					String quantity1 = getCartQuantity(data.get("SearchItem2"));
 					if (Integer.parseInt(quantity1)>Integer.parseInt(quantity)) {
 						reporter.SuccessReport("Quantity is increased on the Cart Page",
@@ -115,7 +110,7 @@ public class CRT05_QuickSearchTest extends CartLib {
 								"Quantity Exists and not increased", "");
 					}
 					System.out.println("Test completed");
-
+/*review comment*/			canadaLib.verifyPlaceCartLabel();
 				} catch (Exception e) {
 					ReportStatus.blnStatus = false;
 					//gErrorMessage = e.getMessage();

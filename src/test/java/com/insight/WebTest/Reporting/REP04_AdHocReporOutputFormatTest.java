@@ -84,7 +84,7 @@ public class REP04_AdHocReporOutputFormatTest extends ReportingLib {
 					clickOnSave();
 					verifyReportTemplates();
 					expandReportTemplateAndVerify(data.get("TemplateName"));		
-					//clickOnDelete(data.get("SelectReport"));
+					clickOnDelete(data.get("SelectReport"));
 					commonLib.clickOnAccountToolsAndClickOnProductGrp(data.get("Tools_Menu"),
 							data.get("Tools_Menu_DD"));
 					canadaLib.clickOnReportOptions(data.get("ReportOption"));

@@ -415,7 +415,7 @@ public class ReportingLib extends ReportsObj {
 		 if (isElementPresent(getTemplateName(templateName),"Report Templates", true)){
 			 
 				reporter.SuccessReport("Verify the Report Name on Reporting Management Page",
-						"Report Name exists", "");
+						"Report Name exists", templateName);
 		 }
 		 else{
 			 reporter.failureReport("Verify the Report Name on Reporting Management Page",
@@ -430,8 +430,8 @@ public class ReportingLib extends ReportsObj {
 				reporter.SuccessReport("Last Run Date in Report Templates on Reporting Management Page",
 						"Last Run Date exists with Not Today's Date", "");
 			 isElementPresent(getTemplateName(templateName),"Report Templates", true);
-			 reporter.SuccessReport("Report Name: QTP_Test_InvTemp on Reporting Management Page",
-						"Report Name: QTP_Test_InvTemp exists and Deleted", "");
+			 reporter.SuccessReport("Report Name:"+templateName+" on Reporting Management Page",
+						"Report Name: QTP_Test_InvTemp exists and Deleted", templateName);
 		 }
 		 else{
 			 reporter.failureReport("Last Run Date in Report Templates on Reporting Management Page",
@@ -826,7 +826,7 @@ public void ParentCheckboxClicked()throws Throwable {
 		reporter.failureReport("Verify the Reporting Parent for the current soldto on Reports Page" ,"Reporting Parent for the current soldto is Not Seletcted", "",driver);
 	}
 }
-public void grandParentCheckboxClicked()throws Throwable {
+public void grandParentCheckboxNotClicked()throws Throwable {
 	if(driver.findElement(GRANDPARENT_CHECKBOX).isSelected()) {
 		reporter.failureReport("Verify the Grand Parent for the current soldto on Reports Page" ,"Reporting Parent for the current soldto is selected","",driver);	
 	}else {
@@ -849,10 +849,31 @@ public void grandParentCheckboxClicked()throws Throwable {
 		
 	}	
 	
+	public void verifyGrandParentCheckboxisSelected()throws Throwable {
+		if(driver.findElement(GRANDPARENT_CHECKBOX).isSelected()) {
+			String Parent=driver.findElement(GRANDPARENT_CHECKBOX).getAttribute("id");
+			reporter.SuccessReport("Verify the Grand Parent for the current soldto on Reports Page" ,"Grand Parent for the current soldto is selected",Parent);
+		}else {
+			reporter.failureReport("Verify the Grand Parent for the current soldto on Reports Page" ,"Grand Parent for the current soldto is not selected","",driver);	
+}
+	}
+	public void verifyGreateGrandParentCheckboxisSelected()throws Throwable {
+		if(driver.findElement(GREATEGRANDPARENT_CHECKBOX).isSelected()) {
+			String Parent=driver.findElement(GREATEGRANDPARENT_CHECKBOX).getAttribute("id");
+			reporter.SuccessReport("Verify the Greate Grand Parent for the current soldto on Reports Page" ,"Greate Grand Parent for the current soldto is selected",Parent);
+		}else {
+			reporter.failureReport("Verify the Greate Grand Parent for the current soldto on Reports Page" ,"Reporting Parent for the current soldto is not selected","",driver);	
+}
+	}
 	
-	
-	
-	
+	public void verifyGreateGrandParentCheckboxisNotSelected()throws Throwable {
+		if(driver.findElement(GREATEGRANDPARENT_CHECKBOX).isSelected()) {
+			reporter.failureReport("Verify the Greate Grand Parent for the current soldto on Reports Page" ,"Greate Grand Parent for the current soldto is selected","",driver);	
+		}else {
+			String Parent=driver.findElement(GREATEGRANDPARENT_CHECKBOX).getAttribute("id");
+			reporter.SuccessReport("Verify the Greate Grand Parent for the current soldto on Reports Page" ,"Greate Grand Parent for the current soldto is not selected",Parent);
+		}
+	}
 }
 
 

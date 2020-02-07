@@ -94,7 +94,9 @@ public class ODP12_ReportingFieldsIPSTest extends OrderLib{
 						String RefNumber= orderLib.getTextfromReferenceNumber();
 						//Verifying order details
 						clickOrderDetailsLinkOnReceiptPage();
-						verifyReportingFieldsinOrderHistoryPage(data.get("toolsMenuName1"),data.get("dropDown1") ,data.get("productGroup1"),data.get("refNum"));
+						commonLib.clickOnAccountToolsAndClickOnProductGrp(data.get("toolsMenuName1"),data.get("dropDown1"));
+						clickonorderNumLinkinRecentorders(RefNumber);
+						//verifyReportingFieldsinOrderHistoryPage(data.get("toolsMenuName1"),data.get("dropDown1") ,data.get("productGroup1"),data.get("refNum"));
 						verifyReportingFieldsInOrderDetails(data.get("REPORTING FIELD_5"),data.get("REPORTING FIELD_6"));
 						
 						// Logout 
@@ -124,5 +126,3 @@ public class ODP12_ReportingFieldsIPSTest extends OrderLib{
 		}
 
 	}
-
-

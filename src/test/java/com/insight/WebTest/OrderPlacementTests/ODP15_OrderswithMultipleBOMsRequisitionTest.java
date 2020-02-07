@@ -80,28 +80,25 @@ public class ODP15_OrderswithMultipleBOMsRequisitionTest extends OrderLib{
 						String RefNumber = orderLib.getTextfromReferenceNumber();
 						commonLib.clickLogOutLink(data.get("header1"));
 						// Login with 2nd user
-						cmtLib.loginToCMT(data.get("Header"));
-						cmtLib.searchForWebGroup(data.get("WebGrp"));
-						cmtLib.clickOnTheWebGroup(data.get("WebGrp_Name"));
+						cmtLib.navigateBackToCMT();
 						cmtLib.hoverOnManageWebGroupsAndSelectOptions(data.get("Manage_Web_Grp_Options"));
 						cmtLib.searchForaUserAndSelect(data.get("LnameEmailUname1"), data.get("ContactName1"));
 						cmtLib.loginAsAdminCMT();
 
 						searchLib.verifyProductWStandardsPage();
-						searchLib.verifyAccountToolsFromSideMenuAndClick(data.get("toolsMenuName"), data.get("dropDown"));
+						//searchLib.verifyAccountToolsFromSideMenuAndClick(data.get("toolsMenuName"), data.get("dropDown"));
+						commonLib.clickOnAccountToolsAndClickOnProductGrp(data.get("toolsMenuName"),data.get("dropDown"));
 						verifyandClickonRefLink(RefNumber);
 						verifyApprovalManagmentHeaderandClickonUpdateLink();
 						commonLib.clickLogOutLink(data.get("header1"));
 						// Login with 1st user
-						cmtLib.loginToCMT(data.get("Header"));
-						cmtLib.searchForWebGroup(data.get("WebGrp"));
-						cmtLib.clickOnTheWebGroup(data.get("WebGrp_Name"));
+						cmtLib.navigateBackToCMT();
 						cmtLib.hoverOnManageWebGroupsAndSelectOptions(data.get("Manage_Web_Grp_Options"));
 						cmtLib.searchForaUserAndSelect(data.get("LnameEmailUname"), data.get("ContactName"));
 						cmtLib.loginAsAdminCMT();
-						searchLib.verifyAccountToolsFromSideMenuAndClick(data.get("toolsMenuName"), data.get("dropDown1"));
+						commonLib.clickOnAccountToolsAndClickOnProductGrp(data.get("toolsMenuName"),data.get("dropDown1"));
 						clickonorderNumLinkinRecentorders(RefNumber);
-						verifyPartNumberInOrderdetails(data.get("item1"),data.get("Product Des"));
+						getProductDetailsFromCartResultsGrid();
 						// Logout 
 						commonLib.clickLogOutLink(data.get("Logout"));
 						// fnCloseTest();
@@ -129,5 +126,3 @@ public class ODP15_OrderswithMultipleBOMsRequisitionTest extends OrderLib{
 		}
 
 	}
-
-
