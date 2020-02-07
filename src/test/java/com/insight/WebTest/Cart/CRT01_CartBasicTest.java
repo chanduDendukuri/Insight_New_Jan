@@ -191,7 +191,6 @@ public class CRT01_CartBasicTest extends CartLib {
 					scrollToBottomWithCordinate("-2000");
 					canadaLib.clickOnSideMenuSelectAccountToolOptions(data.get("Tools_Menu"),
 							data.get("Manage_Web_Grp_Options"));
-					cmtLib.selectCompanyStandardsLink();
 					assertTrue(ccp.verifyCompanyStandard(),"Product standard page is available");
 					ccp.addToOderInProductStandardsPage();
 					assertTrue(cartLib.verifyCartPageAvailablity(),"View Cart page loaded");

@@ -52,6 +52,8 @@ public class ODP07_ConvertQuoteTest extends OrderLib{
 						cmtLib.loginToCMT(data.get("Header"));
 						cmtLib.searchForWebGroup(data.get("WebGrp"));
 						cmtLib.clickOnTheWebGroup(data.get("WebGrp_Name"));
+						//Customer Level Permissions:override_payment_options - off
+						cmtLib.setCustomerLevelPermissionsOFF(data.get("Customer_Permissions_OFF"));
 						cmtLib.hoverOnManageWebGroupsAndSelectOptions(data.get("Manage_Web_Grp_Options"));
 						cmtLib.searchForaUserAndSelect(data.get("LnameEmailUname"), data.get("ContactName"));
 						cmtLib.setPermissions(data.get("Menu_Name"), data.get("Set_Permission1"));

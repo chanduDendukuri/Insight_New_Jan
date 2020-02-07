@@ -707,11 +707,11 @@ public class ProductDisplayInfoLib extends productsDisplayInfoObj {
         for (int i = 0; i < deleteIcon.size(); i++) {
             deleteIcon.get(i).click();
             reporter.SuccessReport("Delete product", "Deleted product", prodDetails.get(i).getText() + "Selected product was deleted successfully");
-            if (isVisibleOnly(emptyShoppingCart, "Empty cart")) {
-                reporter.SuccessReport("Empty Cart", " All the products are deleted", getText(emptyShoppingCart, "Empty cart"));
-            }
-        }
 
+        }
+        if (isVisibleOnly(emptyShoppingCart, "Empty cart")) {
+            reporter.SuccessReport("Empty Cart", " All the products are deleted", getText(emptyShoppingCart, "Empty cart"));
+        }
     }
 
     public void getProductManfNumber(String mfn) throws Throwable {
