@@ -336,6 +336,22 @@ public String getAccountNumber() throws Throwable{
     public String getManfNumberFromProductSearchScreen() throws Throwable{
         return getText(lblManifacturerNumberFormProductScreen,"Manufacturer number");
     }
+    public boolean verifyCompanyStandard() throws Throwable{
+        return isVisibleOnly(lblProductStandards,"Product Standards");
+    }
 
-}
+    public void addToOderInProductStandardsPage() throws Throwable{
+        List<WebElement> cart = driver.findElements(addToCartIcon);
+        for(int i =0 ;i<cart.size();i++)
+        {
+            cart.get(i).click();
+            if(isVisibleOnly(viewCartlnk,"View Cart link"))
+            {
+                click(viewCartlnk,"View Cart link");
+                break;
+            }
+        }
+    }
+
+    }
 
