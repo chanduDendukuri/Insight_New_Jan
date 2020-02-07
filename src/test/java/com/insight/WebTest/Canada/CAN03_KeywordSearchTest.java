@@ -33,8 +33,9 @@ public class CAN03_KeywordSearchTest extends CanadaLib{
 	ProductDetailLib productDetailLib = new ProductDetailLib();
 	OrderHistoryLib orderHistortLib=new OrderHistoryLib();
 	ProductDisplayInfoLib prodinfo=new ProductDisplayInfoLib();
-
+	ProductDetailLib prodDetailLib=new ProductDetailLib();
 	SewpLib sewpLib=new SewpLib();
+	
 	    // #############################################################################################################
 		// #       Name of the Test         :  SER03_KeywordSearch
 		// #       Migration Author         :  Cigniti Technologies
@@ -88,7 +89,7 @@ public class CAN03_KeywordSearchTest extends CanadaLib{
 						cmtLib.searchForWebGroup(data.get("WebGrp"));
 						cmtLib.clickOnTheWebGroup(data.get("WebGrp_Name"));
 						cmtLib.hoverOnManageWebGroupsAndSelectOptions(data.get("Manage_Web_Grp_Options"));
-						cmtLib.searchForaUserAndSelect(data.get("LnameEmailUname"), data.get("ContactName"));
+						cmtLib.searchForaUserAndSelect(data.get("LnameEmailUname"), data.get("contactName"));
 						
 						// Disable -- custom_catalog;OFF";
 					    cmtLib.setPermissionsToDisable(data.get("Menu_Name"), data.get("Set_Permission1"));
@@ -97,7 +98,9 @@ public class CAN03_KeywordSearchTest extends CanadaLib{
 					    
 					    // Login as to UAT
 						cmtLib.loginAsAdminCMT();
-						
+						//07-02-> Add Login Verification
+						cmtLib.loginVerification("User - "+data.get("contactName"));
+
 						// Canada Home Page Verification
 						///	Search with Microsite pages ex: HP, IBM
 						searchLib.searchInHomePage(data.get("SearchText4"));
@@ -120,7 +123,9 @@ public class CAN03_KeywordSearchTest extends CanadaLib{
 						// Verifying description on product details page 
 						pipLib.verifyShortDescriptionOnProductDetailsPage(desc);*/
 						prodinfo.verifyTheManufacturerNumberInProductDetailsPage(data.get("SearchText6"));
-
+						// 07-02 Add Product Details verification
+						//prodinfo.verifyProductDescAndPartNumberInCompanyStandards();
+						prodDetailLib.Getproductdetails();
 					
 						///	Search Partial Product  ID
 						searchLib.searchInHomePage(data.get("SearchText7"));
@@ -129,6 +134,8 @@ public class CAN03_KeywordSearchTest extends CanadaLib{
 						searchLib.searchInHomePage(data.get("SearchText8"));
 						verifyNoResultsFoundMessgeInProductSearchResults();
 						
+						// 07-02 Add Logout 
+						commonLib.clickLogOutLink(data.get("Logout"));
 						System.out.println("Test completed");
 					} catch (Exception e) {
 						ReportStatus.blnStatus = false;
