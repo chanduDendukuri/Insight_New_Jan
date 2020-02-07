@@ -10,10 +10,13 @@ import com.insight.Lib.CanadaLib;
 import com.insight.Lib.CartLib;
 import com.insight.Lib.ChinaLib;
 import com.insight.Lib.CommonLib;
+import com.insight.Lib.EndUserFeaturesLib;
 import com.insight.Lib.InvoiceHistoryLib;
+import com.insight.Lib.LineLevelInfoLib;
 import com.insight.Lib.OrderLib;
 import com.insight.Lib.ProductDetailLib;
 import com.insight.Lib.ProductDisplayInfoLib;
+import com.insight.Lib.SLPLib;
 import com.insight.Lib.SearchLib;
 import com.insight.Lib.ShipBillPayLib;
 import com.insight.accelerators.ReportControl;
@@ -28,8 +31,14 @@ public class CRT12_TopNavTest extends CartLib {
 	SearchLib searchLib = new SearchLib();
 	OrderLib orderLib = new OrderLib();
 	InvoiceHistoryLib invoiceHistoryLib = new InvoiceHistoryLib();
+	
+	SearchLib search = new SearchLib();
+	ProductDisplayInfoLib prodInfoLib = new ProductDisplayInfoLib();
+	EndUserFeaturesLib end = new EndUserFeaturesLib();
+	SLPLib slp = new SLPLib();
+	LineLevelInfoLib line = new LineLevelInfoLib();
+	OrderLib order = new OrderLib();
 	CanadaLib canadaLib = new CanadaLib();
-
 	// #############################################################################################################
 	// # Name of the Test : CRT12_TopNav
 	// # Migration Author : Cigniti Technologies
@@ -57,32 +66,52 @@ public class CRT12_TopNavTest extends CartLib {
 							"Web_Cart", intCounter);
 					TestEngineWeb.reporter.initTestCaseDescription("TopNav");
 
-					cmtLib.loginToCMTSearchWebGrpAndUser(data.get("Header"), data.get("WebGrp"),
-							data.get("LnameEmailUname"), data.get("ContactName"));
+					//cmtLib.loginToCMTSearchWebGrpAndUser(data.get("Header"), data.get("WebGrp"),
+							//data.get("LnameEmailUname"), data.get("ContactName"));
+					cmtLib.loginToCMT(data.get("header"));
+					cmtLib.searchForWebGroup(data.get("WebGrp"));
+					cmtLib.clickOnTheWebGroup(data.get("WebGrp_Name"));
+					cmtLib.hoverOnManageWebGroupsAndSelectOptions(data.get("Manage_Web_Grp_Options"));
+					cmtLib.searchForaUserAndSelect(data.get("LnameEmailUname"), data.get("ContactName"));
 					cmtLib.setPermissions(data.get("menuName"), data.get("Enable_Purchasing_Popup"));
+					
 					cmtLib.clickOnloginAs();
 					switchToChildWindow();
-					invoiceHistoryLib.closeAccountTools();
+					cmtLib.loginVerification(data.get("ContactName"));
+					
 					commonLib.clickAccountToolsFromSideMenuAndClickOnProductGrp(data.get("Tools_Menu"),
 							data.get("Tools_Menu_DD"), data.get("Product_Group"), data.get("Product_Name"));
 					searchLib.clickAddToOrderOnCompanyStandardsScreen();
-					//commonLib.clickCart();
+					
 					commonLib.verifyBundleIsAddedToCart();
 					commonLib.searchProduct(data.get("PartNumber"));
-					commonLib.addToCartAndVerify();
-					orderLib.continueToCheckOutAddWarrantyAndVerifyTheCart(data.get("PartNumber"));
-					commonLib.spinnerImage();
+					prodInfoLib.verifyTheManufacturerNumberInProductDetailsPage(data.get("PartNumber"));
+					prodInfoLib.clickOnWarrantiesTabOnProductDetailsPage();
+					String manfa=prodInfoLib.getManfNumberFromWarrentiesPage(data.get("index"));
+					prodInfoLib.clickOnAddToCartButtonInWarrentiesPage(data.get("index"));
+					canadaLib.continueToCheckout();
+					canadaLib.verifyPlaceCartLabel();
+					prodInfoLib.verifyCartPageAndPartDetailsForRecentlyItemDynamically(manfa);
+													
 					commonLib.searchProduct(data.get("Search_Product"));
+					searchLib.verifyBreadCrumbInSearchResultsPage(data.get("Search_Product"));
+					String searchItem=prodInfoLib.getPartNumberExactlyInSearchResultsPage();
 					commonLib.addFirstDisplyedItemToCartAndVerify();
-					String partNumber1 = cartLib.getPartNumber();
-					//commonLib.clickCart();
+					
 					canadaLib.continueToCheckout();
-					cartLib.verifyItemInCart(partNumber1);
+					canadaLib.verifyPlaceCartLabel();
+					prodInfoLib.verifyCartPageAndPartDetailsForRecentlyItemDynamically(searchItem);
+					
+					
 					commonLib.searchProduct(data.get("Search_Product"));
+					searchLib.verifyBreadCrumbInSearchResultsPage(data.get("Search_Product"));
+					String searchItem1=prodInfoLib.getSecondPartNumberInSearchResultsPage();
 					commonLib.addSecondDisplyedItemToCartAndVerify();
-					String partNumber2 = cartLib.getPartNumber();
 					canadaLib.continueToCheckout();
-					cartLib.verifyItemInCart(partNumber2);
+					canadaLib.verifyPlaceCartLabel();
+					prodInfoLib.verifyCartPageAndPartDetailsForRecentlyItemDynamically(searchItem1);
+					commonLib.clickCart();
+					canadaLib.verifyPlaceCartLabel();
 					commonLib.emptyCartAndVerify();
 					commonLib.clickLogOutLink(data.get("Logout_Header"));
 					System.out.println("Test completed");
