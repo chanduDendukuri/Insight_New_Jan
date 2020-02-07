@@ -1147,7 +1147,6 @@ List<String> orderdetails = new ArrayList<String>();
 	public void verifyBillingAddressOnReceiptPage(String sectionName) throws Throwable{
 		  
 		if(isElementPresent(headerlinkCheck(sectionName),"Header link check")){
-		
 			// verifying Company name 
 		String comapanyName=getText(BILLING_ADDRESS_COMPANY_NAME, "Company name");
 		  if(comapanyName.isEmpty()){
@@ -1292,6 +1291,8 @@ List<String> orderdetails = new ArrayList<String>();
 			}else{
 				reporter.failureReport("Verify type of the card in payment info ", "Type of the card  verification is not successful","");
 			}
+		}else {
+			reporter.failureReport("Verify Payment info section is present", "Payment info section does not exists in the receipt page", "", driver);
 		}
 	}
 	
@@ -1380,6 +1381,18 @@ List<String> orderdetails = new ArrayList<String>();
 	public List<String> getCartProductUnitPrice() {
 		
 		List<WebElement> myList = driver.findElements(CartObj.CART_PROD_UNIT_PRICE);
+		List<String> all_elements_text = new ArrayList<>();
+		for (int i = 0; i < myList.size(); i++) {
+			all_elements_text.add(myList.get(i).getText());
+		
+	    }return all_elements_text;
+	}
+	/**
+	 * 
+	 * @return
+	 */
+	public List<String> getContractDetailsOnCart(){
+		List<WebElement> myList = driver.findElements(CartObj.CART_CONTRACT_DETAILS);
 		List<String> all_elements_text = new ArrayList<>();
 		for (int i = 0; i < myList.size(); i++) {
 			all_elements_text.add(myList.get(i).getText());
@@ -2502,5 +2515,25 @@ List<String> orderdetails = new ArrayList<String>();
 			reporter.failureReport("Verify Order Placed By fields on Customer details Page",
 					"Order Placed By Name:"+Name+" Email:"+Email+" Fields is not Verfied", "");
 		}
-	}
+	  }
+	
+	public void verifyCartPageAndPartandContractDetails(int itemNum) throws Throwable {
+		List<String> prodDesc1 = getProductDescriptionOfCartProduct();
+		List<String> totalPrice1 = getCartProductTotalPrice();
+		List<String> unitPrice1=getCartProductUnitPrice();
+		List<String> quantity=getCartProductQuantity();
+		List<String> stock=getCartProductStock();
+		List<String> contracts=getContractDetailsOnCart();
+		Thread.sleep(3000);
+		if (prodDesc1.get(itemNum)!=null && totalPrice1!=null) {
+			Thread.sleep(3000);
+			reporter.SuccessReport("Verify the part added to cart ", "cart details "," Contract : "+contracts.get(itemNum)+
+					 "  prod Description : " + prodDesc1.get(itemNum) + "   Quantity : "+quantity.get(itemNum)
+							+ "  Total Price: " + totalPrice1.get(itemNum)+ "   Unit price: "+unitPrice1.get(itemNum)+ "   "+stock.get(itemNum));
+		} else {
+			reporter.failureReport("Verify the part added to cart ", "Part is not added to cart.", "", driver);
+		}
+   }
+	
+	
 	}
