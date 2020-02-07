@@ -85,7 +85,7 @@ public class REP10_InvoicedSummaryPDFTest extends ReportingLib {
 					verifyTreeForAllAccounts();
 					canadaLib.verifyFilterbyCurrency(data.get("Currency"));
 					verifyDefaultCurrentDate(data.get("CurrentDate"));
-					verifyStartDate("01");
+					verifyStartDate(data.get("DayOne"));
 					EndDateVerification();
 					List<String> dateOptionsList = Arrays.asList(data.get("ScheduleDates").split(","));
 					verifyScheduleReportOptionsDates(dateOptionsList);					
