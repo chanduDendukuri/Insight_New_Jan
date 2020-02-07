@@ -1294,6 +1294,7 @@ public class CartLib extends ActionEngine {
 	}
 
 	public void verifyItemInCartByInsightPart(String itemInCart) throws Throwable {
+		Thread.sleep(5000);
 		waitForVisibilityOfElement(CartObj.getItemIncartByInsightPartNumber(itemInCart), "Item in cart");
 		if (isElementPresent(CartObj.getItemIncartByInsightPartNumber(itemInCart), "part number")) {
 			reporter.SuccessReport("verifying item added to cart :: ", " Item added to cart Mfr number # is :", itemInCart);
