@@ -96,12 +96,16 @@ public class CRT13_DeleteCartItemsTest extends CartLib {
 				    commonLib.searchProduct(data.get("SearchItem3"));
 					prodInfoLib.verifyTheManufacturerNumberInProductDetailsPage(data.get("SearchItem3"));
 					prodInfoLib.clickOnWarrantiesTabOnProductDetailsPage();
+					
+					
 					String manfa=prodInfoLib.getManfNumberFromWarrentiesPage(data.get("index"));
 					prodInfoLib.clickOnAddToCartButtonInWarrentiesPage(data.get("index"));
 					canadaLib.continueToCheckout();
 					canadaLib.verifyPlaceCartLabel();
 					prodInfoLib.verifyCartPageAndPartDetailsForRecentlyItemDynamically(manfa);
-					cartLib.deletePartInCart(data.get("SearchItem3"));
+					System.out.println("manfa"+manfa);
+					System.out.println("Manfactured+"+manfa.split("Insight Part #:")[1]);
+					cartLib.deletePartInCart(manfa.split("Insight Part #:")[1].trim());
 					commonLib.clickOnAccountToolsAndClickOnProductGrp(data.get("Tools_Menu"),
 								data.get("Tools_Menu_DD"));
 					searchLib.selectProductGroupAndVerify(data.get("Product_Group"), data.get("Product_Name"));

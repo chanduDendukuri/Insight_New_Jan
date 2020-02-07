@@ -61,8 +61,7 @@ public class REP06_OverallSalesHistOutputFormatTest extends ReportingLib {
 							data.get("Tools_Menu_DD"));
 					canadaLib.clickOnReportOptions(data.get("ReportOption"));
 					canadaLib.verifyReportsPage();
-					String Selectreport=data.get("SelectReport")+getRandomNumeric(4);
-					canadaLib.verifySelectReport(Selectreport);
+					canadaLib.verifySelectReport(data.get("SelectReport"));
 					canadaLib.clickOnAccountSelections(data.get("AccountSelectionOpt"));
 					ParentCheckboxClicked();
 					grandParentCheckboxNotClicked();
@@ -76,7 +75,7 @@ public class REP06_OverallSalesHistOutputFormatTest extends ReportingLib {
 					clickOnSave();
 					verifyReportTemplates();
 					expandReportTemplateAndVerify(data.get("TemplateName"));		
-					clickOnDelete(Selectreport);
+					clickOnDelete(data.get("SelectReport"));
 					 commonLib.clickLogOutLink(data.get("Logout_Header"));
 				} catch (Exception e) {
 					ReportStatus.blnStatus = false;

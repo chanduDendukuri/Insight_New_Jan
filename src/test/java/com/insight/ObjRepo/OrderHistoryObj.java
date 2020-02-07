@@ -74,7 +74,7 @@ public class OrderHistoryObj extends ActionEngine{
 	public static By SORT_RESULTS_BY=By.xpath("//span[text()='Sort results by']//parent::label//div");
 	public static By SORT_ORDER=By.xpath("//span[text()='Sort order']//parent::label//div");
 	public static By sortResultsFilter(String noOfResults) {
-		return By.xpath("//*[contains(text(),'"+noOfResults+"')]");
+		return By.xpath("//div[@class='Select-option' and @aria-label='"+noOfResults+"']");
 	}
 	
 	public static By sortOrderFilter(String noOfResults) {

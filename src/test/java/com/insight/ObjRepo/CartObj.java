@@ -237,7 +237,7 @@ public class CartObj extends CommonObj{
 	public static By PART_NUMBER_IN_ADDED_TO_YOUR_CART_POPUP=By.xpath("//div[@id='buy-modal']//div//ul//li[contains(.,'Mfr #:')]");
 	public static By SUMMARY_TOTAL=By.xpath("//section/following::div[@class='columns small-12 large-3 print-5 print-offset-7']//div[text()='Total']//parent::div//span[@class='iw-currency__amount']");
 	public static By CURRENCY_CODE=By.xpath("//section/following::div[@class='columns small-12 large-3 print-5 print-offset-7']//div[text()='Total']//parent::div//span[@class='iw-currency__code']");
-	
+	public static By REMOVE_IN_STOCK_ITEMS=By.xpath("//a[text()='In Stock Only']");
 	public static By lblCartLebel=By.xpath("//*[@class='shopping-cart__header-title']");
 
     ///NViDiA Screen
@@ -330,7 +330,7 @@ public static By Productname_at_cart=By.xpath("//h4[@class='cart__item-heading']
    public static By CART_PROD_STOCK=By.xpath("//label[text()='Item quantity']/following-sibling::input/following::span/span[contains(text(),' Stock: ')]");
    public static By CART_PROD_TOTAL_PRICE=By.xpath("//div[@class='columns flex-child-auto medium-flex-child-shrink cart__table-col cart__table-col--total medium-text-right']//span[@class='iw-currency__amount']");
    public static By CART_PROD_UNIT_PRICE=By.xpath(" //div[@class='columns flex-child-auto medium-flex-child-shrink cart__table-col cart__table-col--price medium-text-right small-negative-left-margin']//span[@class='iw-currency__amount']");
-
+   public static By CART_CONTRACT_DETAILS=By.xpath("//div[@class='row row__gutter--tiny collapse']//div//strong");
    public static By getPartNuminOrderdetails= By.xpath("//h3[@class='item-details__desc']/following::span[@class='item-details__part']");
  
    public static By NUMBER_PICKER_IN_PRODUCTQA_DISPLAY_PAGE = By.xpath("//input[@id='product-detail-order-number-picker']/parent::div/button[@class='number-picker-up ion-arrow-up-b']"); 

@@ -110,6 +110,7 @@ public class CanadaLib extends CanadaObj {
 	 * @throws Throwable
 	 */
 	public void verifyPlaceCartLabel() throws Throwable {
+		
 		if (isVisibleOnly(CART_LABEL, "Cart header label displayed")) {
 			reporter.SuccessReport("Verify wether user navigates to cart page ",
 					"User successfully navigated to cart page", "PageDetails : Cart");

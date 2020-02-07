@@ -368,8 +368,8 @@ public class OrderHistoryLib extends OrderHistoryObj {
 	public void spinnerImageODH() throws Throwable {
 		if(isElementPresent(SPINNER_IMAGE, "spinner image")){
 			Thread.sleep(2000);
-			waitForInVisibilityOfElement(SPINNER_IMAGE, "spinner image");
-			if (isElementNotPresent(SPINNER_IMAGE, "spinner image")) {
+			
+			if (waitForInVisibilityOfElement(SPINNER_IMAGE, "spinner image")) {
 				reporter.SuccessReport("spinner image", "spinner image disapperaed", "");
 			} else {
 				reporter.failureReport("spinner image", "spinner image not disapperaed", "");
@@ -599,9 +599,9 @@ public class OrderHistoryLib extends OrderHistoryObj {
 	public void selectSortResults(String sortFilter) throws Throwable {
 		click(SORT_RESULTS_BY, "Sort results");
 		click(sortResultsFilter(sortFilter), sortFilter);
+		//driver.findElement(By.xpath("//div[@class='Select-option' and @aria-label='"+sortFilter+"']")).click();
 		spinnerImageODH();
 	}
-	
 	/**
 	 * Method is used to select sort order
 	 * 
@@ -610,7 +610,7 @@ public class OrderHistoryLib extends OrderHistoryObj {
 	public void selectSortOrder(String sortOrder) throws Throwable {
 		click(SORT_ORDER, "Sort order");
 		click(sortOrderFilter(sortOrder), sortOrder);
-		//spinnerImageODH();
+		spinnerImageODH();
 	}
 	
 	/**
@@ -638,7 +638,26 @@ public class OrderHistoryLib extends OrderHistoryObj {
 	public void verifyPOSearchResultsAreInDescending() throws Throwable {
 		List<WebElement> myList = driver.findElements(POOrderSearchResults);
 		for (int i = 0; i < myList.size() - 1; i++) {
-			if (myList.size()>0) {
+			int ponumber1 = myList.get(i).getText().compareTo(myList.get(i+1).getText());
+			if (ponumber1>0) {
+				
+				reporter.SuccessReport("Verify the Validate sort order in Results  ",
+						"Orders are returned ascending in Search Results", "POOrder#1:"+myList.get(i + 1).getText()+"POOrder#2:"+myList.get(i).getText()+"");
+				if(i==5) {
+					break;
+				}
+			} else {
+				reporter.failureReport("Verify the Validate sort order in Results ",
+						"Orders are does not returned in ascending", "",driver);
+			}
+		}
+
+	}
+	public void verifyPOSearchResultsAreInAscending() throws Throwable {
+		List<WebElement> myList = driver.findElements(POOrderSearchResults);
+		for (int i = 0; i < myList.size() - 1; i++) {
+			int ponumber1 = myList.get(i).getText().compareTo(myList.get(i+1).getText());
+			if (ponumber1<0) {
 				
 				reporter.SuccessReport("Verify the Validate sort order in Results  ",
 						"Orders are returned ascending in Search Results", "POOrder#1:"+myList.get(i + 1).getText()+"POOrder#2:"+myList.get(i).getText()+"");
@@ -655,8 +674,8 @@ public class OrderHistoryLib extends OrderHistoryObj {
 	public void verifyOrderStatusSearchResultsAreInAscending() throws Throwable {
 		List<WebElement> myList = driver.findElements(OrderStatusResults);
 		for (int i = 0; i < myList.size() - 1; i++) {
+			//int Orderstatus = myList.get(i + 1).getText().compareTo(myList.get(i).getText());
 			if (myList.size()>0) {
-				
 				reporter.SuccessReport("Verify the Validate sort order in Results  ",
 						"Orders are returned ascending in Search Results", "OrderStatus#1:"+myList.get(i + 1).getText()+"OrderStatus#2:"+myList.get(i).getText()+"");
 				if(i==5) {
@@ -759,16 +778,19 @@ public class OrderHistoryLib extends OrderHistoryObj {
 		for (int i = 0; i < myList.size(); i++) {
 			// loading text of each element in to array all_elements_text
 			all_elements_text.add(myList.get(i).getText());
+			if(all_elements_text.get(i).toLowerCase().contains(contactName.toLowerCase().split(" ")[0])) {
+				reporter.SuccessReport("Verify the Validate  session soldto in Results", "Search Results Orders are returned with session soldto exists", myList.get(i).getText());
+			}
+			else {
+				reporter.failureReport("Verify the Validate  session soldto in Results", "Orders are does not returned with session soldto", "",driver);
+			}
+			
+			if(i==5)
+				break;
 		}
 		//String accountName=getText(ACCOUNT_NAME, "ACCOUNT_NAME");
-		for (int j = 0; j < myList.size(); j++) {
-		if(all_elements_text.get(j).toLowerCase().contains(contactName.toLowerCase().split(" ")[0])) {
-			reporter.SuccessReport("Verify the Validate  session soldto in Results", "Search Results Orders are returned with session soldto exists", "");
-		}
-		else {
-			reporter.failureReport("Verify the Validate  session soldto in Results", "Orders are does not returned with session soldto", "",driver);
-		}
-		}
+		
+		
 	}
 	
 	/**
