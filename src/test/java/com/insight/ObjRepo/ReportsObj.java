@@ -92,5 +92,6 @@ public static By STARTDATEINPUTFIELD=By.xpath("//div[@id='StartDateInput']//inpu
 public static By ENDDATEINPUTFIELD=By.xpath("//div[@id='EndDateInput']//input[@aria-label='reportEndDate']");
 public static By ENDDATEINPUT=By.xpath("//div[@id='EndDateInput']//input[@aria-label='reportEndDate']/following-sibling::input");
 public static By LINKEDSOLDTOS=By.xpath("//input[@checked='checked']/parent::td//tbody/tr/td[1]");
+public static By LINKEDSOLDTO=By.xpath("//input[@checked='checked']");
 
 }
