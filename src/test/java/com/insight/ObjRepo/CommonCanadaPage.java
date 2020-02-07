@@ -52,6 +52,11 @@ public class CommonCanadaPage extends ActionEngine{
     public static By lblHostedLicensingAdminPage = By.xpath("//h1[text()='Hosted Licensing Administration']");
     public static By lblReturnTOSoftwareLicenseAggrements = By.xpath("//*[text()='Return to My Software License Agreements']");
     public static By lblManifacturerNumberFormProductScreen = By.xpath("//*[@class='product-specs top-horizontal']//td[2]");
+    public static By lblProductStandards = By.xpath("//div[@id='csProductGroupsHeading']");
+    public static By addToCartIcon = By.xpath("//*[contains(@id,'cartIcon')]");
+    public static By viewCartlnk = By.xpath("//span[text()='View Cart >>']");
+    public static By lblCartLebel=By.xpath("//*[@class='shopping-cart__header-title']");
+
 
 
 
