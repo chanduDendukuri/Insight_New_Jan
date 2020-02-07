@@ -76,6 +76,7 @@ public class ODP02_PlaceOrderBasicIPSTest extends OrderLib{
 						commonLib.addToCartAndVerify();
 						orderLib.continueToCheckOutOnAddCart();
 						canadaLib.verifyPlaceCartLabel();
+						commonLib.spinnerImage();
 						cartLib.verifyItemInCartByInsightPart(mfrNumber1);
 						prodInfoLib.verifyCartPageAndPartDetails();
 
@@ -89,6 +90,7 @@ public class ODP02_PlaceOrderBasicIPSTest extends OrderLib{
 						commonLib.addToCartAndVerify();
 						orderLib.continueToCheckOutOnAddCart();
 						canadaLib.verifyPlaceCartLabel();
+						commonLib.spinnerImage();
 						cartLib.verifyItemInCartByInsightPart(mfrNumber2);
 						commonLib.verifyContractInCart(data.get("Contract_Name"));
 						verifyCartPageAndPartDetails(0);
@@ -105,12 +107,14 @@ public class ODP02_PlaceOrderBasicIPSTest extends OrderLib{
 						commonLib.addToCartAndVerify();
 						orderLib.continueToCheckOutOnAddCart();
 						canadaLib.verifyPlaceCartLabel();
+						Thread.sleep(5000);
+						commonLib.spinnerImage();
 						cartLib.verifyItemInCartByInsightPart(mfrNumber4);
-						verifyCartPageAndPartDetails(0);
+						verifyCartPageAndPartDetails(1);
 						cartLib.verifyContractNameInCart(data.get("OpenMarket"));
 						cartLib.verifyContractNameInCart(data.get("Contract_Name"));
-						verifyCartPageAndPartDetails(1);
 						verifyCartPageAndPartDetails(2);
+						verifyCartPageAndPartDetails(0);
 						
 						proceedToCheckout();
 						enterReportingDetailsInLineLevelInfoSection(data.get("REPORTING FIELD_4"), data.get("REPORTING FIELD_5"), data.get("REPORTING FIELD_6"));
