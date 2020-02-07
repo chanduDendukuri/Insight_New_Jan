@@ -313,7 +313,7 @@ public class OrderObj extends ActionEngine{
 			public static By NAME_FIELD_VERIFY_REQ =By.xpath("//div[@class='srAccountDetails']/div[4]");
 			public static By PHONE_FIELD_VERIFY_REQ =By.xpath("//div[@class='srAccountDetails']/div[5]");
 			public static By EMAIL_FIELD_VERIFY_REQ =By.xpath("//div[@class='srAccountDetails']/div[6]");
-			public static By FINAL_ORDERNMBR =By.xpath("//div[@id='FinalApproverMessage1']");
+			public static By FINAL_ORDERNMB =By.xpath("//div[@id='FinalApproverMessage']");
 			public static By REVIEW_REQUISITION_BTN=By.xpath("//button[@type='submit' and contains(text(),'Review requisition')]");
 
 	 
@@ -384,6 +384,20 @@ public class OrderObj extends ActionEngine{
 	 public static By dynamicHeaderLevelCustomerDetailsValues(String val){
 	 	return By.xpath("//*[@class='customer-detail__label' and contains(text(),'RP_HDL_'"+val+"'')]/..//following-sibling::div//span");
 	 }
+
+		public static By NAME_FIELD (String Name) {
+			return	By.xpath("//div[contains(text(),'"+Name+"')]//strong[contains(text(),'Name :')]");//Automation User
+}
+		public static By EMAIL_FIELD (String Email) {
+			return	By.xpath("//div[contains(text(),'"+Email+"')]//strong[contains(text(),'Email :')]");//TestUser@gmail.com
+		}
+		public static By VERIFY_NAME_FIELD (String Name) {
+			return	By.xpath("//div/span[contains(.,'"+Name+"')]");//Automation User
+}
+		public static By VERIFY_EMAIL (String Email) {
+			return	By.xpath("//div/span[contains(.,'"+Email+"')]");//TestUser@gmail.com
+		}
+	 
 	 
 	 public static By SHIPPING_ADDRESS_ON_RECEIPT_PAGE=By.xpath("//div//h3[contains(text(),'Shipping address')]/following::div[1]//label[@class='form__label--readonly']");
 }
