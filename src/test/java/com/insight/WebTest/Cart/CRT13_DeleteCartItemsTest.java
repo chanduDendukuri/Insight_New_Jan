@@ -10,9 +10,12 @@ import com.insight.Lib.CanadaLib;
 import com.insight.Lib.CartLib;
 import com.insight.Lib.ChinaLib;
 import com.insight.Lib.CommonLib;
+import com.insight.Lib.EndUserFeaturesLib;
+import com.insight.Lib.LineLevelInfoLib;
 import com.insight.Lib.OrderLib;
 import com.insight.Lib.ProductDetailLib;
 import com.insight.Lib.ProductDisplayInfoLib;
+import com.insight.Lib.SLPLib;
 import com.insight.Lib.SearchLib;
 import com.insight.Lib.ShipBillPayLib;
 import com.insight.accelerators.ReportControl;
@@ -23,6 +26,15 @@ import com.insight.utilities.TestUtil;
 public class CRT13_DeleteCartItemsTest extends CartLib {
 	CommonLib commonLib = new CommonLib();
 	CMTLib cmtLib = new CMTLib();
+	SearchLib search = new SearchLib();
+	ProductDisplayInfoLib prodInfoLib = new ProductDisplayInfoLib();
+	EndUserFeaturesLib end = new EndUserFeaturesLib();
+	SLPLib slp = new SLPLib();
+	LineLevelInfoLib line = new LineLevelInfoLib();
+	OrderLib order = new OrderLib();
+	CanadaLib canadaLib = new CanadaLib();
+	CartLib cartLib = new CartLib();
+	SearchLib searchLib = new SearchLib();
 
 	// #############################################################################################################
 	// # Name of the Test : CRT13_DeleteCartItems
@@ -50,9 +62,53 @@ public class CRT13_DeleteCartItemsTest extends CartLib {
 					Hashtable<String, String> data = TestUtil.getDataByRowNo("CRT13_DeleteCartItems", TestDataInsight,
 							"Web_Cart", intCounter);
 					TestEngineWeb.reporter.initTestCaseDescription("DeleteCartItems");
-					cmtLib.loginToCMTSearchWebGrpAndUser(data.get("header"), data.get("WebGrp"),
-							data.get("LnameEmailUname"), data.get("ContactName"));
-					commonLib.clickOnLoginAsForDeleteFunctionality(data.get("PartNumber"), data.get("SearchItem"));
+					//cmtLib.loginToCMTSearchWebGrpAndUser(data.get("header"), data.get("WebGrp"),
+							//data.get("LnameEmailUname"), data.get("ContactName"));
+					//System.out.println("testdata"+data.get("SearchItem").split(",")[0]);
+					//System.out.println("testdata"+data.get("SearchItem").split(",")[1]);
+					
+					cmtLib.loginToCMT(data.get("header"));
+					cmtLib.searchForWebGroup(data.get("WebGrp"));
+					cmtLib.clickOnTheWebGroup(data.get("WebGrp_Name"));
+					cmtLib.hoverOnManageWebGroupsAndSelectOptions(data.get("Manage_Web_Grp_Options"));
+					cmtLib.searchForaUserAndSelect(data.get("LnameEmailUname"), data.get("ContactName"));
+					cmtLib.setPermissions(data.get("menuName"), data.get("Enable_Purchasing_Popup"));
+					cmtLib.clickOnloginAs();
+					switchToChildWindow();
+					cmtLib.loginVerification(data.get("ContactName"));
+					
+					commonLib.searchProduct(data.get("PartNumber"));
+				    prodInfoLib.verifyTheManufacturerNumberInProductDetailsPage(data.get("PartNumber"));
+					search.increaseQuantity(data.get("quantity"));
+					commonLib.addToCartAndVerify();
+				    canadaLib.continueToCheckout();
+				    canadaLib.verifyPlaceCartLabel();
+				    prodInfoLib.verifyCartPageAndPartDetailsForRecentlyItemDynamically(data.get("PartNumber"));
+				    
+				    cartLib.verifyQuickShopWithValidSinglePartNumber(data.get("SearchItem"), data.get("quantity"));
+				    canadaLib.verifyPlaceCartLabel();
+				    prodInfoLib.verifyCartPageAndPartDetailsForRecentlyItemDynamically(data.get("SearchItem").split(",")[0]);
+				    prodInfoLib.verifyCartPageAndPartDetailsForRecentlyItemDynamically(data.get("SearchItem").split(",")[1]);
+				    cartLib.deletePartInCart(data.get("PartNumber"));
+				    cartLib.deletePartInCart(data.get("SearchItem1"));
+				    cartLib.deletePartInCart(data.get("SearchItem2"));
+				    
+				    commonLib.searchProduct(data.get("SearchItem3"));
+					prodInfoLib.verifyTheManufacturerNumberInProductDetailsPage(data.get("SearchItem3"));
+					prodInfoLib.clickOnWarrantiesTabOnProductDetailsPage();
+					String manfa=prodInfoLib.getManfNumberFromWarrentiesPage(data.get("index"));
+					prodInfoLib.clickOnAddToCartButtonInWarrentiesPage(data.get("index"));
+					canadaLib.continueToCheckout();
+					canadaLib.verifyPlaceCartLabel();
+					prodInfoLib.verifyCartPageAndPartDetailsForRecentlyItemDynamically(manfa);
+					cartLib.deletePartInCart(data.get("SearchItem3"));
+					commonLib.clickOnAccountToolsAndClickOnProductGrp(data.get("Tools_Menu"),
+								data.get("Tools_Menu_DD"));
+					searchLib.selectProductGroupAndVerify(data.get("Product_Group"), data.get("Product_Name"));
+					commonLib.clickCart();
+					canadaLib.verifyPlaceCartLabel();
+					commonLib.verifyBundleIsAddedToCart();
+					deleteBundle();
 					commonLib.clickLogOutLink(data.get("Logout_Header"));
 					System.out.println("Test completed");
 

@@ -883,7 +883,23 @@ public class CartLib extends ActionEngine {
 
 		}
 	}
-
+	public void deletePartInCart(String partNumber) throws Throwable {
+		if(isVisible(CartObj.deleteSpecificPartNumber(partNumber), "Delete part in cart")){
+			click(CartObj.deleteSpecificPartNumber(partNumber), "Delete part in cart "+partNumber);
+		}
+		else {
+			reporter.failureReport("Delete part in cart", "Required part number is not visible in cart", partNumber, driver);
+		}
+		commonLib.spinnerImage();
+	}
+	public void deleteBundle() throws Throwable {
+		if(isVisible(CartObj.DELETE_BUNDLE, "Delete budnle-1")) {
+			click(CartObj.DELETE_BUNDLE, "Delete budnle-1");
+		}
+		else {
+			reporter.failureReport("Delete bundle-1 in cart", "Bundle-1 in cart is not visible", "Bundle-1", driver);
+		}
+	}
 	/**
 	 * This method is to compare two prices
 	 * 
@@ -930,6 +946,12 @@ public class CartLib extends ActionEngine {
 		Thread.sleep(5000);
 		String summaryAmount = getText(CartObj.SUMMARY_TOTAL, "summaryTotalAmount");
 		return summaryAmount;
+	}
+	public String getCurrencyCode() throws Throwable {
+		String currencyCode=getText(CartObj.CURRENCY_CODE, "Currency type");
+		
+		return currencyCode;
+		
 	}
 
 	public String getShippingEstimateInCart() throws Throwable {
@@ -1272,6 +1294,7 @@ public class CartLib extends ActionEngine {
 	}
 
 	public void verifyItemInCartByInsightPart(String itemInCart) throws Throwable {
+		Thread.sleep(5000);
 		waitForVisibilityOfElement(CartObj.getItemIncartByInsightPartNumber(itemInCart), "Item in cart");
 		if (isElementPresent(CartObj.getItemIncartByInsightPartNumber(itemInCart), "part number")) {
 			reporter.SuccessReport("verifying item added to cart :: ", " Item added to cart Mfr number # is :", itemInCart);

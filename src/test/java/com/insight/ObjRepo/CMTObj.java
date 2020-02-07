@@ -242,6 +242,7 @@ public static By txt_QuoteDetails = By.xpath("//h2[contains(text(),'Quote Detail
 	public static By saveImage(String repName) {
 		return By.xpath("//td//a[contains(text(),'"+repName+"')]/following::td//img[@alt='Save']");
 	}
+	public static By CONTACT_AND_NOTIFICATIONS_SUCCESS_MSG=By.xpath("//div[@class='successUpdated'][contains(.,'Saved successfully')]");
 	
 	/*
 	 * *************************************************************************
