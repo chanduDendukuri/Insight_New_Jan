@@ -71,7 +71,8 @@ public class REP02_InvoicedOrdersOutputFormatTest extends ReportingLib {
 							canadaLib.clickOnSideMenuSelectAccountToolOptions(data.get("Tools_Menu"),data.get("Tools_Menu_DD"));	
 							canadaLib.clickOnReportOptions(data.get("ReportOption"));
 							canadaLib.verifyReportsPage();
-							canadaLib.verifySelectReport(data.get("SelectReport"));							
+							String Selectreport=data.get("SelectReport")+getRandomNumeric(4);
+							canadaLib.verifySelectReport(Selectreport);							
 							canadaLib.clickOnAccountSelections(data.get("AccountSelectionOpt"));							
 							ParentCheckboxClicked();
 							grandParentCheckboxClicked();
@@ -85,8 +86,7 @@ public class REP02_InvoicedOrdersOutputFormatTest extends ReportingLib {
 							clickOnSave();
 							verifyReportTemplates();
 							expandReportTemplateAndVerify(data.get("TemplateName"));		
-							
-							clickOnDelete(data.get("SelectReport"));
+							clickOnDelete(Selectreport);
 							commonLib.clickLogOutLink(data.get("Logout_Header"));
 
 

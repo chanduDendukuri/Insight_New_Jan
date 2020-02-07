@@ -415,7 +415,7 @@ public class ReportingLib extends ReportsObj {
 		 if (isElementPresent(getTemplateName(templateName),"Report Templates", true)){
 			 
 				reporter.SuccessReport("Verify the Report Name on Reporting Management Page",
-						"Report Name exists", "");
+						"Report Name exists", templateName);
 		 }
 		 else{
 			 reporter.failureReport("Verify the Report Name on Reporting Management Page",
@@ -430,8 +430,8 @@ public class ReportingLib extends ReportsObj {
 				reporter.SuccessReport("Last Run Date in Report Templates on Reporting Management Page",
 						"Last Run Date exists with Not Today's Date", "");
 			 isElementPresent(getTemplateName(templateName),"Report Templates", true);
-			 reporter.SuccessReport("Report Name: QTP_Test_InvTemp on Reporting Management Page",
-						"Report Name: QTP_Test_InvTemp exists and Deleted", "");
+			 reporter.SuccessReport("Report Name:"+templateName+" on Reporting Management Page",
+						"Report Name: QTP_Test_InvTemp exists and Deleted", templateName);
 		 }
 		 else{
 			 reporter.failureReport("Last Run Date in Report Templates on Reporting Management Page",
