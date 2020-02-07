@@ -1429,7 +1429,7 @@ public class ProductDisplayInfoLib extends productsDisplayInfoObj {
         List<WebElement> stockList = null;
         List<WebElement> DecList = driver.findElements(CartObj.CART_PROD_DESC_RECENTLYADDEDTEM_loop);
         List<WebElement> priceList = driver.findElements(CartObj.CART_PROD_TOTAL_PRICE_RECENTLYADDEDTEM_loop);
-        List<WebElement> UnitPriceList = driver.findElements(CartObj.CART_PROD_UNIT_PRICE_RECENTLYADDEDTEM_loop);
+        List<WebElement> UnitPriceList = driver.findElements(CartObj.CART_PROD_UNIT_PRICE_RECENTLYADDEDTEM_loop1);
         List<WebElement> qtyList = driver.findElements(CartObj.CART_PROD_QTY_RECENTLYADDEDTEM_loop);
         if (isVisibleOnly(CartObj.CART_PROD_STOCK_RECENTLYADDEDTEM_loop, "Stock")) {
             stockList = driver.findElements(CartObj.CART_PROD_STOCK_RECENTLYADDEDTEM_loop);

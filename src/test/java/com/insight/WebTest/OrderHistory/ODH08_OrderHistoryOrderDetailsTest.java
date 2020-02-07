@@ -70,6 +70,7 @@ public class ODH08_OrderHistoryOrderDetailsTest extends OrderHistoryLib{
 							verifySearchResultsAreDisplayed();
 							clickOrderNumber();
 							invoiceHistoryLib.verifyOrderDetailsPage();
+							verifyPrintLink();
 							clickSendToColleauge();
 							sendToColleauge(data.get("YourName"),data.get("YourEmail"),data.get("RecipientEmail"),data.get("YourComments"));
 							clickAddTrackingNotification();
@@ -77,7 +78,7 @@ public class ODH08_OrderHistoryOrderDetailsTest extends OrderHistoryLib{
 							clickOrderAgain();
 							commonLib.spinnerImage();
 							canadaLib.verifyPlaceCartLabel();
-							verifyPrintLink();
+							
 							commonLib.clickLogOutLink(data.get("Logout_Header"));
 														
 							// Test completed

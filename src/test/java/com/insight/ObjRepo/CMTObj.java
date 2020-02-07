@@ -239,6 +239,10 @@ public static By txt_QuoteDetails = By.xpath("//h2[contains(text(),'Quote Detail
 		return By.xpath("//td//a[contains(text(),'" + repName + "')]/following::td//input[@value='SECR']");
 	}
 
+	public static By saveImage(String repName) {
+		return By.xpath("//td//a[contains(text(),'"+repName+"')]/following::td//img[@alt='Save']");
+	}
+	
 	/*
 	 * *************************************************************************
 	 * *************************** >>>>>>>>>>> COMMON METHOD TO GET QUOTES CHECK
@@ -694,6 +698,6 @@ public static By lnkDeleteProductGroups=By.xpath("//*[text()=' Delete Product Gr
 	public static By lblOrderNumber=By.xpath("//span[text()='Order number']//following-sibling::a[@class='orders__link order-card-header__link']");
     public static By DEFAULTCHECKBOXINBILLINGADDRESS=By.xpath("//div[@class='OptionContents']//td[@class='linkedField']/input[@checked='checked']");
     public static By DEFAULTCHECKBOXINSHIPPINGADDRESS=By.xpath("//td[@class='linkedField']/input[@checked='checked']");
-
+public static By STARTPAGE=By.xpath("//span[@id='showingStart']");
 
 }

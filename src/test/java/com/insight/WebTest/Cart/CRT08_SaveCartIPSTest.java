@@ -96,6 +96,8 @@ public class CRT08_SaveCartIPSTest extends CartLib{
 					
 					commonLib.clickCart();
 					commonLib.emptyCartAndVerify();
+					commonLib.clickOnAccountToolsAndClickOnProductGrp(data.get("Tools_Menu"),
+							data.get("Tools_Menu_DD1"));
 					cartLib.deleteSavedCartFromAccountTools();
 					commonLib.clickLogOutLink(data.get("Logout_Header"));
 					   System.out.println("Test completed");

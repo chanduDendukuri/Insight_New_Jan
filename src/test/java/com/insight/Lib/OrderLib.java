@@ -743,10 +743,8 @@ List<String> orderdetails = new ArrayList<String>();
 	 * @throws Throwable
 	 */
 	public void enterReportingDetailsInLineLevelInfo(String reportingField4,String reportingField5,String reportingField6) throws Throwable{
-		if(isElementPresent(OrderObj.ORDER_ITEM_INFO_LABEl, "order and inforamtion page")){
+		if(isElementPresent(OrderObj.ORDER_ITEM_INFO_LABEl, "order and inforamtion page")&& isElementPresent(REPORTING_FIELD_4, "Reporting Field 4")){
 			reporter.SuccessReport("Verify Line Level/Ship Bill & Pay/Line Level/Place Requisition/Place Order Page", "Order and item information Page not loaded", "");
-		type(REPORTING_FIELD_4, reportingField4, "Reporting Field 4");
-		if(isElementPresent(REPORTING_FIELD_4, "Reporting Field 4")){
 		type(REPORTING_FIELD_4, reportingField4, "Reporting Field 4");
 		type(REPORTING_FIELD_5, reportingField5, "Reporting Field 5");
 		type(REPORTING_FIELD_6, reportingField6, "Reporting Field 6");
@@ -754,9 +752,8 @@ List<String> orderdetails = new ArrayList<String>();
 		
 		}else{
 			reporter.failureReport("Verify reporting fields displayed in the Line level information section","Reporting fields are not displayed Line level information","");
+		   }
 		}
-		}
-	}
 	
 	/**
 	 * 

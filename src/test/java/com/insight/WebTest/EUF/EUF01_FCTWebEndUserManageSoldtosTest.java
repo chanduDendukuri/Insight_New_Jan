@@ -59,7 +59,7 @@ public class EUF01_FCTWebEndUserManageSoldtosTest extends EndUserFeaturesLib{
 						cmtLib.clickUpdateButtonOnLinkedAccountsScreen();
 						cmtLib.clickOnloginAs();
 						switchToChildWindow();
-						ivhLib.closeAccountTools();
+						//ivhLib.closeAccountTools();
 						/*canadaLib.clickOnSideMenuSelectAccountToolOptions(data.get("Tools_Menu"),
 								data.get("Tools_Menu_DD"));*/
 						commonLib.clickOnAccountToolsAndClickOnProductGrp(data.get("Tools_Menu"),
@@ -85,7 +85,7 @@ public class EUF01_FCTWebEndUserManageSoldtosTest extends EndUserFeaturesLib{
 						clickContinueButton();
 						//assertTrue(ccp.isVisibilityOfWelcomeMessage(),"Welcome message is available");
 					//	cmtLib.navigateBackToCMT();
-						ivhLib.closeAccountTools();
+						//ivhLib.closeAccountTools();
 						ccp.verifyLoggedInAs(data.get("ContactName"));
 						commonLib.clickOnAccountToolsAndClickOnProductGrp(data.get("Tools_Menu"),
 								data.get("Tools_Menu_DD"));
@@ -96,7 +96,7 @@ public class EUF01_FCTWebEndUserManageSoldtosTest extends EndUserFeaturesLib{
 /*Second Login AS*/		cmtLib.navigateBackToCMT();
 						cmtLib.clickOnloginAs();
 						switchToChildWindow();
-						ivhLib.closeAccountTools();
+						//ivhLib.closeAccountTools();
 //BOS
 						commonLib.clickOnAccountToolsAndClickOnProductGrp(data.get("Tools_Menu"),
 								data.get("Tools_Menu_DD"));
@@ -133,14 +133,16 @@ public class EUF01_FCTWebEndUserManageSoldtosTest extends EndUserFeaturesLib{
 						cmtLib.navigateBackToCMT();
 						cmtLib.clickOnloginAs();
 						switchToChildWindow();
-						ivhLib.closeAccountTools();
+						//ivhLib.closeAccountTools();
 
 						commonLib.clickOnAccountToolsAndClickOnProductGrp(data.get("Tools_Menu"),
 								data.get("Tools_Menu_DD"));
-						//scrollToBottomWithCordinate("-500");
+						scrollToBottomWithCordinate("-500");
 						clickOnTabInUserProfile(data.get("Tab_Name"));
 
 						ccp.clickOnSwitchToAccountForSelectedAccountRefNum(value);
+						clickContinueButton();
+						Thread.sleep(3000);
 						commonLib.clickLogOutLink(data.get("Logout_Header"));
 					} catch (Exception e) {
 						ReportStatus.blnStatus = false;

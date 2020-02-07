@@ -1213,7 +1213,7 @@ public class SearchLib extends CommonObj {
 	 */
 	public void selectContract(String contractName) throws Throwable{
 		clickUntil(CONTRACT_DD, getContractsFromDD(contractName), "contract drop down");
-		click(getContractsFromDD(contractName),"Selected contract name");
+		click(getContractsFromDD(contractName),"Selected contract name "+contractName);
 		
 		Thread.sleep(2000);
 	}

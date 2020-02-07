@@ -69,7 +69,7 @@ public class ODH10_OrderHistorySearchResultsFiltersTest extends OrderHistoryLib{
 							clickAdvancedSearchButton();
 							spinnerImageODH();
 							scrollToBottomWithCordinate("300");
-							verifySearchResultsAreDisplayed();
+							verifyNumberOfResultsDisplayed();
 							// ######## Results per page 20 ################################
 							selectDisplayPerPage(data.get("Results_Per_Page"));
 							verifySearchResultsMoreThanFive();
@@ -82,14 +82,17 @@ public class ODH10_OrderHistorySearchResultsFiltersTest extends OrderHistoryLib{
 							selectSortOrder(data.get("Descending"));
 							verifyDatesOrder();
 							//######## Sort by PO and sort order Descending ################################
-							//selectSortResults(data.get("Sort_PO_Number"));
-							
+							selectSortResults(data.get("Sort_PO_Number"));
+							selectSortOrder(data.get("Descending"));
+							verifyPOSearchResultsAreInDescending();
 							//######## Sort by order status and sort order ascending ################################
-							//selectSortResults(data.get("Sort_Order_Status"));
-							//selectSortOrder(data.get("Ascending"));
+							selectSortResults(data.get("Sort_Order_Status"));
+							selectSortOrder(data.get("Ascending"));
 							
-							//######## Sort by PO and sort order ascending ################################
-							//selectSortResults(data.get("Sort_PO_Number"));
+							//######## Sort by PO and sort order Descending ################################
+							selectSortResults(data.get("Sort_PO_Number"));
+							selectSortOrder(data.get("Ascending"));
+							verifyPOSearchResultsAreInDescending();
 							
 							clickClearcSearch();
 							scrollUp();

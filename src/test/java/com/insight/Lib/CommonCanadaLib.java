@@ -305,6 +305,8 @@ public String getAccountNumber() throws Throwable{
            if(accn.get(i).getText().equalsIgnoreCase(acc))
            {
             swichBu.get(i).click();
+            reporter.SuccessReport("Default Account number","You are selecting default Account link",swichBu.get(i).getText());
+            break;
            }
        }
     }

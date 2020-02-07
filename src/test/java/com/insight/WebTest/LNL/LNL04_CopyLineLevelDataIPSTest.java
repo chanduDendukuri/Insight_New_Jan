@@ -93,8 +93,8 @@ public class LNL04_CopyLineLevelDataIPSTest  extends LineLevelInfoLib{
 						// Select new contract
 						searchLib.selectNewcontract(data.get("Contract_Name1"));
 						// Search for another product >> LENOVO >>
-						searchLib.searchInHomePage(data.get("SearchText1"));
-						searchLib.verifyTheResultsForSearchTerm(data.get("SearchText1"));
+						searchLib.searchInHomePage(data.get("SearchText4"));
+						searchLib.verifyTheResultsForSearchTerm(data.get("SearchText4"));
 						cartLib.selectFirstProductDisplay();
 						String mfrNumber3=prodLib.getInsightPartNumberInProductInfopage();
 						commonLib.addToCartAndVerify();
@@ -131,56 +131,56 @@ public class LNL04_CopyLineLevelDataIPSTest  extends LineLevelInfoLib{
 						
 						orderLib.shippingBillPay(data.get("Card_Number").toString(), data.get("Card_Name"),data.get("Month"), data.get("Year"),data.get("PO_Number"),data.get("POReleaseNumber"));
 						// Contract Specific Information verification
-						verifyContractSpecificInfoOnPlaceOrderPage();
+						verifyContractSpecificInfoOnPlaceOrderPage(data.get("REPORTING_FIELD_4"), data.get("REPORTING_FIELD_5"), data.get("REPORTING_FIELD_6"),data.get("Diversity_Partner1"));
+						//verifyDiversityPartnerexists(data.get("Diversity_Partner1"),mfrNumber3);
 						// click on edit LLI
 						editLinelevelInfoOnPlaceOrderPage();
 						// Verify OII bread crumb
 						verifyOrderAndItemInfoBreadCrumb();
 						// click on LLI optional
 						clickOnLineLevelOptionalLinkByPartNum(mfrNumber1);
+						
 						//selectDiversityPartner(data.get("Diversity_Partner2"),mfrNumber3);
-						clickCopyToAllLink(mfrNumber1);
+						//clickCopyToAllLink(mfrNumber1);
 						
 						//verifyContractSpecificInfoOnPlaceOrderPage();
 						/*clickOnLineLevelOptionalLinkByPartNum(mfrNumber2);
 						verifyDiversityPartnerexists(data.get("Diversity_Partner2"),mfrNumber2);*/
-						clickClearLink(mfrNumber1);
+						scrollUp();
+						clickClearLink(mfrNumber3);
+						Thread.sleep(4000);
 						//scrollUp();
 						//clickClearLink(mfrNumber3);
 						String reportingfield4= getReportingField4();
 						String reportingfield5= getReportingField5();
 						String reportingfield6= getReportingField6();
-					   // Verifying reporting fields are empty
-						assertTextStringMatching(reportingfield4, "");
-						assertTextStringMatching(reportingfield5, "");
-						assertTextStringMatching(reportingfield6, "");
-						orderLib.enterReportingDetailsInLineLevelInfo(data.get("REPORTING_FIELD_4"), data.get("REPORTING_FIELD_5"), data.get("REPORTING_FIELD_6"));
-						
+						// Verifying reporting fields are empty
+						if(reportingfield4.equals("") && reportingfield5.equals("")  && reportingfield6.equals("")) {
+							reporter.SuccessReport("Verify contract specific info", "contract specific info is cleared. reporting fields are empty", "");
+						}else {
+							reporter.failureReport("Verify contract specific info", "contract specific info  not cleared", "",driver);
+						}
+						clickOnLineLevelOptionalLinkByPartNum(mfrNumber2);
 						// select second options from DD 
-						selectDiversityPartner(data.get("Diversity_Partner1"),mfrNumber1);
-						clickCopyToAllLink(mfrNumber1);
-						//clickOnLineLevelOptionalLinkByPartNum(mfrNumber2);
-						verifyDiversityPartnerexists(data.get("Diversity_Partner1"),mfrNumber2);
-						clickOnLineLevelOptionalLinkByPartNum(mfrNumber3);
-						verifyDiversityPartnerexists(data.get("Diversity_Partner1"),mfrNumber3);
-						clickClearLink(mfrNumber3);
-						verifyDiversityPartnerexists("Select a partner",mfrNumber3);
-						// filling all reporting fields in part 1
+						//clickOnLineLevelOptionalLinkByPartNum(mfrNumber1);
+						selectDiversityPartner(data.get("Diversity_Partner2"),mfrNumber1);
+						enterQTPText(mfrNumber1, data.get("QTP_Text"));
+						clickCopyOfSmartTracer(mfrNumber1);
+						Thread.sleep(4000);
+                         // verifying part 2 smart tracker and clearing it
+						verifyQTPTextIsPresent(mfrNumber2, data.get("QTP_Text"));
+						clickClearLinkOfSmartTracker(mfrNumber2); // against smart tracker
+						verifyQTPTextIsPresent(mfrNumber2, "");
+						// Enter the cleared reporting fields
 						orderLib.enterReportingDetailsInLineLevelInfo(data.get("REPORTING_FIELD_4"), data.get("REPORTING_FIELD_5"), data.get("REPORTING_FIELD_6"));
-						
-						
-						// click on 3rd part and check out all the fields copied 
-						// clear all in 3rd part - all parts fields will be cleared
-						// make sure data is cleared
-						// go back to 1st one and make sure all the fields are cleared
-						// fill all the reporting fields in 1st part
-						
-						orderLib.clickContinueOnLineLevelInfo(); // click continue on LLI 
-						
-						// verify the reporting fields are exists
-						verifyContractSpecificInfoOnPlaceOrderPage();
-						
+						selectDiversityPartner(data.get("Diversity_Partner1"),mfrNumber3);
+						// Click continue on LNL section
+						orderLib.clickContinueOnLineLevelInfo(); 
+						// Contract Specific Information verification
+						verifyContractSpecificInfoOnPlaceOrderPage(data.get("REPORTING_FIELD_4"), data.get("REPORTING_FIELD_5"), data.get("REPORTING_FIELD_6"),data.get("Diversity_Partner1"));
+						//verifyDiversityPartnerexists(data.get("Diversity_Partner2"),mfrNumber3);
 						commonLib.clickLogOutLink(data.get("Logout"));
+						
 						
 					} catch (Exception e) {
 						ReportStatus.blnStatus = false;
@@ -201,7 +201,7 @@ public class LNL04_CopyLineLevelDataIPSTest  extends LineLevelInfoLib{
 			finally {
 	        	ReportControl.fnEnableJoin();
 				ReportStatus.fnUpdateResultStatus("CopyLineLevelDataIPS", "TC_LNL04", ReportStatus.strMethodName, counter, browser);
-				//fnCloseTest();
+				fnCloseTest();
 				ReportControl.fnNextTestJoin(nextTestJoin);
 			}
 		}

@@ -84,12 +84,19 @@ public class CAN09_SPLASearchTest  extends CanadaLib{
 			pipLib.selectFirstProductAddToCartAndVerifyCart();
 			// search for product and add to cart
 			searchLib.searchInHomePage(data.get("SearchText1"));
+			searchLib.verifyBreadCrumbInSearchResultsPage(data.get("SearchText1"));
+
+	     	searchLib.verifysearchResultsPage();
 			pipLib.selectFirstProductAddToCartAndVerifyCart();
 			// Verify Non Spla Items Message
-			VerifyNonSplaItemsMessage();
+			//VerifyNonSplaItemsMessage();
 			///	Remove Non Spla Items from the Cart
+			// Add First Item to Cart
+			//commonLib.addFirstDisplyedItemToCartAndVerify();
+			//pipLib.selectFirstProductAddToCartAndVerifyCart();
+
 			commonLib.deleteItemFromCart();
-			verifyReportingUsagePeriod();
+			//verifyReportingUsagePeriod();
 			//Proceed to checkout
 			 orderLib.proceedToCheckout();
 			 orderLib.clickContinueOnLLIAndShipBillPaySections();

@@ -70,52 +70,55 @@ public class ODH09_OrderHistorySearchFiltersTest extends OrderHistoryLib {
 							spinnerImageODH();
 							//scrollToBottomWithCordinate("300");
 							verifyOrderStatusResults(data.get("Order_Status_Onhold"));
-							clickClearcSearch();
+							
 							scrollUp();
 							// ######## In progress status ################################
 							selectOrderStatusDropdown(data.get("Order_Status_Inprogress"));
-							startDateCalender(previousYearToCurrentDate());
-							endDateCalender(currentDate());
+							//startDateCalender(previousYearToCurrentDate());
+							//endDateCalender(currentDate());
 							clickAdvancedSearchButton();
 							spinnerImageODH();
 							//scrollToBottomWithCordinate("300");
 							verifyOrderStatusResults(data.get("Order_Status_Inprogress"));
-							clickClearcSearch();
+							//clickClearcSearch();
 							scrollUp();
 							// ######## Partially shipped ################################
 							selectOrderStatusDropdown(data.get("Order_Status_Partially_shipped"));
-							startDateCalender(previousYearToCurrentDate());
-							endDateCalender(previousYearPlusThreeMonthsToCurrentDate());
+							//startDateCalender(previousYearToCurrentDate());
+							//endDateCalender(previousYearPlusThreeMonthsToCurrentDate());
 							clickAdvancedSearchButton();
 							spinnerImageODH();
 							//scrollToBottomWithCordinate("300");
 							verifyOrderStatusResults(data.get("Order_Status_Partially_shipped"));
-							clickClearcSearch();
+							//clickClearcSearch();
 							scrollUp();
 							// ######## Completed ################################
 							selectOrderStatusDropdown(data.get("Order_Status_Completed"));
-							startDateCalender(previousYearPlusThreeMonthsToCurrentDate());
-							endDateCalender(currentDate());
+							//startDateCalender(previousYearPlusThreeMonthsToCurrentDate());
+							//endDateCalender(currentDate());
 							clickAdvancedSearchButton();
 							spinnerImageODH();
 							//scrollToBottomWithCordinate("300");
 							verifyOrderStatusResults(data.get("Complete_Status"));
-							clickClearcSearch();
+							//clickClearcSearch();
 							scrollUp();
+							selectOrderStatusDropdown("All order statuses");
 							// ######## Non shippable ################################
 							selectShippingTypeDropdown(data.get("Shipping_Type"));
-							startDateCalender(previousYearToCurrentDate());
-							endDateCalender(previousYearPlusThreeMonthsToCurrentDate());
+							//startDateCalender(previousYearToCurrentDate());
+							//endDateCalender(previousYearPlusThreeMonthsToCurrentDate());
 							clickAdvancedSearchButton();
 							spinnerImageODH();
 							//scrollToBottomWithCordinate("300");
 							verifyNonShippableQty(data.get("QTY"),data.get("QTY_Shipped"));
-							clickClearcSearch();
+							//clickClearcSearch();
 							scrollUp();
 							// ######## invoiced orders ################################
+							selectOrderStatusDropdown("All order statuses");
 							selectOpenOrInvoicedTypeDropdown(data.get("Invoiced_order"));
-							startDateCalender(previousYearPlusTwoMonthsToCurrentDate());
-							endDateCalender(currentDate());
+							selectShippingTypeDropdown("All shipping types");
+							//startDateCalender(previousYearPlusThreeMonthsToCurrentDate());
+							//endDateCalender(currentDate());
 							clickAdvancedSearchButton();
 							spinnerImageODH();
 							//scrollToBottomWithCordinate("300");
