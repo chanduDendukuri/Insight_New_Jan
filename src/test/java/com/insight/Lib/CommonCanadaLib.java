@@ -358,7 +358,8 @@ public String getAccountNumber() throws Throwable{
     public void clickOnEmptyCart() throws Throwable{
         Thread.sleep(2000);
       //  if(isVisibleOnly(emptyCartLink,"Empty cart link")){
-            click(emptyCartLink,"Empty Cart Link");
+            //click(emptyCartLink,"Empty Cart Link");
+            clickUntil(emptyCartLink,CartObj.EMPTY_CART_MESSAGE,"Empty Cart Link");
         //}
     }
     }

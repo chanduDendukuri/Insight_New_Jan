@@ -56,7 +56,7 @@ public class CommonCanadaPage extends ActionEngine{
     public static By addToCartIcon = By.xpath("//*[contains(@id,'cartIcon')]");
     public static By viewCartlnk = By.xpath("//span[text()='View Cart >>']");
     public static By lblCartLebel=By.xpath("//*[@class='shopping-cart__header-title']");
-    public static By emptyCartLink=By.xpath("//div[@class='columns text-right']//a[text()='Empty cart']");
+    public static By emptyCartLink=By.xpath("//a[@class='columns section__header-action' and text()='Empty cart']");
 
 
 

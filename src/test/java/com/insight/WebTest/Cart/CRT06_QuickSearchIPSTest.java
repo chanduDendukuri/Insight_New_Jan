@@ -65,16 +65,19 @@ ProductDisplayInfoLib prodinfo= new ProductDisplayInfoLib();
 					commonLib.addFirstDisplyedItemToCartAndVerify();
 					String partNumber1 = cartLib.getPartNumber();
 					System.out.println("partNumber1"+partNumber1);
+					String[] partn1 = partNumber1.split("#: ");
+					//String partNum2 =partn1[1] ;
 					canadaLib.continueToCheckout();
 					cartLib.verifyCartPageAvailablity();
 					//prodinfo.verifyCartPageAndPartDetails();
 					//cartLib.verifyItemInCart(partNumber1);
-					prodinfo.verifyCartPageAndPartDetailsForRecentlyItemDynamically(data.get("Search_Item"));
+					//prodinfo.verifyCartPageAndPartDetailsForRecentlyItemDynamically(data.get("Search_Item"));
+					prodinfo.verifyCartPageAndPartDetailsForRecentlyItemDynamically(partNumber1);
 
 					cartLib.verifyQuickShopWithValidSinglePartNumber(data.get("Search_Item2"), data.get("quantity"));
 					cartLib.verifyCartPageAvailablity();
 					prodinfo.verifyCartPageAndPartDetailsForRecentlyItemDynamically(data.get("Search_Item2"));
-					//prodinfo.deleteSelectedProducts();
+					scrollUp();
 					ccp.clickOnEmptyCart();
 					commonLib.verifyCartIsEMpty();
 
@@ -89,7 +92,8 @@ ProductDisplayInfoLib prodinfo= new ProductDisplayInfoLib();
 					canadaLib.continueToCheckout();
 					cartLib.verifyCartPageAvailablity();
 					prodinfo.verifyCartPageAndPartDetails();
-					prodinfo.verifyCartPageAndPartDetailsForRecentlyItemDynamically(data.get("SearchItem3"));
+					//prodinfo.verifyCartPageAndPartDetailsForRecentlyItemDynamically(data.get("SearchItem3"));
+					prodinfo.verifyCartPageAndPartDetailsForRecentlyItemDynamically(partNumber3);
 
 					cartLib.verifyQuickShopWithValidSinglePartNumber(data.get("Search_Item2"), data.get("quantity"));
 					cartLib.verifyCartPageAvailablity();
@@ -113,13 +117,14 @@ ProductDisplayInfoLib prodinfo= new ProductDisplayInfoLib();
 					commonLib.addFirstDisplyedItemToCartAndVerify();
 					String partNumber4 = cartLib.getPartNumber();
 					String[] partn = partNumber4.split("#: ");
-					String partNum =partn[1] ;
+					//String partNum =partn[1] ;
 					System.out.println("partNumber1"+partNumber1);
 					canadaLib.continueToCheckout();
 					cartLib.verifyCartPageAvailablity();
 					prodinfo.verifyCartPageAndPartDetails();
 					//cartLib.verifyItemInCart(partNumber1);
-					prodinfo.verifyCartPageAndPartDetailsForRecentlyItemDynamically(data.get("Search_Item"));
+					//prodinfo.verifyCartPageAndPartDetailsForRecentlyItemDynamically(data.get("Search_Item"));
+					prodinfo.verifyCartPageAndPartDetailsForRecentlyItemDynamically(partNumber4);
 
 					cartLib.verifyQuickShopWithValidSinglePartNumber(data.get("QuickSearch"), data.get("Quantity"));
 
