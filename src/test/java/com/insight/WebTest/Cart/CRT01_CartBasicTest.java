@@ -160,7 +160,7 @@ public class CRT01_CartBasicTest extends CartLib {
 					cmtLib.clickOnTheWebGroup(data.get("WebGrp_Name"));
 					//cmtLib.hoverOnManageWebGroupsAndSelectOptions(data.get("Manage_Web_Grp_Options"));
 					cmtLib.hoverOnManageWebGroupsAndSelectOptions(data.get("Manage_Web_Grp_Options1"));
-					cmtLib.searchForaUserAndSelect(data.get("LnameEmailUname"), data.get("userName"));
+					cmtLib.searchForaUserAndSelect(data.get("userName"), data.get("userName"));
 					cmtLib.clickOnRolesAndPermissionsAndSetPermission(data.get("menuName"), data.get("userPermission3"));
 					cmtLib.loginAsAdminCMT();
 					cmtLib.loginVerification(data.get("contract"));
@@ -186,7 +186,9 @@ public class CRT01_CartBasicTest extends CartLib {
 					line.proceedToCheckout();
 					order.clickOnAdditionalInfoContinueButton();
 					line.clickOnLinelevelInfoOptionalLink();
+					order.clickContinueOnLineLevelInfo();
 					canadaLib.verifySBP();
+					scrollToBottomWithCordinate("-2000");
 					canadaLib.clickOnSideMenuSelectAccountToolOptions(data.get("Tools_Menu"),
 							data.get("Manage_Web_Grp_Options"));
 					cmtLib.selectCompanyStandardsLink();

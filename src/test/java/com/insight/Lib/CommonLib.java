@@ -293,9 +293,9 @@ public class CommonLib extends ActionEngine{
 		public void clickCart() throws Throwable
 		{	
 			click(CartObj.CART,"CART");
-			if(isElementNotPresent(CanadaObj.CART_LABEL, "Cart header label displayed")) {
-				refreshPage();	
-			}
+//			if(isElementNotPresent(CanadaObj.CART_LABEL, "Cart header label displayed")) {
+//				refreshPage();	
+//			}
 			
 		}
 		
@@ -305,6 +305,7 @@ public class CommonLib extends ActionEngine{
 		 */
 		public void verifyBundleIsAddedToCart() throws Throwable
 		{	
+			spinnerImage();
 			waitForVisibilityOfElement(CartObj.BUNDLE,"Bundle");
 			if(isElementPresent(CartObj.BUNDLE,"Bundle",true)) {
 				reporter.SuccessReport("Verify the Bundle  on Cart", "Bundle Field Exists", "Bundle-1");
