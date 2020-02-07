@@ -347,11 +347,19 @@ public String getAccountNumber() throws Throwable{
             cart.get(i).click();
             if(isVisibleOnly(viewCartlnk,"View Cart link"))
             {
+                reporter.SuccessReport("Cart Icon","Clicking on Cart icon","is True");
+
                 click(viewCartlnk,"View Cart link");
                 break;
             }
         }
     }
 
+    public void clickOnEmptyCart() throws Throwable{
+        Thread.sleep(2000);
+      //  if(isVisibleOnly(emptyCartLink,"Empty cart link")){
+            click(emptyCartLink,"Empty Cart Link");
+        //}
+    }
     }
 
