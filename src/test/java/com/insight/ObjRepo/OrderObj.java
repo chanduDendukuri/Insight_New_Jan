@@ -72,6 +72,7 @@ public class OrderObj extends ActionEngine{
 	public static By PROD_DESC_PLACE_ORDER_PAGE=By.xpath("//h4[@class='cart__item-heading'] ");
 	public static By PAYMENT_METHOD_TERM= By.xpath("//span[@class='Select-value-label'][contains(text(),'Terms')]"); 
 	public static By PAYMENT_INFO_CREDIT_CARD_DEFAULT=By.xpath("//span[@class='Select-value-label'][contains(text(),'Credit card')]");
+	public static By VALID_CARD_ERROR_MSG=By.xpath("//div[@class='form__field-msg form__field-msg--error'][contains(text(),'Please enter valid card number')]");
 	
 	public static By paymentSelection(String paymentType) {
 		return By.xpath("//div[@class='Select-menu']//div[contains(text(),'"+paymentType+"')]");

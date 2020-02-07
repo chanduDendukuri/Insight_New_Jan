@@ -99,11 +99,13 @@ public class REP08_SoftwareLicenseDetailDefaultSettingsTest extends ReportingLib
 				verifyDownloadedReportExcelFile(excelData);
 
 				commonLib.clickLogOutLink(data.get("Logout_Header"));
-
-				cmtLib.loginToCMTSearchWebGrpAndUser(data.get("Header"), data.get("WebGrp1"),
-						data.get("LnameEmailUname1"), data.get("ContactName1"));
+				cmtLib.navigateBackToCMT();
+				cmtLib.hoverOverMasterGroupAndSelectChangeGrp();
+				cmtLib.searchForWebGroup(data.get("WebGrp1"));
+				cmtLib.manageUsers();
+				cmtLib.searchForaUserAndSelect(data.get("LnameEmailUname1"), data.get("ContactName1"));
 				cmtLib.setPermissionsToDisable(data.get("Menu_Name"), data.get("Set_Permission1"));
-				cmtLib.setPermissions(data.get("Menu_Name"), data.get("Set_Permission2"));
+				cmtLib.setPermissionsToDisable(data.get("Menu_Name"), data.get("Set_Permission2"));
 				cmtLib.setPermissions(data.get("Menu_Name"), data.get("Set_Permission3"));
 				cmtLib.permissionFromDD(data.get("Set_Permission3"), data.get("Permission_Dropdown_Option"));
 				cmtLib.loginAsAdminCMT();

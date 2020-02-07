@@ -66,6 +66,8 @@ public class ODP02_PlaceOrderBasicIPSTest extends OrderLib{
 						cmtLib.selectDefaultShippingOptionInCheckoutSettings(data.get("Default_Shipping_Option"));
 						cmtLib.clickupdateatDefaultShippingOption();
 						cmtLib.loginAsAdminCMT();
+						// Login Verification
+						cmtLib.loginVerification(data.get("ContactName"));
 
 						searchLib.searchInHomePage(data.get("SearchText1"));
 						searchLib.verifyBreadCrumbInSearchResultsPage(data.get("SearchText1"));
