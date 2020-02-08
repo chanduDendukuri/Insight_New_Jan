@@ -917,6 +917,17 @@ public void grandParentCheckboxNotClicked()throws Throwable {
 						}
 					}
 		}
+		
+		public void verifytheSelectedcentersRegions() throws Throwable {
+			if(isVisibleOnly(SELECTEDCENTERS,"Selected Centers")) {
+				reporter.SuccessReport("Verify Selected Centers and Regions", "Selected Centers and Regions", getText(SELECTEDCENTERS,"")+getText(SELECTEDREGIONS,""));	
+			}
+			}
+		
+		
+		
+		
+		
 }
 
 

@@ -54,13 +54,7 @@ public class REP10_InvoicedSummaryPDFTest extends ReportingLib {
 					TestEngineWeb.reporter.initTestCaseDescription("InvoicedSummaryPDF");
 	
 					CMTLib cmtLib = new CMTLib();
-					SearchLib searchLib = new SearchLib();
-					OrderLib orderLib = new OrderLib();
 					CanadaLib canadaLib = new CanadaLib();
-					CartLib cartLib = new CartLib();
-					MarriottIntlCorpLib mic = new MarriottIntlCorpLib();
-					InvoiceHistoryLib invoiceHistoryLib = new InvoiceHistoryLib();
-					MarriottIntlCorpLib marriottIntlCorpLib = new MarriottIntlCorpLib();
 					CommonLib commonLib = new CommonLib();
 					
 					cmtLib.loginToCMTSearchWebGrpAndUser(data.get("Header"), data.get("WebGrp"),
@@ -74,9 +68,6 @@ public class REP10_InvoicedSummaryPDFTest extends ReportingLib {
 					canadaLib.clickOnReportOptions(data.get("ReportOption"));
 					canadaLib.verifyReportsPage();
 					canadaLib.verifySelectReport(data.get("SelectReport"));
-					verifyScheduleReport();
-					verifytheLinkedSoldTosText();
-					verifyDefualtCurrancyUSD();
 					List<String> optionList = Arrays.asList(data.get("ScheduleOptions").split(","));
 					verifyScheduleReportOptions(optionList);
 					canadaLib.verifyDeliveryOption();
@@ -84,6 +75,9 @@ public class REP10_InvoicedSummaryPDFTest extends ReportingLib {
 					verifyDeliveryMethodOptions(deliveryOptionsList);
 					verifyDefaultAccountSelection(data.get("DefaultAccountSelOpt"));
 					verifyTreeForAllAccounts();
+					verifyScheduleReport();
+					verifytheLinkedSoldTosText();
+					verifyDefualtCurrancyUSD();
 					canadaLib.verifyFilterbyCurrency(data.get("Currency"));
 					verifyDefaultCurrentDate(data.get("CurrentDate"));
 					verifyStartDate(data.get("DayOne"));

@@ -853,14 +853,20 @@ public class CartLib extends ActionEngine {
 		}
 		else {
 			List<WebElement> myList = driver.findElements(CartObj.DELETE_CART);
+			System.out.println("myList"+myList);			
 			List<WebElement> myList1 = driver.findElements(CartObj.CART_NAME);
-			for (int i = 0; i < myList.size(); i++) {
+			int size=myList.size();
+			System.out.println("listsize1"+size);
+			//for (int i = 0; i <= size-1; i++) {
+			for (int i = size-1; i <= 0; i++) {
+				String cartName = myList1.get(i).getText();
 				myList.get(i).click();
 				waitForVisibilityOfElement(CartObj.YES_BUTTON_INCONFORMATION_POP_UP, "Yes in conformation pop up");
-				click(CartObj.YES_BUTTON_INCONFORMATION_POP_UP, "Yes in conformation pop up","Saved Carts: "+myList1.get(i).getText());
+				click(CartObj.YES_BUTTON_INCONFORMATION_POP_UP, "Yes in conformation pop up","Saved Carts: "+ cartName);
 				Thread.sleep(5000);
+				
 				//waitForVisibilityOfElement(CartObj.DELETE_CART_MEASSAGE, "ACCOUNT TOOLS");
-				//reporter.SuccessReport("Delete cart meassage ", "Save Cart name Exist and Deleted", "Saved Carts: "+myList1.get(i).getText());
+				reporter.SuccessReport("Delete cart meassage ", "Save Cart name Exist and Deleted", "Saved Carts: "+myList1.get(i).getText());
 				Thread.sleep(10000);
 				
 			}
@@ -887,8 +893,10 @@ public class CartLib extends ActionEngine {
 		}
 		if(isElementPresent(CartObj.CART_NAME, "Saved cart")) {
 			List<WebElement> myList = driver.findElements(CartObj.CART_NAME);
-			for (int i = 0; i < myList.size(); i++) {
-				myList.get(i).click();
+
+			for (int i = 0; i <=myList.size()-1; i++) {
+				//myList.get(i).click();
+
 				reporter.SuccessReport("Verify saved cart", "Saved Carts  Exist ", "Saved Carts: "+myList.get(i).getText());
 				Thread.sleep(5000);
 			}
@@ -1502,7 +1510,7 @@ public void verifyProductdetails() throws Throwable {
 		String actualprodGroupName = getText(CartObj.PROD_GROUP_NAME_IN_CART, "Product group name in cart");
 		if (actualprodGroupName.equals(productName) && isElementPresent(CartObj.BUNDLEONE, "Bundle one in cart")) {
 			reporter.SuccessReport("Verify product group displayed in the cart screen",
-					"correct product group is displayed as bundle : ", actualprodGroupName);
+					"correct product group is displayed as bundle : ", "BUNDLE-1: "+actualprodGroupName);
 		} else {
 			reporter.failureReport("Verify product group displayed in the cart screen",
 					"correct product group is not displayed : " + actualprodGroupName + " .Expected is: ", productName,

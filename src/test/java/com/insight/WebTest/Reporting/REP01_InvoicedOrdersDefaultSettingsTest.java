@@ -54,17 +54,15 @@ public class REP01_InvoicedOrdersDefaultSettingsTest extends ReportingLib {
 									"");
 	 
 							CMTLib cmtLib = new CMTLib();
-							SearchLib searchLib = new SearchLib();
-							OrderLib orderLib=new OrderLib();
 							CanadaLib canadaLib=new CanadaLib();
-							CartLib cartLib=new CartLib();
-							MarriottIntlCorpLib mic=new MarriottIntlCorpLib();
-							InvoiceHistoryLib invoiceHistoryLib = new InvoiceHistoryLib();
 							MarriottIntlCorpLib marriottIntlCorpLib=new MarriottIntlCorpLib();
 							CommonLib commonLib = new CommonLib();
+							
+							
 							cmtLib.loginToCMTSearchWebGrpAndUser(data.get("Header"), data.get("WebGrp"), data.get("LnameEmailUname"),data.get("ContactName"));
 							cmtLib.setPermissionsToDisable(data.get("Menu_Name"), data.get("Set_Permission1"));
 							cmtLib.setPermissionsToDisable(data.get("Menu_Name"), data.get("Set_Permission2"));
+							cmtLib.setPermissions(data.get("Menu_Name"), data.get("Set_Permission3"));
 							cmtLib.permissionFromDD(data.get("Set_Permission3"), data.get("Permission_Dropdown_Option"));
 							cmtLib.loginAsAdminCMT();
 							Thread.sleep(5000);
