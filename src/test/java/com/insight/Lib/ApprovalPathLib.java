@@ -258,6 +258,18 @@ for(int i=1;i<=count;i++) {
 		}
 		return count;
 	}
+	public int NumberofAvailableApprovers() throws Throwable {
+		List<WebElement> elem = driver.findElements(ALL_APPROVER_OPTIONS);
+		int count = elem.size();
+		String count1= String.valueOf(count);
+		if(count>0) {
+			reporter.SuccessReport("Arrovers Added", "Number of Approvers added are", count1);
+		}
+		else {
+			reporter.SuccessReport("Arrovers Added", "Number of Approvers added are 0","", driver);
+		}
+		return count;
+	}
 	public void Add_Approver_Btn_Click() throws Throwable {
 		if (isElementPresent(SELECT_PATH_BUTTON, "Select Path option")) {
 			reporter.SuccessReport("Click Add on Approval Management Approval Path Management Page",
@@ -425,7 +437,7 @@ for(int i=1;i<=count;i++) {
 			for(int i=1;i<=count;i++) {
 				String Approvername = getText(selectmultipleAppNameFromListToRemove(i), "Approver name");
 				click(selectmultipleAppNameFromListToRemove(i), "Approver name", Approvername);
-				click(SELECT_REMOVEPATH_BUTTON, "Select Path option");
+				click(SELECT_REMOVEPATH_BUTTON, "< Select Path option");
 			}
 			
 		}
@@ -464,11 +476,11 @@ for(int i=1;i<=count;i++) {
 	public void CancelOnErrorPage() throws Throwable {
 
 		if (isElementPresent(CANCEL_ON_ERROR_PAGE, "Verify cancel button")) {
-			click(CANCEL_ON_ERROR_PAGE, "Click cancel button");
-			reporter.SuccessReport("Click Cancel on Approval Path Management Page", "Cancel Link Exists and Clicked",
+			click(CANCEL_ON_ERROR_PAGE, "Successfully clicked on popup cancel button");
+			reporter.SuccessReport("Click PopUp Cancel button on Approval Path Management Page", "Cancel Link Exists and Clicked",
 					"");
 		} else {
-			reporter.failureReport("Click Cancel on Approval Path Management Page", "Cancel Link Does Not Exist", "");
+			reporter.failureReport("Click PopUp Cancel button on Approval Path Management Page", "Cancel Link Does Not Exist", "");
 		}
 	}
 
