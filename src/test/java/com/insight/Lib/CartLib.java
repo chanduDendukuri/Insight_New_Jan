@@ -893,13 +893,10 @@ public class CartLib extends ActionEngine {
 		}
 		if(isElementPresent(CartObj.CART_NAME, "Saved cart")) {
 			List<WebElement> myList = driver.findElements(CartObj.CART_NAME);
-			int size=myList.size();
-			System.out.println("mylistsize"+size);
-			System.out.println("myListinverifysavedcarts"+myList);
-			for (int i = 0; i <=size-1; i++) {
+
+			for (int i = 0; i <=myList.size()-1; i++) {
 				//myList.get(i).click();
-				
-				
+
 				reporter.SuccessReport("Verify saved cart", "Saved Carts  Exist ", "Saved Carts: "+myList.get(i).getText());
 				Thread.sleep(5000);
 			}
