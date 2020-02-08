@@ -31,6 +31,8 @@ public class REQ01_EndToEndTest extends ChinaLib{
 	ProductDisplayInfoLib prodinfo=new ProductDisplayInfoLib();
 	CartLib cartLib = new CartLib();
 	OrderHistoryLib orderhistory=new OrderHistoryLib();
+	CanadaLib canadaLib= new CanadaLib();
+	
 	// #############################################################################################################
 		// # Name of the Test : REQ01_EndToEnd
 		// # Migration Author : Cigniti Technologies
@@ -97,11 +99,12 @@ public class REQ01_EndToEndTest extends ChinaLib{
 						
 						// level Info
 						ReqLib.clearPhoneNumber();
+						canadaLib.verifySBP();
 						orderLib.shippingBillPayContinueButton(); // Click continue on
 																	// shipping address
 						orderLib.shippingOptionsCarrierSelection(); // Click continue on
 																	// shipping options
-						orderLib.shippingBillPayContinueButton(); // Billing address
+						orderLib.billingAddressContinueButton(); // Billing address
 																	// continue button
 						orderLib.selectPaymentInfoMethodCreditCard(data.get("Card_Number").toString(), data.get("Card_Name"),
 								data.get("Month"), data.get("Year"),data.get("PONumber"),data.get("POReleaseNumber"));
@@ -151,15 +154,17 @@ public class REQ01_EndToEndTest extends ChinaLib{
 						cmtLib.loginAsAdminCMT();
 						searchLib.verifyAccountToolForOrderMenuItem(data.get("toolsMenuName"), data.get("dropDown"));
 						orderLib.verifyandClickonRefLink(RefNumber);
-						commonLib.clickLogOutLink(data.get("header1"));
-						
-						
-						cmtLib.navigateBackToCMT();
-						cmtLib.hoverOnManageWebGroupsAndSelectOptions(data.get("Manage_Web_Grp_Options"));
-						cmtLib.searchForaUserAndSelect(data.get("LnameEmailUname3"), data.get("ContactName3")); // app4
-						cmtLib.loginAsAdminCMT();
-						searchLib.verifyAccountToolForOrderMenuItem(data.get("toolsMenuName"), data.get("dropDown"));
-						orderLib.verifyandClickonRefLink(RefNumber);					
+						//commonLib.clickLogOutLink(data.get("header1"));
+					/*
+					 * 
+					 * cmtLib.navigateBackToCMT();
+					 * cmtLib.hoverOnManageWebGroupsAndSelectOptions(data.get(
+					 * "Manage_Web_Grp_Options"));
+					 * cmtLib.searchForaUserAndSelect(data.get("LnameEmailUname3"),
+					 * data.get("ContactName3")); // app4 cmtLib.loginAsAdminCMT();
+					 * searchLib.verifyAccountToolForOrderMenuItem(data.get("toolsMenuName"),
+					 * data.get("dropDown")); orderLib.verifyandClickonRefLink(RefNumber);
+					 */					
 						ReqLib.enterPOandPORelease(data.get("PONum"), data.get("PORelese"));
 						// get PO and POrelase numbers
 						String PO = data.get("PONum");
@@ -168,19 +173,19 @@ public class REQ01_EndToEndTest extends ChinaLib{
 						commonLib.clickLogOutLink(data.get("header1"));
 						///////
 						/////
-						// LogIN with 1st User
+						// LogIN with 1st User req1
 						cmtLib.navigateBackToCMT();
 						cmtLib.hoverOnManageWebGroupsAndSelectOptions(data.get("Manage_Web_Grp_Options"));
 						cmtLib.searchForaUserAndSelect(data.get("LnameEmailUname"), data.get("ContactName"));
 						cmtLib.verifyWebGroupsManagementUsers();
-						
-						// req1
 						cmtLib.loginAsAdminCMT();
 						searchLib.verifyAccountToolForOrderMenuItem(data.get("toolsMenuName"), data.get("dropDown1")); // Order
-						orderhistory.verifyOrderHistoryPage();	
-						orderhistory.selectQuickSearchDropdown(data.get("sortby"), RefNumber);
+						orderhistory.verifyOrderHistoryPage();
+						refreshPage();
+						orderLib.clickonorderNumLinkinRecentorders(RefNumber);
+						//orderhistory.selectQuickSearchDropdown(data.get("sortby"), RefNumber);
 						//orderhistory.verifySearchResultsAreDisplayed();
-						orderhistory.clickOnFirstOrderHistoryResult();
+						//orderhistory.clickOnFirstOrderHistoryResult();
 						
 						// history
 						

@@ -23,7 +23,7 @@ public class ApprovalPathLib extends ApprovalPathObj {
 
 	public void CreateNewApprovalPathLink() throws Throwable {
 		if (isElementPresent(CREATE_APP_PATH, "Approval management page")) {
-			click(CREATE_APP_PATH, "Approval management page");
+			click(CREATE_APP_PATH, "Create New Approval Path link");
 			reporter.SuccessReport(
 					"Click Create New Approval Path on Approval Management Approval Path Management Page",
 					"Create New Approval Path Link Exists and Clicked", "");
@@ -36,13 +36,26 @@ public class ApprovalPathLib extends ApprovalPathObj {
 
 	public void EnterNewApprovalPath(String Approver_Name) throws Throwable {
 		if (isElementPresent(APPROVAL_PATH_NAME, "Approval management page")) {
-			type(APPROVAL_PATH_NAME, Approver_Name, "Approver Name");
+			type(APPROVAL_PATH_NAME, Approver_Name, "Approver Path Name");
 			reporter.SuccessReport("Enter Approval Path Name on  Approval Path Management Page",
 					"Approval Path Name Field Exists and Entered", "");
 		} else {
 			reporter.failureReport("Enter Approval Path Name on  Approval Path Management Page",
 					"Approval Path Name Field Does Not Exist", "");
 		}
+	}
+	public void ClickOnViewAllOrRefreshIcon() throws Throwable {
+		click(RefreshLinkInApproverPathMngm, "Refresh button", "");
+	}
+	public void VerifyNumberOfApproversInApprovalManagement(String Approvername,int count) throws Throwable {
+		String ApproverPathname = getText(ApproverPathName(Approvername), "Approver PathName");
+				String ApproverCount = getText(Approvercount(Approvername),"Approver Count");
+				if(ApproverPathname!="" && Integer.parseInt(ApproverCount)==count) {
+					reporter.SuccessReport("Verify ApproverPathName and ApproverCount", "ApproverPathName and ApproverCount", ApproverPathname+","+ApproverCount, driver);
+				}
+				else {
+					reporter.failureReport("Verify ApproverPathName and ApproverCount", " ApproverPathName and ApproverCount are doesn't exist", "");
+				}
 	}
 public String RandomApprovalPathName(String Approver_Name) throws Throwable {
 	
@@ -69,22 +82,23 @@ public String RandomApprovalPathName(String Approver_Name) throws Throwable {
 	}
 
 	public void ClickCreateApprovalPathButton() throws Throwable {
-		if (isElementPresent(CREATE_APPROVALPATH_BTN, "Approval management page")) {
+		if (isVisibleOnly(CREATE_APPROVALPATH_BTN, "")) {
 			click(CREATE_APPROVALPATH_BTN, "Approver Path Button click");
 			reporter.SuccessReport(
 					"Click Create New Approval Path on Approval Management Approval Path Management Page",
-					"Create New Approval Path Link Exists and Clicked", "");
+					"Create Approval Path Link Exists and Clicked", "");
 		} else {
 			reporter.failureReport(
 					"Click Create New Approval Path on Approval Management Approval Path Management Page",
-					"Create New Approval Path Link Does Not Exist", "");
+					"Create Approval Path Link Does Not Exist", "");
 		}
 	}
 
 	public void VerifyAppovalPathCreated(String Approver_Name) throws Throwable {
+		String SuccessMsg = getText(Successmsg, "");
 		if (isElementPresent(getCreatedApproverPath(Approver_Name), "Approval management page")) {
 			reporter.SuccessReport("Verify Approval Path is Added on Approval Management Approval Path Management Page",
-					"Created Approver Path is Exists and Verified", "");
+					"Created Approver Path is Exists and Verified", SuccessMsg);
 		} else {
 			reporter.failureReport("Verify Approval Path is Added on Approval Management Approval Path Management Page",
 					"Created Approver Path Does Not Exist", "");
@@ -120,12 +134,16 @@ public String RandomApprovalPathName(String Approver_Name) throws Throwable {
 		}
 	}
 
-	public void VerifyApproversAdded(String AppName) throws Throwable {
-		if (isElementPresent(selectAppNameFromListToRemove(AppName), "Approval management page")) {
-			reporter.SuccessReport("Click Update on  Approval Path Management Page", "Update Link Exists and Clicked",
-					"");
+	public void VerifyApproversAdded(List<String> AppName) throws Throwable {
+		for(int i=0;i<AppName.size();i++) {
+			
+		
+		if (isElementPresent(selectAppNameFromListToRemove(AppName.get(0)), "Approval management page")) {
+			reporter.SuccessReport("Verify Approver", "Approver name exist",
+					AppName.get(0));
 		} else {
-			reporter.failureReport("Click Update on  Approval Path Management Page", "Update  Link Does Not Exist", "");
+			reporter.failureReport("Verify Approver", "Approver name doesn't exist", "");
+		}
 		}
 	}
 
@@ -194,47 +212,51 @@ public String RandomApprovalPathName(String Approver_Name) throws Throwable {
 		}
 	}
 
-	public String SelectApprover(String Approver_Name,int count) throws Throwable {
+	public List<String> SelectApprover(String Approver_Name,int count) throws Throwable {
 		String text = null;
+		List<String> list = new ArrayList<>();
 		if (Approver_Name != null) {
 			SelectSpecificApprover(Approver_Name);
 		} else {
 			// select approver name
-			List<WebElement> myList = driver.findElements(ALL_APPROVER_OPTIONS);
-			text = (myList.get(0)).getText();
+		
 for(int i=1;i<=count;i++) {
-	click(Click_ALL_APPROVER_OPTIONS(i), myList.get(i).getText());
-}
-			if (isElementPresent(selectAppNameFromList(text), "Select Approver name from list box")) {
-				//click(selectAppNameFromList(text), "Select Approver name from list box");
-				reporter.SuccessReport("Approval Path Management Page", "Available Approvers Field Exists and Selected",
-						"");
-			} else {
-				reporter.failureReport("Approval Path Management Page", "Available Approvers Field Does Not Exist", "");
-			}
-
-		}
-		return text;
+	List<WebElement> myList = driver.findElements(ALL_APPROVER_OPTIONS);
+	text = (myList.get(1)).getText();
+	click(selectAppNameFromList(text), "Select Approver name from list box::"+text+"");
+	Add_Approver_Btn_Click();
+	if(isElementNotPresent(AddedAppNameFromList(text), "Select Approver name from list box")) {
+		click(selectAppNameFromList(text), "Select Approver name from list box::"+text+"");
+		Add_Approver_Btn_Click();
 	}
-	public String SelectApproverAPP01(String Approver_Name) throws Throwable {
-		String text = null;
-		if (Approver_Name != null) {
-			SelectSpecificApprover(Approver_Name);
-		} else {
-			// select approver name
-			List<WebElement> myList = driver.findElements(ALL_APPROVER_OPTIONS);
-			text = (myList.get(0)).getText();
-
-			if (isElementPresent(selectAppNameFromList(text), "Select Approver name from list box")) {
-				//click(selectAppNameFromList(text), "Select Approver name from list box");
-				reporter.SuccessReport("Approval Path Management Page", "Available Approvers Field Exists and Selected",
-						text);
-			} else {
-				reporter.failureReport("Approval Path Management Page", "Available Approvers Field Does Not Exist", "");
-			}
+	Thread.sleep(2000);
+	if (isElementPresent(AddedAppNameFromList(text), "Select Approver name from list box")) {
+		//click(selectAppNameFromList(text), "Select Approver name from list box");
+		reporter.SuccessReport("Approver" , text+"not added hence adding it again","");
+		reporter.SuccessReport("Approval Path Management Page", "Available Approvers Field Exists and Selected",
+				"");
+	} else {
+		reporter.failureReport("Approval Path Management Page", "Available Approvers Field Does Not Exist", "");
+	}
+	list.add(text);
+}
+			
 
 		}
-		return text;
+		
+		return list;
+	}
+	public int NumberofApproversAddedtoRightSide() throws Throwable {
+		List<WebElement> elem = driver.findElements(NumberOfapproversadded);
+		int count = elem.size();
+		String count1= String.valueOf(count);
+		if(count>0) {
+			reporter.SuccessReport("Arrovers Added", "Number of Approvers added are", count1);
+		}
+		else {
+			reporter.SuccessReport("Arrovers Added", "Number of Approvers added are 0","", driver);
+		}
+		return count;
 	}
 	public void Add_Approver_Btn_Click() throws Throwable {
 		if (isElementPresent(SELECT_PATH_BUTTON, "Select Path option")) {
@@ -298,7 +320,18 @@ for(int i=1;i<=count;i++) {
 			}
 		}
 	}
-
+	public void ApproverSearchTextBox1(String appLastName) throws Throwable {
+		if (appLastName != null) {
+			if (isElementPresent(ApproversearchtextBox, "Approver Search")) {
+				type(ApproversearchtextBox, appLastName, "Enter Approver Search");
+				reporter.SuccessReport("Enter Approver Name on Approval Management Approval Path Management Page",
+						"Approver search text box Exists and Entered", "");
+			} else {
+				reporter.failureReport("Enter Approver Name on Approval Management Approval Path Management Page",
+						"Approver search text box Field Does Not Exist", "");
+			}
+		}
+	}
 	public void SearchClick() throws Throwable {
 		if (isElementPresent(LAST_NAME_SEARCH_BTN, "Last Name search button")) {
 			click(LAST_NAME_SEARCH_BTN, "Last Name search button");
@@ -350,11 +383,11 @@ for(int i=1;i<=count;i++) {
 
 	public String GetFirstApprovalPath() throws Throwable {
 		String firstPathName = "";
-		if (isElementPresent(GET_FIRST_APP_PATH_NAME, "Approval management page")) {
-			 firstPathName = getText(GET_FIRST_APP_PATH_NAME, "Approval management page");
+		if (isVisibleOnly(GET_FIRST_APP_PATH_NAME, "Approval management page")) {
+			 firstPathName = getText(GET_FIRST_APP_PATH_NAME, "Approver Path name");
 			reporter.SuccessReport(
 					"Get The First Approval Path on Approval Management Page Approver Out of Office Settings",
-					"After Creating the Approver Out", firstPathName);
+					"First Approver Pathname is: ", firstPathName);
 		}
 		else {
 			reporter.failureReport(

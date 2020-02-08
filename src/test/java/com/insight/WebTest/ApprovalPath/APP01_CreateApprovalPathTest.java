@@ -1,6 +1,7 @@
 package com.insight.WebTest.ApprovalPath;
 
 import java.util.Hashtable;
+import java.util.List;
 
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
@@ -91,7 +92,8 @@ public class APP01_CreateApprovalPathTest extends ApprovalPathLib {
 					// steps
 					EnterNewApprovalPath(FirstApproverPath);
 					// select approval path
-					String approverName = CreateNewApprovalClick();
+					//String approverName = CreateNewApprovalClick();
+					SelectApprover(null,1);
 					// Click approval path button
 					ClickCreateApprovalPathButton();
 					
@@ -105,10 +107,12 @@ public class APP01_CreateApprovalPathTest extends ApprovalPathLib {
 					String newApproverPathName = RandomApprovalPathName("QTP Testing");
 					EnterNewApprovalPath(newApproverPathName);
 					// select approval path
-					CreateNewApprovalClick();
-					CreateNewApprovalClick();
-					CreateNewApprovalClick();
-					// Click approval path button
+					SelectApprover(null,2);
+					//SelectApprover(null,1);
+					//CreateNewApprovalClick();
+					//CreateNewApprovalClick();
+					//CreateNewApprovalClick();
+					// Click approval path button1
 					ClickCreateApprovalPathButton();
 					// Get the created approver from search list
 					VerifyAppovalPathCreated(newApproverPathName);
@@ -121,13 +125,14 @@ public class APP01_CreateApprovalPathTest extends ApprovalPathLib {
 					// Click on Edit link for the created Approver
 					ClickEditLinkButton(newApproverPathName);
 					// select approval path
-					CreateNewApprovalClick();
-					CreateNewApprovalClick();
-					CreateNewApprovalClick();
+					/*
+					 * CreateNewApprovalClick(); CreateNewApprovalClick(); CreateNewApprovalClick();
+					 */
 					
 					
 					// Select Approvers and click Add
-					String appName = SelectApproverAPP01(null);
+					List<String> appName = SelectApprover(null,1);
+					//SelectApproverAPP01(null,3);
 					
 					// Add button to add approver
 					Add_Approver_Btn_Click();
@@ -135,7 +140,11 @@ public class APP01_CreateApprovalPathTest extends ApprovalPathLib {
 					// Verify Approvers are Added to Approver path Sequence
 					VerifyApproversAdded(appName);
 					
-					ClickUpdateButton();
+					
+					// Get the Existing User Last name to Search
+					ApproverSearchTextBox1("Automation");
+					ClickCancelButton();
+					//ClickUpdateButton();
 
 					// Delete Created Approval path
 					DeleteApprovers(newApproverPathName);

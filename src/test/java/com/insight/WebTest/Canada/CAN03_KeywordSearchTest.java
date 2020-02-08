@@ -100,7 +100,8 @@ public class CAN03_KeywordSearchTest extends CanadaLib{
 						cmtLib.loginAsAdminCMT();
 						//07-02-> Add Login Verification
 						cmtLib.loginVerification("User - "+data.get("contactName"));
-
+						String url = driver.getCurrentUrl();
+						assertTrue(url.contains("CA"),"You are logged in to Canada URL");
 						// Canada Home Page Verification
 						///	Search with Microsite pages ex: HP, IBM
 						searchLib.searchInHomePage(data.get("SearchText4"));
@@ -110,7 +111,6 @@ public class CAN03_KeywordSearchTest extends CanadaLib{
 						
 						
 						///	Search  category ex: WorkStations
-						verifyCanadaWebgroup();
 						searchLib.searchInHomePage(data.get("SearchText5"));
 						searchLib.verifyBreadCrumbInSearchResultsPage(data.get("SearchText5"));
 						//sewpLib.clickOnAddtoCart();

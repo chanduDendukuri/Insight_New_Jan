@@ -645,6 +645,8 @@ public class ProductDisplayInfoLib extends productsDisplayInfoObj {
                 }
             }
             reporter.SuccessReport("Products in Products Configuration Section on Product Standards Page", "Availability information in Stock Column Exists", "No: of Products Having Stock Availability information: " + myList.size());
+        }else {
+        	reporter.failureReport("Verify stock in company standards", "Stock field is not available in company standards", "", driver);
         }
     }
 
@@ -711,6 +713,8 @@ public class ProductDisplayInfoLib extends productsDisplayInfoObj {
         }
         if (isVisibleOnly(emptyShoppingCart, "Empty cart")) {
             reporter.SuccessReport("Empty Cart", " All the products are deleted", getText(emptyShoppingCart, "Empty cart"));
+        }else {
+        	reporter.failureReport("Empty Cart", " All the products are not deleted from cart","",driver);
         }
     }
 
@@ -1464,10 +1468,10 @@ public class ProductDisplayInfoLib extends productsDisplayInfoObj {
         for (int i = 0; i < DecList.size(); i++) {
             if (partNum.get(i).getText().contains(prodcut) || DecList.get(i).getText().contains(prodcut)) {
                 if (DecList.get(i).isDisplayed()) {
-                    reporter.SuccessReport("Unit Price ", "Unit price is for " + partNum.get(i).getText() + " is ", DecList.get(i).getText());
+                    reporter.SuccessReport("Product Description  ", "Product Description is for " + partNum.get(i).getText() + " is ", DecList.get(i).getText());
                 }
                 if (priceList.get(i).isDisplayed()) {
-                    reporter.SuccessReport("Product Description", "Product Description is " + partNum.get(i).getText() + " is ", priceList.get(i).getText());
+                    reporter.SuccessReport("Total Price List", "Total Price is  " + partNum.get(i).getText() + " is ", priceList.get(i).getText());
                 }
                 if (UnitPriceList.get(i).isDisplayed()) {
                     reporter.SuccessReport("Unit Price ", "Unit price is " + partNum.get(i).getText() + " is ", UnitPriceList.get(i).getText());
