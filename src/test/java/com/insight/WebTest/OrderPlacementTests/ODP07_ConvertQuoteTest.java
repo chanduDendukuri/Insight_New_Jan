@@ -131,14 +131,16 @@ public class ODP07_ConvertQuoteTest extends OrderLib{
 						verifyTheQuantityOfCartProductOnReceiptPage(data.get("Quantity"));
 						getTaxInReceipt();
 						//verifyTheTaxForSearchTerm(taxAmount);
-						/*String result = getText(ADDLICENCE_TAX_AMOUNT, "Tax displayed after adding LICENCE").replace("$", "");
+						String result = getText(ADDLICENCE_TAX_AMOUNT, "Tax displayed after adding LICENCE").replace("$", "");
 						Float actualtax=Float.valueOf(result);
-						if (actualtax==(Float.valueOf(taxAmount)*Integer.valueOf(data.get("Quantity")))) {
+						if (actualtax >(Float.valueOf(taxAmount))) {
 							reporter.SuccessReport("Verify the TAX on receipt page","Tax in Order Recipet for Quote Converion",
 									"Tax in Order Recipet for Quote Converion:Tax estimateUSD $"+actualtax);
 						} else {
 							reporter.failureReport("Verify the TAX on receipt page","Tax in Order Recipet for Quote Converion is not same","Actual tax: "+actualtax+"  Expected tax: "+taxAmount,driver);
-						}*/
+						}
+						
+						
 						commonLib.clickLogOutLink(data.get("Logout"));
 
 						// fnCloseTest();

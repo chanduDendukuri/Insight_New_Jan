@@ -178,7 +178,7 @@ public class APP04_SearchTest extends ApprovalPathLib {
 					//Add_Approver_Btn_Click();
 
 					ClickUpdateButton();
-					VerifyNumberOfApproversInApprovalManagement(newApproverPathName2,7);
+					VerifyNumberOfApproversInApprovalManagement(newApproverPathName1,7);
 					ClickOnViewAllOrRefreshIcon();
 					VerifyApprovalPathAndApprovers();
 					
