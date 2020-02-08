@@ -69,6 +69,12 @@ public class CRT09_SendToColleagueTest extends CartLib {
 					canadaLib.verifyPlaceCartLabel();
 					prodInfoLib.verifyCartPageAndPartDetailsForRecentlyItemDynamically(data.get("SearchItem2"));
 
+					commonLib.searchProduct(data.get("SearchItem3"));
+					commonLib.addToCartAndVerify();
+					canadaLib.continueToCheckout();
+					canadaLib.verifyPlaceCartLabel();
+					prodInfoLib.verifyCartPageAndPartDetailsForRecentlyItemDynamically(data.get("SearchItem3"));
+
 					cartLib.clickAndVerifySendToAColleagueErrorMSG(data.get("OrderUtilities"));
 					cartLib.verifySendToAColleague(data.get("OrderUtilities"), data.get("YourName"),
 							data.get("YourEmail"), data.get("RecipientEmail"), data.get("YourComments"));

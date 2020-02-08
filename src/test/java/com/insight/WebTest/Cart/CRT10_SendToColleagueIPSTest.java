@@ -74,8 +74,8 @@ public class CRT10_SendToColleagueIPSTest extends CartLib{
 					
 					commonLib.searchProduct(searchItem1);
 					searchLib.verifyBreadCrumbInSearchResultsPage(data.get("Search_Item"));
-					/*Review comment*/	removeInStockItems();
-					String searchItem=prodInfoLib.getPartNumberInSearchResultsPage();
+					
+					String searchItem=prodInfoLib.getPartNumberExactlyInSearchResultsPage();
 					commonLib.addFirstDisplyedItemToCartAndVerify();
 					canadaLib.continueToCheckout();
 					canadaLib.verifyPlaceCartLabel();
