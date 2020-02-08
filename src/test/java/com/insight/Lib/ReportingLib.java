@@ -149,7 +149,7 @@ public class ReportingLib extends ReportsObj {
 		for (int i=0 ; i <Options.size();i++){
 		waitForVisibilityOfElement(SCHEDULEREPORT_DATES, "Select Delivery Method");
 		if (isElementPresent(SCHEDULEREPORT_DATES, "Select ADelivery Method", true)){				
-			selectByVisibleText(SCHEDULEREPORT_DATES,Options.get(i),"Schedule Report");	
+			selectByVisibleText(SCHEDULEREPORT_OPTIONS,Options.get(i),"Schedule Report");	
 		reporter.SuccessReport("Verify Schedule report "+Options.get(i)+" Options on Report Page"," Schedule Report  "+Options.get(i)+" Options exist on Report Page", "");
 		}
 		else {
@@ -158,6 +158,15 @@ public class ReportingLib extends ReportsObj {
 		}
 
 	}
+public void verifyScheduleReportOption(String Options) throws Throwable {
+		if (isVisibleOnly(ScheduledOption(Options), "Select ADelivery Method")){				
+		reporter.SuccessReport("Verify Schedule report "+Options+" Options on Report Page"," Schedule Report  "+Options+" Options exist on Report Page", "");
+		}
+		else {
+			reporter.failureReport("Verify Schedule report Options"+Options+" on Report Page"," Schedule Report  "+Options+" Options doesnot exist on Report Page", "");
+		}
+		}
+
 	
 	/**
 	 * Method is to select Delivery Method Options
@@ -917,6 +926,17 @@ public void grandParentCheckboxNotClicked()throws Throwable {
 						}
 					}
 		}
+		
+		public void verifytheSelectedcentersRegions() throws Throwable {
+			if(isVisibleOnly(SELECTEDCENTERS,"Selected Centers")) {
+				reporter.SuccessReport("Verify Selected Centers and Regions", "Selected Centers and Regions", getText(SELECTEDCENTERS,"")+getText(SELECTEDREGIONS,""));	
+			}
+			}
+		
+		
+		
+		
+		
 }
 
 

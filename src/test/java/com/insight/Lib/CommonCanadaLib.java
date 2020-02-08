@@ -2,6 +2,7 @@ package com.insight.Lib;
 
 import com.insight.ObjRepo.*;
 
+import freemarker.cache.WebappTemplateLoader;
 import org.omg.PortableServer.THREAD_POLICY_ID;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
@@ -361,6 +362,52 @@ public String getAccountNumber() throws Throwable{
             //click(emptyCartLink,"Empty Cart Link");
             clickUntil(emptyCartLink,CartObj.EMPTY_CART_MESSAGE,"Empty Cart Link");
         //}
+    }
+    public boolean verifyingQuickSearch() throws Throwable{
+        return isVisibleOnly(CartObj.QUICK_SHOP_ITEM_FIELD,"Quick Shop Item");
+    }
+    public void verifyTheResultsForSearchTerm(String productName) throws Throwable {
+
+        List<WebElement> pro = driver.findElements(CommonObj.RESULT_FOR_SEARCH);
+        for(int i=0;i<pro.size();i++)
+        {
+            String res=pro.get(i).getText().replace("\"","");
+            if (res.equals(productName)) {
+                reporter.SuccessReport("Verify the results for search term in products display page ",
+                        "Verification is sucessfull.search term / Bread crumb is: ","Bread crumb : "+res);
+            } else {
+                reporter.failureReport("Verify the results for search term in products display page",
+                        "Expected search result is  " + productName + "Actual is: " , res);
+            }
+
+        }
+
+    }
+
+    public void clickOnStoredAddressesLink() throws Throwable{
+        if(isVisibleOnly(StoredAddresses,"Stored Addresses")){
+            click(StoredAddresses,"Stored Address Link");
+        }
+    }
+    public String getStoredAddresses() throws Throwable{
+        return getText(getStoredAddresses,"Storead Address");
+    }
+    public boolean verifySroredAddresswithSearchResults() throws Throwable{
+        boolean Status = false;
+        List<WebElement> sAddress = driver.findElements(getSroredAddressFromResultsGrid);
+        for(int i=0 ; i <sAddress.size();i++)
+        {
+            if(sAddress.get(i).getText().contains("CA")){
+                Status=true;
+                reporter.SuccessReport("Verifying stored address ","Verifying stored address with expected","Clicked on "+sAddress.get(i).getText());
+                click(rbtnDefaultAddress,"Default address from results Grid");
+                click(btnContinue,"continue button");
+                break;
+            }else{
+                Status=false;
+            }
+        }
+        return Status;
     }
     }
 

@@ -83,7 +83,7 @@ public String RandomApprovalPathName(String Approver_Name) throws Throwable {
 
 	public void ClickCreateApprovalPathButton() throws Throwable {
 		if (isVisibleOnly(CREATE_APPROVALPATH_BTN, "")) {
-			click(CREATE_APPROVALPATH_BTN, "Approver Path Button click");
+			click(CREATE_APPROVALPATH_BTN, "Create Approver Path Button");
 			reporter.SuccessReport(
 					"Click Create New Approval Path on Approval Management Approval Path Management Page",
 					"Create Approval Path Link Exists and Clicked", "");
@@ -95,7 +95,7 @@ public String RandomApprovalPathName(String Approver_Name) throws Throwable {
 	}
 
 	public void VerifyAppovalPathCreated(String Approver_Name) throws Throwable {
-		String SuccessMsg = getText(Successmsg, "");
+		String SuccessMsg = getText(Successmsg, "Success message:");
 		if (isElementPresent(getCreatedApproverPath(Approver_Name), "Approval management page")) {
 			reporter.SuccessReport("Verify Approval Path is Added on Approval Management Approval Path Management Page",
 					"Created Approver Path is Exists and Verified", SuccessMsg);
@@ -225,8 +225,8 @@ for(int i=1;i<=count;i++) {
 	text = (myList.get(1)).getText();
 	click(selectAppNameFromList(text), "Select Approver name from list box::"+text+"");
 	Add_Approver_Btn_Click();
-	if(isElementNotPresent(AddedAppNameFromList(text), "Select Approver name from list box")) {
-		click(selectAppNameFromList(text), "Select Approver name from list box::"+text+"");
+	if(isElementNotPresent(AddedAppNameFromList(text), "Select Approver name from Right list box ")) {
+		click(selectAppNameFromList(text), "Select Approver name from available list box::"+text+"");
 		Add_Approver_Btn_Click();
 	}
 	Thread.sleep(2000);
@@ -585,27 +585,27 @@ for(int i=1;i<=count;i++) {
 
 		if (isElementPresent(REPORTS_DIV, "Report div")) {
 
-			if (isElementPresent(REQUISITION_STAUS_REPORT, "Verify Requision Status Report")) {
+			if (isElementPresent(REQUISITION_STAUS_REPORT, "Requision Status Report")) {
 				Req_Status_report = driver.findElement(REQUISITION_STAUS_REPORT).getText();
 			}
 
-			if (isElementPresent(REQUESTOR_GROUP_USERS, "Verify Requestor Group Users")) {
+			if (isElementPresent(REQUESTOR_GROUP_USERS, "Requestor Group Users")) {
 				Req_grp_users = driver.findElement(REQUESTOR_GROUP_USERS).getText();
 			}
 
-			if (isElementPresent(REQUESTOR_GROUPRULES_REPORT, "Verify Requestor Group Rules Report")) {
+			if (isElementPresent(REQUESTOR_GROUPRULES_REPORT, "Requestor Group Rules Report")) {
 				Req_Grp_rules_report = driver.findElement(REQUESTOR_GROUPRULES_REPORT).getText();
 			}
 
-			if (isElementPresent(APPROVAL_PATH_REPORT, "Verify Approval Path report")) {
+			if (isElementPresent(APPROVAL_PATH_REPORT, "Approval Path report")) {
 				Approval_Path_report = driver.findElement(APPROVAL_PATH_REPORT).getText();
 			}
 
-			if (isElementPresent(APPROVER_OUT_REPORT, "Verify Approver Our Report")) {
+			if (isElementPresent(APPROVER_OUT_REPORT, "Approver Our Report")) {
 				App_out_report = driver.findElement(APPROVER_OUT_REPORT).getText();
 			}
 
-			if (isElementPresent(REQUESTOR_GROUP_SMARTTRACKER_REPORT, "Verify Requestor Group Smart Tracker Report")) {
+			if (isElementPresent(REQUESTOR_GROUP_SMARTTRACKER_REPORT, "Requestor Group Smart Tracker Report")) {
 				Req_grp_smart_tracker_rep = driver.findElement(REQUESTOR_GROUP_SMARTTRACKER_REPORT).getText();
 			}
 			strComm = "Report Links:" + Req_Status_report.trim() + "****" + Req_grp_users.trim() + "****"
@@ -722,18 +722,29 @@ for(int i=1;i<=count;i++) {
 				300 /* timeout in seconds */);
 		if (wait.until(ExpectedConditions.alertIsPresent()) != null) {
 			String alertMsg = driver.switchTo().alert().getText();
-			if (alertMsg.contains("Name")) {
-				reporter.SuccessReport("Click ok on Approval Management Page Approver Out of Office Settings",
+			if (alertMsg.contains("Description")) {
+				reporter.SuccessReport("Click ok on CreateLinkInrequisationRejection popup",
 						"POPUP Exists and OK is Clicked", alertMsg);
 				acceptAlert();
 
 			} else {
-				reporter.failureReport("Click ok on Approval Management Page Approver Out of Office Settings",
+				reporter.failureReport("Click ok on ClickCreateLinkInrequisationRejection",
 						"POPUP Does Not Exist", "");
 			}
 		}
 	}
 
+	public void ClickCreateLinkInrequisationRejection() throws Throwable {
+
+		if (isElementPresent(CreateLinkInrequisationRejection, "requisationRejection Create Link ")) {
+			click(CreateLinkInrequisationRejection, "requisationRejection Click Create Link");
+			reporter.SuccessReport("Click Create on requisationRejection",
+					"requisationRejection CREATE Link Exists and Clicked", "");
+		} else {
+			reporter.failureReport("Click Create on requisationRejection",
+					"requisationRejection CREATE Link  Does Not Exist", "");
+		}
+	}
 	public void CreateRequisitionRejectionTypes(String RejectionType) throws Throwable {
 		if (isElementPresent(REQ_REJECTION_DESC_TXTBOX, "Rejection Type")) {
 			type(REQ_REJECTION_DESC_TXTBOX, RejectionType, "Rejection Type");
@@ -1686,29 +1697,60 @@ String EndDate= getText(Approvername("EndDateId"), "EndDateId");
 	 * @throws Throwable
 	 */
 
-	public void datePicker(int months, String strCurrDay) throws Throwable {
+	public void datePicker(int months, String strCurrDay,String datetype) throws Throwable {
 
 		String day = strCurrDay.split("-")[0];
 		String month = strCurrDay.split("-")[1];
 		String year = strCurrDay.split("-")[2];
 
-		click(CALENDAR, "Click on calendar");
-		if (isElementPresent(NEXT_MONTH_ARROW, "Next month")) {
+		if(datetype.equals("FromDate")) {
+			click(StartDateCALENDAR, "Click on calendar");
+			}
+			else {
+				click(EndDateCALENDAR, "Click on calendar");
+			}
+		if (isElementPresent(PREV_MONTH_ARROW, "Next month")) {
 			for (int i = 0; i <= months; i++) {
-				click(NEXT_MONTH_ARROW, "Next konth");
+				driver.findElement(PREV_MONTH_ARROW).click();
+				//click(NEXT_MONTH_ARROW, "Next konth");
 			}
 			// Select Day
 			if (isElementPresent(dayInStartDayCalender(day), "From Date ")) {
-				click(dayInStartDayCalender(day), "Day");
+				click(dayInStartDayCalender(day), "Day: "+day);
 			}
 
 			reporter.SuccessReport("Change Month on Approval Management Page Approver Out of Office Settings",
-					"Arrow Button Exists and Clicked to Change the Month", "");
+					"Arrow Button Exists and Clicked to Change the Month", month+"-"+day);
 		} else {
 			reporter.failureReport("Change Month on Approval Management Page Approver Out of Office Settings",
 					"Arrow Button Does Not Exist", "");
 		}
 	}
+	public void SelectCurrentDate(String dateType) throws Throwable {
+		String strCurrDay = GetCurrDay();
+		String day = strCurrDay.split("-")[0];
+		String month = strCurrDay.split("-")[1];
+		String year = strCurrDay.split("-")[2];
+		if(dateType.equals("FromDate")) {
+		click(StartDateCALENDAR, "Click on calendar");
+		}
+		else {
+			click(EndDateCALENDAR, "Click on calendar");
+		}
+for(int i=0;i<=11;i++) {
+	if(getText(MonthSelection, "Month Name").contains(month)) {
+		break;
+	}
+	else {
+		click(NEXT_MONTH_ARROW, "Next konth");
+	}
+}
+	if (isElementPresent(dayInStartDayCalender(day), "From Date ")) {
+		click(dayInStartDayCalender(day), "Day: "+day);
+	}
+}
+		
+	
 
 	/**
 	 * click on Requisition Status Report

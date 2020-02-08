@@ -304,7 +304,9 @@ return By.xpath("//td[@class='stock width70']//a[contains(text(),'"+product+"')]
 public static By DESCRIPTION=By.xpath("//table[@id='prodGroupTable']//div//a");
 public static By STOCK=By.xpath("//table[@id='prodGroupTable']//tr//td[2]//a");
 public static By CHECK_BOX=By.xpath("//table[@id='prodGroupTable']//tr//td[5]//input");
-public static By COI_IN_CART=By.xpath("//div[@class='columns medium-flex-child-grow cart__table-col--item']//div//div//div[@class='columns flex-child-auto medium-flex-child-shrink cart__table-col cart__table-col--coi']//span");
+public static By COI_IN_CART=By.xpath("//div[@class='columns medium-flex-child-grow cart__table-col--item']//div//div//div[@class='columns flex-child-auto medium-flex-child-shrink cart__table-col cart__table-col--coi']");
+public static By CSI_IN_CART=By.xpath("//div[@class='columns medium-flex-child-grow cart__table-col--item']//div//div//div[@class='columns flex-child-auto medium-flex-child-shrink cart__table-col cart__table-col--csi']");
+
 public static By ADD_Checkbox_forCOIproducts=By.xpath("//div[@id='selectedProductGroupContent']//td[contains(text(),'COI Price:')]/following-sibling::td//input[@type='checkbox']");
 public static By Productname_at_cart=By.xpath("//h4[@class='cart__item-heading']");
 
@@ -329,7 +331,7 @@ public static By Productname_at_cart=By.xpath("//h4[@class='cart__item-heading']
    public static By CART_PROD_QTY=By.xpath("//label[text()='Item quantity']/following-sibling::input[@id='iw-checkout__cart-item-quantity' or @aria-label='Item quantity']");
    public static By CART_PROD_STOCK=By.xpath("//label[text()='Item quantity']/following-sibling::input/following::span/span[contains(text(),' Stock: ')]");
    public static By CART_PROD_TOTAL_PRICE=By.xpath("//div[@class='columns flex-child-auto medium-flex-child-shrink cart__table-col cart__table-col--total medium-text-right']//span[@class='iw-currency__amount']");
-   public static By CART_PROD_UNIT_PRICE=By.xpath(" //div[@class='columns flex-child-auto medium-flex-child-shrink cart__table-col cart__table-col--price medium-text-right small-negative-left-margin']//span[@class='iw-currency__amount']");
+   public static By CART_PROD_UNIT_PRICE=By.xpath(" //div[@class='columns flex-child-auto medium-flex-child-shrink cart__table-col cart__table-col--price medium-text-right small-negative-left-margin']//span[@class='iw-currency__amount'] | //div[contains(@class,'columns flex-child-auto medium-flex-child-shrink cart__table-col cart__table-col--price medium')]//span[@class='iw-currency__amount']");
    public static By CART_CONTRACT_DETAILS=By.xpath("//div[@class='row row__gutter--tiny collapse']//div//strong");
    public static By getPartNuminOrderdetails= By.xpath("//h3[@class='item-details__desc']/following::span[@class='item-details__part']");
  

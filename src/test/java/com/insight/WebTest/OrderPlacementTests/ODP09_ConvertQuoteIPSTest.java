@@ -17,8 +17,10 @@ public class ODP09_ConvertQuoteIPSTest extends OrderLib{
 	SearchLib searchLib = new SearchLib();
 	CommonLib commonLib = new CommonLib();
 	CartLib cartLib = new CartLib();
-	ProductDisplayInfoLib prodLib = new ProductDisplayInfoLib();
 	OrderLib orderLib =new OrderLib();
+	ProductDetailLib prodLib=new ProductDetailLib();
+	LineLevelInfoLib lnlLib=new LineLevelInfoLib();
+	CanadaLib canadaLib=new CanadaLib();
 
 	// #############################################################################################################
 	// #    Name of the Test         : ODP09_ConvertQuoteIPS
@@ -65,8 +67,14 @@ public class ODP09_ConvertQuoteIPSTest extends OrderLib{
 
 						// Select First Product and Add to cart
 						searchLib.searchInHomePage(data.get("SearchText1"));
+						searchLib.verifyBreadCrumbInSearchResultsPage(data.get("SearchText1"));
+						cartLib.selectFirstProductDisplay();
+						String mfrNumber1=prodLib.getInsightPartNumberInProductInfopage();
+						// Cart verification
 						commonLib.addToCartAndVerify();
-						continueToCheckOutOnAddCart();
+						orderLib.continueToCheckOutOnAddCart();
+						canadaLib.verifyPlaceCartLabel();
+						cartLib.verifyItemInCartByInsightPart(mfrNumber1);
 						// Verify Contract is present in the Cart Page
 						cartLib.verifyTheItemIsAddedUnderContractInCartPage();
 
@@ -75,8 +83,14 @@ public class ODP09_ConvertQuoteIPSTest extends OrderLib{
 
 						// Add Item to the Cart
 						searchLib.searchInHomePage(data.get("SearchText2"));
+						searchLib.verifyBreadCrumbInSearchResultsPage(data.get("SearchText2"));
+						cartLib.selectFirstProductDisplay();
+						String mfrNumber2=prodLib.getInsightPartNumberInProductInfopage();
+						// Cart verification
 						commonLib.addToCartAndVerify();
-						continueToCheckOutOnAddCart();
+						orderLib.continueToCheckOutOnAddCart();
+						canadaLib.verifyPlaceCartLabel();
+						cartLib.verifyItemInCartByInsightPart(mfrNumber2);
 
 						// Verify selected contract in cart page
 						cartLib.verifyContractNameInCart(data.get("Contract_Name"));
@@ -93,19 +107,22 @@ public class ODP09_ConvertQuoteIPSTest extends OrderLib{
 
 						// Click on Proceed to checkout
 						proceedToCheckout();
+						lnlLib.verifyOrderAndItemInfoBreadCrumb();
 
 						// Enter reporting details
 						enterReportingDetailsInLineLevelInfoSection(data.get("REPORTING FIELD_4"), data.get("REPORTING FIELD_5"), data.get("REPORTING FIELD_6"));
 
-						shippingBillPayContinueButton();  // continue button on Shipping address
+						clickContinueOnShippingAddress();   // continue button on Shipping address
 						shippingOptionsCarrierSelection();  // carrier selection or continue in shipping options
-						shippingBillPayContinueButton();  // Continue on billing address section
+						billingAddressContinueButton();     // Continue on billing address section
 
 						// Fill payment Info
 						selectPaymentInfoMethodCreditCard(data.get("Card_Number").toString(), data.get("Card_Name"),data.get("Month"), data.get("Year"),data.get("PO_Number"),data.get("POReleaseNumber"));
 
 						// Review Order
 						clickOnReviewOrderButton();
+						verifyCartPageAndPartandContractDetails(0);
+						verifyCartPageAndPartandContractDetails(1);
 
 						// Place Order
 						String summaryAmount=cartLib.getSummaryAmountInCart();
@@ -118,7 +135,7 @@ public class ODP09_ConvertQuoteIPSTest extends OrderLib{
 
 						// Verify selected contract in cart of Receipt page
 						cartLib.verifyContractNameInCart(data.get("Contract_Name"));
-
+                        
 						//Logout
 						commonLib.clickLogOutLink(data.get("Logout"));
 
