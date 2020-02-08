@@ -1510,7 +1510,7 @@ public void verifyProductdetails() throws Throwable {
 		String actualprodGroupName = getText(CartObj.PROD_GROUP_NAME_IN_CART, "Product group name in cart");
 		if (actualprodGroupName.equals(productName) && isElementPresent(CartObj.BUNDLEONE, "Bundle one in cart")) {
 			reporter.SuccessReport("Verify product group displayed in the cart screen",
-					"correct product group is displayed as bundle : ", actualprodGroupName);
+					"correct product group is displayed as bundle : ", "BUNDLE-1: "+actualprodGroupName);
 		} else {
 			reporter.failureReport("Verify product group displayed in the cart screen",
 					"correct product group is not displayed : " + actualprodGroupName + " .Expected is: ", productName,
@@ -2097,7 +2097,7 @@ public void getpartnumberIncartpage() throws Throwable {
 					driver);
 		} else {
 			reporter.SuccessReport("Verify contract present in cart page",
-					"Contract in Cart page is displayed as : " + contractName, "");
+					"Contract in Cart page is displayed as : " + contractName, "Contract : "+contractName);
 		}
 	}
 
