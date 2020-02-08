@@ -888,7 +888,6 @@ public class CartLib extends ActionEngine {
 			List<WebElement> myList = driver.findElements(CartObj.CART_NAME);
 			for (int i = 0; i < myList.size(); i++) {
 				myList.get(i).click();
-				
 				reporter.SuccessReport("Verify saved cart", "Saved Carts  Exist ", "Saved Carts: "+myList.get(i).getText());
 				Thread.sleep(5000);
 			}
