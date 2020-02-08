@@ -109,7 +109,7 @@ public class APP03_DeleteMemberTest extends ApprovalPathLib {
 
 					// Verify Edit Mode
 					VerifyIsInEditMode();
-					VerifyIsInEditMode();
+					
 					int a1 = NumberofAvailableApprovers();
 					// click remove
 					RemoveApprovers(data.get("Select_Approver"),1);

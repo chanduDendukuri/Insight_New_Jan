@@ -104,6 +104,8 @@ public class APP04_SearchTest extends ApprovalPathLib {
 					ClickCreateApprovalPathButton();
 					VerifyAppovalPathCreated(newApproverPathName2);
 					
+					
+					
 
 					// Enter Partial name and Search
 					String[] strApprovalPathName = (newApproverPathName1).split("Testing");
@@ -115,6 +117,7 @@ public class APP04_SearchTest extends ApprovalPathLib {
 
 					// Edit first approval path
 					ClickEditLinkButton(newApproverPathName1);
+					VerifyIsInEditMode();
 					int a1 = NumberofApproversAddedtoRightSide();
 					// Select Approvers and click Add
 					SelectApprover(null,3);
@@ -129,30 +132,27 @@ public class APP04_SearchTest extends ApprovalPathLib {
 					//Add_Approver_Btn_Click();
 
 					ClickUpdateButton();
-
+					VerifySuccessUpdate();
+					VerifyAppovalPathCreated(newApproverPathName1);
+					VerifyAppovalPathCreated(newApproverPathName2);
+					// Search with QTP - and click on search button
+					//SearchUser(strApprovalPathName[0]);
 					// Search with QTP - and click on search button
 					SearchUser(strApprovalPathName[0]);
-
-					// Edit second approval path
-					ClickEditLinkButton(newApproverPathName2);
-
-					// Select Approvers and click Add
-					SelectApprover(null,1);
-
-					// Add button to add approver
-					//Add_Approver_Btn_Click();
-
-					ClickUpdateButton();
-
 					VerifyAppovalPathCreated(newApproverPathName1);
 					VerifyAppovalPathCreated(newApproverPathName2);
 					
 					
-					// Edit first approval path
+					
+					
+					// Edit second approval path
 					ClickEditLinkButton(newApproverPathName1);
-					int a3 = NumberofApproversAddedtoRightSide();
+					VerifyIsInEditMode();
 					// Select Approvers and click Add
 					SelectApprover(null,2);
+					int a3 = NumberofApproversAddedtoRightSide();
+					// Add button to add approver
+					//Add_Approver_Btn_Click();
 					int a4 = NumberofApproversAddedtoRightSide();
 					if(a4==a3+2) {
 						reporter.SuccessReport("Approvers added", "Approvers added successfully", "", driver);
@@ -160,25 +160,48 @@ public class APP04_SearchTest extends ApprovalPathLib {
 					else {
 						reporter.failureReport("Approvers added", "Approvers are not added successfully", "", driver);	
 					}
-					// Add button to add approver
-					//Add_Approver_Btn_Click();
-
 					ClickUpdateButton();
-
-					// Search with QTP - and click on search button
-					SearchUser(strApprovalPathName[0]);
-
-					// Edit second approval path
+					VerifySuccessUpdate();
+					
+					
+					
+					// Edit first approval path
 					ClickEditLinkButton(newApproverPathName2);
-
+					
 					// Select Approvers and click Add
 					SelectApprover(null,3);
-
+					
 					// Add button to add approver
 					//Add_Approver_Btn_Click();
 
 					ClickUpdateButton();
-					VerifyNumberOfApproversInApprovalManagement(newApproverPathName1,7);
+					VerifySuccessUpdate();
+					VerifyNumberOfApproversInApprovalManagement(newApproverPathName2,5);
+					
+					
+					// Get the Existing User Last name to Search
+					ApproverSearchTextBox("Automation");
+					// Search button click
+					SearchClick();
+					VerifyApprovalPathAndApprovers();
+					
+					
+					/*
+					 * // Search with QTP - and click on search button
+					 * .a1..a1.//SearchUser(strApprovalPathName[1]);
+					 * VerifyAppovalPathCreated(newApproverPathName1);
+					 * VerifyAppovalPathCreated(newApproverPathName2); // Edit second approval path
+					 * ClickEditLinkButton(newApproverPathName2);
+					 * 
+					 * // Select Approvers and click Add SelectApprover(null,3);
+					 * 
+					 * // Add button to add approver //Add_Approver_Btn_Click();
+					 * 
+					 * ClickUpdateButton(); VerifySuccessUpdate();
+					 * VerifyAppovalPathCreated(newApproverPathName1);
+					 * VerifyAppovalPathCreated(newApproverPathName2);
+					 * VerifyNumberOfApproversInApprovalManagement(newApproverPathName1,7);
+					 */
 					ClickOnViewAllOrRefreshIcon();
 					VerifyApprovalPathAndApprovers();
 					

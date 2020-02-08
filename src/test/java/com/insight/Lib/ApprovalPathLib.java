@@ -98,7 +98,7 @@ public String RandomApprovalPathName(String Approver_Name) throws Throwable {
 		String SuccessMsg = getText(Successmsg, "Success message:");
 		if (isElementPresent(getCreatedApproverPath(Approver_Name), "Approval management page")) {
 			reporter.SuccessReport("Verify Approval Path is Added on Approval Management Approval Path Management Page",
-					"Created Approver Path is Exists and Verified", SuccessMsg);
+					"Created/Edited Approver Path is Exists and Verified", SuccessMsg+Approver_Name);
 		} else {
 			reporter.failureReport("Verify Approval Path is Added on Approval Management Approval Path Management Page",
 					"Created Approver Path Does Not Exist", "");
@@ -107,7 +107,7 @@ public String RandomApprovalPathName(String Approver_Name) throws Throwable {
 	public void verifySearchresults(String Approver_Name) throws Throwable {
 		if (isElementPresent(getCreatedApproverPath(Approver_Name), "Approval management page")) {
 			reporter.failureReport("Verify Approval Path is Added on Approval Management Approval Path Management Page",
-					"Created Approver Path is Exists and Verified", "");
+					"Created Approver Path is Exists and Verified", Approver_Name);
 		} else {
 			reporter.SuccessReport("Verify Approval Path is Added on Approval Management Approval Path Management Page",
 					"Created Approver Path Does Not Exist", "");
@@ -251,11 +251,14 @@ for(int i=1;i<=count;i++) {
 		int count = elem.size();
 		String count1= String.valueOf(count);
 		if(count>0) {
-			reporter.SuccessReport("Arrovers Added", "Number of Approvers added are", count1);
-		}
+			for(int i=0;i<=count;i++) {
+			String text=elem.get(i).getText().toString();
+			reporter.SuccessReport("Available Approvers count", "Number of Approvers added are", text+""+count1);
+		}}
 		else {
-			reporter.SuccessReport("Arrovers Added", "Number of Approvers added are 0","", driver);
+			reporter.SuccessReport("Available Approvers count", "Number of Approvers added are 0","", driver);
 		}
+		
 		return count;
 	}
 	public int NumberofAvailableApprovers() throws Throwable {
@@ -444,8 +447,9 @@ for(int i=1;i<=count;i++) {
 	}
 
 	public void VerifySuccessUpdate() throws Throwable {
+		String updatemesasge = getText(SUCCESS_UPDATE_MSG,"Update succes message");
 		if (isElementPresent(SUCCESS_UPDATE_MSG, "Update approver success message")) {
-			reporter.SuccessReport("Verify Approval Path Management Page", "Successfully Edited Approval Path", "");
+			reporter.SuccessReport("Verify Approval Path Management Page", "Successfully Edited Approval Path", updatemesasge);
 		} else {
 			reporter.failureReport("Verify Approval Path Management Page",
 					"edited approval Message path Does Not Exist", "");
@@ -1478,6 +1482,7 @@ String EndDate= getText(Approvername("EndDateId"), "EndDateId");
 	}
 
 	public void UpdatedSuccessMsg() throws Throwable {
+		String Succesmessage = getText(SUCCESS_UPDATED_MSG, "Updated message");
 		if (isElementPresent(SUCCESS_UPDATED_MSG, "Updated success message")) {
 			reporter.SuccessReport("Add Requestors on Create/Edit Requestor Group Page", "Changes updated successfully",
 					"");
@@ -1486,7 +1491,7 @@ String EndDate= getText(Approvername("EndDateId"), "EndDateId");
 			Thread.sleep(2000);
 			if (isElementPresent(SUCCESS_UPDATED_MSG, "Updated success message")) {
 				reporter.SuccessReport("Add Requestors on Create/Edit Requestor Group Page",
-						"Changes updated successfully", "");
+						"Changes updated successfully", Succesmessage);
 			} else {
 				reporter.failureReport("Add Requestors on Create/Edit Requestor Group Page",
 						"Changes Not updated successfully", "");

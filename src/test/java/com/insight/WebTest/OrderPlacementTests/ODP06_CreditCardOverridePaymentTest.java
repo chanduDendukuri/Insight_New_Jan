@@ -86,10 +86,6 @@ public class ODP06_CreditCardOverridePaymentTest extends OrderLib{
 					   continueButtonOnAdditionalInformationSection();  // Continue on additional info
 						// Click continue on LL info , shipping and billing sections
 						clickContinueOnLLIAndShipBillPaySections();
-						/*shippingBillPayContinueButton();  // continue button on Shipping address
-						shippingOptionsCarrierSelection();  // carrier selection or continue in shipping options
-						shippingBillPayContinueButton();  // Continue on billing address section
-*/						
 						// Fill payment Info
 						selectPaymentInfoMethodCreditCard(data.get("Card_Number_Error").toString(), data.get("Card_Name"),data.get("Month"), data.get("Year"),data.get("PO_Number"),data.get("POReleaseNumber"));
 						verifyValidCardErrorMessage();
