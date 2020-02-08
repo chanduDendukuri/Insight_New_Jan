@@ -1,6 +1,7 @@
 package com.insight.WebTest.ApprovalPath;
 
 import java.util.Hashtable;
+import java.util.List;
 
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
@@ -77,15 +78,14 @@ public class APP02_DeleteApprovalPathTest extends ApprovalPathLib {
 					// Create Create New Approval Path
 					CreateNewApprovalPathLink();
 					String newApproverPathName = RandomApprovalPathName("QTP Testing");
-					EnterNewApprovalPath(newApproverPathName);
+		 			EnterNewApprovalPath(newApproverPathName);
 					
 					//Select Approvers
-					String approverAdded = SelectApprover(null,10);
+					List<String> approverAdded = SelectApprover(null,4);
 					
-					Add_Approver_Btn_Click();	
 					
 					// Verify Approval path is added			
-					VerifyApproversAdded(approverAdded);	
+					//VerifyApproversAdded(approverAdded);	
 					
 					//Create Approval path
 					ClickCreateApprovalPathButton();	

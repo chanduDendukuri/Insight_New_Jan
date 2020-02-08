@@ -645,6 +645,8 @@ public class ProductDisplayInfoLib extends productsDisplayInfoObj {
                 }
             }
             reporter.SuccessReport("Products in Products Configuration Section on Product Standards Page", "Availability information in Stock Column Exists", "No: of Products Having Stock Availability information: " + myList.size());
+        }else {
+        	reporter.failureReport("Verify stock in company standards", "Stock field is not available in company standards", "", driver);
         }
     }
 
@@ -711,6 +713,8 @@ public class ProductDisplayInfoLib extends productsDisplayInfoObj {
         }
         if (isVisibleOnly(emptyShoppingCart, "Empty cart")) {
             reporter.SuccessReport("Empty Cart", " All the products are deleted", getText(emptyShoppingCart, "Empty cart"));
+        }else {
+        	reporter.failureReport("Empty Cart", " All the products are not deleted from cart","",driver);
         }
     }
 

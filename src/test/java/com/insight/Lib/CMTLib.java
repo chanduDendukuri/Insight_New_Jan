@@ -3742,6 +3742,28 @@ public void verifySetPermissionsDisabled(String userPermissions) throws Throwabl
 		} else {
 			reporter.failureReport("Web Group Management", "Under Linked Accounts Next Page is Not Exist", "", driver);
 		}
+	    }else {
+	    	reporter.failureReport("Default account address", "default account address does not exists", "", driver);
+	    }
 	}
+	
+	/**
+	 * Method is to enter WG Custom 800 Number And check Display On Web check box
+	 * @throws Throwable 
+	 */
+	public void enterWGCustom800NumberAndDisplayOnWeb(String phoneNumebr) throws Throwable {
+		type(CLIENT_SUPPORT_800_PHONE_NUMEBR, phoneNumebr, "800 Number", driver);
+		if(isCheckBoxSelected(DISPLAY_THIS_ON_WEB)) {
+			reporter.SuccessReport("Display this on web check box", "Display this on web check box is already checked", "", driver);
+		}else {
+			click(DISPLAY_THIS_ON_WEB, "Display this on web check box", "Display this on web check box");
+		}
+		click(UPDATE_CUSTOMER_PERMISSIONS_BTN, "Update button");
+		if (isElementPresent(CUSTOMER_PERMISSION_UPDATE_MSG, "update sucessful message")) {
+			reporter.SuccessReport("Verify the Success message ", "Permissions Updated Succesfully","");
+		} else {
+			reporter.failureReport("Verify the sucess message", "Display this on web check box not checked Succesfully", "",
+					driver);
+		}
 	}
 }

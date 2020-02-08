@@ -78,7 +78,7 @@ public class CRT05_QuickSearchTest extends CartLib {
 					prodInfoLib.clickOnAddToCartButtonInWarrentiesPage(data.get("index"));
 					canadaLib.continueToCheckout();
 					canadaLib.verifyPlaceCartLabel();
-					prodInfoLib.verifyCartPageAndPartDetailsForRecentlyItemDynamically(manfa);
+					prodInfoLib.verifyCartPageAndPartDetailsForRecentlyItem();
 			
 					clickOnProductLinkInCartPage();
 					prodInfoLib.verifyTheManufacturerNumberInProductDetailsPage(manfa);
@@ -100,7 +100,7 @@ public class CRT05_QuickSearchTest extends CartLib {
 					}
 					cartLib.verifyQuickShopWithValidSinglePartNumber(data.get("SearchItem4"), data.get("quantity1"));
 					canadaLib.verifyPlaceCartLabel();
-					/*review comment*/	prodInfoLib.verifyCartPageAndPartDetailsForRecentlyItemDynamically(data.get("SearchItem2"));
+					
 					String quantity1 = getCartQuantity(data.get("SearchItem2"));
 					if (Integer.parseInt(quantity1)>Integer.parseInt(quantity)) {
 						reporter.SuccessReport("Quantity is increased on the Cart Page",
@@ -109,8 +109,10 @@ public class CRT05_QuickSearchTest extends CartLib {
 						reporter.failureReport("Quantity is increased on the Cart Page",
 								"Quantity Exists and not increased", "");
 					}
+/*review comment*/	prodInfoLib.verifyCartPageAndPartDetailsForRecentlyItemDynamically(data.get("SearchItem2"));
+                    commonLib.clickLogOutLink(data.get("Logout_Header"));
+
 					System.out.println("Test completed");
-/*review comment*/			canadaLib.verifyPlaceCartLabel();
 				} catch (Exception e) {
 					ReportStatus.blnStatus = false;
 					//gErrorMessage = e.getMessage();
