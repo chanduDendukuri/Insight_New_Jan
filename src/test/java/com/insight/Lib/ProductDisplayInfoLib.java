@@ -1464,10 +1464,10 @@ public class ProductDisplayInfoLib extends productsDisplayInfoObj {
         for (int i = 0; i < DecList.size(); i++) {
             if (partNum.get(i).getText().contains(prodcut) || DecList.get(i).getText().contains(prodcut)) {
                 if (DecList.get(i).isDisplayed()) {
-                    reporter.SuccessReport("Unit Price ", "Unit price is for " + partNum.get(i).getText() + " is ", DecList.get(i).getText());
+                    reporter.SuccessReport("Product Description  ", "Product Description is for " + partNum.get(i).getText() + " is ", DecList.get(i).getText());
                 }
                 if (priceList.get(i).isDisplayed()) {
-                    reporter.SuccessReport("Product Description", "Product Description is " + partNum.get(i).getText() + " is ", priceList.get(i).getText());
+                    reporter.SuccessReport("Total Price List", "Total Price is  " + partNum.get(i).getText() + " is ", priceList.get(i).getText());
                 }
                 if (UnitPriceList.get(i).isDisplayed()) {
                     reporter.SuccessReport("Unit Price ", "Unit price is " + partNum.get(i).getText() + " is ", UnitPriceList.get(i).getText());

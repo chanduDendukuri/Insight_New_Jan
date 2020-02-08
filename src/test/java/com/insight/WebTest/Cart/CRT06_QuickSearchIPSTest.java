@@ -91,11 +91,12 @@ ProductDisplayInfoLib prodinfo= new ProductDisplayInfoLib();
 					System.out.println("partNumber3"+partNumber3);
 					canadaLib.continueToCheckout();
 					cartLib.verifyCartPageAvailablity();
-					prodinfo.verifyCartPageAndPartDetails();
+				//	prodinfo.verifyCartPageAndPartDetails();
 					//prodinfo.verifyCartPageAndPartDetailsForRecentlyItemDynamically(data.get("SearchItem3"));
 					prodinfo.verifyCartPageAndPartDetailsForRecentlyItemDynamically(partNumber3);
 
 					cartLib.verifyQuickShopWithValidSinglePartNumber(data.get("Search_Item2"), data.get("quantity"));
+					scrollUp();
 					cartLib.verifyCartPageAvailablity();
 					prodinfo.verifyCartPageAndPartDetailsForRecentlyItemDynamically(data.get("Search_Item2"));
 					//prodinfo.deleteSelectedProducts();
