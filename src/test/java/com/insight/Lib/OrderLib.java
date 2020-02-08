@@ -1801,7 +1801,11 @@ List<String> orderdetails = new ArrayList<String>();
 	 * @throws Throwable
 	 */
 	public void clickonorderNumLinkinRecentorders(String orderLink) throws Throwable {
+		refreshPage();
+		waitForVisibilityOfElement(orderlinkInOrderHistory(orderLink),  "Search results");
+		if (isElementPresent(orderlinkInOrderHistory(orderLink), "Search results")) {
 		click(orderlinkInOrderHistory(orderLink), "select placed order from recent orders");
+	}
 	}
 
 	/**
