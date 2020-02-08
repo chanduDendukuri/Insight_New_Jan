@@ -585,27 +585,27 @@ for(int i=1;i<=count;i++) {
 
 		if (isElementPresent(REPORTS_DIV, "Report div")) {
 
-			if (isElementPresent(REQUISITION_STAUS_REPORT, "Verify Requision Status Report")) {
+			if (isElementPresent(REQUISITION_STAUS_REPORT, "Requision Status Report")) {
 				Req_Status_report = driver.findElement(REQUISITION_STAUS_REPORT).getText();
 			}
 
-			if (isElementPresent(REQUESTOR_GROUP_USERS, "Verify Requestor Group Users")) {
+			if (isElementPresent(REQUESTOR_GROUP_USERS, "Requestor Group Users")) {
 				Req_grp_users = driver.findElement(REQUESTOR_GROUP_USERS).getText();
 			}
 
-			if (isElementPresent(REQUESTOR_GROUPRULES_REPORT, "Verify Requestor Group Rules Report")) {
+			if (isElementPresent(REQUESTOR_GROUPRULES_REPORT, "Requestor Group Rules Report")) {
 				Req_Grp_rules_report = driver.findElement(REQUESTOR_GROUPRULES_REPORT).getText();
 			}
 
-			if (isElementPresent(APPROVAL_PATH_REPORT, "Verify Approval Path report")) {
+			if (isElementPresent(APPROVAL_PATH_REPORT, "Approval Path report")) {
 				Approval_Path_report = driver.findElement(APPROVAL_PATH_REPORT).getText();
 			}
 
-			if (isElementPresent(APPROVER_OUT_REPORT, "Verify Approver Our Report")) {
+			if (isElementPresent(APPROVER_OUT_REPORT, "Approver Our Report")) {
 				App_out_report = driver.findElement(APPROVER_OUT_REPORT).getText();
 			}
 
-			if (isElementPresent(REQUESTOR_GROUP_SMARTTRACKER_REPORT, "Verify Requestor Group Smart Tracker Report")) {
+			if (isElementPresent(REQUESTOR_GROUP_SMARTTRACKER_REPORT, "Requestor Group Smart Tracker Report")) {
 				Req_grp_smart_tracker_rep = driver.findElement(REQUESTOR_GROUP_SMARTTRACKER_REPORT).getText();
 			}
 			strComm = "Report Links:" + Req_Status_report.trim() + "****" + Req_grp_users.trim() + "****"
@@ -722,18 +722,29 @@ for(int i=1;i<=count;i++) {
 				300 /* timeout in seconds */);
 		if (wait.until(ExpectedConditions.alertIsPresent()) != null) {
 			String alertMsg = driver.switchTo().alert().getText();
-			if (alertMsg.contains("Name")) {
-				reporter.SuccessReport("Click ok on Approval Management Page Approver Out of Office Settings",
+			if (alertMsg.contains("Description")) {
+				reporter.SuccessReport("Click ok on CreateLinkInrequisationRejection popup",
 						"POPUP Exists and OK is Clicked", alertMsg);
 				acceptAlert();
 
 			} else {
-				reporter.failureReport("Click ok on Approval Management Page Approver Out of Office Settings",
+				reporter.failureReport("Click ok on ClickCreateLinkInrequisationRejection",
 						"POPUP Does Not Exist", "");
 			}
 		}
 	}
 
+	public void ClickCreateLinkInrequisationRejection() throws Throwable {
+
+		if (isElementPresent(CreateLinkInrequisationRejection, "requisationRejection Create Link ")) {
+			click(CreateLinkInrequisationRejection, "requisationRejection Click Create Link");
+			reporter.SuccessReport("Click Create on requisationRejection",
+					"requisationRejection CREATE Link Exists and Clicked", "");
+		} else {
+			reporter.failureReport("Click Create on requisationRejection",
+					"requisationRejection CREATE Link  Does Not Exist", "");
+		}
+	}
 	public void CreateRequisitionRejectionTypes(String RejectionType) throws Throwable {
 		if (isElementPresent(REQ_REJECTION_DESC_TXTBOX, "Rejection Type")) {
 			type(REQ_REJECTION_DESC_TXTBOX, RejectionType, "Rejection Type");
@@ -1692,7 +1703,7 @@ String EndDate= getText(Approvername("EndDateId"), "EndDateId");
 		String month = strCurrDay.split("-")[1];
 		String year = strCurrDay.split("-")[2];
 
-		click(CALENDAR, "Click on calendar");
+		click(EndDateCALENDAR, "Click on calendar");
 		if (isElementPresent(NEXT_MONTH_ARROW, "Next month")) {
 			for (int i = 0; i <= months; i++) {
 				click(NEXT_MONTH_ARROW, "Next konth");
@@ -1708,6 +1719,30 @@ String EndDate= getText(Approvername("EndDateId"), "EndDateId");
 			reporter.failureReport("Change Month on Approval Management Page Approver Out of Office Settings",
 					"Arrow Button Does Not Exist", "");
 		}
+	}
+	public void SelectCurrentDate(String dateType) throws Throwable {
+		String strCurrDay = GetCurrDay();
+		String day = strCurrDay.split("-")[0];
+		String month = strCurrDay.split("-")[1];
+		String year = strCurrDay.split("-")[2];
+		if(dateType.equals("FromDate")) {
+		click(StartDateCALENDAR, "Click on calendar");
+		}
+		else {
+			click(EndDateCALENDAR, "Click on calendar");
+		}
+for(int i=0;i<=11;i++) {
+	if(getText(MonthSelection, "Month Name").equals("month")) {
+		break;
+	}
+	else {
+		click(NEXT_MONTH_ARROW, "Next konth");
+	}
+	if (isElementPresent(dayInStartDayCalender(day), "From Date ")) {
+		click(dayInStartDayCalender(day), "Day: "+day);
+	}
+}
+		
 	}
 
 	/**

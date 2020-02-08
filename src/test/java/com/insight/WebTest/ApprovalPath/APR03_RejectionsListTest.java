@@ -84,7 +84,7 @@ public class APR03_RejectionsListTest extends ApprovalPathLib {
 					
 					//Get the Row Count					
 					//Click on Create
-					ClickCreateLink();	
+					ClickCreateLinkInrequisationRejection();	
 					
 					//Verify the Name is Required
 					verifyNameIsRequiredAlert();
