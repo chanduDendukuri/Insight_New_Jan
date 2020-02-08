@@ -858,9 +858,10 @@ public class CartLib extends ActionEngine {
 				myList.get(i).click();
 				waitForVisibilityOfElement(CartObj.YES_BUTTON_INCONFORMATION_POP_UP, "Yes in conformation pop up");
 				click(CartObj.YES_BUTTON_INCONFORMATION_POP_UP, "Yes in conformation pop up","Saved Carts: "+myList1.get(i).getText());
+				Thread.sleep(5000);
 				//waitForVisibilityOfElement(CartObj.DELETE_CART_MEASSAGE, "ACCOUNT TOOLS");
 				reporter.SuccessReport("Delete cart meassage ", "Save Cart name Exist and Deleted", "Saved Carts: "+myList1.get(i).getText());
-				Thread.sleep(5000);
+				Thread.sleep(10000);
 				
 			}
 		}
