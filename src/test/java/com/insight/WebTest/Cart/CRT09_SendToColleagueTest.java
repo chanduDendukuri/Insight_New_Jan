@@ -27,7 +27,7 @@ public class CRT09_SendToColleagueTest extends CartLib {
 	CanadaLib canadaLib = new CanadaLib();
 	ProductDisplayInfoLib prodInfoLib = new ProductDisplayInfoLib();
 	SearchLib search = new SearchLib();
-
+	CMTLib cmtLib = new CMTLib();
 	// #############################################################################################################
 	// # Name of the Test : CRT09_SendToColleague
 	// # Migration Author : Cigniti Technologies
@@ -55,7 +55,15 @@ public class CRT09_SendToColleagueTest extends CartLib {
 					Hashtable<String, String> data = TestUtil.getDataByRowNo("CRT09_SendToColleague", TestDataInsight,
 							"Web_Cart", intCounter);
 					TestEngineWeb.reporter.initTestCaseDescription("SendToColleague");
-
+					cmtLib.loginToCMT(data.get("header"));
+					cmtLib.searchForWebGroup(data.get("WebGrp"));
+					cmtLib.clickOnTheWebGroup(data.get("WebGrp_Name"));
+					cmtLib.hoverOnManageWebGroupsAndSelectOptions(data.get("Manage_Web_Grp_Options"));
+					cmtLib.searchForaUserAndSelect(data.get("LnameEmailUname"), data.get("ContactName"));
+					String mainWindow = parentWindow();
+					cmtLib.clickOnloginAs();
+					switchToWindow(mainWindow);	
+					cmtLib.loginVerification(data.get("ContactName"));
 					commonLib.searchProduct(data.get("SearchItem1"));
 					prodInfoLib.verifyTheManufacturerNumberInProductDetailsPage(data.get("SearchItem1"));
 					commonLib.addToCartAndVerify();

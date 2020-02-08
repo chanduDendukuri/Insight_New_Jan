@@ -860,7 +860,7 @@ public class CartLib extends ActionEngine {
 				click(CartObj.YES_BUTTON_INCONFORMATION_POP_UP, "Yes in conformation pop up","Saved Carts: "+myList1.get(i).getText());
 				Thread.sleep(5000);
 				//waitForVisibilityOfElement(CartObj.DELETE_CART_MEASSAGE, "ACCOUNT TOOLS");
-				reporter.SuccessReport("Delete cart meassage ", "Save Cart name Exist and Deleted", "Saved Carts: "+myList1.get(i).getText());
+				//reporter.SuccessReport("Delete cart meassage ", "Save Cart name Exist and Deleted", "Saved Carts: "+myList1.get(i).getText());
 				Thread.sleep(10000);
 				
 			}
@@ -1142,8 +1142,8 @@ public class CartLib extends ActionEngine {
 	 * @customization author : CIGNITI
 	 */
 	public void clickAndVerifySendToAColleagueErrorMSG(String orderUtilities) throws Throwable {
-		commonLib.clickCart();
-		cmtLib.handleWelcomeToInsightBetaPopUp();
+		//commonLib.clickCart();
+		//cmtLib.handleWelcomeToInsightBetaPopUp();
 		waitForVisibilityOfElement(CartObj.getShoppingCartOrderUtilities(orderUtilities), "Send to a colleague");
 		click(CartObj.getShoppingCartOrderUtilities(orderUtilities), "Send to a colleague");
 		waitForVisibilityOfElement(CartObj.SEND_TO_A_COLLEGUE_POPUP, "SEND TO A COLLEGUE POPUP");
