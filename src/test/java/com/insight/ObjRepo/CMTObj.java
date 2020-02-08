@@ -699,6 +699,8 @@ public static By lnkDeleteProductGroups=By.xpath("//*[text()=' Delete Product Gr
 	public static By lblOrderNumber=By.xpath("//span[text()='Order number']//following-sibling::a[@class='orders__link order-card-header__link']");
     public static By DEFAULTCHECKBOXINBILLINGADDRESS=By.xpath("//div[@class='OptionContents']//td[@class='linkedField']/input[@checked='checked']");
     public static By DEFAULTCHECKBOXINSHIPPINGADDRESS=By.xpath("//td[@class='linkedField']/input[@checked='checked']");
-public static By STARTPAGE=By.xpath("//span[@id='showingStart']");
-
+    public static By STARTPAGE=By.xpath("//span[@id='showingStart']");
+    
+    public static By CLIENT_SUPPORT_800_PHONE_NUMEBR=By.xpath("//span[@class='wgDetailsRow'][contains(text(),'Client Support Phone Number :')]//input[@id='customerNumber']");
+    public static By DISPLAY_THIS_ON_WEB=By.xpath("//span[@class='wgDetailsRow'][contains(text(),'Client Support Phone Number :')]//input[@id='displayOnWebId']");
 }

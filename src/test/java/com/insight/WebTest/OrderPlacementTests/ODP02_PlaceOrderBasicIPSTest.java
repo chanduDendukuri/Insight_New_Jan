@@ -66,6 +66,8 @@ public class ODP02_PlaceOrderBasicIPSTest extends OrderLib{
 						cmtLib.selectDefaultShippingOptionInCheckoutSettings(data.get("Default_Shipping_Option"));
 						cmtLib.clickupdateatDefaultShippingOption();
 						cmtLib.loginAsAdminCMT();
+						// Login Verification
+						cmtLib.loginVerification(data.get("ContactName"));
 
 						searchLib.searchInHomePage(data.get("SearchText1"));
 						searchLib.verifyBreadCrumbInSearchResultsPage(data.get("SearchText1"));
@@ -102,19 +104,17 @@ public class ODP02_PlaceOrderBasicIPSTest extends OrderLib{
 						// Search for another product >> Workstations
 						searchLib.searchInHomePage(data.get("SearchText1"));
 						searchLib.verifyTheResultsForSearchTerm(data.get("SearchText1"));
-						cartLib.selectFirstProductDisplay();
-						String mfrNumber4=prodLib.getInsightPartNumberInProductInfopage();
-						commonLib.addToCartAndVerify();
+						commonLib.addFirstDisplyedItemToCartAndVerify();
 						orderLib.continueToCheckOutOnAddCart();
 						canadaLib.verifyPlaceCartLabel();
 						Thread.sleep(5000);
 						commonLib.spinnerImage();
-						cartLib.verifyItemInCartByInsightPart(mfrNumber4);
-						verifyCartPageAndPartDetails(1);
+						verifyCartPageAndPartDetails(2);
 						cartLib.verifyContractNameInCart(data.get("OpenMarket"));
 						cartLib.verifyContractNameInCart(data.get("Contract_Name"));
-						verifyCartPageAndPartDetails(2);
 						verifyCartPageAndPartDetails(0);
+						verifyCartPageAndPartDetails(1);
+						
 						
 						proceedToCheckout();
 						enterReportingDetailsInLineLevelInfoSection(data.get("REPORTING FIELD_4"), data.get("REPORTING FIELD_5"), data.get("REPORTING FIELD_6"));
@@ -139,12 +139,13 @@ public class ODP02_PlaceOrderBasicIPSTest extends OrderLib{
 
 						// Verify contract on Receipt page
 						scrollToBottom();
-						prodInfoLib.verifyCartPageAndPartDetails();
 						commonLib.verifyContractInCart(data.get("Contract_Name"));
-						verifyCartPageAndPartDetails(1);
 						commonLib.verifyContractInCart(data.get("OpenMarket"));
-						verifyCartPageAndPartDetails(2);
-						
+						verifyCartPageAndPartandContractDetails(0);
+						verifyCartPageAndPartandContractDetails(1);
+						verifyCartPageAndPartandContractDetails(2);
+                        commonLib.clickLogOutLink(data.get("Logout"));		
+                        
 					} catch (Exception e) {
 						ReportStatus.blnStatus = false;
 						//gErrorMessage = e.getMessage();

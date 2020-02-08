@@ -72,6 +72,7 @@ public class OrderObj extends ActionEngine{
 	public static By PROD_DESC_PLACE_ORDER_PAGE=By.xpath("//h4[@class='cart__item-heading'] ");
 	public static By PAYMENT_METHOD_TERM= By.xpath("//span[@class='Select-value-label'][contains(text(),'Terms')]"); 
 	public static By PAYMENT_INFO_CREDIT_CARD_DEFAULT=By.xpath("//span[@class='Select-value-label'][contains(text(),'Credit card')]");
+	public static By VALID_CARD_ERROR_MSG=By.xpath("//div[@class='form__field-msg form__field-msg--error'][contains(text(),'Please enter valid card number')]");
 	
 	public static By paymentSelection(String paymentType) {
 		return By.xpath("//div[@class='Select-menu']//div[contains(text(),'"+paymentType+"')]");
@@ -398,7 +399,12 @@ public class OrderObj extends ActionEngine{
 			return	By.xpath("//div/span[contains(.,'"+Email+"')]");//TestUser@gmail.com
 		}
 	 
-	 
+	 public static By WG_800_NUMBER_ON_QUOTE_PRINTABLE_PAGE=By.xpath("//span[@id='insightSpanId']");
 	 public static By SHIPPING_ADDRESS_ON_RECEIPT_PAGE=By.xpath("//div//h3[contains(text(),'Shipping address')]/following::div[1]//label[@class='form__label--readonly']");
+     public static By ORDER_UTILITIES_QUOTE_PAGE=By.xpath("//select[@id='utilityOption']");
+     
+     // Receipt
+     public static By PRINT_ON_RECEIPT_PAGE=By.xpath("//a[@class='ion-ios-printer-outline shopping-cart__print']//span[contains(text(),'Print')]");
+     public static By TELEPHONE_NUMBER_ON_PRINT_RECEIPT=By.xpath("//span[@class='cart-print-header__telephone']");
 }
 

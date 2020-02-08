@@ -1,6 +1,5 @@
 package com.insight.WebTest.OrderPlacementTests;
 
-import com.google.gdata.data.spreadsheet.Data;
 import com.insight.Lib.*;
 import com.insight.accelerators.ReportControl;
 import com.insight.accelerators.TestEngineWeb;
@@ -20,6 +19,8 @@ public class ODP04_PlaceOrderCreditCardTest extends OrderLib{
 	CartLib cartLib = new CartLib();
 	ProductDisplayInfoLib prodLib = new ProductDisplayInfoLib();
 	OrderLib orderLib =new OrderLib();
+	CanadaLib canadaLib=new CanadaLib();
+	ProductDetailLib prodDetailsLib=new ProductDetailLib();
 
 	// #############################################################################################################
 	// #    Name of the Test         : ODP04_PlaceOrderCreditCard
@@ -66,15 +67,22 @@ public class ODP04_PlaceOrderCreditCardTest extends OrderLib{
 
                         // Select First Product and Add to cart
 						searchLib.searchInHomePage(data.get("SearchText"));
+						searchLib.verifyBreadCrumbInSearchResultsPage(data.get("SearchText"));
+						cartLib.selectFirstProductDisplay();
+						String mfrNumber=prodDetailsLib.getInsightPartNumberInProductInfopage();
+						// Cart verification
 						commonLib.addToCartAndVerify();
-						continueToCheckOutOnAddCart();
-						cartLib.verifyItemInCart(data.get("SearchText"));
+						orderLib.continueToCheckOutOnAddCart();
+						canadaLib.verifyPlaceCartLabel();
+						commonLib.spinnerImage();
+						cartLib.verifyItemInCartByInsightPart(mfrNumber);
+						
 						proceedToCheckout();
 						continueButtonOnAdditionalInformationSection();  // Click continue on Additional information Section
 						clickContinueOnLineLevelInfo(); // Click continue on Line Level information Section
-						shippingBillPayContinueButton(); // Click continue on shipping address Section
-						shippingBillPayContinueButton(); // Click continue on Shipping options Section
-						shippingBillPayContinueButton(); //Click continue on Billing address Section
+						shippingBillPayContinueButton();  // continue button on Shipping address
+						shippingOptionsCarrierSelection();  // carrier selection or continue in shipping options
+						shippingBillPayContinueButton();  // Continue on billing address section
 						selectPaymentInfoMethodCreditCard(data.get("Card_Number").toString(), data.get("Card_Name"),data.get("Month"), data.get("Year"),data.get("PO_Number"),data.get("POReleaseNumber"));  // VISA card
 						clickOnReviewOrderButton();
 						//Place Order
@@ -86,10 +94,10 @@ public class ODP04_PlaceOrderCreditCardTest extends OrderLib{
 						clickOrderDetailsLinkOnReceiptPage();
 
 						// verifying payment info
-						verifyPaymentInformationOnReceiptPage(data.get("Section_Name3"),data.get("Month"),data.get("Year"),data.get("Card_Name"),data.get("Ending_Card_Numbers"),data.get("Card_Type"));
+						verifyPaymentInformationOnReceiptPage(data.get("Section_Name"),data.get("Month"),data.get("Year"),data.get("Card_Name"),data.get("Ending_Card_Numbers"),data.get("Card_Type"));
 
 						// Verifying the part in cart
-						cartLib.verifyItemInCart(data.get("SearchText"));
+						prodInfoLib.verifyCartPageAndPartDetails();
 					} 
 				
 				   catch (Exception e) {

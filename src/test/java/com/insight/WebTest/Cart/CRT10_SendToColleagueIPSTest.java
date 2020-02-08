@@ -24,6 +24,10 @@ public class CRT10_SendToColleagueIPSTest extends CartLib{
 	CommonLib commonLib = new CommonLib();
 	CartLib cartLib = new CartLib();
 	CMTLib cmtLib = new CMTLib();
+	SearchLib searchLib = new SearchLib();
+	CanadaLib canadaLib = new CanadaLib();
+	ProductDisplayInfoLib prodInfoLib = new ProductDisplayInfoLib();
+	SearchLib search = new SearchLib();
 	   
 	// #############################################################################################################
     // #    Name of the Test         : CRT10_SendToColleagueIPS
@@ -55,12 +59,28 @@ public class CRT10_SendToColleagueIPSTest extends CartLib{
 					
 					String searchItem1 = data.get("SearchItem1");
 					String searchItem2 = data.get("SearchItem2");
-					cmtLib.loginToCMTSearchWebGrpAndUser(data.get("header"), data.get("WebGrp"), data.get("LnameEmailUname"), data.get("ContactName"));
+					//cmtLib.loginToCMTSearchWebGrpAndUser(data.get("header"), data.get("WebGrp"), data.get("LnameEmailUname"), data.get("ContactName"));
+					cmtLib.loginToCMT(data.get("header"));
+					cmtLib.searchForWebGroup(data.get("WebGrp"));
+					cmtLib.clickOnTheWebGroup(data.get("WebGrp_Name"));
+					cmtLib.hoverOnManageWebGroupsAndSelectOptions(data.get("Manage_Web_Grp_Options"));
+					cmtLib.searchForaUserAndSelect(data.get("LnameEmailUname"), data.get("ContactName"));
+					
 					cmtLib.setPermissions(data.get("Menu_Name"),data.get("Enable_Purchasing_Popup"));
 					String mainWindow = parentWindow();
 					cmtLib.clickOnloginAs();
 					switchToWindow(mainWindow);	
+					cmtLib.loginVerification(data.get("ContactName"));
+					
 					commonLib.searchProduct(searchItem1);
+					searchLib.verifyBreadCrumbInSearchResultsPage(data.get("Search_Item"));
+					
+					String searchItem=prodInfoLib.getPartNumberExactlyInSearchResultsPage();
+					commonLib.addFirstDisplyedItemToCartAndVerify();
+					canadaLib.continueToCheckout();
+					canadaLib.verifyPlaceCartLabel();
+					prodInfoLib.verifyCartPageAndPartDetailsForRecentlyItemDynamically(searchItem);
+					
 					commonLib.addFirstDisplyedItemToCartAndVerify();
 					commonLib.continueToShopping();
 					commonLib.searchProduct(searchItem2);

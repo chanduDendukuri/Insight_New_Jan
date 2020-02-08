@@ -17,8 +17,10 @@ public class ODP06_CreditCardOverridePaymentTest extends OrderLib{
 	SearchLib searchLib = new SearchLib();
 	CommonLib commonLib = new CommonLib();
 	CartLib cartLib = new CartLib();
-	ProductDisplayInfoLib prodLib = new ProductDisplayInfoLib();
 	OrderLib orderLib =new OrderLib();
+	CanadaLib canadaLib=new CanadaLib();
+	ProductDetailLib prodDetailsLib=new ProductDetailLib();
+	LineLevelInfoLib lnlLib=new LineLevelInfoLib();
 
 	// #############################################################################################################
 	// #    Name of the Test         : ODP09_ConvertQuoteIPS
@@ -70,24 +72,34 @@ public class ODP06_CreditCardOverridePaymentTest extends OrderLib{
 
 						// Select First Product and Add to cart
 						searchLib.searchInHomePage(data.get("SearchText1"));
+						searchLib.verifyBreadCrumbInSearchResultsPage(data.get("SearchText1"));
+						cartLib.selectFirstProductDisplay();
+						String mfrNumber=prodDetailsLib.getInsightPartNumberInProductInfopage();
+						// Cart verification
 						commonLib.addToCartAndVerify();
-						continueToCheckOutOnAddCart();
-
+						orderLib.continueToCheckOutOnAddCart();
+						canadaLib.verifyPlaceCartLabel();
+						commonLib.spinnerImage();
+						cartLib.verifyItemInCartByInsightPart(mfrNumber);
 						// proceed to checkout
 						proceedToCheckout();
-
 					   continueButtonOnAdditionalInformationSection();  // Continue on additional info
-
 						// Click continue on LL info , shipping and billing sections
 						clickContinueOnLLIAndShipBillPaySections();
-
+						/*shippingBillPayContinueButton();  // continue button on Shipping address
+						shippingOptionsCarrierSelection();  // carrier selection or continue in shipping options
+						shippingBillPayContinueButton();  // Continue on billing address section
+*/						
 						// Fill payment Info
-						//selectPaymentInfoMethodCreditCard(data.get("Card_Number_Error").toString(), data.get("Card_Name"),data.get("Month"), data.get("Year"));
-						selectPaymentInfoMethodCreditCard(data.get("Card_Number1").toString(), data.get("Card_Name"),data.get("Month"), data.get("Year"),data.get("PO_Number"),data.get("POReleaseNumber"));
+						selectPaymentInfoMethodCreditCard(data.get("Card_Number_Error").toString(), data.get("Card_Name"),data.get("Month"), data.get("Year"),data.get("PO_Number"),data.get("POReleaseNumber"));
+						verifyValidCardErrorMessage();
+						enterCreditCard(data.get("Card_Number1").toString(), data.get("Card_Name"),data.get("Month"), data.get("Year"),data.get("PO_Number"),data.get("POReleaseNumber"));
 						clickOnReviewOrderButton();
-
-						// ******************************* need to verify the Credit Card Validation on Cart : Ship, Bill & Pay : Place Order Page">> "Warning Message Exists"************
-
+						//Place Order
+						String summaryAmount=cartLib.getSummaryAmountInCart();
+						placeOrderAndVerifyReceiptOrderAndDate(summaryAmount);
+						//Verify Receipt
+						verifyReceiptVerbiage();
 
 						// go back to CMT tool
 						cmtLib.navigateBackToCMT();
@@ -109,26 +121,34 @@ public class ODP06_CreditCardOverridePaymentTest extends OrderLib{
 						checkPaymentMethodCheckBox();   // Check payments method check box in Approval path settings
 
 						// Select First Product and Add to cart
-						searchLib.searchInHomePage(data.get("SearchText2"));
+						searchLib.searchInHomePage(data.get("SearchText1"));
+						searchLib.verifyBreadCrumbInSearchResultsPage(data.get("SearchText1"));
+						cartLib.selectFirstProductDisplay();
+						String mfrNumber1=prodDetailsLib.getInsightPartNumberInProductInfopage();
+						// Cart verification
 						commonLib.addToCartAndVerify();
-						continueToCheckOutOnAddCart();
+						orderLib.continueToCheckOutOnAddCart();
+						canadaLib.verifyPlaceCartLabel();
+						cartLib.verifyItemInCartByInsightPart(mfrNumber1);
 
 						// proceed to checkout
 						proceedToCheckout();
-
+						lnlLib.verifyOrderAndItemInfoBreadCrumb();
 						continueButtonOnAdditionalInformationSection();  // Continue on additional info section
 						clickContinueOnLLIAndShipBillPaySections(); // continue on Line level info, Ship bill pay sections
 
 						// Fill payment Info
 						selectPaymentInfoMethodCreditCard(data.get("Card_Number1").toString(), data.get("Card_Name"),data.get("Month"), data.get("Year"),data.get("PO_Number"),data.get("POReleaseNumber"));
 						clickOnReviewOrderButton();
-						String summaryAmount=cartLib.getSummaryAmountInCart();
-						placeOrderAndVerifyReceiptOrderAndDate(summaryAmount);
+						String summaryAmount1=cartLib.getSummaryAmountInCart();
+						placeOrderAndVerifyReceiptOrderAndDate(summaryAmount1);
 
 						// navigate back to CMt
 						cmtLib.navigateBackToCMT();
+						cmtLib.hoverOnManageWebGroupsAndSelectOptions(data.get("Manage_Web_Grp_Options"));
+						cmtLib.searchForaUserAndSelect(data.get("LnameEmailUname1"), data.get("ContactName1"));
+						
 						cmtLib.clickCheckOutSettings(data.get("checkOut_Settings"));
-
 						// navigate to checkout settings >>  payment options
 						cmtLib.selectOptionInCheckoutSettings(data.get("Payment_Options"));
 						cmtLib.clearPaymentOptionsInCheckoutSettings();
@@ -136,31 +156,41 @@ public class ODP06_CreditCardOverridePaymentTest extends OrderLib{
 
 						// Login As to Web UAT
 						cmtLib.loginAsAdminCMT();
-
+						cmtLib.loginVerification(data.get("ContactName1"));
+						
 						// Select First Product and Add to cart
-						searchLib.searchInHomePage(data.get("SearchText3"));
+						searchLib.searchInHomePage(data.get("SearchText1"));
+						searchLib.verifyBreadCrumbInSearchResultsPage(data.get("SearchText1"));
+						cartLib.selectFirstProductDisplay();
+						String mfrNumber2=prodDetailsLib.getInsightPartNumberInProductInfopage();
+						// Cart verification
 						commonLib.addToCartAndVerify();
-						continueToCheckOutOnAddCart();
+						orderLib.continueToCheckOutOnAddCart();
+						canadaLib.verifyPlaceCartLabel();
+						cartLib.verifyItemInCartByInsightPart(mfrNumber2);
 
 						// proceed to checkout
 						proceedToCheckout();
-
 						continueButtonOnAdditionalInformationSection();  // Continue on additional info section
 						clickContinueOnLLIAndShipBillPaySections(); // continue on Line level info, Ship bill pay sections
 						// Fill payment Info
 						selectPaymentInfoMethodCreditCard(data.get("Card_Number1").toString(), data.get("Card_Name"),data.get("Month"), data.get("Year"),data.get("PO_Number"),data.get("POReleaseNumber"));
 						clickOnReviewOrderButton();
-
+						//Place Order
+						String summaryAmount2=cartLib.getSummaryAmountInCart();
+						placeOrderAndVerifyReceiptOrderAndDate(summaryAmount2);
+						//Verify Receipt
+						verifyReceiptVerbiage();
+						
 						// navigate back to CMT
 						cmtLib.navigateBackToCMT();
-						cmtLib.hoverOverMasterGroupAndSelectChangeGrp();
-						cmtLib.searchForWebGroup(data.get("WebGrp"));
-						cmtLib.clickOnTheWebGroup(data.get("WebGrp_Name"));
-
+						Thread.sleep(6000);
+						scrollUp();
+						cmtLib.hoverOnManageWebGroupsAndSelectOptions(data.get("Manage_Web_Grp_Options_Settings"));
 						// Uncheck Override Payments Options in web Group Level
 						cmtLib.setCustomerLevelPermissionsOFF(data.get("Customer_Permissions_OFF"));
-						// fnCloseTest();
 						System.out.println("Test completed");
+						
 					} catch (Exception e) {
 						ReportStatus.blnStatus = false;
 						//gErrorMessage = e.getMessage();
