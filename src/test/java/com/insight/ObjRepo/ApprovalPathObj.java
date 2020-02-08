@@ -136,7 +136,9 @@ public class ApprovalPathObj extends CommonObj {
 		return By.xpath("//table[@id='requestor_search_table']//td[text()='" + appPathName
 				+ "']/..//td//a[contains(text(),'Edit')]");
 	}
-
+	public static By clickOnGrpInReports(String appPathName) {
+		return By.xpath("//table[@id='appreport']//a[contains(text(),'"+appPathName+"')]");
+	}
 	public static By getApprovalPathNameLink(String appPathName) {
 		return By.xpath(
 				"//table[@id='appreport']//td[@class='verticalAlignTop']//a[contains(text(),'" + appPathName + "')]");
@@ -243,7 +245,9 @@ public class ApprovalPathObj extends CommonObj {
 	public static By verifyApproverOutCreated(String approverName) {
 		return By.xpath("//table[@id='createApproveTableId']//tbody//tr//td[text()='" + approverName + "']");
 	}
-
+public static By Approvername(String Filedname) {
+	return By.xpath("//td[contains(@id,'"+Filedname+"')]");
+}
 	public static By editApprover(String approverName) {
 		return By.xpath("//table[@id='createApproveTableId']//tbody//tr//td[text()='" + approverName
 				+ "']//..//a//img[contains(@src,'Deep_Edit')]");

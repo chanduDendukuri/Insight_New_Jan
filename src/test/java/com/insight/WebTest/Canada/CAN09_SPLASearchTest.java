@@ -29,6 +29,7 @@ public class CAN09_SPLASearchTest  extends CanadaLib{
 	ProductDisplayInfoLib pipLib=new ProductDisplayInfoLib();
 	ShipBillPayLib sbpLib=new ShipBillPayLib();
 	MarriottIntlCorpLib micLib=new MarriottIntlCorpLib();
+	ProductDisplayInfoLib prodInfoLib=new ProductDisplayInfoLib();
 	   
 	    // #############################################################################################################
 		// #       Name of the Test         :  CAN09_SPLASearch
@@ -67,38 +68,63 @@ public class CAN09_SPLASearchTest  extends CanadaLib{
 			cmtLib.AddMonthInHostedLicensingAdministrationPage(data.get("Month1"), data.get("Year1"), data.get("Type"),data.get("SoldTO"),data.get("SalesOrg"));
 			// select user
 			cmtLib.hoverOnManageWebGroupsAndSelectOptions(data.get("Manage_Web_Grp_Options2"));
-			cmtLib.searchForaUserAndSelect(data.get("LnameEmailUname"), data.get("ContactName"));
+			cmtLib.searchForaUserAndSelect(data.get("LnameEmailUname"), data.get("contactName"));
 			///	Enable Purchasing Popup - ON
 			cmtLib.setPermissions(data.get("Menu_Name"), data.get("Set_Permission"));
-			cmtLib.setPermissions(data.get("Menu_Name"), data.get("Set_Permission1"));
+			//07-02 Only need to select Enabling Purchanging Pop-up Need to check in TestData
+			//cmtLib.setPermissions(data.get("Menu_Name"), data.get("Set_Permission1"));
 			// Login as to UAT
 			cmtLib.loginAsAdminCMT();
 			// Login Verification 
-			cmtLib.loginVerification(data.get("ContactName"));
+			cmtLib.loginVerification(data.get("contactName"));
 			// account tools >> Software License Agreements
 			commonLib.clickOnAccountToolsAndClickOnProductGrp(data.get("Tools_Menu"), data.get("Tools_Menu_DD"));
+			//07-02 Add Page Verification of Software License Agreements 
 			// Select Software  Lic Agreements
 	     	selectSPLADetailsProductCheckBox(data.get("SPLA"));
+	     	//07-02 Verify Return To My Software Lic Agreement Label
+			verifySPLAPage();
 			// verify search results and select first product
-	     	searchLib.verifysearchResultsPage();
-			pipLib.selectFirstProductAddToCartAndVerifyCart();
+	     	/*searchLib.verifysearchResultsPage();
+	     	pipLib.selectFirstProductAddToCartAndVerifyCart();*/
+			searchLib.verifysearchResultsPage();
+	     	// Search for part or product and add to cart : part : 7NQ-00302-MSPLA
+	     	searchLib.searchInHomePage(data.get("SearchText_1"));
+			pipLib.verifyTheManufacturerNumberInProductDetailsPage(data.get("SearchText_1"));
+	     	commonLib.addToCartAndVerifyInSearchPage();
+	     	orderLib.continueToCheckOutOnAddCart();
+	    	verifyPlaceCartLabel();
+	     	cartLib.verifyItemInCartByInsightPart(data.get("SearchText_1"));
+
+			
 			// search for product and add to cart
 			searchLib.searchInHomePage(data.get("SearchText1"));
 			searchLib.verifyBreadCrumbInSearchResultsPage(data.get("SearchText1"));
 
 	     	searchLib.verifysearchResultsPage();
+	     	//07-02 Need to get entire product details in Cart page
 			pipLib.selectFirstProductAddToCartAndVerifyCart();
+			prodInfoLib.verifyCartPageAndPartDetails();
 			// Verify Non Spla Items Message
-			//VerifyNonSplaItemsMessage();
+			// 07-02 Non SPLA product need to be verified
+			// 07-02 Verify NON SPLA Part Message on CART Page
+			cartLib.verifySLPAProductOnCart(data.get("SearchText_1"));
+			VerifyNonSplaItemsMessage();
 			///	Remove Non Spla Items from the Cart
 			// Add First Item to Cart
 			//commonLib.addFirstDisplyedItemToCartAndVerify();
 			//pipLib.selectFirstProductAddToCartAndVerifyCart();
-
+			
 			commonLib.deleteItemFromCart();
+			// 07-02 Update deleteItemFromCart to add deleted item details
+			// 07-02  SPLA product need to be verified
+			// 07-02 Verify Usage Period on CART Page	
 			//verifyReportingUsagePeriod();
 			//Proceed to checkout
+			cartLib.verifySLPAProductOnCart(data.get("SearchText_1"));
+			verifyReportingUsagePeriodWarningMessage();
 			 orderLib.proceedToCheckout();
+			 // 07-2 verify cart page  
 			 orderLib.clickContinueOnLLIAndShipBillPaySections();
 			 orderLib.addNewCardInPayment(data.get("cardNumber"), data.get("cardName"), data.get("month"), data.get("year"),data.get("poNumebr"),data.get("POReleaseNumber"));
 			 orderLib.clickOnReviewOrderButton();  // Click Review order button
@@ -106,8 +132,9 @@ public class CAN09_SPLASearchTest  extends CanadaLib{
 			String summaryAmount = cartLib.getSummaryAmountInCart();
 			orderLib.placeOrderAndVerifyReceiptOrderAndDate(summaryAmount);
 			//Verify Receipt
-			orderLib.verifyReceiptVerbiage();
-			orderLib.clickOrderDetailsLinkOnReceiptPage();
+			//07-02 Below steps not required
+			//orderLib.verifyReceiptVerbiage();
+			//orderLib.clickOrderDetailsLinkOnReceiptPage();
 			// Logout 
 			commonLib.clickLogOutLink(data.get("Logout"));
 			

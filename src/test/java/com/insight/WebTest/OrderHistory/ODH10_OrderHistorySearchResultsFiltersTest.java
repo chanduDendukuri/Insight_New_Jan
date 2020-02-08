@@ -74,6 +74,7 @@ public class ODH10_OrderHistorySearchResultsFiltersTest extends OrderHistoryLib{
 							selectDisplayPerPage(data.get("Results_Per_Page"));
 							verifySearchResultsMoreThanFive();
 							// ######## Sort by order number and sort order ascending ################################
+							
 							selectSortResults(data.get("Sort_Order_Number"));
 							selectSortOrder(data.get("Ascending"));
 							verifySearchResultsAreInAscending();
@@ -86,13 +87,13 @@ public class ODH10_OrderHistorySearchResultsFiltersTest extends OrderHistoryLib{
 							selectSortOrder(data.get("Descending"));
 							verifyPOSearchResultsAreInDescending();
 							//######## Sort by order status and sort order ascending ################################
-							selectSortResults(data.get("Sort_Order_Status"));
+							selectSortResults("Order status");
 							selectSortOrder(data.get("Ascending"));
-							
+							verifyOrderStatusSearchResultsAreInAscending();
 							//######## Sort by PO and sort order Descending ################################
 							selectSortResults(data.get("Sort_PO_Number"));
 							selectSortOrder(data.get("Ascending"));
-							verifyPOSearchResultsAreInDescending();
+							verifyPOSearchResultsAreInAscending();
 							
 							clickClearcSearch();
 							scrollUp();

@@ -105,16 +105,29 @@ public class APR01_ApprovalPathTest extends ApprovalPathLib {
 
 					// Verify Approval Path Report
 					VerifyApprovalPathReport();
+					scrollToBottom();
+					ClickApprovalPathLink("TU_IUS Multi Approval Path");
+					scrollUp();
+					// Click on Reports
+					ClickReports();
+					
+					// Verify the Types of Reports are Loaded
+					VerifyReportTypes();
+					
+					// Click on Approver path Report
+					ClickApprovalPathReportLink();
 
+					// Verify Approval Path Report
+					VerifyApprovalPathReport();
+					
 					// Click on Requestor Group
 					ClickRequestorGrpLink();
 
 					// Click On TU_IUS Requestor Group - Edit option
-					ClickEditLinkINRequestorGrpPage(data.get("Approvername"));
+					ClickEditLinkINRequestorGrpPage("TU_IUS Requestor Group");
 
 					// Verify Requestor Group in Edit Mode
 					VerifyReqGrpInEditMode();
-
 					commonLib.clickLogOutLink(data.get("Logout"));
 
 					System.out.println("Test completed");
