@@ -77,11 +77,12 @@ public class REP11_AccountsByRegionTest  extends ReportingLib {
 							clickUpdateFilterOption();
 							verifytheSelectedcentersRegions();
 							verifyHirearchyTree();
-							canadaLib.clickOnDeliveryMethod(data.get("DeliveryMethod"));
-							canadaLib.clickOnDeliveryFormat(data.get("DeliverFormat"));
-							canadaLib.clickOnRun();
-							commonLib.spinnerImage();
-							verifyDownloadedReportPDFFile();
+					/*
+					 * canadaLib.clickOnDeliveryMethod(data.get("DeliveryMethod"));
+					 * canadaLib.clickOnDeliveryFormat(data.get("DeliverFormat"));
+					 * canadaLib.clickOnRun(); commonLib.spinnerImage();
+					 * verifyDownloadedReportPDFFile();
+					 */
 							commonLib.clickLogOutLink(data.get("Logout_Header"));
 						} catch (Exception e) {
 							ReportStatus.blnStatus = false;
