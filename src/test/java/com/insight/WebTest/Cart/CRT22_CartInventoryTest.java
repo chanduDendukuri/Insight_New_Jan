@@ -65,15 +65,23 @@ public class CRT22_CartInventoryTest extends CartLib {
 					COICSIPrice();
 					String Text1=getTextProductdetailPageAndVerifyCSICOI();
 					verifyCOICSI(Text1,data.get("COIText"),data.get("CSIText"));
-					cartLib.verifyCOIpart(data.get("toolsMenuName"), data.get("dropDown"), data.get("productGroup"),
+					String stock=cartLib.verifyCOIpart(data.get("toolsMenuName"), data.get("dropDown"), data.get("productGroup"),
 							data.get("productName"), data.get("COIText"));
 					//cartLib.verifyCSIpart(data.get("toolsMenuName"), data.get("dropDown"), data.get("productGroup"),
 							//data.get("productName"), data.get("CSIText"));
 					//commonLib.clickCart();
 					canadaLib.verifyPlaceCartLabel();
 					prodInfoLib.verifyCartPageAndPartDetailsForRecentlyItem();
-					coiInCartPage();
-					orderLib.stockInCartPage();
+					Integer coiQuantity=getCOIQuantityFromStock(stock);
+					System.out.println("coiQuantity"+coiQuantity);
+					Integer csiQuantity=getCSIQuantityFromStock(stock);
+					System.out.println("csiQuantity"+csiQuantity);
+					Integer stockInTools=getStockFromTools(stock);
+					System.out.println("stockInTools"+stockInTools);
+					coiInCartPage(coiQuantity);
+					csiInCartPage(csiQuantity);
+					stockInCartPage(stockInTools);
+					//orderLib.stockInCartPage();
 					commonLib.clickLogOutLink("Logout");
 					System.out.println("Test completed");
 

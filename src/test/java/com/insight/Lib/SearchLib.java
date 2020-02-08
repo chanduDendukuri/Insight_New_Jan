@@ -787,7 +787,7 @@ public class SearchLib extends CommonObj {
 		click(getContractsFromDD(contractName),"Contract name : "+contractName);
 		Thread.sleep(3000);
 		if(isElementPresent(CONTRACT_TITLE, "contract title")){
-			reporter.SuccessReport("Verify the contracts page displayed ","contracts title page displayed successfully as : ",contractName );
+			reporter.SuccessReport("Verify the contracts page displayed ","contracts title page displayed successfully as : ",getText(CONTRACT_TITLE, "Contract title") );
 		}else{
 			reporter.failureReport("Verify the contracts page displayed ","contracts title page is not displayed successfully",contractName);
 		}

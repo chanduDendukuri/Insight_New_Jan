@@ -31,7 +31,7 @@ public class APR06_RequisitionStatusTest extends ApprovalPathLib {
 	OrderLib orderLib = new OrderLib();
 	ProductDisplayInfoLib pipLib = new ProductDisplayInfoLib();
 	ShipBillPayLib sbpLib = new ShipBillPayLib();
-	InvoiceHistoryLib ivhLib=new InvoiceHistoryLib();
+	InvoiceHistoryLib ivhLib = new InvoiceHistoryLib();
 
 	// #############################################################################################################
 	// # Name of the Test : APR06_RequisitionStatus
@@ -76,23 +76,24 @@ public class APR06_RequisitionStatusTest extends ApprovalPathLib {
 					// Verify Approval Management Page - is Loaded
 					reqProcLib.verifyApprovalManagementPage();
 
-					//String ReqGroupName1 = data.get("RequestorGroup1");
+					// String ReqGroupName1 = data.get("RequestorGroup1");
 
 					// Add Requestors to Requestor Group
-					//AddRequestorsRequestorGroup(ReqGroupName1);
+					// AddRequestorsRequestorGroup(ReqGroupName1);
 
 					// Click on Reports
 					ClickReports();
 
 					// Click on Requisition status report
 					clickRequisitionStatusReport();
-					SelectCurrentDate("FromDate");
-					SelectCurrentDate("ToDate");
+					// SelectCurrentDate("FromDate");
 					
-					/*
-					 * String strCurrDay = GetCurrDay(); //int month = 13; datePicker(14,
-					 * strCurrDay);
-					 */
+					
+					  String strCurrDay = GetCurrDay(); 
+					   
+					  datePicker(14, strCurrDay,"FromDate");
+					  SelectCurrentDate("ToDate");
+
 					clickSearch();
 					verifyMessage(data.get("actualText"));
 					scrollUp();
@@ -103,9 +104,9 @@ public class APR06_RequisitionStatusTest extends ApprovalPathLib {
 					 */
 
 					changeFilterStatus(data.get("FilterbyStatus"));
-					SelectCurrentDate("FromDate");
+					// SelectCurrentDate("FromDate");
 					SelectCurrentDate("ToDate");
-					//datePicker(14, strCurrDay);
+					// datePicker(14, strCurrDay);
 					// Displays Requestors
 					displayRequestorsRecords();
 					// Verify the Paging Count 50
@@ -120,14 +121,14 @@ public class APR06_RequisitionStatusTest extends ApprovalPathLib {
 					System.out.println("Test completed");
 				} catch (Exception e) {
 					ReportStatus.blnStatus = false;
-				//	gErrorMessage = e.getMessage();
+					// gErrorMessage = e.getMessage();
 					gTestStatus = false;
 				}
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 			ReportStatus.blnStatus = false;
-			//gErrorMessage = e.toString();
+			// gErrorMessage = e.toString();
 			gTestStatus = false;
 			ReportStatus.fnUpdateResultStatus("APR06_RequisitionStatus", "TC_APR06", ReportStatus.strMethodName, 1,
 					browser);
