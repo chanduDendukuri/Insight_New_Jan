@@ -62,6 +62,7 @@ public class REP11_AccountsByRegionTest  extends ReportingLib {
 							InvoiceHistoryLib invoiceHistoryLib = new InvoiceHistoryLib();
 							MarriottIntlCorpLib marriottIntlCorpLib=new MarriottIntlCorpLib();
 							CommonLib commonLib = new CommonLib();
+							
 							cmtLib.loginToCMT(data.get("Header"));
 							cmtLib.searchForWebGroup( data.get("WebGrp"));						
 							cmtLib.manageUsers();
@@ -74,7 +75,14 @@ public class REP11_AccountsByRegionTest  extends ReportingLib {
 							selctAccountsByRegion(data.get("Region1"),data.get("Region2"));
 							selctAccountsByList(data.get("RegionList1"),data.get("RegionList2"),data.get("RegionList3"));
 							clickUpdateFilterOption();
+							verifytheSelectedcentersRegions();
 							verifyHirearchyTree();
+					/*
+					 * canadaLib.clickOnDeliveryMethod(data.get("DeliveryMethod"));
+					 * canadaLib.clickOnDeliveryFormat(data.get("DeliverFormat"));
+					 * canadaLib.clickOnRun(); commonLib.spinnerImage();
+					 * verifyDownloadedReportPDFFile();
+					 */
 							commonLib.clickLogOutLink(data.get("Logout_Header"));
 						} catch (Exception e) {
 							ReportStatus.blnStatus = false;
