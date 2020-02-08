@@ -94,7 +94,7 @@ public class REP08_SoftwareLicenseDetailDefaultSettingsTest extends ReportingLib
 				canadaLib.clickOnDeliveryMethod(data.get("DeliveryMethod"));
 				canadaLib.clickOnDeliveryFormat(data.get("DeliverFormat"));
 				canadaLib.clickOnRun();
-				commonLib.spinnerImage();
+				Thread.sleep(10000);
 				List<String> excelData = Arrays.asList(data.get("ExcelData").split(","));
 				verifyDownloadedReportExcelFile(excelData);
 
@@ -122,18 +122,16 @@ public class REP08_SoftwareLicenseDetailDefaultSettingsTest extends ReportingLib
 				verifyScheduleReportOptions(optionList);
 				canadaLib.verifyFilterbyCurrency(data.get("Currency"));
 				canadaLib.verifyDeliveryOption();
-
+				Thread.sleep(10000);
 				verifyDeliveryMethodOptions(deliveryOptionsList);
-
 				verifyDefaultCurrentDate(data.get("CurrentDate"));
-
+				Thread.sleep(10000);
 				verifyScheduleReportOptionsDates(dateOptionsList);
 				selctOrderType(data.get("OrderType"));
 				canadaLib.clickOnDeliveryMethod(data.get("DeliveryMethod"));
 				canadaLib.clickOnDeliveryFormat(data.get("DeliverFormat"));
 				canadaLib.clickOnRun();
-				commonLib.spinnerImage();
-
+				Thread.sleep(10000);
 				verifyDownloadedReportExcelFile(excelData);
 				commonLib.clickLogOutLink(data.get("Logout_Header"));
 				
