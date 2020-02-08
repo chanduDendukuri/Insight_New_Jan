@@ -57,6 +57,12 @@ public class CommonCanadaPage extends ActionEngine{
     public static By viewCartlnk = By.xpath("//span[text()='View Cart >>']");
     public static By lblCartLebel=By.xpath("//*[@class='shopping-cart__header-title']");
     public static By emptyCartLink=By.xpath("//a[@class='columns section__header-action' and text()='Empty cart']");
+    public static By StoredAddresses=By.xpath("//*[text()='Stored addresses']");
+    public static By getStoredAddresses=By.xpath("//*[@class='columns small-12 medium-expand'][2]");
+    public static By getSroredAddressFromResultsGrid=By.xpath("//div[@class='table']//*[@class='row align-middle']//div[@class='columns table__col table__col--body']");
+    public static By btnContinue=By.xpath("//*[@class='row stored-address']//following-sibling::footer//div//button[text()='Continue']");
+    public static By rbtnDefaultAddress=By.xpath("//*[@name='defaultAddress']");
+
 
 
 
