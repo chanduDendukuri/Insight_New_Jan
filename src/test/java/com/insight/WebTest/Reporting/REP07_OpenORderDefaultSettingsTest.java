@@ -15,6 +15,7 @@ import com.insight.Lib.MarriottIntlCorpLib;
 import com.insight.Lib.OrderLib;
 import com.insight.Lib.ProductDetailLib;
 import com.insight.Lib.ProductDisplayInfoLib;
+import com.insight.Lib.ReportingLib;
 import com.insight.Lib.SearchLib;
 import com.insight.Lib.SewpLib;
 import com.insight.Lib.ShipBillPayLib;
@@ -34,6 +35,7 @@ public class REP07_OpenORderDefaultSettingsTest extends CanadaLib{
 	SewpLib sewpLib=new SewpLib();
 	ShipBillPayLib shipbLib=new ShipBillPayLib();
 	MarriottIntlCorpLib mic=new MarriottIntlCorpLib();
+	ReportingLib reportingLib=new ReportingLib();
 	
 	@Parameters({ "StartRow", "EndRow", "nextTestJoin" })
 	@Test
@@ -68,19 +70,22 @@ public class REP07_OpenORderDefaultSettingsTest extends CanadaLib{
 				verifyReportsPage();
 				verifySelectReport(data.get("SelectReport"));
 				verifyAccountSelections(data.get("AccountSelections"));
-				
+				reportingLib.verifytheLinkedSoldTosText();
+				reportingLib.verifyDefualtCurrancyUSD();
 				verifyFilterbyCurrency(data.get("Currency"));
 				verifyFilterOption();
 				verifyScheduleReport(data.get("ScheduleOption"));
 				verifyDeliveryOption();
 				clickOnAccountSelections(data.get("AccountSelectionsOpt"));
 				verifyQuickDateOption(data.get("QuickDateOptions"));
-				verifyCustomDate();
 				verifySmartcheck();
-				
+				reportingLib.verifyStartDate("01");
+				reportingLib.EndDateVerification();
 				clickOnDeliveryMethod(data.get("DeliveryMethod"));
 				clickOnDeliveryFormat(data.get("DeliveryFormat"));
-				clickOnRun();	
+				clickOnRun();
+				commonLib.spinnerImage();
+				Thread.sleep(50000);
 				List<String> excelOptions= Arrays.asList(data.get("ExcelOptions").split(","));
 			    canadaLib.verifyDownloadedReportExcelFile(excelOptions,data.get("ReportOption"));
 				commonLib.clickLogOutLink(data.get("Logout_Header"));

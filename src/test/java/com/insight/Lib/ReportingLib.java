@@ -8,6 +8,7 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.apache.poi.xssf.usermodel.XSSFSheet;
@@ -932,7 +933,30 @@ public void grandParentCheckboxNotClicked()throws Throwable {
 				reporter.SuccessReport("Verify Selected Centers and Regions", "Selected Centers and Regions", getText(SELECTEDCENTERS,"")+getText(SELECTEDREGIONS,""));	
 			}
 			}
-		
+		public void verifyDownloadedReportExcel(String sheetName, String rowNumber, String columnHeaders) throws Throwable {
+			Thread.sleep(10000);
+		String sfile = System.getProperty("user.dir") + "\\" + "DownloadedFiles" + "\\";
+		File file = new File(sfile);
+		if (file.exists()) {
+		List<String> downloadedExcelContent = CommonLib.readRowFromExcel(sfile, sheetName, Integer.parseInt(rowNumber));
+		List<String> acutalContent = Arrays.asList(columnHeaders.split(","));
+		System.out.println("Compare content" + downloadedExcelContent.equals(acutalContent));
+		if (downloadedExcelContent.equals(acutalContent)) {
+			reporter.SuccessReport(columnHeaders,  "columns are avilable in Reporting Excel Sheet", "columns: "+columnHeaders);
+		} else {
+			reporter.failureReport(columnHeaders, columnHeaders+ " are not avilable", "", driver);
+		 }
+		}else {
+			reporter.failureReport("Verify Headers", "File dose not exists", "", driver);
+		}
+		System.out.println("File Deletion :" + file.delete());
+		if (file.exists()) {
+			file.delete();
+			reporter.SuccessReport("reporting Excel File", "File closed", "");
+		}else {
+			// do nothing
+		}
+		}	
 		
 		
 		
