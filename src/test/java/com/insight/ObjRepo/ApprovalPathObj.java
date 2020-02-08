@@ -14,14 +14,23 @@ public class ApprovalPathObj extends CommonObj {
 	public static By selectAppNameFromList(String appName) {
 		return By.xpath("//select[@id='ListFrom']//option[contains(text(),'" + appName + "')]");
 	}
-
+	public static By AddedAppNameFromList(String appName) {
+		return By.xpath("//div[@id='listToBox']//li[contains(text(),'"+appName+"')]");
+	}
+	public static By Approvercount(String AN) {
+		return By.xpath("//td[contains(text(),'"+AN+"')]//following-sibling::td[contains(@class,'NumApprover')]");
+	}
+	public static By ApproverPathName(String AN) {
+		return By.xpath("//td[contains(text(),'"+AN+"')]");
+	}
+public static By NumberOfapproversadded = By.xpath("//div[@id='listToBox']//li");
 	public static By SELECT_PATH_BUTTON = By.xpath("//a[@class='orange'][@alt='LtoR_button1']");
 	public static By SELECT_REMOVEPATH_BUTTON = By.xpath("//a[@class='orange'][@alt='RtoL_button1']");
 
 	public static By getCreatedApproverPath(String appName) {
 		return By.xpath("//table[@id='apptempl']//td[@class='Cl_AppPathName'][contains(text(),'" + appName + "')]");
 	}
-
+public static By Successmsg = By.xpath("//div[@class='successUpdated']");
 	public static By getCreatedApproverPathEditLink(String appName) {
 		return By.xpath("//table[@id='apptempl']//td[@class='Cl_AppPathName'][contains(text(),'" + appName
 				+ "')]/..//td[@class='Cl_Options ']//a[contains(text(),'Edit')]");
@@ -66,7 +75,7 @@ public class ApprovalPathObj extends CommonObj {
 			"//div[@id='ApprovalPathCont']//div[@class='successUpdated' and contains(text(),'Successfully edited approval path')]");
 	public static By APP_LNAME_TEXTBOX = By.xpath("//div[@class='inp_searchapp']//input[@id='search_lastname_text']");
 	public static By LAST_NAME_SEARCH_BTN = By.xpath("//a[@id='search_lastname_button']");
-
+	public static By ApproversearchtextBox =By.xpath("//input[@id='searchApprover']");
 	public static By GET_APPROVALPATH_COUNT = By.xpath("//table[@id='apptempl']//tbody//tr");
 	public static By Get_ApproverPathName(int i) {
 		return By.xpath("//table[@id='apptempl']//tbody//tr["+i+"]//td[@class='Cl_AppPathName']");
@@ -258,7 +267,7 @@ public static By Approvername(String Filedname) {
 
 	public static By deleteApprover(String approverName) {
 		return By.xpath(
-				"//table[@id='createApproveTableId']//tbody//tr//td[text()='Automation, QTP10016']//..//a//img[contains(@src,'Deep_Delete')]");
+				"//a//img[contains(@src,'Deep_Delete')]");
 	}
 
 	public static By SHOW_USERS_CHECKBOX = By.xpath("//div//input[@id='rulesShowUser']");
@@ -318,7 +327,7 @@ public static By Approvername(String Filedname) {
 	public static By REQ_SAVE_CHANGES_BTN = By.xpath("//a[@id='manageReqUpdate']//span[contains(text(),'Save Changes')]");
 	
 	public static By REQUESTOR_GRP_REFRESH_LINK = By.xpath("//a[@title='View All']");
-	
+	public static By RefreshLinkInApproverPathMngm = By.xpath("(//img[contains(@src,'Deep_Refresh')])[1]");
 	public static By GET_REQUESTOR_GROUP_COUNT = By.xpath("//table[@id='reqGrpUserReport']//tbody//tr");
 	
 	public static By getRequestorName(String i) {
