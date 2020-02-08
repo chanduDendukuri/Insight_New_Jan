@@ -83,7 +83,7 @@ public String RandomApprovalPathName(String Approver_Name) throws Throwable {
 
 	public void ClickCreateApprovalPathButton() throws Throwable {
 		if (isVisibleOnly(CREATE_APPROVALPATH_BTN, "")) {
-			click(CREATE_APPROVALPATH_BTN, "Approver Path Button click");
+			click(CREATE_APPROVALPATH_BTN, "Create Approver Path Button");
 			reporter.SuccessReport(
 					"Click Create New Approval Path on Approval Management Approval Path Management Page",
 					"Create Approval Path Link Exists and Clicked", "");
@@ -95,7 +95,7 @@ public String RandomApprovalPathName(String Approver_Name) throws Throwable {
 	}
 
 	public void VerifyAppovalPathCreated(String Approver_Name) throws Throwable {
-		String SuccessMsg = getText(Successmsg, "");
+		String SuccessMsg = getText(Successmsg, "Success message:");
 		if (isElementPresent(getCreatedApproverPath(Approver_Name), "Approval management page")) {
 			reporter.SuccessReport("Verify Approval Path is Added on Approval Management Approval Path Management Page",
 					"Created Approver Path is Exists and Verified", SuccessMsg);
@@ -225,8 +225,8 @@ for(int i=1;i<=count;i++) {
 	text = (myList.get(1)).getText();
 	click(selectAppNameFromList(text), "Select Approver name from list box::"+text+"");
 	Add_Approver_Btn_Click();
-	if(isElementNotPresent(AddedAppNameFromList(text), "Select Approver name from list box")) {
-		click(selectAppNameFromList(text), "Select Approver name from list box::"+text+"");
+	if(isElementNotPresent(AddedAppNameFromList(text), "Select Approver name from Right list box ")) {
+		click(selectAppNameFromList(text), "Select Approver name from available list box::"+text+"");
 		Add_Approver_Btn_Click();
 	}
 	Thread.sleep(2000);
@@ -1697,24 +1697,30 @@ String EndDate= getText(Approvername("EndDateId"), "EndDateId");
 	 * @throws Throwable
 	 */
 
-	public void datePicker(int months, String strCurrDay) throws Throwable {
+	public void datePicker(int months, String strCurrDay,String datetype) throws Throwable {
 
 		String day = strCurrDay.split("-")[0];
 		String month = strCurrDay.split("-")[1];
 		String year = strCurrDay.split("-")[2];
 
-		click(EndDateCALENDAR, "Click on calendar");
-		if (isElementPresent(NEXT_MONTH_ARROW, "Next month")) {
+		if(datetype.equals("FromDate")) {
+			click(StartDateCALENDAR, "Click on calendar");
+			}
+			else {
+				click(EndDateCALENDAR, "Click on calendar");
+			}
+		if (isElementPresent(PREV_MONTH_ARROW, "Next month")) {
 			for (int i = 0; i <= months; i++) {
-				click(NEXT_MONTH_ARROW, "Next konth");
+				driver.findElement(PREV_MONTH_ARROW).click();
+				//click(NEXT_MONTH_ARROW, "Next konth");
 			}
 			// Select Day
 			if (isElementPresent(dayInStartDayCalender(day), "From Date ")) {
-				click(dayInStartDayCalender(day), "Day");
+				click(dayInStartDayCalender(day), "Day: "+day);
 			}
 
 			reporter.SuccessReport("Change Month on Approval Management Page Approver Out of Office Settings",
-					"Arrow Button Exists and Clicked to Change the Month", "");
+					"Arrow Button Exists and Clicked to Change the Month", month+"-"+day);
 		} else {
 			reporter.failureReport("Change Month on Approval Management Page Approver Out of Office Settings",
 					"Arrow Button Does Not Exist", "");
@@ -1732,18 +1738,19 @@ String EndDate= getText(Approvername("EndDateId"), "EndDateId");
 			click(EndDateCALENDAR, "Click on calendar");
 		}
 for(int i=0;i<=11;i++) {
-	if(getText(MonthSelection, "Month Name").equals("month")) {
+	if(getText(MonthSelection, "Month Name").contains(month)) {
 		break;
 	}
 	else {
 		click(NEXT_MONTH_ARROW, "Next konth");
 	}
+}
 	if (isElementPresent(dayInStartDayCalender(day), "From Date ")) {
 		click(dayInStartDayCalender(day), "Day: "+day);
 	}
 }
 		
-	}
+	
 
 	/**
 	 * click on Requisition Status Report
