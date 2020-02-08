@@ -159,7 +159,7 @@ public static By Successmsg = By.xpath("//div[@class='successUpdated']");
 			"//ul[@id='tab_ul']//li[@aria-labelledby='idGeneralSetting']//a[contains(text(),'General Settings')]");
 
 	public static By CREATE_LINK = By.xpath("//table[@id='createApproveTableId']//td//a[@title='Create']");
-
+public static By CreateLinkInrequisationRejection = By.xpath("//table[@id='rejectionTypesId']//img[contains(@src,'Deep_Add')]");
 	public static By REQ_REJECTION_DESC_TXTBOX = By
 			.xpath("//table[@id='rejectionTypesId']//tbody//tr//td//input[@id='requestRejectDiscription']");
 
@@ -334,7 +334,7 @@ public static By Approvername(String Filedname) {
 		return By.xpath("(//table[@id='reqGrpUserReport']//td[@class='verticalAlignTop'])[" + i + "]");
 	}
 	
-	public static By GET_SELECTED_COUNT = By.xpath("//select[@id='nowshowing']");
+	public static By GET_SELECTED_COUNT = By.xpath("//select[@id='repnowshowing']");
 	public static By NEXT_PAGE_LINK = By.xpath("//a[@id='pageLink_Next'][contiains(text(),'Next')]");
 	public static By TU_IUS_Requestor_Group_Link = By.xpath("(//td[@class='verticalAlignTop']//div//a[text()='TU_IUS Requestor Group'])[1]");
 	public static By TU_IUS_Tired_Requestor_Group_Link = By.xpath("(//td[@class='verticalAlignTop']//div//a[text()='TU_IUS Requestor Group Tiered'])[1]");
@@ -348,8 +348,8 @@ public static By Approvername(String Filedname) {
 	
 	public static By SUCCESS_UPDATED_MSG = By.xpath("//div[@id='updateManageRequestors_message']//p[contains(text(),'Successfully')]");
 
-	public static By CALENDAR = By.xpath("//div[@class='RSREndDate']//img");
-	
+	public static By EndDateCALENDAR = By.xpath("//div[@class='RSREndDate']//img");
+	public static By StartDateCALENDAR = By.xpath("//div[@class='RSRStartDate']//img");
 	public static By SEARCH = By.xpath("//div[@class='RSREndDate']//following::div//a[@class='grey']//img");
 	
 	
@@ -359,6 +359,6 @@ public static By Approvername(String Filedname) {
 	public static By getRequestortableDetails(int i,int j) {
 		return By.xpath("//table[@id='RSRResultTable']//tbody//tr["+i+1+"]//td["+j+"]");
 	}
-
+public static By MonthSelection = By.xpath("//span[@class='ui-datepicker-month']");
 	
 }
