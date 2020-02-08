@@ -82,6 +82,9 @@ public class REP01_InvoicedOrdersDefaultSettingsTest extends ReportingLib {
 							verifyDefaultCurrentDate(data.get("CurrentDate"));
 							List<String> dateOptionsList= Arrays.asList(data.get("ScheduleDates").split(","));
 							verifyScheduleReportOptionsDates(dateOptionsList);
+							verifyDefualtCurrancyUSD();
+							verifyStartDate(data.get("DayOne"));
+							EndDateVerification();
 							canadaLib.clickOnDeliveryMethod(data.get("DeliveryMethod"));
 							clickOnDeliveryReport(data.get("DeliveryReport"));
 							String customName=getRandomString(7);
@@ -100,6 +103,7 @@ public class REP01_InvoicedOrdersDefaultSettingsTest extends ReportingLib {
 							cmtLib.searchForaUserAndSelect(data.get("LnameEmailUname"), data.get("ContactName"));
 							cmtLib.setPermissionsToDisable(data.get("Menu_Name"), data.get("Set_Permission1"));
 							cmtLib.setPermissionsToDisable(data.get("Menu_Name"), data.get("Set_Permission2"));
+							cmtLib.setPermissions(data.get("Menu_Name"), data.get("Set_Permission3"));
 							cmtLib.permissionFromDD(data.get("Set_Permission3"), data.get("Permission_Dropdown_Option"));
 							cmtLib.loginAsAdminCMT();
 							marriottIntlCorpLib.clickAccountToolsFromSideMenu(data.get("Tools_Menu"),data.get("Tools_Menu_DD"));
@@ -117,6 +121,9 @@ public class REP01_InvoicedOrdersDefaultSettingsTest extends ReportingLib {
 							verifyDeliveryMethodOptions(deliveryOptionsList1);
 							verifyDefaultAccountSelection(data.get("DefaultAccountSelOpt"));
 							verifyDefaultCurrentDate(data.get("CurrentDate"));
+							verifyDefualtCurrancyUSD();
+							verifyStartDate(data.get("DayOne"));
+							EndDateVerification();
 							canadaLib.clickOnDeliveryMethod(data.get("DeliveryMethod"));
 							clickOnDeliveryReport(data.get("DeliveryReport"));							
 							String customName1=getRandomString(7);

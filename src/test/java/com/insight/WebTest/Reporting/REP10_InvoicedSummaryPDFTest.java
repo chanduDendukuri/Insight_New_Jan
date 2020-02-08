@@ -82,8 +82,9 @@ public class REP10_InvoicedSummaryPDFTest extends ReportingLib {
 					verifyDefaultCurrentDate(data.get("CurrentDate"));
 					verifyStartDate(data.get("DayOne"));
 					EndDateVerification();
+					verifyScheduleReportOption(data.get("Soption"));
 					List<String> dateOptionsList = Arrays.asList(data.get("ScheduleDates").split(","));
-					verifyScheduleReportOptionsDates(dateOptionsList);					
+					verifyScheduleReportOptionsDates(dateOptionsList);	
 					canadaLib.clickOnDeliveryMethod(data.get("DeliveryMethod"));
 					canadaLib.clickOnDeliveryFormat(data.get("DeliverFormat"));
 					canadaLib.clickOnRun();

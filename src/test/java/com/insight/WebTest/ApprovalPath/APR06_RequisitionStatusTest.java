@@ -76,32 +76,36 @@ public class APR06_RequisitionStatusTest extends ApprovalPathLib {
 					// Verify Approval Management Page - is Loaded
 					reqProcLib.verifyApprovalManagementPage();
 
-					String ReqGroupName1 = data.get("RequestorGroup1");
+					//String ReqGroupName1 = data.get("RequestorGroup1");
 
 					// Add Requestors to Requestor Group
-					AddRequestorsRequestorGroup(ReqGroupName1);
+					//AddRequestorsRequestorGroup(ReqGroupName1);
 
 					// Click on Reports
 					ClickReports();
 
 					// Click on Requisition status report
 					clickRequisitionStatusReport();
-
-					String strCurrDay = GetCurrDay();
-					int month = 13;
-					datePicker(14, strCurrDay);
+					SelectCurrentDate("FromDate");
+					SelectCurrentDate("ToDate");
+					
+					/*
+					 * String strCurrDay = GetCurrDay(); //int month = 13; datePicker(14,
+					 * strCurrDay);
+					 */
 					clickSearch();
 					verifyMessage(data.get("actualText"));
 					scrollUp();
-					commonLib.clickOnAccountToolsAndClickOnProductGrp(data.get("Tools_Menu"),
-							data.get("Tools_Menu_DD"));
-					ClickReports();
-					clickRequisitionStatusReport();
-					int months = 3;
-					datePicker(months, strCurrDay);
+					/*
+					 * commonLib.clickOnAccountToolsAndClickOnProductGrp(data.get("Tools_Menu"),
+					 * data.get("Tools_Menu_DD")); ClickReports(); clickRequisitionStatusReport();
+					 * int months = 3; datePicker(months, strCurrDay);
+					 */
 
 					changeFilterStatus(data.get("FilterbyStatus"));
-
+					SelectCurrentDate("FromDate");
+					SelectCurrentDate("ToDate");
+					//datePicker(14, strCurrDay);
 					// Displays Requestors
 					displayRequestorsRecords();
 					// Verify the Paging Count 50
