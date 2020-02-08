@@ -2,6 +2,7 @@ package com.insight.WebTest.Canada;
 
 import com.insight.Lib.CanadaLib;
 import com.insight.Lib.*;
+import com.insight.ObjRepo.CommonObj;
 import com.insight.accelerators.ReportControl;
 import com.insight.accelerators.TestEngineWeb;
 import com.insight.googledrive.ReportStatus;
@@ -56,6 +57,7 @@ public class CAN02_ShipBillPayEWRFeeTest extends CanadaLib{
 						ShipBillPayLib shipbLib = new ShipBillPayLib();
 						CanadaLib canadaLib = new CanadaLib();
 						ProductDisplayInfoLib prodinfo = new ProductDisplayInfoLib();
+						CommonCanadaLib ccp = new CommonCanadaLib();
 
 
 									cmtLib.loginToCMT(data.get("Header"));
@@ -150,6 +152,10 @@ public class CAN02_ShipBillPayEWRFeeTest extends CanadaLib{
 
 									cartLib.clickOnContinueButtonInAddInformtion();
 									canadaLib.verifySBP();
+								//	ccp.clickOnStoredAddressesLink();
+									shipbLib.selectStoredAddress("B");
+									String a = ccp.getStoredAddresses();
+									assertTrue(ccp.verifySroredAddresswithSearchResults(),"Canada address successfully selected");
 									orderLib.shippingBillPayContinueButton();
 									orderLib.shippingOptionsCarrierSelection(); // Click continue on shipping options
 									orderLib.billingAddressContinueButton();

@@ -304,7 +304,9 @@ return By.xpath("//td[@class='stock width70']//a[contains(text(),'"+product+"')]
 public static By DESCRIPTION=By.xpath("//table[@id='prodGroupTable']//div//a");
 public static By STOCK=By.xpath("//table[@id='prodGroupTable']//tr//td[2]//a");
 public static By CHECK_BOX=By.xpath("//table[@id='prodGroupTable']//tr//td[5]//input");
-public static By COI_IN_CART=By.xpath("//div[@class='columns medium-flex-child-grow cart__table-col--item']//div//div//div[@class='columns flex-child-auto medium-flex-child-shrink cart__table-col cart__table-col--coi']//span");
+public static By COI_IN_CART=By.xpath("//div[@class='columns medium-flex-child-grow cart__table-col--item']//div//div//div[@class='columns flex-child-auto medium-flex-child-shrink cart__table-col cart__table-col--coi']");
+public static By CSI_IN_CART=By.xpath("//div[@class='columns medium-flex-child-grow cart__table-col--item']//div//div//div[@class='columns flex-child-auto medium-flex-child-shrink cart__table-col cart__table-col--csi']");
+
 public static By ADD_Checkbox_forCOIproducts=By.xpath("//div[@id='selectedProductGroupContent']//td[contains(text(),'COI Price:')]/following-sibling::td//input[@type='checkbox']");
 public static By Productname_at_cart=By.xpath("//h4[@class='cart__item-heading']");
 

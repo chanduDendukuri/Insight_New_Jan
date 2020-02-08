@@ -14,7 +14,9 @@ public class ReportsObj extends ActionEngine {
      public static By SCHEDULEREPORT_OPTIONS = By.xpath("//select[@id='ddlInterval']");
      public static By SCHEDULEREPORT_DATES = By.xpath("//select[@id='ddlQuickDates']");
      public static By DELIVERY_METHODOPTIONS = By.xpath("//select[@id='ddlDeliveryMethod']");
- 
+     public static By ScheduledOption(String defaultOption){
+    	 return By.xpath("//select[@id='ddlInterval']/option[contains(text(),'"+defaultOption+"')]");
+     }
 
      public static By getAcccountSelection(String defaultOption){
 			return By.xpath("//select[@id='selectionList']//option[contains(.,'"+defaultOption+"')]");

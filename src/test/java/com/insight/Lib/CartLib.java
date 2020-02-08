@@ -1800,7 +1800,7 @@ public void verifyProductdetails() throws Throwable {
 	 * @param Text_COI
 	 * @throws Throwable
 	 */
-	public void verifyCOIpart(String toolsMenuName, String dropDown, String productGroup, String productName,
+	public String verifyCOIpart(String toolsMenuName, String dropDown, String productGroup, String productName,
 			String Text_COI) throws Throwable {
 		Thread.sleep(20000);
 		if(isElementPresent(InvoiceHistoryObj.COSE_ACCOUNT_TOOLS, "close account tools"))
@@ -1819,6 +1819,7 @@ public void verifyProductdetails() throws Throwable {
 				"select product from product group");
 		String description=getText(CartObj.DESCRIPTION, "Description");
 		String stock=getText(CartObj.STOCK, "Stock");
+
 		reporter.SuccessReport("Check the Stock in Configuration Section on Product Standards Page", "Product Stock is Exists", "Part: "+description+"Stock: "+stock);
 		if(isVisible(CartObj.CHECK_BOX, "Check box")) {
 			click(CartObj.CHECK_BOX, "Check box");
@@ -1837,12 +1838,72 @@ public void verifyProductdetails() throws Throwable {
 			reporter.failureReport("verify View cart Link on Items added to cart Popup on Company standards", "View cart Link is not visible","");
 		}
 		
+		return(stock);
 		
 	}
-	public void coiInCartPage() throws Throwable {
+	
+	public Integer getCOIQuantityFromStock(String stock){
+        String[] subStrings1 = stock.split("\\|");
+        for(String subString1 : subStrings1)
+        {
+        	String[] subStrings2 = subString1.trim().split("\\:");
+        	
+        	if(subStrings2[0].trim().equals("COI"))
+            {
+                //System.out.println("COI is"+subStrings2[1].trim());
+                
+                return Integer.parseInt(subStrings2[1].trim());
+            }
+        }
+		
+		
+		return 0;
+		
+	}
+	
+	public Integer getCSIQuantityFromStock(String stock){
+		
+        String[] subStrings1 = stock.split("\\|");
+        for(String subString1 : subStrings1)
+        {
+        	String[] subStrings2 = subString1.trim().split("\\:");
+        	
+        	if(subStrings2[0].trim().equals("CSI"))
+            {
+                //System.out.println("COI is"+subStrings2[1].trim());
+                
+                return Integer.parseInt(subStrings2[1].trim());
+            }
+        }
+		
+		
+		
+		return 0;
+		
+	}
+	public Integer getStockFromTools(String stock) {
+		String[] subStrings1 = stock.split("\\|");
+		for(String subString1 : subStrings1)
+        {
+        	String[] subStrings2 = subString1.trim().split(" ");
+        	
+        	if(subStrings2[0].trim().equals("In-stock"))
+            {
+                //System.out.println("COI is"+subStrings2[1].trim());
+                
+                return Integer.parseInt(subStrings2[1].trim());
+            }
+        }
+		
+		
+		
+		return 0;
+	}
+	public void coiInCartPage(Integer coiQuantity) throws Throwable {
 		String partNumber=getText(CartObj.Cart_Prod_Insight_Part_Number,"part number");
 		String coi=getText(CartObj.COI_IN_CART,"COI in cart page");
-		if(partNumber!=null) {
+		System.out.println("coi"+coi);
+		if(partNumber!=null && coiQuantity>0) {
 			reporter.SuccessReport("Check Product with COI Value in the Cart Page", "Product with COI Value are Exists and As Expectedin the Cart", "Part Number:"+partNumber +"COI: "+coi);
 		}
 		else {
@@ -1851,6 +1912,29 @@ public void verifyProductdetails() throws Throwable {
 		
 	}
 	
+	public void csiInCartPage(Integer csiQuantity) throws Throwable {
+		String partNumber=getText(CartObj.Cart_Prod_Insight_Part_Number,"part number");
+		String csi=getText(CartObj.CSI_IN_CART,"CSI in cart page");
+		if(partNumber!=null && csiQuantity>0) {
+			reporter.SuccessReport("Check Product with CSI Value in the Cart Page", "Product with CSI Value are Exists and As Expectedin the Cart", "Part Number:"+partNumber +"CSI: "+csi);
+		}
+		else {
+			reporter.failureReport("Check Product with CSI Value in the Cart Page", "Product with CSI Value are not Exists","", driver);
+		}
+		
+	}
+	
+	public void stockInCartPage(Integer stockInTools) throws Throwable {
+		String stock=getText(CartObj.CART_PROD_STOCK_RECENTLYADDEDTEM,"CartProductStockForRecentlyAddedItem");
+		String partNumber=getText(CartObj.Cart_Prod_Insight_Part_Number,"part number");
+		if(partNumber!=null && stockInTools>0) {
+			reporter.SuccessReport("Check Product with stock Value in the Cart Page", "Product with stock Value are Exists and As Expectedin the Cart", "Part Number:"+partNumber +"stock: "+stock);
+		}
+		else {
+			reporter.failureReport("Check Product with stock Value in the Cart Page", "Product with stock Value are not Exists","", driver);
+		}
+		
+	}
 	
 	/**
 	 * 
@@ -2013,7 +2097,7 @@ public void getpartnumberIncartpage() throws Throwable {
 					driver);
 		} else {
 			reporter.SuccessReport("Verify contract present in cart page",
-					"Contract in Cart page is displayed as : " + contractName, "");
+					"Contract in Cart page is displayed as : " + contractName, "Contract : "+contractName);
 		}
 	}
 
