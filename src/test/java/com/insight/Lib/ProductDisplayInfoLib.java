@@ -1479,10 +1479,14 @@ public class ProductDisplayInfoLib extends productsDisplayInfoObj {
                 if (qtyList.get(i).isDisplayed()) {
                     reporter.SuccessReport("Quantity List", "Quantity List is " + partNum.get(i).getText() + " is ", qtyList.get(i).getText());
                 }
-                if (stockList != null) {
+                if (stockList.get(i) != null) {
                     /*if (stockList.get(i).isDisplayed()) {*/
-                    reporter.SuccessReport("Stock List", "Stock List is " + partNum.get(i).getText() + " is ", "Available");
+                    reporter.SuccessReport("Stock List", "Stock List is " + partNum.get(i).getText() + " is ", "Available and the value is " +  stockList.get(i).getText());
                     /*}*/
+                    reporter.SuccessReport("Quantity List", "Quantity List is " + partNum.get(i).getText() + " is ", DecList.get(i).getText()+ "<b>Quantity</b>  "+qtyList.get(i).getText() + "<b>Price</b>  "+priceList.get(i).getText() + UnitPriceList.get(i).getText() + stockList.get(i).getText());
+
+                }else {
+                    reporter.SuccessReport("Quantity List", "Quantity List is " + partNum.get(i).getText() + " is ", DecList.get(i).getText() + qtyList.get(i).getText() + priceList.get(i).getText() + UnitPriceList.get(i).getText());
                 }
             }
 

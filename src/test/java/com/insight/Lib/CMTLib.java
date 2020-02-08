@@ -3612,9 +3612,9 @@ public void verifyProductStandardsTitle() throws Throwable
 	{
 		isVisible(CMTObj.lblWebGroupManagement, "Web group create User page verification");
 	}
-	public void verifyWebGroupsManagementUsers() throws Throwable
+	public boolean verifyWebGroupsManagementUsers() throws Throwable
 	{
-		isVisible(lblWebGroupManagementUsers, "WebGroupsManagementUsers page loaded");
+		return isVisible(lblWebGroupManagementUsers, "WebGroupsManagementUsers page loaded");
 	}
 
 	/*public void setPermissionsWithMultipleOptions(String menuName, String userPermissions) throws Throwable {
