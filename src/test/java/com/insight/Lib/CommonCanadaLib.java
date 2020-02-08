@@ -2,6 +2,7 @@ package com.insight.Lib;
 
 import com.insight.ObjRepo.*;
 
+import freemarker.cache.WebappTemplateLoader;
 import org.omg.PortableServer.THREAD_POLICY_ID;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
@@ -383,5 +384,30 @@ public String getAccountNumber() throws Throwable{
 
     }
 
+    public void clickOnStoredAddressesLink() throws Throwable{
+        if(isVisibleOnly(StoredAddresses,"Stored Addresses")){
+            click(StoredAddresses,"Stored Address Link");
+        }
+    }
+    public String getStoredAddresses() throws Throwable{
+        return getText(getStoredAddresses,"Storead Address");
+    }
+    public boolean verifySroredAddresswithSearchResults() throws Throwable{
+        boolean Status = false;
+        List<WebElement> sAddress = driver.findElements(getSroredAddressFromResultsGrid);
+        for(int i=0 ; i <sAddress.size();i++)
+        {
+            if(sAddress.get(i).getText().contains("CA")){
+                Status=true;
+                reporter.SuccessReport("Verifying stored address ","Verifying stored address with expected","Clicked on "+sAddress.get(i).getText());
+                click(rbtnDefaultAddress,"Default address from results Grid");
+                click(btnContinue,"continue button");
+                break;
+            }else{
+                Status=false;
+            }
+        }
+        return Status;
+    }
     }
 

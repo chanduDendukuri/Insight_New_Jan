@@ -30,7 +30,7 @@ public class REQ02_AllowApproversEditTest extends ChinaLib{
 	ProductDisplayInfoLib prodLib = new ProductDisplayInfoLib();
 	OrderLib orderLib = new OrderLib();
 	RequisitionProcessingLib ReqLib = new RequisitionProcessingLib();
-	   
+	CanadaLib canadaLib= new CanadaLib();
 
 	   
 	// #############################################################################################################
@@ -80,7 +80,7 @@ public class REQ02_AllowApproversEditTest extends ChinaLib{
 						ReqLib.verifyApproverPathSettings();
 						ReqLib.getCheckboxesCount();
 						ReqLib.verifySuccessMessageForApproverPathSettings();
-
+						commonLib.clickLogOutLink(data.get("header1"));
 						// Login with 2nd user
 						cmtLib.navigateBackToCMT();
 						cmtLib.hoverOnManageWebGroupsAndSelectOptions(data.get("Manage_Web_Grp_Options"));
@@ -90,7 +90,9 @@ public class REQ02_AllowApproversEditTest extends ChinaLib{
 																									// Approval
 						cmtLib.loginAsAdminCMT();
 						searchLib.searchInHomePage(data.get("SearchItem"));
+						searchLib.verifyBreadCrumbInSearchResultsPage(data.get("SearchItem"));
 						searchLib.clickallDesktopsLink();
+						scrollBottom();
 						// Add a item to cart >> proceed To Checkout >> place order >>
 						// Verify the review order details,Receipt Order And Date
 						commonLib.addFirstDisplyedItemToCartAndVerify();
@@ -104,11 +106,12 @@ public class REQ02_AllowApproversEditTest extends ChinaLib{
 						orderLib.clickContinueOnLineLevelInfo(); // Click continue on Line
 																	// level Info
 						ReqLib.clearPhoneNumber();
+						canadaLib.verifySBP();
 						orderLib.shippingBillPayContinueButton(); // Click continue on
 																	// shipping address
 						orderLib.shippingOptionsCarrierSelection(); // Click continue on
 																	// shipping options
-						orderLib.shippingBillPayContinueButton(); // Billing address
+						orderLib.billingAddressContinueButton(); // Billing address
 																	// continue button
 						// MX card details
 						orderLib.enterCreditCard(data.get("Card_Number").toString(), data.get("Card_Name"), data.get("Month"),
@@ -120,7 +123,7 @@ public class REQ02_AllowApproversEditTest extends ChinaLib{
 						Thread.sleep(4000);
 						orderLib.verifyReceiptVerbiage();
 						String RefNumber = orderLib.getTextfromReferenceNumber();
-
+						commonLib.clickLogOutLink(data.get("header1"));
 						
 						// Login with 3rd user
 						cmtLib.navigateBackToCMT();
@@ -139,7 +142,7 @@ public class REQ02_AllowApproversEditTest extends ChinaLib{
 						ReqLib.clickUpdateInApprovalManagmentPage();
 						orderLib.verifyOrderNumberinManagementPage(RefNumber);
 						ReqLib.verifyApproveRequisitionStatus();
-
+						commonLib.clickLogOutLink(data.get("header1"));
 						// Login with 4th user
 						cmtLib.navigateBackToCMT();
 						cmtLib.hoverOnManageWebGroupsAndSelectOptions(data.get("Manage_Web_Grp_Options"));
@@ -159,12 +162,13 @@ public class REQ02_AllowApproversEditTest extends ChinaLib{
 						ReqLib.enterNewCardInformation(data.get("cardtype"), data.get("cardNum"), data.get("cardName"),
 								data.get("month"), data.get("year"));
 						ReqLib.verifyApproveRequisitionStatus();
+						
 						// Login with 1st User
 						cmtLib.navigateBackToCMT();
 						cmtLib.hoverOnManageWebGroupsAndSelectOptions(data.get("Manage_Web_Grp_Options"));
 						cmtLib.searchForaUserAndSelect(data.get("LnameEmailUname"), data.get("ContactName")); // QTPReq1
 						cmtLib.loginAsAdminCMT();
-						searchLib.verifyAccountToolForOrderMenuItem(data.get("toolsMenuName"), data.get("dropDown"));
+						commonLib.clickOnAccountToolsAndClickOnProductGrp(data.get("toolsMenuName"),data.get("dropDown"));
 						ReqLib.verifyApprovalMangmntPagefromSideMenu();
 						ReqLib.clickOnRequestorGroupID(data.get("ReqName"));
 						ReqLib.verifyCreate_EditRequestoreGrpGeader();

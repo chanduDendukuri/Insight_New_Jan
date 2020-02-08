@@ -751,7 +751,7 @@ public class RequisitionProcessingLib extends RequisitionProcessingObj {
   public void UnCheckAllCheckboxesCount()  throws Throwable {
 	if (isElementPresent(CHECK_BOX, "Checkboxes checked")) {
 		List<WebElement> myList = driver.findElements(CHECK_BOX);		
-		for (int m = 1; m < myList.size(); m++) {
+		for (int m = 0; m < myList.size(); m++) {
 		if(myList.get(m).isSelected()){
 			click(checkboxes(i),"Checkboxes");
 			for (int j = 1; j < myList.size(); j++) {

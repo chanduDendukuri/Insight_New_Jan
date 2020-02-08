@@ -633,17 +633,12 @@ public class CommonLib extends ActionEngine{
 		public void spinnerImage() throws Throwable {
 			Thread.sleep(2000);
 			if(isVisibleOnly(CommonObj.SPINNER_IMAGE, "spinner image")) {
-			waitForInVisibilityOfElement(CommonObj.SPINNER_IMAGE, "spinner image");
-			if(isVisibleOnly(CommonObj.SPINNER_IMAGE, "spinner image")) {
-				LOG.info("spinner image disapperaed");
+				waitForInVisibilityOfElement(CommonObj.SPINNER_IMAGE, "spinner image");
 			}else {
-				//reporter.failureReport("spinner image","spinner image not disapperaed","");
+				reporter.SuccessReport("spinner image","spinner image disapperaed","");
 			}
 			}
-			else {
-				LOG.info("spinner image not present");
-			}
-		}
+			
 		
 		/**
 		 * Method is to get the contract name on the product details page.

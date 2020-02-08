@@ -138,7 +138,7 @@ public class REQ06_NOForceRequestorEnterCCTest extends ChinaLib{
 																	// shipping address
 						orderLib.shippingOptionsCarrierSelection(); // Click continue on
 																	// shipping options
-						orderLib.shippingBillPayContinueButton(); // Billing address
+						orderLib.billingAddressContinueButton(); // Billing address
 																	// continue button
 						// Review requisition without entering payment info details
 						orderLib.clickOnReviewRequisitionButton();

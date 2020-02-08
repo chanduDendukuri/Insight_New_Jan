@@ -8,6 +8,7 @@ import java.io.StringReader;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
@@ -1673,7 +1674,6 @@ public void addShippingAddress(String name, String userName,String street1,Strin
 					"Run Reports Field Not Exists and Clicked", "", driver);
 		}
 	}
-
 	/**
 	 * Method to verify download excel file
 	 *
@@ -1715,6 +1715,7 @@ public void addShippingAddress(String name, String userName,String street1,Strin
 			reporter.SuccessReport("Verify the Excel Downloaded", "Excel sheet is present as expected", "");
 
 		}
+		reporter.SuccessReport("Verify the Excel Downloaded", "Excel sheet is present as expected", "");
 	}
 
 	/**
