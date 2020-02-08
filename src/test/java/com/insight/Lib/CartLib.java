@@ -2013,7 +2013,7 @@ public void getpartnumberIncartpage() throws Throwable {
 					driver);
 		} else {
 			reporter.SuccessReport("Verify contract present in cart page",
-					"Contract in Cart page is displayed as : " + contractName, "");
+					"Contract in Cart page is displayed as : " + contractName, "Contract : "+contractName);
 		}
 	}
 

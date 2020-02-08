@@ -140,7 +140,6 @@ public class ODP07_ConvertQuoteTest extends OrderLib{
 							reporter.failureReport("Verify the TAX on receipt page","Tax in Order Recipet for Quote Converion is not same","Actual tax: "+actualtax+"  Expected tax: "+taxAmount,driver);
 						}
 						
-						
 						commonLib.clickLogOutLink(data.get("Logout"));
 
 						// fnCloseTest();
