@@ -399,7 +399,12 @@ public class OrderObj extends ActionEngine{
 			return	By.xpath("//div/span[contains(.,'"+Email+"')]");//TestUser@gmail.com
 		}
 	 
-	 
+	 public static By WG_800_NUMBER_ON_QUOTE_PRINTABLE_PAGE=By.xpath("//span[@id='insightSpanId']");
 	 public static By SHIPPING_ADDRESS_ON_RECEIPT_PAGE=By.xpath("//div//h3[contains(text(),'Shipping address')]/following::div[1]//label[@class='form__label--readonly']");
+     public static By ORDER_UTILITIES_QUOTE_PAGE=By.xpath("//select[@id='utilityOption']");
+     
+     // Receipt
+     public static By PRINT_ON_RECEIPT_PAGE=By.xpath("//a[@class='ion-ios-printer-outline shopping-cart__print']//span[contains(text(),'Print')]");
+     public static By TELEPHONE_NUMBER_ON_PRINT_RECEIPT=By.xpath("//span[@class='cart-print-header__telephone']");
 }
 

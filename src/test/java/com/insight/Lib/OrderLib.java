@@ -5,6 +5,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+import java.util.Set;
 
 import org.omg.PortableServer.THREAD_POLICY_ID;
 import org.openqa.selenium.JavascriptExecutor;
@@ -846,7 +847,12 @@ List<String> orderdetails = new ArrayList<String>();
 			reporter.failureReport("Verify the TAX before and after adding licence",
 					"Before and after adding licence tax is not equal which is" + ActualTax + "and" , result);
 		}
-
+	}
+	
+	public String getTaxInReceipt() throws Throwable {
+		String tax= getText(ADDLICENCE_TAX_AMOUNT, "Tax displayed after adding LICENCE");
+		reporter.SuccessReport("Get Tax on receipt page", "Tax on receipt page is ", getText(ADDLICENCE_TAX_AMOUNT, "Tax displayed after adding LICENCE"));
+	    return tax;
 	}
 
 	/**
@@ -1485,9 +1491,9 @@ List<String> orderdetails = new ArrayList<String>();
 	public String verifyTaxInSaveAsQuotePage() throws Throwable{
 		String taxAmount=getText(TAX_IN_SAVE_QUOTE, "tax in quote");
 		if(taxAmount==null || taxAmount.isEmpty()){
-			reporter.failureReport("Verify tax amount in save quote page ", "Tax amount is empty",""); 
+			reporter.failureReport("Verify tax amount in save quote page ", "Tax amount is empty","",driver); 
 		}else{
-			reporter.SuccessReport("Verify tax amount in save quote page ", "Tax amount is present",""); 
+			reporter.SuccessReport("Verify tax amount in save quote page ", "Tax amount is present",taxAmount); 
 		}
 		return taxAmount;
 	}
@@ -1523,7 +1529,7 @@ List<String> orderdetails = new ArrayList<String>();
 		if(isElementPresent(QUOTE_DETAILS_PAGE_LABEL, "Quote details page")){
 			reporter.SuccessReport("Verify Quote details page", "Quote details page is displayed","");
 		 }else{
-			 reporter.failureReport("Verify Quote details page", "Quote details page not displayed",""); 
+			 reporter.failureReport("Verify Quote details page", "Quote details page not displayed","",driver); 
 
 		}
 	}
@@ -1540,7 +1546,7 @@ List<String> orderdetails = new ArrayList<String>();
 		if(isElementPresent(labelRecentorders, "Recentorders page")){
 			reporter.SuccessReport("Verify Recentorders page", "Recentorders page is displayed","");
 		 }else{
-			 reporter.failureReport("Verify Recentorders page", "Recentorders page not displayed",""); 
+			 reporter.failureReport("Verify Recentorders page", "Recentorders page not displayed","",driver); 
 
 		}
 	}
@@ -1554,7 +1560,7 @@ List<String> orderdetails = new ArrayList<String>();
 		clickUntil(CONVERT_QUOTE_BTN, CartObj.CART_LABEL_ON_CART_PAGE, "Convert quote button", "Convert quote button");
 		reporter.SuccessReport("Click on Covert Quote Button", "Covert Quote Button is Exists and Selected","");
 		 }else{
-			 reporter.failureReport("Click on Covert Quote Button", "Covert Quote Button is Not Exists",""); 
+			 reporter.failureReport("Click on Covert Quote Button", "Covert Quote Button is Not Exists","",driver); 
 
 		}
 	}
@@ -1566,10 +1572,10 @@ List<String> orderdetails = new ArrayList<String>();
 	public void verifyTheQuantityIsdisabled() throws Throwable{
 		WebElement element =driver.findElement(CartObj.QUANTITY_DISABLED);
 		if(element.isDisplayed()){
-			reporter.SuccessReport("Verify Quantity disabled", "Quantity is disabled","");
+			reporter.SuccessReport("Verify Quantity disabled", "Quantity is disabled and is in read only mode","");
 		}else{
 			 
-			 reporter.failureReport("Verify Quantity disabled", "Quantity is not disabled",""); 
+			 reporter.failureReport("Verify Quantity disabled", "Quantity is not disabled","", driver); 
 		}
 	}
 	/**
@@ -1588,9 +1594,9 @@ List<String> orderdetails = new ArrayList<String>();
 	public void verifyTheQuantityOfCartProductOnReceiptPage(String quantity) throws Throwable{
 		String actualQuantity=getAttributeByValue(CartObj.QUANTITY, "Quantity");
 		if(quantity.equals(actualQuantity)){
-			reporter.SuccessReport("Verify Quantity added in cart", "Quantity addede succesfully",quantity); 
+			reporter.SuccessReport("Verify Quantity added in cart", "Quantity addede succesfully","Quantity: "+quantity); 
 		}else{
-			reporter.failureReport("Verify Quantity added in cart", "Quantity is not added to the cart correctly. actaul quantity is : "+actualQuantity+ "Expected is : ",quantity); 
+			reporter.failureReport("Verify Quantity added in cart", "Quantity is not added to the cart correctly. actaul quantity is : "+actualQuantity+ "Expected is : ",quantity,driver); 
 		
 		}
 	}
@@ -2552,5 +2558,57 @@ List<String> orderdetails = new ArrayList<String>();
 			reporter.failureReport("verify valid card error message", "Please enter valid card number message does not displayed", "", driver);
 		}
 	  }
+	
+	/**
+	 * Method is to verify Custom 800 Number in Quote Receipt Print View
+	 * @param phoneNumber
+	 * @throws Throwable
+	 */
+	 public void verifyWG800NumberOnSaveAsQuoteScreen(String phoneNumber) throws Throwable {
+		 Set<String> handle=driver.getWindowHandles();
+		   if (handle.size()>2) {
+			   switchToChildWindow();
+			   Thread.sleep(2000);
+			   String actualNumber=getText(WG_800_NUMBER_ON_QUOTE_PRINTABLE_PAGE, "WG 800 number").replace("-", "");
+				 if(phoneNumber.equals(actualNumber)) {
+					 reporter.SuccessReport("verify WG 800 number in quote printable page", "Custom 800 Number in Quote Receipt Print View Exists and Value Returned", phoneNumber, driver);
+				 }else {
+					 reporter.failureReport("verify WG 800 number in quote printable page", "Custom 800 Number in Quote Receipt Print View does not Exists ", "", driver);
+				 }
+				 driver.close();
+				   ArrayList<String> tabs = new ArrayList<String>(driver.getWindowHandles());
+				   driver.switchTo().window(tabs.get(1));
+		   }else {
+			   reporter.failureReport("View Printable page ", "Printable page does not exists", "", driver);
+		   }
+	 }
+	 
+	 public void selectOrderUtilitiesOnSaveAsQuotesScreen(String orderUtilities) throws Throwable {
+		 if(isVisibleOnly(ORDER_UTILITIES_QUOTE_PAGE, "Order utilites")) {
+			 click(ORDER_UTILITIES_QUOTE_PAGE, "Order utilities", "");
+			 selectByVisibleText(ORDER_UTILITIES_QUOTE_PAGE, orderUtilities, "orderUtilities");
+		 }else {
+			 reporter.failureReport("Select Pick View Printable Page under Utility Option", "Expected Pick View Printable Page under Utility Option doex not Exists ", "", driver);
+		 }
+	 }
+	 
+	 public void clickPrintOnReceiptpage() throws Throwable {
+		 click(PRINT_ON_RECEIPT_PAGE, "Print on receipt page", "");
+	  }
+	 
+	 /**
+	  * Method is to verify the phone number on receipt page print popup
+	  * @param phoneNumber
+	  * @throws Throwable
+	  */
+	 public void verifyPhoneNumberOnPrintPopupOfReceipPage(String phoneNumber) throws Throwable {
+		 String actualNumber=getText(TELEPHONE_NUMBER_ON_PRINT_RECEIPT, "Telephone number on receipt page");
+		 if(phoneNumber.equals(actualNumber)) {
+			 reporter.SuccessReport("verify WG 800 number in receipt printable page", "Custom 800 Number in Receipt Print popup Exists and Value Returned", phoneNumber, driver);
+		 }else {
+			 reporter.failureReport("verify WG 800 number in receipt printable page", "Custom 800 Number in  Receipt Print popup View does not Exists ", "", driver);
+		 }
+		 
+	 }
 	}
 

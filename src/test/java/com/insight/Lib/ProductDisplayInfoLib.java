@@ -713,6 +713,8 @@ public class ProductDisplayInfoLib extends productsDisplayInfoObj {
         }
         if (isVisibleOnly(emptyShoppingCart, "Empty cart")) {
             reporter.SuccessReport("Empty Cart", " All the products are deleted", getText(emptyShoppingCart, "Empty cart"));
+        }else {
+        	reporter.failureReport("Empty Cart", " All the products are not deleted from cart","",driver);
         }
     }
 

@@ -186,13 +186,11 @@ public class ODP06_CreditCardOverridePaymentTest extends OrderLib{
 						cmtLib.navigateBackToCMT();
 						Thread.sleep(6000);
 						scrollUp();
-						cmtLib.hoverOverMasterGroupAndSelectChangeGrp();
-						cmtLib.searchForWebGroup(data.get("WebGrp"));
-						cmtLib.clickOnTheWebGroup(data.get("WebGrp_Name"));
-
+						cmtLib.hoverOnManageWebGroupsAndSelectOptions(data.get("Manage_Web_Grp_Options_Settings"));
 						// Uncheck Override Payments Options in web Group Level
 						cmtLib.setCustomerLevelPermissionsOFF(data.get("Customer_Permissions_OFF"));
 						System.out.println("Test completed");
+						
 					} catch (Exception e) {
 						ReportStatus.blnStatus = false;
 						//gErrorMessage = e.getMessage();
