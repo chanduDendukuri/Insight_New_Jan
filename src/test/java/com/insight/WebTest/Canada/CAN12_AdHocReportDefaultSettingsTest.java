@@ -112,12 +112,10 @@ public class CAN12_AdHocReportDefaultSettingsTest extends CanadaLib{
 							verifyFilterOrder();
 							ccp.addAvailableItemsToAllowItems();
 							clickOnRun();
-							String a = data.get("ReportOption");
-							List<String> excelOptions= Arrays.asList(data.get("ExcelOptions").split(","));
-							canadaLib.openDirectoryToVerifyFileExist(a);
-							verifyDownloadedReportExcelFile(excelOptions,data.get("ReportOption"));
-							//cartLib.ClickExportCartAndVerify(data.get("Order_Utilities"),data.get("Sheet_Name"),data.get("Row_number"),data.get("Column_Headers"));
-						//	cartLib.verifyExportFile();
+
+			//* This is to verify ExcelSheet
+							//cartLib.verifyExportFile("Page1","1","Ad-Hoc");
+
 
 							commonLib.clickLogOutLink(data.get("Logout_Header"));
 				System.out.println("Test completed");

@@ -18,10 +18,10 @@ import com.insight.ObjRepo.RequisitionProcessingObj;
 public class RequisitionProcessingLib extends RequisitionProcessingObj {
 	OrderLib orderLib = new OrderLib();
 	public void verifyApprovalManagementPage() throws Throwable {
-		waitForVisibilityOfElement(RequisitionProcessingObj.APPROVAL_MANAGEMENT_PAGE,
-				"Approval management page display");
+		
 
-		if (isElementPresent(APPROVAL_MANAGEMENT_PAGE, "Approval management page")) {
+		if (waitForVisibilityOfElement(RequisitionProcessingObj.APPROVAL_MANAGEMENT_PAGE,
+				"")) {
 			reporter.SuccessReport("Verify Approval Management  Page", "Approval Management Page is Exists", "");
 		} else {
 			reporter.failureReport("Verify Approval Management  Page", "Approval Management Page does not Exists", "");

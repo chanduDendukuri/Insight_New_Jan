@@ -74,7 +74,9 @@ public class CRT07_SaveCartTest extends CartLib {
 					cartLib.deleteSavedCartFromAccountTools();
 					commonLib.searchProduct(data.get("Search_Item"));
 					searchLib.verifyBreadCrumbInSearchResultsPage(data.get("Search_Item"));
-					String searchItem=prodInfoLib.getPartNumberInSearchResultsPage();
+					/*Review comment*/	removeInStockItems();
+					//String searchItem=prodInfoLib.getPartNumberInSearchResultsPage();
+					String searchItem=prodInfoLib.getPartNumberExactlyInSearchResultsPage();
 					commonLib.addFirstDisplyedItemToCartAndVerify();
 					canadaLib.continueToCheckout();
 					canadaLib.verifyPlaceCartLabel();
@@ -109,14 +111,15 @@ public class CRT07_SaveCartTest extends CartLib {
 					
 					commonLib.clickAccountToolsFromSideMenuAndClickOnProductGrp(data.get("Tools_Menu"),
 							data.get("Tools_Menu_DD1"), data.get("Product_Group"), data.get("Product_Name"));
-					searchLib.selectProductGroupAndVerify(data.get("Product_Group"), data.get("Product_Name"));
+					//commonLib.clickAccountToolsFromSideMenuAndClickOnProductGrp(data.get("Tools_Menu"),
+							//data.get("Tools_Menu_DD"), data.get("Product_Group"), data.get("Product_Name"));
+					searchLib.clickAddToOrderOnCompanyStandardsScreen();
 					commonLib.clickCart();
 					commonLib.verifyBundleIsAddedToCart();
 					String cartName1 = "SavedCart"+getRandomNumeric(5);
 					cartLib.clickOnSaveCartContentAndSaveCartAndClearCartOff(cartName1);
 					
-					cartLib.openSavedCartFromTools(cartName1);
-					cartLib.openSavedCartFromTools(cartName);
+/*Comment*/			verifySavedCarts();
 					commonLib.clickCart();
 					canadaLib.verifyPlaceCartLabel();
 					commonLib.emptyCartAndVerify();
@@ -147,3 +150,4 @@ public class CRT07_SaveCartTest extends CartLib {
 		}
 	}
 }
+

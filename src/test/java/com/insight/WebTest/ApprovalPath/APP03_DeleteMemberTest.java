@@ -1,6 +1,8 @@
 package com.insight.WebTest.ApprovalPath;
 
+
 import java.util.Hashtable;
+import java.util.List;
 
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
@@ -83,13 +85,13 @@ public class APP03_DeleteMemberTest extends ApprovalPathLib {
 					ClickEditLinkButton(firstPathName);
 
 					// Select Approvers and add approver
-					String approverAdded = SelectApprover(null,10);
+					List<String> approverAdded = SelectApprover(null,1);
 					
-					Add_Approver_Btn_Click();
+					//Add_Approver_Btn_Click();
 
 
 					// Now Remove the same user- Click Remove
-					RemoveApprovers(approverAdded,count);
+					RemoveApprovers(approverAdded.get(0),1);
 
 					// Update Approval path
 					ClickUpdateButton();
@@ -135,7 +137,7 @@ public class APP03_DeleteMemberTest extends ApprovalPathLib {
 
 					// Count Pending Req
 					CountPendingRequest();
-
+					CancelOnErrorPage();
 					commonLib.clickLogOutLink(data.get("Logout"));
 
 					System.out.println("Test completed");

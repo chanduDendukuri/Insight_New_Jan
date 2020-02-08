@@ -71,18 +71,20 @@ public class REP02_InvoicedOrdersOutputFormatTest extends ReportingLib {
 							canadaLib.clickOnSideMenuSelectAccountToolOptions(data.get("Tools_Menu"),data.get("Tools_Menu_DD"));	
 							canadaLib.clickOnReportOptions(data.get("ReportOption"));
 							canadaLib.verifyReportsPage();
-							String Selectreport=data.get("SelectReport")+getRandomNumeric(4);
-							canadaLib.verifySelectReport(Selectreport);							
-							canadaLib.clickOnAccountSelections(data.get("AccountSelectionOpt"));							
+							canadaLib.verifySelectReport(data.get("SelectReport"));							
+							canadaLib.clickOnAccountSelections(data.get("AccountSelectionOpt"));	
+							Thread.sleep(5000);
 							ParentCheckboxClicked();
 							grandParentCheckboxNotClicked();
 							verifySoldTos();
 							canadaLib.clickOnAccountSelections(data.get("AccountSelectionOpt2"));
+							Thread.sleep(5000);
 							verifyGreateGrandParentCheckboxisSelected();
 							verifyGrandParentCheckboxisSelected();
 							ParentCheckboxClicked();
 							verifySoldTos();
 							canadaLib.clickOnAccountSelections(data.get("AccountSelectionOpt3"));
+							Thread.sleep(5000);
 							verifyGreateGrandParentCheckboxisNotSelected();
 							verifyGrandParentCheckboxisSelected();
 							ParentCheckboxClicked();
@@ -96,7 +98,7 @@ public class REP02_InvoicedOrdersOutputFormatTest extends ReportingLib {
 							clickOnSave();
 							verifyReportTemplates();
 							expandReportTemplateAndVerify(data.get("TemplateName"));		
-							clickOnDelete(Selectreport);
+							clickOnDelete(data.get("SelectReport"));
 							commonLib.clickLogOutLink(data.get("Logout_Header"));
 
 

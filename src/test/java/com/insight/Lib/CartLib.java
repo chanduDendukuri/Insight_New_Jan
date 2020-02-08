@@ -858,12 +858,45 @@ public class CartLib extends ActionEngine {
 				myList.get(i).click();
 				waitForVisibilityOfElement(CartObj.YES_BUTTON_INCONFORMATION_POP_UP, "Yes in conformation pop up");
 				click(CartObj.YES_BUTTON_INCONFORMATION_POP_UP, "Yes in conformation pop up","Saved Carts: "+myList1.get(i).getText());
-				//waitForVisibilityOfElement(CartObj.DELETE_CART_MEASSAGE, "ACCOUNT TOOLS");
-				reporter.SuccessReport("Delete cart meassage ", "Save Cart name Exist and Deleted", "Saved Carts: "+myList1.get(i).getText());
 				Thread.sleep(5000);
+				//waitForVisibilityOfElement(CartObj.DELETE_CART_MEASSAGE, "ACCOUNT TOOLS");
+				//reporter.SuccessReport("Delete cart meassage ", "Save Cart name Exist and Deleted", "Saved Carts: "+myList1.get(i).getText());
+				Thread.sleep(10000);
 				
 			}
 		}
+	}
+	
+	public void verifySavedCarts() throws Throwable {
+		scrollUp();
+		if(isElementPresent(InvoiceHistoryObj.COSE_ACCOUNT_TOOLS, "close account tools"))
+		{
+		click(InvoiceHistoryObj.COSE_ACCOUNT_TOOLS, "close account tools");
+		}
+		
+		click(CartObj.ACCOUNT_TOOLS, "ACCOUNT TOOLS");
+		click(CartObj.TOOLS, "TOOLS");
+		
+		click(CartObj.SAVEDCART, "SAVED CART");
+		Thread.sleep(5000);
+		if(isElementPresent(CartObj.SAVED_CART_CONTENTS_HEADER, "Saved cart or orfer templates")) {
+			reporter.SuccessReport("Saved carts/ ORDER TEMPLATES", "page is saved carts", "Saved carts/ ORDER TEMPLATES");
+		}
+		else {
+			reporter.failureReport("Saved carts/ ORDER TEMPLATES", "page is not saved carts","", driver);
+		}
+		if(isElementPresent(CartObj.CART_NAME, "Saved cart")) {
+			List<WebElement> myList = driver.findElements(CartObj.CART_NAME);
+			for (int i = 0; i < myList.size(); i++) {
+				myList.get(i).click();
+				reporter.SuccessReport("Verify saved cart", "Saved Carts  Exist ", "Saved Carts: "+myList.get(i).getText());
+				Thread.sleep(5000);
+			}
+		}
+		else {
+			reporter.failureReport("Verify saved cart", "Saved Carts does not Exist ", "");
+			}
+		
 	}
 
 	/*
@@ -883,7 +916,31 @@ public class CartLib extends ActionEngine {
 
 		}
 	}
-
+	public void deletePartInCart(String partNumber) throws Throwable {
+		if(isVisible(CartObj.deleteSpecificPartNumber(partNumber), "Delete part in cart")){
+			click(CartObj.deleteSpecificPartNumber(partNumber), "Delete part in cart "+partNumber);
+		}
+		else {
+			reporter.failureReport("Delete part in cart", "Required part number is not visible in cart", partNumber, driver);
+		}
+		commonLib.spinnerImage();
+	}
+	public void deleteBundle() throws Throwable {
+		if(isVisible(CartObj.DELETE_BUNDLE, "Delete budnle-1")) {
+			click(CartObj.DELETE_BUNDLE, "Delete budnle-1");
+		}
+		else {
+			reporter.failureReport("Delete bundle-1 in cart", "Bundle-1 in cart is not visible", "Bundle-1", driver);
+		}
+	}
+    public void removeInStockItems() throws Throwable {
+		if(isElementPresent(CartObj.REMOVE_IN_STOCK_ITEMS, "Remove in stock items")) {
+			click(CartObj.REMOVE_IN_STOCK_ITEMS, "Remove in stock items");
+		}
+		else {
+			reporter.SuccessReport("In stocks items", "In stock items are not visible", "", driver);
+		}
+	}
 	/**
 	 * This method is to compare two prices
 	 * 
@@ -930,6 +987,12 @@ public class CartLib extends ActionEngine {
 		Thread.sleep(5000);
 		String summaryAmount = getText(CartObj.SUMMARY_TOTAL, "summaryTotalAmount");
 		return summaryAmount;
+	}
+	public String getCurrencyCode() throws Throwable {
+		String currencyCode=getText(CartObj.CURRENCY_CODE, "Currency type");
+		
+		return currencyCode;
+		
 	}
 
 	public String getShippingEstimateInCart() throws Throwable {
@@ -1078,8 +1141,8 @@ public class CartLib extends ActionEngine {
 	 * @customization author : CIGNITI
 	 */
 	public void clickAndVerifySendToAColleagueErrorMSG(String orderUtilities) throws Throwable {
-		commonLib.clickCart();
-		cmtLib.handleWelcomeToInsightBetaPopUp();
+		//commonLib.clickCart();
+		//cmtLib.handleWelcomeToInsightBetaPopUp();
 		waitForVisibilityOfElement(CartObj.getShoppingCartOrderUtilities(orderUtilities), "Send to a colleague");
 		click(CartObj.getShoppingCartOrderUtilities(orderUtilities), "Send to a colleague");
 		waitForVisibilityOfElement(CartObj.SEND_TO_A_COLLEGUE_POPUP, "SEND TO A COLLEGUE POPUP");
@@ -1272,6 +1335,7 @@ public class CartLib extends ActionEngine {
 	}
 
 	public void verifyItemInCartByInsightPart(String itemInCart) throws Throwable {
+		Thread.sleep(5000);
 		waitForVisibilityOfElement(CartObj.getItemIncartByInsightPartNumber(itemInCart), "Item in cart");
 		if (isElementPresent(CartObj.getItemIncartByInsightPartNumber(itemInCart), "part number")) {
 			reporter.SuccessReport("verifying item added to cart :: ", " Item added to cart Mfr number # is :", itemInCart);
@@ -1388,7 +1452,7 @@ public class CartLib extends ActionEngine {
 	 */
 	public void closePrintPopUp() throws Throwable {
 		waitForVisibilityOfElement(CartObj.CLOSE_PRINT_POPUP, "CLOSE PRINT POPUP");
-		click(CartObj.CLOSE_PRINT_POPUP, "CLOSE PRINT POPUP");
+        click(CartObj.CLOSE_PRINT_POPUP, "CLOSE PRINT POPUP");
 
 	}
 

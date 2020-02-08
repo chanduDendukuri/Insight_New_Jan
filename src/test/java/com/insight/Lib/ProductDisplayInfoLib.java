@@ -645,6 +645,8 @@ public class ProductDisplayInfoLib extends productsDisplayInfoObj {
                 }
             }
             reporter.SuccessReport("Products in Products Configuration Section on Product Standards Page", "Availability information in Stock Column Exists", "No: of Products Having Stock Availability information: " + myList.size());
+        }else {
+        	reporter.failureReport("Verify stock in company standards", "Stock field is not available in company standards", "", driver);
         }
     }
 
@@ -707,11 +709,13 @@ public class ProductDisplayInfoLib extends productsDisplayInfoObj {
         for (int i = 0; i < deleteIcon.size(); i++) {
             deleteIcon.get(i).click();
             reporter.SuccessReport("Delete product", "Deleted product", prodDetails.get(i).getText() + "Selected product was deleted successfully");
-            if (isVisibleOnly(emptyShoppingCart, "Empty cart")) {
-                reporter.SuccessReport("Empty Cart", " All the products are deleted", getText(emptyShoppingCart, "Empty cart"));
-            }
-        }
 
+        }
+        if (isVisibleOnly(emptyShoppingCart, "Empty cart")) {
+            reporter.SuccessReport("Empty Cart", " All the products are deleted", getText(emptyShoppingCart, "Empty cart"));
+        }else {
+        	reporter.failureReport("Empty Cart", " All the products are not deleted from cart","",driver);
+        }
     }
 
     public void getProductManfNumber(String mfn) throws Throwable {
@@ -1298,6 +1302,31 @@ public class ProductDisplayInfoLib extends productsDisplayInfoObj {
         }
         return partNumber;
     }
+    
+    
+    public String getPartNumberExactlyInSearchResultsPage() throws Throwable {
+        String partNumber = getText(productsDisplayInfoObj.getPartNumber(0), "get product number").split("Mfr Part #:")[1];
+        System.out.println(partNumber);
+        if (!partNumber.isEmpty()) {
+            reporter.SuccessReport("Verify the product part Number", "Product part Number is displayed as : ",
+                    "part Number # : " + partNumber);
+        } else {
+            reporter.failureReport("Verify the product part Number", "Product part Number is not displayed", "", driver);
+        }
+        return partNumber;
+    }
+    
+    public String getSecondPartNumberInSearchResultsPage() throws Throwable {
+        String partNumber = getText(productsDisplayInfoObj.getPartNumber(1), "get product number").split("Mfr Part #:")[1];
+        System.out.println(partNumber);
+        if (!partNumber.isEmpty()) {
+            reporter.SuccessReport("Verify the product part Number", "Product part Number is displayed as : ",
+                    "part Number # : " + partNumber);
+        } else {
+            reporter.failureReport("Verify the product part Number", "Product part Number is not displayed", "", driver);
+        }
+        return partNumber;
+    }
 
     /**
      * Method is to verify the welcome page
@@ -1439,10 +1468,10 @@ public class ProductDisplayInfoLib extends productsDisplayInfoObj {
         for (int i = 0; i < DecList.size(); i++) {
             if (partNum.get(i).getText().contains(prodcut) || DecList.get(i).getText().contains(prodcut)) {
                 if (DecList.get(i).isDisplayed()) {
-                    reporter.SuccessReport("Unit Price ", "Unit price is for " + partNum.get(i).getText() + " is ", DecList.get(i).getText());
+                    reporter.SuccessReport("Product Description  ", "Product Description is for " + partNum.get(i).getText() + " is ", DecList.get(i).getText());
                 }
                 if (priceList.get(i).isDisplayed()) {
-                    reporter.SuccessReport("Product Description", "Product Description is " + partNum.get(i).getText() + " is ", priceList.get(i).getText());
+                    reporter.SuccessReport("Total Price List", "Total Price is  " + partNum.get(i).getText() + " is ", priceList.get(i).getText());
                 }
                 if (UnitPriceList.get(i).isDisplayed()) {
                     reporter.SuccessReport("Unit Price ", "Unit price is " + partNum.get(i).getText() + " is ", UnitPriceList.get(i).getText());
@@ -1458,8 +1487,6 @@ public class ProductDisplayInfoLib extends productsDisplayInfoObj {
             }
 
         }
-        reporter.failureReport("Results","No Matching Products available","Product is not matched with search results" + prodcut,driver);
-
 
     }
 

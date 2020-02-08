@@ -115,8 +115,7 @@ public class ODP03_PlaceOrderConfirmationsTest extends OrderLib{
 						verifyBillingAddressOnReceiptPage(data.get("Section_Name2"));  // verifying billing address
 						verifyPaymentInformationOnReceiptPage(data.get("Section_Name3"),data.get("Month"),data.get("Year"),data.get("Card_Name"),data.get("Ending_Card_Numbers"),data.get("Card_Type"));  // verifying payment info
 
-						// Verifying the part in cart
-						cartLib.verifyItemInCart(data.get("SearchText"));
+						prodInfoLib.verifyCartPageAndPartDetails();
 						commonLib.clickLogOutLink(data.get("Logout"));
 
 					} catch (Exception e) {

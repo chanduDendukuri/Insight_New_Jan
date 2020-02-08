@@ -18,8 +18,10 @@ public class ODP07_ConvertQuoteTest extends OrderLib{
 	SearchLib searchLib = new SearchLib();
 	CommonLib commonLib = new CommonLib();
 	CartLib cartLib = new CartLib();
-	ProductDisplayInfoLib prodLib = new ProductDisplayInfoLib();
 	OrderLib orderLib =new OrderLib();
+	CanadaLib canadaLib=new CanadaLib();
+	ProductDetailLib prodLib=new ProductDetailLib();
+	LineLevelInfoLib lnlLib=new LineLevelInfoLib();
 
 	// #############################################################################################################
 	// #    Name of the Test         : ODP07_ConvertQuote
@@ -52,6 +54,9 @@ public class ODP07_ConvertQuoteTest extends OrderLib{
 						cmtLib.loginToCMT(data.get("Header"));
 						cmtLib.searchForWebGroup(data.get("WebGrp"));
 						cmtLib.clickOnTheWebGroup(data.get("WebGrp_Name"));
+						//Customer Level Permissions:override_payment_options - off
+						cmtLib.setCustomerLevelPermissionsOFF(data.get("Customer_Permissions_OFF"));
+						cmtLib.enterWGCustom800NumberAndDisplayOnWeb(data.get("WG_Custom_800_Number"));
 						cmtLib.hoverOnManageWebGroupsAndSelectOptions(data.get("Manage_Web_Grp_Options"));
 						cmtLib.searchForaUserAndSelect(data.get("LnameEmailUname"), data.get("ContactName"));
 						cmtLib.setPermissions(data.get("Menu_Name"), data.get("Set_Permission1"));
@@ -62,15 +67,23 @@ public class ODP07_ConvertQuoteTest extends OrderLib{
 
 						// Select First Product and Add to cart
 						searchLib.searchInHomePage(data.get("SearchText"));
-						commonLib.addFirstDisplyedItemToCartAndVerify();
-						continueToCheckOutOnAddCart();
+						searchLib.verifyBreadCrumbInSearchResultsPage(data.get("SearchText"));
+						cartLib.selectFirstProductDisplay();
+						String mfrNumber1=prodLib.getInsightPartNumberInProductInfopage();
+						// Cart verification
+						commonLib.addToCartAndVerify();
+						orderLib.continueToCheckOutOnAddCart();
+						canadaLib.verifyPlaceCartLabel();
+						cartLib.verifyItemInCartByInsightPart(mfrNumber1);
 
 						// Create Quote
 						createQuote(data.get("Quote_Name"));
 						verifyTaxInSaveAsQuotePage();   // Verify Tax in save as quote page
-						String taxAmount=verifyTaxInSaveAsQuotePage();
 						String refNumber=getQuoteReferenceNumber();
-
+						selectOrderUtilitiesOnSaveAsQuotesScreen(data.get("Order_Utilities"));
+						verifyWG800NumberOnSaveAsQuoteScreen(data.get("WG_Custom_800_Number"));
+						String taxAmount=verifyTaxInSaveAsQuotePage().replace("$", "");
+						
 						commonLib.clickOnAccountToolsAndClickOnProductGrp(data.get("Tools_Menu"), data.get("Tools_Menu_DD"));
 						searchByInQuoteHistory(refNumber,data.get("DD_Option"));
 						convertQuote();
@@ -85,11 +98,12 @@ public class ODP07_ConvertQuoteTest extends OrderLib{
 
 						//Proceed to checkout
 						proceedToCheckout();
-
+						lnlLib.verifyOrderAndItemInfoBreadCrumb();
 						continueButtonOnAdditionalInformationSection();  // Click continue on Additional information Section
-						shippingBillPayContinueButton(); // Click continue on shipping address Section
+						canadaLib.verifySBP();
+						clickContinueOnShippingAddress(); // Click continue on shipping address Section
 						shippingOptionsCarrierSelection();  // carrier selection or continue in shipping options
-						shippingBillPayContinueButton(); //Click continue on Billing address Section
+						billingAddressContinueButton(); //Click continue on Billing address Section
 						selectPaymentInfoMethodCreditCard(data.get("Card_Number").toString(), data.get("Card_Name"),data.get("Month"), data.get("Year"),data.get("PO_Number"),data.get("POReleaseNumber"));
 
 						// Review Order
@@ -104,6 +118,9 @@ public class ODP07_ConvertQuoteTest extends OrderLib{
 
 						//Verify Receipt
 						verifyReceiptVerbiage();
+						clickPrintOnReceiptpage();
+						verifyPhoneNumberOnPrintPopupOfReceipPage(data.get("WG_Custom_800_Number"));
+						cartLib.closePrintPopUp();
 						clickOrderDetailsLinkOnReceiptPage();
 
 						// verify Ship Bill details
@@ -112,7 +129,16 @@ public class ODP07_ConvertQuoteTest extends OrderLib{
 
 						// Verify Updated Qty on Receipt Page
 						verifyTheQuantityOfCartProductOnReceiptPage(data.get("Quantity"));
-						verifyTheTaxForSearchTerm(taxAmount);
+						getTaxInReceipt();
+						//verifyTheTaxForSearchTerm(taxAmount);
+						/*String result = getText(ADDLICENCE_TAX_AMOUNT, "Tax displayed after adding LICENCE").replace("$", "");
+						Float actualtax=Float.valueOf(result);
+						if (actualtax==(Float.valueOf(taxAmount)*Integer.valueOf(data.get("Quantity")))) {
+							reporter.SuccessReport("Verify the TAX on receipt page","Tax in Order Recipet for Quote Converion",
+									"Tax in Order Recipet for Quote Converion:Tax estimateUSD $"+actualtax);
+						} else {
+							reporter.failureReport("Verify the TAX on receipt page","Tax in Order Recipet for Quote Converion is not same","Actual tax: "+actualtax+"  Expected tax: "+taxAmount,driver);
+						}*/
 						commonLib.clickLogOutLink(data.get("Logout"));
 
 						// fnCloseTest();

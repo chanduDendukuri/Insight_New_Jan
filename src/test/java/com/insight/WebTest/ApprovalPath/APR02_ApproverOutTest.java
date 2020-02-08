@@ -105,7 +105,7 @@ public class APR02_ApproverOutTest extends ApprovalPathLib {
 					
 					// Get Date
 					strCurrDay = GetCurrDay();
-
+                    //SelectApproverfromApproverdropdown(strApprover);
 					// Create Approver Out
 					CreateApproverOut(strApproverId, strReplacementType, strReplacementApproverId, strCurrDay);
 
@@ -117,7 +117,7 @@ public class APR02_ApproverOutTest extends ApprovalPathLib {
 					VerifyCreateApproverOut(strApprover);
 
 					// Create with Same Rule
-					CreateApproverOut(strApproverId, strReplacementType, strReplacementApprover, strCurrDay);
+					CreateApproverOut(strApproverId, strReplacementType, strReplacementApproverId, strCurrDay);
 
 					// System warning click ok
 					VerifyOverLapRulePopup();

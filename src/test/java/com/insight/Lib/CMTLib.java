@@ -1304,12 +1304,22 @@ public  void verifyDashboard()throws Throwable {
 			} else {
 				click(getOrdersCheckBoxsalesreps(repName), "Orders check box selected");
 				click(saveImage(repName), "Save image icon", "");
+				if(isElementPresent(CONTACT_AND_NOTIFICATIONS_SUCCESS_MSG, "Success message")) {
+					reporter.SuccessReport("Verify checkBox checked ", "Check box Checked and success message displayed", "Oders***Check Box Status:ON", driver);
+				}else {
+					reporter.failureReport("Verify checkBox checked ", "Check box not Checked and no success message is displayed", "", driver);
+				}
 			}
 
 		case "OFF":
 			if (isCheckBoxSelected(getOrdersCheckBoxsalesreps(repName))) {
 				click(getOrdersCheckBoxsalesreps(repName), "Orders check box selected");
 				click(saveImage(repName), "Save image icon", "");
+				if(isElementPresent(CONTACT_AND_NOTIFICATIONS_SUCCESS_MSG, "Success message")) {
+					reporter.SuccessReport("Verify checkBox checked ", "Check box UnChecked and success message displayed", "Oders***Check Box Status:OFF", driver);
+				}else {
+					reporter.failureReport("Verify checkBox checked ", "Check box not UnChecked and no success message is displayed", "", driver);
+				}
 			} else {
 				LOG.info("Örders check box already Un checked");
 				reporter.SuccessReport("Verify checkBox checked ", "Check box already UnChecked ", "Oders***Check Box Status:OFF", driver);
@@ -1331,18 +1341,31 @@ public  void verifyDashboard()throws Throwable {
 		case "ON":
 			if (isCheckBoxSelected(getQuotesCheckBoxOfRep(repName))) {
 				LOG.info("Quotes check box already checked");
+				reporter.SuccessReport("Verify checkBox checked ", "Quotes Check box already Checked ", "Quotes***Check Box Status:ON", driver);
 				
 			} else {
 				click(getQuotesCheckBoxOfRep(repName), "Quotes check box selected");
 				click(saveImage(repName), "Save image icon", "");
+				if(isElementPresent(CONTACT_AND_NOTIFICATIONS_SUCCESS_MSG, "Success message")) {
+					reporter.SuccessReport("Verify checkBox checked ", "Check box Checked and success message displayed", "Oders***Check Box Status:ON", driver);
+				}else {
+					reporter.failureReport("Verify checkBox checked ", "Check box not Checked and no success message is displayed", "", driver);
+				}
 			}
 
 		case "OFF":
 			if (isCheckBoxSelected(getQuotesCheckBoxOfRep(repName))) {
 				click(getQuotesCheckBoxOfRep(repName), "Quotes check box selected");
 				click(saveImage(repName), "Save image icon", "");
+				if(isElementPresent(CONTACT_AND_NOTIFICATIONS_SUCCESS_MSG, "Success message")) {
+					reporter.SuccessReport("Verify checkBox checked ", "Quotes Check box UnChecked and success message displayed", "Oders***Check Box Status:ON", driver);
+				}else {
+					reporter.failureReport("Verify checkBox checked ", "Quotes Check box not UnChecked and no success message is displayed", "", driver);
+				}
 			} else {
 				LOG.info("Quotes check box already Un checked");
+				reporter.SuccessReport("Verify checkBox checked ", "Check box already UnChecked ", "Quotes***Check Box Status:OFF", driver);
+				
 			}
 		}
 	}
@@ -1453,10 +1476,14 @@ public  void verifyDashboard()throws Throwable {
 	 * @throws Throwable
 	 */
 	public void createClientNotifications(String repEmail) throws Throwable {
-		click(removeEmailInClientNotifications(repEmail), "rep Email ");
+		if(isVisibleOnly(removeEmailInClientNotifications(repEmail), "existing client notification email")) {
+			click(removeEmailInClientNotifications(repEmail), "rep Email ");
+		}else {
+			// do nothing
+		}
 		type(CLIENT_NOTIFICATION_EMAIL, repEmail, "client email");
 		click(ACTION_ICON_CLIENT_NOTIFICATIONS, "Save");
-		Thread.sleep(8000);
+		Thread.sleep(4000);
 		if (isVisibleOnly(CLIENT_NOTIFICATION_EMAIL_SUCCESS_MSG, "Email added")) {
 			reporter.SuccessReport("Verify client notification adeed ", "Client notification email adeed successfully ",
 					repEmail);
@@ -3715,6 +3742,28 @@ public void verifySetPermissionsDisabled(String userPermissions) throws Throwabl
 		} else {
 			reporter.failureReport("Web Group Management", "Under Linked Accounts Next Page is Not Exist", "", driver);
 		}
+	    }else {
+	    	reporter.failureReport("Default account address", "default account address does not exists", "", driver);
+	    }
 	}
+	
+	/**
+	 * Method is to enter WG Custom 800 Number And check Display On Web check box
+	 * @throws Throwable 
+	 */
+	public void enterWGCustom800NumberAndDisplayOnWeb(String phoneNumebr) throws Throwable {
+		type(CLIENT_SUPPORT_800_PHONE_NUMEBR, phoneNumebr, "800 Number", driver);
+		if(isCheckBoxSelected(DISPLAY_THIS_ON_WEB)) {
+			reporter.SuccessReport("Display this on web check box", "Display this on web check box is already checked", "", driver);
+		}else {
+			click(DISPLAY_THIS_ON_WEB, "Display this on web check box", "Display this on web check box");
+		}
+		click(UPDATE_CUSTOMER_PERMISSIONS_BTN, "Update button");
+		if (isElementPresent(CUSTOMER_PERMISSION_UPDATE_MSG, "update sucessful message")) {
+			reporter.SuccessReport("Verify the Success message ", "Permissions Updated Succesfully","");
+		} else {
+			reporter.failureReport("Verify the sucess message", "Display this on web check box not checked Succesfully", "",
+					driver);
+		}
 	}
 }
