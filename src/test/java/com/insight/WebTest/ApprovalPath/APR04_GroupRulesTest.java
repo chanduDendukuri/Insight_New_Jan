@@ -79,6 +79,9 @@ public class APR04_GroupRulesTest extends ApprovalPathLib {
 					//Click on Requestor Group Rules Report
 					ClickReqGrpRulesReport();
 					
+					//Display Results
+					VerifyReqGroupNames();
+					
 					//Check Show Users check box
 					ClickShowUsers();
 					
@@ -86,7 +89,7 @@ public class APR04_GroupRulesTest extends ApprovalPathLib {
 					ClickSearchButton();
 					
 					//Display Results
-					VerifyReqGroupNames();
+					GetGroupNamesDisplayed();
 					
 					//Displays Users
 					VerifyDisplayUsers();
@@ -124,12 +127,12 @@ public class APR04_GroupRulesTest extends ApprovalPathLib {
 					VerifySmartTrackerResults();
 					
 					//Click on the Smart Tracker
-					ClickSmartTrackerLink();
+					//ClickSmartTrackerLink();
 
 					commonLib.clickLogOutLink(data.get("Logout"));
 
 					System.out.println("Test completed");
-				} catch (Exception e) {
+									} catch (Exception e) {
 					ReportStatus.blnStatus = false;
 					//gErrorMessage = e.getMessage();
 					gTestStatus = false;

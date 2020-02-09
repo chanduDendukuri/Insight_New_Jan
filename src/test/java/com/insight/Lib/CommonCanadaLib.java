@@ -3,15 +3,21 @@ package com.insight.Lib;
 import com.insight.ObjRepo.*;
 
 import freemarker.cache.WebappTemplateLoader;
+import org.apache.logging.log4j.core.pattern.ThrowablePatternConverter;
 import org.omg.PortableServer.THREAD_POLICY_ID;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 
+import java.io.File;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 import java.util.WeakHashMap;
 import com.insight.ObjRepo.CommonCanadaPage;
+import com.insight.ObjRepo.*;
 
 public class CommonCanadaLib extends CommonCanadaPage {
     public boolean verifySelectedUser() throws Throwable {
@@ -409,5 +415,119 @@ public String getAccountNumber() throws Throwable{
         }
         return Status;
     }
+    public boolean verifyAddToCartLabelAvailable() throws Throwable{
+        return isVisibleOnly(productsDisplayInfoObj.ADDED_TO_CART_LABEL,"Add to cart label");
     }
+
+   /* public void verifyExportFile(String fileName,String sheetName, String rowNumber, String columnHeaders) throws Throwable {
+        Thread.sleep(10000);
+        String sfile = System.getProperty("user.dir") + "\\" + "DownloadedFiles" + "\\" + fileName+".xls";
+        File file = new File(sfile);
+        if (file.exists()) {
+            List<String> downloadedExcelContent = CommonLib.readRowFromExcel(sfile, sheetName, Integer.parseInt(rowNumber));
+            List<String> acutalContent = Arrays.asList(columnHeaders.split(","));
+            System.out.println("Compare content" + downloadedExcelContent.equals(acutalContent));
+            if (downloadedExcelContent.equals(acutalContent)) {
+                reporter.SuccessReport(columnHeaders,  "columns are avilable in exportCart.xls", "columns: "+columnHeaders);
+            } else {
+                reporter.failureReport(columnHeaders, columnHeaders+ " are not avilable", "", driver);
+            }
+        }else {
+            reporter.failureReport("ExportCart Excel File", "File dose not exists", "", driver);
+        }
+        System.out.println("File Deletion :" + file.delete());
+        if (file.exists()) {
+            file.delete();
+            reporter.SuccessReport("ExportCart Excel File", "File closed", "");
+        }else {
+            // do nothing
+        }
+    }
+*/
+    public void clickOnAddToCartButtonUnderWarrentyDynamically() throws Throwable{
+        List<WebElement> atc=driver.findElements(addTocartButtonInWarrenty);
+        for(int i=0;i<atc.size();i++){
+            atc.get(i).click();
+            reporter.SuccessReport("Clicked on ADd to cart button","Clicked on ADd to cart button","Clicked on ADd to cart button");
+            break;
+        }
+    }
+
+    public void verifyExportFile(String sheetName, String rowNumber, String columnHeaders,String fileN) throws Throwable {
+        Thread.sleep(10000);
+
+
+        String sfile = System.getProperty("user.dir") + "\\" + "DownloadedFiles" + "\\" + fileN+".xls";
+        File file = new File(sfile);
+        if (file.exists()) {
+            List<String> downloadedExcelContent = CommonLib.readRowFromExcel(sfile, sheetName, Integer.parseInt(rowNumber));
+            List<String> acutalContent = Arrays.asList(columnHeaders.split(","));
+            System.out.println("Compare content" + downloadedExcelContent.equals(acutalContent));
+            if (downloadedExcelContent.equals(acutalContent)) {
+                reporter.SuccessReport(columnHeaders,  "columns are avilable in exportCart.xls", "columns: "+columnHeaders);
+            } else {
+                reporter.failureReport(columnHeaders, columnHeaders+ " are not avilable", "", driver);
+            }
+        }else {
+            reporter.failureReport("ExportCart Excel File", "File dose not exists", "", driver);
+        }
+        System.out.println("File Deletion :" + file.delete());
+        if (file.exists()) {
+            file.delete();
+            reporter.SuccessReport("ExportCart Excel File", "File closed", "");
+        }else {
+            // do nothing
+        }
+    }
+
+    public String FileNameWithdateSplit(String fileName) throws Throwable{
+        DateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+        //Date datev = new Date();
+
+        Date datev1 = new Date();
+        String strDate = sdf.format(datev1);
+
+        String yyyy = strDate.split("/")[0].replace("/","");
+        String MM = strDate.split("/")[1].replace("/","");
+        String dd = strDate.split("/")[2].replace("/","");
+        String HH = strDate.split("")[3].replace("/","_");
+        String mm = strDate.split("")[3].replace("/","_");
+        String file= fileName+"_"+yyyy+MM+dd+"_"+mm+"*";
+        return file;
+    }
+
+    public void clickOnExportToExcellink() throws Throwable{
+        click(exportToXLSlink,"Export to Excel Link","Export to Excel Link");
+    }
+    public void clickOnIUSAMandatoryCTOlink() throws Throwable{
+        if(isVisibleOnly(IUSAMandatoryCTOlink,"IUSAMandatoryCTO link ")){
+            click(IUSAMandatoryCTOlink,"IUSAMandatoryCTOlink ", "IUSAMandatoryCTOlink");
+        }else
+        {
+            reporter.failureReport("Availability of IUSAMandatoryCTOlink "," IUSAMandatoryCTOlink is  available","false",driver);
+        }
+    }
+
+    public void clickOnAddToOrderButton() throws Throwable{
+        if(isVisibleOnly(AddtoOrder,"Add to Order")){
+            click(AddtoOrder,"Add to Order Button","Add to order Button");
+        }else
+        {
+            reporter.failureReport("Availability of Add to Order  "," Add to Order button is  available","false",driver);
+
+        }
+    }
+    public void clickOnViewToCartlink() throws Throwable{
+        if(isVisibleOnly(viewCartlnk,"View Cart link"))
+        {
+            reporter.SuccessReport("Cart Icon","Clicking on Cart icon","is True");
+
+            click(viewCartlnk,"View Cart link");
+
+        }else{
+            reporter.SuccessReport("Cart Icon","Clicking on Cart icon","is false",driver);
+
+        }
+    }
+}
 

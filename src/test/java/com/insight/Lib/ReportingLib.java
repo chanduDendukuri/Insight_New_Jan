@@ -148,6 +148,7 @@ public class ReportingLib extends ReportsObj {
 	public void verifyScheduleReportOptionsDates(List<String> Options) throws Throwable {
 		
 		for (int i=0 ; i <Options.size();i++){
+
 		waitForVisibilityOfElement(DELIVERY_METHODOPTIONS, "Select Delivery Method");
 		if (isElementPresent(SCHEDULEREPORT_OPTIONS, "Select ADelivery Method", true)){				
 			selectByVisibleText(SCHEDULEREPORT_OPTIONS,Options.get(i),"Schedule Report");	

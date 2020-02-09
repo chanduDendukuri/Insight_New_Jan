@@ -2349,5 +2349,10 @@ public void getpartnumberIncartpage() throws Throwable {
 
 		}
 	}
+	public void clickMorePricesAvilableInSearchResultPage() throws Throwable {
+		isElementPresent(CartObj.MORE_AVAILABLE_PRICES, "More AVilable Prices");
+		click(CartObj.MORE_AVAILABLE_PRICES, "More AVilable Prices", "More AVilable Prices");
+
+	}
 
 }

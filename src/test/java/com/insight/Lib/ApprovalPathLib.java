@@ -705,7 +705,7 @@ for(int i=1;i<=count;i++) {
 	}
 
 	public void ClickRequestorGrpLink() throws Throwable {
-		if (isElementPresent(REQUESTOR_GRP_LINK, "Approval Path Report Page ")) {
+		if (isElementPresent(REQUESTOR_GRP_LINK, "Requestor Group Link")) {
 			click(REQUESTOR_GRP_LINK, "Click Approval Path Link");
 			reporter.SuccessReport("Approval Management Reports Page", "Requestor Group Link Exists and Clicked", "");
 		} else {
@@ -1238,7 +1238,42 @@ String EndDate= getText(Approvername("EndDateId"), "EndDateId");
 		}
 
 	}
+	public void VerifyReqGroupNamesandDetails() throws Throwable {
+		if (isElementPresent(SEARCH_RESULTS, "SEARCH Results table")) {
+			String strApprovalPathNm = null;
+			List<WebElement> appCount = driver.findElements(SEARCH_RESULTS);
+			for (int i = 2; i < appCount.size(); i++) {
+				String RequestorGrpName = driver.findElement(GetGroupDetails(i, i-1)).getText();
+				String SmartTrakers = driver.findElement(GetGroupDetails(i, i)).getText();
+				String CheckOutOptions = driver.findElement(GetGroupDetails(i, i+1)).getText();
+				String Settings = driver.findElement(GetGroupDetails(i, i+1)).getText();
+				reporter.SuccessReport("Approval Management Requestor Group Rules Report Page",
+						"Approval Management Requestor Group Rules Report Exists", "RequestorGrpName:"+RequestorGrpName+"SmartTrakers:"+SmartTrakers+"CheckOutOptions:"+CheckOutOptions+"Settings:"+Settings);
+			}
+		} else {
+			reporter.failureReport("Approval Management Requestor Group Rules Report Page",
+					"ReqestorGroupName Does Not Exist", "");
+		}
 
+	}
+public void GetGroupNamesDisplayed() throws Throwable {
+	if (isElementPresent(SEARCH_RESULTS, "SEARCH Results table")) {
+		String strApprovalPathNm = null;
+		List<WebElement> appCount = driver.findElements(SEARCH_RESULTS);
+		for (int i = 2; i < appCount.size(); i++) {
+			String RequestorGrpName = driver.findElement(GetGroupDetails(i, 1)).getText();
+			
+			reporter.SuccessReport("Approval Management Requestor Group Rules Report Page",
+					"Approval Management Requestor Group Rules Report Exists", "RequestorGrpName:"+RequestorGrpName);
+		if(i==5)
+			break;
+		}
+	} else {
+		reporter.failureReport("Approval Management Requestor Group Rules Report Page",
+				"ReqestorGroupName Does Not Exist", "");
+	}
+
+}
 	public void VerifyDisplayUsers() throws Throwable {
 		if (isElementPresent(DISPLAY_USERS, "SEARCH display users")) {
 			List<WebElement> searchResults = driver.findElements(DISPLAY_USERS);
@@ -1246,8 +1281,11 @@ String EndDate= getText(Approvername("EndDateId"), "EndDateId");
 			for (int row = 1; row < searchResults.size(); row++) {
 				strUsers = driver.findElement(getReqGroupDetails(String.valueOf(4), String.valueOf(row))).getText();
 				strUsers = strUsers.split("Users:")[1];
-				reporter.SuccessReport("Approval Management Requestor Group Rules Report Page", "Users Exist",
+				reporter.SuccessReport("Approval Management Requestor Group Rules Report Page", "Users",
 						strUsers);
+				if(row==5)
+					
+					break;
 			}
 		} else {
 			reporter.failureReport("Approval Management Requestor Group Rules Report Page", "Users Does Not Exist", "");
@@ -1299,9 +1337,9 @@ String EndDate= getText(Approvername("EndDateId"), "EndDateId");
 		if (isElementPresent(REQ_GRP_NAME_TXTBOX, "Req Group Name")) {
 
 			// Get Requestor group name
-			String reqGroupName = driver.findElement(getReqGroupDetails(String.valueOf(1), String.valueOf(1)))
-					.getText();
-
+			//String reqGroupName = driver.findElement(getReqGroupDetails(String.valueOf(1), String.valueOf(1)))
+				//	.getText();
+			String reqGroupName ="no path grp";
 			type(REQ_GRP_NAME_TXTBOX, reqGroupName, "Enter Req Group Name");
 
 			reporter.SuccessReport(
@@ -1425,8 +1463,8 @@ String EndDate= getText(Approvername("EndDateId"), "EndDateId");
 	}
 
 	public void clickManageRequestors() throws Throwable {
-		if (isElementPresent(MANAGE_REQUESTOR_LINK, "Approval management page ")) {
-			click(MANAGE_REQUESTOR_LINK, "Approval management page");
+		if (isElementPresent(MANAGE_REQUESTOR_LINK, "Manage Requestors Link")) {
+			click(MANAGE_REQUESTOR_LINK, "Manage Requestors Link");
 			reporter.SuccessReport("Click Manage Requestors on Create/Edit Requestor Group Page",
 					"Manage Requestors Link Exists and Clicked", "");
 		} else {
@@ -1599,6 +1637,18 @@ String EndDate= getText(Approvername("EndDateId"), "EndDateId");
 		return requestor1;
 	}
 
+	public void VerifyPageCount50InApprovalmgmt() throws Throwable {
+
+		if (isElementPresent(GET_SELECTED_COUNTinApprMgmt, "Page count")) {
+			String pageCount = getSelectedDropdownOption(GET_SELECTED_COUNTinApprMgmt);
+			if (pageCount.equals("50")) {
+				reporter.SuccessReport("Approval Management Reports Page", "Paging Count is Verified", pageCount);
+			}
+
+		} else {
+			reporter.failureReport("Approval Management Reports Page", "Paging Count is not Verified", "");
+		}
+	}
 	public void VerifyPageCount50() throws Throwable {
 
 		if (isElementPresent(GET_SELECTED_COUNT, "Page count")) {
@@ -1611,10 +1661,9 @@ String EndDate= getText(Approvername("EndDateId"), "EndDateId");
 			reporter.failureReport("Approval Management Reports Page", "Paging Count is not Verified", "");
 		}
 	}
-
 	public void ChangePageCount(String NewPageCount) throws Throwable {
-		if (isElementPresent(GET_SELECTED_COUNT, "Page count")) {
-			selectByVisibleText(GET_SELECTED_COUNT, NewPageCount, "Update page count");
+		if (isElementPresent(GET_SELECTED_COUNTinApprMgmt, "Page count")) {
+			selectByVisibleText(GET_SELECTED_COUNTinApprMgmt, NewPageCount, "Update page count");
 			reporter.SuccessReport("Approval Management Reports Page", "Paging Field Exists and Clicked", "");
 		} else {
 			reporter.failureReport("Approval Management Reports Page", "Paging Link Does Not Exist", NewPageCount);
@@ -1625,7 +1674,7 @@ String EndDate= getText(Approvername("EndDateId"), "EndDateId");
 		if (isElementPresent(NEXT_PAGE_LINK, "Next Page ")) {
 			click(NEXT_PAGE_LINK, "Click Next Page");
 			// Verify the Paging Count 50
-			VerifyPageCount50();
+			VerifyPageCount50InApprovalmgmt();
 			reporter.SuccessReport("Approval Management Reports Page", "Next Page Link Exists and Clicked", "");
 		} else {
 			reporter.SuccessReport("Approval Management Reports Page",
