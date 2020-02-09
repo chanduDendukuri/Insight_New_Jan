@@ -958,7 +958,25 @@ public void grandParentCheckboxNotClicked()throws Throwable {
 		}
 		}	
 		
-		
+		/**
+		 * Method is to select Schedule report Options Dates
+		 * 
+		 * @throws Throwable
+		 */
+		public void verifyScheduleReportOptionsdates(List<String> Options) throws Throwable {
+			
+			for (int i=0 ; i <Options.size();i++){
+			waitForVisibilityOfElement(DELIVERY_METHODOPTIONS, "Select Delivery Method");
+			if (isElementPresent(SCHEDULEREPORT_DATES, "Select ADelivery Method", true)){				
+				selectByVisibleText(SCHEDULEREPORT_DATES,Options.get(i),"Schedule Report");	
+			reporter.SuccessReport("Verify Schedule report "+Options.get(i)+" Options on Report Page"," Schedule Report  "+Options.get(i)+" Options exist on Report Page", Options.get(i));
+			}
+			else {
+				reporter.failureReport("Verify Schedule report Options"+Options.get(i)+" on Report Page"," Schedule Report  "+Options.get(i)+" Options doesnot exist on Report Page", "");
+			}
+			}
+
+		}	
 		
 		
 }
