@@ -187,6 +187,7 @@ public class CartObj extends CommonObj{
 	public static By PROD_GROUP_NAME_IN_CART=By.xpath("//div[@class='cart__table-bundle-row']//h4");
 	public static By BUNDLEONE=By.xpath("//div[@class='cart__item-bundle' and contains(.,'BUNDLE-1')]");
 	public static By BUNDLE=By.xpath("//div[@class='cart__item-bundle']");
+	public static By BUNDLE_NAME=By.xpath("//div[@class='cart__item-bundle']//parent::div//h4");
 	public static By PART_NUMBER=By.xpath("//a[@data-gtm-event='cart-item-description-link']//following-sibling::p[contains(text(),'Mfr Part #')]");
 	//cart quote
 	public static By SAVE_AS_QUOTE=By.xpath("//div[@class='columns small-12 large-3 print-5 print-offset-7']//a[text()='Save as quote']");
