@@ -858,7 +858,7 @@ public class CartLib extends ActionEngine {
 			int size=myList.size();
 			System.out.println("listsize1"+size);
 			//for (int i = 0; i <= size-1; i++) {
-			for (int i = size-1; i <= 0; i++) {
+			for (int i = 0; i <= size-1; i++) {
 				String cartName = myList1.get(i).getText();
 				myList.get(i).click();
 				waitForVisibilityOfElement(CartObj.YES_BUTTON_INCONFORMATION_POP_UP, "Yes in conformation pop up");
@@ -866,9 +866,14 @@ public class CartLib extends ActionEngine {
 				Thread.sleep(5000);
 				
 				//waitForVisibilityOfElement(CartObj.DELETE_CART_MEASSAGE, "ACCOUNT TOOLS");
-				reporter.SuccessReport("Delete cart meassage ", "Save Cart name Exist and Deleted", "Saved Carts: "+myList1.get(i).getText());
+				reporter.SuccessReport("Delete cart meassage ", "Save Cart name Exist and Deleted", "Saved Carts: "+cartName);
 				Thread.sleep(10000);
 				
+				
+			}
+			
+			if(isElementPresent(CartObj.NO_SAVED_CART_MESSAGE, "No Saved carts or order templates exists")) {
+				reporter.SuccessReport("AccountTools/Saved carts", "No Saved carts or order templates exists", "No Saved carts or order templates exists");
 			}
 		}
 	}
@@ -936,6 +941,10 @@ public class CartLib extends ActionEngine {
 	public void deleteBundle() throws Throwable {
 		if(isVisible(CartObj.DELETE_BUNDLE, "Delete budnle-1")) {
 			click(CartObj.DELETE_BUNDLE, "Delete budnle-1");
+			String text=getText(CartObj.BUNDLE_NAME, "Bundle name");
+			if(!isVisibleOnly(CartObj.DELETE_BUNDLE, "Delete budnle-1")) {
+				reporter.SuccessReport("Delete bundle-1 in cart", "Bundle-1 is sucessfully deleted", text+": "+"Bundle-1", driver);
+			}
 		}
 		else {
 			reporter.failureReport("Delete bundle-1 in cart", "Bundle-1 in cart is not visible", "Bundle-1", driver);
@@ -944,6 +953,7 @@ public class CartLib extends ActionEngine {
     public void removeInStockItems() throws Throwable {
 		if(isElementPresent(CartObj.REMOVE_IN_STOCK_ITEMS, "Remove in stock items")) {
 			click(CartObj.REMOVE_IN_STOCK_ITEMS, "Remove in stock items");
+			
 		}
 		else {
 			reporter.SuccessReport("In stocks items", "In stock items are not visible", "", driver);
@@ -1158,7 +1168,7 @@ public class CartLib extends ActionEngine {
 				"SEND BUTTON IN SEND TO A COLLEGUE POPUP");
 		click(CartObj.SEND_BUTTON_IN_SEND_TO_A_COLLEGUE_POPUP, "SEND BUTTON IN SEND TO A COLLEGUE POPUP");
 		verifyErrorMessagesInSendToAColleaguePopUp();
-		click(CartObj.CLOSE_SEND_TO_A_COLLEGUE_POPUP, "CLOSE SEND TO A COLLEGUE POPUP");
+		//click(CartObj.CLOSE_SEND_TO_A_COLLEGUE_POPUP, "CLOSE SEND TO A COLLEGUE POPUP");
 	}
 
 	/**
@@ -1170,9 +1180,45 @@ public class CartLib extends ActionEngine {
 	 * @customization author : CIGNITI/SOWJANYA
 	 */
 	public void verifyErrorMessagesInSendToAColleaguePopUp() throws Throwable {
-		isElementPresent(CartObj.YOUR_NAME_ERROR_MESSAGE, "YOUR NAME ERROR MESSAGE");
-		isElementPresent(CartObj.YOUR_EMAIL_ERROR_MESSAGE, "YOUR EMAIL ERROR MESSAGE");
-		isElementPresent(CartObj.RECIPIENT_EMAIL_ERROR_MESSAGE, "RECIPIENT EMAIL ERROR MESSAGE");
+		if(isElementPresent(CartObj.YOUR_NAME_ERROR_MESSAGE, "YOUR NAME ERROR MESSAGE")) {
+			String errorMessage=getText(CartObj.YOUR_NAME_ERROR_MESSAGE,"YOUR NAME ERROR MESSAGE");
+			reporter.SuccessReport("Verifying error message", "YOUR NAME ERROR MESSAGE", errorMessage, driver);
+		}
+		else {
+			reporter.failureReport("Verifying error message", "YOUR NAME ERROR MESSAGE does not exist", "", driver);
+		}
+		if(isElementPresent(CartObj.YOUR_EMAIL_ERROR_MESSAGE, "YOUR EMAIL ERROR MESSAGE")) {
+			String errorMessage=getText(CartObj.YOUR_EMAIL_ERROR_MESSAGE, "YOUR EMAIL ERROR MESSAGE");
+			reporter.SuccessReport("Verifying error message", "YOUR EMAIL ERROR MESSAGE", errorMessage, driver);
+		}
+		else {
+			reporter.failureReport("Verifying error message", "YOUR EMAIL ERROR MESSAGE does not exist", "", driver);
+		}
+		if(isElementPresent(CartObj.RECIPIENT_EMAIL_ERROR_MESSAGE, "RECIPIENT EMAIL ERROR MESSAGE")) {
+			String errorMessage=getText(CartObj.RECIPIENT_EMAIL_ERROR_MESSAGE, "RECIPIENT EMAIL ERROR MESSAGE");
+			reporter.SuccessReport("Verifying error message", "RECIPIENT EMAIL ERROR MESSAGE", errorMessage, driver);
+		}
+		else {
+			reporter.failureReport("Verifying error message", "RECIPIENT EMAIL ERROR MESSAGE does not exist", "", driver);
+		}
+	}
+	
+	public void verifyErrorMessagesInSendToAColleaguePopUpForEmail() throws Throwable {
+		
+		if(isElementPresent(CartObj.YOUR_EMAIL_ERROR_MESSAGE, "YOUR EMAIL ERROR MESSAGE")) {
+			String errorMessage=getText(CartObj.YOUR_EMAIL_ERROR_MESSAGE, "YOUR EMAIL ERROR MESSAGE");
+			reporter.SuccessReport("Verifying error message", "YOUR EMAIL ERROR MESSAGE", errorMessage, driver);
+		}
+		else {
+			reporter.failureReport("Verifying error message", "YOUR EMAIL ERROR MESSAGE does not exist", "", driver);
+		}
+		if(isElementPresent(CartObj.RECIPIENT_EMAIL_ERROR_MESSAGE, "RECIPIENT EMAIL ERROR MESSAGE")) {
+			String errorMessage=getText(CartObj.RECIPIENT_EMAIL_ERROR_MESSAGE, "RECIPIENT EMAIL ERROR MESSAGE");
+			reporter.SuccessReport("Verifying error message", "RECIPIENT EMAIL ERROR MESSAGE", errorMessage, driver);
+		}
+		else {
+			reporter.failureReport("Verifying error message", "RECIPIENT EMAIL ERROR MESSAGE does not exist", "", driver);
+		}
 	}
 
 	/**
@@ -1184,8 +1230,8 @@ public class CartLib extends ActionEngine {
 	 */
 	public void verifySendToAColleague(String orderUtilities, String yourName, String yourEmail, String recipientEmail,
 			String yourComments) throws Throwable {
-		waitForVisibilityOfElement(CartObj.getShoppingCartOrderUtilities(orderUtilities), "Send to a colleague");
-		click(CartObj.getShoppingCartOrderUtilities(orderUtilities), "Send to a colleague");
+		//waitForVisibilityOfElement(CartObj.getShoppingCartOrderUtilities(orderUtilities), "Send to a colleague");
+		//click(CartObj.getShoppingCartOrderUtilities(orderUtilities), "Send to a colleague");
 
 		waitForVisibilityOfElement(CartObj.YOUR_NAME_TEXT_FIELD, "YOUR NAME TEXT FIELD");
 		clickOnly(CartObj.YOUR_NAME_TEXT_FIELD, "YOUR NAME TEXT FIELD");
@@ -1207,10 +1253,15 @@ public class CartLib extends ActionEngine {
 				"SEND BUTTON IN SEND TO A COLLEGUE POPUP");
 		click(CartObj.SEND_BUTTON_IN_SEND_TO_A_COLLEGUE_POPUP, "SEND BUTTON IN SEND TO A COLLEGUE POPUP");
 
-		waitForVisibilityOfElement(CartObj.MAIL_SEND_TO_A_COLLEGUE_SUCCESS_MSG, "SUCCESS MSG");
-		isElementPresent(CartObj.MAIL_SEND_TO_A_COLLEGUE_SUCCESS_MSG, "SUCCESS MSG", true);
+		
 
 	}
+	
+	public void verifySendToAColleagueSucessMessage() throws Throwable {
+		waitForVisibilityOfElement(CartObj.MAIL_SEND_TO_A_COLLEGUE_SUCCESS_MSG, "SUCCESS MSG");
+		isElementPresent(CartObj.MAIL_SEND_TO_A_COLLEGUE_SUCCESS_MSG, "SUCCESS MSG", true);
+	}
+	
 
 	/**
 	 * PURPOSE:
@@ -1907,7 +1958,7 @@ public void verifyProductdetails() throws Throwable {
 			reporter.SuccessReport("Check Product with COI Value in the Cart Page", "Product with COI Value are Exists and As Expectedin the Cart", "Part Number:"+partNumber +"COI: "+coi);
 		}
 		else {
-			reporter.failureReport("Check Product with COI Value in the Cart Page", "Product with COI Value are not Exists","", driver);
+			reporter.SuccessReport("Check Product with COI Value in the Cart Page", "Product with COI Value are not Exists","", driver);
 		}
 		
 	}
@@ -1919,7 +1970,7 @@ public void verifyProductdetails() throws Throwable {
 			reporter.SuccessReport("Check Product with CSI Value in the Cart Page", "Product with CSI Value are Exists and As Expectedin the Cart", "Part Number:"+partNumber +"CSI: "+csi);
 		}
 		else {
-			reporter.failureReport("Check Product with CSI Value in the Cart Page", "Product with CSI Value are not Exists","", driver);
+			reporter.SuccessReport("Check Product with CSI Value in the Cart Page", "Product with CSI Value are not Exists","", driver);
 		}
 		
 	}
@@ -1931,7 +1982,7 @@ public void verifyProductdetails() throws Throwable {
 			reporter.SuccessReport("Check Product with stock Value in the Cart Page", "Product with stock Value are Exists and As Expectedin the Cart", "Part Number:"+partNumber +"stock: "+stock);
 		}
 		else {
-			reporter.failureReport("Check Product with stock Value in the Cart Page", "Product with stock Value are not Exists","", driver);
+			reporter.SuccessReport("Check Product with stock Value in the Cart Page", "Product with stock Value are not Exists","", driver);
 		}
 		
 	}

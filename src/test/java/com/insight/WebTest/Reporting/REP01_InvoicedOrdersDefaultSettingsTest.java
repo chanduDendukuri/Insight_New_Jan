@@ -81,7 +81,7 @@ public class REP01_InvoicedOrdersDefaultSettingsTest extends ReportingLib {
 							verifyDefaultAccountSelection(data.get("DefaultAccountSelOpt"));
 							verifyDefaultCurrentDate(data.get("CurrentDate"));
 							List<String> dateOptionsList= Arrays.asList(data.get("ScheduleDates").split(","));
-							verifyScheduleReportOptionsDates(dateOptionsList);
+							verifyScheduleReportOptionsdates(dateOptionsList);
 							verifyDefualtCurrancyUSD();
 							verifyStartDate(data.get("DayOne"));
 							EndDateVerification();
@@ -115,7 +115,7 @@ public class REP01_InvoicedOrdersDefaultSettingsTest extends ReportingLib {
 							List<String> optionList1= Arrays.asList(data.get("ScheduleOptions").split(","));
 							verifyScheduleReportOptions(optionList1);
 							List<String> dateOptionsList1= Arrays.asList(data.get("ScheduleDates").split(","));
-							verifyScheduleReportOptionsDates(dateOptionsList1);
+							verifyScheduleReportOptionsdates(dateOptionsList1);
 							canadaLib.verifyFilterbyCurrency(data.get("Currency"));
 							canadaLib.verifyDeliveryOption();
 							List<String> deliveryOptionsList1= Arrays.asList(data.get("DeliveryOptions").split(","));
@@ -147,7 +147,7 @@ public class REP01_InvoicedOrdersDefaultSettingsTest extends ReportingLib {
 							cmtLib.permissionFromDD(data.get("Set_Permission3"), data.get("Permission_Dropdown_Option"));
 							cmtLib.loginAsAdminCMT();
 							Thread.sleep(5000);
-							marriottIntlCorpLib.clickAccountToolsFromSideMenu(data.get("Tools_Menu"),data.get("Tools_Menu_DD"));	
+							canadaLib.clickOnSideMenuSelectAccountToolOptions(data.get("Tools_Menu"),data.get("Tools_Menu_DD"));	
 							canadaLib.clickOnReportOptions(data.get("ReportOption"));
 							canadaLib.verifyReportsPage();
 							canadaLib.verifySelectReport(data.get("SelectReport"));
@@ -155,7 +155,7 @@ public class REP01_InvoicedOrdersDefaultSettingsTest extends ReportingLib {
 							List<String> optionList2= Arrays.asList(data.get("ScheduleOptions").split(","));
 							verifyScheduleReportOptions(optionList2);
 							List<String> dateOptionsList2= Arrays.asList(data.get("ScheduleDates").split(","));
-							verifyScheduleReportOptionsDates(dateOptionsList2);
+							verifyScheduleReportOptionsdates(dateOptionsList2);
 							canadaLib.verifyFilterbyCurrency(data.get("Currency"));
 							canadaLib.verifyDeliveryOption();
 							List<String> deliveryOptionsList2= Arrays.asList(data.get("DeliveryOptions").split(","));

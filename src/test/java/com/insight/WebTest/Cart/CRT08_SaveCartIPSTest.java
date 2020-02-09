@@ -72,7 +72,7 @@ public class CRT08_SaveCartIPSTest extends CartLib{
 					commonLib.searchProduct(data.get("Search_Item"));
 					search.verifyBreadCrumbInSearchResultsPage(data.get("Search_Item"));
 /*Review comment*/	removeInStockItems();
-					String searchItem=prodInfoLib.getPartNumberInSearchResultsPage();
+					String searchItem=prodInfoLib.getPartNumberExactlyInSearchResultsPage();
 					commonLib.addFirstDisplyedItemToCartAndVerify();
 					canadaLib.continueToCheckout();
 					canadaLib.verifyPlaceCartLabel();
@@ -87,12 +87,12 @@ public class CRT08_SaveCartIPSTest extends CartLib{
 					search.selectContractInCartPage(data.get("Contract"));
 					commonLib.searchProduct(data.get("Search_Item1"));
 					search.verifyBreadCrumbInSearchResultsPage(data.get("Search_Item1"));
-					String searchItem1=prodInfoLib.getPartNumberInSearchResultsPage();
+					String searchItem1=prodInfoLib.getPartNumberExactlyInSearchResultsPage();
 					commonLib.addFirstDisplyedItemToCartAndVerify();
 					canadaLib.continueToCheckout();
 					canadaLib.verifyPlaceCartLabel();
 					prodInfoLib.verifyCartPageAndPartDetailsForRecentlyItemDynamically(searchItem1);
-					String cartName1 = "SavdCart"+getRandomNumeric(5);
+					String cartName1 = "SavedCart"+getRandomNumeric(5);
 					cartLib.clickOnSaveCartContentAndSaveCartAndClearCartOff(cartName1);
 					
 					commonLib.clickCart();
