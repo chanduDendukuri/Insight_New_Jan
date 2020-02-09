@@ -147,7 +147,7 @@ public class REP01_InvoicedOrdersDefaultSettingsTest extends ReportingLib {
 							cmtLib.permissionFromDD(data.get("Set_Permission3"), data.get("Permission_Dropdown_Option"));
 							cmtLib.loginAsAdminCMT();
 							Thread.sleep(5000);
-							marriottIntlCorpLib.clickAccountToolsFromSideMenu(data.get("Tools_Menu"),data.get("Tools_Menu_DD"));	
+							canadaLib.clickOnSideMenuSelectAccountToolOptions(data.get("Tools_Menu"),data.get("Tools_Menu_DD"));	
 							canadaLib.clickOnReportOptions(data.get("ReportOption"));
 							canadaLib.verifyReportsPage();
 							canadaLib.verifySelectReport(data.get("SelectReport"));
