@@ -1958,7 +1958,7 @@ public void verifyProductdetails() throws Throwable {
 			reporter.SuccessReport("Check Product with COI Value in the Cart Page", "Product with COI Value are Exists and As Expectedin the Cart", "Part Number:"+partNumber +"COI: "+coi);
 		}
 		else {
-			reporter.failureReport("Check Product with COI Value in the Cart Page", "Product with COI Value are not Exists","", driver);
+			reporter.SuccessReport("Check Product with COI Value in the Cart Page", "Product with COI Value are not Exists","", driver);
 		}
 		
 	}
@@ -1970,7 +1970,7 @@ public void verifyProductdetails() throws Throwable {
 			reporter.SuccessReport("Check Product with CSI Value in the Cart Page", "Product with CSI Value are Exists and As Expectedin the Cart", "Part Number:"+partNumber +"CSI: "+csi);
 		}
 		else {
-			reporter.failureReport("Check Product with CSI Value in the Cart Page", "Product with CSI Value are not Exists","", driver);
+			reporter.SuccessReport("Check Product with CSI Value in the Cart Page", "Product with CSI Value are not Exists","", driver);
 		}
 		
 	}
@@ -1982,7 +1982,7 @@ public void verifyProductdetails() throws Throwable {
 			reporter.SuccessReport("Check Product with stock Value in the Cart Page", "Product with stock Value are Exists and As Expectedin the Cart", "Part Number:"+partNumber +"stock: "+stock);
 		}
 		else {
-			reporter.failureReport("Check Product with stock Value in the Cart Page", "Product with stock Value are not Exists","", driver);
+			reporter.SuccessReport("Check Product with stock Value in the Cart Page", "Product with stock Value are not Exists","", driver);
 		}
 		
 	}

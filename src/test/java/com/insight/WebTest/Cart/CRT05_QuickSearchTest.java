@@ -78,7 +78,7 @@ public class CRT05_QuickSearchTest extends CartLib {
 					prodInfoLib.clickOnAddToCartButtonInWarrentiesPage(data.get("index"));
 					canadaLib.continueToCheckout();
 					canadaLib.verifyPlaceCartLabel();
-					prodInfoLib.verifyCartPageAndPartDetailsForRecentlyItem();
+					prodInfoLib.verifyCartPageAndPartDetailsForRecentlyItemDynamically(manfa);
 			
 					clickOnProductLinkInCartPage();
 					prodInfoLib.verifyTheManufacturerNumberInProductDetailsPage(manfa);
