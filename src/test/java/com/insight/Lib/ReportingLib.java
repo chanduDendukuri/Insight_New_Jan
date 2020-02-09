@@ -149,7 +149,7 @@ public class ReportingLib extends ReportsObj {
 		for (int i=0 ; i <Options.size();i++){
 		waitForVisibilityOfElement(SCHEDULEREPORT_DATES, "Select Delivery Method");
 		if (isElementPresent(SCHEDULEREPORT_DATES, "Select ADelivery Method", true)){				
-			selectByVisibleText(SCHEDULEREPORT_OPTIONS,Options.get(i),"Schedule Report");	
+			selectByVisibleText(SCHEDULEREPORT_OPTIONS,Options.get(i),"Schedule Report");
 		reporter.SuccessReport("Verify Schedule report "+Options.get(i)+" Options on Report Page"," Schedule Report  "+Options.get(i)+" Options exist on Report Page", "");
 		}
 		else {

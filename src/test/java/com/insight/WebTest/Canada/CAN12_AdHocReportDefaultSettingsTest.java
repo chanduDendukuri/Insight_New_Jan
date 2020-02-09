@@ -1,7 +1,11 @@
 package com.insight.WebTest.Canada;
 
+import java.io.File;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.Hashtable;
 import java.util.List;
 
@@ -28,7 +32,9 @@ public class CAN12_AdHocReportDefaultSettingsTest extends CanadaLib{
 	ShipBillPayLib shipbLib=new ShipBillPayLib();
 	MarriottIntlCorpLib mic=new MarriottIntlCorpLib();
 	CommonCanadaLib ccp = new CommonCanadaLib();
-	
+	CanadaLib canadaLib = new CanadaLib();
+	ReportingLib report = new ReportingLib();
+
 	@Parameters({ "StartRow", "EndRow", "nextTestJoin" })
 	@Test
 	public void TC_CAN12(int StartRow, String EndRow, boolean nextTestJoin) throws Throwable {
@@ -111,9 +117,43 @@ public class CAN12_AdHocReportDefaultSettingsTest extends CanadaLib{
 							assertTrue(!ccp.verifySMART_CHECK(),"By default SmartCheck was not selected");
 							verifyFilterOrder();
 							ccp.addAvailableItemsToAllowItems();
+							ccp.clickOnReportNameDD();
+							//ccp.getListOfReportNameOption();
+							report.clickOnDeliveryReport("Custom Report Name");
+							String customName="AdHoc";
+							report.clickOnCustomName(customName);
+							DateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+							Date datev = new Date();
 							clickOnRun();
+							/*DateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+							Date datev = new Date();*//*
+							String strDate = sdf.format(datev);
 
+							String yyyy = strDate.split("/")[0].replace("/","");
+							String MM = strDate.split("/")[1].replace("/","");
+							String dd = strDate.split("/")[2].replace("/","");
+							String HH = strDate.split("")[3].replace("/","_");
+							String mm = strDate.split("")[3].replace("/","_");
+							String fileName=customName+"_"+yyyy+MM+dd+"_"+mm;
+							File file = new File("C:/Users/example/Desktop"); //Change this to the directory you want to search in.
+								String sfile = System.getProperty("user.dir") + "\\" + "DownloadedFiles" + "\\" + "exportCart.xls";
+
+							if( file.exists() && file.isDirectory() )
+							{
+								String[] files = file.list(); //get the files in String format.
+
+								for( String fileName : files )
+								{
+									if( fileName.contains( substring ) )
+										filesContainingSubstring.add( fileName );
+								}
+							}
+
+*/
 			//* This is to verify ExcelSheet
+							clickOnRun();
+							String file=ccp.FileNameWithdateSplit(customName);
+							ccp.verifyExportFile("Page1","3"," Operations Center,Region,Account Number",file);
 							//cartLib.verifyExportFile("Page1","1","Ad-Hoc");
 
 

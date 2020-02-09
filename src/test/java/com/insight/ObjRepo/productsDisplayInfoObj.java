@@ -185,7 +185,7 @@ public static By PartNumberInprodutdetailsPage = By.xpath("//div[@id='search-ite
         return By.xpath("(//*[@class='add-to-order-wrapper']//a[text()='Add to Cart'])["+index+"]");
     }
     public static By MFR_NUMBER_warrenty_PAGE (String index) {
-        return By.xpath("(//*[@class='product-details'])["+index+"]");
+        return By.xpath("(//*[@class='product-details'])["+index+"] | (//*[@id='tpl-specs-warranties-target']//div//div[@class='row']//div[2]//div[@class='product-details'])[1]");
     }
      public static By Quantity_NUMBER_warrenty_PAGE (String index) {
         return By.xpath("(//*[@class=' cart-item__qty align-self-middle text-center'])["+index+"]");

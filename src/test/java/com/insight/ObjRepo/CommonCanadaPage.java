@@ -62,6 +62,11 @@ public class CommonCanadaPage extends ActionEngine{
     public static By getSroredAddressFromResultsGrid=By.xpath("//div[@class='table']//*[@class='row align-middle']//div[@class='columns table__col table__col--body']");
     public static By btnContinue=By.xpath("//*[@class='row stored-address']//following-sibling::footer//div//button[text()='Continue']");
     public static By rbtnDefaultAddress=By.xpath("//*[@name='defaultAddress']");
+public static By addTocartButtonInWarrenty = By.xpath("//*[@id='tpl-specs-warranties-target']//*[@class='button primary small js-add-to-cart'][1]");
+public static By exportToXLSlink=By.xpath("//*[text()='Export as a file']");
+public static By IUSAMandatoryCTOlink=By.xpath("//*[text()='IUSA Mandatory CTO']");
+public static By AddtoOrder=By.xpath("//*[text()='ADD TO ORDER']");
+
 
 
 
