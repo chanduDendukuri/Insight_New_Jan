@@ -168,6 +168,14 @@ public class CartLib extends ActionEngine {
 		waitForVisibilityOfElement(CartObj.ADD_TO_CART_SUCCESS_MESSAGE, "ADD TO CART SUCCESS MESSAGE");
 		isElementPresent(CartObj.ADD_TO_CART_SUCCESS_MESSAGE, "ADD TO CART SUCCESS MESSAGE", true);
 	}
+	public void verifyBreadCrum(String text) throws Throwable {
+		if(isElementPresent(CartObj.breadCrum(text), "Bread crum")) {
+			reporter.SuccessReport("Verify bread crum in search results page", "Breadcrum verification", text, driver);
+		}
+		else {
+			reporter.failureReport("Verify bread crum in search results page", "Breadcrum verification ietm not present", "", driver);
+		}
+	}
 
 	/**
 	 * This method is to click on save cart contents and save the cart
@@ -1305,7 +1313,7 @@ public class CartLib extends ActionEngine {
 				"SEND BUTTON IN SEND TO A COLLEGUE POPUP");
 		click(CartObj.SEND_BUTTON_IN_SEND_TO_A_COLLEGUE_POPUP, "SEND BUTTON IN SEND TO A COLLEGUE POPUP");
 		verifyErrorMessagesInSendToAColleaguePopUp();
-		click(CartObj.CLOSE_SEND_TO_A_COLLEGUE_POPUP, "CLOSE SEND TO A COLLEGUE POPUP");
+		//click(CartObj.CLOSE_SEND_TO_A_COLLEGUE_POPUP, "CLOSE SEND TO A COLLEGUE POPUP");
 	}
 
 	/**
