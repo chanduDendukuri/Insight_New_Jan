@@ -365,7 +365,7 @@ public static By Productname_at_cart=By.xpath("//h4[@class='cart__item-heading']
 	
 	public static By CART_PROD_QTY_RECENTLYADDEDTEM_loop=By.xpath("//label[text()='Item quantity']/following-sibling::input[@id='iw-checkout__cart-item-quantity'] | //label[text()='Item quantity']/following-sibling::input");
 
-	public static By CART_PROD_STOCK_RECENTLYADDEDTEM_loop=By.xpath("//label[text()='Item quantity']/following-sibling::input/following::span/span[contains(text(),' Stock: ')] or contains(text(),'non')] | //*[contains(@class,'cart__stock-text')] ");
+	public static By CART_PROD_STOCK_RECENTLYADDEDTEM_loop=By.xpath("//label[text()='Item quantity']/following-sibling::input/following::span/span[contains(text(),' Stock: ') or contains(text(),'non')] | //*[contains(@class,'cart__stock-text')] | //label[text()='Item quantity']/following-sibling::input/following::span/span[contains(text(),' Stock: ') or contains(text(),'non')]") ;
 	//public static By CART_PROD_STOCK_RECENTLYADDEDTEM_loop=By.xpath("//label[text()='Item quantity']/following-sibling::input/following::span[contains(text(),' Stock: ') or contains(text(),'non')]");
 	public static By Cart_Prod_Insight_Part_Number=By.xpath("//*[@class='cart__item-part cart__font-size--sm' and contains(text(),'Insight')]");
 

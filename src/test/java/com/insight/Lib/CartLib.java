@@ -1707,7 +1707,8 @@ public void verifyProductdetails() throws Throwable {
 	 */
 
 	public void clickOnProductLink(String ProductLink) throws Throwable {
-		click(CartObj.product_link(ProductLink), "Product Link");
+		String text=getText(CartObj.product_link(ProductLink), "Product link");
+		click(CartObj.product_link(ProductLink), "Product Link "+text);
 		Thread.sleep(10000);
 	}
 
