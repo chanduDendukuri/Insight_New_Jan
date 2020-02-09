@@ -1036,7 +1036,7 @@ public class SearchLib extends CommonObj {
 			for (int j = 0; j < myList1.size(); j++) {
 				myList1.get(j).click();
 				if(myList1.get(j).isSelected()){
-			          reporter.SuccessReport("verify the check box checked or not","Check box ("+j+") is checked ","");
+			          //reporter.SuccessReport("verify the check box checked or not","Check box ("+j+") is checked ","");
 		   }else {
 			   reporter.failureReport("verify the checkbox checked or not","check box is not checked","");
 		   }
