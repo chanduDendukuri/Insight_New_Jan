@@ -83,7 +83,7 @@ public String RandomApprovalPathName(String Approver_Name) throws Throwable {
 
 	public void ClickCreateApprovalPathButton() throws Throwable {
 		if (isVisibleOnly(CREATE_APPROVALPATH_BTN, "")) {
-			click(CREATE_APPROVALPATH_BTN, "Approver Path Button click");
+			click(CREATE_APPROVALPATH_BTN, "Create Approver Path Button");
 			reporter.SuccessReport(
 					"Click Create New Approval Path on Approval Management Approval Path Management Page",
 					"Create Approval Path Link Exists and Clicked", "");
@@ -95,10 +95,10 @@ public String RandomApprovalPathName(String Approver_Name) throws Throwable {
 	}
 
 	public void VerifyAppovalPathCreated(String Approver_Name) throws Throwable {
-		String SuccessMsg = getText(Successmsg, "");
+		String SuccessMsg = getText(Successmsg, "Success message:");
 		if (isElementPresent(getCreatedApproverPath(Approver_Name), "Approval management page")) {
 			reporter.SuccessReport("Verify Approval Path is Added on Approval Management Approval Path Management Page",
-					"Created Approver Path is Exists and Verified", SuccessMsg);
+					"Created/Edited Approver Path is Exists and Verified", SuccessMsg+Approver_Name);
 		} else {
 			reporter.failureReport("Verify Approval Path is Added on Approval Management Approval Path Management Page",
 					"Created Approver Path Does Not Exist", "");
@@ -107,7 +107,7 @@ public String RandomApprovalPathName(String Approver_Name) throws Throwable {
 	public void verifySearchresults(String Approver_Name) throws Throwable {
 		if (isElementPresent(getCreatedApproverPath(Approver_Name), "Approval management page")) {
 			reporter.failureReport("Verify Approval Path is Added on Approval Management Approval Path Management Page",
-					"Created Approver Path is Exists and Verified", "");
+					"Created Approver Path is Exists and Verified", Approver_Name);
 		} else {
 			reporter.SuccessReport("Verify Approval Path is Added on Approval Management Approval Path Management Page",
 					"Created Approver Path Does Not Exist", "");
@@ -225,8 +225,8 @@ for(int i=1;i<=count;i++) {
 	text = (myList.get(1)).getText();
 	click(selectAppNameFromList(text), "Select Approver name from list box::"+text+"");
 	Add_Approver_Btn_Click();
-	if(isElementNotPresent(AddedAppNameFromList(text), "Select Approver name from list box")) {
-		click(selectAppNameFromList(text), "Select Approver name from list box::"+text+"");
+	if(isElementNotPresent(AddedAppNameFromList(text), "Select Approver name from Right list box ")) {
+		click(selectAppNameFromList(text), "Select Approver name from available list box::"+text+"");
 		Add_Approver_Btn_Click();
 	}
 	Thread.sleep(2000);
@@ -248,6 +248,21 @@ for(int i=1;i<=count;i++) {
 	}
 	public int NumberofApproversAddedtoRightSide() throws Throwable {
 		List<WebElement> elem = driver.findElements(NumberOfapproversadded);
+		int count = elem.size();
+		String count1= String.valueOf(count);
+		if(count>0) {
+			for(int i=0;i<=count;i++) {
+			String text=elem.get(i).getText().toString();
+			reporter.SuccessReport("Available Approvers count", "Number of Approvers added are", text+""+count1);
+		}}
+		else {
+			reporter.SuccessReport("Available Approvers count", "Number of Approvers added are 0","", driver);
+		}
+		
+		return count;
+	}
+	public int NumberofAvailableApprovers() throws Throwable {
+		List<WebElement> elem = driver.findElements(ALL_APPROVER_OPTIONS);
 		int count = elem.size();
 		String count1= String.valueOf(count);
 		if(count>0) {
@@ -425,15 +440,16 @@ for(int i=1;i<=count;i++) {
 			for(int i=1;i<=count;i++) {
 				String Approvername = getText(selectmultipleAppNameFromListToRemove(i), "Approver name");
 				click(selectmultipleAppNameFromListToRemove(i), "Approver name", Approvername);
-				click(SELECT_REMOVEPATH_BUTTON, "Select Path option");
+				click(SELECT_REMOVEPATH_BUTTON, "< Select Path option");
 			}
 			
 		}
 	}
 
 	public void VerifySuccessUpdate() throws Throwable {
+		String updatemesasge = getText(SUCCESS_UPDATE_MSG,"Update succes message");
 		if (isElementPresent(SUCCESS_UPDATE_MSG, "Update approver success message")) {
-			reporter.SuccessReport("Verify Approval Path Management Page", "Successfully Edited Approval Path", "");
+			reporter.SuccessReport("Verify Approval Path Management Page", "Successfully Edited Approval Path", updatemesasge);
 		} else {
 			reporter.failureReport("Verify Approval Path Management Page",
 					"edited approval Message path Does Not Exist", "");
@@ -464,11 +480,11 @@ for(int i=1;i<=count;i++) {
 	public void CancelOnErrorPage() throws Throwable {
 
 		if (isElementPresent(CANCEL_ON_ERROR_PAGE, "Verify cancel button")) {
-			click(CANCEL_ON_ERROR_PAGE, "Click cancel button");
-			reporter.SuccessReport("Click Cancel on Approval Path Management Page", "Cancel Link Exists and Clicked",
+			click(CANCEL_ON_ERROR_PAGE, "Successfully clicked on popup cancel button");
+			reporter.SuccessReport("Click PopUp Cancel button on Approval Path Management Page", "Cancel Link Exists and Clicked",
 					"");
 		} else {
-			reporter.failureReport("Click Cancel on Approval Path Management Page", "Cancel Link Does Not Exist", "");
+			reporter.failureReport("Click PopUp Cancel button on Approval Path Management Page", "Cancel Link Does Not Exist", "");
 		}
 	}
 
@@ -1466,6 +1482,7 @@ String EndDate= getText(Approvername("EndDateId"), "EndDateId");
 	}
 
 	public void UpdatedSuccessMsg() throws Throwable {
+		String Succesmessage = getText(SUCCESS_UPDATED_MSG, "Updated message");
 		if (isElementPresent(SUCCESS_UPDATED_MSG, "Updated success message")) {
 			reporter.SuccessReport("Add Requestors on Create/Edit Requestor Group Page", "Changes updated successfully",
 					"");
@@ -1474,7 +1491,7 @@ String EndDate= getText(Approvername("EndDateId"), "EndDateId");
 			Thread.sleep(2000);
 			if (isElementPresent(SUCCESS_UPDATED_MSG, "Updated success message")) {
 				reporter.SuccessReport("Add Requestors on Create/Edit Requestor Group Page",
-						"Changes updated successfully", "");
+						"Changes updated successfully", Succesmessage);
 			} else {
 				reporter.failureReport("Add Requestors on Create/Edit Requestor Group Page",
 						"Changes Not updated successfully", "");
@@ -1697,24 +1714,30 @@ String EndDate= getText(Approvername("EndDateId"), "EndDateId");
 	 * @throws Throwable
 	 */
 
-	public void datePicker(int months, String strCurrDay) throws Throwable {
+	public void datePicker(int months, String strCurrDay,String datetype) throws Throwable {
 
 		String day = strCurrDay.split("-")[0];
 		String month = strCurrDay.split("-")[1];
 		String year = strCurrDay.split("-")[2];
 
-		click(EndDateCALENDAR, "Click on calendar");
-		if (isElementPresent(NEXT_MONTH_ARROW, "Next month")) {
+		if(datetype.equals("FromDate")) {
+			click(StartDateCALENDAR, "Click on calendar");
+			}
+			else {
+				click(EndDateCALENDAR, "Click on calendar");
+			}
+		if (isElementPresent(PREV_MONTH_ARROW, "Next month")) {
 			for (int i = 0; i <= months; i++) {
-				click(NEXT_MONTH_ARROW, "Next konth");
+				driver.findElement(PREV_MONTH_ARROW).click();
+				//click(NEXT_MONTH_ARROW, "Next konth");
 			}
 			// Select Day
 			if (isElementPresent(dayInStartDayCalender(day), "From Date ")) {
-				click(dayInStartDayCalender(day), "Day");
+				click(dayInStartDayCalender(day), "Day: "+day);
 			}
 
 			reporter.SuccessReport("Change Month on Approval Management Page Approver Out of Office Settings",
-					"Arrow Button Exists and Clicked to Change the Month", "");
+					"Arrow Button Exists and Clicked to Change the Month", month+"-"+day);
 		} else {
 			reporter.failureReport("Change Month on Approval Management Page Approver Out of Office Settings",
 					"Arrow Button Does Not Exist", "");
@@ -1732,18 +1755,19 @@ String EndDate= getText(Approvername("EndDateId"), "EndDateId");
 			click(EndDateCALENDAR, "Click on calendar");
 		}
 for(int i=0;i<=11;i++) {
-	if(getText(MonthSelection, "Month Name").equals("month")) {
+	if(getText(MonthSelection, "Month Name").contains(month)) {
 		break;
 	}
 	else {
 		click(NEXT_MONTH_ARROW, "Next konth");
 	}
+}
 	if (isElementPresent(dayInStartDayCalender(day), "From Date ")) {
 		click(dayInStartDayCalender(day), "Day: "+day);
 	}
 }
 		
-	}
+	
 
 	/**
 	 * click on Requisition Status Report

@@ -74,7 +74,7 @@ public class REP08_SoftwareLicenseDetailDefaultSettingsTest extends ReportingLib
 				canadaLib.verifyReportsPage();
 				canadaLib.verifySelectReport(data.get("SelectReport"));
 				verifytheLinkedSoldTosText();
-				verifyStartDate(data.get("DayOne"));
+				verifyStartDate("01");
 				EndDateVerification();
 				verifyDefualtCurrancyUSD();
 				verifyScheduleReport();
@@ -116,7 +116,7 @@ public class REP08_SoftwareLicenseDetailDefaultSettingsTest extends ReportingLib
 				canadaLib.verifyReportsPage();
 				canadaLib.verifySelectReport(data.get("SelectReport"));
 				verifytheLinkedSoldTosText();
-				verifyStartDate(data.get("DayOne"));
+				verifyStartDate("01");
 				EndDateVerification();
 				verifyScheduleReport();
 				verifyScheduleReportOptions(optionList);

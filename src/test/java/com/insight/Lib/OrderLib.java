@@ -1233,10 +1233,10 @@ List<String> orderdetails = new ArrayList<String>();
 	public void verifyFileUploadOption(String exeFileNameOfAutoITWithExetension) throws Throwable {
 		 
 		try {
-			if (isElementPresent(UPLOAD_FILE, "Upload file")) {
-				System.out.println(System.getProperty("user.dir") + "\\AutoIt\\" + exeFileNameOfAutoITWithExetension);
+			if (isElementPresent(FILE_UPLOAD, "Upload file")) {
+				//System.out.println(System.getProperty("user.dir") + "\\AutoIt\\" + exeFileNameOfAutoITWithExetension);
 				Thread.sleep(2000);
-				click(UPLOAD_FILE, "Upload file");
+				click(FILE_UPLOAD, "Upload file");
 				Runtime.getRuntime()
 						.exec(System.getProperty("user.dir") + "\\AutoIt\\" + exeFileNameOfAutoITWithExetension);
 				Thread.sleep(3000);
