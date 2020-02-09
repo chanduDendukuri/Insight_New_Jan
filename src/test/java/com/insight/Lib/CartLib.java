@@ -858,7 +858,7 @@ public class CartLib extends ActionEngine {
 			int size=myList.size();
 			System.out.println("listsize1"+size);
 			//for (int i = 0; i <= size-1; i++) {
-			for (int i = size-1; i <= 0; i++) {
+			for (int i = 0; i <= size-1; i++) {
 				String cartName = myList1.get(i).getText();
 				myList.get(i).click();
 				waitForVisibilityOfElement(CartObj.YES_BUTTON_INCONFORMATION_POP_UP, "Yes in conformation pop up");
@@ -866,9 +866,14 @@ public class CartLib extends ActionEngine {
 				Thread.sleep(5000);
 				
 				//waitForVisibilityOfElement(CartObj.DELETE_CART_MEASSAGE, "ACCOUNT TOOLS");
-				reporter.SuccessReport("Delete cart meassage ", "Save Cart name Exist and Deleted", "Saved Carts: "+myList1.get(i).getText());
+				reporter.SuccessReport("Delete cart meassage ", "Save Cart name Exist and Deleted", "Saved Carts: "+cartName);
 				Thread.sleep(10000);
 				
+				
+			}
+			
+			if(isElementPresent(CartObj.NO_SAVED_CART_MESSAGE, "No Saved carts or order templates exists")) {
+				reporter.SuccessReport("AccountTools/Saved carts", "No Saved carts or order templates exists", "No Saved carts or order templates exists");
 			}
 		}
 	}
