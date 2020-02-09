@@ -80,7 +80,6 @@ public class REP08_SoftwareLicenseDetailDefaultSettingsTest extends ReportingLib
 				verifyScheduleReport();
 				List<String> optionList = Arrays.asList(data.get("ScheduleOptions").split(","));
 				verifyScheduleReportOptions(optionList);
-
 				canadaLib.verifyFilterbyCurrency(data.get("Currency"));
 				canadaLib.verifyDeliveryOption();
 				List<String> deliveryOptionsList = Arrays.asList(data.get("DeliveryOptions").split(","));
