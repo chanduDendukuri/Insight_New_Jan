@@ -129,7 +129,9 @@ public static By Successmsg = By.xpath("//div[@class='successUpdated']");
 		return By
 				.xpath("(//table[@id='reqtable']//tbody//tr//td[@class='verticalAlignTop'][" + col + "])[" + row + "]");
 	}
-
+public static By GetGroupDetails(int i,int j) {
+	return By.xpath("//table[@id='reqtable']//tbody//tr["+i+"]//td["+j+"]");
+}
 	public static By getReqRulesDetails(String col, String row) {
 		return By.xpath(
 				"(//table[@id='rulesTable']//tr[" + col + "]//td//div[@class='rulesSubTableComumn'])[" + row + "]");
@@ -335,6 +337,7 @@ public static By Approvername(String Filedname) {
 	}
 	
 	public static By GET_SELECTED_COUNT = By.xpath("//select[@id='repnowshowing']");
+	public static By GET_SELECTED_COUNTinApprMgmt = By.xpath("//select[@id='nowshowing']");
 	public static By NEXT_PAGE_LINK = By.xpath("//a[@id='pageLink_Next'][contiains(text(),'Next')]");
 	public static By TU_IUS_Requestor_Group_Link = By.xpath("(//td[@class='verticalAlignTop']//div//a[text()='TU_IUS Requestor Group'])[1]");
 	public static By TU_IUS_Tired_Requestor_Group_Link = By.xpath("(//td[@class='verticalAlignTop']//div//a[text()='TU_IUS Requestor Group Tiered'])[1]");
