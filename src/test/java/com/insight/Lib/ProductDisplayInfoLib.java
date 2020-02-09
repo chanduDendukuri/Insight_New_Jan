@@ -972,7 +972,12 @@ public class ProductDisplayInfoLib extends productsDisplayInfoObj {
      * @throws Throwable
      */
     public void clickOnWarrantiesTabOnProductDetailsPage() throws Throwable {
+    	if(isElementPresent(WARRANTIES_PROD_DETAILS, "warranties")) {
         click(WARRANTIES_PROD_DETAILS, "warranties");
+    	}
+    	else {
+    		reporter.failureReport("Verifying warrenties tab", "Warrenties tab is not present", "", driver);
+    	}
     }
 
     public void clickOnAddToCartButtonInWarrentiesPage(String index) throws Throwable {
