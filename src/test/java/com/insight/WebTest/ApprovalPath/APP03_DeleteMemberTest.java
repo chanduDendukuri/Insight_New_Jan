@@ -83,15 +83,20 @@ public class APP03_DeleteMemberTest extends ApprovalPathLib {
 
 					// Click on Edit link for the created Approver
 					ClickEditLinkButton(firstPathName);
-
+					VerifyIsInEditMode();
+                    int a2= NumberofAvailableApprovers();
 					// Select Approvers and add approver
 					List<String> approverAdded = SelectApprover(null,1);
-					
-					//Add_Approver_Btn_Click();
-
+					int a3= NumberofAvailableApprovers();
+					if(a3==a2-1) {
+						reporter.SuccessReport("Available Approvers", "Available Approvers are as expected", String.valueOf(a2), driver);
+					}
+					else {
+						reporter.failureReport("Available Approvers", "Available Approvers are not as expected", "");
+					}
 
 					// Now Remove the same user- Click Remove
-					RemoveApprovers(approverAdded.get(0),1);
+					RemoveAddedApprovers(approverAdded.get(0),1);
 
 					// Update Approval path
 					ClickUpdateButton();
@@ -104,7 +109,8 @@ public class APP03_DeleteMemberTest extends ApprovalPathLib {
 
 					// Verify Edit Mode
 					VerifyIsInEditMode();
-
+					
+					int a1 = NumberofAvailableApprovers();
 					// click remove
 					RemoveApprovers(data.get("Select_Approver"),1);
 
@@ -125,7 +131,7 @@ public class APP03_DeleteMemberTest extends ApprovalPathLib {
 
 					// Verify Edit Mode
 					VerifyIsInEditMode();
-
+				    NumberofAvailableApprovers();
 					// click remove
 					RemoveApprovers(data.get("Select_Approver"),1);
 

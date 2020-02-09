@@ -72,7 +72,8 @@ public class OrderObj extends ActionEngine{
 	public static By PROD_DESC_PLACE_ORDER_PAGE=By.xpath("//h4[@class='cart__item-heading'] ");
 	public static By PAYMENT_METHOD_TERM= By.xpath("//span[@class='Select-value-label'][contains(text(),'Terms')]"); 
 	public static By PAYMENT_INFO_CREDIT_CARD_DEFAULT=By.xpath("//span[@class='Select-value-label'][contains(text(),'Credit card')]");
-	public static By VALID_CARD_ERROR_MSG=By.xpath("//div[@class='form__field-msg form__field-msg--error'][contains(text(),'Please enter valid card number')]");
+	public static By VALID_VISA_CARD_ERROR_MSG=By.xpath("//div[@class='form__field-msg form__field-msg--error'][contains(text(),'VISA card type is not supported')]");
+	public static By VALID_DIACOVER_CARD_ERROR_MSG=By.xpath("//div[@class='form__field-msg form__field-msg--error'][contains(text(),'Discover card type is not supported')]");
 	
 	public static By paymentSelection(String paymentType) {
 		return By.xpath("//div[@class='Select-menu']//div[contains(text(),'"+paymentType+"')]");
@@ -91,6 +92,7 @@ public class OrderObj extends ActionEngine{
 	public static By SELECT_UPS_CARRIER=By.xpath("//div[@class='Select-menu-outer']//div[@class='Select-option'][contains(text(),'UPS')]");
 	public static By CARRIER_PRICE_RADIO_BTN=By.xpath("//input[@type='radio']");
 	public static By UPLOAD_FILE=By.xpath("//input[@id='fileUpload']/following::div//label[@for='fileUpload']");
+	public static By FILE_UPLOAD=By.xpath("//input[@id='fileUpload']/following::div//p//i[@class='ion ion-ios-upload-outline']");
 	public static By SHIPPING_ADDRESS_COMPANY_NAME=By.xpath("//div//h3[contains(text(),'Shipping address')]/following::div[1]//label[@class='form__label--readonly'][contains(text(),'Company:')]//p");
 	public static By SHIPPING_ADDRESS_IN_RECEIPT=By.xpath("//div//h3[contains(text(),'Shipping address')]/following::div[1]//label[@class='form__label--readonly'][contains(text(),'Address:')]//p");
 	public static By BILLING_ADDRESS_COMPANY_NAME=By.xpath("//div//h3[contains(text(),'Billing address')]/following::div//label[@class='form__label--readonly'][contains(text(),'Company:')]//p");

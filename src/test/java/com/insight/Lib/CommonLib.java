@@ -307,8 +307,9 @@ public class CommonLib extends ActionEngine{
 		{	
 			spinnerImage();
 			waitForVisibilityOfElement(CartObj.BUNDLE,"Bundle");
+			String text=getText(CartObj.BUNDLE_NAME, "Bundle name");
 			if(isElementPresent(CartObj.BUNDLE,"Bundle",true)) {
-				reporter.SuccessReport("Verify the Bundle  on Cart", "Bundle Field Exists", "Bundle-1");
+				reporter.SuccessReport("Verify the Bundle  on Cart", "Bundle Field Exists", text+": " +"Bundle-1");
 			}
 			else {
 				reporter.failureReport("Verify the Bundle  on Cart", "Bundle Field Does Not Exist", "Bundle-1");
@@ -512,11 +513,12 @@ public class CommonLib extends ActionEngine{
 		 * @throws Throwable
 		 */
 		public void clickOnAccountToolsAndClickOnProductGrp(String toolsMenuName, String dropDown ) throws Throwable{
-			acceptCookies() ;
-			Thread.sleep(10000);
-			if (isVisibleOnly(CommonObj.CLOSEBUTTON_COOKIES, "close cookie")) {
-				click(CommonObj.CLOSEBUTTON_COOKIES, "close cookie");
-			}
+			//acceptCookies() ;
+			//Thread.sleep(10000);
+		/*
+		 * if (isVisibleOnly(CommonObj.CLOSEBUTTON_COOKIES, "close cookie")) {
+		 * click(CommonObj.CLOSEBUTTON_COOKIES, "close cookie"); }
+		 */
 			if(isElementPresent(InvoiceHistoryLib.COSE_ACCOUNT_TOOLS, "close account tools")) {
 				click(InvoiceHistoryLib.COSE_ACCOUNT_TOOLS, "close account tools");
 			} 
@@ -633,17 +635,12 @@ public class CommonLib extends ActionEngine{
 		public void spinnerImage() throws Throwable {
 			Thread.sleep(2000);
 			if(isVisibleOnly(CommonObj.SPINNER_IMAGE, "spinner image")) {
-			waitForInVisibilityOfElement(CommonObj.SPINNER_IMAGE, "spinner image");
-			if(isVisibleOnly(CommonObj.SPINNER_IMAGE, "spinner image")) {
-				LOG.info("spinner image disapperaed");
+				waitForInVisibilityOfElement(CommonObj.SPINNER_IMAGE, "spinner image");
 			}else {
-				//reporter.failureReport("spinner image","spinner image not disapperaed","");
+				reporter.SuccessReport("spinner image","spinner image disapperaed","");
 			}
 			}
-			else {
-				LOG.info("spinner image not present");
-			}
-		}
+			
 		
 		/**
 		 * Method is to get the contract name on the product details page.

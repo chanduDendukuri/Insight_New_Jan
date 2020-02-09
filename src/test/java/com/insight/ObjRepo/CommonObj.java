@@ -112,7 +112,8 @@ public class CommonObj extends ActionEngine{
 	public static By ITEMS_ADDED_TO_CART_POPUP=By.xpath("//div[@id='header']//b[contains(text(),'Items added to Cart')]");
 	public static By PROD_GRP_CLOSE_ICON=By.xpath("//span[@class='insightLightBoxClose frameworkIcons Deep_Close_Icon']");
 	public static By ADD_ITEMS_RADIO_BUTTON=By.xpath("//table[@id='prodGroupTable']//td//input[@type='radio' and @checked='checked']");
-    public static By ADD_ITEMS_CHECKBOX=By.xpath("//table[@id='prodGroupTable']//td//input[@type='checkbox']");
+    public static By ITEM_DESCRIPTION=By.xpath("//table[@id='prodGroupTable']//td[1]//a");
+	public static By ADD_ITEMS_CHECKBOX=By.xpath("//table[@id='prodGroupTable']//td//input[@type='checkbox']");
     public static By ADD_TO_ORDER=By.xpath("//div[@id='csProductGroupAddToOrder']//a//span[contains(text(),'ADD TO ORDER')]");
 	public static By SAVEDCART=By.xpath("//div[@class='sidebar-nav']//a[text()='Saved Carts / Order Templates']");	
 	public static By VIEW_CART_PRODUCT_GROUP=By.xpath("//a[@title='View Cart >>']");

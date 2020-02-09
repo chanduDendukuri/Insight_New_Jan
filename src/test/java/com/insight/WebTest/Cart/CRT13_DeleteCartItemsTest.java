@@ -98,7 +98,7 @@ public class CRT13_DeleteCartItemsTest extends CartLib {
 					prodInfoLib.clickOnWarrantiesTabOnProductDetailsPage();
 					
 					
-					String manfa=prodInfoLib.getManfNumberFromWarrentiesPage(data.get("index"));
+					String manfa=prodInfoLib.getManfNumberFromWarrentiesPage(data.get("index")).split("Insight Part #:")[1].trim();
 					prodInfoLib.clickOnAddToCartButtonInWarrentiesPage(data.get("index"));
 					canadaLib.continueToCheckout();
 					canadaLib.verifyPlaceCartLabel();

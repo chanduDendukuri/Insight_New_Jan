@@ -61,7 +61,7 @@ public class CRT23_LoginFromCartPricingTest extends CartLib {
 
 					commonLib.searchProduct(data.get("Search_Item"));
 					searchLib.verifyBreadCrumbInSearchResultsPage(data.get("Search_Item"));
-					prodInfoLib.getPartNumberInSearchResultsPage();
+					String partNumber=prodInfoLib.getPartNumberExactlyInSearchResultsPage();
 					/* Review comment */ String listPrice = prodInfoLib.getFirtProductListPrice();
 					System.out.println("listPrice" + listPrice);
 					commonLib.addFirstDisplyedItemToCartAndVerify();
@@ -70,7 +70,7 @@ public class CRT23_LoginFromCartPricingTest extends CartLib {
 					commonLib.clickCart();
 
 					canadaLib.verifyPlaceCartLabel();
-					prodInfoLib.verifyCartPageAndPartDetailsForRecentlyItem();
+					prodInfoLib.verifyCartPageAndPartDetailsForRecentlyItemDynamically(partNumber);
 					/* Review comment */String summaryAmountNonLoggedIn = cartLib.getSummaryAmountInCart();
 					String currencyCode = cartLib.getCurrencyCode();
 					System.out.println("summaryAmountNonLoggedIn" + summaryAmountNonLoggedIn);
