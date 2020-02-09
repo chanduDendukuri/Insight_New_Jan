@@ -85,8 +85,8 @@ public class CRT10_SendToColleagueIPSTest extends CartLib{
 					prodInfoLib.verifyCartPageAndPartDetailsForRecentlyItemDynamically(searchItem);
 					
 					search.selectContractInCartPage(data.get("Contract"));
-					commonLib.searchProduct(data.get("searchItem2"));
-					verifyBreadCrum(data.get("searchItem2"));
+					commonLib.searchProduct(data.get("SearchItem2"));
+					verifyBreadCrum(data.get("SearchItem2"));
 					verifyBreadCrum(data.get("memory"));
 					String searchItem1=prodInfoLib.getPartNumberExactlyInSearchResultsPage();
 					commonLib.addFirstDisplyedItemToCartAndVerify();

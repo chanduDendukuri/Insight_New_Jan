@@ -1303,9 +1303,9 @@ public class CartLib extends ActionEngine {
 	 * @customization author : CIGNITI/SOWJANYA
 	 */
 	public void clickAndVerifySendToAColleagueErrorMSG_IPS(String orderUtilities) throws Throwable {
-		commonLib.clickCart();
-		Thread.sleep(10000);
-		commonLib.spinnerImage();
+		//commonLib.clickCart();
+		//Thread.sleep(10000);
+		//commonLib.spinnerImage();
 		waitForVisibilityOfElement(CartObj.getShoppingCartOrderUtilities(orderUtilities), "Send to a colleague");
 		click(CartObj.getShoppingCartOrderUtilities(orderUtilities), "Send to a colleague");
 		waitForVisibilityOfElement(CartObj.SEND_TO_A_COLLEGUE_POPUP, "SEND TO A COLLEGUE POPUP");
