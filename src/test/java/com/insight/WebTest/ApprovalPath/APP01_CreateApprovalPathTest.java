@@ -159,8 +159,7 @@ public class APP01_CreateApprovalPathTest extends ApprovalPathLib {
 					SearchClick();
 					
 					// Verify Approval path is Retuned
-					VerifyApprovalPathReturned();
-
+					VerifyNumberOfApproversInApprovalManagement(FirstApproverPath, 0);
 
 					commonLib.clickLogOutLink(data.get("Logout"));
 
