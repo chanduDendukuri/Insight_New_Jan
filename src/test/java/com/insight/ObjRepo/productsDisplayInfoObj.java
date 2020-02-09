@@ -286,6 +286,7 @@ public static By txtQuanityNumberInWarrentyPage = By.xpath("(//*[@class=' cart-i
     public static By filterSeeMoreDD(String filterHeading) {
     	return By.xpath("//p[@class='title filter-title'][contains(text(),'"+filterHeading+"')]//following-sibling::div//a[@class='more-checkbox-button']");
      }
-  
+
+    public static By CART_CONTRACT_NAME2=By.xpath("(//div[@class='cart__table-block']//div[@class='columns']//strong)[2]");
 
 }

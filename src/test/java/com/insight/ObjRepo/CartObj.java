@@ -18,7 +18,7 @@ public class CartObj extends CommonObj{
 	public static By USER_CONTACT_NAME = By.xpath("//table[@id='userSearchResultsTable']/tbody/tr/td[@id='userName']/a");
 	public static By TEXT_FIELD_IN_POP_UP = By.id("emailId");
 	public static By SUBMIT_BUTTON_IN_POP_UP = By.xpath("//a[@id='resetPasswordSubmit']");
-	public static By MORE_AVAILABLE_PRICES=By.xpath("//a[text()='More Prices Available']");
+	public static By MORE_AVAILABLE_PRICES=By.xpath("//a[text()='More Prices Available'] | (//a[text()='More Prices Available'])[1]");
 	public static By ADD_TO_CART_IN_ALL_CONTRACT_PRICES=By.xpath("//h4[text()='All Contract Prices For']/parent::div//a[text()='Add to Cart']");
     public static By US_COMMIDITIES=By.xpath("//div[@class='large-12 columns js-modal-pick-contract']//label[contains(.,'U.S. COMMUNITIES')]");
 	
@@ -305,7 +305,7 @@ return By.xpath("//td[@class='stock width70']//a[contains(text(),'"+product+"')]
 public static By DESCRIPTION=By.xpath("//table[@id='prodGroupTable']//div//a");
 public static By STOCK=By.xpath("//table[@id='prodGroupTable']//tr//td[2]//a");
 public static By CHECK_BOX=By.xpath("//table[@id='prodGroupTable']//tr//td[5]//input");
-public static By COI_IN_CART=By.xpath("//div[@class='columns medium-flex-child-grow cart__table-col--item']//div//div//div[@class='columns flex-child-auto medium-flex-child-shrink cart__table-col cart__table-col--coi']");
+public static By COI_IN_CART=By.xpath("//div[@class='columns medium-flex-child-grow cart__table-col--item']//div//div//div[@class='columns flex-child-auto medium-flex-child-shrink cart__table-col cart__table-col--coi'] | //div[@class='columns medium-flex-child-grow cart__table-col--item']//div//div//div[@class='columns flex-child-auto medium-flex-child-shrink cart__table-col cart__table-col--coi']//span");
 public static By CSI_IN_CART=By.xpath("//div[@class='columns medium-flex-child-grow cart__table-col--item']//div//div//div[@class='columns flex-child-auto medium-flex-child-shrink cart__table-col cart__table-col--csi']");
 
 public static By ADD_Checkbox_forCOIproducts=By.xpath("//div[@id='selectedProductGroupContent']//td[contains(text(),'COI Price:')]/following-sibling::td//input[@type='checkbox']");
