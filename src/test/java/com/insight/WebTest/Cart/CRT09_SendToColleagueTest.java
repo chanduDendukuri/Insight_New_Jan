@@ -92,6 +92,7 @@ public class CRT09_SendToColleagueTest extends CartLib {
 					cartLib.verifySendToAColleague(data.get("OrderUtilities"), data.get("YourName"),
 							data.get("YourEmail"), data.get("RecipientEmail"), data.get("YourComments"));
 					verifySendToAColleagueSucessMessage();
+					commonLib.clickLogOutLink(data.get("Logout_Header"));
 					System.out.println("Test completed");
 
 				} catch (Exception e) {

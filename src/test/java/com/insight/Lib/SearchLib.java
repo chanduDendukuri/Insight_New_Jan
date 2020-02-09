@@ -1026,7 +1026,7 @@ public class SearchLib extends CommonObj {
 		     List<WebElement> myradioList=driver.findElements(ADD_ITEMS_RADIO_BUTTON);
 		         for (int i = 0; i < myradioList.size(); i++) {
 			         if(myradioList.get(i).isSelected()){
-				          reporter.SuccessReport("verify the radio button checked or not","products are added","");
+				          //reporter.SuccessReport("verify the radio button checked or not","products are added","");
 			   }else {
 				   reporter.failureReport("verify the radio button checked or not","products are not checked","");
 			   }
