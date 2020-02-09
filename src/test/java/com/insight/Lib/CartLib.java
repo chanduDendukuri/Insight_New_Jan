@@ -936,6 +936,10 @@ public class CartLib extends ActionEngine {
 	public void deleteBundle() throws Throwable {
 		if(isVisible(CartObj.DELETE_BUNDLE, "Delete budnle-1")) {
 			click(CartObj.DELETE_BUNDLE, "Delete budnle-1");
+			String text=getText(CartObj.BUNDLE_NAME, "Bundle name");
+			if(!isVisibleOnly(CartObj.DELETE_BUNDLE, "Delete budnle-1")) {
+				reporter.SuccessReport("Delete bundle-1 in cart", "Bundle-1 is sucessfully deleted", text+": "+"Bundle-1", driver);
+			}
 		}
 		else {
 			reporter.failureReport("Delete bundle-1 in cart", "Bundle-1 in cart is not visible", "Bundle-1", driver);
@@ -944,6 +948,7 @@ public class CartLib extends ActionEngine {
     public void removeInStockItems() throws Throwable {
 		if(isElementPresent(CartObj.REMOVE_IN_STOCK_ITEMS, "Remove in stock items")) {
 			click(CartObj.REMOVE_IN_STOCK_ITEMS, "Remove in stock items");
+			
 		}
 		else {
 			reporter.SuccessReport("In stocks items", "In stock items are not visible", "", driver);

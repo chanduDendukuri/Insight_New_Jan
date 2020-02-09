@@ -890,17 +890,20 @@ public class SearchLib extends CommonObj {
 			 reporter.SuccessReport("verify the selected product is displayed under the product group","Selected product is displayed correctly under the product group.",productName);
 			  if(isElementPresent(ADD_ITEMS_RADIO_BUTTON, "add items to cart radio button")){
 			     List<WebElement> myradioList=driver.findElements(ADD_ITEMS_RADIO_BUTTON);
+			     List<WebElement> myList=driver.findElements(ITEM_DESCRIPTION);
 			         for (int i = 0; i < myradioList.size(); i++) {
 				         if(myradioList.get(i).isSelected()){
-					          reporter.SuccessReport("verify the radio button checked or not","products are added","");
+					          reporter.SuccessReport("verify the radio button checked or not","product is checked",myList.get(i).getText());
 				   }
 				}
 			  }else
 					if(isElementPresent(ADD_ITEMS_CHECKBOX, "Add items check box")){
 						scrollToBottomWithCordinate("200");
 					List<WebElement> myList1=driver.findElements(ADD_ITEMS_CHECKBOX);
+					List<WebElement> myList=driver.findElements(ITEM_DESCRIPTION);
 					for (int j = 0; j < myList1.size(); j++) {
 						myList1.get(j).click();
+						reporter.SuccessReport("verify the radio button checked or not","product is checked",myList.get(i).getText());
 						Thread.sleep(6000);
 					}
 					
