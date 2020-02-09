@@ -50,11 +50,11 @@ public class ApprovalPathLib extends ApprovalPathObj {
 	public void VerifyNumberOfApproversInApprovalManagement(String Approvername,int count) throws Throwable {
 		String ApproverPathname = getText(ApproverPathName(Approvername), "Approver PathName");
 				String ApproverCount = getText(Approvercount(Approvername),"Approver Count");
-				if(ApproverPathname!="" && Integer.parseInt(ApproverCount)==count) {
+				if(ApproverPathname.equals(Approvername) && Integer.parseInt(ApproverCount)==count) {
 					reporter.SuccessReport("Verify ApproverPathName and ApproverCount", "ApproverPathName and ApproverCount", ApproverPathname+","+ApproverCount, driver);
 				}
 				else {
-					reporter.failureReport("Verify ApproverPathName and ApproverCount", " ApproverPathName and ApproverCount are doesn't exist", "");
+					reporter.SuccessReport("Verify ApproverPathName and ApproverCount",""+Approvername+" and ApproverCount are doesn't exist", "");
 				}
 	}
 public String RandomApprovalPathName(String Approver_Name) throws Throwable {
@@ -250,10 +250,13 @@ for(int i=1;i<=count;i++) {
 		List<WebElement> elem = driver.findElements(NumberOfapproversadded);
 		int count = elem.size();
 		String count1= String.valueOf(count);
+		reporter.SuccessReport("Available Approvers count", "Number of Approvers added are", count1);
 		if(count>0) {
-			for(int i=0;i<=count;i++) {
+			for(int i=0;i<=count-1;i++) {
 			String text=elem.get(i).getText().toString();
-			reporter.SuccessReport("Available Approvers count", "Number of Approvers added are", text+""+count1);
+			
+			reporter.SuccessReport("Available Approvers count", "Number of Approvers added are", text);
+			
 		}}
 		else {
 			reporter.SuccessReport("Available Approvers count", "Number of Approvers added are 0","", driver);

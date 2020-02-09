@@ -88,7 +88,7 @@ public class APP03_DeleteMemberTest extends ApprovalPathLib {
 					// Select Approvers and add approver
 					List<String> approverAdded = SelectApprover(null,1);
 					int a3= NumberofAvailableApprovers();
-					if(a2==a3-1) {
+					if(a3==a2-1) {
 						reporter.SuccessReport("Available Approvers", "Available Approvers are as expected", String.valueOf(a2), driver);
 					}
 					else {
