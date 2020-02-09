@@ -2555,13 +2555,25 @@ List<String> orderdetails = new ArrayList<String>();
 	 * method is to verify the valid card number error message
 	 * @throws Throwable
 	 */
-	public void verifyValidCardErrorMessage() throws Throwable {
-		if(isVisibleOnly(VALID_CARD_ERROR_MSG, "valid card number error message")) {
-			reporter.SuccessReport("verify valid card error message", "Please enter valid card number message displayed", "Message : Please enter valid card number", driver);
+	public void verifyVISACardTypedErrorMessage() throws Throwable {
+		if(isVisibleOnly(VALID_VISA_CARD_ERROR_MSG, "valid card number error message")) {
+			reporter.SuccessReport("verify valid card error message", "Please enter valid card number message displayed", "Message : VISA card type is not supported", driver);
 		}else {
 			reporter.failureReport("verify valid card error message", "Please enter valid card number message does not displayed", "", driver);
 		}
 	  }
+	/**
+	 * method is to verify the valid card number error message
+	 * @throws Throwable
+	 */
+	public void verifyDiscoverCardErrorMessage() throws Throwable {
+		if(isVisibleOnly(VALID_DIACOVER_CARD_ERROR_MSG, "valid card number error message")) {
+			reporter.SuccessReport("verify valid card error message", "Please enter valid card number message displayed", "Message : Discover card type is not supported", driver);
+		}else {
+			reporter.failureReport("verify valid card error message", "Please enter valid card number message does not displayed", "", driver);
+		}
+	  }
+	
 	
 	/**
 	 * Method is to verify Custom 800 Number in Quote Receipt Print View
