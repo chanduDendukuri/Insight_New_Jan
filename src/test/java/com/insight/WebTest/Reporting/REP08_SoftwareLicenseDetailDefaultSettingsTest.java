@@ -78,6 +78,7 @@ public class REP08_SoftwareLicenseDetailDefaultSettingsTest extends ReportingLib
 				EndDateVerification();
 				verifyDefualtCurrancyUSD();
 				verifyScheduleReport();
+				verifyScheduleReportOption(data.get("Soption"));
 				List<String> optionList = Arrays.asList(data.get("ScheduleOptions").split(","));
 				verifyScheduleReportOptions(optionList);
 				canadaLib.verifyFilterbyCurrency(data.get("Currency"));
