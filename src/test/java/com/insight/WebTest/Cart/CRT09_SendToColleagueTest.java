@@ -72,12 +72,14 @@ public class CRT09_SendToColleagueTest extends CartLib {
 					prodInfoLib.verifyCartPageAndPartDetailsForRecentlyItemDynamically(data.get("SearchItem1"));
 
 					commonLib.searchProduct(data.get("SearchItem2"));
+					prodInfoLib.verifyTheManufacturerNumberInProductDetailsPage(data.get("SearchItem2"));
 					commonLib.addToCartAndVerify();
 					canadaLib.continueToCheckout();
 					canadaLib.verifyPlaceCartLabel();
 					prodInfoLib.verifyCartPageAndPartDetailsForRecentlyItemDynamically(data.get("SearchItem2"));
 
 					commonLib.searchProduct(data.get("SearchItem3"));
+					prodInfoLib.verifyTheManufacturerNumberInProductDetailsPage(data.get("SearchItem3"));
 					commonLib.addToCartAndVerify();
 					canadaLib.continueToCheckout();
 					canadaLib.verifyPlaceCartLabel();
@@ -85,7 +87,11 @@ public class CRT09_SendToColleagueTest extends CartLib {
 
 					cartLib.clickAndVerifySendToAColleagueErrorMSG(data.get("OrderUtilities"));
 					cartLib.verifySendToAColleague(data.get("OrderUtilities"), data.get("YourName"),
+							data.get("YourEmail1"), data.get("YourEmail1"), data.get("YourComments"));
+					verifyErrorMessagesInSendToAColleaguePopUpForEmail();
+					cartLib.verifySendToAColleague(data.get("OrderUtilities"), data.get("YourName"),
 							data.get("YourEmail"), data.get("RecipientEmail"), data.get("YourComments"));
+					verifySendToAColleagueSucessMessage();
 					System.out.println("Test completed");
 
 				} catch (Exception e) {

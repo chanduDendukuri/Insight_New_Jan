@@ -1158,7 +1158,7 @@ public class CartLib extends ActionEngine {
 				"SEND BUTTON IN SEND TO A COLLEGUE POPUP");
 		click(CartObj.SEND_BUTTON_IN_SEND_TO_A_COLLEGUE_POPUP, "SEND BUTTON IN SEND TO A COLLEGUE POPUP");
 		verifyErrorMessagesInSendToAColleaguePopUp();
-		click(CartObj.CLOSE_SEND_TO_A_COLLEGUE_POPUP, "CLOSE SEND TO A COLLEGUE POPUP");
+		//click(CartObj.CLOSE_SEND_TO_A_COLLEGUE_POPUP, "CLOSE SEND TO A COLLEGUE POPUP");
 	}
 
 	/**
@@ -1170,9 +1170,45 @@ public class CartLib extends ActionEngine {
 	 * @customization author : CIGNITI/SOWJANYA
 	 */
 	public void verifyErrorMessagesInSendToAColleaguePopUp() throws Throwable {
-		isElementPresent(CartObj.YOUR_NAME_ERROR_MESSAGE, "YOUR NAME ERROR MESSAGE");
-		isElementPresent(CartObj.YOUR_EMAIL_ERROR_MESSAGE, "YOUR EMAIL ERROR MESSAGE");
-		isElementPresent(CartObj.RECIPIENT_EMAIL_ERROR_MESSAGE, "RECIPIENT EMAIL ERROR MESSAGE");
+		if(isElementPresent(CartObj.YOUR_NAME_ERROR_MESSAGE, "YOUR NAME ERROR MESSAGE")) {
+			String errorMessage=getText(CartObj.YOUR_NAME_ERROR_MESSAGE,"YOUR NAME ERROR MESSAGE");
+			reporter.SuccessReport("Verifying error message", "YOUR NAME ERROR MESSAGE", errorMessage, driver);
+		}
+		else {
+			reporter.failureReport("Verifying error message", "YOUR NAME ERROR MESSAGE does not exist", "", driver);
+		}
+		if(isElementPresent(CartObj.YOUR_EMAIL_ERROR_MESSAGE, "YOUR EMAIL ERROR MESSAGE")) {
+			String errorMessage=getText(CartObj.YOUR_EMAIL_ERROR_MESSAGE, "YOUR EMAIL ERROR MESSAGE");
+			reporter.SuccessReport("Verifying error message", "YOUR EMAIL ERROR MESSAGE", errorMessage, driver);
+		}
+		else {
+			reporter.failureReport("Verifying error message", "YOUR EMAIL ERROR MESSAGE does not exist", "", driver);
+		}
+		if(isElementPresent(CartObj.RECIPIENT_EMAIL_ERROR_MESSAGE, "RECIPIENT EMAIL ERROR MESSAGE")) {
+			String errorMessage=getText(CartObj.RECIPIENT_EMAIL_ERROR_MESSAGE, "RECIPIENT EMAIL ERROR MESSAGE");
+			reporter.SuccessReport("Verifying error message", "RECIPIENT EMAIL ERROR MESSAGE", errorMessage, driver);
+		}
+		else {
+			reporter.failureReport("Verifying error message", "RECIPIENT EMAIL ERROR MESSAGE does not exist", "", driver);
+		}
+	}
+	
+	public void verifyErrorMessagesInSendToAColleaguePopUpForEmail() throws Throwable {
+		
+		if(isElementPresent(CartObj.YOUR_EMAIL_ERROR_MESSAGE, "YOUR EMAIL ERROR MESSAGE")) {
+			String errorMessage=getText(CartObj.YOUR_EMAIL_ERROR_MESSAGE, "YOUR EMAIL ERROR MESSAGE");
+			reporter.SuccessReport("Verifying error message", "YOUR EMAIL ERROR MESSAGE", errorMessage, driver);
+		}
+		else {
+			reporter.failureReport("Verifying error message", "YOUR EMAIL ERROR MESSAGE does not exist", "", driver);
+		}
+		if(isElementPresent(CartObj.RECIPIENT_EMAIL_ERROR_MESSAGE, "RECIPIENT EMAIL ERROR MESSAGE")) {
+			String errorMessage=getText(CartObj.RECIPIENT_EMAIL_ERROR_MESSAGE, "RECIPIENT EMAIL ERROR MESSAGE");
+			reporter.SuccessReport("Verifying error message", "RECIPIENT EMAIL ERROR MESSAGE", errorMessage, driver);
+		}
+		else {
+			reporter.failureReport("Verifying error message", "RECIPIENT EMAIL ERROR MESSAGE does not exist", "", driver);
+		}
 	}
 
 	/**
@@ -1184,8 +1220,8 @@ public class CartLib extends ActionEngine {
 	 */
 	public void verifySendToAColleague(String orderUtilities, String yourName, String yourEmail, String recipientEmail,
 			String yourComments) throws Throwable {
-		waitForVisibilityOfElement(CartObj.getShoppingCartOrderUtilities(orderUtilities), "Send to a colleague");
-		click(CartObj.getShoppingCartOrderUtilities(orderUtilities), "Send to a colleague");
+		//waitForVisibilityOfElement(CartObj.getShoppingCartOrderUtilities(orderUtilities), "Send to a colleague");
+		//click(CartObj.getShoppingCartOrderUtilities(orderUtilities), "Send to a colleague");
 
 		waitForVisibilityOfElement(CartObj.YOUR_NAME_TEXT_FIELD, "YOUR NAME TEXT FIELD");
 		clickOnly(CartObj.YOUR_NAME_TEXT_FIELD, "YOUR NAME TEXT FIELD");
@@ -1207,10 +1243,15 @@ public class CartLib extends ActionEngine {
 				"SEND BUTTON IN SEND TO A COLLEGUE POPUP");
 		click(CartObj.SEND_BUTTON_IN_SEND_TO_A_COLLEGUE_POPUP, "SEND BUTTON IN SEND TO A COLLEGUE POPUP");
 
-		waitForVisibilityOfElement(CartObj.MAIL_SEND_TO_A_COLLEGUE_SUCCESS_MSG, "SUCCESS MSG");
-		isElementPresent(CartObj.MAIL_SEND_TO_A_COLLEGUE_SUCCESS_MSG, "SUCCESS MSG", true);
+		
 
 	}
+	
+	public void verifySendToAColleagueSucessMessage() throws Throwable {
+		waitForVisibilityOfElement(CartObj.MAIL_SEND_TO_A_COLLEGUE_SUCCESS_MSG, "SUCCESS MSG");
+		isElementPresent(CartObj.MAIL_SEND_TO_A_COLLEGUE_SUCCESS_MSG, "SUCCESS MSG", true);
+	}
+	
 
 	/**
 	 * PURPOSE:
