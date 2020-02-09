@@ -357,7 +357,7 @@ public static By Approvername(String Filedname) {
 	public static By RESULTS_TABLE = By.xpath("//table[@id='RSRResultTable']");
 	
 	public static By getRequestortableDetails(int i,int j) {
-		return By.xpath("//table[@id='RSRResultTable']//tbody//tr["+i+1+"]//td["+j+"]");
+		return By.xpath("//table[@id='RSRResultTable']//tbody//tr["+i+"]//td["+j+"]");
 	}
 public static By MonthSelection = By.xpath("//span[@class='ui-datepicker-month']");
 	

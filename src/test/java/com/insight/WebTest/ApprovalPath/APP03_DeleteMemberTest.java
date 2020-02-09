@@ -96,7 +96,7 @@ public class APP03_DeleteMemberTest extends ApprovalPathLib {
 					}
 
 					// Now Remove the same user- Click Remove
-					RemoveApprovers(approverAdded.get(0),1);
+					RemoveAddedApprovers(approverAdded.get(0),1);
 
 					// Update Approval path
 					ClickUpdateButton();
