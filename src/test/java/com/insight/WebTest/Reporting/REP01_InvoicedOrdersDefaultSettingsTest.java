@@ -92,6 +92,7 @@ public class REP01_InvoicedOrdersDefaultSettingsTest extends ReportingLib {
 							canadaLib.clickOnDeliveryFormat(data.get("DeliverFormat"));
 							canadaLib.clickOnRun();
 							commonLib.spinnerImage();
+							Thread.sleep(50000);
 							verifyCustomeName(customName);
 							commonLib.clickLogOutLink(data.get("Logout_Header"));	
 							Thread.sleep(5000);
@@ -131,6 +132,7 @@ public class REP01_InvoicedOrdersDefaultSettingsTest extends ReportingLib {
 							canadaLib.clickOnDeliveryFormat(data.get("DeliverFormat"));
 							canadaLib.clickOnRun();
 							commonLib.spinnerImage();
+							Thread.sleep(50000);
 							verifyCustomeName(customName1);									
 							commonLib.clickLogOutLink(data.get("Logout_Header"));
 							Thread.sleep(5000);
@@ -167,7 +169,7 @@ public class REP01_InvoicedOrdersDefaultSettingsTest extends ReportingLib {
 							clickOnCustomName(customName2);
 							canadaLib.clickOnDeliveryFormat(data.get("DeliverFormat"));
 							canadaLib.clickOnRun();
-							Thread.sleep(5000);
+							Thread.sleep(50000);
 							List<String> excelData= Arrays.asList(data.get("excelData").split(","));
 						    verifyExportFileInQuoteHistory(data.get("SheetName"),data.get("ColumnHeaders"),excelData,customName2);
 							commonLib.clickLogOutLink(data.get("Logout_Header"));

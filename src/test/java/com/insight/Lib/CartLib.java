@@ -1821,7 +1821,7 @@ public void verifyProductdetails() throws Throwable {
 		String stock=getText(CartObj.STOCK, "Stock");
 
 		reporter.SuccessReport("Check the Stock in Configuration Section on Product Standards Page", "Product Stock is Exists", "Part: "+description+"Stock: "+stock);
-		if(isVisible(CartObj.CHECK_BOX, "Check box")) {
+		if(!isCheckBoxSelected(CartObj.CHECK_BOX)) {
 			click(CartObj.CHECK_BOX, "Check box");
 		}
 		else {
@@ -1885,13 +1885,13 @@ public void verifyProductdetails() throws Throwable {
 		String[] subStrings1 = stock.split("\\|");
 		for(String subString1 : subStrings1)
         {
-        	String[] subStrings2 = subString1.trim().split(" ");
+        	String[] subStrings2 = subString1.trim().split("\\s+");
         	
-        	if(subStrings2[0].trim().equals("In-stock"))
+        	if(subStrings2[1].trim().equals("In-stock"))
             {
                 //System.out.println("COI is"+subStrings2[1].trim());
                 
-                return Integer.parseInt(subStrings2[1].trim());
+                return Integer.parseInt(subStrings2[0].trim());
             }
         }
 		
