@@ -148,9 +148,10 @@ public class APP04_SearchTest extends ApprovalPathLib {
 					// Edit second approval path
 					ClickEditLinkButton(newApproverPathName1);
 					VerifyIsInEditMode();
+					int a3 = NumberofApproversAddedtoRightSide();
 					// Select Approvers and click Add
 					SelectApprover(null,2);
-					int a3 = NumberofApproversAddedtoRightSide();
+					
 					// Add button to add approver
 					//Add_Approver_Btn_Click();
 					int a4 = NumberofApproversAddedtoRightSide();
@@ -202,6 +203,7 @@ public class APP04_SearchTest extends ApprovalPathLib {
 					 * VerifyAppovalPathCreated(newApproverPathName2);
 					 * VerifyNumberOfApproversInApprovalManagement(newApproverPathName1,7);
 					 */
+					scrollUp();
 					ClickOnViewAllOrRefreshIcon();
 					VerifyApprovalPathAndApprovers();
 					

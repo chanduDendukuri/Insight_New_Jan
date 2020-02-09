@@ -83,7 +83,7 @@ public class CRT07_SaveCartTest extends CartLib {
 					prodInfoLib.verifyCartPageAndPartDetailsForRecentlyItemDynamically(searchItem);
 					
 					commonLib.searchProduct(data.get("Search_Item2"));
-					String searchItem2=prodInfoLib.getPartNumberInSearchResultsPage();
+					String searchItem2=prodInfoLib.getPartNumberExactlyInSearchResultsPage();
 					commonLib.addFirstDisplyedItemToCartAndVerify();
 					canadaLib.continueToCheckout();
 					canadaLib.verifyPlaceCartLabel();

@@ -87,7 +87,7 @@ public class CRT12_TopNavTest extends CartLib {
 					commonLib.searchProduct(data.get("PartNumber"));
 					prodInfoLib.verifyTheManufacturerNumberInProductDetailsPage(data.get("PartNumber"));
 					prodInfoLib.clickOnWarrantiesTabOnProductDetailsPage();
-					String manfa=prodInfoLib.getManfNumberFromWarrentiesPage(data.get("index"));
+					String manfa=prodInfoLib.getManfNumberFromWarrentiesPage(data.get("index")).split("Insight Part #:")[1].trim();
 					prodInfoLib.clickOnAddToCartButtonInWarrentiesPage(data.get("index"));
 					canadaLib.continueToCheckout();
 					canadaLib.verifyPlaceCartLabel();
@@ -95,6 +95,7 @@ public class CRT12_TopNavTest extends CartLib {
 													
 					commonLib.searchProduct(data.get("Search_Product"));
 					searchLib.verifyBreadCrumbInSearchResultsPage(data.get("Search_Product"));
+					verifyInStockItems();
 					String searchItem=prodInfoLib.getPartNumberExactlyInSearchResultsPage();
 					commonLib.addFirstDisplyedItemToCartAndVerify();
 					
@@ -106,6 +107,7 @@ public class CRT12_TopNavTest extends CartLib {
 					commonLib.searchProduct(data.get("Search_Product"));
 					searchLib.verifyBreadCrumbInSearchResultsPage(data.get("Search_Product"));
 					String searchItem1=prodInfoLib.getSecondPartNumberInSearchResultsPage();
+					verifyInStockItems();
 					commonLib.addSecondDisplyedItemToCartAndVerify();
 					canadaLib.continueToCheckout();
 					canadaLib.verifyPlaceCartLabel();

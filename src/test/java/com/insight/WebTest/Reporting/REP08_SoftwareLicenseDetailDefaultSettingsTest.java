@@ -74,13 +74,13 @@ public class REP08_SoftwareLicenseDetailDefaultSettingsTest extends ReportingLib
 				canadaLib.verifyReportsPage();
 				canadaLib.verifySelectReport(data.get("SelectReport"));
 				verifytheLinkedSoldTosText();
-				verifyStartDate(data.get("DayOne"));
+				verifyStartDate("01");
 				EndDateVerification();
 				verifyDefualtCurrancyUSD();
 				verifyScheduleReport();
+				verifyScheduleReportOption(data.get("Soption"));
 				List<String> optionList = Arrays.asList(data.get("ScheduleOptions").split(","));
 				verifyScheduleReportOptions(optionList);
-
 				canadaLib.verifyFilterbyCurrency(data.get("Currency"));
 				canadaLib.verifyDeliveryOption();
 				List<String> deliveryOptionsList = Arrays.asList(data.get("DeliveryOptions").split(","));
@@ -89,7 +89,7 @@ public class REP08_SoftwareLicenseDetailDefaultSettingsTest extends ReportingLib
 				verifyTreeForAllAccounts();
 				verifyDefaultCurrentDate(data.get("CurrentDate"));
 				List<String> dateOptionsList = Arrays.asList(data.get("ScheduleDates").split(","));
-				verifyScheduleReportOptionsDates(dateOptionsList);
+				verifyScheduleReportOptionsdates(dateOptionsList);
 				selctOrderType(data.get("OrderType"));
 				canadaLib.clickOnDeliveryMethod(data.get("DeliveryMethod"));
 				canadaLib.clickOnDeliveryFormat(data.get("DeliverFormat"));
@@ -116,7 +116,7 @@ public class REP08_SoftwareLicenseDetailDefaultSettingsTest extends ReportingLib
 				canadaLib.verifyReportsPage();
 				canadaLib.verifySelectReport(data.get("SelectReport"));
 				verifytheLinkedSoldTosText();
-				verifyStartDate(data.get("DayOne"));
+				verifyStartDate("01");
 				EndDateVerification();
 				verifyScheduleReport();
 				verifyScheduleReportOptions(optionList);

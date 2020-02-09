@@ -89,6 +89,7 @@ public class REP03_AdHocReportDefaultSettingsTest extends CanadaLib{
 				clickOnDeliveryMethod(data.get("DeliveryMethod"));
 				clickOnDeliveryFormat(data.get("DeliveryFormat"));
 				clickOnRun();	
+				Thread.sleep(40000);
 				List<String> excelOptions1= Arrays.asList(data.get("ExcelOptions").split(","));
 			    canadaLib.verifyDownloadedReportExcelFile(excelOptions1,data.get("ReportOption"));
 			    commonLib.clickLogOutLink(data.get("Logout_Header"));

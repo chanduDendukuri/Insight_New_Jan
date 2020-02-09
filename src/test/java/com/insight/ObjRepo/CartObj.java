@@ -187,6 +187,7 @@ public class CartObj extends CommonObj{
 	public static By PROD_GROUP_NAME_IN_CART=By.xpath("//div[@class='cart__table-bundle-row']//h4");
 	public static By BUNDLEONE=By.xpath("//div[@class='cart__item-bundle' and contains(.,'BUNDLE-1')]");
 	public static By BUNDLE=By.xpath("//div[@class='cart__item-bundle']");
+	public static By BUNDLE_NAME=By.xpath("//div[@class='cart__item-bundle']//parent::div//h4");
 	public static By PART_NUMBER=By.xpath("//a[@data-gtm-event='cart-item-description-link']//following-sibling::p[contains(text(),'Mfr Part #')]");
 	//cart quote
 	public static By SAVE_AS_QUOTE=By.xpath("//div[@class='columns small-12 large-3 print-5 print-offset-7']//a[text()='Save as quote']");
@@ -358,7 +359,7 @@ public static By Productname_at_cart=By.xpath("//h4[@class='cart__item-heading']
 	public static By CART_PROD_UNIT_PRICE_RECENTLYADDEDTEM_loop1=By.xpath(" //div[contains(@class,'columns flex-child-auto medium-flex-child-shrink cart__table-col cart__table-col--price medium')]//span[@class='iw-currency__amount'] | //div[@class='columns flex-child-auto cart__table-col--desc text-left']//following-sibling::div//span[text()='Unit price']//following-sibling::span[@class='iw-currency'] | //div[contains(@class,'columns flex-child-auto medium-flex-child-shrink cart__table-col cart__table-col--price medium-text')]//span[@class='iw-currency__amount']");
 	
 	public static By CART_PROD_QTY_RECENTLYADDEDTEM_loop=By.xpath("//label[text()='Item quantity']/following-sibling::input[@id='iw-checkout__cart-item-quantity'] | //label[text()='Item quantity']/following-sibling::input");
-	public static By CART_PROD_STOCK_RECENTLYADDEDTEM_loop=By.xpath("//label[text()='Item quantity']/following-sibling::input/following::span/span[contains(text(),' Stock: ')]");
+	public static By CART_PROD_STOCK_RECENTLYADDEDTEM_loop=By.xpath("//label[text()='Item quantity']/following-sibling::input/following::span[contains(text(),' Stock: ') or contains(text(),'non')]");
 	public static By Cart_Prod_Insight_Part_Number=By.xpath("//*[@class='cart__item-part cart__font-size--sm' and contains(text(),'Insight')]");
 
 
