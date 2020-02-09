@@ -959,6 +959,17 @@ public class CartLib extends ActionEngine {
 			reporter.SuccessReport("In stocks items", "In stock items are not visible", "", driver);
 		}
 	}
+    
+    public void verifyInStockItems() throws Throwable {
+		if(isElementPresent(CartObj.REMOVE_IN_STOCK_ITEMS, "Remove in stock items")) {
+			reporter.SuccessReport("Verifying in stock items", "In stock items are present", "", driver);
+			
+		}
+		else {
+			reporter.failureReport("Verifying in stock items", "In stock items are not present", "", driver);
+		}
+	}
+    
 	/**
 	 * This method is to compare two prices
 	 * 
