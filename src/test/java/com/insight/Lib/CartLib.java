@@ -419,7 +419,7 @@ public class CartLib extends ActionEngine {
 		//isElementPresent(CartObj.SAVED_CART_TEXT, "Saved cart");
 		click(CartObj.loadCart(cartName), "Load cart");
 		if (isElementPresent(CartObj.CURRIENCES, "cart is loaded")) {
-			reporter.SuccessReport("Click on load cart ", "Saved cart exists and selected", "");
+			reporter.SuccessReport("Click on load cart ", "Saved cart exists", cartName);
 		} else {
 			reporter.failureReport("Click on load cart ", "Saved cart does not exist", "", driver);
 
@@ -941,20 +941,18 @@ public class CartLib extends ActionEngine {
 		if (isElementPresent(CartObj.CART_ITEMS, "cart items")) {
 			reporter.SuccessReport("cart message ", "View Cart icon is empty", "");
 		} else {
-			//click(CartObj.CART, "CART");
-			//commonLib.emptyCartAndVerify();
-			reporter.failureReport("Delete cart meassage ", "View Cart icon is not empty", "", driver);
+			
+			reporter.failureReport(" cart meassage ", "View Cart icon is not empty", "", driver);
 
 		}
 	}
 	public void verifyCartIsNotEmpty() throws Throwable {
-		waitForVisibilityOfElement(CartObj.CART_ITEMS, "CART ITEMS");
+		
 		if (!isElementPresent(CartObj.CART_ITEMS, "cart items")) {
 			reporter.SuccessReport("cart message ", "View Cart icon is not empty", "");
 		} else {
-			//click(CartObj.CART, "CART");
-			//commonLib.emptyCartAndVerify();
-			reporter.failureReport("Delete cart meassage ", "View Cart icon is empty", "", driver);
+			
+			reporter.failureReport(" cart meassage ", "View Cart icon is empty", "", driver);
 
 		}
 	}
@@ -1308,7 +1306,13 @@ public class CartLib extends ActionEngine {
 	
 	public void verifySendToAColleagueSucessMessage() throws Throwable {
 		waitForVisibilityOfElement(CartObj.MAIL_SEND_TO_A_COLLEGUE_SUCCESS_MSG, "SUCCESS MSG");
-		isElementPresent(CartObj.MAIL_SEND_TO_A_COLLEGUE_SUCCESS_MSG, "SUCCESS MSG", true);
+		String message=getText(CartObj.MAIL_SEND_TO_A_COLLEGUE_SUCCESS_MSG, "SUCCESS MSG");
+		if(isElementPresent(CartObj.MAIL_SEND_TO_A_COLLEGUE_SUCCESS_MSG, "SUCCESS MSG")){
+			reporter.SuccessReport("Verifying send to collegue sucess message", "Sucess message:", message, driver);
+		}
+		else {
+			reporter.failureReport("Verifying send to collegue sucess message", "Sucess message is not present", "", driver);
+		}
 	}
 	
 
@@ -1912,12 +1916,12 @@ public void verifyProductdetails() throws Throwable {
 			//Do Nothing
 		}
 		
-		click(CommonObj.ACCOUNT_TOOLS_PRODUCTDETAIL_PAGE, "Account tools menu icon");
-		click(CommonObj.getAccountToolsMenuProductDetailPage(toolsMenuName), "Account tools menu "+toolsMenuName);
-		click(CommonObj.getAccountToolsDDProductDetailPage(toolsMenuName, dropDown), "Clicked on"+toolsMenuName+dropDown);// ---Tools,Customer-Owned-Inventory
+		click(CommonObj.ACCOUNT_TOOLS_PRODUCTDETAIL_PAGE, "Account tools");
+		click(CommonObj.getAccountToolsMenuProductDetailPage(toolsMenuName), toolsMenuName);
+		click(CommonObj.getAccountToolsDDProductDetailPage(toolsMenuName, dropDown), "Clicked on " +dropDown);// ---Tools,Customer-Owned-Inventory
 		isElementPresent(CartObj.Current_product_groups, " Current Product Groups page is opened");
 		click(CommonObj.getCompanyStandardsProductGroup(productGroup, productName),
-				"select product from product group");
+				"select "+productName+" from product group "+productGroup);
 		String description=getText(CartObj.DESCRIPTION, "Description");
 		String stock=getText(CartObj.STOCK, "Stock");
 

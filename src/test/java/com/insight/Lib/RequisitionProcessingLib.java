@@ -30,15 +30,15 @@ public class RequisitionProcessingLib extends RequisitionProcessingObj {
 	}
 
 	public void clickTestRulesLink() throws Throwable {
-		waitForVisibilityOfElement(TESTRULES_EDIT_LINK, "TestRules Edit link click");
+		waitForVisibilityOfElement(TESTRULES_EDIT_LINK, "TestRules Edit icon");
 
-		if (isElementPresent(TESTRULES_EDIT_LINK, "TestRules Edit link click")) {
+		if (isElementPresent(TESTRULES_EDIT_LINK, "TestRules Edit icon")) {
 			click(TESTRULES_EDIT_LINK, "TestRules Edit link click");
-			reporter.SuccessReport("Verify TestRules Edit link click in Approval Management  Page",
-					"TestRules Edit link clicked", "");
+			reporter.SuccessReport("Verify TestRules Edit icon in Approval Management  Page",
+					"TestRules Edit icon clicked", "");
 		} else {
 			reporter.failureReport("Verify TestRules Edit link click in Approval Management  Page",
-					"TestRules Edit link could not clicked", "");
+					"TestRules Edit icon could not clicked", "");
 		}
 
 	}
@@ -185,7 +185,7 @@ public class RequisitionProcessingLib extends RequisitionProcessingObj {
 		}*/
 	}
 
-	public void createRule(String cart_type, String Min_Amt, String Max_Amt, String path, String item)
+	public void createRule(String cart_type,String ApprovalPath, String Min_Amt, String Max_Amt, String path, String item)
 			throws Throwable {
 		// Click Add Rule
 
@@ -194,16 +194,21 @@ public class RequisitionProcessingLib extends RequisitionProcessingObj {
 		if (isElementPresent(createCartType(item), "Test Approvals Rules Cart Type")) {
 			selectByVisibleText(createCartType(item), cart_type, "Test Approvals Cart Type");
 		}
-
+		if (isElementPresent(APPROVAL_PATH, "Test ApprovalPath Rules ")) {
+			selectByVisibleText(APPROVAL_PATH, ApprovalPath, "Select ApprovalPath");
+		}
 		if (isElementPresent(createMinAmt(item), "Test Approvals Rules Min Amount")) {
 			type(createMinAmt(item), Min_Amt, "Test Approvals Rules Min Amount");
 		}
 		if (isElementPresent(createMaxAmt(item), "Test Approvals Rules Max Amount")) {
 			type(createMaxAmt(item), Max_Amt, "Test Approvals Rules Max Amount");
 		}
-		if (isElementPresent(createPath(item), "Test Approvals Rules validation path")) {
-			selectByVisibleText(createPath(item), path, "Test Approval Rules Validation Path");
-		}
+		/*
+		 * if (isElementPresent(createPath(item),
+		 * "Test Approvals Rules validation path")) {
+		 * selectByVisibleText(createPath(item), path,
+		 * "Test Approval Rules Validation Path"); }
+		 */
 
 		if (isElementPresent(saveRule(item), "Click on save rule icon")) {
 			click(saveRule(item), "Click on save rule icon");
@@ -255,9 +260,9 @@ public class RequisitionProcessingLib extends RequisitionProcessingObj {
 		}
 	}
 
-	public void selectHDLListOption(String hdlllistoption) throws Throwable {
-		if (isElementPresent(HDLLIST_OPTION, "Select HDLLIst option")) {
-			selectByVisibleText(HDLLIST_OPTION, hdlllistoption, "Select HDLLIst option");
+	public void selectSelectaListToUseOption(String hdlllistoption) throws Throwable {
+		if (isElementPresent(dd_SelectaListToUse, "Select HDLLIst option")) {
+			selectByVisibleText(dd_SelectaListToUse, hdlllistoption, "Select HDLLIst option");
 		}
 	}
 
@@ -266,10 +271,12 @@ public class RequisitionProcessingLib extends RequisitionProcessingObj {
 		if (isElementPresent(ADD_RULE_WITH_LIST, "ADD RULE Button")) {
 			click(ADD_RULE_WITH_LIST, "ADD RULE Button");
 
-			if (isElementPresent(createListValue(item), "Test Approvals Rules Cart Type")) {
-				selectByVisibleText(createListValue(item), cart_type, "Test Approvals Cart Type");
+			if (isElementPresent(createListValue(item), "Create List Value")) {
+				selectByVisibleText(createListValue(item), List_Option, "Create List Value");
 			}
-
+			if (isElementPresent(createCartType(item), "Test Approvals Rules Cart Type")) {
+				selectByVisibleText(createCartType(item), cart_type, "Test Approvals Cart Type");
+			}
 			if (isElementPresent(createMinAmt(item), "Test Approvals Rules Min Amount")) {
 				type(createMinAmt(item), Min_Amt, "Test Approvals Rules Min Amount");
 			}
@@ -309,7 +316,19 @@ public class RequisitionProcessingLib extends RequisitionProcessingObj {
 
 		}
 	}
-
+public void SelectCretaeRule(String Rule) throws Throwable {
+	if(isVisible(CreateRule, "Create rule dropdown")) {
+		
+	selectByVisibleText(CreateRule, Rule, "Rule option");
+	reporter.SuccessReport("Create Rule", "Created Rules Field Exist and Selected", Rule, driver);
+	}
+	else {
+		reporter.failureReport("Create Rule", "Created Rules Field not Exist", "",driver);
+	}
+}
+public void ClickAddRoute() throws Throwable {
+	click(btn_AddRoute, "AddRoute button","");
+}
 	
 	public void checkDenyRadioBtn(String text)  throws Throwable{
 		click(DENY_RADIOBTN,"Check Deny radio button");
@@ -319,8 +338,9 @@ public class RequisitionProcessingLib extends RequisitionProcessingObj {
 	 * 
 	 * @param text
 	 * @throws Throwable
-	 */
+	 *///
 	public void verifyDenyedstatusRefNum(String status,String refNum)  throws Throwable{
+		//click(expandsearch,"Search button expander link");
 		if(isElementPresent(SEARCH_HDR,"Requisition search header")){
 			if(isElementPresent(STATUS_DROPDOWN,"Requisition status dropdown")){
 				selectByVisibleText(STATUS_DROPDOWN,status,"Requisition status dropdown");
@@ -331,8 +351,10 @@ public class RequisitionProcessingLib extends RequisitionProcessingObj {
 						"Requsition Status Not Exists","");
 			}
 			 type(REFERENCE_TEXTBOX,refNum,"Deneyed request");
-			 reporter.SuccessReport("Enter Reference Number on Requisition Search Results Page",
-						"Reference Number Field Exist Entered","");
+			
+			  reporter.SuccessReport("Enter Reference Number on Requisition Search Results Page",
+			 "Reference Number Field Exist Entered","");
+			
 			 click(SERACH1_BTN,"Search button");
 			 reporter.SuccessReport("Click  SEARCH  on Requisition Search Results Page",
 						"SEARCH Link Exists and Clicked","");
@@ -343,7 +365,38 @@ public class RequisitionProcessingLib extends RequisitionProcessingObj {
 			acceptAlert();
 	}
 	}
-	
+	/**
+	 * 
+	 * @param status
+	 * @throws Throwable
+	 */
+	public void verifyDenyedstatusRefNuminRequisition(String status)  throws Throwable{
+		click(expandsearch,"Search button expander link");
+		if(isElementPresent(SEARCH_HDR,"Requisition search header")){
+			if(isElementPresent(STATUS_DROPDOWN,"Requisition status dropdown")){
+				selectByVisibleText(STATUS_DROPDOWN,status,"Requisition status dropdown");
+				reporter.SuccessReport("Select Requsition Status on  Requisition Search Results Page",
+						"Requsition Status Field Exist Selected","");
+			} else {
+				reporter.failureReport("Select Requsition Status on  Requisition Search Results Page",
+						"Requsition Status Not Exists","");
+			}
+			// type(REFERENCE_TEXTBOX,refNum,"Deneyed request");
+			/*
+			 * reporter.
+			 * SuccessReport("Enter Reference Number on Requisition Search Results Page",
+			 * "Reference Number Field Exist Entered","");
+			 */
+			 click(SERACH1_BTN,"Search button");
+			 reporter.SuccessReport("Click  SEARCH  on Requisition Search Results Page",
+						"SEARCH Link Exists and Clicked","");
+		}else {
+			reporter.failureReport("Verify search on  Requisition Search Results Page",
+					"Requsition search header Not Exists","");
+			Thread.sleep(3000);
+			//acceptAlert();
+	}
+	}
 	/**
 	 * 
 	 * @param orderLink
@@ -843,7 +896,7 @@ public class RequisitionProcessingLib extends RequisitionProcessingObj {
 		
 		public void verifyorderNuminReqHistoryPage(String orderLink) throws Throwable {
 			if (isElementPresent(OrderObj.APPROVAL_MNGMNT_HDR1, "ApprovalManagement Header")) {
-			if(isElementNotPresent(OrderObj.ReferenceLink(orderLink), "Approved Reference Number Link")){
+			if(isElementPresent(OrderObj.ReferenceLink(orderLink), "Approved Reference Number Link")){
 				reporter.SuccessReport("Verify  Ref Number on Requisition List",
 						"Ref Number Link Exists","");
 			} else {

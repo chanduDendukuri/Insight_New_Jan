@@ -78,20 +78,8 @@ public class REQ08_TestRulesTest extends ChinaLib{
 
 						// clicking on Optional Rules
 						reqProcLib.clickOptionalRules();
-
-						// create rules
-						reqProcLib.createRule(data.get("Cart_Type_Standard"), data.get("Min_Amt_0"), data.get("Max_Amt_99"),
-								data.get("Result_Path1"), "1");
-						Thread.sleep(1000);
-						reqProcLib.createRule(data.get("Cart_Type_NonStandard"), data.get("Min_Amt_100"), data.get("Max_Amt_199"),
-								data.get("Result_Path2"), "2");
-						Thread.sleep(1000);
-						reqProcLib.createRule(data.get("Cart_Type_Any"), data.get("Min_Amt_200"), data.get("Max_Amt_299"),
-								data.get("Result_Path3"), "3");
-
-						// Test Approval Rules
+						// Test Approval Rules 
 						reqProcLib.clickTestApprovalRulesLink();
-
 						// Verify Rules
 						reqProcLib.verifyRules(data.get("Amount_0"), data.get("Cart_Type_Standard"), data.get("Result_Path1"),
 								false);
@@ -107,10 +95,7 @@ public class REQ08_TestRulesTest extends ChinaLib{
 						// close test approvals window
 						reqProcLib.closeTestApprovalRulesWindow();
 
-						// Delete Created Rules
-						reqProcLib.clickDeleteRule("First");
-						reqProcLib.clickDeleteRule("Second");
-						reqProcLib.clickDeleteRule("Third");
+						
 
 						// back to Requestor Group Search
 						reqProcLib.backtoReqSearch();
@@ -123,19 +108,6 @@ public class REQ08_TestRulesTest extends ChinaLib{
 
 						// clicking on Optional Rules
 						reqProcLib.clickOptionalRules();
-
-						// select with rule listing factor dropdown
-						reqProcLib.selectWithRuleListingFactor(data.get("CreateRule_WithListOption"));
-
-						// click on ADD ROUTE button
-						reqProcLib.clickAdRouteButton();
-
-						// select HDLList after ADD ROUTE click
-						reqProcLib.selectHDLListOption(data.get("SmartTracker_HDLLIstOption"));
-
-						// click ADD RULE button
-						reqProcLib.addRuleWithList(data.get("List1_Option"), data.get("Cart_Type_Standard"), data.get("Min_Amt_0"),
-								data.get("Max_Amt_99"), data.get("Result_Path1"), "1");
 
 						// Test Approval Rules 
 						reqProcLib.clickTestApprovalRulesLink();
@@ -155,11 +127,7 @@ public class REQ08_TestRulesTest extends ChinaLib{
 						// close test approvals window
 						reqProcLib.closeTestApprovalRulesWindow();
 
-						// Delete Created Rules
-						reqProcLib.clickDeleteRule("WithRule");
-
-						// Delete Routing List choice
-						reqProcLib.deleteRoutingOption();
+						
 						commonLib.clickLogOutLink(data.get("Logout"));
 						
 						// fnCloseTest();

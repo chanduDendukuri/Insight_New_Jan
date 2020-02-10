@@ -86,7 +86,7 @@ public class REQ03_DenyRequisitionTest extends ChinaLib{
 																	// shipping address
 						orderLib.shippingOptionsCarrierSelection(); // Click continue on
 																	// shipping options
-						orderLib.shippingBillPayContinueButton(); // Billing address
+						orderLib.billingAddressContinueButton(); // Billing address
 																	// continue button
 						orderLib.enterCreditCard(data.get("Card_Number").toString(), data.get("Card_Name"), data.get("Month"),
 								data.get("Year"), data.get("PONumber"),data.get("POReleaseNumber"));
@@ -98,6 +98,7 @@ public class REQ03_DenyRequisitionTest extends ChinaLib{
 						Thread.sleep(4000);
 						orderLib.verifyReceiptVerbiage();
 						String RefNumber = orderLib.getTextfromReferenceNumber();
+						commonLib.clickLogOutLink(data.get("header1"));
 						// LogIN with 2nd User
 						cmtLib.navigateBackToCMT();
 						cmtLib.hoverOnManageWebGroupsAndSelectOptions(data.get("Manage_Web_Grp_Options"));
@@ -106,6 +107,7 @@ public class REQ03_DenyRequisitionTest extends ChinaLib{
 						searchLib.verifyAccountToolForOrderMenuItem(data.get("toolsMenuName"), data.get("dropDown"));
 						orderLib.verifyandClickonRefLink(RefNumber);
 						orderLib.verifyApprovalManagmentandClickUpdate();
+						commonLib.clickLogOutLink(data.get("header1"));
 						// Login with 3rd User
 						cmtLib.navigateBackToCMT();
 						cmtLib.hoverOnManageWebGroupsAndSelectOptions(data.get("Manage_Web_Grp_Options"));
@@ -114,15 +116,19 @@ public class REQ03_DenyRequisitionTest extends ChinaLib{
 						searchLib.verifyAccountToolForOrderMenuItem(data.get("toolsMenuName"), data.get("dropDown"));
 						orderLib.verifyandClickonRefLink(RefNumber);
 						ReqLib.verifyDeneyedStatusandUpdate(data.get("text"));
+						commonLib.clickLogOutLink(data.get("header1"));
 						// Login with 4th User
 						cmtLib.navigateBackToCMT();
 						cmtLib.hoverOnManageWebGroupsAndSelectOptions(data.get("Manage_Web_Grp_Options"));
 						cmtLib.searchForaUserAndSelect(data.get("LnameEmailUname3"), data.get("ContactName3"));
 						cmtLib.loginAsAdminCMT();
 						searchLib.verifyAccountToolForOrderMenuItem(data.get("toolsMenuName"), data.get("dropDown"));
-						ReqLib.verifyDenyedstatusRefNum(data.get("status"), RefNumber);
+						//orderLib.verifyandClickonRefLink(RefNumber);
+						ReqLib.verifyDenyedstatusRefNuminRequisition(data.get("status"));
 						// Verify deneyed request reference number is displayed or not
 						ReqLib.verifyorderNumLinkinDeneyedorders(RefNumber);
+						//Logout
+						commonLib.clickLogOutLink(data.get("header1"));
 					} catch (Exception e) {
 						ReportStatus.blnStatus = false;
 						//gErrorMessage = e.getMessage();
