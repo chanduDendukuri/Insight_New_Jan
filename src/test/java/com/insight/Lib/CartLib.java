@@ -1902,12 +1902,12 @@ public void verifyProductdetails() throws Throwable {
 			//Do Nothing
 		}
 		
-		click(CommonObj.ACCOUNT_TOOLS_PRODUCTDETAIL_PAGE, "Account tools menu icon");
-		click(CommonObj.getAccountToolsMenuProductDetailPage(toolsMenuName), "Account tools menu "+toolsMenuName);
-		click(CommonObj.getAccountToolsDDProductDetailPage(toolsMenuName, dropDown), "Clicked on"+toolsMenuName+dropDown);// ---Tools,Customer-Owned-Inventory
+		click(CommonObj.ACCOUNT_TOOLS_PRODUCTDETAIL_PAGE, "Account tools");
+		click(CommonObj.getAccountToolsMenuProductDetailPage(toolsMenuName), toolsMenuName);
+		click(CommonObj.getAccountToolsDDProductDetailPage(toolsMenuName, dropDown), "Clicked on " +dropDown);// ---Tools,Customer-Owned-Inventory
 		isElementPresent(CartObj.Current_product_groups, " Current Product Groups page is opened");
 		click(CommonObj.getCompanyStandardsProductGroup(productGroup, productName),
-				"select product from product group");
+				"select "+productName+" from product group "+productGroup);
 		String description=getText(CartObj.DESCRIPTION, "Description");
 		String stock=getText(CartObj.STOCK, "Stock");
 
