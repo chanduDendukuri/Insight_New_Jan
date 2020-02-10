@@ -1423,7 +1423,7 @@ List<String> orderdetails = new ArrayList<String>();
 		List<WebElement> stock = driver.findElements(CartObj.STOCK_PRINT_POPUP);
 		List<WebElement> total_price = driver.findElements(CartObj.TOTAL_PRICE_PRINT_POPUP);
 		List<WebElement> unit_price = driver.findElements(CartObj.TOTAL_PRICE_PRINT_POPUP);
-		
+		getWG800NumberOnPrintPopup();
 		for (int i = 0; i <myList.size() ; i++) {
 		    String desc = myList.get(i).getText();
 			 if(desc.equals(prodDesc.get(i))){
@@ -2624,7 +2624,10 @@ List<String> orderdetails = new ArrayList<String>();
 		 }else {
 			 reporter.failureReport("verify WG 800 number in receipt printable page", "Custom 800 Number in  Receipt Print popup View does not Exists ", "", driver);
 		 }
-		 
+	 }
+	 
+	 public String getWG800NumberOnPrintPopup() throws Throwable {
+			 return getText(TELEPHONE_NUMBER_ON_PRINT_RECEIPT, "Telephone number on receipt page");
 	 }
 	}
 
