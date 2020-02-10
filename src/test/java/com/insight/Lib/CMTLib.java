@@ -245,8 +245,8 @@ public class CMTLib extends CMTObj {
 	 */
 	public void hoverOverMasterGroupAndSelectChangeGrp() throws Throwable {
 		
-		mouseHover(MASTER_GROUP, "Master Group");
-		driver.navigate().refresh();
+		/*mouseHover(MASTER_GROUP, "Master Group");
+		driver.navigate().refresh();*/
 	  
 		mouseHover(MASTER_GROUP, "Master Group");
 		click(CHANGE_MASTER_GRP, "Change master group option");
@@ -812,7 +812,7 @@ public  void verifyDashboard()throws Throwable {
 		click(USER_SERVICE_LEVEL_SHIPPING, "User level shipping option is selected ");
 		if (isElementPresent(DefaultShippingOption, "DefaultShippingOption is Displayed")) {
 			selectByValue(DefaultShippingOption, Value, "Default_Shipping_Option:: " + user_Permissions + "");
-			reporter.SuccessReport("Verify the Sucess message ", "DefaultShippingOption is Displayed", "");
+			reporter.SuccessReport("Verify the Sucess message ", "Service Level Shipping with Select One is Exists and Selected", "");
 		} else {
 			reporter.failureReport("Verify the sucess message", "DefaultShippingOption is not Displayed", "", driver);
 		}

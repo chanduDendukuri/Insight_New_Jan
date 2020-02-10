@@ -865,6 +865,7 @@ public class ShipBillPayLib extends ShipBillPayObj {
 	 */
 	public String getTotalAmountInCart(String total) throws Throwable {
 		String totalAmount = getText(getAmountsInSummary(total), "Total Amount");
+		reporter.SuccessReport("Amount", "Amount is displayed as ", totalAmount, driver);
 		return totalAmount;
 	}
 	

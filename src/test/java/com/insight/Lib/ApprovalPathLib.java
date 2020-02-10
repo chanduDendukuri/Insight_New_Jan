@@ -1193,7 +1193,22 @@ String EndDate= getText(Approvername("EndDateId"), "EndDateId");
 		String fromDate = today.format(DateTimeFormatter.ofPattern("d-MMM-uuuu"));
 		return fromDate;
 	}
+public void GetFromDate() {
+	Date currentDate = new Date();
+	 Calendar c = Calendar.getInstance();
+     c.setTime(currentDate);
 
+    
+     c.add(Calendar.DATE, -380); //same with c.add(Calendar.DAY_OF_MONTH, 1);
+    
+     
+
+     // convert calendar to date
+     Date Previousdate = c.getTime();
+
+   
+
+}
 	public void ClickReqGrpRulesReport() throws Throwable {
 		if (isElementPresent(REQUESTOR_GROUPRULES_REPORT, "Requestor Group Rules Report")) {
 			click(REQUESTOR_GROUPRULES_REPORT, "Click Requestor Group Rules Report");

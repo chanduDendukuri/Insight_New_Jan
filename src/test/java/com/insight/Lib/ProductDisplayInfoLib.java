@@ -1311,7 +1311,7 @@ public class ProductDisplayInfoLib extends productsDisplayInfoObj {
         String partNumber = getText(productsDisplayInfoObj.getPartNumber(0), "get product number").split("Mfr Part #:")[1];
         System.out.println(partNumber);
         if (!partNumber.isEmpty()) {
-            reporter.SuccessReport("Verify the product part Number", "Product part Number is displayed as : ",
+            reporter.SuccessReport("Verify the product part Number", "Product part Number in search results page is displayed as : ",
                     "part Number # : " + partNumber);
         } else {
             reporter.failureReport("Verify the product part Number", "Product part Number is not displayed", "", driver);
