@@ -158,6 +158,7 @@ public class CRT11_ShippingEstimatorTest extends CartLib {
 					// Cart verification
 					commonLib.addToCartAndVerify();
 					orderLib.continueToCheckOutOnAddCart();
+					canadaLib.verifyPlaceCartLabel();
 					/*cmtLib.navigateBackToCMT();
 					cmtLib.hoverOverMasterGroupAndSelectChangeGrp();
 					cmtLib.searchForWebGroup(data.get("WebGrp"));
