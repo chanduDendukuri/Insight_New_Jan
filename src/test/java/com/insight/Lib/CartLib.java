@@ -419,7 +419,7 @@ public class CartLib extends ActionEngine {
 		//isElementPresent(CartObj.SAVED_CART_TEXT, "Saved cart");
 		click(CartObj.loadCart(cartName), "Load cart");
 		if (isElementPresent(CartObj.CURRIENCES, "cart is loaded")) {
-			reporter.SuccessReport("Click on load cart ", "Saved cart exists and selected", "");
+			reporter.SuccessReport("Click on load cart ", "Saved cart exists and selected", cartName);
 		} else {
 			reporter.failureReport("Click on load cart ", "Saved cart does not exist", "", driver);
 
@@ -941,20 +941,18 @@ public class CartLib extends ActionEngine {
 		if (isElementPresent(CartObj.CART_ITEMS, "cart items")) {
 			reporter.SuccessReport("cart message ", "View Cart icon is empty", "");
 		} else {
-			//click(CartObj.CART, "CART");
-			//commonLib.emptyCartAndVerify();
-			reporter.failureReport("Delete cart meassage ", "View Cart icon is not empty", "", driver);
+			
+			reporter.failureReport(" cart meassage ", "View Cart icon is not empty", "", driver);
 
 		}
 	}
 	public void verifyCartIsNotEmpty() throws Throwable {
-		waitForVisibilityOfElement(CartObj.CART_ITEMS, "CART ITEMS");
+		
 		if (!isElementPresent(CartObj.CART_ITEMS, "cart items")) {
 			reporter.SuccessReport("cart message ", "View Cart icon is not empty", "");
 		} else {
-			//click(CartObj.CART, "CART");
-			//commonLib.emptyCartAndVerify();
-			reporter.failureReport("Delete cart meassage ", "View Cart icon is empty", "", driver);
+			
+			reporter.failureReport(" cart meassage ", "View Cart icon is empty", "", driver);
 
 		}
 	}
