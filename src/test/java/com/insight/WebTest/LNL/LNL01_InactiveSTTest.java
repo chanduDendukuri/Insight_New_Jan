@@ -177,9 +177,9 @@ public class LNL01_InactiveSTTest extends LineLevelInfoLib{
 						proceedToCheckout();
 						lnlLib.verifyLineLevelInfoExists("NotAvailable");
 						
-						orderLib.shippingBillPayContinueButton(); // Click continue on shipping address Section
-						orderLib.shippingBillPayContinueButton(); // Click continue on Shipping options Section
-						orderLib.shippingBillPayContinueButton(); //Click continue on Billing address Section
+						orderLib.clickContinueOnShippingAddress(); // Click continue on shipping address Section
+						orderLib.selectShippingOptionsCarrier(); // Click continue on Shipping options Section
+						orderLib.billingAddressContinueButton(); //Click continue on Billing address Section
 						orderLib.selectPaymentInfoMethodCreditCard(data.get("Card_Number").toString(), data.get("Card_Name"),data.get("Month"), data.get("Year"),data.get("PO_Number"),data.get("POReleaseNumber"));  // VISA card
 						orderLib.clickOnReviewOrderButton();
 						
