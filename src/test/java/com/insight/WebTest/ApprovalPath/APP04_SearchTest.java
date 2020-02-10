@@ -86,7 +86,7 @@ public class APP04_SearchTest extends ApprovalPathLib {
 
 					// --- '>' icon
 					//Add_Approver_Btn_Click();
-
+					scrollUp();
 					// Create Approval path
 					ClickCreateApprovalPathButton();
 					VerifyAppovalPathCreated(newApproverPathName1);
@@ -98,7 +98,7 @@ public class APP04_SearchTest extends ApprovalPathLib {
 
 					// Select Approvers
 					SelectApprover(null,2);
-
+					scrollUp();
 					// --- '>' icon
 					//Add_Approver_Btn_Click();
 					ClickCreateApprovalPathButton();
@@ -132,7 +132,7 @@ public class APP04_SearchTest extends ApprovalPathLib {
 					//Add_Approver_Btn_Click();
 
 					ClickUpdateButton();
-					VerifySuccessUpdate();
+					
 					VerifyAppovalPathCreated(newApproverPathName1);
 					VerifyAppovalPathCreated(newApproverPathName2);
 					// Search with QTP - and click on search button
@@ -162,7 +162,7 @@ public class APP04_SearchTest extends ApprovalPathLib {
 						reporter.failureReport("Approvers added", "Approvers are not added successfully", "", driver);	
 					}
 					ClickUpdateButton();
-					VerifySuccessUpdate();
+					
 					
 					
 					

@@ -255,11 +255,11 @@ for(int i=1;i<=count;i++) {
 			for(int i=0;i<=count-1;i++) {
 			String text=elem.get(i).getText().toString();
 			
-			reporter.SuccessReport("Added Approvers count", "Number of Approvers added are", text);
+			reporter.SuccessReport("Verify Approver added to the Approval path", "Approver Name is ", text);
 			
 		}}
 		else {
-			reporter.SuccessReport("Added Approvers count", "Number of Approvers added are 0","", driver);
+			reporter.SuccessReport("Verify Approver added to the Approval path", "Number of Approvers added are 0","", driver);
 		}
 		
 		return count;
@@ -759,31 +759,31 @@ for(int i=1;i<=count;i++) {
 		if (wait.until(ExpectedConditions.alertIsPresent()) != null) {
 			String alertMsg = driver.switchTo().alert().getText();
 			if (alertMsg.contains("Replacement")) {
-				reporter.SuccessReport("Click ok on CreateLinkInrequisationRejection popup",
+				reporter.SuccessReport("Click ok on CreateLinkInrequisitionRejection popup",
 						"POPUP Exists and OK is Clicked", alertMsg);
 				acceptAlert();
 
 			} 
 			else if(alertMsg.contains("Description")) {
-				reporter.SuccessReport("Click ok on CreateLinkInrequisationRejection popup",
+				reporter.SuccessReport("Click ok on CreateLinkInrequisitionRejection popup",
 						"POPUP Exists and OK is Clicked", alertMsg);
 				acceptAlert();
 
 			} else {
-				reporter.failureReport("Click ok on ClickCreateLinkInrequisationRejection",
+				reporter.failureReport("Click ok on ClickCreateLinkInrequisitionRejection",
 						"POPUP Does Not Exist", "");
 			}
 		}
 	}
 
-	public void ClickCreateLinkInrequisationRejection() throws Throwable {
+	public void ClickCreateLinkInrequisitionRejection() throws Throwable {
 
-		if (isElementPresent(CreateLinkInrequisationRejection, "Requisition Rejection Type Add icon")) {
-			click(CreateLinkInrequisationRejection, "Requisition Rejection Type Add icon");
-			reporter.SuccessReport("Click Create on requisationRejection",
+		if (isElementPresent(CreateLinkInrequisitionRejection, "Requisition Rejection Type Add icon")) {
+			click(CreateLinkInrequisitionRejection, "Requisition Rejection Type Add icon");
+			reporter.SuccessReport("Click Create on requisitionRejection",
 					"Requisition Rejection Type Add icon Exists and Clicked", "");
 		} else {
-			reporter.failureReport("Click Create on requisationRejection",
+			reporter.failureReport("Click Create on requisitionRejection",
 					"Requisition Rejection Type Add icon Does Not Exist", "");
 		}
 	}
@@ -820,21 +820,21 @@ for(int i=1;i<=count;i++) {
 	}
 
 	public void ClickEditToModifyRejType(String RejectionType) throws Throwable {
-		if (isElementPresent(editRejType(RejectionType), "Edit Link ")) {
-			click(editRejType(RejectionType), "Rejection Type Edit Link");
+		if (isElementPresent(editRejType(RejectionType), "Edit icon ")) {
+			click(editRejType(RejectionType), "Rejection Type Edit icon");
 			reporter.SuccessReport("Click Create on Approval Management Page Approver Out of Office Settings",
-					"Requisition RejectionTypes Edit Link Exists and Clicked", "");
+					"Requisition RejectionTypes Edit icon Exists and Clicked", "");
 		} else {
 			reporter.failureReport("Click Create on Approval Management Page Approver Out of Office Settings",
-					"Requisition RejectionTypes Edit Link does not Exists", "");
+					"Requisition RejectionTypes Edit icon does not Exists", "");
 		}
 	}
 
 	public void ModifyRejectionName(String NewRejectionType, String RejectionType) throws Throwable {
-		if (isElementPresent(modifyRejDesc(RejectionType), "Requisation Rejection Type")) {
-			type(modifyRejDesc(RejectionType), NewRejectionType, "Requisation Rejection Type");
+		if (isElementPresent(modifyRejDesc(RejectionType), "Requisition Rejection Type")) {
+			type(modifyRejDesc(RejectionType), NewRejectionType, "Requisition Rejection Type");
 			reporter.SuccessReport("Approval Management Page Approver Out of Office Settings",
-					"Requisation Rejection Type Field updated successfully", "");
+					"Requisition Rejection Type Field updated successfully", "");
 		} else {
 			reporter.failureReport("Approval Management Page Approver Out of Office Settings",
 					"Rejection Type Field Does Not Exist", "");
