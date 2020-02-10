@@ -479,7 +479,7 @@ public class CommonCanadaLib extends CommonCanadaPage {
             List<String> acutalContent = Arrays.asList(columnHeaders.split(","));
             System.out.println("Compare content" + downloadedExcelContent.equals(acutalContent));
             if (downloadedExcelContent.equals(acutalContent)) {
-                reporter.SuccessReport(""+columnHeaders, "columns are avilable in exportCart.xls", "columns: " + columnHeaders);
+                reporter.SuccessReport(""+columnHeaders, "columns are avilable in Excel File", "columns: " + columnHeaders);
             } else {
                 reporter.failureReport(""+columnHeaders, columnHeaders + " are not avilable", "", driver);
             }
