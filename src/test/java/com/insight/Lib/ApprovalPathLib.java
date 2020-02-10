@@ -51,10 +51,10 @@ public class ApprovalPathLib extends ApprovalPathObj {
 		String ApproverPathname = getText(ApproverPathName(Approvername), "Approver PathName");
 				String ApproverCount = getText(Approvercount(Approvername),"Approver Count");
 				if(ApproverPathname.equals(Approvername) && Integer.parseInt(ApproverCount)==count) {
-					reporter.SuccessReport("Verify ApproverPathName and ApproverCount", "ApproverPathName and ApproverCount", ApproverPathname+","+ApproverCount, driver);
+					reporter.SuccessReport("Verify ApproverPathName and Approver Count", "ApproverPathName and Approver Count", ApproverPathname+","+ApproverCount, driver);
 				}
 				else {
-					reporter.SuccessReport("Verify ApproverPathName and ApproverCount",""+Approvername+" and ApproverCount are doesn't exist", "");
+					reporter.SuccessReport("Verify ApproverPathName and Approver Count",""+Approvername+" and Approver Count  doesn't exist", "");
 				}
 	}
 public String RandomApprovalPathName(String Approver_Name) throws Throwable {
@@ -96,14 +96,24 @@ public String RandomApprovalPathName(String Approver_Name) throws Throwable {
 
 	public void VerifyAppovalPathCreated(String Approver_Name) throws Throwable {
 		String SuccessMsg = getText(Successmsg, "Success message:");
-		if (isElementPresent(getCreatedApproverPath(Approver_Name), "Approval management page")) {
+		
+			List<WebElement> elem = driver.findElements(ApproverPathNameDisplayedRow);
+			if(elem.size()>0) {
+			for(int i=2;i<=elem.size();i++) {
+				String ApproverPathName = driver.findElement(ApproverPathNameRow(i, 1)).getText();
+				if (ApproverPathName.equals(Approver_Name)) {
+				reporter.SuccessReport("Verify Approval Path Name",	"Approver Path Name:"+Approver_Name+" displayed at row number", String.valueOf(i-1));
 			reporter.SuccessReport("Verify Approval Path is Added on Approval Management Approval Path Management Page",
 					"Created/Edited Approver Path is Exists and Verified", SuccessMsg+Approver_Name);
-		} else {
-			reporter.failureReport("Verify Approval Path is Added on Approval Management Approval Path Management Page",
-					"Created Approver Path Does Not Exist", "");
+		 break;
 		}
-	}
+			}
+			}else {
+			reporter.failureReport("Verify Approval Path is Added on Approval Management Approval Path Management Page",
+					"Created Approver Path Does Not Exist or No Approver Path Names displayed", "");
+		}
+			}
+	
 	public void verifySearchresults(String Approver_Name) throws Throwable {
 		if (isElementPresent(getCreatedApproverPath(Approver_Name), "Approval management page")) {
 			reporter.failureReport("Verify Approval Path is Added on Approval Management Approval Path Management Page",
@@ -185,8 +195,8 @@ public String RandomApprovalPathName(String Approver_Name) throws Throwable {
 	}
 
 	public void SearchUser(String Approver_Name) throws Throwable {
-		if (isElementPresent(SEARCH_TXTBOX, "Serach text box")) {
-			type(SEARCH_TXTBOX, Approver_Name, "Serach text box");
+		if (isElementPresent(SEARCH_TXTBOX, "Search text box")) {
+			type(SEARCH_TXTBOX, Approver_Name, "Search text box");
 			reporter.SuccessReport("Enter Approver Name on Approval Management Approval Path Management Page",
 					"Approval Path Name Field Exists and Entered", "");
 		} else {
@@ -255,11 +265,11 @@ for(int i=1;i<=count;i++) {
 			for(int i=0;i<=count-1;i++) {
 			String text=elem.get(i).getText().toString();
 			
-			reporter.SuccessReport("Available Approvers count", "Number of Approvers added are", text);
+			reporter.SuccessReport("Verify Approver added to the Approval path", "Approver Name is ", text);
 			
 		}}
 		else {
-			reporter.SuccessReport("Available Approvers count", "Number of Approvers added are 0","", driver);
+			reporter.SuccessReport("Verify Approver added to the Approval path", "Number of Approvers added are 0","", driver);
 		}
 		
 		return count;
@@ -269,10 +279,10 @@ for(int i=1;i<=count;i++) {
 		int count = elem.size();
 		String count1= String.valueOf(count);
 		if(count>0) {
-			reporter.SuccessReport("Arrovers Added", "Number of Approvers added are", count1);
+			reporter.SuccessReport("Available Approvers", "Number of available Approvers  are", count1);
 		}
 		else {
-			reporter.SuccessReport("Arrovers Added", "Number of Approvers added are 0","", driver);
+			reporter.SuccessReport("Available Approvers", "Number of available  Approvers  are 0","", driver);
 		}
 		return count;
 	}
@@ -621,7 +631,7 @@ for(int i=1;i<=count;i++) {
 
 		if (isElementPresent(REPORTS_DIV, "Report div")) {
 
-			if (isElementPresent(REQUISITION_STAUS_REPORT, "Requision Status Report")) {
+			if (isElementPresent(REQUISITION_STAUS_REPORT, "Requisition Status Report")) {
 				Req_Status_report = driver.findElement(REQUISITION_STAUS_REPORT).getText();
 			}
 
@@ -655,8 +665,8 @@ for(int i=1;i<=count;i++) {
 	}
 
 	public void ClickApprovalPathReportLink() throws Throwable {
-		if (isElementPresent(APPROVAL_PATH_REPORT, "Verify Approval Path Link")) {
-			click(APPROVAL_PATH_REPORT, "Click Approval Path Link");
+		if (isElementPresent(APPROVAL_PATH_REPORT, "Verify Approval Path Report Link")) {
+			click(APPROVAL_PATH_REPORT, "Click Approval Path Report Link");
 			reporter.SuccessReport("Approval Path Management Page", "Approval Path Report Link Exists and Clicked", "");
 		} else {
 			reporter.failureReport("Approval Path Management Page", "Approval Path Report Link Does Not Exist", "");
@@ -698,7 +708,7 @@ for(int i=1;i<=count;i++) {
 	public void ClickApprovalPathLink(String appPathName) throws Throwable {
 		if (isElementPresent(getApprovalPathNameLink(appPathName), "Verify Approval Path Link")) {
 			click(getApprovalPathNameLink(appPathName), "Click Approval Path Link");
-			reporter.SuccessReport("Approval Path Management Page", "Approval Path Link Exists and Clicked", "");
+			reporter.SuccessReport("Approval Path Management Page", "Approval Path Link Exists and Clicked", appPathName);
 		} else {
 			reporter.failureReport("Approval Path Management Page", "Approval Path Link Does Not Exist", "");
 		}
@@ -742,7 +752,7 @@ for(int i=1;i<=count;i++) {
 	}
 
 	public void ClickCreateLink() throws Throwable {
-		if (isElementPresent(CREATE_LINK, "Create Link ")) {
+		if (waitForVisibilityOfElement(CREATE_LINK, "Create Link ")) {
 			click(CREATE_LINK, "Click Create Link");
 			reporter.SuccessReport("Click Create on Approval Management Page Approver Out of Office Settings",
 					"CREATE Link Exists and Clicked", "");
@@ -759,31 +769,31 @@ for(int i=1;i<=count;i++) {
 		if (wait.until(ExpectedConditions.alertIsPresent()) != null) {
 			String alertMsg = driver.switchTo().alert().getText();
 			if (alertMsg.contains("Replacement")) {
-				reporter.SuccessReport("Click ok on CreateLinkInrequisationRejection popup",
+				reporter.SuccessReport("Click ok on CreateLinkInrequisitionRejection popup",
 						"POPUP Exists and OK is Clicked", alertMsg);
 				acceptAlert();
 
 			} 
 			else if(alertMsg.contains("Description")) {
-				reporter.SuccessReport("Click ok on CreateLinkInrequisationRejection popup",
+				reporter.SuccessReport("Click ok on CreateLinkInrequisitionRejection popup",
 						"POPUP Exists and OK is Clicked", alertMsg);
 				acceptAlert();
 
 			} else {
-				reporter.failureReport("Click ok on ClickCreateLinkInrequisationRejection",
+				reporter.failureReport("Click ok on ClickCreateLinkInrequisitionRejection",
 						"POPUP Does Not Exist", "");
 			}
 		}
 	}
 
-	public void ClickCreateLinkInrequisationRejection() throws Throwable {
+	public void ClickCreateLinkInrequisitionRejection() throws Throwable {
 
 		if (isElementPresent(CreateLinkInrequisationRejection, "Requisition Rejection Type Add icon")) {
 			click(CreateLinkInrequisationRejection, "Requisition Rejection Type Add icon");
-			reporter.SuccessReport("Click Create on requisationRejection",
+			reporter.SuccessReport("Click Create on requisitionRejection",
 					"Requisition Rejection Type Add icon Exists and Clicked", "");
 		} else {
-			reporter.failureReport("Click Create on requisationRejection",
+			reporter.failureReport("Click Create on requisitionRejection",
 					"Requisition Rejection Type Add icon Does Not Exist", "");
 		}
 	}
@@ -820,21 +830,21 @@ for(int i=1;i<=count;i++) {
 	}
 
 	public void ClickEditToModifyRejType(String RejectionType) throws Throwable {
-		if (isElementPresent(editRejType(RejectionType), "Edit Link ")) {
-			click(editRejType(RejectionType), "Rejection Type Edit Link");
+		if (isElementPresent(editRejType(RejectionType), "Edit icon ")) {
+			click(editRejType(RejectionType), "Rejection Type Edit icon");
 			reporter.SuccessReport("Click Create on Approval Management Page Approver Out of Office Settings",
-					"Requisition RejectionTypes Edit Link Exists and Clicked", "");
+					"Requisition RejectionTypes Edit icon Exists and Clicked", "");
 		} else {
 			reporter.failureReport("Click Create on Approval Management Page Approver Out of Office Settings",
-					"Requisition RejectionTypes Edit Link does not Exists", "");
+					"Requisition RejectionTypes Edit icon does not Exists", "");
 		}
 	}
 
 	public void ModifyRejectionName(String NewRejectionType, String RejectionType) throws Throwable {
-		if (isElementPresent(modifyRejDesc(RejectionType), "Requisation Rejection Type")) {
-			type(modifyRejDesc(RejectionType), NewRejectionType, "Requisation Rejection Type");
+		if (isElementPresent(modifyRejDesc(RejectionType), "Requisition Rejection Type")) {
+			type(modifyRejDesc(RejectionType), NewRejectionType, "Requisition Rejection Type");
 			reporter.SuccessReport("Approval Management Page Approver Out of Office Settings",
-					"Requisation Rejection Type Field updated successfully", "");
+					"Requisition Rejection Type Field updated successfully", "");
 		} else {
 			reporter.failureReport("Approval Management Page Approver Out of Office Settings",
 					"Rejection Type Field Does Not Exist", "");

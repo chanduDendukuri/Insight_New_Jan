@@ -30,6 +30,10 @@ public static By NumberOfapproversadded = By.xpath("//div[@id='listToBox']//li")
 	public static By getCreatedApproverPath(String appName) {
 		return By.xpath("//table[@id='apptempl']//td[@class='Cl_AppPathName'][contains(text(),'" + appName + "')]");
 	}
+	public static By ApproverPathNameDisplayedRow = By.xpath("//table[@id='apptempl']//tr");
+	public static By ApproverPathNameRow(int i,int j){
+		return By.xpath("//table[@id='apptempl']//tr["+i+"]//td["+j+"]");
+	}
 public static By Successmsg = By.xpath("//div[@class='successUpdated']");
 	public static By getCreatedApproverPathEditLink(String appName) {
 		return By.xpath("//table[@id='apptempl']//td[@class='Cl_AppPathName'][contains(text(),'" + appName
@@ -144,8 +148,7 @@ public static By GetGroupDetails(int i,int j) {
 			"//ul[@id='tab_ul']//li[@aria-labelledby='idRequestorGroups']//a[contains(text(),'Requestor Group')]");
 
 	public static By clickRequestorGrpEdit(String appPathName) {
-		return By.xpath("//table[@id='requestor_search_table']//td[text()='" + appPathName
-				+ "']/..//td//a[contains(text(),'Edit')]");
+		return By.xpath("//table[@id='appreport']//a[(text()='"+appPathName+"')]");
 	}
 	public static By clickOnGrpInReports(String appPathName) {
 		return By.xpath("//table[@id='appreport']//a[contains(text(),'"+appPathName+"')]");

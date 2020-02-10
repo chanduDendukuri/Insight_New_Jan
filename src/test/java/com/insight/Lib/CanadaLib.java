@@ -2087,5 +2087,10 @@ public void addShippingAddress(String name, String userName,String street1,Strin
 		}
 	}
 
+	public boolean availabilityOfContinueCheckout() throws Throwable {
+		return isVisible(CONTINUE_TO_CHECKOUT, "Continue to checkout");
+
+	}
+
 }
 
