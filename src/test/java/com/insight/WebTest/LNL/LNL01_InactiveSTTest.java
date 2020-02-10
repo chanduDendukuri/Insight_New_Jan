@@ -107,7 +107,7 @@ public class LNL01_InactiveSTTest extends LineLevelInfoLib{
 						cmtLib.hoverOnManageWebGroupsAndSelectOptions(data.get("Manage_Web_Grp_Options1"));  // SmartTrackers
 						cmtLib.verifySmartTrackerPage();
 						cmtLib.selectmanageSmartTrackertabs(data.get("tab_Name1"));
-						cmtLib.selectSmartTrackersHeaders(data.get("Header1"));
+						//cmtLib.selectSmartTrackersHeaders(data.get("Header1"));
 						// Add a smart tracker
 						cmtLib.clickOnAddSmartTrackerLink();
 						String date_field1 = "QTP"+getCurrentDateTime("dd-mmm-yyyy HH:MM:SS.ss");
@@ -133,7 +133,7 @@ public class LNL01_InactiveSTTest extends LineLevelInfoLib{
 						refreshPage();
 						String date_field3 = "QTP"+getCurrentDateTime("dd-mmm-yyyy HH:MM:SS.ss");
 						cmtLib.selectmanageSmartTrackertabs(data.get("tab_Name"));
-						cmtLib.selectSmartTrackersHeaders(data.get("Header1"));
+						//cmtLib.selectSmartTrackersHeaders(data.get("Header1"));
 						cmtLib.clickOnAddSmartTrackerLink();
 						cmtLib.addFieldLabelInSmartTracker(date_field3);
 						cmtLib.addSmartTrackerFieldType(data.get("Field_Type"));  // Date - type
