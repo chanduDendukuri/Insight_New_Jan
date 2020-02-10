@@ -23,6 +23,7 @@ public class CAN10_SPLAZeroUsageTest extends CanadaLib {
     ShipBillPayLib sbpLib = new ShipBillPayLib();
     MarriottIntlCorpLib micLib = new MarriottIntlCorpLib();
     CommonCanadaLib ccp = new CommonCanadaLib();
+    SLPLib slpLib=new SLPLib();
 
     // #############################################################################################################
     // #       Name of the Test         :  CAN10_SPLAZeroUsage
@@ -74,16 +75,21 @@ public class CAN10_SPLAZeroUsageTest extends CanadaLib {
 
                     // account tools >> Software License Agreements
                     commonLib.clickOnAccountToolsAndClickOnProductGrp(data.get("Tools_Menu"), data.get("Tools_Menu_DD"));
+                    verifySPLAPage();
                     // Select Software Lic Agreements
                     selectSPLADetailsProductCheckBox(data.get("SPLA"));
+                    // verify search results 
+			     	slpLib.verifysearchResultsPageForSLP();
                     // Search for a product and add to cart
                    assertTrue(ccp.verifyReturnTOSoftwareLicenseAggrements(),"Search Results :: My Software licencing aggreement ");
                    // searchLib.verifysearchResultsPage();
                     searchLib.searchInHomePage(data.get("SearchItem1"));
-                    String manNum=ccp.getManfNumberFromProductSearchScreen();
-                    commonLib.updateCartQuantity(data.get("quantity"));
-                    commonLib.addToCartAndVerify();
-                    orderLib.continueToCheckOutOnAddCart();
+                    pipLib.verifyTheManufacturerNumberInProductDetailsPage(data.get("SearchText"));
+			    	pipLib.enterQuantityOnProductDetailsPage(data.get("Quantity"));
+			     	commonLib.addToCartAndVerify();
+			     	orderLib.continueToCheckOutOnAddCart();
+			    	verifyPlaceCartLabel();
+			     	cartLib.verifyItemInCartByInsightPart(data.get("SearchItem1"));
                     pipLib. verifyCartPageAndPartDetailsForRecentlyItemDynamically(data.get("SearchItem1"));
                     //cartLib.verifyItemInCartByInsightPart(data.get("SearchItem1"));
 
@@ -101,37 +107,61 @@ public class CAN10_SPLAZeroUsageTest extends CanadaLib {
                     // account tools >> Software License Agreements
                     commonLib.clickOnAccountToolsAndClickOnProductGrp(data.get("Tools_Menu"), data.get("Tools_Menu_DD"));
                     verifySPLAPage();
-
-                    selectReportUsageButtonsInMySoftwareLicenseAgreements(data.get("Btnlabel"));
-                    clickOnReportZeroUsageLinkOnCart();
-
-                    // Verify Only Zero Usage Part in the Cart CAD $0.00"
-                    String summaryAmount = cartLib.getSummaryAmountInCart();
-                        assertTextStringContains(summaryAmount, data.get("Price"));
-                    // Verify usage period on cart
-                    verifyReportingUsagePeriod();
-                    //Proceed to checkout
-                    orderLib.proceedToCheckout();
-                    orderLib.shippingBillPayContinueButton();  // Click continue on  shipping address
-                    orderLib.shippingBillPayContinueButton();  // Billing address continue button
-                    orderLib.addNewCardInPayment(data.get("cardNumber"), data.get("cardName"), data.get("month"), data.get("year"), data.get("poNumebr"), data.get("POReleaseNumber"));
-                    orderLib.clickOnReviewOrderButton();  // Click Review order button
-                    // Place Order
-                    String amount = cartLib.getSummaryAmountInCart();
-                    orderLib.placeOrderAndVerifyReceiptOrderAndDate(amount);
-
-                    // account tools >> Software License Agreements
-                    commonLib.clickOnAccountToolsAndClickOnProductGrp(data.get("Tools_Menu"), data.get("Tools_Menu_DD"));
-                    // Select Software  Lic Agreements
-                    selectSPLADetailsProductCheckBox(data.get("SPLA"));
-                    // verify search results and select first product
-                    searchLib.verifysearchResultsPage();
-                    pipLib.selectFirstProductAddToCartAndVerifyCart();
-                    verifyReportingUsagePeriod();
-                    // Logout
-                    commonLib.clickLogOutLink(data.get("Logout"));
-
-                    System.out.println("Test completed");
+                    slpLib.retrieveLastUsageReport(data.get("SPLA"));
+                    String subTotal=sbpLib.getTotalAmountInCart(data.get("SubTotal_label"));
+					Double subTotalAmount = Double.parseDouble(subTotal.replace("$", ""));
+					slpLib.verifyAmount(subTotalAmount);
+                  
+					clickOnReportZeroUsageLinkOnCart();
+					// Verify Only Zero Usage Part in the Cart CAD $0.00"
+					String subtotalAmt=cartLib.getSummaryAmountInCart();
+					Float subTotalAmount1 = Float.parseFloat(subtotalAmt.replace("$", ""));
+					slpLib.verifySubTotalAmount(subTotalAmount1);
+					
+					// verify reporting usage period warning message
+					slpLib.verifyReportingPeriodWarning();
+					// Verify usage period on cart
+					 String cartUsagePeriod=verifyReportingUsagePeriod();
+					//Proceed to checkout
+					 orderLib.proceedToCheckout();
+					 orderLib.clickOnAdditionalInfoContinueButton();
+					 orderLib.clickContinueOnLineLevelInfo();   // Click continue on Line level Info
+					 verifySBP();
+					 orderLib.clickContinueOnShippingAddress();  // Click continue on  shipping address 
+					 orderLib.billingAddressContinueButton(); // Billing address continue button
+					 orderLib.addNewCardInPayment(data.get("cardNumber"), data.get("cardName"), data.get("month"), data.get("year"), data.get("poNumebr"), data.get("POReleaseNumber"));
+					 orderLib.clickOnReviewOrderButton();  // Click Review order button
+					
+					// Verify usage period on place order page
+					  String poUsagePeriod=slpLib.verifyReportingUsagePeriodOnReceiptPage();
+					  slpLib.verifyUsagePeriodsMatching(poUsagePeriod, cartUsagePeriod);
+					 
+					 // Place Order
+					 String amount = cartLib.getSummaryAmountInCart();
+					orderLib.placeOrderAndVerifyReceiptOrderAndDate(amount);
+				 
+					// Verify usage period on receipt page
+					 String receiptUsagePeriod=slpLib.verifyReportingUsagePeriodOnReceiptPage();
+					 slpLib.verifyUsagePeriodsMatching(receiptUsagePeriod, cartUsagePeriod);
+					
+					 // account tools >> Software License Agreements
+					commonLib.clickOnAccountToolsAndClickOnProductGrp(data.get("Tools_Menu"), data.get("Tools_Menu_DD"));
+					verifySPLAPage();
+					slpLib.verifyAllReportingPeriodsCurrent();
+					selectSPLADetailsProductCheckBox(data.get("SPLA"));
+					// verify search results 
+					slpLib.verifysearchResultsPageForSLP();
+					
+					// search for a part / product and add to cart
+			     	searchLib.searchInHomePage(data.get("SearchItem1"));
+			    	pipLib.verifyTheManufacturerNumberInProductDetailsPage(data.get("SearchItem1"));
+			    	pipLib.enterQuantityOnProductDetailsPage(data.get("Quantity"));
+			     	commonLib.addToCartAndVerify();
+			     	orderLib.continueToCheckOutOnAddCart();
+			    	verifyPlaceCartLabel();
+			    	pipLib. verifyCartPageAndPartDetailsForRecentlyItemDynamically(data.get("SearchItem1"));
+			    	slpLib.verifyAllReportingPeriodsCurrentinCartPage();
+			     	commonLib.clickLogOutLink(data.get("Logout"));
 
                 } catch (Exception e) {
                     ReportStatus.blnStatus = false;

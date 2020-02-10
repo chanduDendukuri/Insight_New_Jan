@@ -83,12 +83,12 @@ public class CRT13_DeleteCartItemsTest extends CartLib {
 					commonLib.addToCartAndVerify();
 				    canadaLib.continueToCheckout();
 				    canadaLib.verifyPlaceCartLabel();
-				    prodInfoLib.verifyCartPageAndPartDetailsForRecentlyItemDynamically(data.get("PartNumber"));
+				    prodInfoLib.verifyCartPageAndPartDetailsForRecentlyItemDynamicaly(data.get("PartNumber"));
 				    
 				    cartLib.verifyQuickShopWithValidSinglePartNumber(data.get("SearchItem"), data.get("quantity"));
 				    canadaLib.verifyPlaceCartLabel();
-				    prodInfoLib.verifyCartPageAndPartDetailsForRecentlyItemDynamically(data.get("SearchItem").split(",")[0]);
-				    prodInfoLib.verifyCartPageAndPartDetailsForRecentlyItemDynamically(data.get("SearchItem").split(",")[1]);
+				    prodInfoLib.verifyCartPageAndPartDetailsForRecentlyItemDynamicaly(data.get("SearchItem").split(",")[0]);
+				    prodInfoLib.verifyCartPageAndPartDetailsForRecentlyItemDynamicaly(data.get("SearchItem").split(",")[1]);
 				    cartLib.deletePartInCart(data.get("PartNumber"));
 				    cartLib.deletePartInCart(data.get("SearchItem1"));
 				    cartLib.deletePartInCart(data.get("SearchItem2"));
@@ -102,10 +102,10 @@ public class CRT13_DeleteCartItemsTest extends CartLib {
 					prodInfoLib.clickOnAddToCartButtonInWarrentiesPage(data.get("index"));
 					canadaLib.continueToCheckout();
 					canadaLib.verifyPlaceCartLabel();
-					prodInfoLib.verifyCartPageAndPartDetailsForRecentlyItemDynamically(manfa);
+					prodInfoLib.verifyCartPageAndPartDetailsForRecentlyItemDynamicaly(manfa);
 					System.out.println("manfa"+manfa);
-					System.out.println("Manfactured+"+manfa.split("Insight Part #:")[1]);
-					cartLib.deletePartInCart(manfa.split("Insight Part #:")[1].trim());
+					//System.out.println("Manfactured+"+manfa.split("Insight Part #:")[1]);
+					cartLib.deletePartInCart(manfa);
 					commonLib.clickOnAccountToolsAndClickOnProductGrp(data.get("Tools_Menu"),
 								data.get("Tools_Menu_DD"));
 					searchLib.selectProductGroupAndVerify(data.get("Product_Group"), data.get("Product_Name"));
