@@ -638,7 +638,7 @@ public class CommonLib extends ActionEngine{
 			if(isVisibleOnly(CommonObj.SPINNER_IMAGE, "spinner image")) {
 				waitForInVisibilityOfElement(CommonObj.SPINNER_IMAGE, "spinner image");
 			}else {
-				reporter.SuccessReport("spinner image","spinner image disapperaed","");
+				LOG.info("Spinner image disappeared");
 			}
 			}
 			

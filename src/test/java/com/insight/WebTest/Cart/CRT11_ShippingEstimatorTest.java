@@ -25,6 +25,11 @@ public class CRT11_ShippingEstimatorTest extends CartLib {
 	CMTLib cmtLib = new CMTLib();
 	CartLib cartLib = new CartLib();
 	CanadaLib canadaLib = new CanadaLib();
+	SearchLib searchLib=new SearchLib();
+	ProductDisplayInfoLib prodInfoLib=new ProductDisplayInfoLib();
+	ProductDetailLib prodLib=new ProductDetailLib();
+	OrderLib orderLib=new OrderLib();
+	ShipBillPayLib sbpLib=new ShipBillPayLib();
 
 	// #############################################################################################################
 	// # Name of the Test : CRT11_ShippingEstimator
@@ -61,12 +66,22 @@ public class CRT11_ShippingEstimatorTest extends CartLib {
 					cmtLib.setCustomerLevelPermissionsOFF(data.get("customerPermissions"));
 					cmtLib.hoverOnManageWebGroupsAndSelectOptions(data.get("ManageWebGrpOptions"));
 					cmtLib.searchForaUserAndSelect(data.get("LnameEmailUname"), data.get("ContactName"));
+					
 					cmtLib.loginAsAdminCMT();
 					commonLib.searchProduct(data.get("SearchItem1"));
-					commonLib.addFirstDisplyedItemToCartAndVerify();
-					canadaLib.continueToCheckout();
+					searchLib.verifyBreadCrumbInSearchResultsPage(data.get("SearchItem1"));
+					cartLib.selectFirstProductDisplay();
+					String mfrNumber1=prodLib.getInsightPartNumberInProductInfopage();
+					// Cart verification
+					commonLib.addToCartAndVerify();
+					orderLib.continueToCheckOutOnAddCart();
+					canadaLib.verifyPlaceCartLabel();
+					commonLib.spinnerImage();
+					cartLib.verifyItemInCartByInsightPart(mfrNumber1);
+					prodInfoLib.verifyCartPageAndPartDetails();
 					cartLib.verifyShippingestimatorIsNotPresent();
-					commonLib.clickLogOutLink("Logout");
+					commonLib.clickLogOutLink("Logout");   ///  --   1st logout
+					
 					cmtLib.navigateBackToCMT();
 					cmtLib.hoverOverMasterGroupAndSelectChangeGrp();
 					cmtLib.searchForWebGroup(data.get("WebGrp"));
@@ -77,15 +92,29 @@ public class CRT11_ShippingEstimatorTest extends CartLib {
 					cmtLib.AssigntheusertoServiceLevelShippingwithnodefault(data.get("menuName"),
 							data.get("user_Permissions"), data.get("indexvalue"));
 					cmtLib.clickupdateatDefaultShippingOption();
+					
 					cmtLib.loginAsAdminCMT();
 					commonLib.searchProduct(data.get("SearchItem1"));
-					commonLib.addFirstDisplyedItemToCartAndVerify();
-					canadaLib.continueToCheckout();
+					searchLib.verifyBreadCrumbInSearchResultsPage(data.get("SearchItem1"));
+					cartLib.selectFirstProductDisplay();
+					String mfrNumber2=prodLib.getInsightPartNumberInProductInfopage();
+					// Cart verification
+					commonLib.addToCartAndVerify();
+					orderLib.continueToCheckOutOnAddCart();
+					canadaLib.verifyPlaceCartLabel();
 					cartLib.verifyShippingestimator();
 					cartLib.verifyShippingestimatorshippingCarrier(data.get("postalcode"), data.get("upsCarrier"),
 							data.get("fedexCarrier"));
+					String shippingEstimateBefore=getShippingEstimateInCart().replace("$", "");
 					cartLib.clickotherthanUSDandFedEx(data.get("postalcode"));
+					String shippingEstimateAfter=getShippingEstimateInCart().replace("$", "");
+					if(Float.valueOf(shippingEstimateBefore)<Float.valueOf(shippingEstimateAfter)) {
+						reporter.SuccessReport("Shipping Estimate Updated on Cart Page", "Shipping Estimate is Updated", "Shipping Estimate before and after Select Option: *Shipping estimateUSD $"+shippingEstimateBefore+ "and *Shipping estimateUSD $"+shippingEstimateAfter, driver);
+					}else {
+						reporter.failureReport("Shipping Estimate Update on Cart Page", "Shipping Estimate is not Updated", "", driver);
+					}
 					commonLib.clickLogOutLink("Logout");
+					
 					cmtLib.navigateBackToCMT();
 					cmtLib.hoverOverMasterGroupAndSelectChangeGrp();
 					cmtLib.searchForWebGroup(data.get("WebGrp"));
@@ -96,32 +125,45 @@ public class CRT11_ShippingEstimatorTest extends CartLib {
 					cmtLib.usertoServiceLevelShippingwithOnlyFedex(data.get("menuName"), data.get("user_Permissions"),
 							data.get("text1"));
 					cmtLib.clickupdateatDefaultShippingOption();
+					
 					cmtLib.loginAsAdminCMT();
 					commonLib.searchProduct(data.get("SearchItem1"));
-					commonLib.addFirstDisplyedItemToCartAndVerify();
-					canadaLib.continueToCheckout();
+					searchLib.verifyBreadCrumbInSearchResultsPage(data.get("SearchItem1"));
+					cartLib.selectFirstProductDisplay();
+					String mfrNumber3=prodLib.getInsightPartNumberInProductInfopage();
+					// Cart verification
+					commonLib.addToCartAndVerify();
+					orderLib.continueToCheckOutOnAddCart();
 					cartLib.verifyShippingestimator();
-					cartLib.VerifyonlyFedExoptions(data.get("postalcode"), data.get("fedexCarrier"));
-					commonLib.clickLogOutLink("Logout");
+					cartLib.VerifyonlyFedExoptions(data.get("postalcode2"), data.get("fedexCarrier"));
+					commonLib.clickLogOutLink("Logout");    // -- 3rd logout 
+					
+					
 					cmtLib.navigateBackToCMT();
-					cmtLib.hoverOverMasterGroupAndSelectChangeGrp();
+					/*cmtLib.hoverOverMasterGroupAndSelectChangeGrp();
 					cmtLib.searchForWebGroup(data.get("WebGrp"));
 					cmtLib.clickOnTheWebGroup(data.get("WebGrp_Name"));
 					cmtLib.hoverOnManageWebGroupsAndSelectOptions(data.get("ManageWebGrpOptions"));
-					cmtLib.searchForaUserAndSelect(data.get("LnameEmailUname"), data.get("ContactName"));
+					cmtLib.searchForaUserAndSelect(data.get("LnameEmailUname"), data.get("ContactName"));*/
 					cmtLib.AssigntheusertoServiceLevelShippingwithnodefault(data.get("menuName"),
 							data.get("user_Permissions"), data.get("indexvalue"));
 					cmtLib.clickupdateatDefaultShippingOption();
+					
 					cmtLib.loginAsAdminCMT();
 					Thread.sleep(3000);
-					commonLib.searchProduct(data.get("SearchItem1"));
-					commonLib.addFirstDisplyedItemToCartAndVerify();
-					cmtLib.navigateBackToCMT();
+					commonLib.searchProduct(data.get("SearchItem2"));
+					searchLib.verifyBreadCrumbInSearchResultsPage(data.get("SearchItem2"));
+					cartLib.selectFirstProductDisplay();
+					String mfrNumber4=prodLib.getInsightPartNumberInProductInfopage();
+					// Cart verification
+					commonLib.addToCartAndVerify();
+					orderLib.continueToCheckOutOnAddCart();
+					/*cmtLib.navigateBackToCMT();
 					cmtLib.hoverOverMasterGroupAndSelectChangeGrp();
 					cmtLib.searchForWebGroup(data.get("WebGrp"));
 					cmtLib.clickOnTheWebGroup(data.get("WebGrp_Name"));
 					cmtLib.setCustomerLevelPermissionsOFF(data.get("customerPermissions"));
-					   System.out.println("Test completed");
+					   System.out.println("Test completed");*/
 		 				
 							} catch (Exception e) {
 								ReportStatus.blnStatus = false;

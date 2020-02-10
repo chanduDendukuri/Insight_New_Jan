@@ -81,10 +81,10 @@ public class CAN10_SPLAZeroUsageTest extends CanadaLib {
                     // verify search results 
 			     	slpLib.verifysearchResultsPageForSLP();
                     // Search for a product and add to cart
-                   assertTrue(ccp.verifyReturnTOSoftwareLicenseAggrements(),"Search Results :: My Software licencing aggreement ");
+                   //assertTrue(ccp.verifyReturnTOSoftwareLicenseAggrements(),"Search Results :: My Software licencing aggreement ");
                    // searchLib.verifysearchResultsPage();
                     searchLib.searchInHomePage(data.get("SearchItem1"));
-                    pipLib.verifyTheManufacturerNumberInProductDetailsPage(data.get("SearchText"));
+                    String mfrNumber1=prodDetailsLib.getInsightPartNumberInProductInfopage();
 			    	pipLib.enterQuantityOnProductDetailsPage(data.get("Quantity"));
 			     	commonLib.addToCartAndVerify();
 			     	orderLib.continueToCheckOutOnAddCart();
@@ -96,7 +96,7 @@ public class CAN10_SPLAZeroUsageTest extends CanadaLib {
                     // Search for a product and add to cart
                     searchLib.searchInHomePage(data.get("SearchItem2"));
                     String manNum1=ccp.getManfNumberFromProductSearchScreen();
-                    commonLib.updateCartQuantity(data.get("quantity"));
+                    commonLib.updateCartQuantity(data.get("Quantity"));
 
                     commonLib.addToCartAndVerify();
                     orderLib.continueToCheckOutOnAddCart();
@@ -108,9 +108,9 @@ public class CAN10_SPLAZeroUsageTest extends CanadaLib {
                     commonLib.clickOnAccountToolsAndClickOnProductGrp(data.get("Tools_Menu"), data.get("Tools_Menu_DD"));
                     verifySPLAPage();
                     slpLib.retrieveLastUsageReport(data.get("SPLA"));
-                    String subTotal=sbpLib.getTotalAmountInCart(data.get("SubTotal_label"));
+                    /*String subTotal=sbpLib.getTotalAmountInCart(data.get("SubTotal_label"));
 					Double subTotalAmount = Double.parseDouble(subTotal.replace("$", ""));
-					slpLib.verifyAmount(subTotalAmount);
+					slpLib.verifyAmount(subTotalAmount);*/
                   
 					clickOnReportZeroUsageLinkOnCart();
 					// Verify Only Zero Usage Part in the Cart CAD $0.00"
@@ -154,7 +154,7 @@ public class CAN10_SPLAZeroUsageTest extends CanadaLib {
 					
 					// search for a part / product and add to cart
 			     	searchLib.searchInHomePage(data.get("SearchItem1"));
-			    	pipLib.verifyTheManufacturerNumberInProductDetailsPage(data.get("SearchItem1"));
+			     	String mfrNumber2=prodDetailsLib.getInsightPartNumberInProductInfopage();
 			    	pipLib.enterQuantityOnProductDetailsPage(data.get("Quantity"));
 			     	commonLib.addToCartAndVerify();
 			     	orderLib.continueToCheckOutOnAddCart();
