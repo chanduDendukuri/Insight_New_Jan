@@ -74,6 +74,7 @@ public class CRT10_SendToColleagueIPSTest extends CartLib{
 					commonLib.searchProduct(data.get("SearchItem1"));
 					searchLib.verifyBreadCrumbInSearchResultsPage(data.get("SearchItem1"));
 					verifyDefaultContract();
+					
 					String searchItem=prodInfoLib.getPartNumberExactlyInSearchResultsPage();
 					cartLib.clickMorePricesAvilable(0);
 					clickOnUSCommuditiesPrice();
@@ -82,12 +83,14 @@ public class CRT10_SendToColleagueIPSTest extends CartLib{
 			
 					canadaLib.continueToCheckout();
 					canadaLib.verifyPlaceCartLabel();
+					//verify us comminutes contract in cart page--need to do
 					prodInfoLib.verifyCartPageAndPartDetailsForRecentlyItemDynamically(searchItem);
 					
-					search.selectContractInCartPage(data.get("Contract"));
+					search.selectContractInCartPage(data.get("Contract"));//verify contract is selected and verify default all contract
 					commonLib.searchProduct(data.get("SearchItem2"));
 					verifyBreadCrum(data.get("SearchItem2"));
 					verifyBreadCrum(data.get("memory"));
+					//verify ips demo contract in dropdown
 					String searchItem1=prodInfoLib.getPartNumberExactlyInSearchResultsPage();
 					commonLib.addFirstDisplyedItemToCartAndVerify();
 					canadaLib.continueToCheckout();
@@ -96,8 +99,10 @@ public class CRT10_SendToColleagueIPSTest extends CartLib{
 					//commonLib.closePopUp();
 					cartLib.clickAndVerifySendToAColleagueErrorMSG_IPS(data.get("OrderUtilities"));
 					cartLib.verifySendToAColleague(data.get("OrderUtilities"),data.get("YourName"),data.get("YourEmail1"),data.get("YourEmail1"),data.get("YourComments"));
+					verifyErrorMessagesInSendToAColleaguePopUpForEmail();
 					cartLib.verifySendToAColleague(data.get("OrderUtilities"),data.get("YourName"),data.get("YourEmail"),data.get("RecipientEmail"),data.get("YourComments"));
-					   System.out.println("Test completed");
+					verifySendToAColleagueSucessMessage();
+					System.out.println("Test completed");
 		 				
 							} catch (Exception e) {
 								ReportStatus.blnStatus = false;

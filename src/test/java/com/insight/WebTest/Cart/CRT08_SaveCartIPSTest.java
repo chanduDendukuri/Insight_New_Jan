@@ -76,12 +76,14 @@ public class CRT08_SaveCartIPSTest extends CartLib{
 					commonLib.addFirstDisplyedItemToCartAndVerify();
 					canadaLib.continueToCheckout();
 					canadaLib.verifyPlaceCartLabel();
-					prodInfoLib.verifyCartPageAndPartDetailsForRecentlyItemDynamically(searchItem);
+					prodInfoLib.verifyCartPageAndPartDetailsForRecentlyItemDynamicaly(searchItem);
 					
 					String cartName = "QTPTestCart"+getRandomNumeric(5);
 					cartLib.clickOnSaveCartContentAndSaveCart(cartName);
+					openSavedCartFromTools(cartName);
 					cartLib.verifyCartIsEmpty();
 					commonLib.clickCart();
+					canadaLib.verifyPlaceCartLabel();
 					commonLib.verifyCartIsEMpty();
 					
 					search.selectContractInCartPage(data.get("Contract"));
@@ -91,11 +93,13 @@ public class CRT08_SaveCartIPSTest extends CartLib{
 					commonLib.addFirstDisplyedItemToCartAndVerify();
 					canadaLib.continueToCheckout();
 					canadaLib.verifyPlaceCartLabel();
-					prodInfoLib.verifyCartPageAndPartDetailsForRecentlyItemDynamically(searchItem1);
+					prodInfoLib.verifyCartPageAndPartDetailsForRecentlyItemDynamicaly(searchItem1);
 					String cartName1 = "SavedCart"+getRandomNumeric(5);
 					cartLib.clickOnSaveCartContentAndSaveCartAndClearCartOff(cartName1);
-					
+					openSavedCartFromTools(cartName);
+					verifyCartIsNotEmpty();
 					commonLib.clickCart();
+					canadaLib.verifyPlaceCartLabel();
 					commonLib.emptyCartAndVerify();
 					commonLib.clickOnAccountToolsAndClickOnProductGrp(data.get("Tools_Menu"),
 							data.get("Tools_Menu_DD1"));
