@@ -903,7 +903,7 @@ public class SearchLib extends CommonObj {
 					List<WebElement> myList=driver.findElements(ITEM_DESCRIPTION);
 					for (int j = 0; j < myList1.size(); j++) {
 						myList1.get(j).click();
-						reporter.SuccessReport("verify the radio button checked or not","product is checked",myList.get(i).getText());
+						reporter.SuccessReport("verify the radio button checked or not","product is checked",myList.get(j).getText());
 						Thread.sleep(6000);
 					}
 					
