@@ -269,10 +269,10 @@ for(int i=1;i<=count;i++) {
 		int count = elem.size();
 		String count1= String.valueOf(count);
 		if(count>0) {
-			reporter.SuccessReport("Arrovers Added", "Number of Approvers added are", count1);
+			reporter.SuccessReport("Available Approvers", "Number of Approvers Approvers are", count1);
 		}
 		else {
-			reporter.SuccessReport("Arrovers Added", "Number of Approvers added are 0","", driver);
+			reporter.SuccessReport("Available Approvers", "Number of Approvers Approvers are 0","", driver);
 		}
 		return count;
 	}
