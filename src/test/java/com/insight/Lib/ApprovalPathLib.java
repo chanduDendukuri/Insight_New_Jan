@@ -255,11 +255,11 @@ for(int i=1;i<=count;i++) {
 			for(int i=0;i<=count-1;i++) {
 			String text=elem.get(i).getText().toString();
 			
-			reporter.SuccessReport("Available Approvers count", "Number of Approvers added are", text);
+			reporter.SuccessReport("Added Approvers count", "Number of Approvers added are", text);
 			
 		}}
 		else {
-			reporter.SuccessReport("Available Approvers count", "Number of Approvers added are 0","", driver);
+			reporter.SuccessReport("Added Approvers count", "Number of Approvers added are 0","", driver);
 		}
 		
 		return count;
@@ -269,10 +269,10 @@ for(int i=1;i<=count;i++) {
 		int count = elem.size();
 		String count1= String.valueOf(count);
 		if(count>0) {
-			reporter.SuccessReport("Available Approvers", "Number of Approvers Approvers are", count1);
+			reporter.SuccessReport("Available Approvers", "Number of available Approvers  are", count1);
 		}
 		else {
-			reporter.SuccessReport("Available Approvers", "Number of Approvers Approvers are 0","", driver);
+			reporter.SuccessReport("Available Approvers", "Number of available  Approvers  are 0","", driver);
 		}
 		return count;
 	}
