@@ -30,15 +30,15 @@ public class RequisitionProcessingLib extends RequisitionProcessingObj {
 	}
 
 	public void clickTestRulesLink() throws Throwable {
-		waitForVisibilityOfElement(TESTRULES_EDIT_LINK, "TestRules Edit link click");
+		waitForVisibilityOfElement(TESTRULES_EDIT_LINK, "TestRules Edit icon");
 
-		if (isElementPresent(TESTRULES_EDIT_LINK, "TestRules Edit link click")) {
+		if (isElementPresent(TESTRULES_EDIT_LINK, "TestRules Edit icon")) {
 			click(TESTRULES_EDIT_LINK, "TestRules Edit link click");
-			reporter.SuccessReport("Verify TestRules Edit link click in Approval Management  Page",
-					"TestRules Edit link clicked", "");
+			reporter.SuccessReport("Verify TestRules Edit icon in Approval Management  Page",
+					"TestRules Edit icon clicked", "");
 		} else {
 			reporter.failureReport("Verify TestRules Edit link click in Approval Management  Page",
-					"TestRules Edit link could not clicked", "");
+					"TestRules Edit icon could not clicked", "");
 		}
 
 	}
