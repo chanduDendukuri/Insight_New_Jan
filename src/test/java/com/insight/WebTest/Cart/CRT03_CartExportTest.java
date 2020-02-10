@@ -2,19 +2,10 @@ package com.insight.WebTest.Cart;
 
 import java.util.Hashtable;
 
+import com.insight.Lib.*;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
-import com.insight.Lib.CMTLib;
-import com.insight.Lib.CanadaLib;
-import com.insight.Lib.CartLib;
-import com.insight.Lib.ChinaLib;
-import com.insight.Lib.CommonLib;
-import com.insight.Lib.OrderLib;
-import com.insight.Lib.ProductDetailLib;
-import com.insight.Lib.ProductDisplayInfoLib;
-import com.insight.Lib.SearchLib;
-import com.insight.Lib.ShipBillPayLib;
 import com.insight.accelerators.ReportControl;
 import com.insight.accelerators.TestEngineWeb;
 import com.insight.googledrive.ReportStatus;
@@ -26,7 +17,10 @@ public class CRT03_CartExportTest extends CartLib{
 	CMTLib cmtLib = new CMTLib();
 	OrderLib orderLib=new OrderLib();
 	SearchLib searchLib=new SearchLib();
-	   
+	ProductDisplayInfoLib prodinfo =  new ProductDisplayInfoLib();
+	CommonCanadaLib ccp =  new CommonCanadaLib();
+	CanadaLib canadaLib =  new CanadaLib();
+
 	 // #############################################################################################################
     // #    Name of the Test         : CRT03_CartExport
     // #    Migration Author         : Cigniti Technologies
@@ -54,28 +48,72 @@ public class CRT03_CartExportTest extends CartLib{
 								Hashtable<String, String> data = TestUtil.getDataByRowNo("CRT03_CartExport", TestDataInsight,
 										"Web_Cart", intCounter);
 								TestEngineWeb.reporter.initTestCaseDescription("CartExport");
-					cmtLib.loginToCMTSearchWebGrpAndUser(data.get("header"), data.get("WebGrp"), data.get("LnameEmailUname"), data.get("ContactName"));
-					String mainWindow = parentWindow();
-					cmtLib.clickOnloginAs();
-					switchToWindow(mainWindow);
-					commonLib.searchProduct(data.get("SearchItem1"));
-					commonLib.addToCartAndVerify();
-					orderLib.continueToCheckOutAddWarrantyAndVerifyWarrentyInCart(data.get("SearchItem1"),data.get("Warrenty_Part_Number"));
-					commonLib.searchProduct(data.get("SearchItem2"));
-					commonLib.addToCartAndVerify();
-					orderLib.continueToCheckOutAddWarrantyAndVerifyWarrentyInCart(data.get("SearchItem2"),data.get("Warrenty_Part_Number1"));
-					commonLib.searchProduct(data.get("SearchItem3"));
-					commonLib.addToCartAndVerify();
-					orderLib.continueToCheckOutAddWarrantyAndVerifyWarrentyInCart(data.get("SearchItem3"),data.get("Warrenty_Part_Number2"));
-					cartLib.clickAndVerifyExportCart(data.get("OrderUtilities"));				
-					cartLib.verifyExportFile(data.get("Sheet_Name"),data.get("Row_number"),data.get("Column_Headers"));
-					commonLib.spinnerImage();
-					commonLib.clickAccountToolsFromSideMenuAndClickOnProductGrp(data.get("Tools_Menu"), data.get("Tools_Menu_DD"), data.get("Product_Group"), data.get("Product_Name"));
-					searchLib.clickAddToOrderOnCompanyStandardsScreen();
-					commonLib.clickCart();
-					commonLib.verifyBundleIsAddedToCart();
-					cartLib.clickAndVerifyExportCart(data.get("OrderUtilities"));
-					cartLib.verifyExportFile(data.get("Sheet_Name"),data.get("Row_number1"),data.get("Column_Headers1"));
+		//***********************************************New CODE********************************************************
+								cmtLib.loginToCMT(data.get("header"));
+								cmtLib.searchForWebGroup(data.get("WebGrp"));
+								cmtLib.clickOnTheWebGroup(data.get("WebGrp_Name"));
+								//cmtLib.hoverOnManageWebGroupsAndSelectOptions(data.get("Manage_Web_Grp_Options"));
+								cmtLib.hoverOnManageWebGroupsAndSelectOptions(data.get("Manage_Web_Grp_Options1"));
+								cmtLib.searchForaUserAndSelect(data.get("LnameEmailUname"), data.get("ContactName"));
+								cmtLib.loginAsAdminCMT();
+								cmtLib.loginVerification(data.get("ContactName"));
+								commonLib.searchProduct(data.get("SearchItem1"));
+								//String aa =prodinfo.getPartNumberInSearchResultsPage();
+
+								prodinfo.clickOnWarrantiesTabOnProductDetailsPage();
+								ccp.clickOnAddToCartButtonUnderWarrentyDynamically();
+								String man1=cartLib.getPartNumber();
+
+								assertTrue(ccp.verifyAddToCartLabelAvailable(),"View Cart page loaded");
+								canadaLib.continueToCheckout();
+								//orderLib.continueToCheckOutAddWarrantyAndVerifyWarrentyInCart(data.get("SearchItem1"),data.get("Warrenty_Part_Number"));
+								prodinfo.verifyCartPageAndPartDetailsForRecentlyItemDynamically(man1);
+
+								commonLib.searchProduct(data.get("SearchItem2"));
+							//	prodinfo.getPartNumberInSearchResultsPage();
+								prodinfo.clickOnWarrantiesTabOnProductDetailsPage();
+								/*String manf=prodinfo.getManfNumberFromWarrentiesPage(data.get("index"));
+								//String manf=prodinfo.getManfNumberFromWarrentiesPage(data.get("index"));
+								String[] partn10 = manf.split(" | ");
+								String partNum1 =partn10[3] ;
+*/
+								ccp.clickOnAddToCartButtonUnderWarrentyDynamically();
+								String man=cartLib.getPartNumber();
+								assertTrue(ccp.verifyAddToCartLabelAvailable(),"View Cart page loaded");
+								canadaLib.continueToCheckout();
+								//orderLib.continueToCheckOutAddWarrantyAndVerifyWarrentyInCart(data.get("SearchItem2"),data.get("Warrenty_Part_Number"));
+								prodinfo.verifyCartPageAndPartDetailsForRecentlyItemDynamically(man);
+
+								commonLib.searchProduct(data.get("SearchItem3"));
+								//prodinfo.getPartNumberInSearchResultsPage();
+								prodinfo.clickOnWarrantiesTabOnProductDetailsPage();
+								ccp.clickOnAddToCartButtonUnderWarrentyDynamically();
+								String man2=cartLib.getPartNumber();
+								assertTrue(ccp.verifyAddToCartLabelAvailable(),"View Cart page loaded");
+								canadaLib.continueToCheckout();
+								//orderLib.continueToCheckOutAddWarrantyAndVerifyWarrentyInCart(data.get("SearchItem3"),data.get("Warrenty_Part_Number"));
+								prodinfo.verifyCartPageAndPartDetailsForRecentlyItemDynamically(man2);
+
+
+
+
+
+								ccp.clickOnExportToExcellink();
+								cartLib.verifyExportFile(data.get("Sheet_Name"),data.get("Row_number"),data.get("Column_Headers"));
+
+								driver.navigate().refresh();
+								ccp.clickOnEmptyCart();
+								commonLib.verifyCartIsEMpty();
+								canadaLib.clickOnSideMenuSelectAccountToolOptions(data.get("Tools_Menu"),
+										data.get("Tools_Menu_DD1"));
+								assertTrue(ccp.verifyCompanyStandard(),"Product standard page is available");
+								ccp.clickOnIUSAMandatoryCTOlink();
+								ccp.clickOnAddToOrderButton();
+								ccp.clickOnViewToCartlink();
+								cartLib.verifyCartPageAvailablity();
+								ccp.clickOnExportToExcellink();
+								cartLib.verifyExportFile(data.get("Sheet_Name"),data.get("Row_number"),data.get("Column_Headers"));
+								cmtLib.clickOnLogoutlink();
 					Thread.sleep(5000);
 				} catch (Exception e) {
 					ReportStatus.blnStatus = false;

@@ -972,12 +972,10 @@ public class ProductDisplayInfoLib extends productsDisplayInfoObj {
      * @throws Throwable
      */
     public void clickOnWarrantiesTabOnProductDetailsPage() throws Throwable {
-    	if(isElementPresent(WARRANTIES_PROD_DETAILS, "warranties")) {
-        click(WARRANTIES_PROD_DETAILS, "warranties");
-    	}
-    	else {
-    		reporter.failureReport("Verifying warrenties tab", "Warrenties tab is not present", "", driver);
-    	}
+
+        if(assertTrue(isVisibleOnly(WARRANTIES_PROD_DETAILS,"Warrentites Tab"),"Avilability of Warrienties")) {
+            click(WARRANTIES_PROD_DETAILS, "warranties");
+        }
     }
 
     public void clickOnAddToCartButtonInWarrentiesPage(String index) throws Throwable {
@@ -1485,14 +1483,14 @@ public class ProductDisplayInfoLib extends productsDisplayInfoObj {
                 if (qtyList.get(i).isDisplayed()) {
                     reporter.SuccessReport("Quantity List", "Quantity List is " + partNum.get(i).getText() + " is ", qtyList.get(i).getText());
                 }
-                if (stockList.get(i) != null) {
+                if (stockList.get(i) != null || stockList.get(i).isDisplayed()) {
                     /*if (stockList.get(i).isDisplayed()) {*/
                     reporter.SuccessReport("Stock List", "Stock List is " + partNum.get(i).getText() + " is ", "Available and the value is " +  stockList.get(i).getText());
                     /*}*/
-                    reporter.SuccessReport("Quantity List", "Quantity List is " + partNum.get(i).getText() + " is ", DecList.get(i).getText()+ "<b>Quantity</b>  "+qtyList.get(i).getText() + "<b>Price</b>  "+priceList.get(i).getText() + UnitPriceList.get(i).getText() + stockList.get(i).getText());
+                    reporter.SuccessReport("Product details are ", "Product details are  " + partNum.get(i).getText() + " is ", DecList.get(i).getText()+ "<b>Quantity</b>  "+qtyList.get(i).getText() + "<b>Price</b>  "+priceList.get(i).getText() + UnitPriceList.get(i).getText() + stockList.get(i).getText());
 
                 }else {
-                    reporter.SuccessReport("Quantity List", "Quantity List is " + partNum.get(i).getText() + " is ", DecList.get(i).getText() + qtyList.get(i).getText() + priceList.get(i).getText() + UnitPriceList.get(i).getText());
+                    reporter.SuccessReport("Product details are ", "Product details are " + partNum.get(i).getText() + " is ", DecList.get(i).getText() + qtyList.get(i).getText() + priceList.get(i).getText() + UnitPriceList.get(i).getText());
                 }
             }
 
@@ -1552,6 +1550,14 @@ public class ProductDisplayInfoLib extends productsDisplayInfoObj {
       //  reporter.failureReport("Results","No Matching Products available","Product is not matched with search results" + prodcut,driver);
 
 
+    }
+    public void verifyContract2InCartScreen(String contractName) throws Throwable {
+        String actualcontractName = getText(CART_CONTRACT_NAME2, "contract name");
+        if (contractName.contains(actualcontractName)) {
+            reporter.SuccessReport("Verify the contract name", " Contract name verified successfully in cart page and is same as selected", actualcontractName);
+        } else {
+            reporter.failureReport("Verify the contract name", " Contract name not displayed correctly in cart page", actualcontractName, driver);
+        }
     }
 
 }
