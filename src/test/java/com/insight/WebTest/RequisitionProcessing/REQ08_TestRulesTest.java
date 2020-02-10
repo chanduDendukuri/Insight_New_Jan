@@ -80,13 +80,13 @@ public class REQ08_TestRulesTest extends ChinaLib{
 						reqProcLib.clickOptionalRules();
 
 						// create rules
-						reqProcLib.createRule(data.get("Cart_Type_Standard"), data.get("Min_Amt_0"), data.get("Max_Amt_99"),
+						reqProcLib.createRule(data.get("Cart_Type_Standard"),"", data.get("Min_Amt_0"), data.get("Max_Amt_99"),
 								data.get("Result_Path1"), "1");
 						Thread.sleep(1000);
-						reqProcLib.createRule(data.get("Cart_Type_NonStandard"), data.get("Min_Amt_100"), data.get("Max_Amt_199"),
+						reqProcLib.createRule(data.get("Cart_Type_NonStandard"),"", data.get("Min_Amt_100"), data.get("Max_Amt_199"),
 								data.get("Result_Path2"), "2");
 						Thread.sleep(1000);
-						reqProcLib.createRule(data.get("Cart_Type_Any"), data.get("Min_Amt_200"), data.get("Max_Amt_299"),
+						reqProcLib.createRule(data.get("Cart_Type_Any"),"", data.get("Min_Amt_200"), data.get("Max_Amt_299"),
 								data.get("Result_Path3"), "3");
 
 						// Test Approval Rules
@@ -131,7 +131,7 @@ public class REQ08_TestRulesTest extends ChinaLib{
 						reqProcLib.clickAdRouteButton();
 
 						// select HDLList after ADD ROUTE click
-						reqProcLib.selectHDLListOption(data.get("SmartTracker_HDLLIstOption"));
+						reqProcLib.selectSelectaListToUseOption(data.get("SmartTracker_HDLLIstOption"));
 
 						// click ADD RULE button
 						reqProcLib.addRuleWithList(data.get("List1_Option"), data.get("Cart_Type_Standard"), data.get("Min_Amt_0"),

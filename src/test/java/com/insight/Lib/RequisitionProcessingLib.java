@@ -185,7 +185,7 @@ public class RequisitionProcessingLib extends RequisitionProcessingObj {
 		}*/
 	}
 
-	public void createRule(String cart_type, String Min_Amt, String Max_Amt, String path, String item)
+	public void createRule(String cart_type,String ApprovalPath, String Min_Amt, String Max_Amt, String path, String item)
 			throws Throwable {
 		// Click Add Rule
 
@@ -194,16 +194,21 @@ public class RequisitionProcessingLib extends RequisitionProcessingObj {
 		if (isElementPresent(createCartType(item), "Test Approvals Rules Cart Type")) {
 			selectByVisibleText(createCartType(item), cart_type, "Test Approvals Cart Type");
 		}
-
+		if (isElementPresent(APPROVAL_PATH, "Test ApprovalPath Rules ")) {
+			selectByVisibleText(APPROVAL_PATH, ApprovalPath, "Select ApprovalPath");
+		}
 		if (isElementPresent(createMinAmt(item), "Test Approvals Rules Min Amount")) {
 			type(createMinAmt(item), Min_Amt, "Test Approvals Rules Min Amount");
 		}
 		if (isElementPresent(createMaxAmt(item), "Test Approvals Rules Max Amount")) {
 			type(createMaxAmt(item), Max_Amt, "Test Approvals Rules Max Amount");
 		}
-		if (isElementPresent(createPath(item), "Test Approvals Rules validation path")) {
-			selectByVisibleText(createPath(item), path, "Test Approval Rules Validation Path");
-		}
+		/*
+		 * if (isElementPresent(createPath(item),
+		 * "Test Approvals Rules validation path")) {
+		 * selectByVisibleText(createPath(item), path,
+		 * "Test Approval Rules Validation Path"); }
+		 */
 
 		if (isElementPresent(saveRule(item), "Click on save rule icon")) {
 			click(saveRule(item), "Click on save rule icon");
@@ -255,9 +260,9 @@ public class RequisitionProcessingLib extends RequisitionProcessingObj {
 		}
 	}
 
-	public void selectHDLListOption(String hdlllistoption) throws Throwable {
-		if (isElementPresent(HDLLIST_OPTION, "Select HDLLIst option")) {
-			selectByVisibleText(HDLLIST_OPTION, hdlllistoption, "Select HDLLIst option");
+	public void selectSelectaListToUseOption(String hdlllistoption) throws Throwable {
+		if (isElementPresent(dd_SelectaListToUse, "Select HDLLIst option")) {
+			selectByVisibleText(dd_SelectaListToUse, hdlllistoption, "Select HDLLIst option");
 		}
 	}
 
@@ -266,10 +271,12 @@ public class RequisitionProcessingLib extends RequisitionProcessingObj {
 		if (isElementPresent(ADD_RULE_WITH_LIST, "ADD RULE Button")) {
 			click(ADD_RULE_WITH_LIST, "ADD RULE Button");
 
-			if (isElementPresent(createListValue(item), "Test Approvals Rules Cart Type")) {
-				selectByVisibleText(createListValue(item), cart_type, "Test Approvals Cart Type");
+			if (isElementPresent(createListValue(item), "Create List Value")) {
+				selectByVisibleText(createListValue(item), List_Option, "Create List Value");
 			}
-
+			if (isElementPresent(createCartType(item), "Test Approvals Rules Cart Type")) {
+				selectByVisibleText(createCartType(item), cart_type, "Test Approvals Cart Type");
+			}
 			if (isElementPresent(createMinAmt(item), "Test Approvals Rules Min Amount")) {
 				type(createMinAmt(item), Min_Amt, "Test Approvals Rules Min Amount");
 			}
@@ -309,7 +316,19 @@ public class RequisitionProcessingLib extends RequisitionProcessingObj {
 
 		}
 	}
-
+public void SelectCretaeRule(String Rule) throws Throwable {
+	if(isVisible(CreateRule, "Create rule dropdown")) {
+		
+	selectByVisibleText(CreateRule, Rule, "Rule option");
+	reporter.SuccessReport("Create Rule", "Created Rules Field Exist and Selected", Rule, driver);
+	}
+	else {
+		reporter.failureReport("Create Rule", "Created Rules Field not Exist", "",driver);
+	}
+}
+public void ClickAddRoute() throws Throwable {
+	click(btn_AddRoute, "AddRoute button","");
+}
 	
 	public void checkDenyRadioBtn(String text)  throws Throwable{
 		click(DENY_RADIOBTN,"Check Deny radio button");
