@@ -74,11 +74,12 @@ public class CRT05_QuickSearchTest extends CartLib {
 					commonLib.searchProduct(data.get("SearchItem1"));
 					prodInfoLib.verifyTheManufacturerNumberInProductDetailsPage(data.get("SearchItem1"));
 					prodInfoLib.clickOnWarrantiesTabOnProductDetailsPage();
-					String manfa=prodInfoLib.getManfNumberFromWarrentiesPage(data.get("index"));
+					String manfa=prodInfoLib.getManfNumberFromWarrentiesPage(data.get("index")).split("Insight Part #:")[1].trim();
 					prodInfoLib.clickOnAddToCartButtonInWarrentiesPage(data.get("index"));
+					System.out.println("manfa"+manfa);
 					canadaLib.continueToCheckout();
 					canadaLib.verifyPlaceCartLabel();
-					prodInfoLib.verifyCartPageAndPartDetailsForRecentlyItem();
+					prodInfoLib.verifyCartPageAndPartDetailsForRecentlyItemDynamically(manfa);
 			
 					clickOnProductLinkInCartPage();
 					prodInfoLib.verifyTheManufacturerNumberInProductDetailsPage(manfa);

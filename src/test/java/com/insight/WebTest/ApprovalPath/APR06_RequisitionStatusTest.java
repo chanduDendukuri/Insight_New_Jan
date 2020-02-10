@@ -91,7 +91,7 @@ public class APR06_RequisitionStatusTest extends ApprovalPathLib {
 					
 					  String strCurrDay = GetCurrDay(); 
 					   
-					  datePicker(14, strCurrDay,"FromDate");
+					  PreviousdatePicker(14, strCurrDay,"FromDate");
 					  SelectCurrentDate("ToDate");
 
 					clickSearch();
@@ -104,18 +104,22 @@ public class APR06_RequisitionStatusTest extends ApprovalPathLib {
 					 */
 
 					changeFilterStatus(data.get("FilterbyStatus"));
-					// SelectCurrentDate("FromDate");
+					NextdatePicker(14, strCurrDay,"FromDate");
 					SelectCurrentDate("ToDate");
+					clickSearch();
 					// datePicker(14, strCurrDay);
 					// Displays Requestors
-					displayRequestorsRecords();
+					
 					// Verify the Paging Count 50
 					VerifyPageCount50();
-
-					changeFilterStatus(data.get("FilterbyStatus1"));
-					displayRequestorsRecords();
-					changeFilterStatus(data.get("FilterbyStatus2"));
-					displayRequestorsRecords();
+					displayRequestorsRecords(data.get("FilterbyStatus"));
+					changeFilterStatus(data.get("FilterbyStatus1")); 
+					NextdatePicker(1, strCurrDay,"FromDate");
+					clickSearch();
+					displayRequestorsRecords(data.get("FilterbyStatus1"));
+					/*
+					 * changeFilterStatus(data.get("FilterbyStatus2")); displayRequestorsRecords();
+					 */
 					commonLib.clickLogOutLink(data.get("Logout_Header"));
 
 					System.out.println("Test completed");

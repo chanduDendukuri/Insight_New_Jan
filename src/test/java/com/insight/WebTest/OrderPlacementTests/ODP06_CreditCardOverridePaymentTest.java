@@ -87,8 +87,8 @@ public class ODP06_CreditCardOverridePaymentTest extends OrderLib{
 						// Click continue on LL info , shipping and billing sections
 						clickContinueOnLLIAndShipBillPaySections();
 						// Fill payment Info
-						selectPaymentInfoMethodCreditCard(data.get("Card_Number_Error").toString(), data.get("Card_Name"),data.get("Month"), data.get("Year"),data.get("PO_Number"),data.get("POReleaseNumber"));
-						verifyValidCardErrorMessage();
+						selectPaymentInfoMethodCreditCard(data.get("Card_Number_Error_VISA").toString(), data.get("Card_Name"),data.get("Month"), data.get("Year"),data.get("PO_Number"),data.get("POReleaseNumber"));
+						verifyVISACardTypedErrorMessage();
 						enterCreditCard(data.get("Card_Number1").toString(), data.get("Card_Name"),data.get("Month"), data.get("Year"),data.get("PO_Number"),data.get("POReleaseNumber"));
 						clickOnReviewOrderButton();
 						//Place Order
@@ -134,6 +134,8 @@ public class ODP06_CreditCardOverridePaymentTest extends OrderLib{
 						clickContinueOnLLIAndShipBillPaySections(); // continue on Line level info, Ship bill pay sections
 
 						// Fill payment Info
+						selectPaymentInfoMethodCreditCard(data.get("Card_Number_Error_DISCOVER").toString(), data.get("Card_Name"),data.get("Month"), data.get("Year"),data.get("PO_Number"),data.get("POReleaseNumber"));
+						verifyDiscoverCardErrorMessage();
 						selectPaymentInfoMethodCreditCard(data.get("Card_Number1").toString(), data.get("Card_Name"),data.get("Month"), data.get("Year"),data.get("PO_Number"),data.get("POReleaseNumber"));
 						clickOnReviewOrderButton();
 						String summaryAmount1=cartLib.getSummaryAmountInCart();
