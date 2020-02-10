@@ -12,6 +12,7 @@ import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
 import org.openqa.selenium.WebElement;
+import com.insight.ObjRepo.SewpObj;
 
 import com.insight.ObjRepo.CanadaObj;
 import com.insight.ObjRepo.CartObj;
@@ -27,6 +28,15 @@ import static com.insight.ObjRepo.CartObj.lblCartLebel;
 
 public class CartLib extends ActionEngine {
 
+	/*CommonLib commonLib = new CommonLib();
+	CMTLib cmtLib = new CMTLib();
+	OrderObj orderObj = new OrderObj();
+	ShipBillPayLib shipbLib = new ShipBillPayLib();
+	InvoiceHistoryLib ivhLib=new InvoiceHistoryLib();
+	CanadaLib canadaLib=new CanadaLib();
+	LineLevelInfoLib lnlLib=new LineLevelInfoLib();*/
+	String openMarketPrice;
+
 	CommonLib commonLib = new CommonLib();
 	CMTLib cmtLib = new CMTLib();
 	OrderObj orderObj = new OrderObj();
@@ -34,7 +44,7 @@ public class CartLib extends ActionEngine {
 	InvoiceHistoryLib ivhLib=new InvoiceHistoryLib();
 	CanadaLib canadaLib=new CanadaLib();
 	LineLevelInfoLib lnlLib=new LineLevelInfoLib();
-	String openMarketPrice;
+	SearchLib search = new SearchLib();
 	
 
 	/**
@@ -2354,6 +2364,35 @@ public void getpartnumberIncartpage() throws Throwable {
 		isElementPresent(CartObj.MORE_AVAILABLE_PRICES, "More AVilable Prices");
 		click(CartObj.MORE_AVAILABLE_PRICES, "More AVilable Prices", "More AVilable Prices");
 
+	}
+	public void clickMorePricesAndViewContractsinProductsPage() throws Throwable {
+		if(isElementPresent(SewpObj.MORE_PRICES, "More prices available link",true)){
+			click(SewpObj.MORE_PRICES, "More prices available link");
+			reporter.SuccessReport("Verify and click 'More Prices Available' in Product Detail page"," 'More Prices Available' exists and clicked", "");
+		}
+		else
+		{
+			reporter.failureReport("Verify and click 'More Prices Available' in Product Detail page"," 'More Prices Available' does not exists", "");
+		}
+		String openTextValue=getText(productsDisplayInfoObj.OPEN_MARKET,"Open Market Price");
+		String USValue=getText(CartObj.US_COMMIDITIES,"US COMMIDITIES Price");
+		clickOnOpenMarketPrice();
+		getText(productsDisplayInfoObj.OPEN_MARKET,"Open Market Price");
+	}
+	public void clickMorePricesAndViewContractsinSearchPage() throws Throwable {
+		if(isElementPresent(CartObj.MORE_AVAILABLE_PRICES, "More prices available link",true)){
+			click(CartObj.MORE_AVAILABLE_PRICES, "More prices available link");
+			reporter.SuccessReport("Verify and click 'More Prices Available' in Search page"," 'More Prices Available' exists and clicked", "");
+		}
+		else
+		{
+			reporter.failureReport("Verify and click 'More Prices Available' in Search page"," 'More Prices Available' does not exists", "");
+		}
+		String openTextValue=getText(productsDisplayInfoObj.OPEN_MARKET,"Open Market Price");
+		String USValue=getText(CartObj.US_COMMIDITIES,"US_COMMIDITIES Price");
+		search.verifyDefaultUSContractInAllContractPricesPopup("checked");
+		clickOnOpenMarketPrice();
+		String openTextValue2=getText(productsDisplayInfoObj.OPEN_MARKET,"Open Market Price");
 	}
 
 }

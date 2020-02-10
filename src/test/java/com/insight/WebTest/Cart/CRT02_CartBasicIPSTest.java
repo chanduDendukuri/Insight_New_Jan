@@ -14,6 +14,7 @@ import com.insight.Lib.OrderLib;
 import com.insight.Lib.ProductDetailLib;
 import com.insight.Lib.ProductDisplayInfoLib;
 import com.insight.Lib.SearchLib;
+import com.insight.Lib.SewpLib;
 import com.insight.Lib.ShipBillPayLib;
 import com.insight.accelerators.ReportControl;
 import com.insight.accelerators.TestEngineWeb;
@@ -29,6 +30,8 @@ public class CRT02_CartBasicIPSTest extends CartLib{
 	SearchLib search = new SearchLib();
 	ProductDisplayInfoLib prodInfoLib = new ProductDisplayInfoLib();
 	OrderLib orderLib=new OrderLib();
+	ProductDetailLib productdetLib = new ProductDetailLib();
+	SewpLib sewLib=new SewpLib();
 
 
 
@@ -96,8 +99,16 @@ public class CRT02_CartBasicIPSTest extends CartLib{
 
 					commonLib.searchProduct(data.get("Search_Item"));
 					prodInfoLib.verifyTheManufacturerNumberInProductDetailsPage(data.get("Search_Item"));
-					clickMorePricesAvilableInProductInfo();
-					clickOnOpenMarketPrice();
+					//clickMorePricesAvilableInProductInfo();
+
+					//Get Data of selected
+					//clickOnOpenMarketPrice();
+
+
+					clickMorePricesAndViewContractsinProductsPage();
+
+
+					//ProductDetailLib.recomendedProductMoreAvailablePriceAndVerifyContracts();
 					clickOnAddToCartInAllContractPrices();
 					//cartLib.cartBasicsIPS_verifyPermissionAtUserLevel();
 
@@ -158,10 +169,12 @@ public class CRT02_CartBasicIPSTest extends CartLib{
 					search.searchInHomePage(data.get("Search_Item1"));
 					search.verifyBreadCrumbInSearchResultsPage(data.get("Search_Item1"));
 
-					cartLib.clickMorePricesAvilableInSearchResultPage();
+					//cartLib.clickMorePricesAvilableInSearchResultPage();
 					//search.clickOnMorePrices();
-					search.allContractPricesPopup();
-					search.verifyDefaultUSContractInAllContractPricesPopup("checked");
+					//search.allContractPricesPopup();
+					clickMorePricesAndViewContractsinSearchPage();
+					//10-02 Get Price and open Market
+					//search.verifyDefaultUSContractInAllContractPricesPopup("checked");
 					// STATE OF MINNESOTA - PC HARDWARE, & SERVICES-
 					//search.selectContractOnAllContractPricesPopup(data.get("Contarct_Name1"));
 
@@ -173,6 +186,7 @@ public class CRT02_CartBasicIPSTest extends CartLib{
 					// contract verification in cart page
 					prodInfoLib.verifyContractInCartScreen(data.get("Contarct_Name1"));
 					prodInfoLib.verifyCartPageAndPartDetails();
+					//Add Delete
 					search.selectNewcontract(data.get("Contarct_Name2"));
 
 					search.searchInHomePage(data.get("Search_Item1"));

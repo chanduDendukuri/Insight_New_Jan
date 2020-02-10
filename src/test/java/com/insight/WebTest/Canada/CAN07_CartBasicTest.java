@@ -13,15 +13,17 @@ import java.util.Hashtable;
 
 public class CAN07_CartBasicTest extends CanadaLib{
 
+	CommonLib CommonLib = new CommonLib();
 	CMTLib cmtLib = new CMTLib();
-	CommonLib commonLib = new CommonLib();
-	CartLib cartLib = new CartLib();
-	SearchLib searchLib = new SearchLib();
-	ProductDetailLib prodDetailsLib=new ProductDetailLib();
-	OrderLib orderLib=new OrderLib();
-	ProductDisplayInfoLib pipLib=new ProductDisplayInfoLib();
-	ShipBillPayLib sbpLib=new ShipBillPayLib();
-	   
+	CanadaLib canadaLib = new CanadaLib();
+	SearchLib search = new SearchLib();
+	ProductDisplayInfoLib prodInfoLib = new ProductDisplayInfoLib();
+	EndUserFeaturesLib end = new EndUserFeaturesLib();
+	SLPLib slp = new SLPLib();
+	LineLevelInfoLib line = new LineLevelInfoLib();
+	OrderLib order = new OrderLib();
+	CommonCanadaLib ccp = new CommonCanadaLib();
+	CartLib cartLib= new CartLib();
 	    // #############################################################################################################
 		// #       Name of the Test         :  CAN07_CartBasicTest
 		// #       Migration Author         :  Cigniti Technologies
@@ -49,85 +51,140 @@ public class CAN07_CartBasicTest extends CanadaLib{
 											"Canada", intCounter);
 									TestEngineWeb.reporter.initTestCaseDescription("CartBasic");				
 
-						CommonLib commonLib = new CommonLib();
+					/*	CommonLib commonLib = new CommonLib();
 						CMTLib cmtLib = new CMTLib();
 						CartLib cartLib = new CartLib();
 						OrderLib orderLib = new OrderLib();
 						ShipBillPayLib shipbLib = new ShipBillPayLib();
 						CanadaLib canadaLib = new CanadaLib();
+*/
+									cmtLib.loginToCMT(data.get("Header"));
+
+									cmtLib.searchForWebGroup(data.get("WebGrp"));
+									cmtLib.clickOnTheWebGroup(data.get("WebGrp_Name"));
+									//cmtLib.hoverOnManageWebGroupsAndSelectOptions(data.get("Manage_Web_Grp_Options"));
+									cmtLib.hoverOnManageWebGroupsAndSelectOptions(data.get("Manage_Web_Grp_Options1"));
+									cmtLib.searchForaUserAndSelect(data.get("LnameEmailUname"), data.get("ContactName"));
+									cmtLib.loginAsAdminCMT();
+									//switchToChildWindow();
+									cmtLib.loginVerification(data.get("ContactName"));
+
+									CommonLib.searchProduct(data.get("SearchItem1"));
+									prodInfoLib.verifyTheManufacturerNumberInProductDetailsPage(data.get("SearchItem1"));
+									//prodInfoLib.verifyTheManufacturerNumberInProductDetailsPage(data.get("SearchItem1"));
+									search.increaseQuantity(data.get("quantity"));
+									cartLib.getPartNumber();
+
+									CommonLib.addToCartAndVerify();
+									//canadaLib.continueToCheckout();
 
 
-						cmtLib.loginToCMTSearchWebGrpAndUser(data.get("Header"), data.get("WebGrp"), data.get("LnameEmailUname"),
-								data.get("ContactName"));
-						cmtLib.setPermissions(data.get("Menu_Name"), data.get("Set_Permission"));
-						cmtLib.clickOnloginAs();
-						switchToChildWindow();
-						commonLib.searchProduct(data.get("Search_Item"));
-						commonLib.addToCartAndVerify();
+									//CommonLib.addToCartAndVerify();
+									canadaLib.continueToCheckout();
+//adding review commentsString s1=Boolean.toString(verifyCartPageAvailablity());
+									assertTrue(cartLib.verifyCartPageAvailablity(),"Cart Page loaded");
+	//--------------------------------------------		Prod 1 -------------------------------------------------//
 
-//						commonLib.continueToShopping();
-//						commonLib.clickCart();
-						canadaLib.continueToCheckout();
-						cartLib.verifyItemInCart(data.get("Search_Item"));
-						// Adding second product to cart
-						commonLib.searchProduct(data.get("Search_Item1"));
-						commonLib.addFirstDisplyedItemToCartAndVerify();
-//						commonLib.continueToShopping();
-//						commonLib.clickCart();
-						canadaLib.continueToCheckout();
+									CommonLib.searchProduct(data.get("SearchItem2"));
+									//prodInfoLib.verifyTheManufacturerNumberInProductDetailsPage(data.get("SearchItem2"));
+//Added new code from here please look again
+									search.verifyBreadCrumbInSearchResultsPage(data.get("SearchItem2"));
 
-						// update quantity
-						commonLib.updateCartQuantity(data.get("quantity"));
+									ccp.clickOnAddToCartButtonUnderProductDynamically(data.get("quantity"));
+									cartLib.getPartNumber();
+									//CommonLib.addToCartAndVerify();
+									canadaLib.continueToCheckout();
+//adding review commentsString s1=Boolean.toString(verifyCartPageAvailablity());
+									assertTrue(cartLib.verifyCartPageAvailablity(),"Cart Page loaded");
+									prodInfoLib.enterQuantityForProductsInViewCartPage(data.get("Quantity"));
+									reporter.SuccessReport("Update Quantity" ,"Quantity was update with ",data.get("Quantity"));
+									CommonLib.clickOnUpdateLinkInViewCartPage(data.get("Quantity"));
+//with zero
+									prodInfoLib.enterQuantityForProductsInViewCartPage(data.get("quan"));
+									assertTrue(!CommonLib.clickOnUpdateLinkInViewCartPage(data.get("quan")),"Update button is not visible");
+//characters
+									prodInfoLib.enterQuantityForProductsInViewCartPage(data.get("quant"));
+									assertTrue(!CommonLib.clickOnUpdateLinkInViewCartPage(data.get("quant")),"Update button is not visible");
+									prodInfoLib.getSummaryCartDetails();
+									prodInfoLib.deleteSelectedProducts();
+//Second time searching for same product after deleting
+									CommonLib.searchProduct(data.get("SearchItem1"));
+									prodInfoLib.verifyTheManufacturerNumberInProductDetailsPage(data.get("SearchItem1"));
+									search.increaseQuantity(data.get("quantity"));
 
-						// updating the quantity by 0 and abc
-						commonLib.updateCartQuantityByZero(data.get("quantity1"));
-						commonLib.updateCartQuantityByZero(data.get("quantity2"));
-						commonLib.emptyCartAndVerify();
-						commonLib.clickLogOutLink(data.get("Logout_Header"));
+									CommonLib.addToCartAndVerify();
+									canadaLib.continueToCheckout();
+//adding review commentsString s1=Boolean.toString(verifyCartPageAvailablity());
+									String s2=Boolean.toString(cartLib.verifyCartPageAvailablity());
+									assertTrue(cartLib.verifyCartPageAvailablity(),"Cart Page loaded");
 
-						// Login change
-						cmtLib.loginToCMT(data.get("Header"));
-						cmtLib.searchForWebGroup(data.get("WebGrp1"));
-						cmtLib.clickOnTheWebGroup(data.get("WebGrp_Name"));
-						cmtLib.setCustomerLevelPermissionsOFF(data.get("Customer_Permissions_OFF"));
-						cmtLib.hoverOnManageWebGroupsAndSelectOptions(data.get("Manage_Web_Grp_Options"));
-						cmtLib.searchForaUserAndSelect(data.get("LnameEmailUname1"), data.get("ContactName1"));
-						cmtLib.setPermissionsToDisable(data.get("Menu_Name"), data.get("Set_Permission"));
-						cmtLib.clickOnloginAs();
-						switchToChildWindow();
-						canadaLib.verifyCanadaWebgroup();
-						commonLib.searchProduct(data.get("Search_Item1"));
-						commonLib.addToCartAndVerify();
+									//prodInfoLib.deleteSelectedProducts();
+									ccp.clickOnEmptyCart();
+		//EMpty card verification to be check
+									cmtLib.clickOnLogoutlink();
 
-						commonLib.continueToShopping();
-						commonLib.clickCart();
-						//cartLib.verifyItemInCart(data.get("Search_Item1"));
-						//commonLib.verifyProceedToCheckOutIsNotVisible();
-						commonLib.clickLogOutLink(data.get("Logout_Header"));
-					
-					  cmtLib.navigateBackToCMT(); 
-					  cmtLib.hoverOverMasterGroupAndSelectChangeGrp();
-					  cmtLib.searchForWebGroup(data.get("WebGrp1"));
-					  cmtLib.clickOnTheWebGroup(data.get("WebGrp_Name"));
-					  cmtLib.hoverOnManageWebGroupsAndSelectOptions(data.get(
-					  "Manage_Web_Grp_Options"));
-					  cmtLib.searchForaUserAndSelect(data.get("LnameEmailUname1"),
-					  data.get("ContactName1")); cmtLib.setPermissions(data.get("Menu_Name"),
-					  data.get("Set_Permission"));
-					 
-						cmtLib.clickOnloginAs();
-						switchToChildWindow();
-						commonLib.searchProduct(data.get("Search_Item1"));
-						commonLib.addToCartAndVerify();
+									//cmtLib.loginToCMTSearchWebGrpAndUser(data.get("Header"), data.get("WebGrp"),data.get("LnameEmailUname"), data.get("ContactName"));
 
-						commonLib.continueToShopping();
-						commonLib.clickCart();
-						//cartLib.verifyItemInCart(data.get("Search_Item1"));
-						//commonLib.verifyProceedToCheckOut();
-						commonLib.clickLogOutLink(data.get("Logout_Header"));
-						//fnCloseTest();
-						System.out.println("Test completed");
-						
+									cmtLib.loginToCMT(data.get("Header"));
+									cmtLib.searchForWebGroup(data.get("WebGrp1"));
+									cmtLib.clickOnTheWebGroup(data.get("WebGrp_Name"));
+									cmtLib.disbaleOverRidePaymentOption();
+									end.clickUpdateButton();
+									end.verifyupdateSuccessMessage();
+
+									cmtLib.hoverOnManageWebGroupsAndSelectOptions(data.get("Manage_Web_Grp_Options1"));
+									cmtLib.searchForaUserAndSelect(data.get("userName1"), data.get("userName1"));
+									CommonLib.clickRolesAndPermissionsAtUserLevel();
+									cmtLib.setPermissionsToDisable(data.get("menuName"), data.get("userPermission2"));//Enable Buying Enable Duplicate Order - OFF
+									cmtLib.setPermissionsToDisableOnly(data.get("userPermission3"));
+									cmtLib.loginAsAdminCMT();
+									cmtLib.loginVerification(data.get("contract"));
+									CommonLib.searchProduct(data.get("SearchItem1"));//Thin Clients
+									prodInfoLib.verifyTheManufacturerNumberInProductDetailsPage(data.get("SearchItem1"));
+									ccp.clickOnAddToCartButtonUnderProductDynamically(data.get("quantity"));
+
+									String man3=cartLib.getPartNumber();
+
+									//CommonLib.addToCartAndVerify();
+									canadaLib.continueToCheckout();
+//adding review commentsString s1=Boolean.toString(verifyCartPageAvailablity());
+									String s4=Boolean.toString(cartLib.verifyCartPageAvailablity());
+									if(cartLib.verifyCartPageAvailablity())
+									{
+										reporter.SuccessReport("Cart Landing Page", "Availability of Cart Landing Page is ",s4 );
+									}
+									else{
+										reporter.failureReport("Cart Landing Page", "Availability of Cart Landing Page is ",s4,driver );
+									}
+									slp.verifyProccedToCheckOutbuttonExists();
+									cmtLib.clickOnLogoutlink();
+
+
+									cmtLib.loginToCMT(data.get("Header"));
+
+									cmtLib.searchForWebGroup(data.get("WebGrp"));
+									cmtLib.clickOnTheWebGroup(data.get("WebGrp_Name"));
+									//cmtLib.hoverOnManageWebGroupsAndSelectOptions(data.get("Manage_Web_Grp_Options"));
+									cmtLib.hoverOnManageWebGroupsAndSelectOptions(data.get("Manage_Web_Grp_Options1"));
+									cmtLib.searchForaUserAndSelect(data.get("userName"), data.get("userName"));
+									cmtLib.clickOnRolesAndPermissionsAndSetPermission(data.get("menuName"), data.get("userPermission3"));
+									cmtLib.loginAsAdminCMT();
+									cmtLib.loginVerification(data.get("contract"));
+									CommonLib.searchProduct(data.get("SearchItem1"));
+									prodInfoLib.verifyTheManufacturerNumberInProductDetailsPage(data.get("SearchItem1"));
+									//prodInfoLib.verifyTheManufacturerNumberInProductDetailsPage(data.get("SearchItem1"));
+									search.increaseQuantity(data.get("quantity"));
+									String man2=cartLib.getPartNumber();
+
+									CommonLib.addToCartAndVerify();
+
+
+								//	CommonLib.addToCartAndVerify();
+									assertTrue(canadaLib.availabilityOfContinueCheckout(),"Continue checkout availability");
+//adding review commentsString s1=Boolean.toString(verifyCartPageAvailablity());
+									cmtLib.clickOnLogoutlink();
+
+									System.out.println("Test completed");
 					} catch (Exception e) {
 						ReportStatus.blnStatus = false;
 						//gErrorMessage = e.getMessage();
