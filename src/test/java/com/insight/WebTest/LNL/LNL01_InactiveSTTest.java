@@ -154,7 +154,7 @@ public class LNL01_InactiveSTTest extends LineLevelInfoLib{
 						// inActive smart tracker
 						cmtLib.editSmartTracker(date_field_LL);
 						cmtLib.verifyInactiveSmartTrackerError();
-						
+						Thread.sleep(3000);
 						cmtLib.hoverOverMasterGroupAndSelectChangeGrp();
 						// search for user
 						cmtLib.searchForUser(userName);
