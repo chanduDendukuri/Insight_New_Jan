@@ -269,10 +269,10 @@ for(int i=1;i<=count;i++) {
 		int count = elem.size();
 		String count1= String.valueOf(count);
 		if(count>0) {
-			reporter.SuccessReport("Arrovers Added", "Number of Approvers added are", count1);
+			reporter.SuccessReport("Available Approvers", "Number of Approvers Approvers are", count1);
 		}
 		else {
-			reporter.SuccessReport("Arrovers Added", "Number of Approvers added are 0","", driver);
+			reporter.SuccessReport("Available Approvers", "Number of Approvers Approvers are 0","", driver);
 		}
 		return count;
 	}
@@ -753,12 +753,18 @@ for(int i=1;i<=count;i++) {
 	}
 
 	public void verifyNameIsRequiredAlert() throws Throwable {
-
+		Thread.sleep(4000);
 		WebDriverWait wait = new WebDriverWait(driver,
 				300 /* timeout in seconds */);
 		if (wait.until(ExpectedConditions.alertIsPresent()) != null) {
 			String alertMsg = driver.switchTo().alert().getText();
-			if (alertMsg.contains("Description")) {
+			if (alertMsg.contains("Replacement")) {
+				reporter.SuccessReport("Click ok on CreateLinkInrequisationRejection popup",
+						"POPUP Exists and OK is Clicked", alertMsg);
+				acceptAlert();
+
+			} 
+			else if(alertMsg.contains("Description")) {
 				reporter.SuccessReport("Click ok on CreateLinkInrequisationRejection popup",
 						"POPUP Exists and OK is Clicked", alertMsg);
 				acceptAlert();

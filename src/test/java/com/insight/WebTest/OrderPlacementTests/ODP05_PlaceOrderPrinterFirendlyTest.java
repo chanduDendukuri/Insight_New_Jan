@@ -49,8 +49,6 @@ public class ODP05_PlaceOrderPrinterFirendlyTest extends OrderLib{
 							TestData, "Web_Order_Placement", intCounter);
 					TestEngineWeb.reporter.initTestCaseDescription("PlaceOrderPrinterFirendly");
 
-			
-
                       // Login to CMT and disable Allow File Upload during Checkout,Override Payment Options
 						cmtLib.loginToCMT(data.get("Header"));
 						cmtLib.searchForWebGroup(data.get("WebGrp"));
@@ -94,13 +92,20 @@ public class ODP05_PlaceOrderPrinterFirendlyTest extends OrderLib{
 						shippingBillPayContinueButton();  // Continue on billing address section
 
 						selectPaymentInfoMethodCreditCard(data.get("Card_Number").toString(), data.get("Card_Name"),data.get("Month"), data.get("Year"),data.get("PO_Number"),data.get("POReleaseNumber"));  // American Express card
-
 						clickOnReviewOrderButton();
+						
+						clickPrintIconOnCartPage(data.get("Order_Utilities"));
+						VerifyPrintPopup(prodDesc,quantity,stock,totalPrice,unitPrice);
+						cartLib.closePrintPopUp();
 						//Place Order
 						String summaryAmount=cartLib.getSummaryAmountInCart();
 						placeOrderAndVerifyReceiptOrderAndDate(summaryAmount);
 						//Verify Receipt
 						verifyReceiptVerbiage();
+						clickOrderDetailsLinkOnReceiptPage();
+						clickPrintIconOnCartPage(data.get("Order_Utilities"));
+						VerifyPrintPopup(prodDesc,quantity,stock,totalPrice,unitPrice);
+						cartLib.closePrintPopUp();
 						//selecting bundle from company standards page
 						commonLib.clickAccountToolsFromSideMenuAndClickOnProductGrp(data.get("toolsMenuName"),data.get("dropDown") ,data.get("productGroup"),data.get("productName"));
 						searchLib.clickAddToOrderOnCompanyStandardsScreen();
@@ -117,6 +122,7 @@ public class ODP05_PlaceOrderPrinterFirendlyTest extends OrderLib{
 						clickPrintIconOnCartPage(data.get("Order_Utilities"));
 						VerifyPrintPopup(prodDesc1,quantity1,stock1,totalPrice1,unitPrice1);
 						cartLib.closePrintPopUp();
+						
 						proceedToCheckout();
 						continueButtonOnAdditionalInformationSection();  // Click continue on Additional information Section
 						clickContinueOnLineLevelInfo(); // Click continue on Line Level information Section
@@ -127,11 +133,20 @@ public class ODP05_PlaceOrderPrinterFirendlyTest extends OrderLib{
 						selectPaymentInfoMethodCreditCard(data.get("Card_Number1").toString(), data.get("Card_Name"),data.get("Month"), data.get("Year"),data.get("PO_Number"),data.get("POReleaseNumber"));  // American Express card
 
 						clickOnReviewOrderButton();
+						clickPrintIconOnCartPage(data.get("Order_Utilities"));
+						VerifyPrintPopup(prodDesc1,quantity1,stock1,totalPrice1,unitPrice1);
+						cartLib.closePrintPopUp();
+						
 						//Place Order
 						String summaryAmount1=cartLib.getSummaryAmountInCart();
 						placeOrderAndVerifyReceiptOrderAndDate(summaryAmount1);
 						//Verify Receipt
 						verifyReceiptVerbiage();
+						clickOrderDetailsLinkOnReceiptPage();
+						clickPrintIconOnCartPage(data.get("Order_Utilities"));
+						VerifyPrintPopup(prodDesc1,quantity1,stock1,totalPrice1,unitPrice1);
+						cartLib.closePrintPopUp();
+						
 						//Logout
 						cmtLib.navigateBackToCMT();
 						cmtLib.hoverOverMasterGroupAndSelectChangeGrp();
@@ -167,11 +182,19 @@ public class ODP05_PlaceOrderPrinterFirendlyTest extends OrderLib{
 						selectPaymentInfoMethodCreditCard(data.get("Card_Number").toString(), data.get("Card_Name"),data.get("Month"), data.get("Year"), data.get("poNumebr"),data.get("POReleaseNumber"));  // American Express card
 
 						clickOnReviewOrderButton();
+						clickPrintIconOnCartPage(data.get("Order_Utilities"));
+						VerifyPrintPopup(prodDesc2,quantity2,stock2,totalPrice2,unitPrice2);
+						cartLib.closePrintPopUp();
 						//Place Order
 						String summaryAmount2=cartLib.getSummaryAmountInCart();
 						placeOrderAndVerifyReceiptOrderAndDate(summaryAmount2);
 						//Verify Receipt
 						verifyReceiptVerbiage();
+						clickOrderDetailsLinkOnReceiptPage();
+						clickPrintIconOnCartPage(data.get("Order_Utilities"));
+						VerifyPrintPopup(prodDesc2,quantity2,stock2,totalPrice2,unitPrice2);
+						cartLib.closePrintPopUp();
+						
 						//Logout
 						cmtLib.navigateBackToCMT();
 						cmtLib.hoverOverMasterGroupAndSelectChangeGrp();
@@ -225,6 +248,10 @@ public class ODP05_PlaceOrderPrinterFirendlyTest extends OrderLib{
 						placeOrderAndVerifyReceiptOrderAndDate(summaryAmount3);
 						//Verify Receipt
 						verifyReceiptVerbiage();
+						clickOrderDetailsLinkOnReceiptPage();
+						clickPrintIconOnCartPage(data.get("Order_Utilities"));
+						VerifyPrintPopup(prodDesc4,quantity4,stock4,totalPrice4,unitPrice4);
+						cartLib.closePrintPopUp();
 						//commonLib.clickLogOutLink(data.get("Logout"));
 
 						// fnCloseTest();

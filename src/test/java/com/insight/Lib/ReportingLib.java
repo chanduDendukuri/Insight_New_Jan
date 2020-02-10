@@ -573,11 +573,8 @@ public void verifyScheduleReportOption(String Options) throws Throwable {
 	public void verifyTreeForAllAccounts() throws Throwable {
 		waitForVisibilityOfElement(TREE, "Hirearichy Tree");
 		if (isElementPresent(TREE, "Hirearichy Tree", true)){			
-	      
 		    reporter.SuccessReport("Verify  Hierarchy tree displays with a list of soldto's that are selected on Reports Page",
 			"soldto's are selected", "");
-		    
-		  
 		}
 		else {
 			reporter.failureReport("Verify  Hierarchy tree displays with a list of soldto's that are selected on Reports Page",
