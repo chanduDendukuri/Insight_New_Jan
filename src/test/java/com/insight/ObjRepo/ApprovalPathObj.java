@@ -144,8 +144,7 @@ public static By GetGroupDetails(int i,int j) {
 			"//ul[@id='tab_ul']//li[@aria-labelledby='idRequestorGroups']//a[contains(text(),'Requestor Group')]");
 
 	public static By clickRequestorGrpEdit(String appPathName) {
-		return By.xpath("//table[@id='requestor_search_table']//td[text()='" + appPathName
-				+ "']/..//td//a[contains(text(),'Edit')]");
+		return By.xpath("//table[@id='appreport']//a[(text()='"+appPathName+"')]");
 	}
 	public static By clickOnGrpInReports(String appPathName) {
 		return By.xpath("//table[@id='appreport']//a[contains(text(),'"+appPathName+"')]");

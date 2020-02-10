@@ -185,8 +185,8 @@ public String RandomApprovalPathName(String Approver_Name) throws Throwable {
 	}
 
 	public void SearchUser(String Approver_Name) throws Throwable {
-		if (isElementPresent(SEARCH_TXTBOX, "Serach text box")) {
-			type(SEARCH_TXTBOX, Approver_Name, "Serach text box");
+		if (isElementPresent(SEARCH_TXTBOX, "Search text box")) {
+			type(SEARCH_TXTBOX, Approver_Name, "Search text box");
 			reporter.SuccessReport("Enter Approver Name on Approval Management Approval Path Management Page",
 					"Approval Path Name Field Exists and Entered", "");
 		} else {
@@ -621,7 +621,7 @@ for(int i=1;i<=count;i++) {
 
 		if (isElementPresent(REPORTS_DIV, "Report div")) {
 
-			if (isElementPresent(REQUISITION_STAUS_REPORT, "Requision Status Report")) {
+			if (isElementPresent(REQUISITION_STAUS_REPORT, "Requisition Status Report")) {
 				Req_Status_report = driver.findElement(REQUISITION_STAUS_REPORT).getText();
 			}
 
@@ -655,8 +655,8 @@ for(int i=1;i<=count;i++) {
 	}
 
 	public void ClickApprovalPathReportLink() throws Throwable {
-		if (isElementPresent(APPROVAL_PATH_REPORT, "Verify Approval Path Link")) {
-			click(APPROVAL_PATH_REPORT, "Click Approval Path Link");
+		if (isElementPresent(APPROVAL_PATH_REPORT, "Verify Approval Path Report Link")) {
+			click(APPROVAL_PATH_REPORT, "Click Approval Path Report Link");
 			reporter.SuccessReport("Approval Path Management Page", "Approval Path Report Link Exists and Clicked", "");
 		} else {
 			reporter.failureReport("Approval Path Management Page", "Approval Path Report Link Does Not Exist", "");
@@ -698,7 +698,7 @@ for(int i=1;i<=count;i++) {
 	public void ClickApprovalPathLink(String appPathName) throws Throwable {
 		if (isElementPresent(getApprovalPathNameLink(appPathName), "Verify Approval Path Link")) {
 			click(getApprovalPathNameLink(appPathName), "Click Approval Path Link");
-			reporter.SuccessReport("Approval Path Management Page", "Approval Path Link Exists and Clicked", "");
+			reporter.SuccessReport("Approval Path Management Page", "Approval Path Link Exists and Clicked", appPathName);
 		} else {
 			reporter.failureReport("Approval Path Management Page", "Approval Path Link Does Not Exist", "");
 		}
@@ -742,7 +742,7 @@ for(int i=1;i<=count;i++) {
 	}
 
 	public void ClickCreateLink() throws Throwable {
-		if (isElementPresent(CREATE_LINK, "Create Link ")) {
+		if (waitForVisibilityOfElement(CREATE_LINK, "Create Link ")) {
 			click(CREATE_LINK, "Click Create Link");
 			reporter.SuccessReport("Click Create on Approval Management Page Approver Out of Office Settings",
 					"CREATE Link Exists and Clicked", "");
