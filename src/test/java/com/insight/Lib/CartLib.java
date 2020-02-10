@@ -1306,7 +1306,13 @@ public class CartLib extends ActionEngine {
 	
 	public void verifySendToAColleagueSucessMessage() throws Throwable {
 		waitForVisibilityOfElement(CartObj.MAIL_SEND_TO_A_COLLEGUE_SUCCESS_MSG, "SUCCESS MSG");
-		isElementPresent(CartObj.MAIL_SEND_TO_A_COLLEGUE_SUCCESS_MSG, "SUCCESS MSG", true);
+		String message=getText(CartObj.MAIL_SEND_TO_A_COLLEGUE_SUCCESS_MSG, "SUCCESS MSG");
+		if(isElementPresent(CartObj.MAIL_SEND_TO_A_COLLEGUE_SUCCESS_MSG, "SUCCESS MSG")){
+			reporter.SuccessReport("Verifying send to collegue sucess message", "Sucess message:", message, driver);
+		}
+		else {
+			reporter.failureReport("Verifying send to collegue sucess message", "Sucess message is not present", "", driver);
+		}
 	}
 	
 
