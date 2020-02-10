@@ -71,9 +71,9 @@ public class CAN07_CartBasicTest extends CanadaLib{
 
 									CommonLib.searchProduct(data.get("SearchItem1"));
 									prodInfoLib.verifyTheManufacturerNumberInProductDetailsPage(data.get("SearchItem1"));
+									//cartLib.getPartNumber();
 									//prodInfoLib.verifyTheManufacturerNumberInProductDetailsPage(data.get("SearchItem1"));
 									search.increaseQuantity(data.get("quantity"));
-									cartLib.getPartNumber();
 
 									CommonLib.addToCartAndVerify();
 									//canadaLib.continueToCheckout();
@@ -127,7 +127,7 @@ public class CAN07_CartBasicTest extends CanadaLib{
 
 									cmtLib.loginToCMT(data.get("Header"));
 									cmtLib.searchForWebGroup(data.get("WebGrp1"));
-									cmtLib.clickOnTheWebGroup(data.get("WebGrp_Name"));
+									cmtLib.clickOnTheWebGroup(data.get("WebGrp_Name1"));
 									cmtLib.disbaleOverRidePaymentOption();
 									end.clickUpdateButton();
 									end.verifyupdateSuccessMessage();
