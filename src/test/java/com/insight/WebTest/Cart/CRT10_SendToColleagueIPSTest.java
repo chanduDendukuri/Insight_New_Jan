@@ -83,20 +83,20 @@ public class CRT10_SendToColleagueIPSTest extends CartLib{
 			
 					canadaLib.continueToCheckout();
 					canadaLib.verifyPlaceCartLabel();
-					//verify us comminutes contract in cart page--need to do
+					verifyDefaultContractInCart();
 					prodInfoLib.verifyCartPageAndPartDetailsForRecentlyItemDynamically(searchItem);
-					
-					search.selectContractInCartPage(data.get("Contract"));//verify contract is selected and verify default all contract
+					search.verifyContract(data.get("Default_contract"));
+					search.selectContractInCartPage(data.get("Contract"));
 					commonLib.searchProduct(data.get("SearchItem2"));
 					verifyBreadCrum(data.get("SearchItem2"));
 					verifyBreadCrum(data.get("memory"));
-					//verify ips demo contract in dropdown
+					search.verifyContract(data.get("Contract"));
 					String searchItem1=prodInfoLib.getPartNumberExactlyInSearchResultsPage();
 					commonLib.addFirstDisplyedItemToCartAndVerify();
 					canadaLib.continueToCheckout();
 					canadaLib.verifyPlaceCartLabel();
 					prodInfoLib.verifyCartPageAndPartDetailsForRecentlyItemDynamically(searchItem1);
-					//commonLib.closePopUp();
+					
 					cartLib.clickAndVerifySendToAColleagueErrorMSG_IPS(data.get("OrderUtilities"));
 					cartLib.verifySendToAColleague(data.get("OrderUtilities"),data.get("YourName"),data.get("YourEmail1"),data.get("YourEmail1"),data.get("YourComments"));
 					verifyErrorMessagesInSendToAColleaguePopUpForEmail();
