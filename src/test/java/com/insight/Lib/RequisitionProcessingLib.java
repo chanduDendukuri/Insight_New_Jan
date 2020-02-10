@@ -338,8 +338,9 @@ public void ClickAddRoute() throws Throwable {
 	 * 
 	 * @param text
 	 * @throws Throwable
-	 */
+	 *///
 	public void verifyDenyedstatusRefNum(String status,String refNum)  throws Throwable{
+		//click(expandsearch,"Search button expander link");
 		if(isElementPresent(SEARCH_HDR,"Requisition search header")){
 			if(isElementPresent(STATUS_DROPDOWN,"Requisition status dropdown")){
 				selectByVisibleText(STATUS_DROPDOWN,status,"Requisition status dropdown");
@@ -350,8 +351,10 @@ public void ClickAddRoute() throws Throwable {
 						"Requsition Status Not Exists","");
 			}
 			 type(REFERENCE_TEXTBOX,refNum,"Deneyed request");
-			 reporter.SuccessReport("Enter Reference Number on Requisition Search Results Page",
-						"Reference Number Field Exist Entered","");
+			
+			  reporter.SuccessReport("Enter Reference Number on Requisition Search Results Page",
+			 "Reference Number Field Exist Entered","");
+			
 			 click(SERACH1_BTN,"Search button");
 			 reporter.SuccessReport("Click  SEARCH  on Requisition Search Results Page",
 						"SEARCH Link Exists and Clicked","");
@@ -362,7 +365,38 @@ public void ClickAddRoute() throws Throwable {
 			acceptAlert();
 	}
 	}
-	
+	/**
+	 * 
+	 * @param status
+	 * @throws Throwable
+	 */
+	public void verifyDenyedstatusRefNuminRequisition(String status)  throws Throwable{
+		click(expandsearch,"Search button expander link");
+		if(isElementPresent(SEARCH_HDR,"Requisition search header")){
+			if(isElementPresent(STATUS_DROPDOWN,"Requisition status dropdown")){
+				selectByVisibleText(STATUS_DROPDOWN,status,"Requisition status dropdown");
+				reporter.SuccessReport("Select Requsition Status on  Requisition Search Results Page",
+						"Requsition Status Field Exist Selected","");
+			} else {
+				reporter.failureReport("Select Requsition Status on  Requisition Search Results Page",
+						"Requsition Status Not Exists","");
+			}
+			// type(REFERENCE_TEXTBOX,refNum,"Deneyed request");
+			/*
+			 * reporter.
+			 * SuccessReport("Enter Reference Number on Requisition Search Results Page",
+			 * "Reference Number Field Exist Entered","");
+			 */
+			 click(SERACH1_BTN,"Search button");
+			 reporter.SuccessReport("Click  SEARCH  on Requisition Search Results Page",
+						"SEARCH Link Exists and Clicked","");
+		}else {
+			reporter.failureReport("Verify search on  Requisition Search Results Page",
+					"Requsition search header Not Exists","");
+			Thread.sleep(3000);
+			//acceptAlert();
+	}
+	}
 	/**
 	 * 
 	 * @param orderLink
@@ -862,7 +896,7 @@ public void ClickAddRoute() throws Throwable {
 		
 		public void verifyorderNuminReqHistoryPage(String orderLink) throws Throwable {
 			if (isElementPresent(OrderObj.APPROVAL_MNGMNT_HDR1, "ApprovalManagement Header")) {
-			if(isElementNotPresent(OrderObj.ReferenceLink(orderLink), "Approved Reference Number Link")){
+			if(isElementPresent(OrderObj.ReferenceLink(orderLink), "Approved Reference Number Link")){
 				reporter.SuccessReport("Verify  Ref Number on Requisition List",
 						"Ref Number Link Exists","");
 			} else {

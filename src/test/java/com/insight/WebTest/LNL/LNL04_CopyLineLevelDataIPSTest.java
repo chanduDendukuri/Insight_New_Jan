@@ -142,7 +142,8 @@ public class LNL04_CopyLineLevelDataIPSTest  extends LineLevelInfoLib{
 						// click on LLI optional
 						clickOnLineLevelOptionalLinkByPartNum(mfrNumber1);
 						scrollUp();
-						clickCopyOfSmartTracer(mfrNumber3);
+						//clickCopyOfSmartTracer(mfrNumber3);
+						selectDiversityPartner(data.get("Diversity_Partner1"),mfrNumber3);
 						//selectDiversityPartner(data.get("Diversity_Partner2"),mfrNumber3);
 						//clickCopyToAllLink(mfrNumber1);
 						
@@ -169,27 +170,29 @@ public class LNL04_CopyLineLevelDataIPSTest  extends LineLevelInfoLib{
 						// select second options from DD 
 						//clickOnLineLevelOptionalLinkByPartNum(mfrNumber1);
 						selectDiversityPartner(data.get("Diversity_Partner2"),mfrNumber1);
-						clickCopyToAllLink(mfrNumber1);
-						enterQTPText(mfrNumber1, data.get("QTP_Text"));
-						clickCopyOfSmartTracer(mfrNumber1);
+						verifyDiversityPartnerexists(data.get("Diversity_Partner2"),mfrNumber1);
+						//clickCopyToAllLink(mfrNumber1);
+						enterQTPText(mfrNumber3, data.get("QTP_Text"));
+						clickCopyOfSmartTracer(mfrNumber3);
 						Thread.sleep(4000);
                          scrollBottom();
 						// Expand Open market contract
 						clickOnLineLevelOptionalLinkByPartNum(mfrNumber4);
 						// Verify Smart Tracker data under Open Market contract
-						verifyQTPTextIsPresent(mfrNumber2, data.get("QTP_Text"));
+						verifyQTPTextIsPresent(mfrNumber4, data.get("QTP_Text"));
 						//Clear Smart Tracker value only for 2nd part under US Communities contract
 						clickClearLinkOfSmartTracker(mfrNumber2); // against smart tracker
 						// Verify it is cleared
 						verifyQTPTextIsPresent(mfrNumber2, "");
 						// Fill Reporting fields values under IPS contract
 						orderLib.enterReportingDetailsInLineLevelInfo(data.get("REPORTING_FIELD_4"), data.get("REPORTING_FIELD_5"), data.get("REPORTING_FIELD_6"));
-						selectDiversityPartner(data.get("Diversity_Partner1"),mfrNumber3);
+						//selectDiversityPartner(data.get("Diversity_Partner1"),mfrNumber3);
 						// Click continue on LNL section
 						orderLib.clickContinueOnLineLevelInfo(); 
-						
+						//verify place order page
+						orderLib.verifyPlaceOrderLabel();
 						// Contract Specific Information verification
-						verifyContractSpecificInfoOnPlaceOrderPage(data.get("REPORTING_FIELD_4"), data.get("REPORTING_FIELD_5"), data.get("REPORTING_FIELD_6"),data.get("Diversity_Partner1"));
+						verifyContractSpecificInfoOnPlaceOrderPage(data.get("REPORTING_FIELD_4"), data.get("REPORTING_FIELD_5"), data.get("REPORTING_FIELD_6"),data.get("QTP_Text"));
 						//verifyDiversityPartnerexists(data.get("Diversity_Partner2"),mfrNumber3);
 						commonLib.clickLogOutLink(data.get("Logout"));
 						

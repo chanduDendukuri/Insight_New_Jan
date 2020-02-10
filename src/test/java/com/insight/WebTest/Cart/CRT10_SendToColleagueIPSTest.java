@@ -74,6 +74,7 @@ public class CRT10_SendToColleagueIPSTest extends CartLib{
 					commonLib.searchProduct(data.get("SearchItem1"));
 					searchLib.verifyBreadCrumbInSearchResultsPage(data.get("SearchItem1"));
 					verifyDefaultContract();
+					
 					String searchItem=prodInfoLib.getPartNumberExactlyInSearchResultsPage();
 					cartLib.clickMorePricesAvilable(0);
 					clickOnUSCommuditiesPrice();
@@ -82,22 +83,26 @@ public class CRT10_SendToColleagueIPSTest extends CartLib{
 			
 					canadaLib.continueToCheckout();
 					canadaLib.verifyPlaceCartLabel();
+					verifyDefaultContractInCart();
 					prodInfoLib.verifyCartPageAndPartDetailsForRecentlyItemDynamically(searchItem);
-					
+					search.verifyContract(data.get("Default_contract"));
 					search.selectContractInCartPage(data.get("Contract"));
 					commonLib.searchProduct(data.get("SearchItem2"));
 					verifyBreadCrum(data.get("SearchItem2"));
 					verifyBreadCrum(data.get("memory"));
+					search.verifyContract(data.get("Contract"));
 					String searchItem1=prodInfoLib.getPartNumberExactlyInSearchResultsPage();
 					commonLib.addFirstDisplyedItemToCartAndVerify();
 					canadaLib.continueToCheckout();
 					canadaLib.verifyPlaceCartLabel();
 					prodInfoLib.verifyCartPageAndPartDetailsForRecentlyItemDynamically(searchItem1);
-					//commonLib.closePopUp();
+					
 					cartLib.clickAndVerifySendToAColleagueErrorMSG_IPS(data.get("OrderUtilities"));
 					cartLib.verifySendToAColleague(data.get("OrderUtilities"),data.get("YourName"),data.get("YourEmail1"),data.get("YourEmail1"),data.get("YourComments"));
+					verifyErrorMessagesInSendToAColleaguePopUpForEmail();
 					cartLib.verifySendToAColleague(data.get("OrderUtilities"),data.get("YourName"),data.get("YourEmail"),data.get("RecipientEmail"),data.get("YourComments"));
-					   System.out.println("Test completed");
+					verifySendToAColleagueSucessMessage();
+					System.out.println("Test completed");
 		 				
 							} catch (Exception e) {
 								ReportStatus.blnStatus = false;

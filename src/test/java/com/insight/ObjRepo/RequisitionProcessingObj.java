@@ -105,7 +105,7 @@ public class RequisitionProcessingObj extends CommonObj {
 	public static By saveRuleWithList(String item) {
 		return By.xpath("(//tr[@class='table_row']//div[@class='createOptions flr']//a[@id='optrule_create_button']//img[@alt='create'])[" + item + "]");
 	}
-	
+	public static By expandsearch = By.xpath("//div[@id='expndsearch1']/a[contains(text(),'Expand search')]");
 	public static By DENY_RADIOBTN = By.xpath("//input[@id='denyRadioButton']");
 	public static By TEXT_BOX = By.id("srTextAreaComments");
 	public static By SEARCH_HDR = By.xpath("//h2[contains(text(),'Requisition Search')]");
