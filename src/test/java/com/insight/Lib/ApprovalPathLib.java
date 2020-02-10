@@ -778,8 +778,8 @@ for(int i=1;i<=count;i++) {
 
 	public void ClickCreateLinkInrequisitionRejection() throws Throwable {
 
-		if (isElementPresent(CreateLinkInrequisitionRejection, "Requisition Rejection Type Add icon")) {
-			click(CreateLinkInrequisitionRejection, "Requisition Rejection Type Add icon");
+		if (isElementPresent(CreateLinkInrequisationRejection, "Requisition Rejection Type Add icon")) {
+			click(CreateLinkInrequisationRejection, "Requisition Rejection Type Add icon");
 			reporter.SuccessReport("Click Create on requisitionRejection",
 					"Requisition Rejection Type Add icon Exists and Clicked", "");
 		} else {
