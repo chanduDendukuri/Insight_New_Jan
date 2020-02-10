@@ -90,7 +90,7 @@ public class REP05_OverallSalesHistDefaultSettingsTest extends ReportingLib {
 					verifyTreeForAllAccounts();
 					verifyDefaultCurrentDate(data.get("CurrentDate"));
 					List<String> dateOptionsList = Arrays.asList(data.get("ScheduleDates").split(","));
-					verifyScheduleReportOptionsDates(dateOptionsList);
+					verifyScheduleReportOptionsdates(dateOptionsList);
 					selctOrderType(data.get("OrderType"));
 					canadaLib.clickOnDeliveryMethod(data.get("DeliveryMethod"));
 					canadaLib.clickOnDeliveryFormat(data.get("DeliverFormat"));
