@@ -51,10 +51,10 @@ public class ApprovalPathLib extends ApprovalPathObj {
 		String ApproverPathname = getText(ApproverPathName(Approvername), "Approver PathName");
 				String ApproverCount = getText(Approvercount(Approvername),"Approver Count");
 				if(ApproverPathname.equals(Approvername) && Integer.parseInt(ApproverCount)==count) {
-					reporter.SuccessReport("Verify ApproverPathName and ApproverCount", "ApproverPathName and ApproverCount", ApproverPathname+","+ApproverCount, driver);
+					reporter.SuccessReport("Verify ApproverPathName and Approver Count", "ApproverPathName and Approver Count", ApproverPathname+","+ApproverCount, driver);
 				}
 				else {
-					reporter.SuccessReport("Verify ApproverPathName and ApproverCount",""+Approvername+" and ApproverCount are doesn't exist", "");
+					reporter.SuccessReport("Verify ApproverPathName and Approver Count",""+Approvername+" and Approver Count  doesn't exist", "");
 				}
 	}
 public String RandomApprovalPathName(String Approver_Name) throws Throwable {

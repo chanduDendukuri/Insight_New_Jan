@@ -141,8 +141,10 @@ public class APP01_CreateApprovalPathTest extends ApprovalPathLib {
 					
 					
 					// Get the Existing User Last name to Search
-					ApproverSearchTextBox1("Automation");
+					
 				     NumberofApproversAddedtoRightSide();
+				     ApproverSearchTextBox1("Automation");
+				     NumberofAvailableApprovers();
 					ClickCancelButton();
 					//ClickUpdateButton();
 
