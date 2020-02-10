@@ -76,6 +76,7 @@ public class APR05_GroupUsersTest extends ApprovalPathLib {
 					// Add Requestors to Requestor Group - TU_IUS Requestor
 					// Group
 					AddRequestorsRequestorGroup(ReqGroupName1);
+					scrollUp();
 					// Click on Reports
 					ClickReports();
 					// Click on Requestor Requestor Group Users
@@ -83,7 +84,7 @@ public class APR05_GroupUsersTest extends ApprovalPathLib {
 					// Add Requestors to Requestor Group - TU_IUS Requestor
 					// Group Tiered
 					AddRequestorsRequestorGroup(ReqGroupName2);
-					Thread.sleep(1000);
+					scrollUp();
 					// Click on Reports
 					ClickReports();
 					// Click on Requestor Requestor Group Users
@@ -93,7 +94,7 @@ public class APR05_GroupUsersTest extends ApprovalPathLib {
 					// Displays Requestors
 					DisplayRequestors();
 					// Verify the Paging Count 50
-					VerifyPageCount50();
+					VerifyPageCount50InApprovalmgmt();
 					// Change the paging to 20
 					ChangePageCount(data.get("PageCount"));
 					// Click on the Next Page and verify page count 50

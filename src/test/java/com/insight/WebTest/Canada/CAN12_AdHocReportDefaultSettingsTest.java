@@ -1,7 +1,11 @@
 package com.insight.WebTest.Canada;
 
+import java.io.File;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.Hashtable;
 import java.util.List;
 
@@ -28,7 +32,9 @@ public class CAN12_AdHocReportDefaultSettingsTest extends CanadaLib{
 	ShipBillPayLib shipbLib=new ShipBillPayLib();
 	MarriottIntlCorpLib mic=new MarriottIntlCorpLib();
 	CommonCanadaLib ccp = new CommonCanadaLib();
-	
+	CanadaLib canadaLib = new CanadaLib();
+	ReportingLib report = new ReportingLib();
+
 	@Parameters({ "StartRow", "EndRow", "nextTestJoin" })
 	@Test
 	public void TC_CAN12(int StartRow, String EndRow, boolean nextTestJoin) throws Throwable {
@@ -111,9 +117,19 @@ public class CAN12_AdHocReportDefaultSettingsTest extends CanadaLib{
 							assertTrue(!ccp.verifySMART_CHECK(),"By default SmartCheck was not selected");
 							verifyFilterOrder();
 							ccp.addAvailableItemsToAllowItems();
-							clickOnRun();
 
-			//* This is to verify ExcelSheet
+					/*		ccp.clickOnReportNameDD();
+							//ccp.getListOfReportNameOption();
+							report.clickOnDeliveryReport("Custom Report Name");
+							String customName="AdHoc";
+							report.clickOnCustomName(customName);*/
+							DateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+							Date datev = new Date();
+
+							clickOnRun();
+							//String file=ccp.FileNameWithdateSplit(customName);
+							Thread.sleep(60000);
+							ccp.verifyExportFile("Page1","3","Operations Center,Region,Account Number",ccp.getLatestFilefromDir());
 							//cartLib.verifyExportFile("Page1","1","Ad-Hoc");
 
 

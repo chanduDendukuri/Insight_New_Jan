@@ -76,7 +76,7 @@ public class APR02_ApproverOutTest extends ApprovalPathLib {
 					
 					// Click on General Settings
 					ClickGeneralSettings();
-
+					Thread.sleep(5000);
 					// Click Create with out Entering Any thing - Click on
 					// Create
 					ClickCreateLink();

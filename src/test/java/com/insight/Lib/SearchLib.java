@@ -638,6 +638,16 @@ public class SearchLib extends CommonObj {
 		}
 	}
 	
+	public void verifyContract(String contractName) throws Throwable {
+		String contract=getText(SELETED_CONTRACT, "Selected contract");
+		if(contract.contains(contractName)) {
+			reporter.SuccessReport("Verify selected contract", "Selected contract is:", contractName, driver);
+		}
+		else {
+			reporter.failureReport("Verify selected contract", "Selected contract is not as expected", contract, driver);
+		}
+	}
+	
 	/**
 	 * This method is to click on More prices Available link and verify whether all the contracts are available ,
 	 *  Open market price availability and your price availability.
@@ -890,17 +900,20 @@ public class SearchLib extends CommonObj {
 			 reporter.SuccessReport("verify the selected product is displayed under the product group","Selected product is displayed correctly under the product group.",productName);
 			  if(isElementPresent(ADD_ITEMS_RADIO_BUTTON, "add items to cart radio button")){
 			     List<WebElement> myradioList=driver.findElements(ADD_ITEMS_RADIO_BUTTON);
+			     List<WebElement> myList=driver.findElements(ITEM_DESCRIPTION);
 			         for (int i = 0; i < myradioList.size(); i++) {
 				         if(myradioList.get(i).isSelected()){
-					          reporter.SuccessReport("verify the radio button checked or not","products are added","");
+					          reporter.SuccessReport("verify the radio button checked or not","product is checked",myList.get(i).getText());
 				   }
 				}
 			  }else
 					if(isElementPresent(ADD_ITEMS_CHECKBOX, "Add items check box")){
 						scrollToBottomWithCordinate("200");
 					List<WebElement> myList1=driver.findElements(ADD_ITEMS_CHECKBOX);
+					List<WebElement> myList=driver.findElements(ITEM_DESCRIPTION);
 					for (int j = 0; j < myList1.size(); j++) {
 						myList1.get(j).click();
+						reporter.SuccessReport("verify the radio button checked or not","product is checked",myList.get(j).getText());
 						Thread.sleep(6000);
 					}
 					
@@ -1023,7 +1036,7 @@ public class SearchLib extends CommonObj {
 		     List<WebElement> myradioList=driver.findElements(ADD_ITEMS_RADIO_BUTTON);
 		         for (int i = 0; i < myradioList.size(); i++) {
 			         if(myradioList.get(i).isSelected()){
-				          reporter.SuccessReport("verify the radio button checked or not","products are added","");
+				          //reporter.SuccessReport("verify the radio button checked or not","products are added","");
 			   }else {
 				   reporter.failureReport("verify the radio button checked or not","products are not checked","");
 			   }
@@ -1033,7 +1046,7 @@ public class SearchLib extends CommonObj {
 			for (int j = 0; j < myList1.size(); j++) {
 				myList1.get(j).click();
 				if(myList1.get(j).isSelected()){
-			          reporter.SuccessReport("verify the check box checked or not","Check box ("+j+") is checked ","");
+			          //reporter.SuccessReport("verify the check box checked or not","Check box ("+j+") is checked ","");
 		   }else {
 			   reporter.failureReport("verify the checkbox checked or not","check box is not checked","");
 		   }
@@ -1108,6 +1121,15 @@ public class SearchLib extends CommonObj {
 		}else{
 			reporter.failureReport("Verify the selected contract displayed in cart page ","contracts title page is not displayed successfully.Expceted is: ",contractName);
 		}
+		String selectedContract=getText(SELECTED_CONTRACT_PAGE, "Selected contract");
+		if(selectedContract.contains(contractName)) {
+			reporter.SuccessReport("Verify selected contract", "Selected contract is:", selectedContract, driver);
+		}
+			else {
+				reporter.failureReport("Verify selected contract", "Selected contract is not as expected:", selectedContract, driver);
+			}
+			
+		
 	}
 	public void selectContractInCartPageforTcQTH07(String contractName) throws Throwable{
 		clickUntil(CONTRACT_DD, getContractsFromDD(contractName), "contract drop down");
@@ -1496,9 +1518,10 @@ public class SearchLib extends CommonObj {
 	 * @throws Throwable
 	 */
 	public void selectBrandByAlphabetOrderSectionForCA(String url,String brand) throws Throwable {
+		scrollToBottomWithCordinate("3990");
 		click(getShopByBrandByAlphabetForCA(brand), "brand By Alphabets");
 		Thread.sleep(2000);
-		verify_url(driver, url);
+		//verify_url(driver, url);
 	}
 	
 	/**

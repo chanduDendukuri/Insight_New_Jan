@@ -134,16 +134,17 @@ public class APP01_CreateApprovalPathTest extends ApprovalPathLib {
 					List<String> appName = SelectApprover(null,3);
 					//SelectApproverAPP01(null,3);
 					
-					// Add button to add approver
-					Add_Approver_Btn_Click();
+					
 
 					// Verify Approvers are Added to Approver path Sequence
-					VerifyApproversAdded(appName);
+					//VerifyApproversAdded(appName);
 					
 					
 					// Get the Existing User Last name to Search
-					ApproverSearchTextBox1("Automation");
+					
 				     NumberofApproversAddedtoRightSide();
+				     ApproverSearchTextBox1("Automation");
+				     NumberofAvailableApprovers();
 					ClickCancelButton();
 					//ClickUpdateButton();
 
@@ -159,8 +160,7 @@ public class APP01_CreateApprovalPathTest extends ApprovalPathLib {
 					SearchClick();
 					
 					// Verify Approval path is Retuned
-					VerifyApprovalPathReturned();
-
+					VerifyNumberOfApproversInApprovalManagement(FirstApproverPath, 0);
 
 					commonLib.clickLogOutLink(data.get("Logout"));
 

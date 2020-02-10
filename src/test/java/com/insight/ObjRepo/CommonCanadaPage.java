@@ -62,6 +62,17 @@ public class CommonCanadaPage extends ActionEngine{
     public static By getSroredAddressFromResultsGrid=By.xpath("//div[@class='table']//*[@class='row align-middle']//div[@class='columns table__col table__col--body']");
     public static By btnContinue=By.xpath("//*[@class='row stored-address']//following-sibling::footer//div//button[text()='Continue']");
     public static By rbtnDefaultAddress=By.xpath("//*[@name='defaultAddress']");
+public static By addTocartButtonInWarrenty = By.xpath("//*[@id='tpl-specs-warranties-target']//*[@class='button primary small js-add-to-cart'][1]");
+public static By exportToXLSlink=By.xpath("//*[text()='Export as a file']");
+public static By IUSAMandatoryCTOlink=By.xpath("//*[text()='IUSA Mandatory CTO']");
+public static By AddtoOrder=By.xpath("//*[text()='ADD TO ORDER']");
+public static By blackBerrylogo=By.xpath("//*[@title='BlackBerry']");
+public static By searchByProductByCategory=By.xpath("//*[@id='js-custom-search-field']");
+public static By lblTopBrands=By.xpath("//*[contains(text(),'Top brands')]");
+public static By btnAddToCartIst = By.xpath("//*[@class='cart-wrapper show-for-medium-up js-add-to-cart-container']//*[text()='Add to Cart']");
+public static By txtQuantityValue = By.xpath("//*[@class='cart-wrapper show-for-medium-up js-add-to-cart-container']//*[contains(@id,'qty')]");
+
+
 
 
 

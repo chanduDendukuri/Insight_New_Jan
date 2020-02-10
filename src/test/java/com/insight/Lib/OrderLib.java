@@ -1233,10 +1233,10 @@ List<String> orderdetails = new ArrayList<String>();
 	public void verifyFileUploadOption(String exeFileNameOfAutoITWithExetension) throws Throwable {
 		 
 		try {
-			if (isElementPresent(UPLOAD_FILE, "Upload file")) {
-				System.out.println(System.getProperty("user.dir") + "\\AutoIt\\" + exeFileNameOfAutoITWithExetension);
+			if (isElementPresent(FILE_UPLOAD, "Upload file")) {
+				//System.out.println(System.getProperty("user.dir") + "\\AutoIt\\" + exeFileNameOfAutoITWithExetension);
 				Thread.sleep(2000);
-				click(UPLOAD_FILE, "Upload file");
+				click(FILE_UPLOAD, "Upload file");
 				Runtime.getRuntime()
 						.exec(System.getProperty("user.dir") + "\\AutoIt\\" + exeFileNameOfAutoITWithExetension);
 				Thread.sleep(3000);
@@ -1423,7 +1423,7 @@ List<String> orderdetails = new ArrayList<String>();
 		List<WebElement> stock = driver.findElements(CartObj.STOCK_PRINT_POPUP);
 		List<WebElement> total_price = driver.findElements(CartObj.TOTAL_PRICE_PRINT_POPUP);
 		List<WebElement> unit_price = driver.findElements(CartObj.TOTAL_PRICE_PRINT_POPUP);
-		
+		getWG800NumberOnPrintPopup();
 		for (int i = 0; i <myList.size() ; i++) {
 		    String desc = myList.get(i).getText();
 			 if(desc.equals(prodDesc.get(i))){
@@ -2555,13 +2555,25 @@ List<String> orderdetails = new ArrayList<String>();
 	 * method is to verify the valid card number error message
 	 * @throws Throwable
 	 */
-	public void verifyValidCardErrorMessage() throws Throwable {
-		if(isVisibleOnly(VALID_CARD_ERROR_MSG, "valid card number error message")) {
-			reporter.SuccessReport("verify valid card error message", "Please enter valid card number message displayed", "Message : Please enter valid card number", driver);
+	public void verifyVISACardTypedErrorMessage() throws Throwable {
+		if(isVisibleOnly(VALID_VISA_CARD_ERROR_MSG, "valid card number error message")) {
+			reporter.SuccessReport("verify valid card error message", "Please enter valid card number message displayed", "Message : VISA card type is not supported", driver);
 		}else {
 			reporter.failureReport("verify valid card error message", "Please enter valid card number message does not displayed", "", driver);
 		}
 	  }
+	/**
+	 * method is to verify the valid card number error message
+	 * @throws Throwable
+	 */
+	public void verifyDiscoverCardErrorMessage() throws Throwable {
+		if(isVisibleOnly(VALID_DIACOVER_CARD_ERROR_MSG, "valid card number error message")) {
+			reporter.SuccessReport("verify valid card error message", "Please enter valid card number message displayed", "Message : Discover card type is not supported", driver);
+		}else {
+			reporter.failureReport("verify valid card error message", "Please enter valid card number message does not displayed", "", driver);
+		}
+	  }
+	
 	
 	/**
 	 * Method is to verify Custom 800 Number in Quote Receipt Print View
@@ -2612,7 +2624,10 @@ List<String> orderdetails = new ArrayList<String>();
 		 }else {
 			 reporter.failureReport("verify WG 800 number in receipt printable page", "Custom 800 Number in  Receipt Print popup View does not Exists ", "", driver);
 		 }
-		 
+	 }
+	 
+	 public String getWG800NumberOnPrintPopup() throws Throwable {
+			 return getText(TELEPHONE_NUMBER_ON_PRINT_RECEIPT, "Telephone number on receipt page");
 	 }
 	}
 

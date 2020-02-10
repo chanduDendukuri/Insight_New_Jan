@@ -74,29 +74,32 @@ public class REP08_SoftwareLicenseDetailDefaultSettingsTest extends ReportingLib
 				canadaLib.verifyReportsPage();
 				canadaLib.verifySelectReport(data.get("SelectReport"));
 				verifytheLinkedSoldTosText();
-				verifyStartDate(data.get("DayOne"));
+				verifyStartDate("01");
 				EndDateVerification();
 				verifyDefualtCurrancyUSD();
 				verifyScheduleReport();
+				verifyScheduleReportOption(data.get("Soption"));
 				List<String> optionList = Arrays.asList(data.get("ScheduleOptions").split(","));
 				verifyScheduleReportOptions(optionList);
-
 				canadaLib.verifyFilterbyCurrency(data.get("Currency"));
 				canadaLib.verifyDeliveryOption();
 				List<String> deliveryOptionsList = Arrays.asList(data.get("DeliveryOptions").split(","));
 				verifyDeliveryMethodOptions(deliveryOptionsList);
 				verifyDefaultAccountSelection(data.get("DefaultAccountSelOpt"));
-				verifyTreeForAllAccounts();
+				verifytheLinkedSoldTosText();
+				verifyDefualtCurrancyUSD();
+				verifyStartDate(data.get("DayOne"));
+				EndDateVerification();
 				verifyDefaultCurrentDate(data.get("CurrentDate"));
 				List<String> dateOptionsList = Arrays.asList(data.get("ScheduleDates").split(","));
-				verifyScheduleReportOptionsDates(dateOptionsList);
-				selctOrderType(data.get("OrderType"));
+				verifyScheduleReportOptionsdates(dateOptionsList);
+				//selctOrderType(data.get("OrderType"));
 				canadaLib.clickOnDeliveryMethod(data.get("DeliveryMethod"));
 				canadaLib.clickOnDeliveryFormat(data.get("DeliverFormat"));
 				canadaLib.clickOnRun();
 				Thread.sleep(10000);
-				List<String> excelData = Arrays.asList(data.get("ExcelData").split(","));
-				verifyDownloadedReportExcelFile(excelData);
+				//List<String> excelData = Arrays.asList(data.get("ExcelData").split(","));
+				//verifyDownloadedReportExcelFile(excelData);
 
 				commonLib.clickLogOutLink(data.get("Logout_Header"));
 				cmtLib.navigateBackToCMT();
@@ -105,7 +108,7 @@ public class REP08_SoftwareLicenseDetailDefaultSettingsTest extends ReportingLib
 				cmtLib.manageUsers();
 				cmtLib.searchForaUserAndSelect(data.get("LnameEmailUname1"), data.get("ContactName1"));
 				cmtLib.setPermissionsToDisable(data.get("Menu_Name"), data.get("Set_Permission1"));
-				cmtLib.setPermissionsToDisable(data.get("Menu_Name"), data.get("Set_Permission2"));
+				cmtLib.setPermissions(data.get("Menu_Name"), data.get("Set_Permission2"));
 				cmtLib.setPermissions(data.get("Menu_Name"), data.get("Set_Permission3"));
 				cmtLib.permissionFromDD(data.get("Set_Permission3"), data.get("Permission_Dropdown_Option"));
 				cmtLib.loginAsAdminCMT();
@@ -116,7 +119,7 @@ public class REP08_SoftwareLicenseDetailDefaultSettingsTest extends ReportingLib
 				canadaLib.verifyReportsPage();
 				canadaLib.verifySelectReport(data.get("SelectReport"));
 				verifytheLinkedSoldTosText();
-				verifyStartDate(data.get("DayOne"));
+				verifyStartDate("01");
 				EndDateVerification();
 				verifyScheduleReport();
 				verifyScheduleReportOptions(optionList);
@@ -126,13 +129,13 @@ public class REP08_SoftwareLicenseDetailDefaultSettingsTest extends ReportingLib
 				verifyDeliveryMethodOptions(deliveryOptionsList);
 				verifyDefaultCurrentDate(data.get("CurrentDate"));
 				Thread.sleep(10000);
-				verifyScheduleReportOptionsDates(dateOptionsList);
-				selctOrderType(data.get("OrderType"));
+				verifyScheduleReportOptionsdates(dateOptionsList);
+				//selctOrderType(data.get("OrderType"));
 				canadaLib.clickOnDeliveryMethod(data.get("DeliveryMethod"));
 				canadaLib.clickOnDeliveryFormat(data.get("DeliverFormat"));
 				canadaLib.clickOnRun();
 				Thread.sleep(10000);
-				verifyDownloadedReportExcelFile(excelData);
+				//verifyDownloadedReportExcelFile(excelData);
 				commonLib.clickLogOutLink(data.get("Logout_Header"));
 				
 				

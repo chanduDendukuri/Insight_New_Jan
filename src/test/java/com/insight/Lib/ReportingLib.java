@@ -8,6 +8,7 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.apache.poi.xssf.usermodel.XSSFSheet;
@@ -147,6 +148,7 @@ public class ReportingLib extends ReportsObj {
 	public void verifyScheduleReportOptionsDates(List<String> Options) throws Throwable {
 		
 		for (int i=0 ; i <Options.size();i++){
+
 		waitForVisibilityOfElement(DELIVERY_METHODOPTIONS, "Select Delivery Method");
 		if (isElementPresent(SCHEDULEREPORT_OPTIONS, "Select ADelivery Method", true)){				
 			selectByVisibleText(SCHEDULEREPORT_OPTIONS,Options.get(i),"Schedule Report");	
@@ -571,11 +573,8 @@ public void verifyScheduleReportOption(String Options) throws Throwable {
 	public void verifyTreeForAllAccounts() throws Throwable {
 		waitForVisibilityOfElement(TREE, "Hirearichy Tree");
 		if (isElementPresent(TREE, "Hirearichy Tree", true)){			
-	      
 		    reporter.SuccessReport("Verify  Hierarchy tree displays with a list of soldto's that are selected on Reports Page",
 			"soldto's are selected", "");
-		    
-		  
 		}
 		else {
 			reporter.failureReport("Verify  Hierarchy tree displays with a list of soldto's that are selected on Reports Page",
@@ -932,9 +931,50 @@ public void grandParentCheckboxNotClicked()throws Throwable {
 				reporter.SuccessReport("Verify Selected Centers and Regions", "Selected Centers and Regions", getText(SELECTEDCENTERS,"")+getText(SELECTEDREGIONS,""));	
 			}
 			}
+		public void verifyDownloadedReportExcel(String sheetName, String rowNumber, String columnHeaders) throws Throwable {
+			Thread.sleep(10000);
+		String sfile = System.getProperty("user.dir") + "\\" + "DownloadedFiles" + "\\";
+		File file = new File(sfile);
+		if (file.exists()) {
+		List<String> downloadedExcelContent = CommonLib.readRowFromExcel(sfile, sheetName, Integer.parseInt(rowNumber));
+		List<String> acutalContent = Arrays.asList(columnHeaders.split(","));
+		System.out.println("Compare content" + downloadedExcelContent.equals(acutalContent));
+		if (downloadedExcelContent.equals(acutalContent)) {
+			reporter.SuccessReport(columnHeaders,  "columns are avilable in Reporting Excel Sheet", "columns: "+columnHeaders);
+		} else {
+			reporter.failureReport(columnHeaders, columnHeaders+ " are not avilable", "", driver);
+		 }
+		}else {
+			reporter.failureReport("Verify Headers", "File dose not exists", "", driver);
+		}
+		System.out.println("File Deletion :" + file.delete());
+		if (file.exists()) {
+			file.delete();
+			reporter.SuccessReport("reporting Excel File", "File closed", "");
+		}else {
+			// do nothing
+		}
+		}	
 		
-		
-		
+		/**
+		 * Method is to select Schedule report Options Dates
+		 * 
+		 * @throws Throwable
+		 */
+		public void verifyScheduleReportOptionsdates(List<String> Options) throws Throwable {
+			
+			for (int i=0 ; i <Options.size();i++){
+			waitForVisibilityOfElement(DELIVERY_METHODOPTIONS, "Select Delivery Method");
+			if (isElementPresent(SCHEDULEREPORT_DATES, "Select ADelivery Method", true)){				
+				selectByVisibleText(SCHEDULEREPORT_DATES,Options.get(i),"Schedule Report");	
+			reporter.SuccessReport("Verify Schedule report "+Options.get(i)+" Options on Report Page"," Schedule Report  "+Options.get(i)+" Options exist on Report Page", Options.get(i));
+			}
+			else {
+				reporter.failureReport("Verify Schedule report Options"+Options.get(i)+" on Report Page"," Schedule Report  "+Options.get(i)+" Options doesnot exist on Report Page", "");
+			}
+			}
+
+		}	
 		
 		
 }

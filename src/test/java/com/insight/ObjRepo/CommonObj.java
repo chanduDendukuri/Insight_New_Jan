@@ -112,7 +112,8 @@ public class CommonObj extends ActionEngine{
 	public static By ITEMS_ADDED_TO_CART_POPUP=By.xpath("//div[@id='header']//b[contains(text(),'Items added to Cart')]");
 	public static By PROD_GRP_CLOSE_ICON=By.xpath("//span[@class='insightLightBoxClose frameworkIcons Deep_Close_Icon']");
 	public static By ADD_ITEMS_RADIO_BUTTON=By.xpath("//table[@id='prodGroupTable']//td//input[@type='radio' and @checked='checked']");
-    public static By ADD_ITEMS_CHECKBOX=By.xpath("//table[@id='prodGroupTable']//td//input[@type='checkbox']");
+    public static By ITEM_DESCRIPTION=By.xpath("//table[@id='prodGroupTable']//td[1]//a");
+	public static By ADD_ITEMS_CHECKBOX=By.xpath("//table[@id='prodGroupTable']//td//input[@type='checkbox']");
     public static By ADD_TO_ORDER=By.xpath("//div[@id='csProductGroupAddToOrder']//a//span[contains(text(),'ADD TO ORDER')]");
 	public static By SAVEDCART=By.xpath("//div[@class='sidebar-nav']//a[text()='Saved Carts / Order Templates']");	
 	public static By VIEW_CART_PRODUCT_GROUP=By.xpath("//a[@title='View Cart >>']");
@@ -165,6 +166,7 @@ public class CommonObj extends ActionEngine{
 	
 	//contract
 	public static By CONTRACT_DD=By.xpath("//div[@class='c-header__middle']//button[@id='contractDropdown']");
+	public static By SELETED_CONTRACT=By.xpath("//div[@class='c-header__middle']//button[@id='contractDropdown']//span");
 	public static By SELECTED_CONTRACT=By.xpath("//div[@class='c-header__middle']//button[@id='contractDropdown']//span");
     public static By title_Contracttitle = By.xpath("//div[@id='ipsContractDetailTitle']");
 	public static By getContractsFromDD(String contractName){
@@ -186,7 +188,7 @@ public class CommonObj extends ActionEngine{
 	public static By PRODUCTSGRP_HDR=By.xpath("//div[@id='companyStandardsHeading']/h1[contains(text(),'Product Standards')]");
 	public static By DESCRIPTION_COLUMN =By.xpath("//table[@id='prodGroupTable']/tbody/tr/th[contains(text(),'Description')]");
 	public static By CONTRACT_VERIFY = By.xpath("//div[@class='columns']/strong");
-	
+	public static By SELECTED_CONTRACT_PAGE=By.xpath("//div[contains(@id,'ContractDetailTitle')]");
 	public static By  INSIGHT_LOGO_HOME_PAGE=By.xpath("//a[@class='c-button  c-button--none c-header-logo__btn']");
 	
 	// Inventory Blow Out 

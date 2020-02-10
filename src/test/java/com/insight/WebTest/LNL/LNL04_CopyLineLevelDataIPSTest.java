@@ -126,12 +126,14 @@ public class LNL04_CopyLineLevelDataIPSTest  extends LineLevelInfoLib{
 						orderLib.proceedToCheckout();  // Proceed to checkout
 						orderLib.enterReportingDetailsInLineLevelInfo(data.get("REPORTING_FIELD_4"), data.get("REPORTING_FIELD_5"), data.get("REPORTING_FIELD_6"));
 						selectDiversityPartner(data.get("Diversity_Partner1"),mfrNumber3);
+						enterQTPText(mfrNumber3, data.get("QTP_Text"));
 						clickOnLinelevelInfoOptionalLink();
 						orderLib.clickContinueOnLineLevelInfo(); // click continue on LLI 
 						
 						orderLib.shippingBillPay(data.get("Card_Number").toString(), data.get("Card_Name"),data.get("Month"), data.get("Year"),data.get("PO_Number"),data.get("POReleaseNumber"));
 						// Contract Specific Information verification
 						verifyContractSpecificInfoOnPlaceOrderPage(data.get("REPORTING_FIELD_4"), data.get("REPORTING_FIELD_5"), data.get("REPORTING_FIELD_6"),data.get("Diversity_Partner1"));
+						
 						//verifyDiversityPartnerexists(data.get("Diversity_Partner1"),mfrNumber3);
 						// click on edit LLI
 						editLinelevelInfoOnPlaceOrderPage();
@@ -139,18 +141,22 @@ public class LNL04_CopyLineLevelDataIPSTest  extends LineLevelInfoLib{
 						verifyOrderAndItemInfoBreadCrumb();
 						// click on LLI optional
 						clickOnLineLevelOptionalLinkByPartNum(mfrNumber1);
-						
+						scrollUp();
+						//clickCopyOfSmartTracer(mfrNumber3);
+						selectDiversityPartner(data.get("Diversity_Partner1"),mfrNumber3);
 						//selectDiversityPartner(data.get("Diversity_Partner2"),mfrNumber3);
 						//clickCopyToAllLink(mfrNumber1);
 						
 						//verifyContractSpecificInfoOnPlaceOrderPage();
 						/*clickOnLineLevelOptionalLinkByPartNum(mfrNumber2);
 						verifyDiversityPartnerexists(data.get("Diversity_Partner2"),mfrNumber2);*/
-						scrollUp();
+						
+						// Click clear in IPS contract
 						clickClearLink(mfrNumber3);
 						Thread.sleep(4000);
 						//scrollUp();
 						//clickClearLink(mfrNumber3);
+						// Verify reporting field is empty in IPS contract
 						String reportingfield4= getReportingField4();
 						String reportingfield5= getReportingField5();
 						String reportingfield6= getReportingField6();
@@ -164,23 +170,31 @@ public class LNL04_CopyLineLevelDataIPSTest  extends LineLevelInfoLib{
 						// select second options from DD 
 						//clickOnLineLevelOptionalLinkByPartNum(mfrNumber1);
 						selectDiversityPartner(data.get("Diversity_Partner2"),mfrNumber1);
-						enterQTPText(mfrNumber1, data.get("QTP_Text"));
-						clickCopyOfSmartTracer(mfrNumber1);
+						verifyDiversityPartnerexists(data.get("Diversity_Partner2"),mfrNumber1);
+						//clickCopyToAllLink(mfrNumber1);
+						enterQTPText(mfrNumber3, data.get("QTP_Text"));
+						clickCopyOfSmartTracer(mfrNumber3);
 						Thread.sleep(4000);
-                         // verifying part 2 smart tracker and clearing it
-						verifyQTPTextIsPresent(mfrNumber2, data.get("QTP_Text"));
+                         scrollBottom();
+						// Expand Open market contract
+						clickOnLineLevelOptionalLinkByPartNum(mfrNumber4);
+						// Verify Smart Tracker data under Open Market contract
+						verifyQTPTextIsPresent(mfrNumber4, data.get("QTP_Text"));
+						//Clear Smart Tracker value only for 2nd part under US Communities contract
 						clickClearLinkOfSmartTracker(mfrNumber2); // against smart tracker
+						// Verify it is cleared
 						verifyQTPTextIsPresent(mfrNumber2, "");
-						// Enter the cleared reporting fields
+						// Fill Reporting fields values under IPS contract
 						orderLib.enterReportingDetailsInLineLevelInfo(data.get("REPORTING_FIELD_4"), data.get("REPORTING_FIELD_5"), data.get("REPORTING_FIELD_6"));
-						selectDiversityPartner(data.get("Diversity_Partner1"),mfrNumber3);
+						//selectDiversityPartner(data.get("Diversity_Partner1"),mfrNumber3);
 						// Click continue on LNL section
 						orderLib.clickContinueOnLineLevelInfo(); 
+						//verify place order page
+						orderLib.verifyPlaceOrderLabel();
 						// Contract Specific Information verification
-						verifyContractSpecificInfoOnPlaceOrderPage(data.get("REPORTING_FIELD_4"), data.get("REPORTING_FIELD_5"), data.get("REPORTING_FIELD_6"),data.get("Diversity_Partner1"));
+						verifyContractSpecificInfoOnPlaceOrderPage(data.get("REPORTING_FIELD_4"), data.get("REPORTING_FIELD_5"), data.get("REPORTING_FIELD_6"),data.get("QTP_Text"));
 						//verifyDiversityPartnerexists(data.get("Diversity_Partner2"),mfrNumber3);
 						commonLib.clickLogOutLink(data.get("Logout"));
-						
 						
 					} catch (Exception e) {
 						ReportStatus.blnStatus = false;

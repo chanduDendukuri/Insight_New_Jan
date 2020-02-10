@@ -72,30 +72,34 @@ public class CRT08_SaveCartIPSTest extends CartLib{
 					commonLib.searchProduct(data.get("Search_Item"));
 					search.verifyBreadCrumbInSearchResultsPage(data.get("Search_Item"));
 /*Review comment*/	removeInStockItems();
-					String searchItem=prodInfoLib.getPartNumberInSearchResultsPage();
+					String searchItem=prodInfoLib.getPartNumberExactlyInSearchResultsPage();
 					commonLib.addFirstDisplyedItemToCartAndVerify();
 					canadaLib.continueToCheckout();
 					canadaLib.verifyPlaceCartLabel();
-					prodInfoLib.verifyCartPageAndPartDetailsForRecentlyItemDynamically(searchItem);
+					prodInfoLib.verifyCartPageAndPartDetailsForRecentlyItemDynamicaly(searchItem);
 					
 					String cartName = "QTPTestCart"+getRandomNumeric(5);
 					cartLib.clickOnSaveCartContentAndSaveCart(cartName);
+					openSavedCartFromTools(cartName);
 					cartLib.verifyCartIsEmpty();
 					commonLib.clickCart();
+					canadaLib.verifyPlaceCartLabel();
 					commonLib.verifyCartIsEMpty();
 					
 					search.selectContractInCartPage(data.get("Contract"));
 					commonLib.searchProduct(data.get("Search_Item1"));
 					search.verifyBreadCrumbInSearchResultsPage(data.get("Search_Item1"));
-					String searchItem1=prodInfoLib.getPartNumberInSearchResultsPage();
+					String searchItem1=prodInfoLib.getPartNumberExactlyInSearchResultsPage();
 					commonLib.addFirstDisplyedItemToCartAndVerify();
 					canadaLib.continueToCheckout();
 					canadaLib.verifyPlaceCartLabel();
-					prodInfoLib.verifyCartPageAndPartDetailsForRecentlyItemDynamically(searchItem1);
-					String cartName1 = "SavdCart"+getRandomNumeric(5);
+					prodInfoLib.verifyCartPageAndPartDetailsForRecentlyItemDynamicaly(searchItem1);
+					String cartName1 = "SavedCart"+getRandomNumeric(5);
 					cartLib.clickOnSaveCartContentAndSaveCartAndClearCartOff(cartName1);
-					
+					openSavedCartFromTools(cartName);
+					verifyCartIsNotEmpty();
 					commonLib.clickCart();
+					canadaLib.verifyPlaceCartLabel();
 					commonLib.emptyCartAndVerify();
 					commonLib.clickOnAccountToolsAndClickOnProductGrp(data.get("Tools_Menu"),
 							data.get("Tools_Menu_DD1"));
