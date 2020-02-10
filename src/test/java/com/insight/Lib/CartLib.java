@@ -419,7 +419,7 @@ public class CartLib extends ActionEngine {
 		//isElementPresent(CartObj.SAVED_CART_TEXT, "Saved cart");
 		click(CartObj.loadCart(cartName), "Load cart");
 		if (isElementPresent(CartObj.CURRIENCES, "cart is loaded")) {
-			reporter.SuccessReport("Click on load cart ", "Saved cart exists and selected", cartName);
+			reporter.SuccessReport("Click on load cart ", "Saved cart exists", cartName);
 		} else {
 			reporter.failureReport("Click on load cart ", "Saved cart does not exist", "", driver);
 
@@ -1306,7 +1306,13 @@ public class CartLib extends ActionEngine {
 	
 	public void verifySendToAColleagueSucessMessage() throws Throwable {
 		waitForVisibilityOfElement(CartObj.MAIL_SEND_TO_A_COLLEGUE_SUCCESS_MSG, "SUCCESS MSG");
-		isElementPresent(CartObj.MAIL_SEND_TO_A_COLLEGUE_SUCCESS_MSG, "SUCCESS MSG", true);
+		String message=getText(CartObj.MAIL_SEND_TO_A_COLLEGUE_SUCCESS_MSG, "SUCCESS MSG");
+		if(isElementPresent(CartObj.MAIL_SEND_TO_A_COLLEGUE_SUCCESS_MSG, "SUCCESS MSG")){
+			reporter.SuccessReport("Verifying send to collegue sucess message", "Sucess message:", message, driver);
+		}
+		else {
+			reporter.failureReport("Verifying send to collegue sucess message", "Sucess message is not present", "", driver);
+		}
 	}
 	
 

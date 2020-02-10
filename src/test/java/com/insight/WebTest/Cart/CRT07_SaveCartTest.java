@@ -84,6 +84,7 @@ public class CRT07_SaveCartTest extends CartLib {
 					
 					commonLib.searchProduct(data.get("Search_Item2"));
 					searchLib.verifyBreadCrumbInSearchResultsPage(data.get("Search_Item2"));
+					removeInStockItems();
 					String searchItem2=prodInfoLib.getPartNumberExactlyInSearchResultsPage();
 					commonLib.addFirstDisplyedItemToCartAndVerify();
 					canadaLib.continueToCheckout();
