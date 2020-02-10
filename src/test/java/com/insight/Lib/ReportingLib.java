@@ -148,6 +148,7 @@ public class ReportingLib extends ReportsObj {
 	public void verifyScheduleReportOptionsDates(List<String> Options) throws Throwable {
 		
 		for (int i=0 ; i <Options.size();i++){
+
 		waitForVisibilityOfElement(DELIVERY_METHODOPTIONS, "Select Delivery Method");
 		if (isElementPresent(SCHEDULEREPORT_OPTIONS, "Select ADelivery Method", true)){				
 			selectByVisibleText(SCHEDULEREPORT_OPTIONS,Options.get(i),"Schedule Report");	
@@ -572,11 +573,8 @@ public void verifyScheduleReportOption(String Options) throws Throwable {
 	public void verifyTreeForAllAccounts() throws Throwable {
 		waitForVisibilityOfElement(TREE, "Hirearichy Tree");
 		if (isElementPresent(TREE, "Hirearichy Tree", true)){			
-	      
 		    reporter.SuccessReport("Verify  Hierarchy tree displays with a list of soldto's that are selected on Reports Page",
 			"soldto's are selected", "");
-		    
-		  
 		}
 		else {
 			reporter.failureReport("Verify  Hierarchy tree displays with a list of soldto's that are selected on Reports Page",
