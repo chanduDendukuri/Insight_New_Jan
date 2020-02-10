@@ -96,14 +96,24 @@ public String RandomApprovalPathName(String Approver_Name) throws Throwable {
 
 	public void VerifyAppovalPathCreated(String Approver_Name) throws Throwable {
 		String SuccessMsg = getText(Successmsg, "Success message:");
-		if (isElementPresent(getCreatedApproverPath(Approver_Name), "Approval management page")) {
+		
+			List<WebElement> elem = driver.findElements(ApproverPathNameDisplayedRow);
+			if(elem.size()>0) {
+			for(int i=2;i<=elem.size();i++) {
+				String ApproverPathName = driver.findElement(ApproverPathNameRow(i, 1)).getText();
+				if (ApproverPathName.equals(Approver_Name)) {
+				reporter.SuccessReport("Verify Approval Path Name",	"Approver Path Name:"+Approver_Name+" displayed at row number", String.valueOf(i-1));
 			reporter.SuccessReport("Verify Approval Path is Added on Approval Management Approval Path Management Page",
 					"Created/Edited Approver Path is Exists and Verified", SuccessMsg+Approver_Name);
-		} else {
-			reporter.failureReport("Verify Approval Path is Added on Approval Management Approval Path Management Page",
-					"Created Approver Path Does Not Exist", "");
+		 break;
 		}
-	}
+			}
+			}else {
+			reporter.failureReport("Verify Approval Path is Added on Approval Management Approval Path Management Page",
+					"Created Approver Path Does Not Exist or No Approver Path Names displayed", "");
+		}
+			}
+	
 	public void verifySearchresults(String Approver_Name) throws Throwable {
 		if (isElementPresent(getCreatedApproverPath(Approver_Name), "Approval management page")) {
 			reporter.failureReport("Verify Approval Path is Added on Approval Management Approval Path Management Page",

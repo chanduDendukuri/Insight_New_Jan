@@ -466,7 +466,7 @@ public class CommonCanadaLib extends CommonCanadaPage {
             break;
         }
     }
-
+//btnAddToCartIst
     public void verifyExportFile(String sheetName, String rowNumber, String columnHeaders, File fileN) throws Throwable {
         Thread.sleep(60000);
 
@@ -573,5 +573,20 @@ public class CommonCanadaLib extends CommonCanadaPage {
         return isVisibleOnly(lblTopBrands,"Top Brands");
 }
 
+    public void clickOnAddToCartButtonUnderProductDynamically(String quanity) throws Throwable {
+        List<WebElement> atc = driver.findElements(btnAddToCartIst);
+        List<WebElement> qtn = driver.findElements(txtQuantityValue);
+
+        for (int i = 0; i < atc.size(); i++) {
+            qtn.get(i).clear();
+            qtn.get(i).sendKeys(quanity);
+            reporter.SuccessReport("Successfully entered quantity", "Entered Quantity", quanity);
+
+            atc.get(i).click();
+            reporter.SuccessReport("Clicked on ADd to cart button", "Clicked on ADd to cart button", "Clicked on ADd to cart button");
+            break;
+        }
+    }
+//
 }
 

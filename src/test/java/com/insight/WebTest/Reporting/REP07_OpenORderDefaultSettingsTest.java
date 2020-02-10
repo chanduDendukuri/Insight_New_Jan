@@ -10,6 +10,7 @@ import org.testng.annotations.Test;
 import com.insight.Lib.CMTLib;
 import com.insight.Lib.CanadaLib;
 import com.insight.Lib.CartLib;
+import com.insight.Lib.CommonCanadaLib;
 import com.insight.Lib.CommonLib;
 import com.insight.Lib.MarriottIntlCorpLib;
 import com.insight.Lib.OrderLib;
@@ -61,6 +62,8 @@ public class REP07_OpenORderDefaultSettingsTest extends CanadaLib{
 				CMTLib cmtLib = new CMTLib();
 			//	OrderLib orderLib = new OrderLib();
 				CanadaLib canadaLib=new CanadaLib();
+				CommonCanadaLib ccp = new CommonCanadaLib();
+				
 				cmtLib.loginToCMTSearchWebGrpAndUser(data.get("Header"), data.get("WebGrp"), data.get("LnameEmailUname"),data.get("ContactName"));
 				cmtLib.clickOnRolesAndPermissionsAndSetPermission(data.get("Menu_Name"), data.get("Set_Permission"));
 				cmtLib.loginAsAdminCMT();
@@ -84,10 +87,9 @@ public class REP07_OpenORderDefaultSettingsTest extends CanadaLib{
 				clickOnDeliveryMethod(data.get("DeliveryMethod"));
 				clickOnDeliveryFormat(data.get("DeliveryFormat"));
 				clickOnRun();
-				commonLib.spinnerImage();
-				Thread.sleep(50000);
-				List<String> excelOptions= Arrays.asList(data.get("ExcelOptions").split(","));
-			    canadaLib.verifyDownloadedReportExcelFile(excelOptions,data.get("ReportOption"));
+				//commonLib.spinnerImage();
+				Thread.sleep(30000);
+				ccp.verifyExportFile("Page1","2","Service Rep,Account Number,Account Name",ccp.getLatestFilefromDir());
 				commonLib.clickLogOutLink(data.get("Logout_Header"));
 				} catch (Exception e) {
 					ReportStatus.blnStatus = false;

@@ -69,11 +69,6 @@ public class USM08_FCTWebUserSoldToLinkingTest extends UserManagementLib{
 							// Click on Linked Accounts
 							cmtLib.clickCheckOutSettings(data.get("Linked_Accounts"));
 							cmtLib.VerifytheLinkedAccountsText();
-							// Verify AccountName,AccountNumber,Address,AccountStatus,DefaultLogin
-							String[] headers=data.get("Linked_Account_header").split(",");
-							//for(i=0;i<headers.length;i++){
-								//cmtLib.verifyLinkedAccountHeaders(headers[i]);
-							//}
 							
 							// Select >>  Link User to All Available Accounts
 							cmtLib.selectFromLinkedAccountDD(data.get("Option1"));
@@ -82,8 +77,10 @@ public class USM08_FCTWebUserSoldToLinkingTest extends UserManagementLib{
 							// Select >>   Unlink User from All Accounts
 							cmtLib.selectFromLinkedAccountDD(data.get("Option2"));
 							cmtLib.VerifytheCheckBoxStatus("UnChecked");
+							
 							// Select 100 per Page AND VERIFY
 							userMgt.verifyPagination(data.get("Ending_Page"));
+							
 							// Click Next
 							cmtLib.clickOnNextPagination();
 							cmtLib.verifyPageStartsWithatLinkedAccounts("1101");
@@ -91,8 +88,10 @@ public class USM08_FCTWebUserSoldToLinkingTest extends UserManagementLib{
 							cmtLib.clickLinkedAccountCheckBox(data.get("Account_Number1"));//3
 							// search by ABE
 							cmtLib.enterLinkedAccountSearch(data.get("Account_Search1"));
+							
 							List<String> accountName=cmtLib.getAccountNameInLinkedAccounts();
 							cmtLib.verifyAccountNameStartsWith(accountName, data.get("Account_Search1"));
+							
 							// Select >>  Link User to All Available Accounts
 							cmtLib.selectFromLinkedAccountDD(data.get("Option1"));
 							cmtLib.VerifytheCheckBoxStatus("Checked");

@@ -638,6 +638,16 @@ public class SearchLib extends CommonObj {
 		}
 	}
 	
+	public void verifyContract(String contractName) throws Throwable {
+		String contract=getText(SELETED_CONTRACT, "Selected contract");
+		if(contract.contains(contractName)) {
+			reporter.SuccessReport("Verify selected contract", "Selected contract is:", contractName, driver);
+		}
+		else {
+			reporter.failureReport("Verify selected contract", "Selected contract is not as expected", contract, driver);
+		}
+	}
+	
 	/**
 	 * This method is to click on More prices Available link and verify whether all the contracts are available ,
 	 *  Open market price availability and your price availability.
@@ -1111,6 +1121,15 @@ public class SearchLib extends CommonObj {
 		}else{
 			reporter.failureReport("Verify the selected contract displayed in cart page ","contracts title page is not displayed successfully.Expceted is: ",contractName);
 		}
+		String selectedContract=getText(SELECTED_CONTRACT_PAGE, "Selected contract");
+		if(selectedContract.contains(contractName)) {
+			reporter.SuccessReport("Verify selected contract", "Selected contract is:", selectedContract, driver);
+		}
+			else {
+				reporter.failureReport("Verify selected contract", "Selected contract is not as expected:", selectedContract, driver);
+			}
+			
+		
 	}
 	public void selectContractInCartPageforTcQTH07(String contractName) throws Throwable{
 		clickUntil(CONTRACT_DD, getContractsFromDD(contractName), "contract drop down");

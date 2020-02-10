@@ -166,6 +166,7 @@ public class CommonObj extends ActionEngine{
 	
 	//contract
 	public static By CONTRACT_DD=By.xpath("//div[@class='c-header__middle']//button[@id='contractDropdown']");
+	public static By SELETED_CONTRACT=By.xpath("//div[@class='c-header__middle']//button[@id='contractDropdown']//span");
 	public static By SELECTED_CONTRACT=By.xpath("//div[@class='c-header__middle']//button[@id='contractDropdown']//span");
     public static By title_Contracttitle = By.xpath("//div[@id='ipsContractDetailTitle']");
 	public static By getContractsFromDD(String contractName){
@@ -187,7 +188,7 @@ public class CommonObj extends ActionEngine{
 	public static By PRODUCTSGRP_HDR=By.xpath("//div[@id='companyStandardsHeading']/h1[contains(text(),'Product Standards')]");
 	public static By DESCRIPTION_COLUMN =By.xpath("//table[@id='prodGroupTable']/tbody/tr/th[contains(text(),'Description')]");
 	public static By CONTRACT_VERIFY = By.xpath("//div[@class='columns']/strong");
-	
+	public static By SELECTED_CONTRACT_PAGE=By.xpath("//div[contains(@id,'ContractDetailTitle')]");
 	public static By  INSIGHT_LOGO_HOME_PAGE=By.xpath("//a[@class='c-button  c-button--none c-header-logo__btn']");
 	
 	// Inventory Blow Out 
