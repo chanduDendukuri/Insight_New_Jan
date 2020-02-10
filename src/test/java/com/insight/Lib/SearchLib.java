@@ -1499,9 +1499,10 @@ public class SearchLib extends CommonObj {
 	 * @throws Throwable
 	 */
 	public void selectBrandByAlphabetOrderSectionForCA(String url,String brand) throws Throwable {
+		scrollToBottomWithCordinate("3990");
 		click(getShopByBrandByAlphabetForCA(brand), "brand By Alphabets");
 		Thread.sleep(2000);
-		verify_url(driver, url);
+		//verify_url(driver, url);
 	}
 	
 	/**
