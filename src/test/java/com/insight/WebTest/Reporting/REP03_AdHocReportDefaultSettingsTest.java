@@ -90,28 +90,32 @@ public class REP03_AdHocReportDefaultSettingsTest extends CanadaLib{
 				clickOnDeliveryFormat(data.get("DeliveryFormat"));
 				clickOnRun();	
 				Thread.sleep(40000);
-				List<String> excelOptions1= Arrays.asList(data.get("ExcelOptions").split(","));
-			    canadaLib.verifyDownloadedReportExcelFile(excelOptions1,data.get("ReportOption"));
+				Thread.sleep(60000);
+				ccp.verifyExportFile("Page1","3","Operations Center,Region,Account Number",ccp.getLatestFilefromDir());
 			    commonLib.clickLogOutLink(data.get("Logout_Header"));
+
 				} catch (Exception e) {
 					ReportStatus.blnStatus = false;
 					//gErrorMessage = e.getMessage();
 					gTestStatus = false;
 				}
+				ReportControl.fnEnableJoin();
+				ReportStatus.fnUpdateResultStatus("AdHocReportDefaultSettings", "TC_REP03", ReportStatus.strMethodName,
+						intCounter, browser);
+				fnCloseTest();
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 			ReportStatus.blnStatus = false;
-			//gErrorMessage = e.toString();
+			//gErrorMessage = e.getMessage();
 			gTestStatus = false;
-			ReportStatus.fnUpdateResultStatus("AdHocReportDefaultSettings", "TC_REP03", ReportStatus.strMethodName, 1, browser);
+			ReportStatus.fnUpdateResultStatus("AdHocReportDefaultSettings", "TC_REP03", ReportStatus.strMethodName, 1,
+					browser);
 			throw new RuntimeException(e);
 		}
-        finally {
-        	ReportControl.fnEnableJoin();
-			ReportStatus.fnUpdateResultStatus("AdHocReportDefaultSettings", "TC_REP03", ReportStatus.strMethodName, counter, browser);
-			fnCloseTest();
-			ReportControl.fnNextTestJoin(nextTestJoin);
-		}
+
+		ReportControl.fnNextTestJoin(nextTestJoin);
 	}
+
+
 }

@@ -11,6 +11,7 @@ import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import com.insight.ObjRepo.SewpObj;
 
@@ -419,7 +420,7 @@ public class CartLib extends ActionEngine {
 		//isElementPresent(CartObj.SAVED_CART_TEXT, "Saved cart");
 		click(CartObj.loadCart(cartName), "Load cart");
 		if (isElementPresent(CartObj.CURRIENCES, "cart is loaded")) {
-			reporter.SuccessReport("Click on load cart ", "Saved cart exists and selected", cartName);
+			reporter.SuccessReport("Click on load cart ", "Saved cart exists", cartName);
 		} else {
 			reporter.failureReport("Click on load cart ", "Saved cart does not exist", "", driver);
 
@@ -1062,6 +1063,7 @@ public class CartLib extends ActionEngine {
 
 	public String getShippingEstimateInCart() throws Throwable {
 		String shipingCharges = getText(CartObj.SHIPPING_ESTIMATE, "SHipping Charges");
+		reporter.SuccessReport("Shipping estimate ", "Shipping estimate amount in cart ", shipingCharges, driver);
 		return shipingCharges;
 
 	}
@@ -1306,7 +1308,13 @@ public class CartLib extends ActionEngine {
 	
 	public void verifySendToAColleagueSucessMessage() throws Throwable {
 		waitForVisibilityOfElement(CartObj.MAIL_SEND_TO_A_COLLEGUE_SUCCESS_MSG, "SUCCESS MSG");
-		isElementPresent(CartObj.MAIL_SEND_TO_A_COLLEGUE_SUCCESS_MSG, "SUCCESS MSG", true);
+		String message=getText(CartObj.MAIL_SEND_TO_A_COLLEGUE_SUCCESS_MSG, "SUCCESS MSG");
+		if(isElementPresent(CartObj.MAIL_SEND_TO_A_COLLEGUE_SUCCESS_MSG, "SUCCESS MSG")){
+			reporter.SuccessReport("Verifying send to collegue sucess message", "Sucess message:", message, driver);
+		}
+		else {
+			reporter.failureReport("Verifying send to collegue sucess message", "Sucess message is not present", "", driver);
+		}
 	}
 	
 
@@ -1832,6 +1840,19 @@ public void verifyProductdetails() throws Throwable {
 		waitForVisibilityOfElement(CartObj.Shipping_EStimator, "Shipping Estimator is Present");
 		typeText(CartObj.Shipping_Estimator_Textfield, Postal_code, "postalcode");
 		click(CartObj.Shipping_Estimator_Applybutton, "Click Apply Button of Shipping Estimator ");
+		List<WebElement> list1=driver.findElements(By.xpath("(//ul[@class='shipping-options__list'])[1]//li//label"));
+		for (int i = 0; i < list1.size(); i++) {
+
+			if (list1.get(i).isDisplayed()) {
+
+				reporter.SuccessReport(" shpping carriers ", "Shipping Carriers in Select a Shipping Option Dialog is Exists " ,list1.get(i).getText() );
+			} else {
+				reporter.failureReport(" shpping carriers ", "Shipping Carriers in Select a Shipping Option Dialog does not  Exists", "",
+						driver);
+			}
+		}
+		
+		
 		click(CartObj.Shipping_Estimator_seeallcarriers, "Succesfully Clicked on See all Carriers");
 		List<WebElement> myList = driver.findElements(CartObj.verifyshippingCarrier(upsCarrier));
 		for (int i = 0; i < myList.size(); i++) {
