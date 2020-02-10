@@ -69,6 +69,9 @@ public static By AddtoOrder=By.xpath("//*[text()='ADD TO ORDER']");
 public static By blackBerrylogo=By.xpath("//*[@title='BlackBerry']");
 public static By searchByProductByCategory=By.xpath("//*[@id='js-custom-search-field']");
 public static By lblTopBrands=By.xpath("//*[contains(text(),'Top brands')]");
+public static By btnAddToCartIst = By.xpath("//*[@class='cart-wrapper show-for-medium-up js-add-to-cart-container']//*[text()='Add to Cart']");
+public static By txtQuantityValue = By.xpath("//*[@class='cart-wrapper show-for-medium-up js-add-to-cart-container']//*[contains(@id,'qty')]");
+
 
 
 
