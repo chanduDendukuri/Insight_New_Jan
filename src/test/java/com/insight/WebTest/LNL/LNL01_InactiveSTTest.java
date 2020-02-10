@@ -60,8 +60,8 @@ public class LNL01_InactiveSTTest extends LineLevelInfoLib{
 						// Create a new account 
 						canadaLib.clickCreateAccountOnCanadaSearchPage();
 						cmtLib.handleWelcomeToInsightBetaPopUp();
-						String userName=enterEmailInCreateAccount();
-						enterpasswordInCreateAccount();
+						String userName=enterEmailInCreateAccount().replace("@mail.com", "");
+						enterpasswordInCreateAccount(userName);
 						canadaLib.clickCustomCheckBox();
 						canadaLib.clickOnNext();
 						selectCountryDisplayed(data.get("Country"));  // United States Of America
@@ -76,13 +76,15 @@ public class LNL01_InactiveSTTest extends LineLevelInfoLib{
 						orderLib.proceedToCheckout();
 						verifyOrderAndItemInfoBreadCrumb();
 						// Enter add additional info
-						String contactName=canadaLib.enterNameOnAdditionalInfo();
+						
+						String contactName=canadaLib.enterNameOnAdditionalInfo(userName);
 						canadaLib.enterPhoneOnAdditionalInfo(data.get("Phone"));
 						orderLib.continueButtonOnAdditionalInformationSection();
 						canadaLib.verifySBP();
 						// enter Shipping address
 						// street1 >> 3480 Lotus Dr  // city >> PLANO // state >> Texas // zipCode >> 75075
-						canadaLib.addShippingAddress(data.get("Company_Name"), data.get("Name"), data.get("Street1"), data.get("City"), data.get("State"), data.get("Zipcode"));  
+						// Company name ****** // ****** name should be same as email geneerated
+						canadaLib.addShippingAddress(userName, userName, data.get("Street1"), data.get("City"), data.get("State"), data.get("Zipcode"));  
 						orderLib.clickContinueOnShippingAddress(); // continue on shipping address
 						// Save address  
 						acceptShippingAddressVerification();
@@ -104,17 +106,20 @@ public class LNL01_InactiveSTTest extends LineLevelInfoLib{
 						cmtLib.clickOnWebGrpLink();
 						cmtLib.hoverOnManageWebGroupsAndSelectOptions(data.get("Manage_Web_Grp_Options1"));  // SmartTrackers
 						cmtLib.verifySmartTrackerPage();
+						cmtLib.selectmanageSmartTrackertabs(data.get("tab_Name1"));
+						cmtLib.selectSmartTrackersHeaders(data.get("Header1"));
 						// Add a smart tracker
 						cmtLib.clickOnAddSmartTrackerLink();
-						String date_field1 = getCurrentDateTime("dd-mmm-yyyy HH:MM:SS.ss");
-						cmtLib.addFieldLabelInSmartTracker(data.get("Field_Label"));
+						String date_field1 = "QTP"+getCurrentDateTime("dd-mmm-yyyy HH:MM:SS.ss");
+						cmtLib.addFieldLabelInSmartTracker(date_field1);
 						cmtLib.saveChangesAndVerify(date_field1);
 						// inActive smart tracker
 						cmtLib.editSmartTracker(date_field1);
 						cmtLib.verifyInactiveSmartTrackerError();
-						String date_field2 = getCurrentDateTime("dd-mmm-yyyy HH:MM:SS.ss");
+						String date_field2 = "QTP"+getCurrentDateTime("dd-mmm-yyyy HH:MM:SS.ss");
+						
 						// click on Line level tab
-						cmtLib.selectSmartTrackersHeaders(data.get("Smart_Header"));
+						cmtLib.selectSmartTrackersHeaders(data.get("Header"));
 						cmtLib.clickOnAddSmartTrackerLink();
 						cmtLib.addFieldLabelInSmartTracker(date_field2);
 						cmtLib.addSmartTrackerFieldType(data.get("Field_Type"));  // Date - type
@@ -126,8 +131,9 @@ public class LNL01_InactiveSTTest extends LineLevelInfoLib{
 						
 						// click on Manage Reporting Parent SmartTrackers
 						refreshPage();
-						String date_field3 = getCurrentDateTime("dd-mmm-yyyy HH:MM:SS.ss");
+						String date_field3 = "QTP"+getCurrentDateTime("dd-mmm-yyyy HH:MM:SS.ss");
 						cmtLib.selectmanageSmartTrackertabs(data.get("tab_Name"));
+						cmtLib.selectSmartTrackersHeaders(data.get("Header1"));
 						cmtLib.clickOnAddSmartTrackerLink();
 						cmtLib.addFieldLabelInSmartTracker(date_field3);
 						cmtLib.addSmartTrackerFieldType(data.get("Field_Type"));  // Date - type
@@ -137,9 +143,9 @@ public class LNL01_InactiveSTTest extends LineLevelInfoLib{
 						cmtLib.editSmartTracker(date_field3);
 						cmtLib.verifyInactiveSmartTrackerError();
 					  
-						String date_field_LL = getCurrentDateTime("dd-mmm-yyyy HH:MM:SS.ss");
+						String date_field_LL = "QTP"+getCurrentDateTime("dd-mmm-yyyy HH:MM:SS.ss");
 						// click on Line level tab
-						cmtLib.selectSmartTrackersHeaders(data.get("Smart_Header"));
+						cmtLib.selectSmartTrackersHeaders(data.get("Header"));
 						cmtLib.clickOnAddSmartTrackerLink();
 						cmtLib.addFieldLabelInSmartTracker(date_field_LL);
 						cmtLib.addSmartTrackerFieldType(data.get("Field_Type"));  // Date - type

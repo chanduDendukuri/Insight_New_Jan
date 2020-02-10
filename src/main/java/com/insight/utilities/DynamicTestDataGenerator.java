@@ -85,5 +85,16 @@ public class DynamicTestDataGenerator {
 			}
 			return phonenumber;
 		}
+		
+		//METHOD TO GENERATE DYNAMIC TESTDATA FOR  PHONE NUMBER
+				public static String generateRandomNumber(){
+					String number = null;
+					try{
+					 number = faker.number().digits(4);
+					}catch(Exception e){
+						LOG.info(e.getMessage());			
+					}
+					return number;
+				}
 
 }

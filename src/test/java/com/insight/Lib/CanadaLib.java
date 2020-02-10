@@ -1150,15 +1150,15 @@ public void selectOption() throws Throwable {
 	 * @return
 	 * @throws Throwable
 	 */
-	public String enterNameOnAdditionalInfo() throws Throwable {
-		String name = DynamicTestDataGenerator.generateRandomFirstName();
+	public String enterNameOnAdditionalInfo(String contactName) throws Throwable {
+		//String name = DynamicTestDataGenerator.generateRandomFirstName();
 		if (isVisibleOnly(MarriottIntlCorpObj.NAME, "Name")) {
 			click(MarriottIntlCorpObj.NAME, "Name");
-			type(MarriottIntlCorpObj.NAME, name, "Name");
+			type(MarriottIntlCorpObj.NAME, contactName, "Name");
 		}else {
 			reporter.failureReport("Verify Name fields exists", "Name field does not exists", "", driver);
 		}
-		return name;
+		return contactName;
 	}
 
 /*
