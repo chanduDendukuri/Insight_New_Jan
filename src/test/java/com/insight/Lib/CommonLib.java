@@ -513,12 +513,12 @@ public class CommonLib extends ActionEngine{
 		 * @throws Throwable
 		 */
 		public void clickOnAccountToolsAndClickOnProductGrp(String toolsMenuName, String dropDown ) throws Throwable{
-			//acceptCookies() ;
+			acceptCookies() ;
 			//Thread.sleep(10000);
-		/*
-		 * if (isVisibleOnly(CommonObj.CLOSEBUTTON_COOKIES, "close cookie")) {
-		 * click(CommonObj.CLOSEBUTTON_COOKIES, "close cookie"); }
-		 */
+		
+		  if (isVisibleOnly(CommonObj.CLOSEBUTTON_COOKIES, "close cookie")) {
+		  click(CommonObj.CLOSEBUTTON_COOKIES, "close cookie"); }
+		 
 			if(isElementPresent(InvoiceHistoryLib.COSE_ACCOUNT_TOOLS, "close account tools")) {
 				click(InvoiceHistoryLib.COSE_ACCOUNT_TOOLS, "close account tools");
 			} 
