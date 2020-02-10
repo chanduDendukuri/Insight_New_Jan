@@ -903,7 +903,7 @@ public class SearchLib extends CommonObj {
 					List<WebElement> myList=driver.findElements(ITEM_DESCRIPTION);
 					for (int j = 0; j < myList1.size(); j++) {
 						myList1.get(j).click();
-						reporter.SuccessReport("verify the radio button checked or not","product is checked",myList.get(i).getText());
+						reporter.SuccessReport("verify the radio button checked or not","product is checked",myList.get(j).getText());
 						Thread.sleep(6000);
 					}
 					
@@ -1499,9 +1499,10 @@ public class SearchLib extends CommonObj {
 	 * @throws Throwable
 	 */
 	public void selectBrandByAlphabetOrderSectionForCA(String url,String brand) throws Throwable {
+		scrollToBottomWithCordinate("3990");
 		click(getShopByBrandByAlphabetForCA(brand), "brand By Alphabets");
 		Thread.sleep(2000);
-		verify_url(driver, url);
+		//verify_url(driver, url);
 	}
 	
 	/**

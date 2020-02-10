@@ -134,16 +134,17 @@ public class APP01_CreateApprovalPathTest extends ApprovalPathLib {
 					List<String> appName = SelectApprover(null,3);
 					//SelectApproverAPP01(null,3);
 					
-					// Add button to add approver
-					Add_Approver_Btn_Click();
+					
 
 					// Verify Approvers are Added to Approver path Sequence
-					VerifyApproversAdded(appName);
+					//VerifyApproversAdded(appName);
 					
 					
 					// Get the Existing User Last name to Search
-					ApproverSearchTextBox1("Automation");
+					
 				     NumberofApproversAddedtoRightSide();
+				     ApproverSearchTextBox1("Automation");
+				     NumberofAvailableApprovers();
 					ClickCancelButton();
 					//ClickUpdateButton();
 

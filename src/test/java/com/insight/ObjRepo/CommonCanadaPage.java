@@ -66,6 +66,9 @@ public static By addTocartButtonInWarrenty = By.xpath("//*[@id='tpl-specs-warran
 public static By exportToXLSlink=By.xpath("//*[text()='Export as a file']");
 public static By IUSAMandatoryCTOlink=By.xpath("//*[text()='IUSA Mandatory CTO']");
 public static By AddtoOrder=By.xpath("//*[text()='ADD TO ORDER']");
+public static By blackBerrylogo=By.xpath("//*[@title='BlackBerry']");
+public static By searchByProductByCategory=By.xpath("//*[@id='js-custom-search-field']");
+public static By lblTopBrands=By.xpath("//*[contains(text(),'Top brands')]");
 
 
 

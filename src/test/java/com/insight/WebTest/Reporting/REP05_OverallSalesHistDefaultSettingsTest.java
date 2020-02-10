@@ -90,13 +90,13 @@ public class REP05_OverallSalesHistDefaultSettingsTest extends ReportingLib {
 					verifyTreeForAllAccounts();
 					verifyDefaultCurrentDate(data.get("CurrentDate"));
 					List<String> dateOptionsList = Arrays.asList(data.get("ScheduleDates").split(","));
-					verifyScheduleReportOptionsDates(dateOptionsList);
+					verifyScheduleReportOptionsdates(dateOptionsList);
 					selctOrderType(data.get("OrderType"));
 					canadaLib.clickOnDeliveryMethod(data.get("DeliveryMethod"));
 					canadaLib.clickOnDeliveryFormat(data.get("DeliverFormat"));
 					canadaLib.clickOnRun();
 					commonLib.spinnerImage();
-					Thread.sleep(10000);
+					Thread.sleep(50000);
 					List<String> excelData = Arrays.asList(data.get("ExcelData").split(","));
 					verifyDownloadedReportExcelFile(excelData);
 
@@ -131,13 +131,13 @@ public class REP05_OverallSalesHistDefaultSettingsTest extends ReportingLib {
 
 					verifyDefaultCurrentDate(data.get("CurrentDate"));
 
-					verifyScheduleReportOptionsDates(dateOptionsList);
+					verifyScheduleReportOptionsdates(dateOptionsList);
 					selctOrderType(data.get("OrderType"));
 					canadaLib.clickOnDeliveryMethod(data.get("DeliveryMethod"));
 					canadaLib.clickOnDeliveryFormat(data.get("DeliverFormat"));
 					canadaLib.clickOnRun();
 					commonLib.spinnerImage();
-					Thread.sleep(10000);
+					Thread.sleep(50000);
 					verifyDownloadedReportExcelFile(excelData);
 				    commonLib.clickLogOutLink(data.get("Logout_Header"));
 							} catch (Exception e) {

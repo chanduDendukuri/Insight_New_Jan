@@ -56,9 +56,14 @@ public class CRT24_WebGuidedPurchaseTest extends CartLib {
 							"Web_Cart", intCounter);
 					TestEngineWeb.reporter.initTestCaseDescription("WebGuidedPurchase");
 
-					cmtLib.loginToCMTSearchWebGrpAndUser(data.get("Header"), data.get("WebGrp"),
-							data.get("LnameEmailUname"), data.get("ContactName"));
+					//cmtLib.loginToCMTSearchWebGrpAndUser(data.get("Header"), data.get("WebGrp"),
+							//data.get("LnameEmailUname"), data.get("ContactName"));
 					// cmtLib.setPermissions(data.get("menuName"),data.get("Enable_Purchasing_Popup"));
+					cmtLib.loginToCMT(data.get("Header"));
+					cmtLib.searchForWebGroup(data.get("WebGrp"));
+					cmtLib.clickOnTheWebGroup(data.get("WebGrp_Name"));
+					cmtLib.hoverOnManageWebGroupsAndSelectOptions(data.get("Manage_Web_Grp_Options"));
+					cmtLib.searchForaUserAndSelect(data.get("LnameEmailUname"), data.get("ContactName"));
 					cmtLib.clickOnloginAs();
 					switchToChildWindow();
 					cartLib.verifyWelcomeHeader();

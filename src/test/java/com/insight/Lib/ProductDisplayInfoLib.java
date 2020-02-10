@@ -1526,31 +1526,35 @@ public class ProductDisplayInfoLib extends productsDisplayInfoObj {
         List<WebElement> partNum = driver.findElements(CartObj.Cart_Prod_Insight_Part_Number);
 
         for (int i = 0; i < DecList.size(); i++) {
+        	System.out.println("i"+i);
             if (partNum.get(i).getText().contains(prodcut) || DecList.get(i).getText().contains(prodcut)) {
                 if (DecList.get(i).isDisplayed()) {
-                    reporter.SuccessReport("Unit Price ", "Unit price is for " + partNum.get(i).getText() + " is ", DecList.get(i).getText());
+                    reporter.SuccessReport("Product Description  ", "Product Description is for " + partNum.get(i).getText() + " is ", DecList.get(i).getText());
                 }
                 if (priceList.get(i).isDisplayed()) {
-                    reporter.SuccessReport("Product Description", "Product Description is " + partNum.get(i).getText() + " is ", priceList.get(i).getText());
+                    reporter.SuccessReport("Total Price List", "Total Price is  " + partNum.get(i).getText() + " is ", priceList.get(i).getText());
                 }
                 if (UnitPriceList.get(i).isDisplayed()) {
                     reporter.SuccessReport("Unit Price ", "Unit price is " + partNum.get(i).getText() + " is ", UnitPriceList.get(i).getText());
                 }
                 if (qtyList.get(i).isDisplayed()) {
-                    reporter.SuccessReport("Quantity List", "Quantity List is " + partNum.get(i).getText() + " is ", qtyList.get(i).getText());
+                    reporter.SuccessReport("Quantity List", "Quantity List is " + partNum.get(i).getText() + " is ", qtyList.get(i).getAttribute("value"));
                 }
-                if (stockList != null) {
+                if (stockList.get(i) != null) {
                     /*if (stockList.get(i).isDisplayed()) {*/
-                    reporter.SuccessReport("Stock List", "Stock List is " + partNum.get(i).getText() + " is ", "Available");
+                    reporter.SuccessReport("Stock List", "Stock List is " + partNum.get(i).getText() + " is ", "Available and the value is " +  stockList.get(i).getText());
                     /*}*/
+                    reporter.SuccessReport("Quantity List", "Quantity List is " + partNum.get(i).getText() + " is ", DecList.get(i).getText()+ "<b>Quantity</b>  "+qtyList.get(i).getText() + "<b>Price</b>  "+priceList.get(i).getText() + UnitPriceList.get(i).getText() + stockList.get(i).getText());
+
+                }else {
+                    reporter.SuccessReport("Quantity List", "Quantity List is " + partNum.get(i).getText() + " is ", DecList.get(i).getText() + qtyList.get(i).getText() + priceList.get(i).getText() + UnitPriceList.get(i).getText());
                 }
             }
 
         }
-      //  reporter.failureReport("Results","No Matching Products available","Product is not matched with search results" + prodcut,driver);
-
 
     }
+
     public void verifyContract2InCartScreen(String contractName) throws Throwable {
         String actualcontractName = getText(CART_CONTRACT_NAME2, "contract name");
         if (contractName.contains(actualcontractName)) {
