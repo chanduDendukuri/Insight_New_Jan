@@ -2,18 +2,10 @@ package com.insight.WebTest.Canada;
 
 import java.util.Hashtable;
 
+import com.insight.Lib.*;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
-import com.insight.Lib.CMTLib;
-import com.insight.Lib.CanadaLib;
-import com.insight.Lib.CartLib;
-import com.insight.Lib.CommonLib;
-import com.insight.Lib.OrderLib;
-import com.insight.Lib.ProductDetailLib;
-import com.insight.Lib.ProductDisplayInfoLib;
-import com.insight.Lib.SearchLib;
-import com.insight.Lib.ShipBillPayLib;
 import com.insight.accelerators.ReportControl;
 import com.insight.accelerators.TestEngineWeb;
 import com.insight.googledrive.ReportStatus;
@@ -29,7 +21,8 @@ public class CAN05_MenuSearchTest extends CanadaLib{
 	OrderLib orderLib=new OrderLib();
 	ProductDisplayInfoLib pipLib=new ProductDisplayInfoLib();
 	ShipBillPayLib sbpLib=new ShipBillPayLib();
-	   
+	CommonCanadaLib ccp=new CommonCanadaLib();
+
 	    // #############################################################################################################
 		// #       Name of the Test         :  CAN05_MenuSearch
 		// #       Migration Author         :  Cigniti Technologies
@@ -62,13 +55,23 @@ public class CAN05_MenuSearchTest extends CanadaLib{
 				// Perform Menu Search For Non Logged in   >> Shop all products
 				searchLib.clickonShopAllButtonsInHeaderList(data.get("HeaderName"), data.get("ShopAll"));
 				searchLib.verifyMenusInShopAllProductsPageForCA(data.get("Menus"));
-				searchLib.verifyPopularProductsLabel();
+				scrollToBottomWithCordinate("500");
+							assertTrue(ccp.verifySearchByAllProd(),"Verify Search all products");
+
+
+							searchLib.verifyPopularProductsLabel();
 				// Shop all brands
 				searchLib.clickonShopAllButtonsInHeaderList(data.get("HeaderName"), data.get("ShopAllBrands"));
+							scrollToBottomWithCordinate("500");
+							assertTrue(ccp.verifyTopBrands(),"Top brands is available");
+
+
 				searchLib.selectTopBrandsInShopAllBrandsPage(data.get("BrandLogo"), data.get("Url1"));
 				// Shop all brands  >> select by alphabetical order
 				searchLib.clickonShopAllButtonsInHeaderList(data.get("HeaderName"), data.get("ShopAllBrands"));
 				searchLib.selectBrandByAlphabetOrderSectionForCA(data.get("Url2"),data.get("Brand"));
+
+							assertTrue(ccp.verifyBlackBerryLogo(),"BlackBerry page is loaded");
 				// Login to CMT
 				cmtLib.loginToCMT(data.get("Header"));
 				cmtLib.searchForWebGroup(data.get("WebGrp"));
@@ -76,22 +79,35 @@ public class CAN05_MenuSearchTest extends CanadaLib{
 				cmtLib.hoverOnManageWebGroupsAndSelectOptions(data.get("Manage_Web_Grp_Options"));
 				cmtLib.searchForaUserAndSelect(data.get("LnameEmailUname"), data.get("ContactName"));
 				// Enable permissions
-				cmtLib.clickOnRolesAndPermissionsAndSetPermission(data.get("Menu_Name"), data.get("Set_Permission"));
+				//cmtLib.clickOnRolesAndPermissionsAndSetPermission(data.get("Menu_Name"), data.get("Set_Permission"));
 				// Disable -- Enable Custom Catalog
-			    cmtLib.setPermissionsToDisable(data.get("Menu_Name"), data.get("Set_Permission1"));
+			    //cmtLib.setPermissionsToDisable(data.get("Menu_Name"), data.get("Set_Permission1"));
 				 // Login as to UAT
 				cmtLib.loginAsAdminCMT();
 				// Perform Menu Search For Non Logged in   >> Shop all products
-				searchLib.clickonShopAllButtonsInHeaderList(data.get("HeaderName"), data.get("ShopAll"));
-				searchLib.verifyMenusInShopAllProductsPageForCA(data.get("Menus"));
-				searchLib.verifyPopularProductsLabel();
-				// Shop all brands
-				searchLib.clickonShopAllButtonsInHeaderList(data.get("HeaderName"), data.get("ShopAllBrands"));
-				searchLib.selectTopBrandsInShopAllBrandsPage(data.get("BrandLogo"), data.get("Url1"));
-				// Shop all brands  >> select by alphabetical order
-				searchLib.clickonShopAllButtonsInHeaderList(data.get("HeaderName"), data.get("ShopAllBrands"));
-				searchLib.selectBrandByAlphabetOrderSection(data.get("Url2"),data.get("Brand"));
-				// End of  test
+				cmtLib.loginVerification(data.get("ContactName"));
+
+							searchLib.clickonShopAllButtonsInHeaderList(data.get("HeaderName"), data.get("ShopAll"));
+							searchLib.verifyMenusInShopAllProductsPageForCA(data.get("Menus"));
+							scrollToBottomWithCordinate("500");
+							assertTrue(ccp.verifySearchByAllProd(),"Verify Search all products");
+
+
+							searchLib.verifyPopularProductsLabel();
+							// Shop all brands
+							searchLib.clickonShopAllButtonsInHeaderList(data.get("HeaderName"), data.get("ShopAllBrands"));
+							scrollToBottomWithCordinate("500");
+							assertTrue(ccp.verifyTopBrands(),"Top brands is available");
+
+
+							searchLib.selectTopBrandsInShopAllBrandsPage(data.get("BrandLogo"), data.get("Url1"));
+							// Shop all brands  >> select by alphabetical order
+							searchLib.clickonShopAllButtonsInHeaderList(data.get("HeaderName"), data.get("ShopAllBrands"));
+							searchLib.selectBrandByAlphabetOrderSectionForCA(data.get("Url2"),data.get("Brand"));
+
+							assertTrue(ccp.verifyBlackBerryLogo(),"BlackBerry page is loaded");
+
+							// End of  test
 				System.out.println("Test completed");
 				
 						} catch (Exception e) {
