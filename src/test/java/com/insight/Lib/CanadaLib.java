@@ -1584,6 +1584,7 @@ public void addShippingAddress(String name, String userName,String street1,Strin
 		waitForVisibilityOfElement(SMART_CHECK, "Smart Check");
 		if (isVisibleOnly(SMART_CHECK, "Smart Check")) {
 			status=true;
+			click(SMART_CHECK,"Smart Check");
 			reporter.SuccessReport("Verify Smart Tracker Check Box on Reports Page",
 					"Smart Tracker Check Box Exists and UnChecked", "");
 		} else {

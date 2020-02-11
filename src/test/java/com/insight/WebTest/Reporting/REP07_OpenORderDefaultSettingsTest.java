@@ -80,7 +80,7 @@ public class REP07_OpenORderDefaultSettingsTest extends CanadaLib{
 				verifyFilterOption();
 				verifyScheduleReport(data.get("ScheduleOption"));
 				verifyDeliveryOption();
-				clickOnAccountSelections(data.get("AccountSelectionsOpt"));
+				clickOnAccountSelections(data.get("AccountSelections"));
 				verifyQuickDateOption(data.get("QuickDateOptions"));
 				verifySmartcheck();
 				reportingLib.verifyStartDate("01");
