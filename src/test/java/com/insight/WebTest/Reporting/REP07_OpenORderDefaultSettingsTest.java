@@ -71,6 +71,7 @@ public class REP07_OpenORderDefaultSettingsTest extends CanadaLib{
 						data.get("Tools_Menu_DD"));	
 				clickOnReportOptions(data.get("ReportOption"));
 				verifyReportsPage();
+				reportingLib.verifySelectReportOptions();
 				verifySelectReport(data.get("SelectReport"));
 				verifyAccountSelections(data.get("AccountSelections"));
 				reportingLib.verifytheLinkedSoldTosText();

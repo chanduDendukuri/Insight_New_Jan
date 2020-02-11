@@ -975,11 +975,15 @@ public void grandParentCheckboxNotClicked()throws Throwable {
 		
 		
 			public void verifySelectReportOptions() throws Throwable {
+				if(isVisibleOnly(SELECTEDREPORTSOPTIONS,"Select Report Options")) {
 				List<WebElement> list2 = driver.findElements(SELECTEDREPORTSOPTIONS);
 				for(int i=0;i<list2.size();i++) {
 					String Options=list2.get(i).getText();
 					reporter.SuccessReport("Verify Select Report Options"," Select Report Options exist on Report Page", Options);
 				}
+			}else{
+				reporter.failureReport("Verify Select Report Options","Select Report Options doesnot exist on Report Page", "");
+			}
 			}
 		
 }
