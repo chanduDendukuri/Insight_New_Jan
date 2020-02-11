@@ -2562,7 +2562,7 @@ public  void verifyDashboard()throws Throwable {
 	 * @throws Throwable
 	 */
 	public void editSmartTracker(String label) throws Throwable {
-		click(SMART_TRACKER_EXPEND, "WGHeader Level:  "+label);
+		click(SMART_TRACKER_EXPEND,label);
 		Thread.sleep(3000);
 		click(EDIT_SMART_TRACKER, "edit button");
 		if (isEnabled(MAKE_INACTIVE_CHECK_BOX, "make inactive check box")) {
