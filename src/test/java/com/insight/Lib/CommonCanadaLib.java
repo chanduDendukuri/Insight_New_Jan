@@ -466,9 +466,30 @@ public class CommonCanadaLib extends CommonCanadaPage {
             break;
         }
     }
+    public void clickOnAddToCartButtonUnderWarrenty() throws Throwable {
+        click(addTocartButtonInWarrenty1, "Add to cart button");
+            //reporter.SuccessReport("Clicked on ADd to cart button", "Clicked on ADd to cart button", "Clicked on ADd to cart button");
+            
+        
+    }
+    
+    public void getPriceinWarrenty() throws Throwable {
+    	if(isElementPresent(priceInWarrenty, "Price in warrenty tab")) {
+    		List<WebElement> atc = driver.findElements(priceInWarrenty);
+    		//String price=getText(priceInWarrenty, "Price in warrenty tab");
+    		for (int i = 0; i < atc.size(); i++) {
+                String price=atc.get(i).getText();
+    		reporter.SuccessReport("Price in warrenty tab", "Price in warrenty tab exists", "Warrenty price is: "+price, driver);
+    		}
+    	}
+    	else {
+    		reporter.failureReport("Price in warrenty tab", "Price in warrenty tab does not exists", "", driver);
+    	}
+    	
+    }
 //btnAddToCartIst
     public void verifyExportFile(String sheetName, String rowNumber, String columnHeaders, File fileN) throws Throwable {
-        Thread.sleep(60000);
+       Thread.sleep(60000);
 
         // String content = Files.readString(Paths.get(fileN));
         // String content = FileUtils.readFileToString(new File(String.valueOf(fileN)), StandardCharsets.UTF_8);
@@ -479,9 +500,9 @@ public class CommonCanadaLib extends CommonCanadaPage {
             List<String> acutalContent = Arrays.asList(columnHeaders.split(","));
             System.out.println("Compare content" + downloadedExcelContent.equals(acutalContent));
             if (downloadedExcelContent.equals(acutalContent)) {
-                reporter.SuccessReport(columnHeaders, "columns are avilable in exportCart.xls", "columns: " + columnHeaders);
+                reporter.SuccessReport(""+columnHeaders, "columns are avilable in Excel File", "columns: " + columnHeaders);
             } else {
-                reporter.failureReport(columnHeaders, columnHeaders + " are not avilable", "", driver);
+                reporter.failureReport(""+columnHeaders, columnHeaders + " are not avilable", "", driver);
             }
         } else {
             reporter.failureReport("ExportCart Excel File", "File dose not exists", "", driver);

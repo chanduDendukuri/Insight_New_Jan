@@ -57,7 +57,7 @@ public class CAN10_SPLAZeroUsageTest extends CanadaLib {
                     cmtLib.searchForWebGroup(data.get("WebGrp"));
                     cmtLib.clickOnTheWebGroup(data.get("WebGrp_Name"));
                     /// allow_unlimited_spla_ordering;off";
-                 //   commonLib.clickRolesAndPermissionsAtUserLevel();
+                   //   commonLib.clickRolesAndPermissionsAtUserLevel();
                     cmtLib.setHostedLicensingPermissionsOFF(data.get("Set_Permission"));
                     cmtLib.hoverOnManageWebGroupsAndSelectOptions(data.get("Manage_Web_Grp_Options1"));
                     // Clear usage
@@ -103,14 +103,14 @@ public class CAN10_SPLAZeroUsageTest extends CanadaLib {
                     pipLib. verifyCartPageAndPartDetailsForRecentlyItemDynamically(data.get("SearchItem2"));
 
                    // cartLib.verifyItemInCartByInsightPart(data.get("SearchItem2"));
-                    scrollToBottomWithCordinate("-2000");
+                    //scrollToBottomWithCordinate("-2000");
                     // account tools >> Software License Agreements
                     commonLib.clickOnAccountToolsAndClickOnProductGrp(data.get("Tools_Menu"), data.get("Tools_Menu_DD"));
                     verifySPLAPage();
                     slpLib.retrieveLastUsageReport(data.get("SPLA"));
-                    /*String subTotal=sbpLib.getTotalAmountInCart(data.get("SubTotal_label"));
+                    String subTotal=sbpLib.getTotalAmountInCart(data.get("SubTotal_label"));
 					Double subTotalAmount = Double.parseDouble(subTotal.replace("$", ""));
-					slpLib.verifyAmount(subTotalAmount);*/
+					slpLib.verifyAmount(subTotalAmount);
                   
 					clickOnReportZeroUsageLinkOnCart();
 					// Verify Only Zero Usage Part in the Cart CAD $0.00"
@@ -124,8 +124,8 @@ public class CAN10_SPLAZeroUsageTest extends CanadaLib {
 					 String cartUsagePeriod=verifyReportingUsagePeriod();
 					//Proceed to checkout
 					 orderLib.proceedToCheckout();
-					 orderLib.clickOnAdditionalInfoContinueButton();
-					 orderLib.clickContinueOnLineLevelInfo();   // Click continue on Line level Info
+					 /*orderLib.clickOnAdditionalInfoContinueButton();
+					 orderLib.clickContinueOnLineLevelInfo();   // Click continue on Line level Info*/					 
 					 verifySBP();
 					 orderLib.clickContinueOnShippingAddress();  // Click continue on  shipping address 
 					 orderLib.billingAddressContinueButton(); // Billing address continue button
@@ -140,9 +140,9 @@ public class CAN10_SPLAZeroUsageTest extends CanadaLib {
 					 String amount = cartLib.getSummaryAmountInCart();
 					orderLib.placeOrderAndVerifyReceiptOrderAndDate(amount);
 				 
-					// Verify usage period on receipt page
+					/*// Verify usage period on receipt page
 					 String receiptUsagePeriod=slpLib.verifyReportingUsagePeriodOnReceiptPage();
-					 slpLib.verifyUsagePeriodsMatching(receiptUsagePeriod, cartUsagePeriod);
+					 slpLib.verifyUsagePeriodsMatching(receiptUsagePeriod, cartUsagePeriod);*/
 					
 					 // account tools >> Software License Agreements
 					commonLib.clickOnAccountToolsAndClickOnProductGrp(data.get("Tools_Menu"), data.get("Tools_Menu_DD"));

@@ -931,7 +931,7 @@ public class CanadaLib extends CanadaObj {
 	 */
 	public void clickOnReportZeroUsageLinkOnCart() throws Throwable {
 		waitForVisibilityOfElement(REPORT_ZERO_USAGE_LINK, "report zero usage");
-		click(REPORT_ZERO_USAGE_LINK, "report zero usgae link");
+		click(REPORT_ZERO_USAGE_LINK, "Report Zero Usage For This Period");
 	}
 
 	/**
@@ -1150,15 +1150,15 @@ public void selectOption() throws Throwable {
 	 * @return
 	 * @throws Throwable
 	 */
-	public String enterNameOnAdditionalInfo() throws Throwable {
-		String name = DynamicTestDataGenerator.generateRandomFirstName();
+	public String enterNameOnAdditionalInfo(String contactName) throws Throwable {
+		//String name = DynamicTestDataGenerator.generateRandomFirstName();
 		if (isVisibleOnly(MarriottIntlCorpObj.NAME, "Name")) {
 			click(MarriottIntlCorpObj.NAME, "Name");
-			type(MarriottIntlCorpObj.NAME, name, "Name");
+			type(MarriottIntlCorpObj.NAME, contactName, "Name");
 		}else {
 			reporter.failureReport("Verify Name fields exists", "Name field does not exists", "", driver);
 		}
-		return name;
+		return contactName;
 	}
 
 /*
@@ -1584,6 +1584,7 @@ public void addShippingAddress(String name, String userName,String street1,Strin
 		waitForVisibilityOfElement(SMART_CHECK, "Smart Check");
 		if (isVisibleOnly(SMART_CHECK, "Smart Check")) {
 			status=true;
+			click(SMART_CHECK,"Smart Check");
 			reporter.SuccessReport("Verify Smart Tracker Check Box on Reports Page",
 					"Smart Tracker Check Box Exists and UnChecked", "");
 		} else {

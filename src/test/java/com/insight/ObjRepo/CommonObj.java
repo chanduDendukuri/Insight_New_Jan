@@ -126,7 +126,8 @@ public class CommonObj extends ActionEngine{
 	 * >>>>>>>>>>>>>>>>>>>> LOCATORS TO SELECT ACCOUNT TOOLS  MENU AND SELECTS DROP DOWN LIST <<<<<<<<<<<<<<<<<<<<<<<<<<
 	 * ******************************************************************************************************************/
 	public static By getAccountToolsMenu(String toolsMenuName){
-		return By.xpath("//div[@id='manage-wrapper']//a[contains(text(),'"+toolsMenuName+"')]");
+		//return By.xpath("//div[@id='manage-wrapper']//a[contains(text(),'"+toolsMenuName+"')]");
+		return By.xpath("//div[@id='manage-wrapper']//ul[@class='metismenu']//a[contains(text(),'"+toolsMenuName+"')]");
 	}
 	
 	public static By getAccountToolsDD(String toolsMenuName,String dropDown){
@@ -220,7 +221,9 @@ public static By closePopup=By.xpath("//*[@id='cookieModal']//a[@aria-label='Clo
 public static By accountToolsMenu(String toolsMenuName){
 	return By.xpath("//div[@class='sidebar-nav']//a[contains(text(),'"+toolsMenuName+"')]");
 }
-
+// popup - receipt page
+public static By WHAT_YOU_THINK_POPUP_NO_THANKS_BTN=By.xpath("//a[@class='ng-binding'][contains(text(),'No thanks')]");
+public static By FRAME_ELEMENT=By.xpath("//*[@title='Usabilla Feedback Form']");
 
 }
 

@@ -66,14 +66,18 @@ public class PID04_RecentlyViewedProductsTest extends ActionEngine{
 					searchLib.verifyBreadCrumbInSearchResultsPage(data.get("Search_Item2"));
 					cartLib.selectFirstProductDisplay();
 					String Searchitem2=productdetLib.getProductNameInProductDetailPage(data.get("Search_Item2")).trim();
+					Thread.sleep(50000);
+					productdetLib.verifyImageofProduct(Searchitem1);
+					productdetLib.verifyPriceofProduct(Searchitem1);
+					productdetLib.viewdetails(Searchitem1);
 					ArrayList<String> z =productdetLib.Verifyrecentlyvieweditems();
 					x.add(data.get("Search_Item2"));
 					
 					//search item 3
-					commonLib.searchProduct(data.get("Search_Item3"));//Multifunction Printers
-					searchLib.verifyBreadCrumbInSearchResultsPage(data.get("Search_Item3"));
+					commonLib.searchProduct(data.get("Search_Item5"));//LED Monitors
+					searchLib.verifyBreadCrumbInSearchResultsPage(data.get("Search_Item5"));
 					cartLib.selectFirstProductDisplay();
-					String Searchitem3=productdetLib.getProductNameInProductDetailPage(data.get("Search_Item3"));
+					String Searchitem3=productdetLib.getProductNameInProductDetailPage(data.get("Search_Item5"));
 					productdetLib.Verifyrecentlyvieweditems();
 					x.add(Searchitem3);
 						if(x.size() == z.size()) {
@@ -95,18 +99,18 @@ public class PID04_RecentlyViewedProductsTest extends ActionEngine{
 						}
 					}
 					//search item 5
-					commonLib.searchProduct(data.get("Search_Item5"));//Cisco LED Flat Pannel
-					searchLib.verifyBreadCrumbInSearchResultsPage(data.get("Search_Item5"));
+					commonLib.searchProduct(data.get("Search_Item_OKI"));//OKI
+					searchLib.verifyBreadCrumbInSearchResultsPage(data.get("Search_Item_OKI"));
 					cartLib.selectFirstProductDisplay();
 					productdetLib.Verifyrecentlyvieweditems();
-					x.add(data.get("Search_Item5"));
+					x.add(data.get("Search_Item_OKI"));
 					if(x.size() == z.size()) {
 						for (int i = 0; i < x.size(); i++) {
 							ccp.validateNames(x.get(i).trim(),z.get(i).trim());
 						}
 					}
 					//search item 6
-					commonLib.searchProduct(data.get("Search_Item6"));//Ricoh Printer
+					commonLib.searchProduct(data.get("Search_Item6"));//Computer Cables
 					searchLib.verifyBreadCrumbInSearchResultsPage(data.get("Search_Item6"));
 					cartLib.selectFirstProductDisplay();
 					productdetLib.Verifyrecentlyvieweditems();
@@ -116,28 +120,20 @@ public class PID04_RecentlyViewedProductsTest extends ActionEngine{
 							ccp.validateNames(x.get(i).trim(),z.get(i).trim());
 						}
 					}
-					//search item 7
-					commonLib.searchProduct(data.get("Search_Item7"));//Computer Cables
-					searchLib.verifyBreadCrumbInSearchResultsPage(data.get("Search_Item7"));
-					cartLib.selectFirstProductDisplay();
-					productdetLib.Verifyrecentlyvieweditems();
-					x.add(data.get("Search_Item7"));
-					if(x.size() == z.size()) {
-						for (int i = 0; i < x.size(); i++) {
-							ccp.validateNames(x.get(i).trim(),z.get(i).trim());
-						}
-					}
 					// Login
 					cmtLib.loginToCMTSearchWebGrpAndUser(data.get("Header"), data.get("WebGrp"),
 							data.get("LnameEmailUname"), data.get("Contact_Name"));
 					cmtLib.loginAsAdminCMT();
-					commonLib.searchProduct(data.get("Search_Item4"));
+					commonLib.searchProduct(data.get("Search_Item1"));
 					String MfrNum = productdetLib.getMfrpartnumofFirstproduct();
 					cartLib.selectFirstProductDisplay();
 					Thread.sleep(4000);
 					productDispinfoLib.verifyTheManufacturerNumberInProductDetailsPage(MfrNum);
-					commonLib.addToCartAndVerify();
-					commonLib.clickLogOutLink(data.get("Logout_Header"));
+					commonLib.searchProduct(data.get("Search_Item_OKI"));
+					cartLib.selectFirstProductDisplay();
+					String Search_Item_OKI=productdetLib.getProductNameInProductDetailPage(data.get("Search_Item_OKI"));
+					productdetLib.VerifyOKIProductisVisible(Search_Item_OKI);
+					//commonLib.clickLogOutLink(data.get("Logout_Header"));
 					cmtLib.navigateBackToCMT();
 					cmtLib.hoverOverMasterGroupAndSelectChangeGrp();
 					cmtLib.searchForWebGroup(data.get("WebGrp"));
@@ -156,10 +152,12 @@ public class PID04_RecentlyViewedProductsTest extends ActionEngine{
 					cmtLib.searchForaUserAndSelect(data.get("LnameEmailUname"), data.get("Contact_Name"));
 					cmtLib.setPermissions(data.get("Menu_Name"), data.get("Set_Permission"));
 					cmtLib.loginAsAdminCMT();
-					commonLib.searchProduct(data.get("Search_Item4"));
+					commonLib.searchProduct(data.get("Search_Item1"));
 					cartLib.selectFirstProductDisplay();
-					commonLib.searchProduct(data.get("Search_Item5"));
+					commonLib.searchProduct(data.get("Search_Item_OKI"));
 					cartLib.selectFirstProductDisplay();
+					String Search_Item_OKI1=productdetLib.getProductNameInProductDetailPage(data.get("Search_Item_OKI"));
+					productdetLib.VerifyOKIProductisNotVisible(Search_Item_OKI1);
 					// verify recently viewed----
 					productdetLib.Verifyrecentlyvieweditems();
 					commonLib.clickLogOutLink(data.get("Logout_Header"));

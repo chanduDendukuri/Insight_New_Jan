@@ -71,6 +71,7 @@ public class REP03_AdHocReportDefaultSettingsTest extends CanadaLib{
 				mic.clickAccountToolsFromSideMenu(data.get("Tools_Menu"),data.get("Tools_Menu_DD"));	
 				clickOnReportOptions(data.get("ReportOption"));
 				verifyReportsPage();
+				reportingLib.verifySelectReportOptions();
 				verifySelectReport(data.get("SelectReport"));
 				reportingLib.verifytheLinkedSoldTosText();
 				reportingLib.verifyDefualtCurrancyUSD();
@@ -91,7 +92,8 @@ public class REP03_AdHocReportDefaultSettingsTest extends CanadaLib{
 				clickOnRun();	
 				Thread.sleep(40000);
 				Thread.sleep(60000);
-				ccp.verifyExportFile("Page1","3","Operations Center,Region,Account Number",ccp.getLatestFilefromDir());
+				String List="";
+				ccp.verifyExportFile("Page1","2","Operations Center,Region,Account Number",ccp.getLatestFilefromDir());
 			    commonLib.clickLogOutLink(data.get("Logout_Header"));
 
 				} catch (Exception e) {

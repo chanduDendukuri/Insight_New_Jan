@@ -880,6 +880,7 @@ public class CartLib extends ActionEngine {
 			for (int i = 0; i <= size-1; i++) {
 				String cartName = myList1.get(i).getText();
 				myList.get(i).click();
+				reporter.SuccessReport("clicked on delete button ", "Sucessfulyy clicked on delete button", "Saved Carts: "+cartName);
 				waitForVisibilityOfElement(CartObj.YES_BUTTON_INCONFORMATION_POP_UP, "Yes in conformation pop up");
 				click(CartObj.YES_BUTTON_INCONFORMATION_POP_UP, "Yes in conformation pop up","Saved Carts: "+ cartName);
 				Thread.sleep(5000);
@@ -1003,7 +1004,7 @@ public class CartLib extends ActionEngine {
 			
 		}
 		else {
-			reporter.failureReport("Verifying in stock items", "In stock items are not present", "", driver);
+			reporter.SuccessReport("Verifying in stock items", "In stock items are not present", "", driver);
 		}
 	}
     
@@ -1498,12 +1499,13 @@ public class CartLib extends ActionEngine {
 	}
 
 	public String getPartNumber() throws Throwable {
-
+       Thread.sleep(10000);
 		String[] partNumberArray = getText(CartObj.PART_NUMBER_IN_ADDED_TO_YOUR_CART_POPUP,
 				"MFR_NUMBER_PRODUCT_DETAILS_PAGE").replace("\"", "").replace(" ", "").trim().split(":");
 		String partNumber = partNumberArray[1].trim();
 		return partNumber;
 	}
+	
 
 	/**
 	 * PURPOSE: This method is to verify verify QuickShop Error Message in shopping

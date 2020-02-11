@@ -255,7 +255,7 @@ public class LineLevelInfoLib extends LineLevelInfoObj{
 	 */
 	public String enterEmailInCreateAccount() throws Throwable{
 		waitForVisibilityOfElement(SewpObj.EMAIL_ADDRESS, "Email Address");
-		String email ="UFT"+DynamicTestDataGenerator.generateRandomEmail();
+		String email ="QTPTest"+DynamicTestDataGenerator.generateRandomNumber()+"@mail.com";
 		typeText(SewpObj.EMAIL_ADDRESS, email, "Email Address");
 	    return email;
 		
@@ -265,8 +265,8 @@ public class LineLevelInfoLib extends LineLevelInfoObj{
 	 * Enter password in create account page
 	 * @throws Throwable
 	 */
-	public String enterpasswordInCreateAccount() throws Throwable{
-		String password=DynamicTestDataGenerator.generateRandomPassword();
+	public String enterpasswordInCreateAccount(String password) throws Throwable{
+		//String password=DynamicTestDataGenerator.generateRandomPassword();
 		typeText(SewpObj.PWD, password , "Password");
 		typeText(SewpObj.CRM_PWD,password, "Confirm Password");
 		return password;

@@ -146,10 +146,7 @@ public class ReportingLib extends ReportsObj {
 	 * @throws Throwable
 	 */
 	public void verifyScheduleReportOptionsDates(List<String> Options) throws Throwable {
-		
 		for (int i=0 ; i <Options.size();i++){
-
-		waitForVisibilityOfElement(DELIVERY_METHODOPTIONS, "Select Delivery Method");
 		if (isElementPresent(SCHEDULEREPORT_OPTIONS, "Select ADelivery Method", true)){				
 			selectByVisibleText(SCHEDULEREPORT_OPTIONS,Options.get(i),"Schedule Report");	
 		reporter.SuccessReport("Verify Schedule report "+Options.get(i)+" Options on Report Page"," Schedule Report  "+Options.get(i)+" Options exist on Report Page", Options.get(i));
@@ -976,6 +973,18 @@ public void grandParentCheckboxNotClicked()throws Throwable {
 
 		}	
 		
+		
+			public void verifySelectReportOptions() throws Throwable {
+				if(isVisibleOnly(SELECTEDREPORTSOPTIONS,"Select Report Options")) {
+				List<WebElement> list2 = driver.findElements(SELECTEDREPORTSOPTIONS);
+				for(int i=0;i<list2.size();i++) {
+					String Options=list2.get(i).getText();
+					reporter.SuccessReport("Verify Select Report Options"," Select Report Options exist on Report Page", Options);
+				}
+			}else{
+				reporter.failureReport("Verify Select Report Options","Select Report Options doesnot exist on Report Page", "");
+			}
+			}
 		
 }
 
