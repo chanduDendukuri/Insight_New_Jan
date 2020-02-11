@@ -920,6 +920,48 @@ public class SearchLib extends CommonObj {
 					click(ADD_TO_ORDER, "Add to oreder button");
 					isElementPresent(ITEMS_ADDED_TO_CART_POPUP, "items added to cart",true);
 					click(PROD_GRP_CLOSE_ICON, "Close icon");
+					
+				}
+		}else{
+			reporter.failureReport("verify the selected product group is displayed","Selected product is not displayed correctly under the product group.","");
+		}
+		
+	}		
+	
+public void selectProductGroupAndVerify1(String productGroup,String productName) throws Throwable{
+		
+		click(getCompanyStandardsProductGroup(productGroup, productName), "select product from product group","Link : "+productName);
+		
+		if(isElementPresent(getProductGrpNavigation(productGroup, productName), "NAVIGATED PRODUCT GROUP")){
+			 reporter.SuccessReport("verify the selected product is displayed under the product group","Selected product is displayed correctly under the product group.",productName);
+			  if(isElementPresent(ADD_ITEMS_RADIO_BUTTON, "add items to cart radio button")){
+			     List<WebElement> myradioList=driver.findElements(ADD_ITEMS_RADIO_BUTTON);
+			     List<WebElement> myList=driver.findElements(ITEM_DESCRIPTION);
+			         for (int i = 0; i < myradioList.size(); i++) {
+				         if(myradioList.get(i).isSelected()){
+					          reporter.SuccessReport("verify the radio button checked or not","product is checked",myList.get(i).getText());
+				   }
+				}
+			  }else
+					if(isElementPresent(ADD_ITEMS_CHECKBOX, "Add items check box")){
+						scrollToBottomWithCordinate("200");
+					List<WebElement> myList1=driver.findElements(ADD_ITEMS_CHECKBOX);
+					List<WebElement> myList=driver.findElements(ITEM_DESCRIPTION);
+					for (int j = 0; j < myList1.size(); j++) {
+						myList1.get(j).click();
+						reporter.SuccessReport("verify the radio button checked or not","product is checked",myList.get(j).getText());
+						Thread.sleep(6000);
+					}
+					
+					click(ADD_TO_ORDER, "Add to oreder button");
+					//isElementPresent(ITEMS_ADDED_TO_CART_POPUP, "items added to cart",true);
+					//click(PROD_GRP_CLOSE_ICON, "Close icon");
+					if(isVisibleOnly(VIEW_CART_PRODUCT_GROUP, "View cart Link")){
+						click(VIEW_CART_PRODUCT_GROUP, "View cart Link","View cart Link");
+						reporter.SuccessReport("verify View cart Link on Items added to cart Popup on Company standards", "View cart Link is visible and clicked","");
+					}else{
+						reporter.failureReport("verify View cart Link on Items added to cart Popup on Company standards", "View cart Link is not visible","");
+					}
 				}
 		}else{
 			reporter.failureReport("verify the selected product group is displayed","Selected product is not displayed correctly under the product group.","");
