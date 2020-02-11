@@ -97,6 +97,7 @@ public static By LINKEDSOLDTOS=By.xpath("//input[@checked='checked']/parent::td/
 public static By LINKEDSOLDTO=By.xpath("//input[@checked='checked']");
 public static By SELECTEDCENTERS=By.xpath("//td[@id='selectedRegionsLabel']");
 public static By SELECTEDREGIONS=By.xpath("//td[@id='selectedOpsRegionsLabel']");
+public static By SELECTEDREPORTSOPTIONS=By.xpath("//select[@id='selectionList']/option");
 
 
 }
