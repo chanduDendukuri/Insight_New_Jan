@@ -882,10 +882,8 @@ public class CommonLib extends ActionEngine{
 	 */
 	
 	public void clickOnNoThanksOnWhatYouThinkPopup() throws Throwable {
-		int size = driver.findElements(By.tagName("iframe")).size();
 		WebElement iframeElement = driver.findElement(By.xpath("//*[@title='Usabilla Feedback Form']"));
 		driver.switchTo().frame(iframeElement);
-		//driver.switchTo().frame(7);
 		if(isElementPresent(CommonObj.WHAT_YOU_THINK_POPUP_NO_THANKS_BTN, "No Thanks")) {
 			click(CommonObj.WHAT_YOU_THINK_POPUP_NO_THANKS_BTN, "No thanks link");
 		}else {
