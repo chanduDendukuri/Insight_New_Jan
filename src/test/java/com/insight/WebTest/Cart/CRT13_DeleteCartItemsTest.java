@@ -108,8 +108,8 @@ public class CRT13_DeleteCartItemsTest extends CartLib {
 					cartLib.deletePartInCart(manfa);
 					commonLib.clickOnAccountToolsAndClickOnProductGrp(data.get("Tools_Menu"),
 								data.get("Tools_Menu_DD"));
-					searchLib.selectProductGroupAndVerify(data.get("Product_Group"), data.get("Product_Name"));
-					commonLib.clickCart();
+					searchLib.selectProductGroupAndVerify1(data.get("Product_Group"), data.get("Product_Name"));
+					
 					canadaLib.verifyPlaceCartLabel();
 					commonLib.verifyBundleIsAddedToCart();
 					deleteBundle();
