@@ -1113,16 +1113,16 @@ public class ProductDetailLib extends ProductDetailObj {
     
     public void VerifyOKIProductisVisible(String product) throws Throwable {
     	if(isVisibleOnly(Clickviewdetailsunderproduct(product), "view details")) {
-      reporter.SuccessReport("Verify OKI Product", "OKI Product is visible", "");
+      reporter.SuccessReport("Verify OKI Product", "OKI Product is visible", product);
     }else {
-    	reporter.failureReport("Verify OKI Product", "Verify OKI Product is Not visible", "");
+    	reporter.failureReport("Verify OKI Product", "Verify OKI Product is Not visible", product);
     }
     } 
     public void VerifyOKIProductisNotVisible(String product) throws Throwable {
     	if(isVisibleOnly(Clickviewdetailsunderproduct(product), "view details")) {
-      reporter.failureReport("Verify OKI Product", "OKI Product is visible", "");
+      reporter.failureReport("Verify OKI Product", "OKI Product is visible", product);
     }else {
-    	reporter.SuccessReport("Verify OKI Product", "Verify OKI Product is Not visible", "");
+    	reporter.SuccessReport("Verify OKI Product", "Verify OKI Product is Not visible", product);
     }
     } 
     
