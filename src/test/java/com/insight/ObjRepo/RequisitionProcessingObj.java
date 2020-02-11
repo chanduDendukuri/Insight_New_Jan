@@ -57,7 +57,11 @@ public class RequisitionProcessingObj extends CommonObj {
 	public static By OPTIONAL_RULES_LINK = By.xpath("//span[@id='li-OptionalRules']");
 
 	public static By BACKTO_REQSEARCH = By.xpath("//span[@id='backtoReqSearch']//a");
+	public static By DeleteRoutingOption = By.xpath("//a[@class='deleteRoute']");
+	
+public static By Delete_UnderRouteButton = By.xpath("//span[text()='Delete Route']//following::span[text()='Delete']");
 
+public static By Delete_UnderRouteButton1 = By.xpath("(//span[text()='Delete Route']//following::span[text()='Delete'])[2]");
 	public static By SMARTTRACKERRULES_EDIT_LINK = By
 			.xpath("//td[@id='reqname' and contains(text(),'SmartTrackerRules')]/..//td/a[contains(text(),'Edit')]");
 

@@ -188,6 +188,7 @@ public class RequisitionProcessingLib extends RequisitionProcessingObj {
 	public void createRule(String cart_type,String ApprovalPath, String Min_Amt, String Max_Amt, String path, String item)
 			throws Throwable {
 		// Click Add Rule
+		
 
 		clickAddRule();
 
@@ -297,7 +298,7 @@ public class RequisitionProcessingLib extends RequisitionProcessingObj {
 	public void deleteRoutingOption() throws Throwable {
 
 		if (isElementPresent(By.xpath("//a[@class='deleteRoute']"), "Delete routing option")) {
-			click(By.xpath("//a[@class='deleteRoute']"), "Delete routing option");
+			click(By.xpath("//span[contains(text(),'Delete Route')]//following::span[contains(text(),'Delete')]"), "Delete routing option");
 			if (isElementPresent(By.xpath("(//div[@class='buttons dbDiv']//a//span[contains(text(),'Delete')])[5]"),
 					"Delete rule icon")) {
 				click(By.xpath("(//div[@class='buttons dbDiv']//a//span[contains(text(),'Delete')])[5]"),
@@ -306,7 +307,25 @@ public class RequisitionProcessingLib extends RequisitionProcessingObj {
 		}
 
 	}
+	public void VerifyIfRoutingOptionsareVisibleandDelete() throws Throwable {
 
+		if (isVisibleOnly(DeleteRoutingOption, "Delete routing icon")) {
+			click(DeleteRoutingOption, "Delete routing icon", "");
+			if(isVisibleOnly(Delete_UnderRouteButton, "Delete button")){
+				click(Delete_UnderRouteButton, "Clicked on Delete button", "");
+				reporter.SuccessReport("Delete Route", "All routes are deleted", "", driver);
+			}
+			else if(isVisibleOnly(Delete_UnderRouteButton1, "Delete button")){
+				click(Delete_UnderRouteButton1, "Clicked on Delete button", "");
+				reporter.SuccessReport("Delete Route", "All routes are deleted", "", driver);
+			}
+			else {
+				reporter.failureReport("Delete Route", "All routes are not deleted", "", driver);
+			}
+			
+		}
+
+	}
 	public void backtoReqSearchForCreateRules() throws Throwable {
 		if (isElementPresent(BACKTO_REQSEARCH, "Back To Requestor Group Search")) {
 			// click(BACKTO_REQSEARCH, "Click Back To Requestor Group Search
@@ -327,6 +346,7 @@ public void SelectCretaeRule(String Rule) throws Throwable {
 	}
 }
 public void ClickAddRoute() throws Throwable {
+	scrollUp();
 	click(btn_AddRoute, "AddRoute button","");
 }
 	
