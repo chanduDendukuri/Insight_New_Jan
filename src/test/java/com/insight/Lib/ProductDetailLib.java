@@ -1104,7 +1104,7 @@ public class ProductDetailLib extends ProductDetailObj {
     }
     public void viewdetails(String product) throws Throwable {
     	if(isVisibleOnly(Clickviewdetailsunderproduct(product), "view details")) {
-      reporter.SuccessReport("Verify ViewDetails", "View Details Link is visible", "");
+      reporter.SuccessReport("Verify ViewDetails", "View Details Link is visible", product);
     }else {
     	reporter.failureReport("Verify ViewDetails", "View Details Link is Not visible", "");
     }

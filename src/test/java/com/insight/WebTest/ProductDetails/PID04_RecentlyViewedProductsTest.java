@@ -66,6 +66,7 @@ public class PID04_RecentlyViewedProductsTest extends ActionEngine{
 					searchLib.verifyBreadCrumbInSearchResultsPage(data.get("Search_Item2"));
 					cartLib.selectFirstProductDisplay();
 					String Searchitem2=productdetLib.getProductNameInProductDetailPage(data.get("Search_Item2")).trim();
+					Thread.sleep(50000);
 					productdetLib.verifyImageofProduct(Searchitem1);
 					productdetLib.verifyPriceofProduct(Searchitem1);
 					productdetLib.viewdetails(Searchitem1);
