@@ -9,6 +9,7 @@ import com.insight.Lib.CMTLib;
 import com.insight.Lib.CanadaLib;
 import com.insight.Lib.CartLib;
 import com.insight.Lib.ChinaLib;
+import com.insight.Lib.CommonCanadaLib;
 import com.insight.Lib.CommonLib;
 import com.insight.Lib.EndUserFeaturesLib;
 import com.insight.Lib.InvoiceHistoryLib;
@@ -39,6 +40,7 @@ public class CRT12_TopNavTest extends CartLib {
 	LineLevelInfoLib line = new LineLevelInfoLib();
 	OrderLib order = new OrderLib();
 	CanadaLib canadaLib = new CanadaLib();
+	CommonCanadaLib ccp =  new CommonCanadaLib();
 	// #############################################################################################################
 	// # Name of the Test : CRT12_TopNav
 	// # Migration Author : Cigniti Technologies
@@ -66,8 +68,6 @@ public class CRT12_TopNavTest extends CartLib {
 							"Web_Cart", intCounter);
 					TestEngineWeb.reporter.initTestCaseDescription("TopNav");
 
-					//cmtLib.loginToCMTSearchWebGrpAndUser(data.get("Header"), data.get("WebGrp"),
-							//data.get("LnameEmailUname"), data.get("ContactName"));
 					cmtLib.loginToCMT(data.get("header"));
 					cmtLib.searchForWebGroup(data.get("WebGrp"));
 					cmtLib.clickOnTheWebGroup(data.get("WebGrp_Name"));
@@ -82,17 +82,23 @@ public class CRT12_TopNavTest extends CartLib {
 					commonLib.clickAccountToolsFromSideMenuAndClickOnProductGrp(data.get("Tools_Menu"),
 							data.get("Tools_Menu_DD"), data.get("Product_Group"), data.get("Product_Name"));
 					searchLib.clickAddToOrderOnCompanyStandardsScreen();
-					
+					canadaLib.verifyPlaceCartLabel();
 					commonLib.verifyBundleIsAddedToCart();
 					commonLib.searchProduct(data.get("PartNumber"));
 					prodInfoLib.verifyTheManufacturerNumberInProductDetailsPage(data.get("PartNumber"));
+					//prodInfoLib.clickOnWarrantiesTabOnProductDetailsPage();
+					//String manfa=prodInfoLib.getManfNumberFromWarrentiesPage(data.get("index")).split("Insight Part #:")[1].trim();
+					//System.out.println("manfa"+manfa);
 					prodInfoLib.clickOnWarrantiesTabOnProductDetailsPage();
-					String manfa=prodInfoLib.getManfNumberFromWarrentiesPage(data.get("index")).split("Insight Part #:")[1].trim();
-					System.out.println("manfa"+manfa);
-					prodInfoLib.clickOnAddToCartButtonInWarrentiesPage(data.get("index"));
+					ccp.getPriceinWarrenty();
+					ccp.clickOnAddToCartButtonUnderWarrentyDynamically();
+					String man2=cartLib.getPartNumber();
+					assertTrue(ccp.verifyAddToCartLabelAvailable(),"View Cart page loaded");
+					//prodInfoLib.clickOnAddToCartButtonInWarrentiesPage(data.get("index"));
 					canadaLib.continueToCheckout();
 					canadaLib.verifyPlaceCartLabel();
-					prodInfoLib.verifyCartPageAndPartDetailsForRecentlyItemDynamicaly(manfa);
+					commonLib.verifyBundleIsAddedToCart();
+					prodInfoLib.verifyCartPageAndPartDetailsForRecentlyItemDynamicaly(man2);
 													
 					commonLib.searchProduct(data.get("Search_Product"));
 					searchLib.verifyBreadCrumbInSearchResultsPage(data.get("Search_Product"));
