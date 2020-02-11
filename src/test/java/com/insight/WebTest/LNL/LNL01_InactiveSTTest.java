@@ -95,6 +95,7 @@ public class LNL01_InactiveSTTest extends LineLevelInfoLib{
 						orderLib.clickOnReviewOrderButton();
 						cartLib.getSummaryAmountInCart();
 					    canadaLib.clickPlaceOrderButton();
+					    commonLib.clickOnNoThanksOnWhatYouThinkPopup();
 					    orderLib.verifyReceiptVerbiage();
 						
 						/// Login 
