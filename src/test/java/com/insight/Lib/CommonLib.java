@@ -23,6 +23,7 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.mortbay.log.Log;
 import org.omg.PortableServer.THREAD_POLICY_ID;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 import org.testng.Reporter;
 
 public class CommonLib extends ActionEngine{
@@ -882,7 +883,9 @@ public class CommonLib extends ActionEngine{
 	
 	public void clickOnNoThanksOnWhatYouThinkPopup() throws Throwable {
 		int size = driver.findElements(By.tagName("iframe")).size();
-		driver.switchTo().frame(7);
+		WebElement iframeElement = driver.findElement(By.xpath("//*[@title='Usabilla Feedback Form']"));
+		driver.switchTo().frame(iframeElement);
+		//driver.switchTo().frame(7);
 		if(isElementPresent(CommonObj.WHAT_YOU_THINK_POPUP_NO_THANKS_BTN, "No Thanks")) {
 			click(CommonObj.WHAT_YOU_THINK_POPUP_NO_THANKS_BTN, "No thanks link");
 		}else {
