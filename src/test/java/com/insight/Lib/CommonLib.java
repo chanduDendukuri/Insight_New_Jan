@@ -20,6 +20,7 @@ import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.mortbay.log.Log;
 import org.omg.PortableServer.THREAD_POLICY_ID;
 import org.openqa.selenium.By;
 import org.testng.Reporter;
@@ -870,7 +871,23 @@ public class CommonLib extends ActionEngine{
 		}
 	}
 
-	public void selectRecommendedPrinters()throws Throwable{
+	/*public void selectRecommendedPrinters()throws Throwable{
 
+	}*/
+	
+	/**
+	 * Method is to handle the "Care to tell us what you think?" popup
+	 * @throws Throwable
+	 */
+	
+	public void clickOnNoThanksOnWhatYouThinkPopup() throws Throwable {
+		int size = driver.findElements(By.tagName("iframe")).size();
+		driver.switchTo().frame(7);
+		if(isElementPresent(CommonObj.WHAT_YOU_THINK_POPUP_NO_THANKS_BTN, "No Thanks")) {
+			click(CommonObj.WHAT_YOU_THINK_POPUP_NO_THANKS_BTN, "No thanks link");
+		}else {
+			//do nothing
+			Log.info("Do nothing");
+		}
 	}
 }
