@@ -340,7 +340,7 @@ public class CanadaObj extends ActionEngine {
 			public static By ApprovalManagmentHeader=By.xpath("//h1[text()='Approval Management']");
 			public static By btnUpdateButton=By.xpath("//*[@title='Update']");
 			public static By btnEnterNewCard = By.xpath("//*[text()='Enter New Card'] | //div[@class='row whiteBackground storeCardContainer']//div//div/a[text()='Enter a new card']");
-			public static By PaymentTypedpdn = By.xpath("//select[@id='insightPaymentcardType']");
-			public static By PaymentTypedpdnOptions = By.xpath("//select[@id='insightPaymentcardType']/option");
+			public static By PaymentTypedpdn = By.xpath("//select[@id='insightPaymentcardType'] | //select[@id='cardTypeSelect']");
+			public static By PaymentTypedpdnOptions = By.xpath("//select[@id='insightPaymentcardType']/option | //select[@id='cardTypeSelect']/option");
 
 }
