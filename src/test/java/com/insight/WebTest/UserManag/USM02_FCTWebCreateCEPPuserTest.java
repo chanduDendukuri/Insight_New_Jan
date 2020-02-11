@@ -94,7 +94,7 @@ public class USM02_FCTWebCreateCEPPuserTest extends UserManagementLib {
 							//commonLib.clickLogOutLink(data.get("Logout_Header"));
 							//navigateTo("https://uat1.insight.com/insightweb/endUser/createAccount?authKey=wSNU%2F3UlR5o%3D");
 							mic.handleinsightpopup();
-							refreshPage();
+							//refreshPage();
 							cmtLib.enterAdressesInCreateAnAccount(data.get("Adressess2"));
 							cmtLib.enterCityInCreateAnAccount(data.get("City2"));
 							cmtLib.selectStateInCreateAnAccount(data.get("State2"));
@@ -107,7 +107,7 @@ public class USM02_FCTWebCreateCEPPuserTest extends UserManagementLib {
 							//User Name
 							String Number=getRandomNumeric(4);
 							String userName="QTPTest"+Number;
-							cmtLib.verifyAvailabilityCreateAccount(data.get("CreateacUserName5"),userName);
+							cmtLib.verifyAvailabilityCreateAccount(userName,data.get("CreateacUserName5"));
 							String password="QTPTest"+Number;
 							cmtLib.enterPasswordInCreateAnAccount(password);
 							cmtLib.enterConfirmPasswordInCreateAnAccount(password);
