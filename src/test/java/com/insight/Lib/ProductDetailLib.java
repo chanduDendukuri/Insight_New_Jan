@@ -927,7 +927,7 @@ public class ProductDetailLib extends ProductDetailObj {
 
     public void VerifyrecentlyviwedproductslabelNotVisisble() throws Throwable {
         if (isElementPresent(RECENTLYVIEWD_PRODUCTSLABEL, "Recently Viewd Products label")) {
-            reporter.failureReport("Recently viewed products", "Recently viewed products is Visible", "");
+            reporter.SuccessReport("Recently viewed products", "Recently viewed products is Visible", "");
 
         } else {
             reporter.SuccessReport("Recently viewed products", "Recently viewed products is Not Visible After", "");
@@ -1087,8 +1087,55 @@ public class ProductDetailLib extends ProductDetailObj {
 		String prod = getText(BreadcrumbForProduct,"Product Title");
 		String Currentyear = prod.toString().split(" / ")[0];
 
-	}*/
-
+	}*///IMAGE
+    public void verifyImageofProduct(String Product) throws Throwable {
+        if (isVisibleOnly(IMAGE, "Image")) {
+            reporter.SuccessReport("Verify Image", "Image is Loaded Successfully", Product);
+        } else {
+            reporter.failureReport("Verify Image", "Image is Not Loaded Successfully", "");
+        }//PRICE
+    }
+    public void verifyPriceofProduct(String Product) throws Throwable {
+        if (isVisibleOnly(PRICE, "Image")) {
+            reporter.SuccessReport("Verify Price", "Price is Loaded Successfully", Product);
+        } else {
+            reporter.failureReport("Verify Price", "Price is Not Loaded Successfully", "");
+        }//PRICE
+    }
+    public void viewdetails(String product) throws Throwable {
+    	if(isVisibleOnly(Clickviewdetailsunderproduct(product), "view details")) {
+      reporter.SuccessReport("Verify ViewDetails", "View Details Link is visible", product);
+    }else {
+    	reporter.failureReport("Verify ViewDetails", "View Details Link is Not visible", "");
+    }
+    }
+    
+    
+    public void VerifyOKIProductisVisible(String product) throws Throwable {
+    	if(isVisibleOnly(Clickviewdetailsunderproduct(product), "view details")) {
+      reporter.SuccessReport("Verify OKI Product", "OKI Product is visible", product);
+    }else {
+    	reporter.failureReport("Verify OKI Product", "Verify OKI Product is Not visible", product);
+    }
+    } 
+    public void VerifyOKIProductisNotVisible(String product) throws Throwable {
+    	if(isVisibleOnly(Clickviewdetailsunderproduct(product), "view details")) {
+      reporter.failureReport("Verify OKI Product", "OKI Product is visible", product);
+    }else {
+    	reporter.SuccessReport("Verify OKI Product", "Verify OKI Product is Not visible", product);
+    }
+    } 
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 }
 
 
