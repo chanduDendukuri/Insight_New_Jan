@@ -1499,12 +1499,13 @@ public class CartLib extends ActionEngine {
 	}
 
 	public String getPartNumber() throws Throwable {
-
+       Thread.sleep(10000);
 		String[] partNumberArray = getText(CartObj.PART_NUMBER_IN_ADDED_TO_YOUR_CART_POPUP,
 				"MFR_NUMBER_PRODUCT_DETAILS_PAGE").replace("\"", "").replace(" ", "").trim().split(":");
 		String partNumber = partNumberArray[1].trim();
 		return partNumber;
 	}
+	
 
 	/**
 	 * PURPOSE: This method is to verify verify QuickShop Error Message in shopping
