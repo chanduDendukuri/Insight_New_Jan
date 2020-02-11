@@ -62,7 +62,7 @@ public class REQ07_CreateDeleteRGRulesTest extends ChinaLib{
 						cmtLib.clickOnloginAs();
 						switchToChildWindow();
 						commonLib.spinnerImage();
-						//commonLib.clickOnAccountToolsAndClickOnProductGrp(data.get("Tools_Menu"), data.get("Tools_Menu_DD"));
+						commonLib.clickOnAccountToolsAndClickOnProductGrp(data.get("Tools_Menu"), data.get("Tools_Menu_DD"));
 
 						// Verify Verify Approval Management Page - is Loaded
 						reqProcLib.verifyApprovalManagementPage();
