@@ -609,5 +609,18 @@ public class CommonCanadaLib extends CommonCanadaPage {
         }
     }
 //
+public void getListOfCardTypes() throws Throwable{
+    click(PaymentTypedpdn,"Payment Type drp");
+    List<WebElement> card = driver.findElements(PaymentTypedpdnOptions);
+    for(int i=0;i<card.size();i++){
+        if(card.get(i).getText().equalsIgnoreCase("Discover Credit Card")){
+            reporter.failureReport("Discover Credit card","Availability of Discover Credit card ", "true",driver);
+        }else{
+            reporter.SuccessReport("Discover card","Availability of Discover credit card is  "," available card is "+card.get(i).getText());
+        }
+
+    }
+}
+
 }
 
