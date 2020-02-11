@@ -889,5 +889,6 @@ public class CommonLib extends ActionEngine{
 			//do nothing
 			Log.info("Do nothing");
 		}
+		driver.switchTo().defaultContent();
 	}
 }
