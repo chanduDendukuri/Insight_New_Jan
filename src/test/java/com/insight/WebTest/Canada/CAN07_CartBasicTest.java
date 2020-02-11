@@ -133,12 +133,12 @@ public class CAN07_CartBasicTest extends CanadaLib{
 									end.verifyupdateSuccessMessage();
 
 									cmtLib.hoverOnManageWebGroupsAndSelectOptions(data.get("Manage_Web_Grp_Options1"));
-									cmtLib.searchForaUserAndSelect(data.get("userName1"), data.get("userName1"));
+									cmtLib.searchForaUserAndSelect(data.get("userName1"), data.get("ContactName1"));
 									CommonLib.clickRolesAndPermissionsAtUserLevel();
 									cmtLib.setPermissionsToDisable(data.get("menuName"), data.get("userPermission2"));//Enable Buying Enable Duplicate Order - OFF
 									cmtLib.setPermissionsToDisableOnly(data.get("userPermission3"));
 									cmtLib.loginAsAdminCMT();
-									cmtLib.loginVerification(data.get("contract"));
+									cmtLib.loginVerification(data.get("ContactName1"));
 									CommonLib.searchProduct(data.get("SearchItem1"));//Thin Clients
 									prodInfoLib.verifyTheManufacturerNumberInProductDetailsPage(data.get("SearchItem1"));
 									ccp.clickOnAddToCartButtonUnderProductDynamically(data.get("quantity"));
