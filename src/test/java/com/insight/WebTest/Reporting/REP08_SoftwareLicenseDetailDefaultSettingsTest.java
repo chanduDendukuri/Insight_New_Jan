@@ -76,11 +76,8 @@ public class REP08_SoftwareLicenseDetailDefaultSettingsTest extends ReportingLib
 						data.get("Tools_Menu_DD"));
 				canadaLib.clickOnReportOptions(data.get("ReportOption"));
 				canadaLib.verifyReportsPage();
+				verifySelectReportOptions();
 				canadaLib.verifySelectReport(data.get("SelectReport"));
-				verifytheLinkedSoldTosText();
-				verifyStartDate("01");
-				EndDateVerification();
-				verifyDefualtCurrancyUSD();
 				verifyScheduleReport();
 				verifyScheduleReportOption(data.get("Soption"));
 				List<String> optionList = Arrays.asList(data.get("ScheduleOptions").split(","));
@@ -92,7 +89,7 @@ public class REP08_SoftwareLicenseDetailDefaultSettingsTest extends ReportingLib
 				verifyDefaultAccountSelection(data.get("DefaultAccountSelOpt"));
 				verifytheLinkedSoldTosText();
 				verifyDefualtCurrancyUSD();
-				verifyStartDate(data.get("DayOne"));
+				verifyStartDate("01");
 				EndDateVerification();
 				verifyDefaultCurrentDate(data.get("CurrentDate"));
 				List<String> dateOptionsList = Arrays.asList(data.get("ScheduleDates").split(","));

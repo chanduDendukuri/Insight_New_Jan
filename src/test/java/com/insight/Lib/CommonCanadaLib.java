@@ -466,9 +466,20 @@ public class CommonCanadaLib extends CommonCanadaPage {
             break;
         }
     }
+    
+    public void getPriceinWarrenty() throws Throwable {
+    	if(isElementPresent(priceInWarrenty, "Price in warrenty tab")) {
+    		String price=getText(priceInWarrenty, "Price in warrenty tab");
+    		reporter.SuccessReport("Price in warrenty tab", "Price in warrenty tab exists", "Warrenty price is: "+price, driver);
+    	}
+    	else {
+    		reporter.failureReport("Price in warrenty tab", "Price in warrenty tab does not exists", "", driver);
+    	}
+    	
+    }
 //btnAddToCartIst
     public void verifyExportFile(String sheetName, String rowNumber, String columnHeaders, File fileN) throws Throwable {
-        Thread.sleep(60000);
+       Thread.sleep(60000);
 
         // String content = Files.readString(Paths.get(fileN));
         // String content = FileUtils.readFileToString(new File(String.valueOf(fileN)), StandardCharsets.UTF_8);

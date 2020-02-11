@@ -73,6 +73,7 @@ public class REP05_OverallSalesHistDefaultSettingsTest extends ReportingLib {
 							data.get("Tools_Menu_DD"));
 					canadaLib.clickOnReportOptions(data.get("ReportOption"));
 					canadaLib.verifyReportsPage();
+					verifySelectReportOptions();
 					canadaLib.verifySelectReport(data.get("SelectReport"));
 					verifyScheduleReport();
 					verifytheLinkedSoldTosText();

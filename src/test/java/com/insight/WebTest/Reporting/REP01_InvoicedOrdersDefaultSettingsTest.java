@@ -72,6 +72,7 @@ public class REP01_InvoicedOrdersDefaultSettingsTest extends ReportingLib {
 							canadaLib.clickOnReportOptions(data.get("ReportOption"));
 							canadaLib.verifyReportsPage();
 							canadaLib.verifySelectReport(data.get("SelectReport"));
+							verifySelectReportOptions();
 							verifyScheduleReport();							
 							List<String> optionList= Arrays.asList(data.get("ScheduleOptions").split(","));
 							verifyScheduleReportOptions(optionList);
@@ -114,6 +115,7 @@ public class REP01_InvoicedOrdersDefaultSettingsTest extends ReportingLib {
 							marriottIntlCorpLib.clickAccountToolsFromSideMenu(data.get("Tools_Menu"),data.get("Tools_Menu_DD"));
 							canadaLib.clickOnReportOptions(data.get("ReportOption1"));
 							canadaLib.verifyReportsPage();
+							verifySelectReportOptions() ;
 							canadaLib.verifySelectReport(data.get("SelectReport1"));
 							verifyScheduleReport();							
 							List<String> optionList1= Arrays.asList(data.get("ScheduleOptions").split(","));

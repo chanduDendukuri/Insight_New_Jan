@@ -131,13 +131,13 @@ public class PID04_RecentlyViewedProductsTest extends ActionEngine{
 					cmtLib.loginToCMTSearchWebGrpAndUser(data.get("Header"), data.get("WebGrp"),
 							data.get("LnameEmailUname"), data.get("Contact_Name"));
 					cmtLib.loginAsAdminCMT();
-					commonLib.searchProduct(data.get("Search_Item4"));
+					commonLib.searchProduct(data.get("Search_Item1"));
 					String MfrNum = productdetLib.getMfrpartnumofFirstproduct();
 					cartLib.selectFirstProductDisplay();
 					Thread.sleep(4000);
 					productDispinfoLib.verifyTheManufacturerNumberInProductDetailsPage(MfrNum);
 					commonLib.addToCartAndVerify();
-					commonLib.clickLogOutLink(data.get("Logout_Header"));
+					//commonLib.clickLogOutLink(data.get("Logout_Header"));
 					cmtLib.navigateBackToCMT();
 					cmtLib.hoverOverMasterGroupAndSelectChangeGrp();
 					cmtLib.searchForWebGroup(data.get("WebGrp"));
@@ -156,9 +156,7 @@ public class PID04_RecentlyViewedProductsTest extends ActionEngine{
 					cmtLib.searchForaUserAndSelect(data.get("LnameEmailUname"), data.get("Contact_Name"));
 					cmtLib.setPermissions(data.get("Menu_Name"), data.get("Set_Permission"));
 					cmtLib.loginAsAdminCMT();
-					commonLib.searchProduct(data.get("Search_Item4"));
-					cartLib.selectFirstProductDisplay();
-					commonLib.searchProduct(data.get("Search_Item5"));
+					commonLib.searchProduct(data.get("Search_Item1"));
 					cartLib.selectFirstProductDisplay();
 					// verify recently viewed----
 					productdetLib.Verifyrecentlyvieweditems();
