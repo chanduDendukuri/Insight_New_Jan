@@ -466,11 +466,21 @@ public class CommonCanadaLib extends CommonCanadaPage {
             break;
         }
     }
+    public void clickOnAddToCartButtonUnderWarrenty() throws Throwable {
+        click(addTocartButtonInWarrenty1, "Add to cart button");
+            //reporter.SuccessReport("Clicked on ADd to cart button", "Clicked on ADd to cart button", "Clicked on ADd to cart button");
+            
+        
+    }
     
     public void getPriceinWarrenty() throws Throwable {
     	if(isElementPresent(priceInWarrenty, "Price in warrenty tab")) {
-    		String price=getText(priceInWarrenty, "Price in warrenty tab");
+    		List<WebElement> atc = driver.findElements(priceInWarrenty);
+    		//String price=getText(priceInWarrenty, "Price in warrenty tab");
+    		for (int i = 0; i < atc.size(); i++) {
+                String price=atc.get(i).getText();
     		reporter.SuccessReport("Price in warrenty tab", "Price in warrenty tab exists", "Warrenty price is: "+price, driver);
+    		}
     	}
     	else {
     		reporter.failureReport("Price in warrenty tab", "Price in warrenty tab does not exists", "", driver);
