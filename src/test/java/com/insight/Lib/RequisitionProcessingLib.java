@@ -309,14 +309,14 @@ public class RequisitionProcessingLib extends RequisitionProcessingObj {
 	}
 	public void VerifyIfRoutingOptionsareVisibleandDelete() throws Throwable {
 
-		if (isVisibleOnly(DeleteRoutingOption, "Delete routing option")) {
-			click(DeleteRoutingOption, "Delete routing option", "");
-			if(isVisibleOnly(Delete_UnderRouteButton, "Delete routing option")){
-				click(Delete_UnderRouteButton, "Delete routing option", "");
+		if (isVisibleOnly(DeleteRoutingOption, "Delete routing icon")) {
+			click(DeleteRoutingOption, "Delete routing icon", "");
+			if(isVisibleOnly(Delete_UnderRouteButton, "Delete button")){
+				click(Delete_UnderRouteButton, "Clicked on Delete button", "");
 				reporter.SuccessReport("Delete Route", "All routes are deleted", "", driver);
 			}
-			else if(isVisibleOnly(Delete_UnderRouteButton1, "Delete routing option")){
-				click(Delete_UnderRouteButton1, "Delete routing option", "");
+			else if(isVisibleOnly(Delete_UnderRouteButton1, "Delete button")){
+				click(Delete_UnderRouteButton1, "Clicked on Delete button", "");
 				reporter.SuccessReport("Delete Route", "All routes are deleted", "", driver);
 			}
 			else {
