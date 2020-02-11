@@ -1063,13 +1063,13 @@ public  void verifyDashboard()throws Throwable {
 		}
 		type(USER_NAME, userName, "user Name");
 		click(CHECK_AVAILABILITY, "Check availability");
-		if (isVisibleOnly(USER_NAME_MESSAGE, "user name Not Available")) {
-			clearData(USER_NAME);
-			type(USER_NAME, userName1, "user Name");
-			return userName1;
-		} else {
+		//if (isVisibleOnly(USER_NAME_MESSAGE, "user name Not Available")) {
+			//clearData(USER_NAME);
+			//type(USER_NAME, userName1, "user Name");
+			//return userName1;
+		//} else {
 			return userName;
-		}
+//		}
 	}
 
 	public void enterUserNameToValidate(String userName) throws Throwable {
@@ -1110,7 +1110,7 @@ public  void verifyDashboard()throws Throwable {
 	 *
 	 */
 	public void clickContinueButtonInCreateAnAccount() throws Throwable {
-		if (isElementPresent(SAVE_AND_CONTNUE, "Save and continue button")) {
+		if (isVisibleOnly(SAVE_AND_CONTNUE, "Save and continue button")) {
 			click(SAVE_AND_CONTNUE, "Save and continue button");
 		}
 	}
