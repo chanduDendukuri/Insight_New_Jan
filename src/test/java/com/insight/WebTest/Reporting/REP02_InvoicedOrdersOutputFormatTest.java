@@ -71,6 +71,7 @@ public class REP02_InvoicedOrdersOutputFormatTest extends ReportingLib {
 							canadaLib.clickOnSideMenuSelectAccountToolOptions(data.get("Tools_Menu"),data.get("Tools_Menu_DD"));	
 							canadaLib.clickOnReportOptions(data.get("ReportOption"));
 							canadaLib.verifyReportsPage();
+							verifySelectReportOptions();
 							canadaLib.verifySelectReport(data.get("SelectReport"));							
 							canadaLib.clickOnAccountSelections(data.get("AccountSelectionOpt"));	
 							Thread.sleep(5000);

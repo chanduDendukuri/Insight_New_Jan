@@ -71,6 +71,7 @@ public class REP03_AdHocReportDefaultSettingsTest extends CanadaLib{
 				mic.clickAccountToolsFromSideMenu(data.get("Tools_Menu"),data.get("Tools_Menu_DD"));	
 				clickOnReportOptions(data.get("ReportOption"));
 				verifyReportsPage();
+				reportingLib.verifySelectReportOptions();
 				verifySelectReport(data.get("SelectReport"));
 				reportingLib.verifytheLinkedSoldTosText();
 				reportingLib.verifyDefualtCurrancyUSD();

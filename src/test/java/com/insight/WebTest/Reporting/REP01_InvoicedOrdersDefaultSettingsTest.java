@@ -72,6 +72,7 @@ public class REP01_InvoicedOrdersDefaultSettingsTest extends ReportingLib {
 							canadaLib.clickOnReportOptions(data.get("ReportOption"));
 							canadaLib.verifyReportsPage();
 							canadaLib.verifySelectReport(data.get("SelectReport"));
+							verifySelectReportOptions();
 							verifyScheduleReport();							
 							List<String> optionList= Arrays.asList(data.get("ScheduleOptions").split(","));
 							verifyScheduleReportOptions(optionList);
