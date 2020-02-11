@@ -468,7 +468,7 @@ public class CommonCanadaLib extends CommonCanadaPage {
     }
 //btnAddToCartIst
     public void verifyExportFile(String sheetName, String rowNumber, String columnHeaders, File fileN) throws Throwable {
-       // Thread.sleep(60000);
+       Thread.sleep(60000);
 
         // String content = Files.readString(Paths.get(fileN));
         // String content = FileUtils.readFileToString(new File(String.valueOf(fileN)), StandardCharsets.UTF_8);
