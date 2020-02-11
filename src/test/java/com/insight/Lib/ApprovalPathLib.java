@@ -1111,9 +1111,9 @@ String EndDate= getText(Approvername("EndDateId"), "EndDateId");
 			reporter.failureReport("Approval Management Page Approver Out of Office Settings",
 					"Approver Out Does Not Exist", "");
 		}
-if(!ReplacementType.trim().contains("Permanent")) {
-		if (isElementPresent(getCalenderToUpdate, "To Date")) {
-			click(getCalenderToUpdate, "To date");
+
+		if (isElementPresent(getCalenderToUpdate, "From Date")) {
+			click(getCalenderToUpdate, "From date");
 		}
 
 		
@@ -1127,7 +1127,7 @@ if(!ReplacementType.trim().contains("Permanent")) {
 			reporter.failureReport("Change Month on Approval Management Page Approver Out of Office Settings",
 					"Arrow Button Does Not Exist", "");
 		}
-}
+
 String day = modifyDate.split("-")[0];
 		// Select Day
 
@@ -1136,7 +1136,7 @@ String day = modifyDate.split("-")[0];
 		day = String.valueOf(date);
 
 		if (isElementPresent(dayInStartDayCalender(day), "From Date ")) {
-			click(dayInStartDayCalender(day), "Day");
+			click(dayInStartDayCalender(day), day);
 		}
 
 		// Save
