@@ -220,8 +220,9 @@ public static By closePopup=By.xpath("//*[@id='cookieModal']//a[@aria-label='Clo
 public static By accountToolsMenu(String toolsMenuName){
 	return By.xpath("//div[@class='sidebar-nav']//a[contains(text(),'"+toolsMenuName+"')]");
 }
-
+// popup - receipt page
 public static By WHAT_YOU_THINK_POPUP_NO_THANKS_BTN=By.xpath("//a[@class='ng-binding'][contains(text(),'No thanks')]");
+public static By FRAME_ELEMENT=By.xpath("//*[@title='Usabilla Feedback Form']");
 
 }
 
