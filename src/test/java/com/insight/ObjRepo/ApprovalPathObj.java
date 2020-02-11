@@ -241,6 +241,7 @@ public static By CreateLinkInrequisationRejection = By.xpath("//table[@id='rejec
 	public static By ALL_REPLACEMENT_APPROVER_NAME_OPTIONS = By.xpath("//select[@id='oofReplacementApprover']//option");
 
 	public static By DISABLED_REPLACEMENT_APPROVER = By.xpath("//select[@id='oofReplacementApprover' and @disabled]");
+	public static By Disabled_Todate  = By.xpath("//input[contains(@class,'Datepicker') and @disabled]");
 
 	public static By START_DATE_CALENDER = By
 			.xpath("//td//input[@id='oofStart_dt']/..//img[@class='ui-datepicker-trigger']");
