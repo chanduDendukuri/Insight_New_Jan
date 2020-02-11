@@ -931,7 +931,7 @@ public class CanadaLib extends CanadaObj {
 	 */
 	public void clickOnReportZeroUsageLinkOnCart() throws Throwable {
 		waitForVisibilityOfElement(REPORT_ZERO_USAGE_LINK, "report zero usage");
-		click(REPORT_ZERO_USAGE_LINK, "report zero usgae link");
+		click(REPORT_ZERO_USAGE_LINK, "Report Zero Usage For This Period");
 	}
 
 	/**
