@@ -92,6 +92,7 @@ public class REP03_AdHocReportDefaultSettingsTest extends CanadaLib{
 				clickOnRun();	
 				Thread.sleep(40000);
 				Thread.sleep(60000);
+				String List="";
 				ccp.verifyExportFile("Page1","2","Operations Center,Region,Account Number",ccp.getLatestFilefromDir());
 			    commonLib.clickLogOutLink(data.get("Logout_Header"));
 
