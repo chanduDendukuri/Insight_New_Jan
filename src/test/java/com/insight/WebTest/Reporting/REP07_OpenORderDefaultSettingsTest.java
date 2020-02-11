@@ -89,6 +89,7 @@ public class REP07_OpenORderDefaultSettingsTest extends CanadaLib{
 				clickOnRun();
 				//commonLib.spinnerImage();
 				Thread.sleep(60000);
+
 				 String List="Sales Rep Name,Service Rep,Account Number,Account Name,Billing Account Number,Billing Account Name,Status,Order Number,Order Date,Reference Number,Web Group,PO Number,PO Release No.,Order Line Number,Insight Part ID,Manufacturer Part ID,Material Description,Country of Usage,Invoiced Qty Shipped,Open Order Quantity,Manufacturer,Unit Price,Ext Price,Tax,Freight Line,Freight Total,EWR Fee,Total Price,Currency,Product Category,Product Subcategory,Carrier,Shipping Method,Estimated Ship Date,Shipping Account Number,Shipping Name,Shipping Attention,Shipping Street,Shipping City,Shipping State / Province,Shipping Postal Code,Shipping Country";
 				ccp.verifyExportFile("Page1","2",List,ccp.getLatestFilefromDir());
 				commonLib.clickLogOutLink(data.get("Logout_Header"));

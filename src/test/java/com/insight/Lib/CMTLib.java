@@ -2507,7 +2507,7 @@ public  void verifyDashboard()throws Throwable {
 	 * Method is to click on add a smart tracker link
 	 */
 	public void clickOnAddSmartTrackerLink() throws Throwable {
-		click(ADD_A_SMART_TRACKER, "add smart tracker link");
+		click(ADD_A_SMART_TRACKER, "Add smart tracker link");
 	}
 
 	/**
@@ -2562,7 +2562,8 @@ public  void verifyDashboard()throws Throwable {
 	 * @throws Throwable
 	 */
 	public void editSmartTracker(String label) throws Throwable {
-		click(SMART_TRACKER_EXPEND, "smart tracker field");
+		click(SMART_TRACKER_EXPEND, "WGHeader Level:  "+label);
+		Thread.sleep(3000);
 		click(EDIT_SMART_TRACKER, "edit button");
 		if (isEnabled(MAKE_INACTIVE_CHECK_BOX, "make inactive check box")) {
 			click(MAKE_INACTIVE_CHECK_BOX, "make inactive check box");
@@ -2579,10 +2580,10 @@ public  void verifyDashboard()throws Throwable {
 	 * @throws Throwable
 	 */
 	public void verifyInactiveSmartTrackerError() throws Throwable {
-		if (isElementPresent(INACTIVE_SMART_TRACKER_ERROR, "smart tracker error")) {
-			reporter.SuccessReport("verify smart tracker error", "Smart tracker inactive error is diaplayed ", "Smart Tracker Status:Inactive");
+		if (isVisibleOnly(INACTIVE_SMART_TRACKER_ERROR, "smart tracker inactive Message")) {
+			reporter.SuccessReport("verify smart tracker Message", "Smart tracker inactive Message is diaplayed ", "Smart Tracker Status:Inactive");
 		} else {
-			reporter.failureReport("verify smart tracker error", "Smart tracker inactive error is not diaplayed ", "",
+			reporter.failureReport("verify smart tracker Message", "Smart tracker inactive Message is not diaplayed ", "",
 					driver);
 		}
 	}
@@ -2707,8 +2708,10 @@ public  void verifyDashboard()throws Throwable {
 	 * @throws Throwable
 	 */
 	public void selectSmartTrackersHeaders(String headerName) throws Throwable {
-		if (isElementVisible(getManageSmartTrackersHeaders(headerName), 4, "smart tracker header")) {
-			click(getManageSmartTrackersHeaders(headerName), "smart tracker header");
+		waitForVisibilityOfElement(getManageSmartTrackersHeaders(headerName), "smart tracker header", driver);
+		Thread.sleep(3000);
+		if (isVisibleOnly(getManageSmartTrackersHeaders(headerName), "smart tracker header")) {
+			click(getManageSmartTrackersHeaders(headerName), " Tab : "+headerName);
 		} else {
 			reporter.failureReport("Verify Smart Trackers Headers", "Smart Tracker Header is not present", headerName,
 					driver);
@@ -2724,7 +2727,7 @@ public  void verifyDashboard()throws Throwable {
 	 */
 	public void selectmanageSmartTrackertabs(String tabName) throws Throwable {
 		if (isElementPresent(getSmartTrackerstabs(tabName), "manage Smart Tracker tabs")) {
-			click(getSmartTrackerstabs(tabName), "manage Smart Tracker tabs");
+			click(getSmartTrackerstabs(tabName), "Tabs: "+tabName);
 		} else {
 			reporter.failureReport("Verify Smart Trackers tabs exist", "Smart Tracker tab is not present", tabName,
 					driver);
