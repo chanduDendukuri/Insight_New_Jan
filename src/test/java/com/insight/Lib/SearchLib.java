@@ -1153,7 +1153,7 @@ public void selectProductGroupAndVerify1(String productGroup,String productName)
 	 */
 	
 	public void selectContractInCartPage(String contractName) throws Throwable{
-		clickUntil(CONTRACT_DD, getContractsFromDD(contractName), "contract drop down");
+		clickUntil(CONTRACT_DD, getContractsFromDD(contractName), "clicked on contract-all");
 		click(getContractsFromDD(contractName),"Selected contract name");
 		//click(CartObj.CART,"CART");
 		Thread.sleep(2000);

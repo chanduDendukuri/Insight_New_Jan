@@ -880,6 +880,7 @@ public class CartLib extends ActionEngine {
 			for (int i = 0; i <= size-1; i++) {
 				String cartName = myList1.get(i).getText();
 				myList.get(i).click();
+				reporter.SuccessReport("clicked on delete button ", "Sucessfulyy clicked on delete button", "Saved Carts: "+cartName);
 				waitForVisibilityOfElement(CartObj.YES_BUTTON_INCONFORMATION_POP_UP, "Yes in conformation pop up");
 				click(CartObj.YES_BUTTON_INCONFORMATION_POP_UP, "Yes in conformation pop up","Saved Carts: "+ cartName);
 				Thread.sleep(5000);
@@ -1003,7 +1004,7 @@ public class CartLib extends ActionEngine {
 			
 		}
 		else {
-			reporter.failureReport("Verifying in stock items", "In stock items are not present", "", driver);
+			reporter.SuccessReport("Verifying in stock items", "In stock items are not present", "", driver);
 		}
 	}
     
