@@ -66,6 +66,9 @@ public class PID04_RecentlyViewedProductsTest extends ActionEngine{
 					searchLib.verifyBreadCrumbInSearchResultsPage(data.get("Search_Item2"));
 					cartLib.selectFirstProductDisplay();
 					String Searchitem2=productdetLib.getProductNameInProductDetailPage(data.get("Search_Item2")).trim();
+					productdetLib.verifyImageofProduct();
+					productdetLib.verifyPriceofProduct();
+					productdetLib.viewdetails(Searchitem2);
 					ArrayList<String> z =productdetLib.Verifyrecentlyvieweditems();
 					x.add(data.get("Search_Item2"));
 					
@@ -136,7 +139,8 @@ public class PID04_RecentlyViewedProductsTest extends ActionEngine{
 					cartLib.selectFirstProductDisplay();
 					Thread.sleep(4000);
 					productDispinfoLib.verifyTheManufacturerNumberInProductDetailsPage(MfrNum);
-					commonLib.addToCartAndVerify();
+					commonLib.searchProduct(data.get("Search_Item5"));
+					cartLib.selectFirstProductDisplay();
 					//commonLib.clickLogOutLink(data.get("Logout_Header"));
 					cmtLib.navigateBackToCMT();
 					cmtLib.hoverOverMasterGroupAndSelectChangeGrp();
@@ -157,6 +161,8 @@ public class PID04_RecentlyViewedProductsTest extends ActionEngine{
 					cmtLib.setPermissions(data.get("Menu_Name"), data.get("Set_Permission"));
 					cmtLib.loginAsAdminCMT();
 					commonLib.searchProduct(data.get("Search_Item1"));
+					cartLib.selectFirstProductDisplay();
+					commonLib.searchProduct(data.get("Search_Item5"));
 					cartLib.selectFirstProductDisplay();
 					// verify recently viewed----
 					productdetLib.Verifyrecentlyvieweditems();

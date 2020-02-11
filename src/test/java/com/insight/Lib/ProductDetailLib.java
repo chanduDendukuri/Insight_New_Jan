@@ -1087,8 +1087,28 @@ public class ProductDetailLib extends ProductDetailObj {
 		String prod = getText(BreadcrumbForProduct,"Product Title");
 		String Currentyear = prod.toString().split(" / ")[0];
 
-	}*/
-
+	}*///IMAGE
+    public void verifyImageofProduct() throws Throwable {
+        if (isVisibleOnly(IMAGE, "Image")) {
+            reporter.SuccessReport("Verify Image", "Image is Loaded Successfully", "");
+        } else {
+            reporter.failureReport("Verify Image", "Image is Not Loaded Successfully", "");
+        }//PRICE
+    }
+    public void verifyPriceofProduct() throws Throwable {
+        if (isVisibleOnly(PRICE, "Image")) {
+            reporter.SuccessReport("Verify Price", "Price is Loaded Successfully", "");
+        } else {
+            reporter.failureReport("Verify Price", "Price is Not Loaded Successfully", "");
+        }//PRICE
+    }
+    public void viewdetails(String product) throws Throwable {
+    	if(isVisibleOnly(Clickviewdetailsunderproduct(product), "view details")) {
+      reporter.SuccessReport("Verify ViewDetails", "View Details Link is visible", "");
+    }else {
+    	reporter.failureReport("Verify ViewDetails", "View Details Link is visible", "");
+    }
+    }
 }
 
 

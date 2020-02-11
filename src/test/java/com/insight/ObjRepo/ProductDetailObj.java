@@ -183,5 +183,7 @@ public class ProductDetailObj extends ActionEngine {
     public static By MOREAVAILABLEPRICESPOPUP = By.xpath("//div[@class='row js-modal-prices-contract-selection']");
     public static By recommendedPrinters = By.xpath("//*[@id='recs-carousel-title' and text()='Recommended with Printers']//..//div//section//div[@class='rr-name-wrapper']");
     public static By BreadcrumbForProduct = By.xpath("//*[@aria-label='breadcrumb']//li[3]//a");
-
+    public static By IMAGE = By.xpath(" //img[@class='c-image c-image--optimal c-image--is-loaded']");
+    public static By PRICE = By.xpath("//div[@class='price']");
+    
 }
