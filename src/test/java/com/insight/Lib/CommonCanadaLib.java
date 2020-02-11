@@ -480,6 +480,7 @@ public class CommonCanadaLib extends CommonCanadaPage {
     		for (int i = 0; i < atc.size(); i++) {
                 String price=atc.get(i).getText();
     		reporter.SuccessReport("Price in warrenty tab", "Price in warrenty tab exists", "Warrenty price is: "+price, driver);
+    		break;
     		}
     	}
     	else {
