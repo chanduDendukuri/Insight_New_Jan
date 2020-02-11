@@ -91,14 +91,14 @@ public class CRT12_TopNavTest extends CartLib {
 					//System.out.println("manfa"+manfa);
 					prodInfoLib.clickOnWarrantiesTabOnProductDetailsPage();
 					ccp.getPriceinWarrenty();
-					ccp.clickOnAddToCartButtonUnderWarrenty();
+					ccp.clickOnAddToCartButtonUnderWarrentyDynamically();
 					String man2=cartLib.getPartNumber();
 					assertTrue(ccp.verifyAddToCartLabelAvailable(),"View Cart page loaded");
 					//prodInfoLib.clickOnAddToCartButtonInWarrentiesPage(data.get("index"));
 					canadaLib.continueToCheckout();
 					canadaLib.verifyPlaceCartLabel();
 					commonLib.verifyBundleIsAddedToCart();
-					prodInfoLib.verifyCartPageAndPartDetailsForRecentlyItemDynamically(man2);
+					prodInfoLib.verifyCartPageAndPartDetailsForRecentlyItemDynamicaly(man2);
 													
 					commonLib.searchProduct(data.get("Search_Product"));
 					searchLib.verifyBreadCrumbInSearchResultsPage(data.get("Search_Product"));
