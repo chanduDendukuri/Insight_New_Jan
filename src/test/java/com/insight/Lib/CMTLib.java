@@ -808,7 +808,7 @@ public  void verifyDashboard()throws Throwable {
 	public void AssigntheusertoServiceLevelShippingwithnodefault(String menuName, String user_Permissions, String Value)
 			throws Throwable {
 		click(getUsersTabMenus(menuName), "Checkout Settings");
-		click(getOptionsunderCkeckoutsettings(user_Permissions), "Shipping Options");
+		click(getOptionsunderCkeckoutsettings(user_Permissions), "Expand span Shipping Options");
 		click(USER_SERVICE_LEVEL_SHIPPING, "User level shipping option is selected ");
 		if (isElementPresent(DefaultShippingOption, "DefaultShippingOption is Displayed")) {
 			selectByValue(DefaultShippingOption, Value, "Default_Shipping_Option:: " + user_Permissions + "");
