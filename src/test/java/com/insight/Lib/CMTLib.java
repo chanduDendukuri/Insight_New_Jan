@@ -1063,14 +1063,15 @@ public  void verifyDashboard()throws Throwable {
 		}
 		type(USER_NAME, userName, "user Name");
 		click(CHECK_AVAILABILITY, "Check availability");
-		/*
-		 * if (isElementPresent(USER_NAME_MESSAGE, "user name Not Available")) {
-		 * clearData(USER_NAME); type(USER_NAME, userName1, "user Name"); return
-		 * userName1; } else {
-		 */
+		
+		  if (isElementPresent(USER_NAME_MESSAGE, "user name Not Available")) {
+		  clearData(USER_NAME);
+		  type(USER_NAME, userName1, "user Name");
+		  return userName1; 
+		  } else {
 			reporter.SuccessReport("verifying message", "Message exists for User: "+userName , "Available");
 			return userName;
-		
+		  }
 	}
 
 	public void enterUserNameToValidate(String userName) throws Throwable {
