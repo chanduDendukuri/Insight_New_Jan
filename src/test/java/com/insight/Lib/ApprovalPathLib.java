@@ -17,6 +17,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import com.google.api.client.util.DateTime;
 import com.insight.ObjRepo.ApprovalPathObj;
 import com.insight.ObjRepo.CommonObj;
+import com.thoughtworks.selenium.webdriven.commands.Click;
 
 public class ApprovalPathLib extends ApprovalPathObj {
 	OrderLib orderLib = new OrderLib();
@@ -722,13 +723,23 @@ for(int i=1;i<=count;i++) {
 			reporter.failureReport("Approval Management Reports Page", "Requestor Group Link Does Not Exist", "");
 		}
 	}
-
+public int GetNumberOfRequestorGroupsb() throws Throwable {
+	List<WebElement> elem = driver.findElements(NumberOfRequestorGroupsb);
+	int count = elem.size();
+	if(count>0) {
+		reporter.SuccessReport("Number Of Requestor Groups ", "Number Of Requestor Groups", String.valueOf(count), driver);
+	}
+	else {
+		reporter.failureReport("Number Of Requestor Groups ", "Number Of Requestor Groups are not available", "", driver);
+	}
+	return count;
+}
 	public void ClickEditLinkINRequestorGrpPage(String reqGrpName) throws Throwable {
-		if (isElementPresent(clickRequestorGrpEdit(reqGrpName), "Requestor Group Management page")) {
-			click(clickRequestorGrpEdit(reqGrpName), "Requestor Group Management page");
-			reporter.SuccessReport("Approval Path Report Page", "Approval Path Link Exists and Clicked", reqGrpName);
+		if (isElementPresent(clickRequestorGrpEdit(reqGrpName), "Requestor Group Edit Icon")) {
+			click(clickRequestorGrpEdit(reqGrpName), "Requestor Group Edit Icon");
+			reporter.SuccessReport("Click Requestor Group Edite", "Requestor Group Edit Icon Exists and Clicked", reqGrpName);
 		} else {
-			reporter.failureReport("Approval Path Report Page", "Approval Path Link not Exists and not Clicked", "");
+			reporter.failureReport("Click Requestor Group Edit", "Requestor Group Edit Icon not Exists and not Clicked", "");
 		}
 	}
 	
@@ -966,9 +977,10 @@ for(int i=1;i<=count;i++) {
 			// Select Replacement Approver
 			if (isElementPresent(selectRepApprover(strReplacementApproverId), "Replacement Approver")) {
 				selectByValue(createRepApproverType(), strReplacementApproverId, "Replacement Approver");
+				String Approvername = getText(selectRepApprover(strReplacementApproverId), "Replacement Approver");
 				reporter.SuccessReport(
 						"Select Replacement Approver on Approval Management  Page Approver Out of Office Settings",
-						"Replacement Approver Field Exists and Selected", strReplacementApproverId);
+						"Replacement Approver Field Exists and Selected","");
 				if(strReplacementType.contains("Permanent")) {
 				if (isElementPresent(Disabled_Todate, "Todate")) {
 					reporter.SuccessReport("Approval Management  Page Approver Out of Office Settings",
@@ -1134,10 +1146,12 @@ String day = modifyDate.split("-")[0];
 		int date = Integer.parseInt(day);
 		date = date + 1;
 		day = String.valueOf(date);
-
+		String MonthandYear ="";
 		if (isElementPresent(dayInStartDayCalender(day), "From Date ")) {
-			click(dayInStartDayCalender(day), day);
+			MonthandYear = getText(Monthandyearoffromdate, "MonthandYear");
+			click(dayInStartDayCalender(day), day+" "+MonthandYear);
 		}
+String FromDatebeforeUpdating = day + " "+MonthandYear;
 
 		// Save
 		if (isElementClickable(SAVE_APPROVER, 2,"Save Icon")) {
@@ -1148,7 +1162,18 @@ String day = modifyDate.split("-")[0];
 			reporter.failureReport("Approval Management Page Approver Out of Office Settings",
 					"Approver Out Does Not Exist", "");
 		}
+String FromDateAfterUpdating = driver.findElement(By.xpath("//td[contains(@id,'StartDateId')]")).getText();
+reporter.SuccessReport("Before updating", "From date before updating", FromDatebeforeUpdating, driver);
+reporter.SuccessReport("After updating", "From date after updating", FromDateAfterUpdating, driver);
+String[] day1 = FromDateAfterUpdating.split("-");
 
+if(FromDatebeforeUpdating.contains(day1[0])&& FromDatebeforeUpdating.contains(day1[1]) && FromDatebeforeUpdating.contains(day1[2])) {
+	reporter.SuccessReport("Verify After Updation", "Updated values successfully", "", driver);
+}
+else {
+	reporter.failureReport("Verify After Updation", "Updated values are not successfully", "", driver);
+}
+		VerifyCreateApproverOut(strApprover);
 		// Delete
 
 		if (isElementClickable(deleteApprover(strApprover),2, "Delete Icon")) {
@@ -1241,35 +1266,35 @@ public void GetFromDate() {
 	}
 
 	public void ClickShowUsers() throws Throwable {
-		if (isElementPresent(SHOW_USERS_CHECKBOX, "Show Users Field")) {
-			click(SHOW_USERS_CHECKBOX, "Click Show Users Field");
-			reporter.SuccessReport("Check Show Users Field on Approval Management Requestor Group Rules Report Page",
-					"Show Users Field Exists and Checked", "");
+		if (isElementPresent(SHOW_USERS_CHECKBOX, "Show Users Checkbox")) {
+			click(SHOW_USERS_CHECKBOX, "Click Show Users Checkbox");
+			reporter.SuccessReport("Check Show Users Checkbox on Approval Management Requestor Group Rules Report Page",
+					"Show Users Checkbox Exists and Checked", "");
 		} else {
-			reporter.failureReport("Check Show Users Field on Approval Management Requestor Group Rules Report Page",
-					"Show Users Field Does Not Exist", "");
+			reporter.failureReport("Check Show Users Checkbox on Approval Management Requestor Group Rules Report Page",
+					"Show Users Checkbox Does Not Exist", "");
 		}
 	}
 
 	public void ClickShowRules() throws Throwable {
-		if (isElementPresent(SHOW_RULES_CHECKBOX, "Show Users Field")) {
-			click(SHOW_RULES_CHECKBOX, "Click Show Users Field");
-			reporter.SuccessReport("Check Show Rules Field on Approval Management Requestor Group Rules Report Page",
-					"Show Rules Field Exists and Checked", "");
+		if (isElementPresent(SHOW_RULES_CHECKBOX, "Show Rules Checkbox")) {
+			click(SHOW_RULES_CHECKBOX, "Check Show Rules Checkbox");
+			reporter.SuccessReport("Check Show Rules Checkbox on Approval Management Requestor Group Rules Report Page",
+					"Show Rules Checkbox Exists and Checked", "");
 		} else {
-			reporter.failureReport("Check Show Rules Field on Approval Management Requestor Group Rules Report Page",
-					"Show Rules Field Does Not Exist", "");
+			reporter.failureReport("Check Show Rules Checkbox on Approval Management Requestor Group Rules Report Page",
+					"Show Rules Checkbox Does Not Exist", "");
 		}
 	}
 
 	public void ClickSearchButton() throws Throwable {
-		if (isElementPresent(SEARCH_BUTN, "SEARCH Link")) {
-			click(SEARCH_BUTN, "Click SEARCH Link");
+		if (isElementPresent(SEARCH_BUTN, "SEARCH Button")) {
+			click(SEARCH_BUTN, "Click SEARCH Button");
 			reporter.SuccessReport("Check Search on Approval Management Requestor Group Rules Report Page",
-					"SEARCH Link Exists and Clicked", "");
+					"SEARCH Button Exists and Clicked", "");
 		} else {
 			reporter.failureReport("Check Search on Approval Management Requestor Group Rules Report Page",
-					"SEARCH Link Does Not Exist", "");
+					"SEARCH Button Does Not Exist", "");
 		}
 	}
 
@@ -1287,7 +1312,45 @@ public void GetFromDate() {
 			reporter.failureReport("Approval Management Requestor Group Rules Report Page",
 					"ReqestorGroupName Does Not Exist", "");
 		}
+		
 
+	}
+	public void VerifyRequestorGroupdata() throws Throwable {
+		int count =0;
+		String heading  ="";
+		WebElement elem = driver.findElement(By.id("reqtable"));
+		WebElement elem1 = driver.findElement(By.id("reqtable"));
+		List<WebElement> rows= elem.findElements(By.tagName("tr"));
+		label:
+		for (WebElement webElement : rows) {
+			List<WebElement> EachHeading = webElement.findElements(By.tagName("th"));
+			List<WebElement> dataunderHeading = elem1.findElements(By.tagName("td"));
+			if(EachHeading.size()>0) {
+				if(dataunderHeading.size()>0) {
+				for (WebElement webElement1 : EachHeading) {
+					 heading  = webElement1.getText();
+					System.out.println(heading);
+					for(;count<=EachHeading.size();) {
+						String celldata = dataunderHeading.get(count).getText();
+						reporter.SuccessReport("Verify Requestor Group details", "Requestor group details are", heading+":"+celldata, driver);
+						++count;
+						break;
+					}
+					
+				}
+				}
+				//WebElement elem1 = driver.findElement(By.id("reqtable"));
+				else {
+					System.out.println("");
+				}
+				
+			}
+			else {
+				System.out.println();
+			}
+			break label;
+		}
+		
 	}
 	public void VerifyReqGroupNamesandDetails() throws Throwable {
 		if (isElementPresent(SEARCH_RESULTS, "SEARCH Results table")) {
@@ -1307,22 +1370,28 @@ public void GetFromDate() {
 		}
 
 	}
-public void GetGroupNamesDisplayed() throws Throwable {
+public String GetGroupNamesDisplayed() throws Throwable {
+	String RequestorGrpName ="";
+	String groupName = "";
 	if (isElementPresent(SEARCH_RESULTS, "SEARCH Results table")) {
 		String strApprovalPathNm = null;
+		
 		List<WebElement> appCount = driver.findElements(SEARCH_RESULTS);
 		for (int i = 2; i < appCount.size(); i++) {
-			String RequestorGrpName = driver.findElement(GetGroupDetails(i, 1)).getText();
+			 RequestorGrpName = driver.findElement(GetGroupDetails(i, 1)).getText();
 			
 			reporter.SuccessReport("Approval Management Requestor Group Rules Report Page",
 					"Approval Management Requestor Group Rules Report Exists", "RequestorGrpName:"+RequestorGrpName);
-		if(i==5)
+		if(i==5) {
+			  groupName = RequestorGrpName;
 			break;
+		}
 		}
 	} else {
 		reporter.failureReport("Approval Management Requestor Group Rules Report Page",
 				"ReqestorGroupName Does Not Exist", "");
 	}
+	return groupName;
 
 }
 	public void VerifyDisplayUsers() throws Throwable {
@@ -1333,8 +1402,8 @@ public void GetGroupNamesDisplayed() throws Throwable {
 				strUsers = driver.findElement(getReqGroupDetails(String.valueOf(4), String.valueOf(row))).getText();
 				strUsers = strUsers.split("Users:")[1];
 				reporter.SuccessReport("Approval Management Requestor Group Rules Report Page", "Users",
-						strUsers);
-				if(row==5)
+						"users:"+strUsers);
+				if(row==4)
 					
 					break;
 			}
@@ -1384,18 +1453,18 @@ public void GetGroupNamesDisplayed() throws Throwable {
 		}
 	}
 
-	public void EnterReqGrpName() throws Throwable {
+	public void EnterReqGrpName(String GroupName) throws Throwable {
 		if (isElementPresent(REQ_GRP_NAME_TXTBOX, "Req Group Name")) {
 
 			// Get Requestor group name
 			//String reqGroupName = driver.findElement(getReqGroupDetails(String.valueOf(1), String.valueOf(1)))
 				//	.getText();
-			String reqGroupName ="no path grp";
-			type(REQ_GRP_NAME_TXTBOX, reqGroupName, "Enter Req Group Name");
+			//String reqGroupName ="no path grp";
+			type(REQ_GRP_NAME_TXTBOX, GroupName, "Enter Req Group Name");
 
 			reporter.SuccessReport(
 					"Enter Requestor Group Name on  Approval Management Requestor Group Rules Report Page",
-					"Requestor Group Name Field Exists", reqGroupName);
+					"Requestor Group Name Field Exists", GroupName);
 		} else {
 			reporter.failureReport(
 					"Enter Requestor Group Name on  Approval Management Requestor Group Rules Report Page",
@@ -1403,12 +1472,13 @@ public void GetGroupNamesDisplayed() throws Throwable {
 		}
 	}
 
-	public void VerifyReqGroupExists() throws Throwable {
+	public void VerifyReqGroupExists(String GroupName) throws Throwable {
 		if (isElementPresent(SEARCH_RESULTS, "SEARCH Results table")) {
 			String strReqGrpNm = null;
 			List<WebElement> appCount = driver.findElements(SEARCH_RESULTS);
 			for (int row = 1; row < appCount.size(); row++) {
 				strReqGrpNm = driver.findElement(getReqGroupDetails(String.valueOf(1), String.valueOf(row))).getText();
+				if(strReqGrpNm.equals(GroupName))
 				reporter.SuccessReport("Approval Management Requestor Group Rules Report Page",
 						"ReqestorGroupName Exists and Verified", strReqGrpNm);
 			}
@@ -1483,27 +1553,40 @@ public void GetGroupNamesDisplayed() throws Throwable {
 	public void AddRequestorsRequestorGroup(String ReqGroupName) throws Throwable {
 		// Click on Requestor Requestor Group Users
 		ClickRequestorGrpLink();
-
+		GetNumberOfRequestorGroupsb();
 		// Verify
 		ClickReqGroupEditLinkButton(ReqGroupName);
-
+		
 		// Click on Manage Requestors
 		clickManageRequestors();
 
 		// Click Refresh Icon To display Requestors
 		ClickRefreshIcon();
-
+		GetNumberOfRequestorsOnLeftSide();
+		int beforeAddingrequestors = GetNumberOfRequestorsOnRightSide();
 		// Select Requestors
-		SelectRequestor(null);
-
+		SelectRequestor(null,3);
+		int afterAddingrequestors = GetNumberOfRequestorsOnRightSide();
+		if(afterAddingrequestors==beforeAddingrequestors+3) {
+			reporter.SuccessReport("Adding requestors", "Count after adding requestors are matching", "", driver);
+		}
+		else {
+			reporter.failureReport("Adding requestors", "Count after adding requestors are not matching", "", driver);
+		}
 		// Add
-		Add_Requestor_Btn_Click();
+		//Add_Requestor_Btn_Click();
 
 		// Click Save Changes
 		ClickSaveChangesButton();
+	    VerifySuccessUpdate();
 
 	}
-
+	public void clickonRefreshIconRequestorGroupuser() throws Throwable {
+		click(RefreshIconRequestorGroupuser, "RefreshIcon in RequestorGroupuser");
+	}
+public void clickOnApprovalManagementTabs(String requestorTab)throws Throwable {
+	click(ApprovalManagementTabs(requestorTab), "Clicked on "+requestorTab+" Tab");
+}
 	public void ClickReqGroupEditLinkButton(String reqGroupName) throws Throwable {
 		if (isElementPresent(RequestorGroupEditLink(reqGroupName), "Approval management page ")) {
 			click(RequestorGroupEditLink(reqGroupName), "Approval management page");
@@ -1529,21 +1612,43 @@ public void GetGroupNamesDisplayed() throws Throwable {
 			click(REFRESH_ICON, "Click Refresh icon");
 		}
 	}
-
-	public String SelectRequestor(String Requestor_Name) throws Throwable {
+public void GetNumberOfRequestorsOnLeftSide() throws Throwable {
+	List<WebElement> elem = driver.findElements(RequestorsOnLeftSide);
+	if(elem.size()>0) {
+		reporter.SuccessReport("Requestors on Right side", "Requestors are displayed on right side", String.valueOf(elem.size()), driver);
+	}
+	else {
+		reporter.failureReport("Requestors on Right side", "Requestors are not displayed on right side", "", driver);
+	}
+}
+public int GetNumberOfRequestorsOnRightSide() throws Throwable {
+	List<WebElement> elem = driver.findElements(RequestorsOnRightSide);
+	if(elem.size()>0) {
+		reporter.SuccessReport("Requestors on Right side", "Requestors are displayed on right side", String.valueOf(elem.size()), driver);
+	}
+	else {
+		reporter.failureReport("Requestors on Right side", "Requestors are not displayed on right side", "", driver);
+	}
+	return elem.size();
+}
+	public String SelectRequestor(String Requestor_Name,int count) throws Throwable {
 		String strRequestorOption = null;
 		if (Requestor_Name != null) {
 			SelectSpecificRequestor(Requestor_Name);
 		} else {
 			// select Requestor id value
-			List<WebElement> myList = driver.findElements(ALL_REQUESTOR_OPTIONS);
-
-			strRequestorOption = (myList.get(1)).getAttribute("value");
+			
+for(int i=0;i<=count;++i) {
+	WebElement elm = driver.findElement(ALL_REQUESTOR_OPTIONS(i));
+	if(i<=count) {
+			strRequestorOption = elm.getText();
 
 			if (isElementPresent(selectRequestor(strRequestorOption), "Approver ")) {
-				selectByValue(createRequestorType(), strRequestorOption, "Approver");
+				selectByVisibleText(createRequestorType(), strRequestorOption, "Approver");
 				reporter.SuccessReport("Add Requestors on Create/Edit Requestor Group Page",
 						"Requestors Exist in the Available Requestors' List and Selected", strRequestorOption);
+				// Add
+				Add_Requestor_Btn_Click();
 			}
 
 			else {
@@ -1551,10 +1656,18 @@ public void GetGroupNamesDisplayed() throws Throwable {
 						"Requestors Do Not Exist in the Available Requestors' List", "");
 			}
 
+		
+}else {
+	System.out.println("");
+	
+}}
 		}
 		return strRequestorOption;
 	}
-
+public void SelectRequestorFromRightToLeft(String requestor) throws Throwable {
+	selectByVisibleText(RequestorFromRightToLeft(requestor), requestor, "requestor");
+	click(BackArrow_button,"Back Arrow button");
+}
 	public void Add_Requestor_Btn_Click() throws Throwable {
 		if (isElementPresent(SELECT_PATH_ADD_BUTTON, "Select Path option")) {
 			click(SELECT_PATH_ADD_BUTTON, "Select Path option");
@@ -1688,11 +1801,14 @@ public void GetGroupNamesDisplayed() throws Throwable {
 		return requestor1;
 	}
 
-	public void VerifyPageCount50InApprovalmgmt() throws Throwable {
+	public void VerifyPageCountInApprovalmgmt() throws Throwable {
 
 		if (isElementPresent(GET_SELECTED_COUNTinApprMgmt, "Page count")) {
 			String pageCount = getSelectedDropdownOption(GET_SELECTED_COUNTinApprMgmt);
 			if (pageCount.equals("50")) {
+				reporter.SuccessReport("Approval Management Reports Page", "Paging Count is Verified", pageCount);
+			}
+			else if(pageCount.equals("20")){
 				reporter.SuccessReport("Approval Management Reports Page", "Paging Count is Verified", pageCount);
 			}
 
@@ -1721,11 +1837,11 @@ public void GetGroupNamesDisplayed() throws Throwable {
 		}
 	}
 
-	public void ClickNextPageAndVerify50() throws Throwable {
+	public void ClickNextPageAndVerify() throws Throwable {
 		if (isElementPresent(NEXT_PAGE_LINK, "Next Page ")) {
 			click(NEXT_PAGE_LINK, "Click Next Page");
 			// Verify the Paging Count 50
-			VerifyPageCount50InApprovalmgmt();
+			VerifyPageCountInApprovalmgmt();
 			reporter.SuccessReport("Approval Management Reports Page", "Next Page Link Exists and Clicked", "");
 		} else {
 			reporter.SuccessReport("Approval Management Reports Page",
@@ -1743,13 +1859,24 @@ public void GetGroupNamesDisplayed() throws Throwable {
 			// scrollUp();
 			click(TU_IUS_Tired_Requestor_Group_Link, "Click Requestor Group Name");
 			reporter.SuccessReport("Approval Management Create/Edit Requestor Group",
-					"TU_IUS Requestor Group Tiered Link Exists and Clicked", "");
+					"TU_IUS Requestor Group Tiered Link Exists and Clicked", "TU_IUS_Tired_Requestor_Group_Link");
 		} else {
 			reporter.failureReport("Approval Management Create/Edit Requestor Group",
 					"TU_IUS Requestor Group Tiered Link Does Not Exist", "");
 		}
 	}
-
+public void ClickOnExporticon() throws Throwable {
+	click(Exporticon, "Export icon");
+}
+public void PageLinkText() throws Throwable {
+	String PageLink = getText(PageLinks, "Page Links");
+	if(PageLink.equals("1")) {
+		reporter.SuccessReport("Page links", "there is no next page link since there is not enough data", PageLink, driver);
+	}
+	else {
+		reporter.SuccessReport("Page links", "Next Page exists", "", driver);
+	}
+}
 	public void ClickTU_IUSRequestorGroupLink() throws Throwable {
 		scrollUp();
 		if (isElementPresent(TU_IUS_Requestor_Group_Link, "Requestor Group Name")) {
