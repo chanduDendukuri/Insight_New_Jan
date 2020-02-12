@@ -98,7 +98,7 @@ public class CRT12_TopNavTest extends CartLib {
 					canadaLib.continueToCheckout();
 					canadaLib.verifyPlaceCartLabel();
 					commonLib.verifyBundleIsAddedToCart();
-					prodInfoLib.verifyCartPageAndPartDetailsForRecentlyItemDynamicaly(man2);
+					//prodInfoLib.verifyCartPageAndPartDetailsForRecentlyItemDynamicaly(man2);
 													
 					commonLib.searchProduct(data.get("Search_Product"));
 					searchLib.verifyBreadCrumbInSearchResultsPage(data.get("Search_Product"));
