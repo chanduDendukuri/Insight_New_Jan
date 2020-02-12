@@ -78,27 +78,9 @@ public class REQ07_CreateDeleteRGRulesTest extends ChinaLib{
 						// clicking on Optional Rules
 						reqProcLib.clickOptionalRules();
 						Thread.sleep(1000);
-
-						// create rules
-
-						// reqProcLib.createRule(data.get("Cart_Type_Standard"),
-						// data.get("Min_Amt_0"), data.get("Max_Amt_99"),
-						// data.get("Result_Path1"), "1");
-						// verify success add message
-						// reqProcLib.verifySuccessMsg();
-						// Thread.sleep(1000);
-						// reqProcLib.createRule(data.get("Cart_Type_NonStandard"),
-						// data.get("Min_Amt_100"), data.get("Max_Amt_199"),
-						// data.get("Result_Path2"), "2");
-						// verify success add message
-						// reqProcLib.verifySuccessMsg();
-						// Thread.sleep(1000);
-						// reqProcLib.createRule(data.get("Cart_Type_Any"),
-						// data.get("Min_Amt_200"), data.get("Max_Amt_299"),
-						// data.get("Result_Path3"), "3");
-						// verify success add message
-						// reqProcLib.verifySuccessMsg();
-
+						
+						
+						reqProcLib.SelectCretaeRule("Without list routing factors ");
 
 						reqProcLib.createRule(data.get("Cart_Type_Standard"),"path1", data.get("Min_Amt_0"), data.get("Max_Amt_99"),
 								data.get("Result_Path1"), "1");
@@ -126,6 +108,7 @@ public class REQ07_CreateDeleteRGRulesTest extends ChinaLib{
 
 						// Click create Rule
 						reqProcLib.SelectCretaeRule("With list routing factors ");
+						reqProcLib.VerifyIfRoutingOptionsareVisibleandDelete();
 						//Click Add Route
 						reqProcLib.ClickAddRoute();
 						// select HDLList after ADD ROUTE click
@@ -141,7 +124,8 @@ public class REQ07_CreateDeleteRGRulesTest extends ChinaLib{
 						reqProcLib.clickDeleteRule("WithRule");
 
 						// Delete Routing List choice
-						reqProcLib.deleteRoutingOption();
+						//reqProcLib.deleteRoutingOption();
+						reqProcLib.VerifyIfRoutingOptionsareVisibleandDelete();
 
 						commonLib.clickLogOutLink(data.get("Logout"));
 						// fnCloseTest();

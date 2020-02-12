@@ -1621,6 +1621,7 @@ List<String> orderdetails = new ArrayList<String>();
 	
 	public void clickonApprovalManagementTabs(String link) throws Throwable{
 		click(getApprovalmanagementtabs(link), "Approval Management Link"+link);
+		Thread.sleep(3000);
 		}
 	
 	

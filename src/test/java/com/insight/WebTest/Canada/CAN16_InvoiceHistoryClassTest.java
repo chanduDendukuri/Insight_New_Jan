@@ -85,11 +85,11 @@ public class CAN16_InvoiceHistoryClassTest extends ActionEngine  {
 								canadaLib.clickOnSearchButtonInRecentOrders();
 								canadaLib.getInvoiceNumbersFromResults();
 								String a=canadaLib.clickOnInvoiceNumbersFromResults();
+								Thread.sleep(14000);
 								canadaLib.openDirectoryToVerifyFileExist(a);
 								commonLib.clickLogOutLink(data.get("Logout_Header"));//fnCloseTest();
 
 
-//%%%%%%%%%%%%%%%%%%%%%%%%%latest%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
 			 //canadaLib.verifyDownloadedFile(invoiceNumber);

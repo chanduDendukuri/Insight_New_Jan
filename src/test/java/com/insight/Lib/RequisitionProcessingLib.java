@@ -188,6 +188,7 @@ public class RequisitionProcessingLib extends RequisitionProcessingObj {
 	public void createRule(String cart_type,String ApprovalPath, String Min_Amt, String Max_Amt, String path, String item)
 			throws Throwable {
 		// Click Add Rule
+		
 
 		clickAddRule();
 
@@ -297,7 +298,7 @@ public class RequisitionProcessingLib extends RequisitionProcessingObj {
 	public void deleteRoutingOption() throws Throwable {
 
 		if (isElementPresent(By.xpath("//a[@class='deleteRoute']"), "Delete routing option")) {
-			click(By.xpath("//a[@class='deleteRoute']"), "Delete routing option");
+			click(By.xpath("//span[contains(text(),'Delete Route')]//following::span[contains(text(),'Delete')]"), "Delete routing option");
 			if (isElementPresent(By.xpath("(//div[@class='buttons dbDiv']//a//span[contains(text(),'Delete')])[5]"),
 					"Delete rule icon")) {
 				click(By.xpath("(//div[@class='buttons dbDiv']//a//span[contains(text(),'Delete')])[5]"),
@@ -306,7 +307,25 @@ public class RequisitionProcessingLib extends RequisitionProcessingObj {
 		}
 
 	}
+	public void VerifyIfRoutingOptionsareVisibleandDelete() throws Throwable {
 
+		if (isVisibleOnly(DeleteRoutingOption, "Delete routing icon")) {
+			click(DeleteRoutingOption, "Delete routing icon", "");
+			if(isVisibleOnly(Delete_UnderRouteButton, "Delete button")){
+				click(Delete_UnderRouteButton, "Clicked on Delete button", "");
+				reporter.SuccessReport("Delete Route", "All routes are deleted", "", driver);
+			}
+			else if(isVisibleOnly(Delete_UnderRouteButton1, "Delete button")){
+				click(Delete_UnderRouteButton1, "Clicked on Delete button", "");
+				reporter.SuccessReport("Delete Route", "All routes are deleted", "", driver);
+			}
+			else {
+				reporter.failureReport("Delete Route", "All routes are not deleted", "", driver);
+			}
+			
+		}
+
+	}
 	public void backtoReqSearchForCreateRules() throws Throwable {
 		if (isElementPresent(BACKTO_REQSEARCH, "Back To Requestor Group Search")) {
 			// click(BACKTO_REQSEARCH, "Click Back To Requestor Group Search
@@ -327,6 +346,7 @@ public void SelectCretaeRule(String Rule) throws Throwable {
 	}
 }
 public void ClickAddRoute() throws Throwable {
+	scrollUp();
 	click(btn_AddRoute, "AddRoute button","");
 }
 	
@@ -645,20 +665,21 @@ public void ClickAddRoute() throws Throwable {
 	 * @throws Throwable
 	 */
    public  void getCheckboxesCount()  throws Throwable {
-	if (isElementPresent(CHECK_BOX, "Checkboxes checked")) {
-		List<WebElement> checkList = driver.findElements(CHECK_BOX);		
-		for (int j = 1; j < checkList.size(); j++) {
-		if(!checkList.get(j).isSelected()){
-			click(checkboxes(j),"Check particular checkbox");
-			reporter.SuccessReport("Select All the Check Boxes For Allow approver to Edit: on Approval Path Settings",
-					"Selected  All the Check Boxes For Allow approver to Edit: on Approval Path Settings","");
-		}else
-			reporter.SuccessReport("Select All the Check Boxes For Allow approver to Edit: on Approval Path Settings",
-					"Select All the Check Boxes For Allow approver to Edit: on Approval Path Settings Not Exist","");
+	   if (isElementPresent(CHECK_BOX, "Checkboxes checked")) {
+			List<WebElement> checkList = driver.findElements(CHECK_BOX);		
+			for (int j = 1; j < checkList.size(); j++) {
+			if(!checkList.get(j).isSelected()){
+				//click(checkboxes(j),"Check particular checkbox");
+				checkList.get(j).click();
+				reporter.SuccessReport("Select All the Check Boxes For Allow approver to Edit: on Approval Path Settings",
+						"Selected  All the Check Boxes For Allow approver to Edit: on Approval Path Settings","");
+			}else
+				reporter.SuccessReport("Select All the Check Boxes For Allow approver to Edit: on Approval Path Settings",
+						"Select All the Check Boxes For Allow approver to Edit: on Approval Path Settings Not Exist","");
+			}
+			click(SAVE_CHANGESBTN, "Save changes button");	
 		}
-		click(SAVE_CHANGESBTN, "Save changes button");	
-	}
-	}
+		}
 
    /**
     * 
@@ -802,26 +823,23 @@ public void ClickAddRoute() throws Throwable {
 	 * @throws Throwable
 	 */
   public void UnCheckAllCheckboxesCount()  throws Throwable {
-	if (isElementPresent(CHECK_BOX, "Checkboxes checked")) {
-		List<WebElement> myList = driver.findElements(CHECK_BOX);		
-		for (int m = 0; m < myList.size(); m++) {
-		if(myList.get(m).isSelected()){
-			click(checkboxes(i),"Checkboxes");
-			for (int j = 1; j < myList.size(); j++) {
-				if(!myList.get(j).isSelected()){
-			reporter.SuccessReport("Select All the Check Boxes For Allow approver to Edit: on Approval Path Settings",
-					"Unchecked  All the Check Boxes For Allow approver to Edit: on Approval Path Settings","");
-			
-		}else
+	  if (isElementPresent(CHECK_BOX, "Checkboxes checked")) {
+			List<WebElement> myList = driver.findElements(CHECK_BOX);		
+			for (int m = 0; m < myList.size(); m++) {
+			if(myList.get(m).isSelected()){
+				//click(checkboxes(i),"Checkboxes");
+				myList.get(m).click();
+				reporter.SuccessReport("Select All the Check Boxes For Allow approver to Edit: on Approval Path Settings",
+						"Unchecked  All the Check Boxes For Allow approver to Edit: on Approval Path Settings","");
+			}else {
 			reporter.failureReport("Select All the Check Boxes For Allow approver to Edit: on Approval Path Settings",
-					"Unchecked All the Check Boxes For Allow approver to Edit: on Approval Path Settings Not Exist","");	
-		click(SAVE_CHANGESBTN, "Save changes button");	
-	}
-	}
-}
-	}
+					"Unchecked All the Check Boxes For Allow approver to Edit: on Approval Path Settings Not Exist","");
+		}
+
+		}
+			click(SAVE_CHANGESBTN, "Save changes button");	
+	  }
   }
-  
   /**
 	 * this method is to enter new card details
 	 * @throws Throwable

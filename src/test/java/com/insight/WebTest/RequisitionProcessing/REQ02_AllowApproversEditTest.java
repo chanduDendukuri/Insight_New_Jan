@@ -154,7 +154,7 @@ public class REQ02_AllowApproversEditTest extends ChinaLib{
 						ReqLib.verifyApprovalManagmentPage();
 						ReqLib.clickEditPaymentsAndVerify(data.get("cardType"));
 						ReqLib.enterPOandPORelease(data.get("PONum"), data.get("PORelese"));
-						ReqLib.clickEditShipping();
+						ReqLib.clickEditBillingAddress();
 						//ReqLib.clickEditBillingAddress();
 						ReqLib.clickCartContents(data.get("QtyNum"));
 						ReqLib.verifyQuantityInCartContents();
@@ -204,5 +204,3 @@ public class REQ02_AllowApproversEditTest extends ChinaLib{
 					}
 	
 }
-
-

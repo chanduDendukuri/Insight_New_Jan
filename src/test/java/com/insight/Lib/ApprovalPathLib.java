@@ -741,8 +741,8 @@ for(int i=1;i<=count;i++) {
 	}
 
 	public void ClickGeneralSettings() throws Throwable {
-		if (isElementPresent(GENERAL_SETTINGS_LINK, "General Settings Link ")) {
-			click(GENERAL_SETTINGS_LINK, "Click General Settings Link");
+		if (isElementClickable(GENERAL_SETTINGS_LINK,3, "General Settings Link ")) {
+			//click(GENERAL_SETTINGS_LINK, "Click General Settings Link");
 			reporter.SuccessReport("Click General Settings on Approval Management Page",
 					"General Settings Link Exists and Clicked", "");
 		} else {
@@ -752,13 +752,13 @@ for(int i=1;i<=count;i++) {
 	}
 
 	public void ClickCreateLink() throws Throwable {
-		if (waitForVisibilityOfElement(CREATE_LINK, "Create Link ")) {
-			click(CREATE_LINK, "Click Create Link");
+		if (waitForVisibilityOfElement(CREATE_LINK, "Create icon ")) {
+			click(CREATE_LINK, "Click Create icon");
 			reporter.SuccessReport("Click Create on Approval Management Page Approver Out of Office Settings",
-					"CREATE Link Exists and Clicked", "");
+					"Click on create icon under “Approver Out of Office Settings”", "");
 		} else {
 			reporter.failureReport("Click Create on Approval Management Page Approver Out of Office Settings",
-					"CREATE Link  Does Not Exist", "");
+					"Click on create icon under “Approver Out of Office Settings”doesn't exist", "");
 		}
 	}
 
@@ -769,15 +769,17 @@ for(int i=1;i<=count;i++) {
 		if (wait.until(ExpectedConditions.alertIsPresent()) != null) {
 			String alertMsg = driver.switchTo().alert().getText();
 			if (alertMsg.contains("Replacement")) {
-				reporter.SuccessReport("Click ok on CreateLinkInrequisitionRejection popup",
-						"POPUP Exists and OK is Clicked", alertMsg);
 				acceptAlert();
+				reporter.SuccessReport("Click ok on Create Icon In requisitionRejection popup",
+						"POPUP Exists and OK is Clicked","");
+				
 
 			} 
 			else if(alertMsg.contains("Description")) {
-				reporter.SuccessReport("Click ok on CreateLinkInrequisitionRejection popup",
-						"POPUP Exists and OK is Clicked", alertMsg);
 				acceptAlert();
+				reporter.SuccessReport("Click ok on Create Icon InrequisitionRejection popup",
+						"POPUP Exists and OK is Clicked", "");
+				
 
 			} else {
 				reporter.failureReport("Click ok on ClickCreateLinkInrequisitionRejection",
@@ -886,11 +888,17 @@ for(int i=1;i<=count;i++) {
 		if (wait.until(ExpectedConditions.alertIsPresent()) != null) {
 			String alertMsg = driver.switchTo().alert().getText();
 			if (alertMsg.contains("Please edit existing rule")) {
-				reporter.SuccessReport("Approval Management Page Approver Out of Office Settings",
-						"POPUP Exists and OK is Clicked", alertMsg);
 				acceptAlert();
+				reporter.SuccessReport("Approval Management Page Approver Out of Office Settings",
+						"POPUP Exists and OK is Clicked", "");
+				
 
-			} else {
+			}
+			else if(alertMsg.contains("unique name")){
+				acceptAlert();
+				reporter.SuccessReport("Approval Management Page Approver Out of Office Settings",
+						"POPUP Exists and OK is Clicked", "");
+			}else {
 				reporter.failureReport("Approval Management Page Approver Out of Office Settings",
 						"POPUP Does Not Exist", "");
 			}
@@ -922,11 +930,12 @@ for(int i=1;i<=count;i++) {
 	public void CreateApproverOut(String strApproverId, String strReplacementType, String strReplacementApproverId,
 			String strCurrDay) throws Throwable {
 		// Select Approver
-		selectByValue(createApproverType(), strApproverId, "Approver");
+		selectByValue(createApproverType(), strApproverId, "ApproverId");
+		
 		if (isElementPresent(selectApprover(strApproverId), "Approver ")) {
-			
+			String Approvername = getText(selectApprover(strApproverId), "Selected Approver");
 			reporter.SuccessReport("Select Approver on Approval Management  Page Approver Out of Office Settings",
-					"Approver Field Exists and Selected", strApproverId);
+					"Approver Field Exists and Selected", "");
 		} else {
 			reporter.failureReport("Select Approver on Approval Management  Page Approver Out of Office Settings",
 					"Approver Field  Does Not Exist", "");
@@ -934,32 +943,41 @@ for(int i=1;i<=count;i++) {
 
 		// Select Replacement Type
 		if (isElementPresent(createReplacementType(), "Replacement Type")) {
-			selectByVisibleText(createReplacementType(), strReplacementType, "Replacement Type");
+			selectByVisibleText(createReplacementType(), strReplacementType, " from Replacement Type");
 			reporter.SuccessReport(
 					"Select Replacement Approver on Approval Management  Page Approver Out of Office Settings",
-					"Replacement Approver Field Exists and Selected", strReplacementType);
+					"Replacement Type Field Exists and Selected", strReplacementType);
 		} else {
 			reporter.failureReport(
 					"Select Replacement Approver on Approval Management  Page Approver Out of Office Settings",
-					"Replacement Approver Field  Does Not Exist", "");
+					"Replacement Type Field  Does Not Exist", "");
 		}
 
 		if (strReplacementType.trim().contains("Skip Approver")) {
 			// Verify Replacement Approver is Disabled
-			if (isElementPresent(DISABLED_REPLACEMENT_APPROVER, "Replacement Approver")) {
+			if (isElementPresent(DISABLED_REPLACEMENT_APPROVER, "Replacement Type")) {
 				reporter.SuccessReport("Approval Management  Page Approver Out of Office Settings",
-						"Replacement Approver Field Exists and in Disabled Mode", "");
+						"Replacement Type Field Exists and in Disabled Mode", "");
 			} else {
 				reporter.failureReport("Approval Management  Page Approver Out of Office Settings",
-						"Replacement Approver Field Exists and not in Disabled Mode", "");
+						"Replacement Type Field Exists and not in Disabled Mode", "");
 			}
 		} else {
 			// Select Replacement Approver
 			if (isElementPresent(selectRepApprover(strReplacementApproverId), "Replacement Approver")) {
-				selectByValue(createRepApproverType(), strReplacementApproverId, "Approver");
+				selectByValue(createRepApproverType(), strReplacementApproverId, "Replacement Approver");
 				reporter.SuccessReport(
 						"Select Replacement Approver on Approval Management  Page Approver Out of Office Settings",
 						"Replacement Approver Field Exists and Selected", strReplacementApproverId);
+				if(strReplacementType.contains("Permanent")) {
+				if (isElementPresent(Disabled_Todate, "Todate")) {
+					reporter.SuccessReport("Approval Management  Page Approver Out of Office Settings",
+							"Todate Field Exists and in Disabled Mode", "");
+				} else {
+					reporter.failureReport("Approval Management  Page Approver Out of Office Settings",
+							"Todate Field Exists and not in Disabled Mode", "");
+				}
+				}
 			} else {
 				reporter.failureReport(
 						"Select Replacement Approver on Approval Management  Page Approver Out of Office Settings",
@@ -968,8 +986,8 @@ for(int i=1;i<=count;i++) {
 		}
 
 		// From Date From Date Range Calender
-		if (isElementPresent(START_DATE_CALENDER, "From Date")) {
-			click(START_DATE_CALENDER, "From Date");
+		if (isElementClickable(START_DATE_CALENDER, 2,"From Date")) {
+			//click(START_DATE_CALENDER, "From Date");
 			reporter.SuccessReport("Select From Date on  Approval Management Page Approver Out of Office Settings",
 					"From Date Calender Image Exists and Selected", "");
 		} else {
@@ -990,7 +1008,7 @@ for(int i=1;i<=count;i++) {
 
 		if (monthAndYear.equals(monthAndDateCheck)) {
 			if (isElementPresent(dayInStartDayCalender(day), "From Date ")) {
-				click(dayInStartDayCalender(day),""+day+ " "+monthAndYear);
+				click(dayInStartDayCalender(day),day+ " "+monthAndYear);
 			}
 		} else {
 			while (!monthAndYear.equals(monthAndDateCheck)) {
@@ -1015,8 +1033,8 @@ for(int i=1;i<=count;i++) {
 		// To Date From Date Range Calender
 
 		if (!strReplacementType.trim().contains("Permanent")) {
-			if (isElementPresent(END_DATE_CALENDER, "To Date")) {
-				click(END_DATE_CALENDER, "To Date");
+			if (isElementClickable(END_DATE_CALENDER,2, "To Date")) {
+				//click(END_DATE_CALENDER, "To Date");
 				reporter.SuccessReport("Select To Date on  Approval Management Page Approver Out of Office Settings",
 						"To Date Calender Image Exists and Selected", "");
 			} else {
@@ -1025,8 +1043,8 @@ for(int i=1;i<=count;i++) {
 			}
 
 			// Change the Month
-			if (isElementPresent(NEXT_MONTH_ARROW, "Next month")) {
-				click(NEXT_MONTH_ARROW, "Next konth");
+			if (isElementClickable(NEXT_MONTH_ARROW, 2,"Next month")) {
+				//click(NEXT_MONTH_ARROW, "Next month");
 				reporter.SuccessReport("Change Month on Approval Management Page Approver Out of Office Settings",
 						"Arrow Button Exists and Clicked to Change the Month", "");
 			} else {
@@ -1036,7 +1054,8 @@ for(int i=1;i<=count;i++) {
 
 			// Select Day
 			if (isElementPresent(dayInStartDayCalender(day), "To Date ")) {
-				click(dayInStartDayCalender(day), "Day "+day);
+				String todate = driver.findElement(By.xpath("//div[@class='ui-datepicker-title']")).getText();
+				click(dayInStartDayCalender(day), day+" "+todate);
 			}
 
 			// Verify To Date Selection
@@ -1055,14 +1074,14 @@ for(int i=1;i<=count;i++) {
 		*/
 		}
 		// Click on Create
-		if (isElementPresent(ADD_IMG_BTN, "Create link")) {
-			click(ADD_IMG_BTN, "Create link");
+		if (isElementClickable(ADD_IMG_BTN,2, "Create Icon")) {
+			//click(ADD_IMG_BTN, "Create Icon");
 			reporter.SuccessReport("Click Create on Approval Management Page Approver Out of Office Settings",
-					"CREATE Link Exists and Clicked", "");
+					"CREATE Icon Exists and Clicked", "");
 			Thread.sleep(5000);
 		} else {
 			reporter.failureReport("Click Create on Approval Management Page Approver Out of Office Settings",
-					"CREATE Link does not Exists", "");
+					"CREATE Icon does not Exists", "");
 		}
 
 	}
@@ -1083,9 +1102,9 @@ String EndDate= getText(Approvername("EndDateId"), "EndDateId");
 		}
 	}
 
-	public void ModifyDeleteApproverOut(String strApprover, String modifyDate) throws Throwable {
-		if (isElementPresent(editApprover(strApprover), "Verify Approver ")) {
-			click(editApprover(strApprover), "Verify Approver");
+	public void ModifyDeleteApproverOut(String strApprover, String modifyDate,String ReplacementType) throws Throwable {
+		if (isElementClickable(editApprover(strApprover),3, "Click on Edit Icon ")) {
+			//click(editApprover(strApprover), "Click on Edit Icon");
 			reporter.SuccessReport("Approval Management Page Approver Out of Office Settings",
 					"Created Approver Out is in Edit Mode", "");
 		} else {
@@ -1093,15 +1112,15 @@ String EndDate= getText(Approvername("EndDateId"), "EndDateId");
 					"Approver Out Does Not Exist", "");
 		}
 
-		if (isElementPresent(getCalenderToUpdate, "To Date")) {
-			click(getCalenderToUpdate, "To date");
+		if (isElementPresent(getCalenderToUpdate, "From Date")) {
+			click(getCalenderToUpdate, "From date");
 		}
 
-		String day = modifyDate.split("-")[0];
+		
 
 		// Modify the date
 		if (isElementPresent(PREV_MONTH_ARROW, "Next month ")) {
-			click(PREV_MONTH_ARROW, "Next konth");
+			click(PREV_MONTH_ARROW, "Next Month");
 			reporter.SuccessReport("Change Month on Approval Management Page Approver Out of Office Settings",
 					"Arrow Button Exists and Clicked to Change the Month", "");
 		} else {
@@ -1109,6 +1128,7 @@ String EndDate= getText(Approvername("EndDateId"), "EndDateId");
 					"Arrow Button Does Not Exist", "");
 		}
 
+String day = modifyDate.split("-")[0];
 		// Select Day
 
 		int date = Integer.parseInt(day);
@@ -1116,12 +1136,12 @@ String EndDate= getText(Approvername("EndDateId"), "EndDateId");
 		day = String.valueOf(date);
 
 		if (isElementPresent(dayInStartDayCalender(day), "From Date ")) {
-			click(dayInStartDayCalender(day), "Day");
+			click(dayInStartDayCalender(day), day);
 		}
 
 		// Save
-		if (isElementPresent(SAVE_APPROVER, "Save Approver")) {
-			click(SAVE_APPROVER, "Save Approver");
+		if (isElementClickable(SAVE_APPROVER, 2,"Save Icon")) {
+			//click(SAVE_APPROVER, "Save Icon");
 			reporter.SuccessReport("Approval Management Page Approver Out of Office Settings",
 					"Created Approver Out is Modified and Saved", "");
 		} else {
@@ -1131,8 +1151,8 @@ String EndDate= getText(Approvername("EndDateId"), "EndDateId");
 
 		// Delete
 
-		if (isElementPresent(deleteApprover(strApprover), "Delete Approver")) {
-			click(deleteApprover(strApprover), "Delete Approver");
+		if (isElementClickable(deleteApprover(strApprover),2, "Delete Icon")) {
+			//click(deleteApprover(strApprover), "Delete Icon");
 			reporter.SuccessReport("Approval Management Page Approver Out of Office Settings",
 					"Created Approver Out is Deleted", "");
 		} else {
@@ -1829,7 +1849,7 @@ public void GetGroupNamesDisplayed() throws Throwable {
 		if (isElementPresent(PREV_MONTH_ARROW, "Previous month")) {
 			for (int i = 0; i <= months; i++) {
 				driver.findElement(PREV_MONTH_ARROW).click();
-				//click(NEXT_MONTH_ARROW, "Next konth");
+				//click(NEXT_MONTH_ARROW, "Next Month");
 			}
 			// Select Day
 			if (isElementPresent(dayInStartDayCalender(day), "From Date ")) {
@@ -1858,7 +1878,7 @@ public void GetGroupNamesDisplayed() throws Throwable {
 		if (isElementPresent(NEXT_MONTH_ARROW, "Next month")) {
 			for (int i = 0; i <= months; i++) {
 				driver.findElement(NEXT_MONTH_ARROW).click();
-				//click(NEXT_MONTH_ARROW, "Next konth");
+				//click(NEXT_MONTH_ARROW, "Next month");
 			}
 			// Select Day
 			if (isElementPresent(dayInStartDayCalender(day), "From Date ")) {
@@ -1888,7 +1908,7 @@ for(int i=0;i<=11;i++) {
 		break;
 	}
 	else {
-		click(NEXT_MONTH_ARROW, "Next konth");
+		click(NEXT_MONTH_ARROW, "Next Month");
 	}
 }
 	if (isElementPresent(dayInStartDayCalender(day), "From Date ")) {
