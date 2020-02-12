@@ -1063,13 +1063,14 @@ public  void verifyDashboard()throws Throwable {
 		}
 		type(USER_NAME, userName, "user Name");
 		click(CHECK_AVAILABILITY, "Check availability");
-		//if (isVisibleOnly(USER_NAME_MESSAGE, "user name Not Available")) {
-			//clearData(USER_NAME);
-			//type(USER_NAME, userName1, "user Name");
-			//return userName1;
-		//} else {
+		/*
+		 * if (isElementPresent(USER_NAME_MESSAGE, "user name Not Available")) {
+		 * clearData(USER_NAME); type(USER_NAME, userName1, "user Name"); return
+		 * userName1; } else {
+		 */
+			reporter.SuccessReport("verifying message", "Message exists for User: "+userName , "Available");
 			return userName;
-//		}
+		
 	}
 
 	public void enterUserNameToValidate(String userName) throws Throwable {
@@ -2596,6 +2597,7 @@ public  void verifyDashboard()throws Throwable {
 	 */
 	public void enterLinkedAccountSearch(String accountSearch) throws Throwable {
 		if (isVisibleOnly(LINKED_ACCOUNTS_SEARCH, "Linked account search")) {
+			clearData(LINKED_ACCOUNTS_SEARCH);
 			typeText(LINKED_ACCOUNTS_SEARCH, accountSearch, "");
 			click(SEARCH_ICON, "search icon");
 			reporter.SuccessReport("Web Group Management", "Under Linked Accounts Quick Find Box Exist and Value Entered", "Search Input:"+accountSearch);
@@ -2775,7 +2777,7 @@ public  void verifyDashboard()throws Throwable {
                   int C= list.size();
                   System.out.println(C);
 		if (status.equals("Checked")) {
-			for (i = 0; i <= 10; i++) {
+			for (i = 0; i <= 9; i++) {
 				if (isCheckBoxSelected(LINKED_ACCOUNT_CHECKBOX)) {
 					reporter.SuccessReport("Under Linked Accounts Linking Weblist Exist and Selected",
 							"Verify Check Boxes Status:Checkbox is Checked", "");
@@ -2881,10 +2883,9 @@ public  void verifyDashboard()throws Throwable {
 	 * @throws Throwable
 	 */
 	public List<String> getAccountNameInLinkedAccounts() throws Throwable {
-
 		List<WebElement> myList = driver.findElements(ACCOUNT_NAME);
 		List<String> all_elements_text = new ArrayList<>();
-		for (int i = 0; i < myList.size(); i++) {
+		for (int i = 0; i <myList.size(); i++) {
 			all_elements_text.add(myList.get(i).getText());
 		}
 		return all_elements_text;
@@ -2898,7 +2899,7 @@ public  void verifyDashboard()throws Throwable {
 	 * @throws Throwable
 	 */
 	public void verifyAccountNameStartsWith(List<String> expectedName, String actualName) throws Throwable {
-		for (i = 0; i < 5; i++) {
+		for (i = 0; i < 6; i++) {
 			if ((expectedName.get(i).toUpperCase()).startsWith(actualName)) {
 				reporter.SuccessReport("verify Account Name Starts With",
 						"All Sold To Accounts Started with "+expectedName+" are Exist and Returned",  expectedName.get(i));
@@ -3719,9 +3720,9 @@ public void verifySetPermissionsDisabled(String userPermissions) throws Throwabl
 		List<String> values = new ArrayList<String>();
 				if(isVisibleOnly(LinkedAccountsText,"Linked Accounts Data")) {
 					List<WebElement> list2 = driver.findElements(LinkedAccountsText);
-					for (int i = 0; i<15; i++) {
-						for (int j=0;j<5;j++) {
-						String textlinkedaccount= list2.get(i).getText().trim();
+					for (int i = 0; i<49; i++) {
+						for (int j = 0; j < 5; j++) {
+						String textlinkedaccount= list2.get(j).getText().trim();
 						values.add(textlinkedaccount);
 						}
 					reporter.SuccessReport("Web Group Management", "All Active Sold to's for the Current Web Group Displays", "AccountName,AccountNumber,Address,AccountStatus,DefaultLogin:"+values);
@@ -3782,6 +3783,18 @@ public void verifySetPermissionsDisabled(String userPermissions) throws Throwabl
 	}
 	}
 	
-	
+	public void verifyAccountName(List<String> expectedName) throws Throwable {
+		for (i = 0; i < 5; i++) {
+			if ((expectedName.get(i).toUpperCase())==null) {
+				reporter.failureReport("verify Account Name Starts With",
+						"Account Name verification is not successfull", "", driver);
+				} else {
+				reporter.SuccessReport("verify Account Names",
+						"All Sold To Accounts"+expectedName+" are Exist and Returned", expectedName.get(i));
+		
+			}
+		}
+
+	}
 	
 }
