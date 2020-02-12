@@ -95,21 +95,21 @@ public class CAN07_CartBasicTest extends CanadaLib{
 									//CommonLib.addToCartAndVerify();
 									canadaLib.continueToCheckout();
 //adding review commentsString s1=Boolean.toString(verifyCartPageAvailablity());
-									assertTrue(cartLib.verifyCartPageAvailablity(),"Cart Page loaded");
+	//QUantity  = 2 								assertTrue(cartLib.verifyCartPageAvailablity(),"Cart Page loaded");
 									prodInfoLib.enterQuantityForProductsInViewCartPage(data.get("Quantity"));
 									reporter.SuccessReport("Update Quantity" ,"Quantity was update with ",data.get("Quantity"));
 									CommonLib.clickOnUpdateLinkInViewCartPage(data.get("Quantity"));
-//with zero
+//with ABC
 									prodInfoLib.enterQuantityForProductsInViewCartPage(data.get("quan"));
 									assertTrue(!CommonLib.clickOnUpdateLinkInViewCartPage(data.get("quan")),"Update button is not visible");
-//characters
+//With 0
 									prodInfoLib.enterQuantityForProductsInViewCartPage(data.get("quant"));
 									assertTrue(!CommonLib.clickOnUpdateLinkInViewCartPage(data.get("quant")),"Update button is not visible");
 									prodInfoLib.getSummaryCartDetails();
 									prodInfoLib.deleteSelectedProducts();
 //Second time searching for same product after deleting
-									CommonLib.searchProduct(data.get("SearchItem1"));
-									prodInfoLib.verifyTheManufacturerNumberInProductDetailsPage(data.get("SearchItem1"));
+									CommonLib.searchProduct(data.get("SearchItem2"));
+									prodInfoLib.verifyTheManufacturerNumberInProductDetailsPage(data.get("SearchItem2"));
 									search.increaseQuantity(data.get("quantity"));
 
 									CommonLib.addToCartAndVerify();
@@ -136,11 +136,11 @@ public class CAN07_CartBasicTest extends CanadaLib{
 									cmtLib.searchForaUserAndSelect(data.get("userName1"), data.get("ContactName1"));
 									CommonLib.clickRolesAndPermissionsAtUserLevel();
 									cmtLib.setPermissionsToDisable(data.get("menuName"), data.get("userPermission2"));//Enable Buying Enable Duplicate Order - OFF
-									cmtLib.setPermissionsToDisableOnly(data.get("userPermission3"));
+									//cmtLib.setPermissionsToDisableOnly(data.get("userPermission3"));
 									cmtLib.loginAsAdminCMT();
 									cmtLib.loginVerification(data.get("ContactName1"));
-									CommonLib.searchProduct(data.get("SearchItem1"));//Thin Clients
-									prodInfoLib.verifyTheManufacturerNumberInProductDetailsPage(data.get("SearchItem1"));
+									CommonLib.searchProduct(data.get("SearchItem2"));//Thin Clients
+									prodInfoLib.verifyTheManufacturerNumberInProductDetailsPage(data.get("SearchItem2"));
 									ccp.clickOnAddToCartButtonUnderProductDynamically(data.get("quantity"));
 
 									String man3=cartLib.getPartNumber();
@@ -159,30 +159,6 @@ public class CAN07_CartBasicTest extends CanadaLib{
 									slp.verifyProccedToCheckOutbuttonExists();
 									cmtLib.clickOnLogoutlink();
 
-
-									cmtLib.loginToCMT(data.get("Header"));
-
-									cmtLib.searchForWebGroup(data.get("WebGrp"));
-									cmtLib.clickOnTheWebGroup(data.get("WebGrp_Name"));
-									//cmtLib.hoverOnManageWebGroupsAndSelectOptions(data.get("Manage_Web_Grp_Options"));
-									cmtLib.hoverOnManageWebGroupsAndSelectOptions(data.get("Manage_Web_Grp_Options1"));
-									cmtLib.searchForaUserAndSelect(data.get("userName"), data.get("userName"));
-									cmtLib.clickOnRolesAndPermissionsAndSetPermission(data.get("menuName"), data.get("userPermission3"));
-									cmtLib.loginAsAdminCMT();
-									cmtLib.loginVerification(data.get("contract"));
-									CommonLib.searchProduct(data.get("SearchItem1"));
-									prodInfoLib.verifyTheManufacturerNumberInProductDetailsPage(data.get("SearchItem1"));
-									//prodInfoLib.verifyTheManufacturerNumberInProductDetailsPage(data.get("SearchItem1"));
-									search.increaseQuantity(data.get("quantity"));
-									String man2=cartLib.getPartNumber();
-
-									CommonLib.addToCartAndVerify();
-
-
-								//	CommonLib.addToCartAndVerify();
-									assertTrue(canadaLib.availabilityOfContinueCheckout(),"Continue checkout availability");
-//adding review commentsString s1=Boolean.toString(verifyCartPageAvailablity());
-									cmtLib.clickOnLogoutlink();
 
 									System.out.println("Test completed");
 					} catch (Exception e) {
