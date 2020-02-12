@@ -316,7 +316,7 @@ for(int i=1;i<=count;i++) {
 	public void SelectSpecificRequestor(String strRequestorOption) throws Throwable {
 
 		if (isElementPresent(selectRequestorByText(strRequestorOption), "Approver ")) {
-			selectByVisibleText(createRequestorType(), strRequestorOption, "Approver");
+			selectByVisibleText(createRequestorType, strRequestorOption, "Approver");
 			reporter.SuccessReport("Add Requestors on Create/Edit Requestor Group Page",
 					"Requestors Exist in the Available Requestors' List and Selected", strRequestorOption);
 		} /*
@@ -480,6 +480,15 @@ for(int i=1;i<=count;i++) {
 	public void VerifySuccessUpdate() throws Throwable {
 		String updatemesasge = getText(SUCCESS_UPDATE_MSG,"Update succes message");
 		if (isElementPresent(SUCCESS_UPDATE_MSG, "Update approver success message")) {
+			reporter.SuccessReport("Verify Approval Path Management Page", "Successfully Edited Approval Path", updatemesasge);
+		} else {
+			reporter.failureReport("Verify Approval Path Management Page",
+					"edited approval Message path Does Not Exist", "");
+		}
+	}
+	public void VerifySuccessUpdateInRequestor() throws Throwable {
+		String updatemesasge = getText(UpdateMsgInRequestorGroup,"Update succes message");
+		if (isElementPresent(UpdateMsgInRequestorGroup, "Successfully updated requestors")) {
 			reporter.SuccessReport("Verify Approval Path Management Page", "Successfully Edited Approval Path", updatemesasge);
 		} else {
 			reporter.failureReport("Verify Approval Path Management Page",
@@ -1576,9 +1585,8 @@ public String GetGroupNamesDisplayed() throws Throwable {
 		// Add
 		//Add_Requestor_Btn_Click();
 
-		// Click Save Changes
 		ClickSaveChangesButton();
-	    VerifySuccessUpdate();
+		VerifySuccessUpdateInRequestor();
 
 	}
 	public void clickonRefreshIconRequestorGroupuser() throws Throwable {
@@ -1631,20 +1639,34 @@ public int GetNumberOfRequestorsOnRightSide() throws Throwable {
 	}
 	return elem.size();
 }
-	public String SelectRequestor(String Requestor_Name,int count) throws Throwable {
+	public void SelectRequestor(String Requestor_Name,int count) throws Throwable {
 		String strRequestorOption = null;
 		if (Requestor_Name != null) {
 			SelectSpecificRequestor(Requestor_Name);
 		} else {
 			// select Requestor id value
 			
-for(int i=0;i<=count;++i) {
-	WebElement elm = driver.findElement(ALL_REQUESTOR_OPTIONS(i));
-	if(i<=count) {
-			strRequestorOption = elm.getText();
+for(int i=1;i<=count;i++) {
+	ClickRefreshIcon();
+	WebElement elm = driver.findElement(createRequestorType);
+	List<WebElement> elem = elm.findElements(By.tagName("option"));
+		elem.get(i).click();
+		String req = elem.get(i).getText();
+		Add_Requestor_Btn_Click();
+		reporter.SuccessReport("Add Requestors on Create/Edit Requestor Group Page",
+				"Requestors Exist in the Available Requestors' List and Selected", req);
+	}
+	
+		
+		
+	
+}
+	/*if(i<=count) {
+			strRequestorOption = elm.get(i).getText();
 
 			if (isElementPresent(selectRequestor(strRequestorOption), "Approver ")) {
-				selectByVisibleText(createRequestorType(), strRequestorOption, "Approver");
+				elm.get(i).click();
+				//selectByVisibleText(createRequestorType(), strRequestorOption, "Approver");
 				reporter.SuccessReport("Add Requestors on Create/Edit Requestor Group Page",
 						"Requestors Exist in the Available Requestors' List and Selected", strRequestorOption);
 				// Add
@@ -1662,8 +1684,78 @@ for(int i=0;i<=count;++i) {
 	
 }}
 		}
-		return strRequestorOption;
-	}
+		return strRequestorOption;*/
+		}
+	public void ModifyDeleteApproverOutForToDate(String strApprover, String modifyDate,String ReplacementType) throws Throwable {
+		   if (isElementClickable(editApprover(strApprover),3, "Click on Edit Icon ")) {
+		      //click(editApprover(strApprover), "Click on Edit Icon");
+		      reporter.SuccessReport("Approval Management Page Approver Out of Office Settings",
+		            "Created Approver Out is in Edit Mode", "");
+		   } else {
+		      reporter.failureReport("Approval Management Page Approver Out of Office Settings",
+		            "Approver Out Does Not Exist", "");
+		   }
+
+		   if (isElementPresent(getCalenderToUpdate, "End Date")) {
+		      //click(getCalenderToUpdate, "From date");
+		      scrollToBottomWithCordinate("-400");
+		      click(getCalenderEndUpdate, "End date");
+		   }
+
+
+
+		  // Modify the date
+		   if (isElementPresent(NEXT_MONTH_ARROW, "Next month ")) {
+		      click(NEXT_MONTH_ARROW, "Next Month");
+		      reporter.SuccessReport("Change Month on Approval Management Page Approver Out of Office Settings",
+		            "Arrow Button Exists and Clicked to Change the Month", "");
+		   } else {
+		      reporter.failureReport("Change Month on Approval Management Page Approver Out of Office Settings",
+		            "Arrow Button Does Not Exist", "");
+		   }
+
+		   String day = modifyDate.split("-")[0];
+		   // Select Day
+
+		   int date = Integer.parseInt(day);
+		   date = date + 1;
+		   day = String.valueOf(date);
+
+		   if (isElementPresent(dayInStartDayCalender(day), "From Date ")) {
+		      click(dayInStartDayCalender(day), day);
+		   }
+
+		   // Save
+		   if (isElementClickable(SAVE_APPROVER, 2,"Save Icon")) {
+		      //click(SAVE_APPROVER, "Save Icon");
+		      reporter.SuccessReport("Approval Management Page Approver Out of Office Settings",
+		            "Created Approver Out is Modified and Saved", "");
+		   } else {
+		      reporter.failureReport("Approval Management Page Approver Out of Office Settings",
+		            "Approver Out Does Not Exist", "");
+		   }
+
+		   // Delete
+
+		   if (isElementClickable(deleteApprover(strApprover),2, "Delete Icon")) {
+		      //click(deleteApprover(strApprover), "Delete Icon");
+		      reporter.SuccessReport("Approval Management Page Approver Out of Office Settings",
+		            "Created Approver Out is Deleted", "");
+		   } else {
+		      reporter.failureReport("Approval Management Page Approver Out of Office Settings",
+		            "Approver Out Does Not Exist", "");
+		   }
+		}
+public void DeleteApproverOut(String strApprover) throws Throwable {
+	if (isElementClickable(deleteApprover(strApprover),2, "Delete Icon")) {
+	      //click(deleteApprover(strApprover), "Delete Icon");
+	      reporter.SuccessReport("Approval Management Page Approver Out of Office Settings",
+	            "Created Approver Out is Deleted", "");
+	   } else {
+	      reporter.failureReport("Approval Management Page Approver Out of Office Settings",
+	            "Approver Out Does Not Exist", "");
+	   }
+}
 public void SelectRequestorFromRightToLeft(String requestor) throws Throwable {
 	selectByVisibleText(RequestorFromRightToLeft(requestor), requestor, "requestor");
 	click(BackArrow_button,"Back Arrow button");
@@ -1704,16 +1796,18 @@ public void SelectRequestorFromRightToLeft(String requestor) throws Throwable {
 	}
 
 	public void UpdatedSuccessMsg() throws Throwable {
-		String Succesmessage = getText(SUCCESS_UPDATED_MSG, "Updated message");
-		if (isElementPresent(SUCCESS_UPDATED_MSG, "Updated success message")) {
+		
+		if (isVisibleOnly(SUCCESS_UPDATED_MSG, "Updated success message")) {
+			String Succesmessage = getText(SUCCESS_UPDATED_MSG, "Updated message");
 			reporter.SuccessReport("Add Requestors on Create/Edit Requestor Group Page", "Changes updated successfully",
-					"");
+					Succesmessage);
 		} else {
 			ClickSaveChangesButton();
 			Thread.sleep(2000);
+			String Succesmessage1 = getText(Successmsg, "Updated message");
 			if (isElementPresent(SUCCESS_UPDATED_MSG, "Updated success message")) {
 				reporter.SuccessReport("Add Requestors on Create/Edit Requestor Group Page",
-						"Changes updated successfully", Succesmessage);
+						"Changes updated successfully", Succesmessage1);
 			} else {
 				reporter.failureReport("Add Requestors on Create/Edit Requestor Group Page",
 						"Changes Not updated successfully", "");
@@ -1903,7 +1997,7 @@ public void PageLinkText() throws Throwable {
 	public void SearchByLastName(String reqLastName) throws Throwable {
 		String lastName = reqLastName.split(",")[0];
 		if (isElementPresent(REQUESTOR_GRP_NAME_TXTBOX, "Requestor Group name textbox")) {
-			type(REQUESTOR_GRP_NAME_TXTBOX, lastName, "Click Requestor Group name textbox");
+			type(REQUESTOR_GRP_NAME_TXTBOX, lastName, "Enter Requestor Group name textbox");
 			reporter.SuccessReport("Approval Management Reports Page", "Last Name or Account Number Field Exists", "");
 		} else {
 			reporter.failureReport("Approval Management Reports Page",
