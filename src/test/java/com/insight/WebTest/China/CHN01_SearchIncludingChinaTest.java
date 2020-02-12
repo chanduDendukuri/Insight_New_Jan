@@ -70,6 +70,7 @@ public class CHN01_SearchIncludingChinaTest extends ChinaLib{
 						// Verify Best Match option
 						canadaLib.verifySortOption(data.get("Sort_Option"));
 						// select Filter HP INC
+						scrollUp();
 						searchLib.filterSelectionInProductsSearchPage(data.get("Manufacturer"));
 						verifyManufacturerOnSearchResultsPage(data.get("Manufacturer"));
 						String firstProdPrice=pipLib.getFirtProductListPrice();

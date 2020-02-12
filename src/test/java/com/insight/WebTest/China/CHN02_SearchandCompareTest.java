@@ -72,6 +72,7 @@ public class CHN02_SearchandCompareTest extends ChinaLib{
 						// Verify Best Match option
 						canadaLib.verifySortOption(data.get("Sort_Option"));
 						// select Filter HP INC
+						scrollUp();
 						searchLib.filterSelectionInProductsSearchPage(data.get("Manufacturer"));
 						Thread.sleep(3000);
 						verifyManufacturerOnSearchResultsPage(data.get("Manufacturer"));
