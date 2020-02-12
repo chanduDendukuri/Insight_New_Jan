@@ -108,7 +108,7 @@ public class CAN10_SPLAZeroUsageTest extends CanadaLib {
                     commonLib.clickOnAccountToolsAndClickOnProductGrp(data.get("Tools_Menu"), data.get("Tools_Menu_DD"));
                     verifySPLAPage();
                     slpLib.retrieveLastUsageReport(data.get("SPLA"));
-                    String subTotal=sbpLib.getTotalAmountInCart(data.get("SubTotal_label"));
+                    String subTotal=cartLib.getSummaryAmountInCart();
 					Double subTotalAmount = Double.parseDouble(subTotal.replace("$", ""));
 					slpLib.verifyAmount(subTotalAmount);
                   

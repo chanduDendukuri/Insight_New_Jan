@@ -663,10 +663,10 @@ List<String> orderdetails = new ArrayList<String>();
 			  selectByValue(EXPIRATION_MONTH,month , "Expiration month");
 			  click(EXPIRATION_YEAR, "Expiration year");
 			  selectByValue(EXPIRATION_YEAR,year , "Expiration year");
-			  if(isElementPresent(PO_NUMBER,"PO Number")){
+			  if(isVisibleOnly(PO_NUMBER,"PO Number")){
 			  type(PO_NUMBER, PONumber, "PO number");
 			  }
-			  if(isElementPresent(PO_REALESE_NUMBER,"PO Realese Number")){
+			  if(isVisibleOnly(PO_REALESE_NUMBER,"PO Realese Number")){
 				  typeText(PO_REALESE_NUMBER, PORealeseNumber, "PO number");
 			  }
 		}
@@ -1111,7 +1111,7 @@ List<String> orderdetails = new ArrayList<String>();
 	 */
 	public void verifyReceiptVerbiage() throws Throwable{
 		Thread.sleep(3000);
-		if(isElementPresent(THANK_YOU_FOR_ORDER_MSG, "Thank you message") || isElementPresent(THANK_YOU_FOR_ORDER_REQUEST_MSG, "Thank you message")){
+		if(isElementPresent(THANK_YOU_FOR_ORDER_MSG, "Thank you message") || isElementPresent(THANK_YOU_FOR_ORDER_REQUEST_MSG, "Thank you message")|| isElementPresent(THANK_YOU_FOR_ORDER_MSG_ON_RECEIPT, "Thank you for your order")){
 			reporter.SuccessReport("Verify Receipt Verbiage", "Thank you for order message displayed","Order Confirmation Page");
 		}else{
 			reporter.failureReport("Verify Receipt Verbiage", "Thank you for order message not displayed","",driver);

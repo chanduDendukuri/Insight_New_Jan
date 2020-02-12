@@ -383,7 +383,7 @@ public class CMTLib extends CMTObj {
 	 */
 	public void searchUsers(String LnameEmailUname) throws Throwable {
 		waitForVisibilityOfElement(CMTObj.LNAME_EMAIL_USERNAME, "LNAME EMAIL USERNAME: " + LnameEmailUname);
-		type(CMTObj.LNAME_EMAIL_USERNAME, LnameEmailUname, "LNAME EMAIL USERNAME: " + LnameEmailUname);
+		type(CMTObj.LNAME_EMAIL_USERNAME, LnameEmailUname, "LNAME EMAIL USERNAME: ");
 		click(CMTObj.USERNAME_SEARCH_BUTTON, "Search button Exists and Clicked", "Link: Search");
 	}
 
@@ -863,7 +863,7 @@ public  void verifyDashboard()throws Throwable {
 	 */
 	public void enterUserName(String text) throws Throwable {
 		clearData(USER_NAME_FIELD);
-		type(USER_NAME_FIELD, text, "user name"+text);
+		type(USER_NAME_FIELD, text, "user name");
 		click(CHECK_AVAILABLITY_BUTTON, "check availability");
 
 	}
@@ -1063,13 +1063,16 @@ public  void verifyDashboard()throws Throwable {
 		}
 		type(USER_NAME, userName, "user Name");
 		click(CHECK_AVAILABILITY, "Check availability");
-		//if (isVisibleOnly(USER_NAME_MESSAGE, "user name Not Available")) {
-			//clearData(USER_NAME);
-			//type(USER_NAME, userName1, "user Name");
-			//return userName1;
-		//} else {
+		 if (isVisibleOnly(USER_NAME_MESSAGE, "user name Not Available")) {
+		 getText(USER_NAME_MESSAGE,"Error Msg");
+		 clearData(USER_NAME);
+		 type(USER_NAME, userName1, "user Name");
+		  click(CHECK_AVAILABILITY, "Check availability");
+		  reporter.SuccessReport("verifying message", "Message exists for User: "+userName , "Available");
+		  return userName1; 
+		  } else {
 			return userName;
-//		}
+		  }
 	}
 
 	public void enterUserNameToValidate(String userName) throws Throwable {
@@ -1091,7 +1094,7 @@ public  void verifyDashboard()throws Throwable {
 	 *
 	 */
 	public void enterConfirmPasswordInCreateAnAccount(String password) throws Throwable {
-		type(CONFIRM_PASSWORD, password, "password");
+		type(CONFIRM_PASSWORD, password, "Enter Confirm password");
 
 	}
 
@@ -1111,7 +1114,7 @@ public  void verifyDashboard()throws Throwable {
 	 */
 	public void clickContinueButtonInCreateAnAccount() throws Throwable {
 		if (isVisibleOnly(SAVE_AND_CONTNUE, "Save and continue button")) {
-			click(SAVE_AND_CONTNUE, "Save and continue button");
+			clickUntil(SAVE_AND_CONTNUE, WELCOME_PAGE,"Save and continue button");
 		}
 	}
 
@@ -2596,6 +2599,7 @@ public  void verifyDashboard()throws Throwable {
 	 */
 	public void enterLinkedAccountSearch(String accountSearch) throws Throwable {
 		if (isVisibleOnly(LINKED_ACCOUNTS_SEARCH, "Linked account search")) {
+			clearData(LINKED_ACCOUNTS_SEARCH);
 			typeText(LINKED_ACCOUNTS_SEARCH, accountSearch, "");
 			click(SEARCH_ICON, "search icon");
 			reporter.SuccessReport("Web Group Management", "Under Linked Accounts Quick Find Box Exist and Value Entered", "Search Input:"+accountSearch);
@@ -2613,8 +2617,8 @@ public  void verifyDashboard()throws Throwable {
 	public void clearSearch() throws Throwable {
 		if(isVisibleOnly(LINKED_ACCOUNTS_SEARCH,"Linked Account Search")) {
 		clearData(LINKED_ACCOUNTS_SEARCH);
-		click(SEARCH_ICON, "search icon");
 		reporter.SuccessReport("Web Group Management", "Under Linked Accounts Results are Cleared", "");
+		click(SEARCH_ICON, "search icon");
 	}
 	}
 
@@ -2659,7 +2663,7 @@ public  void verifyDashboard()throws Throwable {
 	public void clickUpdateButtonOnLinkedAccountsScreen() throws Throwable {
 		if (isEnabled(UPDATEUSER_BTN, "Update Button")) {
 			click(UPDATEUSER_BTN, "update button");
-			isElementPresent(LINKED_ACCOUNT_UPADTE_MSG, "Update Success message", true);
+			waitForVisibilityOfElement(LINKED_ACCOUNT_UPADTE_MSG, "Update Success message");
 		} else {
 			reporter.failureReport("verify update button enabled", "update user button is not enabled", "", driver);
 		}
@@ -2775,7 +2779,7 @@ public  void verifyDashboard()throws Throwable {
                   int C= list.size();
                   System.out.println(C);
 		if (status.equals("Checked")) {
-			for (i = 0; i <= 10; i++) {
+			for (i = 0; i <= 9; i++) {
 				if (isCheckBoxSelected(LINKED_ACCOUNT_CHECKBOX)) {
 					reporter.SuccessReport("Under Linked Accounts Linking Weblist Exist and Selected",
 							"Verify Check Boxes Status:Checkbox is Checked", "");
@@ -2854,14 +2858,28 @@ public  void verifyDashboard()throws Throwable {
 	 */
 	public void clickLinkedAccountCheckBox(String i) throws Throwable {
 		if(isVisibleOnly(getLinkedAccountCheckBoxByIndex(i), "Linked account check box")) {
-		click(getLinkedAccountCheckBoxByIndex(i), "Under Linked Accounts CheckBox of index "+i+" Exist and Checked");
+		click(getLinkedAccountCheckBoxByIndex(i), "Under Linked Accounts CheckBox :"+i+" Exist and Checked");
 		String Value=driver.findElement(CMTObj.getLinkedAccountCheckBoxByIndex(i)).getAttribute("value");
 		reporter.SuccessReport("Web Group Management", "The Sold To is Linked to User", "Account Number:"+Value);
 		}
 	}
 
+	public void VerifyLinkedAccountCheckBoxisClicked(String i) throws Throwable {
+		if(driver.findElement(getLinkedAccountCheckBoxByIndex(i)).isSelected()) {
+		reporter.SuccessReport("Web Group Management", "Under Linked Accounts CheckBox : "+i+" Exist and Checked","");
+		}else {
+			reporter.SuccessReport("Web Group Management", "Under Linked Accounts CheckBox : "+i+" Exist and Not Checked","");
+		}
+	}
+	public void clickLinkedAccountUnCheckBox(String i) throws Throwable {
+		if(driver.findElement(getLinkedAccountCheckBoxByIndex(i)).isSelected()) {
+		click(getLinkedAccountCheckBoxByIndex(i), "Under Linked Accounts CheckBox :"+i+" Exist and UnChecked");
+		}
+	}
+	
 	public void clickOnDefaultAccountLoginByIndex(String i) throws Throwable {
-		click(getDefaultLoginByIndex(i), "Last Sold TO is Linked to User");
+		String Account=driver.findElement(getDefaultLoginByIndex(i)).getAttribute("value");
+		click(getDefaultLoginByIndex(i), "Last Sold TO is Linked to User:"+Account);
 	}
 
 	/**
@@ -2881,10 +2899,9 @@ public  void verifyDashboard()throws Throwable {
 	 * @throws Throwable
 	 */
 	public List<String> getAccountNameInLinkedAccounts() throws Throwable {
-
 		List<WebElement> myList = driver.findElements(ACCOUNT_NAME);
 		List<String> all_elements_text = new ArrayList<>();
-		for (int i = 0; i < myList.size(); i++) {
+		for (int i = 0; i <myList.size(); i++) {
 			all_elements_text.add(myList.get(i).getText());
 		}
 		return all_elements_text;
@@ -2898,7 +2915,7 @@ public  void verifyDashboard()throws Throwable {
 	 * @throws Throwable
 	 */
 	public void verifyAccountNameStartsWith(List<String> expectedName, String actualName) throws Throwable {
-		for (i = 0; i < 5; i++) {
+		for (i = 0; i < 6; i++) {
 			if ((expectedName.get(i).toUpperCase()).startsWith(actualName)) {
 				reporter.SuccessReport("verify Account Name Starts With",
 						"All Sold To Accounts Started with "+expectedName+" are Exist and Returned",  expectedName.get(i));
@@ -3719,9 +3736,9 @@ public void verifySetPermissionsDisabled(String userPermissions) throws Throwabl
 		List<String> values = new ArrayList<String>();
 				if(isVisibleOnly(LinkedAccountsText,"Linked Accounts Data")) {
 					List<WebElement> list2 = driver.findElements(LinkedAccountsText);
-					for (int i = 0; i<15; i++) {
-						for (int j=0;j<5;j++) {
-						String textlinkedaccount= list2.get(i).getText().trim();
+					for (int i = 0; i<49; i++) {
+						for (int j = 0; j < 5; j++) {
+						String textlinkedaccount= list2.get(j).getText().trim();
 						values.add(textlinkedaccount);
 						}
 					reporter.SuccessReport("Web Group Management", "All Active Sold to's for the Current Web Group Displays", "AccountName,AccountNumber,Address,AccountStatus,DefaultLogin:"+values);
@@ -3768,5 +3785,32 @@ public void verifySetPermissionsDisabled(String userPermissions) throws Throwabl
 			reporter.failureReport("Verify the sucess message", "Display this on web check box not checked Succesfully", "",
 					driver);
 		}
+	}//DEFUALTSOLDTOACCOUNT
+	
+	public void verifyDefualtSoldToinLinkedAccounts(String account) throws Throwable {
+	if(isVisibleOnly(DEFUALTSOLDTOACCOUNT,"Defualt Sold To")) {
+		String Account =getText(DEFUALTSOLDTOACCOUNT,"Sold To").trim();
+		if(Account.contains(account)) {
+		reporter.SuccessReport("Verify User Name is Matches to Soldto in Linked Accounts Tab on Manage Web groups: Users Page", "User Name Exists and Matches to Soldto Name",Account);
+	}else {
+		reporter.failureReport("Verify User Name is Matches to Soldto in Linked Accounts Tab on Manage Web groups: Users Page", "User Name Exists not Matches to Soldto Name", "",
+				driver);
 	}
+	}
+	}
+	
+	public void verifyAccountName(List<String> expectedName) throws Throwable {
+		for (i = 0; i < 5; i++) {
+			if ((expectedName.get(i).toUpperCase())==null) {
+				reporter.failureReport("verify Account Name Starts With",
+						"Account Name verification is not successfull", "", driver);
+				} else {
+				reporter.SuccessReport("verify Account Names",
+						"All Sold To Accounts"+expectedName+" are Exist and Returned", expectedName.get(i));
+		
+			}
+		}
+
+	}
+	
 }

@@ -159,7 +159,8 @@ public class CAN14_NoDiscoverCardTest extends CanadaLib {
                     clickOnEnterNewCard();
 scrollToBottomWithCordinate("200");
 //verification disco();
-                        getListOfCardTypes();
+                       ccp.getListOfCardTypes();
+                       scrollToBottomWithCordinate("-500");
                     ccp.clickOnAccountToolsAndClickOnProductGrp("My Company");
                    // ccp.clickOnAccountToolsAndClickOnProductGrp(data.get("Tools_Menu1"));
                     cmtLib.handlebetaPopup();

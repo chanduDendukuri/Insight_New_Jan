@@ -9,9 +9,9 @@ import com.insight.Lib.CMTLib;
 import com.insight.Lib.CanadaLib;
 import com.insight.Lib.CartLib;
 import com.insight.Lib.CommonLib;
-import com.insight.Lib.InvoiceHistoryLib;
 import com.insight.Lib.MarriottIntlCorpLib;
 import com.insight.Lib.OrderLib;
+import com.insight.Lib.ProductDisplayInfoLib;
 import com.insight.Lib.SearchLib;
 import com.insight.Lib.ShipBillPayLib;
 import com.insight.Lib.UserManagementLib;
@@ -61,6 +61,7 @@ public class USM02_FCTWebCreateCEPPuserTest extends UserManagementLib {
 							MarriottIntlCorpLib mic=new MarriottIntlCorpLib();
 							CommonLib commonLib = new CommonLib();
 							ShipBillPayLib sbp=new ShipBillPayLib();
+							ProductDisplayInfoLib productdisplayLib=new ProductDisplayInfoLib();
 							//Login
 							cmtLib.loginToCMT(data.get("Header"));
 							cmtLib.searchForWebGroup(data.get("WebGrp"));
@@ -89,10 +90,6 @@ public class USM02_FCTWebCreateCEPPuserTest extends UserManagementLib {
 							//cmtLib.updateUser();
 							cmtLib.clickInformationTab(data.get("Information_Tab"));
 							cmtLib.clickOnUserURL();
-							//refreshPage();
-							//cmtLib.verifyCreateAnAccountPage();
-							//commonLib.clickLogOutLink(data.get("Logout_Header"));
-							//navigateTo("https://uat1.insight.com/insightweb/endUser/createAccount?authKey=wSNU%2F3UlR5o%3D");
 							mic.handleinsightpopup();
 							//refreshPage();
 							cmtLib.enterAdressesInCreateAnAccount(data.get("Adressess2"));
@@ -105,9 +102,9 @@ public class USM02_FCTWebCreateCEPPuserTest extends UserManagementLib {
 							verifyErorrMsgOfLastName();
 							verifyErorrMsgOfPhoneNumber();
 							//User Name
-							String Number=getRandomNumeric(4);
+							String Number=getRandomNumeric(5);
 							String userName="QTPTest"+Number;
-							cmtLib.verifyAvailabilityCreateAccount(userName,data.get("CreateacUserName5"));
+							cmtLib.verifyAvailabilityCreateAccount("QTPTest77870",userName);
 							String password="QTPTest"+Number;
 							cmtLib.enterPasswordInCreateAnAccount(password);
 							cmtLib.enterConfirmPasswordInCreateAnAccount(password);
@@ -127,16 +124,18 @@ public class USM02_FCTWebCreateCEPPuserTest extends UserManagementLib {
 							cmtLib.enterBillingAccountNameInCreateAnAccount(billingAccountName);
 							cmtLib.clickCreateButtonInCreateAnAccount();
 							cmtLib.clickContinueButtonInCreateAnAccount();
-							mic.handleinsightpopup();
+							//mic.handleinsightpopup();
+							Thread.sleep(3000);
 							cmtLib.verifyWelcomePage();
 							searchLib.searchInHomePage(data.get("SearchItem"));
-							commonLib.addToCartAndVerify();
-							orderLib.continueToCheckOutOnAddCart();
+							productdisplayLib.addToCartInProductDetailsPage();
+							//commonLib.addToCartAndVerify();
+							//orderLib.continueToCheckOutOnAddCart();
 							Thread.sleep(3000);
 							cartLib.verifyItemInCart(data.get("SearchItem"));
 							mic.proceedToCheckout();
 							Thread.sleep(3000);
-							cartLib.clickOnContinueButtonInAddInformtion();
+							//cartLib.clickOnContinueButtonInAddInformtion();
 							canadaLib.verifySBP();
 							orderLib.shippingBillPayContinueButton();
 							orderLib.shippingOptionsCarrierSelection();
@@ -153,19 +152,20 @@ public class USM02_FCTWebCreateCEPPuserTest extends UserManagementLib {
 							cmtLib.loginToCMT(data.get("Header"));
 							cmtLib.searchForWebGroup(data.get("WebGrp"));
 							cmtLib.manageUsers();
-							cmtLib.hoverOnManageWebGroupsAndSelectOptions(data.get("Manage_Web_Grp_Options1"));
-							cmtLib.searchForaUserAndSelect(data.get("LnameEmailUname"), data.get("ContactName"));
+							cmtLib.searchForaUserAndSelect(email, firstName+" "+lastName);
 							cmtLib.clickOnRolesAndPermissionsTab(data.get("Menu_Name"));
 							String[] permissions2 = data.get("Set_Permission1").split(",");
 							for (i = 0; i < permissions2.length; i++) {
 								cmtLib.verifySetPermissions( permissions2[i]);
 							}
-							cmtLib.verifyDDPermission(data.get("Persision4"),data.get("Option"));
-							cmtLib.verifyDDPermission(data.get("Persision5"),data.get("Option"));
-							cmtLib.verifyDDPermission(data.get("Persision6"),data.get("Option"));
+							Thread.sleep(3000);
+							cmtLib.verifyDDPermission(data.get("Permision4"),data.get("Option"));
+							cmtLib.verifyDDPermission(data.get("Permision5"),data.get("Option"));
+							cmtLib.verifyDDPermission(data.get("Permision6"),data.get("Option"));
 							//cmtLib.updateUser();
-							cmtLib.hoverOnManageWebGroupsAndSelectOptions(data.get("Manage_Web_Grp_Options"));
-							
+							cmtLib.clickCheckOutSettings("Linked Accounts");
+							cmtLib.verifyDefualtSoldToinLinkedAccounts(userName);
+							cmtLib.logoutSite();
 							
 						} catch (Exception e) {
 							ReportStatus.blnStatus = false;
