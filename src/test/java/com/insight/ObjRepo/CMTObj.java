@@ -703,4 +703,8 @@ public static By lnkDeleteProductGroups=By.xpath("//*[text()=' Delete Product Gr
     
     public static By CLIENT_SUPPORT_800_PHONE_NUMEBR=By.xpath("//span[@class='wgDetailsRow'][contains(text(),'Client Support Phone Number :')]//input[@id='customerNumber']");
     public static By DISPLAY_THIS_ON_WEB=By.xpath("//span[@class='wgDetailsRow'][contains(text(),'Client Support Phone Number :')]//input[@id='displayOnWebId']");
+    public static By DEFUALTSOLDTOACCOUNT=By.xpath("//span[@id='defaultSoldtoforUser']");
+
+
+
 }

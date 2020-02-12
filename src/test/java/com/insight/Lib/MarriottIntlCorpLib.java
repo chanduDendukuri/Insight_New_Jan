@@ -21,7 +21,7 @@ public class MarriottIntlCorpLib extends MarriottIntlCorpObj {
 
 	public void handleinsightpopup() throws Throwable {
 		CMTLib cmtLib = new CMTLib();
-		if (driver.findElement(CartObj.POP_UP_EMAILID).isDisplayed()) {
+		if (isVisibleOnly(CartObj.POP_UP_EMAILID,"Pop UP")) {
 			cmtLib.handleWelcomeToInsightBetaPopUp();
 		} else {
 			// do nothing

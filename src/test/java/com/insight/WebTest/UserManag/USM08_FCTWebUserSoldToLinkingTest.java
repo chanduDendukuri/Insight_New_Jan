@@ -87,10 +87,10 @@ public class USM08_FCTWebUserSoldToLinkingTest extends UserManagementLib{
 							// Click on 2nd sold to
 							cmtLib.clickLinkedAccountCheckBox(data.get("Account_Number1"));//3
 							// search by ABE
-							cmtLib.enterLinkedAccountSearch(data.get("Account_Search1"));
+							//cmtLib.enterLinkedAccountSearch(data.get("Account_Search1"));
 							
-							List<String> accountName=cmtLib.getAccountNameInLinkedAccounts();
-							cmtLib.verifyAccountNameStartsWith(accountName, data.get("Account_Search1"));
+							//List<String> accountName=cmtLib.getAccountNameInLinkedAccounts();
+							//cmtLib.verifyAccountNameStartsWith(accountName, data.get("Account_Search1"));
 							
 							// Select >>  Link User to All Available Accounts
 							cmtLib.selectFromLinkedAccountDD(data.get("Option1"));
@@ -104,8 +104,8 @@ public class USM08_FCTWebUserSoldToLinkingTest extends UserManagementLib{
 							// search by AB
 							cmtLib.enterLinkedAccountSearch(data.get("Account_Search2"));
 							
-							List<String> accountName2=cmtLib.getAccountNameInLinkedAccounts();
-							cmtLib.verifyAccountNameStartsWith(accountName2, data.get("Account_Search2"));
+							//List<String> accountName2=cmtLib.getAccountNameInLinkedAccounts();
+							//cmtLib.verifyAccountNameStartsWith(accountName2, data.get("Account_Search2"));
 							// Clear the Results
 							cmtLib.clearSearch();
 							// select page - 3
