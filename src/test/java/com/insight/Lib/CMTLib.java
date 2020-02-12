@@ -1063,13 +1063,14 @@ public  void verifyDashboard()throws Throwable {
 		}
 		type(USER_NAME, userName, "user Name");
 		click(CHECK_AVAILABILITY, "Check availability");
-		
-		  if (isElementPresent(USER_NAME_MESSAGE, "user name Not Available")) {
-		  clearData(USER_NAME);
-		  type(USER_NAME, userName1, "user Name");
+		 if (isVisibleOnly(USER_NAME_MESSAGE, "user name Not Available")) {
+		 getText(USER_NAME_MESSAGE,"Error Msg");
+		 clearData(USER_NAME);
+		 type(USER_NAME, userName1, "user Name");
+		  click(CHECK_AVAILABILITY, "Check availability");
+		  reporter.SuccessReport("verifying message", "Message exists for User: "+userName , "Available");
 		  return userName1; 
 		  } else {
-			reporter.SuccessReport("verifying message", "Message exists for User: "+userName , "Available");
 			return userName;
 		  }
 	}
@@ -2864,7 +2865,8 @@ public  void verifyDashboard()throws Throwable {
 	}
 
 	public void clickOnDefaultAccountLoginByIndex(String i) throws Throwable {
-		click(getDefaultLoginByIndex(i), "Last Sold TO is Linked to User");
+		String Account=driver.findElement(getDefaultLoginByIndex(i)).getAttribute("value");
+		click(getDefaultLoginByIndex(i), "Last Sold TO is Linked to User:"+Account);
 	}
 
 	/**
