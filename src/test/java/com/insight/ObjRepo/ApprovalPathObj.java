@@ -80,6 +80,7 @@ public static By Successmsg = By.xpath("//div[@class='successUpdated']");
 	public static By ApprovalManagementTabs(String Tab) {
 		return By.xpath("//a[text()='"+Tab+"']");
 	}
+	public static By UpdateMsgInRequestorGroup= By.xpath("//p[@class='successUpdated']");
 	public static By APP_LNAME_TEXTBOX = By.xpath("//div[@class='inp_searchapp']//input[@id='search_lastname_text']");
 	public static By LAST_NAME_SEARCH_BTN = By.xpath("//a[@id='search_lastname_button']");
 	public static By ApproversearchtextBox =By.xpath("//input[@id='searchApprover']");
@@ -207,9 +208,9 @@ public static By CreateLinkInrequisationRejection = By.xpath("//table[@id='rejec
 		return By.xpath("//select[@id='oofApproverName']");
 	}
 	
-	public static By createRequestorType() {
-		return By.xpath("//select[@id='AvailRequestorsList']");
-	}
+	public static By createRequestorType=
+		 By.xpath("//select[@id='AvailRequestorsList']");
+	
 
 	public static By createRepApproverType() {
 		return By.xpath("//select[@id='oofReplacementApprover']");
@@ -219,9 +220,9 @@ public static By CreateLinkInrequisationRejection = By.xpath("//table[@id='rejec
 		return By.xpath("//*[@id='oofApproverName']//option[@value='" + id + "']");
 	}
 	
-	public static By ALL_REQUESTOR_OPTIONS(int i) {
-			return By.xpath("//select[@id='AvailRequestorsList']//option["+i+"]");
-	}
+	public static By ALL_REQUESTOR_OPTIONS =
+			 By.xpath("//select[@id='AvailRequestorsList']//option");
+	
 	
 	/*
 	 * public static By selectRequestor(String id) { return
@@ -271,6 +272,7 @@ public static By CreateLinkInrequisationRejection = By.xpath("//table[@id='rejec
 public static By Approvername(String Filedname) {
 	return By.xpath("//td[contains(@id,'"+Filedname+"')]");
 }
+public static By getCalenderEndUpdate = By.xpath("*//td[contains(@id,'OofEndDateId')]//img");
 	public static By editApprover(String approverName) {
 		return By.xpath("//table[@id='createApproveTableId']//tbody//tr//td[text()='" + approverName
 				+ "']//..//a//img[contains(@src,'Deep_Edit')]");
@@ -345,7 +347,7 @@ public static By Monthandyearoffromdate = By.xpath("//div[@class='ui-datepicker-
 	public static By RefreshLinkInApproverPathMngm = By.xpath("(//img[contains(@src,'Deep_Refresh')])[1]");
 	public static By RefreshIconRequestorGroupuser = By.xpath("//div[text()='Search for a specific Requestor Group']//following::img[contains(@src,'Deep_Refresh')]");
 	public static By GET_REQUESTOR_GROUP_COUNT = By.xpath("//table[@id='reqGrpUserReport']//tbody//tr");
-	public static By Exporticon= By.xpath("//img[@alt='Export']");
+	public static By Exporticon= By.xpath("(//a[@title='Export']//following-sibling::img[@alt='Export'])[2]");
 	public static By PageLinks = By.xpath("//span[@id='pageLinks']//b");
 	public static By getRequestorName(String i) {
 		return By.xpath("(//table[@id='reqGrpUserReport']//td[@class='verticalAlignTop'])[" + i + "]");
