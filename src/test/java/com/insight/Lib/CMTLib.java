@@ -2617,8 +2617,8 @@ public  void verifyDashboard()throws Throwable {
 	public void clearSearch() throws Throwable {
 		if(isVisibleOnly(LINKED_ACCOUNTS_SEARCH,"Linked Account Search")) {
 		clearData(LINKED_ACCOUNTS_SEARCH);
-		click(SEARCH_ICON, "search icon");
 		reporter.SuccessReport("Web Group Management", "Under Linked Accounts Results are Cleared", "");
+		click(SEARCH_ICON, "search icon");
 	}
 	}
 
@@ -2663,7 +2663,7 @@ public  void verifyDashboard()throws Throwable {
 	public void clickUpdateButtonOnLinkedAccountsScreen() throws Throwable {
 		if (isEnabled(UPDATEUSER_BTN, "Update Button")) {
 			click(UPDATEUSER_BTN, "update button");
-			isElementPresent(LINKED_ACCOUNT_UPADTE_MSG, "Update Success message", true);
+			waitForVisibilityOfElement(LINKED_ACCOUNT_UPADTE_MSG, "Update Success message");
 		} else {
 			reporter.failureReport("verify update button enabled", "update user button is not enabled", "", driver);
 		}
@@ -2858,12 +2858,25 @@ public  void verifyDashboard()throws Throwable {
 	 */
 	public void clickLinkedAccountCheckBox(String i) throws Throwable {
 		if(isVisibleOnly(getLinkedAccountCheckBoxByIndex(i), "Linked account check box")) {
-		click(getLinkedAccountCheckBoxByIndex(i), "Under Linked Accounts CheckBox of index "+i+" Exist and Checked");
+		click(getLinkedAccountCheckBoxByIndex(i), "Under Linked Accounts CheckBox :"+i+" Exist and Checked");
 		String Value=driver.findElement(CMTObj.getLinkedAccountCheckBoxByIndex(i)).getAttribute("value");
 		reporter.SuccessReport("Web Group Management", "The Sold To is Linked to User", "Account Number:"+Value);
 		}
 	}
 
+	public void VerifyLinkedAccountCheckBoxisClicked(String i) throws Throwable {
+		if(driver.findElement(getLinkedAccountCheckBoxByIndex(i)).isSelected()) {
+		reporter.SuccessReport("Web Group Management", "Under Linked Accounts CheckBox : "+i+" Exist and Checked","");
+		}else {
+			reporter.SuccessReport("Web Group Management", "Under Linked Accounts CheckBox : "+i+" Exist and Not Checked","");
+		}
+	}
+	public void clickLinkedAccountUnCheckBox(String i) throws Throwable {
+		if(driver.findElement(getLinkedAccountCheckBoxByIndex(i)).isSelected()) {
+		click(getLinkedAccountCheckBoxByIndex(i), "Under Linked Accounts CheckBox :"+i+" Exist and UnChecked");
+		}
+	}
+	
 	public void clickOnDefaultAccountLoginByIndex(String i) throws Throwable {
 		String Account=driver.findElement(getDefaultLoginByIndex(i)).getAttribute("value");
 		click(getDefaultLoginByIndex(i), "Last Sold TO is Linked to User:"+Account);

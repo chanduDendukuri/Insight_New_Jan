@@ -117,7 +117,10 @@ public class USM08_FCTWebUserSoldToLinkingTest extends UserManagementLib{
 							cmtLib.selectFromLinkedAccountDD(data.get("Option2"));
 							cmtLib.VerifytheCheckBoxStatus("UnChecked");
 							// Click on 2nd sold to
-							cmtLib.clickLinkedAccountCheckBox(data.get("Account_Number1"));
+							cmtLib.clickLinkedAccountCheckBox("4");
+							cmtLib.VerifyLinkedAccountCheckBoxisClicked("4");
+							cmtLib.clickLinkedAccountUnCheckBox("4");
+							cmtLib.VerifyLinkedAccountCheckBoxisClicked("4");
 							// select page - 2
 							userMgt.selectPaginationPrevious("2");//2
 							cmtLib.verifyPageStartsWithatLinkedAccounts("51");
