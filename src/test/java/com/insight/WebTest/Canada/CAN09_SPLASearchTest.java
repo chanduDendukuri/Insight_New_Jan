@@ -6,6 +6,7 @@ import org.testng.annotations.Test;
 import com.insight.Lib.CMTLib;
 import com.insight.Lib.CanadaLib;
 import com.insight.Lib.CartLib;
+import com.insight.Lib.CommonCanadaLib;
 import com.insight.Lib.CommonLib;
 import com.insight.Lib.MarriottIntlCorpLib;
 import com.insight.Lib.OrderLib;
@@ -32,6 +33,7 @@ public class CAN09_SPLASearchTest  extends CanadaLib{
 	MarriottIntlCorpLib micLib=new MarriottIntlCorpLib();
 	ProductDisplayInfoLib prodInfoLib=new ProductDisplayInfoLib();
 	SLPLib slpLib=new SLPLib();
+	CommonCanadaLib ccp = new CommonCanadaLib();
 	   
 	    // #############################################################################################################
 		// #       Name of the Test         :  CAN09_SPLASearch
@@ -86,18 +88,14 @@ public class CAN09_SPLASearchTest  extends CanadaLib{
 				     	// verify search results and select first product
 				     	searchLib.verifysearchResultsPage();
 				     	// Search for part or product and add to cart : part : 7NQ-00302-MSPLA
-				     	searchLib.searchInHomePage(data.get("SearchText1"));
-				        // Stock only
-						searchLib.removeTheFilterForInStockOnly(data.get("In_Stock"));
-						pipLib.verifyTheManufacturerNumberInProductDetailsPage(data.get("SearchText1"));
-						pipLib.enterQuantityOnProductDetailsPage(data.get("Quantity"));
-				     	commonLib.addToCartAndVerify();
-				     	orderLib.continueToCheckOutOnAddCart();
-				    	verifyPlaceCartLabel();
-				     	cartLib.verifyItemInCartByInsightPart(data.get("SearchText1"));
-				     	Thread.sleep(3000);
-				     	int itemnumber=Integer.valueOf(data.get("Item_Number1"));
-				     	slpLib.verifyCartPageAndPartDetails(itemnumber-1);
+				     	 // Search for a product and add to cart
+	                    searchLib.searchInHomePage(data.get("SearchText1"));
+	                    String manNum1=ccp.getManfNumberFromProductSearchScreen();
+	                    commonLib.updateCartQuantity(data.get("Quantity"));
+
+	                    commonLib.addToCartAndVerify();
+	                    orderLib.continueToCheckOutOnAddCart();
+	                    pipLib. verifyCartPageAndPartDetailsForRecentlyItemDynamically(data.get("SearchText1"));
 				     	
 				        // search for product and add to cart  : LENOVO
 						searchLib.searchInHomePage(data.get("SearchText2"));
@@ -105,9 +103,14 @@ public class CAN09_SPLASearchTest  extends CanadaLib{
 						// in-stock filter verification
 						//searchLib.verifyFilterBreadCrumb(data.get("In_Stock_Only"));
 						pipLib.getFirstProdDescription();
-						pipLib.selectFirstProductAddToCartAndVerifyCart();
-						//int itemnumber1=Integer.valueOf(data.get("Item_Number1"));
-						slpLib.verifyCartPageAndPartDetails(itemnumber);
+						
+						cartLib.selectFirstProductDisplay();
+						String prodMfrNumber=prodDetailsLib.getInsightPartNumberInProductInfopage();
+				        commonLib.addToCartAndVerify();
+				        orderLib.continueToCheckOutOnAddCart();
+				        verifyPlaceCartLabel();
+				        cartLib.verifyItemInCartByInsightPart(prodMfrNumber);
+				        pipLib. verifyCartPageAndPartDetailsForRecentlyItemDynamically(prodMfrNumber);
 						cartLib.verifySLPAProductOnCart(data.get("SearchText1"));
 						
 						// Verify Non Spla Items Message
