@@ -383,7 +383,7 @@ public class CMTLib extends CMTObj {
 	 */
 	public void searchUsers(String LnameEmailUname) throws Throwable {
 		waitForVisibilityOfElement(CMTObj.LNAME_EMAIL_USERNAME, "LNAME EMAIL USERNAME: " + LnameEmailUname);
-		type(CMTObj.LNAME_EMAIL_USERNAME, LnameEmailUname, "LNAME EMAIL USERNAME: " + LnameEmailUname);
+		type(CMTObj.LNAME_EMAIL_USERNAME, LnameEmailUname, "LNAME EMAIL USERNAME: ");
 		click(CMTObj.USERNAME_SEARCH_BUTTON, "Search button Exists and Clicked", "Link: Search");
 	}
 
@@ -863,7 +863,7 @@ public  void verifyDashboard()throws Throwable {
 	 */
 	public void enterUserName(String text) throws Throwable {
 		clearData(USER_NAME_FIELD);
-		type(USER_NAME_FIELD, text, "user name"+text);
+		type(USER_NAME_FIELD, text, "user name");
 		click(CHECK_AVAILABLITY_BUTTON, "check availability");
 
 	}
@@ -1091,7 +1091,7 @@ public  void verifyDashboard()throws Throwable {
 	 *
 	 */
 	public void enterConfirmPasswordInCreateAnAccount(String password) throws Throwable {
-		type(CONFIRM_PASSWORD, password, "password");
+		type(CONFIRM_PASSWORD, password, "Enter Confirm password");
 
 	}
 
