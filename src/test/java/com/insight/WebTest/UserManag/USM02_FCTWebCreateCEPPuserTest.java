@@ -167,7 +167,6 @@ public class USM02_FCTWebCreateCEPPuserTest extends UserManagementLib {
 							cmtLib.verifyDDPermission(data.get("Permision5"),data.get("Option"));
 							cmtLib.verifyDDPermission(data.get("Permision6"),data.get("Option"));
 							//cmtLib.updateUser();
-							cmtLib.hoverOnManageWebGroupsAndSelectOptions(data.get("Manage_Web_Grp_Options"));
 							cmtLib.clickCheckOutSettings("Linked Accounts");
 							cmtLib.verifyDefualtSoldToinLinkedAccounts(userName);
 							cmtLib.logoutSite();
