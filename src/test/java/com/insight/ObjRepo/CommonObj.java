@@ -126,7 +126,8 @@ public class CommonObj extends ActionEngine{
 	 * >>>>>>>>>>>>>>>>>>>> LOCATORS TO SELECT ACCOUNT TOOLS  MENU AND SELECTS DROP DOWN LIST <<<<<<<<<<<<<<<<<<<<<<<<<<
 	 * ******************************************************************************************************************/
 	public static By getAccountToolsMenu(String toolsMenuName){
-		return By.xpath("//div[@id='manage-wrapper']//a[contains(text(),'"+toolsMenuName+"')]");
+		//return By.xpath("//div[@id='manage-wrapper']//a[contains(text(),'"+toolsMenuName+"')]");
+		return By.xpath("//div[@id='manage-wrapper']//ul[@class='metismenu']//a[contains(text(),'"+toolsMenuName+"')]");
 	}
 	
 	public static By getAccountToolsDD(String toolsMenuName,String dropDown){

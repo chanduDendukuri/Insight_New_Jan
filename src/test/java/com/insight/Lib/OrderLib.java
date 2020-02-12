@@ -663,10 +663,10 @@ List<String> orderdetails = new ArrayList<String>();
 			  selectByValue(EXPIRATION_MONTH,month , "Expiration month");
 			  click(EXPIRATION_YEAR, "Expiration year");
 			  selectByValue(EXPIRATION_YEAR,year , "Expiration year");
-			  if(isElementPresent(PO_NUMBER,"PO Number")){
+			  if(isVisibleOnly(PO_NUMBER,"PO Number")){
 			  type(PO_NUMBER, PONumber, "PO number");
 			  }
-			  if(isElementPresent(PO_REALESE_NUMBER,"PO Realese Number")){
+			  if(isVisibleOnly(PO_REALESE_NUMBER,"PO Realese Number")){
 				  typeText(PO_REALESE_NUMBER, PORealeseNumber, "PO number");
 			  }
 		}
@@ -1621,6 +1621,7 @@ List<String> orderdetails = new ArrayList<String>();
 	
 	public void clickonApprovalManagementTabs(String link) throws Throwable{
 		click(getApprovalmanagementtabs(link), "Approval Management Link"+link);
+		Thread.sleep(3000);
 		}
 	
 	

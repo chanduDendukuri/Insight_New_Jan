@@ -1063,13 +1063,13 @@ public  void verifyDashboard()throws Throwable {
 		}
 		type(USER_NAME, userName, "user Name");
 		click(CHECK_AVAILABILITY, "Check availability");
-		if (isVisibleOnly(USER_NAME_MESSAGE, "user name Not Available")) {
-			clearData(USER_NAME);
-			type(USER_NAME, userName1, "user Name");
-			return userName1;
-		} else {
+		//if (isVisibleOnly(USER_NAME_MESSAGE, "user name Not Available")) {
+			//clearData(USER_NAME);
+			//type(USER_NAME, userName1, "user Name");
+			//return userName1;
+		//} else {
 			return userName;
-		}
+//		}
 	}
 
 	public void enterUserNameToValidate(String userName) throws Throwable {
@@ -1110,8 +1110,8 @@ public  void verifyDashboard()throws Throwable {
 	 *
 	 */
 	public void clickContinueButtonInCreateAnAccount() throws Throwable {
-		if (isElementPresent(SAVE_AND_CONTNUE, "Save and continue button")) {
-			click(SAVE_AND_CONTNUE, "Save and continue button");
+		if (isVisibleOnly(SAVE_AND_CONTNUE, "Save and continue button")) {
+			clickUntil(SAVE_AND_CONTNUE, WELCOME_PAGE,"Save and continue button");
 		}
 	}
 
@@ -3768,5 +3768,20 @@ public void verifySetPermissionsDisabled(String userPermissions) throws Throwabl
 			reporter.failureReport("Verify the sucess message", "Display this on web check box not checked Succesfully", "",
 					driver);
 		}
+	}//DEFUALTSOLDTOACCOUNT
+	
+	public void verifyDefualtSoldToinLinkedAccounts(String account) throws Throwable {
+	if(isVisibleOnly(DEFUALTSOLDTOACCOUNT,"Defualt Sold To")) {
+		String Account =getText(DEFUALTSOLDTOACCOUNT,"Sold To").trim();
+		if(Account.contains(account)) {
+		reporter.SuccessReport("Verify User Name is Matches to Soldto in Linked Accounts Tab on Manage Web groups: Users Page", "User Name Exists and Matches to Soldto Name",Account);
+	}else {
+		reporter.failureReport("Verify User Name is Matches to Soldto in Linked Accounts Tab on Manage Web groups: Users Page", "User Name Exists not Matches to Soldto Name", "",
+				driver);
 	}
+	}
+	}
+	
+	
+	
 }

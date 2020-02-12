@@ -272,20 +272,20 @@ public class UserManagementLib extends UserManagementObj {
 	}
 	
 	public void verifyErorrMsgOfLastName()throws Throwable {
-		if(isVisibleOnly(FERROR_MSG,"Error Msg")){
-		reporter.SuccessReport("Verify Error Msg", "Error Message Exists", getText(FERROR_MSG,"Error Msg"));
+		if(isVisibleOnly(LERROR_MSG,"Error Msg")){
+		reporter.SuccessReport("Verify Error Msg", "Error Message Exists", getText(LERROR_MSG,"Error Msg"));
 		}
 		else {
-			reporter.failureReport("Verify Error Msg", "Error Message Not Exists", getText(FERROR_MSG,"Error Msg"));
+			reporter.failureReport("Verify Error Msg", "Error Message Not Exists", getText(LERROR_MSG,"Error Msg"));
 	
 		}
 	}
 	public void verifyErorrMsgOfPhoneNumber()throws Throwable {
-		if(isVisibleOnly(FERROR_MSG,"Error Msg")){
-		reporter.SuccessReport("Verify Error Msg", "Error Message Exists", getText(FERROR_MSG,"Error Msg"));
+		if(isVisibleOnly(PhoneError_MSG,"Error Msg")){
+		reporter.SuccessReport("Verify Error Msg", "Error Message Exists", getText(PhoneError_MSG,"Error Msg"));
 		}
 		else {
-			reporter.failureReport("Verify Error Msg", "Error Message Not Exists", getText(FERROR_MSG,"Error Msg"));
+			reporter.failureReport("Verify Error Msg", "Error Message Not Exists", getText(PhoneError_MSG,"Error Msg"));
 	
 		}
 	}

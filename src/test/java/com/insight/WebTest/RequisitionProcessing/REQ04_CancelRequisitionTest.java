@@ -72,7 +72,7 @@ public class REQ04_CancelRequisitionTest extends ChinaLib{
 						ReqLib.verifyCreate_EditRequestoreGrpGeader();
 						ReqLib.verifyandclickManagerRequestors(data.get("tabName"));
 						ReqLib.selectRequestorgrpNameFromList(data.get("ReqName UFT"));
-						
+						commonLib.clickLogOutLink(data.get("header1"));
 						//Login with 4th User
 						cmtLib.navigateBackToCMT();
 						cmtLib.hoverOnManageWebGroupsAndSelectOptions(data.get("Manage_Web_Grp_Options"));

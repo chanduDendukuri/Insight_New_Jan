@@ -82,7 +82,7 @@ public class APP02_DeleteApprovalPathTest extends ApprovalPathLib {
 					
 					//Select Approvers
 					List<String> approverAdded = SelectApprover(null,4);
-					
+					NumberofApproversAddedtoRightSide();
 					
 					// Verify Approval path is added			
 					//VerifyApproversAdded(approverAdded);	
