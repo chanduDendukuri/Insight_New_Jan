@@ -137,6 +137,7 @@ public class OrderObj extends ActionEngine{
 
 	public static By THANK_YOU_FOR_ORDER_MSG=By.xpath("//div//h1[contains(text(),'Thank you for your order')]");
 	public static By THANK_YOU_FOR_ORDER_REQUEST_MSG=By.xpath("//div[@id='CartContainer']//div/h3[contains(text(),'Thank you for your request')]");
+	public static By THANK_YOU_FOR_ORDER_MSG_ON_RECEIPT=By.xpath("//div[@id='CartContainer']//div/h3[contains(text(),'Thank you for your order')]");
 
 	public static By PART_NUMBER_ON_RECEIPT_PAGE=By.xpath("//p[@class='cart__item-part cart__font-size--sm'][contains(text(),'Mfr Part #')]");
 	
