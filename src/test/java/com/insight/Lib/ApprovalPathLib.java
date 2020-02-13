@@ -1,5 +1,9 @@
 package com.insight.Lib;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -18,6 +22,10 @@ import com.google.api.client.util.DateTime;
 import com.insight.ObjRepo.ApprovalPathObj;
 import com.insight.ObjRepo.CommonObj;
 import com.thoughtworks.selenium.webdriven.commands.Click;
+
+import jxl.Sheet;
+import jxl.Workbook;
+import jxl.read.biff.BiffException;
 
 public class ApprovalPathLib extends ApprovalPathObj {
 	OrderLib orderLib = new OrderLib();
@@ -1687,6 +1695,7 @@ for(int i=1;i<=count;i++) {
 		return strRequestorOption;*/
 		}
 	public void ModifyDeleteApproverOutForToDate(String strApprover, String modifyDate,String ReplacementType) throws Throwable {
+		String EndDate= getText(Approvername("EndDateId"), "EndDate before updating");
 		   if (isElementClickable(editApprover(strApprover),3, "Click on Edit Icon ")) {
 		      //click(editApprover(strApprover), "Click on Edit Icon");
 		      reporter.SuccessReport("Approval Management Page Approver Out of Office Settings",
@@ -1702,7 +1711,7 @@ for(int i=1;i<=count;i++) {
 		      click(getCalenderEndUpdate, "End date");
 		   }
 
-
+		   
 
 		  // Modify the date
 		   if (isElementPresent(NEXT_MONTH_ARROW, "Next month ")) {
@@ -1734,7 +1743,13 @@ for(int i=1;i<=count;i++) {
 		      reporter.failureReport("Approval Management Page Approver Out of Office Settings",
 		            "Approver Out Does Not Exist", "");
 		   }
-
+		   String EndDateafterupdating= getText(Approvername("EndDateId"), "EndDate after updating");
+		   if(!EndDate.equals(EndDateafterupdating)) {
+			   reporter.SuccessReport("Todate updating", "Approval out modified as expected", "Before Updating: "+EndDate+"After Updating: "+EndDateafterupdating, driver);
+		   }
+		   else {
+			   reporter.failureReport("To date update", "Approval out not modified as expected", "", driver);
+		   }
 		   // Delete
 
 		   if (isElementClickable(deleteApprover(strApprover),2, "Delete Icon")) {
@@ -1959,6 +1974,36 @@ public void SelectRequestorFromRightToLeft(String requestor) throws Throwable {
 					"TU_IUS Requestor Group Tiered Link Does Not Exist", "");
 		}
 	}
+public void Readdatfromexcel(String filePath) throws Throwable {
+	//File root = new File("C:\\Users\\e004303\\Downloads");
+			String sfile = System.getProperty("user.dir") + "\\" + "DownloadedFiles" + "\\" + filePath+".xls";
+			
+			FileInputStream fi = new FileInputStream(sfile);
+	Workbook W = Workbook.getWorkbook(fi);
+
+	Sheet s = W.getSheet(0);
+
+
+
+	String Username = s.getCell(0,0).getContents();
+	String GroupName= s.getCell(1, 0).getContents();
+	System.out.println("Username " +Username);
+if(Username.contains("User Name")&& GroupName.contains("Approval Group Name")) {
+
+	reporter.SuccessReport("Excel details", "Excecl data contents are verified", "", driver);
+}
+else {
+	reporter.failureReport("Excel details", "Excecl data contents are not verified", "", driver);
+}
+	File file = new File(sfile);
+	if(!file.exists()) {
+		System.out.println("'");
+	}
+	else {
+		file.delete();
+		System.out.println();
+	}
+}
 public void ClickOnExporticon() throws Throwable {
 	click(Exporticon, "Export icon");
 }

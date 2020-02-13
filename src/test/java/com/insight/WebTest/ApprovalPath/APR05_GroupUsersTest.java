@@ -66,9 +66,9 @@ public class APR05_GroupUsersTest extends ApprovalPathLib {
 					cmtLib.setPermissionsToDisable(data.get("Menu_Name"), data.get("Disable_Permission"));
 					cmtLib.clickOnloginAs();
 					switchToChildWindow();
-					//commonLib.spinnerImage();
-					//commonLib.clickOnAccountToolsAndClickOnProductGrp(data.get("Tools_Menu"),
-					//		data.get("Tools_Menu_DD"));
+					commonLib.spinnerImage();
+					commonLib.clickOnAccountToolsAndClickOnProductGrp(data.get("Tools_Menu"),
+							data.get("Tools_Menu_DD"));
 					// Verify Approval Management Page - is Loaded
 					reqProcLib.verifyApprovalManagementPage();
 					String ReqGroupName1 = data.get("RequestorGroup1");
@@ -95,6 +95,7 @@ public class APR05_GroupUsersTest extends ApprovalPathLib {
 					// Click on the Next Page and verify page count 50
 					VerifyPageCountInApprovalmgmt();
 					ClickOnExporticon();
+					Readdatfromexcel("requestorGroupUsers");
 					// Change the paging to 20
 					ChangePageCount(data.get("PageCount"));
 					VerifyPageCountInApprovalmgmt();
@@ -105,6 +106,7 @@ public class APR05_GroupUsersTest extends ApprovalPathLib {
 					
 					// Verify Create/Edit Requestor Group Page
 					Verify_Create_Edit_Requestor_GroupPage();
+					scrollUp();
 					// Click on Manage Requestors
 					clickManageRequestors();
 					// Click Refresh Icon To display Requestors
