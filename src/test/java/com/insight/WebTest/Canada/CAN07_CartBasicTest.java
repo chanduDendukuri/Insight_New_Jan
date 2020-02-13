@@ -158,8 +158,28 @@ public class CAN07_CartBasicTest extends CanadaLib{
 									}
 									slp.verifyProccedToCheckOutbuttonExists();
 									cmtLib.clickOnLogoutlink();
+//Third loginAs
+									cmtLib.loginAsAdminCMT();
+									cmtLib.loginVerification(data.get("ContactName1"));
+									CommonLib.searchProduct(data.get("SearchItem2"));//Thin Clients
+									prodInfoLib.verifyTheManufacturerNumberInProductDetailsPage(data.get("SearchItem2"));
+									ccp.clickOnAddToCartButtonUnderProductDynamically(data.get("quantity"));
 
+									String man4=cartLib.getPartNumber();
 
+									//CommonLib.addToCartAndVerify();
+									canadaLib.continueToCheckout();
+//adding review commentsString s1=Boolean.toString(verifyCartPageAvailablity());
+									String s5=Boolean.toString(cartLib.verifyCartPageAvailablity());
+									if(cartLib.verifyCartPageAvailablity())
+									{
+										reporter.SuccessReport("Cart Landing Page", "Availability of Cart Landing Page is ",s5 );
+									}
+									else{
+										reporter.failureReport("Cart Landing Page", "Availability of Cart Landing Page is ",s5,driver );
+									}
+									slp.verifyProccedToCheckOutbuttonExists();
+									cmtLib.clickOnLogoutlink();
 									System.out.println("Test completed");
 					} catch (Exception e) {
 						ReportStatus.blnStatus = false;

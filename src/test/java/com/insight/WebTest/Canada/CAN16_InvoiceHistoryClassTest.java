@@ -1,8 +1,10 @@
 package com.insight.WebTest.Canada;
 
+import java.io.File;
 import java.util.Hashtable;
 
 import com.insight.Lib.*;
+import org.apache.commons.io.FileUtils;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
@@ -51,6 +53,7 @@ public class CAN16_InvoiceHistoryClassTest extends ActionEngine  {
 								ShipBillPayLib shipbLib = new ShipBillPayLib();
 								InvoiceHistoryLib invoice = new InvoiceHistoryLib();
 								CommonLib commonLib = new CommonLib();
+								CommonCanadaLib ccp = new CommonCanadaLib();
 								cmtLib.loginToCMT(data.get("Header"));
 								cmtLib.searchForWebGroup(data.get("WebGrp"));
 								cmtLib.clickOnTheWebGroup(data.get("MgContactName"));
@@ -84,9 +87,14 @@ public class CAN16_InvoiceHistoryClassTest extends ActionEngine  {
 								// invoice.datePickerEndDateCalender(data.get("End_Date"));
 								canadaLib.clickOnSearchButtonInRecentOrders();
 								canadaLib.getInvoiceNumbersFromResults();
+								scrollToBottomWithCordinate("800");
 								String a=canadaLib.clickOnInvoiceNumbersFromResults();
 								Thread.sleep(14000);
-								canadaLib.openDirectoryToVerifyFileExist(a);
+							//	ccp.clickOnPrintIcon();
+							//	assertTrue(ccp.availabilityOfPrintPage(),"Print Page is available");
+								//ccp.closePrintPage();
+								//canadaLib.openDirectoryToVerifyFileExist(a);
+								reporter.SuccessReport("Downloaded file","Downloaded file name is  " , a );
 								commonLib.clickLogOutLink(data.get("Logout_Header"));//fnCloseTest();
 
 

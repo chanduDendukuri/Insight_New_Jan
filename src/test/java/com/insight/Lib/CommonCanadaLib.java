@@ -623,5 +623,29 @@ public void getListOfCardTypes() throws Throwable{
     }
 }
 
+public void getListOfAvailableBreadCrumbs() throws Throwable{
+        List<WebElement> bcrumb = driver.findElements(BreadCrumbdynamic);
+        for (int i=0;i<bcrumb.size();i++){
+             // String breadcrumb =bcrumb.get(i).getText();
+            reporter.SuccessReport("BreadCrumbsverification","VVerification of Breadcrumbs "," available breadcrumbs are"+bcrumb.get(i).getText());
+
+
+        }
+
+
+}
+    public void clickOnPrintIcon() throws Throwable{
+        if(isVisibleOnly(printLinkiCon,"Print Icon")){
+            click(printLinkiCon,"Print icon");
+        }
+    }
+    public boolean availabilityOfPrintPage() throws Throwable{
+        return isVisibleOnly(availabilityOfPrintPage,"Print Page Opened");
+    }
+    public void closePrintPage() throws Throwable{
+        if(availabilityOfPrintPage()){
+            click(closePrintPage,"Close Print Page");
+        }
+    }
 }
 
