@@ -1195,7 +1195,7 @@ public class CartLib extends ActionEngine {
 		waitForVisibilityOfElement(CartObj.getShoppingCartOrderUtilities(orderUtilities), "PRINT LINK");
 		click(CartObj.getShoppingCartOrderUtilities(orderUtilities), "PRINT LINK");
 		verifyPrintPopUp();
-		// clickPrintInPopUp();
+		 clickPrintInPopUp();
 		// NEED TO DO VALIDATION IN PRINT PDF
 		closePrintPopUp();
 	}
@@ -1581,6 +1581,14 @@ public class CartLib extends ActionEngine {
 		waitForVisibilityOfElement(CartObj.PRINT_SYMBOL_IN_PRINT_POPUP, "PRINT SYMBOL IN PRINT POPUP");
 		click(CartObj.PRINT_SYMBOL_IN_PRINT_POPUP, "PRINT SYMBOL IN PRINT POPUP");
 
+	}
+	
+	public void verifyPrintAndCloseIconexists() throws Throwable {
+		if(isVisibleOnly(CartObj.CLOSE_PRINT_POPUP, "Close icon")&& isVisibleOnly(CartObj.PRINT_SYMBOL_IN_PRINT_POPUP, "PRINT SYMBOL IN PRINT POPUP")) {
+			reporter.SuccessReport("View Printable POPUP", "Print and Close Links are Exists", "Link: Print and Close", driver);
+		}else {
+			reporter.failureReport("View Printable POPUP", "Print and Close Links does not Exists", "Link: Print and Close", driver);
+		}
 	}
 
 	/**
