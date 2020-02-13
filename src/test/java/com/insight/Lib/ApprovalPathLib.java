@@ -1944,14 +1944,14 @@ public void SelectRequestorFromRightToLeft(String requestor) throws Throwable {
 
 	}
 
-	public void ClickTU_IUSRequestorGroupTieredLink() throws Throwable {
+	public void ClickTU_IUSRequestorGroupTieredLink(String requestor) throws Throwable {
 		scrollUp();
-		if (isElementPresent(TU_IUS_Tired_Requestor_Group_Link, "Requestor Group Name ")) {
+		if (isElementPresent(TU_IUS_Tired_Requestor_Group_Link(requestor), "Requestor Group Name ")) {
 			// mouseHover(TU_IUS_Tired_Requestor_Group_Link, "Requestor Group
 			// Name");
 			// scrollToWebElement(TU_IUS_Tired_Requestor_Group_Link);
 			// scrollUp();
-			click(TU_IUS_Tired_Requestor_Group_Link, "Click Requestor Group Name");
+			click(TU_IUS_Tired_Requestor_Group_Link(requestor), "Click Requestor Group Name");
 			reporter.SuccessReport("Approval Management Create/Edit Requestor Group",
 					"TU_IUS Requestor Group Tiered Link Exists and Clicked", "TU_IUS_Tired_Requestor_Group_Link");
 		} else {

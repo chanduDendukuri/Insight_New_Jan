@@ -360,7 +360,9 @@ public static By Monthandyearoffromdate = By.xpath("//div[@class='ui-datepicker-
 	public static By GET_SELECTED_COUNTinApprMgmt = By.xpath("//select[@id='nowshowing']");
 	public static By NEXT_PAGE_LINK = By.xpath("//a[@id='pageLink_Next'][contiains(text(),'Next')]");
 	public static By TU_IUS_Requestor_Group_Link = By.xpath("(//td[@class='verticalAlignTop']//div//a[text()='TU_IUS Requestor Group'])[1]");
-	public static By TU_IUS_Tired_Requestor_Group_Link = By.xpath("(//td[@class='verticalAlignTop']//div//a[text()='TU_IUS Requestor Group Tiered'])[1]");
+	public static By TU_IUS_Tired_Requestor_Group_Link (String requestor) {
+		return By.xpath("(//td[@class='verticalAlignTop']//div//a[text()='"+requestor+"'])[1]");
+	}
 	public static By REQUESTOR_GRP_NAME_TXTBOX = By.xpath("//div[@class='rguSearchTextbox']//input[@id='repSkey']");
 	public static By SEARCH_REQ_GRP_ICON = By.xpath("//a[@title='SEARCH']");
 	
