@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -740,6 +741,16 @@ for(int i=1;i<=count;i++) {
 			reporter.failureReport("Approval Management Reports Page", "Requestor Group Link Does Not Exist", "");
 		}
 	}
+	public void verifyApprovalMgmtReportPage() throws Throwable {
+		if(isVisibleOnly(ApprovalMgmtReports, "ApprovalMgmtReports")) {
+			String page= getText(ApprovalMgmtReports, "ApprovalMgmtReports");
+				reporter.SuccessReport("ApprovalMgmtReports", "ApprovalMgmtReports is visible", "", driver);
+			
+		}
+		else {
+			reporter.failureReport("ApprovalMgmtReports", "ApprovalMgmtReports is not visible", "", driver);
+		}
+	}
 public int GetNumberOfRequestorGroupsb() throws Throwable {
 	List<WebElement> elem = driver.findElements(NumberOfRequestorGroupsb);
 	int count = elem.size();
@@ -759,9 +770,33 @@ public String GetNameOfLastRequestor() throws Throwable {
 	if(count>0) {
 		 text = elem.get(count-1).getText().toString();
 		reporter.SuccessReport("LastName Of Requestor ", "LastName Of Requestor", text, driver);
+		
 	}
 	else {
 		reporter.failureReport("LastName Of Requestor", "LastName Of Requestor doesn't exist", "", driver);
+	}
+	return text;
+}
+public String VerifyRequestorResults(String requestor) throws Throwable {
+	List<WebElement> elem = driver.findElements(NumberOfrequestors);
+	int count = elem.size();
+	String text ="";
+	if(count>0) {
+		for (WebElement webElement : elem) {
+			text = webElement.getText();
+			if(text.contains(requestor)) {
+				reporter.SuccessReport("Requestor", "Requestor displaying in the results", text, driver);
+				break;
+			}
+			else {
+				reporter.failureReport(" Requestor", "Requestors not displaying in the results", "", driver);
+			}
+		}
+		 
+		
+	}
+	else {
+		reporter.failureReport(" Requestor", "Requestors doesn't exist", "", driver);
 	}
 	return text;
 }
@@ -2136,11 +2171,19 @@ public void ClickOnBackToRefreshIcon() throws Throwable {
 	 */
 
 	public void PreviousdatePicker(int months, String strCurrDay,String datetype) throws Throwable {
-
+		DateFormat dateFormat = new SimpleDateFormat("dd-mmmm-yyyy");
+		Date currentDate = new Date();
 		String day = strCurrDay.split("-")[0];
 		String month = strCurrDay.split("-")[1];
 		String year = strCurrDay.split("-")[2];
+		String MonthandYear ="";
+		Calendar c = Calendar.getInstance();
+        c.setTime(currentDate);
 
+       
+        c.add(Calendar.DATE,-380);
+        Date currentDatePlusOne = c.getTime();
+        System.out.println(dateFormat.format(currentDatePlusOne));
 		if(datetype.equals("FromDate")) {
 			click(StartDateCALENDAR, "Click on calendar");
 			}
@@ -2150,11 +2193,12 @@ public void ClickOnBackToRefreshIcon() throws Throwable {
 		if (isElementPresent(PREV_MONTH_ARROW, "Previous month")) {
 			for (int i = 0; i <= months; i++) {
 				driver.findElement(PREV_MONTH_ARROW).click();
-				//click(NEXT_MONTH_ARROW, "Next Month");
+				
 			}
+			MonthandYear = getText(Monthandyearoffromdate, "MonthandYear");
 			// Select Day
 			if (isElementPresent(dayInStartDayCalender(day), "From Date ")) {
-				click(dayInStartDayCalender(day), "Day: "+day);
+				click(dayInStartDayCalender(day), day+" "+MonthandYear);
 			}
 
 			reporter.SuccessReport("Change Month on Approval Management Page Approver Out of Office Settings",
@@ -2249,7 +2293,9 @@ for(int i=0;i<=11;i++) {
 		}
 
 	}
-
+public void ClickOnSeeAllReports() throws Throwable {
+	click(SeeAllReports, "SeeAllReports");
+}
 	public void changeFilterStatus(String filters) throws Throwable {
 		if (isElementPresent(FILTER_BY_STATUS, "Filter by Statsus")) {
 			selectByVisibleText(FILTER_BY_STATUS, filters, "Filter Status");

@@ -183,6 +183,7 @@ public class APR05_GroupUsersTest extends ApprovalPathLib {
 						// Click Search
 						Click_Search_Icon();
 					//verify user
+						//VerifyRequestorResults(Requestor1);
 						//ClickOnBackToRefreshIcon();
 						ClickRequestorGrpLink();
 						
@@ -193,28 +194,19 @@ public class APR05_GroupUsersTest extends ApprovalPathLib {
 					clickManageRequestors();
 					SelectRequestorFromRightToLeft(Requestor1,1);
 					 ClickSaveChangesButton();
+					 UpdatedSuccessMsg();
 					 scrollUp();
 					ClickOnBackToRefreshIcon();
 						// click Requestor group link
 					ClickonEditlinkofRequestorGroMgmt("TU_IUS Requestor Group Tiered");
-scrollUp();
+					// Verify Create/Edit Requestor Group Page
+					Verify_Create_Edit_Requestor_GroupPage();
+					scrollUp();
 						// Click on Manage Requestors
 						clickManageRequestors();	
 						SelectRequestorFromRightToLeft(Requestor1,1);
 						 ClickSaveChangesButton();
-						
-						
-						
-						
-						
-						
-						
-					
-					
-					
-					
-						
-					
+						 UpdatedSuccessMsg();
 					
 					
 					System.out.println("Test completed");

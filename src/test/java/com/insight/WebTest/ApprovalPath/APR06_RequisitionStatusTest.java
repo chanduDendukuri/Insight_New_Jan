@@ -102,9 +102,14 @@ public class APR06_RequisitionStatusTest extends ApprovalPathLib {
 					 * data.get("Tools_Menu_DD")); ClickReports(); clickRequisitionStatusReport();
 					 * int months = 3; datePicker(months, strCurrDay);
 					 */
+					ClickOnSeeAllReports();
+					verifyApprovalMgmtReportPage();
 
+					// Click on Requisition status report
+					clickRequisitionStatusReport();
+					
 					changeFilterStatus(data.get("FilterbyStatus"));
-					NextdatePicker(14, strCurrDay,"FromDate");
+					NextdatePicker(11, strCurrDay,"FromDate");
 					SelectCurrentDate("ToDate");
 					clickSearch();
 					// datePicker(14, strCurrDay);

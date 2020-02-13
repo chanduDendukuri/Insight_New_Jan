@@ -383,10 +383,10 @@ public static By Monthandyearoffromdate = By.xpath("//div[@class='ui-datepicker-
 	public static By StartDateCALENDAR = By.xpath("//div[@class='RSRStartDate']//img");
 	public static By SEARCH = By.xpath("//div[@class='RSREndDate']//following::div//a[@class='grey']//img");
 	
-	
+	public static By ApprovalMgmtReports = By.xpath("//h2[text()='Approval Management Reports']");
 	public static By FILTER_BY_STATUS = By.xpath("//select[@id='Req_type']");
 	public static By RESULTS_TABLE = By.xpath("//table[@id='RSRResultTable']");
-	
+	public static By SeeAllReports = By.xpath("//div[@id='requisitionStatusReports']//span//a");
 	public static By getRequestortableDetails(int i,int j) {
 		return By.xpath("//table[@id='RSRResultTable']//tbody//tr["+i+"]//td["+j+"]");
 	}
