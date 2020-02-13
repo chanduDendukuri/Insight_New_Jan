@@ -823,7 +823,7 @@ public class CanadaLib extends CanadaObj {
 	public void verifyProductPrice() throws Throwable {
 		waitForVisibilityOfElement(PROD_PRICE, "Canada Product Price");
 		if (isVisibleOnly(PROD_PRICE, "Canada Product Price")) {
-			reporter.SuccessReport("Price on Product Detail Page", "Price Exists", "");
+			reporter.SuccessReport("Price on Product Detail Page", "Price Exists", getText(PROD_PRICE, "product price"));
 		} else {
 			reporter.failureReport("Price on Product Detail Page", "Price Does Not Exist", "", driver);
 		}
@@ -832,7 +832,7 @@ public class CanadaLib extends CanadaObj {
 	public void verifyProratedPrice() throws Throwable {
 		waitForVisibilityOfElement(PRORATED_PRICE, "Canada Product Prorated Price");
 		if (isVisibleOnly(PRORATED_PRICE, "Canada Product Prorated Price")) {
-			reporter.SuccessReport("Prorated Price displayed in the Cart Page", "Prorated Price is displayed", "");
+			reporter.SuccessReport("Prorated Price displayed in the Cart Page", "Prorated Price is displayed", getText(PRORATED_PRICE, "prorated price"));
 		} else {
 			reporter.failureReport("Prorated Price displayed in the Cart Page", "Prorated Price is Not displayed", "", driver);
 		}

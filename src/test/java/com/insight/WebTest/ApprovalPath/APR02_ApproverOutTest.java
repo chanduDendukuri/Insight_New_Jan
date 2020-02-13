@@ -123,7 +123,7 @@ public class APR02_ApproverOutTest extends ApprovalPathLib {
 					VerifyOverLapRulePopup();
 
 					// Edit and Delete Created Approver Out
-					ModifyDeleteApproverOut(strApprover, strCurrDay,strReplacementType);
+					ModifyDeleteApproverOutForToDate(strApprover, strCurrDay,strReplacementType);
 					// Click on General Settings
 					ClickGeneralSettings();
 					// Get Data as Forward request					
@@ -133,7 +133,7 @@ public class APR02_ApproverOutTest extends ApprovalPathLib {
 					VerifyCreateApproverOut(strApprover);
 					
 					// Edit and Delete Created Approver Out
-					ModifyDeleteApproverOut(strApprover, strCurrDay,forwardRequestReplacementType);
+					ModifyDeleteApproverOutForToDate(strApprover, strCurrDay,forwardRequestReplacementType);
 					// Click on General Settings
 					ClickGeneralSettings();
 					// Get Data as peramanent request					
@@ -144,9 +144,8 @@ public class APR02_ApproverOutTest extends ApprovalPathLib {
 					CreateApproverOut(strApproverId, permanentReplaceReplacementType, strReplacementApproverId, strCurrDay);
 					// Verify Created Approver Out
 					VerifyCreateApproverOut(strApprover);
+					DeleteApproverOut(strApprover);
 					
-					// Edit and Delete Created Approver Out
-					ModifyDeleteApproverOut(strApprover, strCurrDay,permanentReplaceReplacementType);
 												
 					commonLib.clickLogOutLink(data.get("Logout"));
 

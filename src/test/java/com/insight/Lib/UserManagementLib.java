@@ -171,9 +171,10 @@ public class UserManagementLib extends UserManagementObj {
 	 * Method is used to verify user status
 	 */
 	public void selectPagination(String pageNo) throws Throwable {
-	if(isElementPresent(PAGINATION(pageNo), "Pagination")){
+		
+	if(isVisibleOnly(PAGINATION(pageNo), "Pagination")){
 		click(PAGINATION(pageNo),"Pagination");
-		reporter.SuccessReport("Click on page 3 to verify results", "Page 3 results displayed","");
+		reporter.SuccessReport("Click on page "+pageNo+"to verify results", "Page  "+pageNo+" results displayed",pageNo);
 	}
 		else{
 		reporter.failureReport("Click on page 3 to verify results", "No Pagination","");
@@ -303,7 +304,19 @@ public class UserManagementLib extends UserManagementObj {
 			reporter.failureReport("Verify Default Linked to Account# in the Linked Accounts Tab on Manage Web groups: Create User Page", "Default Linked to Account# in Linked Accounts Tab Not Exists", getText(LINKEDACCOUNTS_Defualtacc,"Defualt Account"));
 		}
 	}
-	
+	/**
+	 * Method is used to verify user status
+	 */
+	public void selectPaginationPrevious(String pageNo) throws Throwable {
+	click(PREVIOUSPAGE,"Previous Page");
+	if(isVisibleOnly(PAGINATION(pageNo), "Pagination")){
+		click(PAGINATION(pageNo),"Pagination");
+		reporter.SuccessReport("Click on page "+pageNo+"to verify results", "Page  "+pageNo+" results displayed",pageNo);
+	}
+		else{
+		reporter.failureReport("Click on page 3 to verify results", "No Pagination","");
+	}
+}
 	
 	
 }
