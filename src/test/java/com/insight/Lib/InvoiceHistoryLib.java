@@ -34,10 +34,10 @@ public class InvoiceHistoryLib extends InvoiceHistoryObj {
 		waitForVisibilityOfElement(CanadaObj.SEARCHBY_DROPDOWN, "Quick Search");
 		if (isVisibleOnly(CanadaObj.SEARCHBY_DROPDOWN, "Quick Search")) {
 
-			click(CanadaObj.SEARCHBY_DROPDOWN, "SearchBy");
+			click(CanadaObj.SEARCHBY_DROPDOWN, "Clicking on SearchBy Dropdown");
 			// selectSearchBy(searchBy);
 			// click(CanadaLib.drpSearchByDropdownValue,"Search bY Dropdown Value");
-			click(CanadaObj.getSearchByTextOrder(searchBy), "Search By");
+			click(CanadaObj.getSearchByTextOrder(searchBy), "Open Search By and select " + searchBy,searchBy);
 			Thread.sleep(3000);
 			// click(CanadaObj.QUICK_SEARCH_TEXT, "Click on Text");
 			type(CanadaObj.QUICK_SEARCH_TEXT, text, "Text ");

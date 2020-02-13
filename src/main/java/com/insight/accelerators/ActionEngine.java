@@ -682,7 +682,7 @@ public class ActionEngine extends TestEngineWeb {
 			
 			if (!status) {
 				if (reportIndicator) {
-					reporter.failureReport("Click : " + locatorName, msgClickFailure ,"<b>"+locatorName+"/b", driver1);
+					reporter.failureReport("Click : " + locatorName, msgClickFailure ,"<b>"+locatorName+"</b>", driver1);
 				}
 			} else {
 				

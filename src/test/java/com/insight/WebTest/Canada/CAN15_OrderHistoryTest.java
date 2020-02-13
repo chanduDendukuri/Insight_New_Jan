@@ -116,6 +116,7 @@ public class CAN15_OrderHistoryTest extends ActionEngine {
 
 				canadaLib.clickOnOrderNumberToViewDetails(data.get("OrderNumber"));
 */
+Thread.sleep(3000);
                     commonLib.clickLogOutLink(data.get("Logout_Header"));//fnCloseTest();
 
                     System.out.println("Test completed");
