@@ -100,6 +100,8 @@ public class APR05_GroupUsersTest extends ApprovalPathLib {
 					ChangePageCount(data.get("PageCount"));
 					VerifyPageCountInApprovalmgmt();
 					ClickNextPageAndVerify();
+					// Change the paging to 20
+					ChangePageCount(data.get("PageCount"));
 					// click Requestor group link
 					ClickTU_IUSRequestorGroupTieredLink("TU_IUS Requestor Group Tiered");
 					
@@ -107,12 +109,13 @@ public class APR05_GroupUsersTest extends ApprovalPathLib {
 					// Verify Create/Edit Requestor Group Page
 					Verify_Create_Edit_Requestor_GroupPage();
 					scrollUp();
+					String Requestor1 = "TU_IUSShared,TU_IUSShared";
 					// Click on Manage Requestors
 					clickManageRequestors();
 					// Click Refresh Icon To display Requestors
 					ClickRefreshIcon();
 					// Select Requestors
-					SelectRequestor(data.get("Requestor1"),1);
+					SelectRequestor(Requestor1,1);
 					Add_Requestor_Btn_Click();
 					ClickSaveChangesButton();
 					UpdatedSuccessMsg();
@@ -138,7 +141,8 @@ public class APR05_GroupUsersTest extends ApprovalPathLib {
 					
 					// Click on Requestor Requestor Group Users
 					ClickRequestorGroupUsersLink();
-					String Requestor = "TU_IUSShared,TU_IUSShared";
+					
+					String Requestor = GetNameOfLastRequestor();
 					// Search by Last name
 					SearchByLastName(Requestor);
 					// Click Search
@@ -152,44 +156,51 @@ public class APR05_GroupUsersTest extends ApprovalPathLib {
 					// Click on Requestor Requestor Group Users
 					ClickRequestorGroupUsersLink();
 					// click Requestor group link
-					ClickTU_IUSRequestorGroupTieredLink("TU_IUS Requestor Group Tiered");
-					
+					ClickTU_IUSRequestorGroupTieredLink("TU_IUS Requestor Group");
+					// Verify Create/Edit Requestor Group Page
+					Verify_Create_Edit_Requestor_GroupPage();
+					scrollUp();
 					// Click on Manage Requestors
 					clickManageRequestors();
 					// Click Refresh Icon To display Requestors
 					ClickRefreshIcon();
 					// Select Requestors
-					SelectRequestor(Requestor,1);
+					SelectRequestor(Requestor1,1);
 					 ClickSaveChangesButton();
 					 scrollUp();
 					 clickOnApprovalManagementTabs("General Settings");
 						// Click on Reports
 						ClickReports();
 						
+						
+						
 						// Click on Requestor Requestor Group Users
 						ClickRequestorGroupUsersLink();
 						// Displays Requestors
-						String reqName1 = DisplayRequestors();
+						//String reqName1 = DisplayRequestors();
 						// Search by Last name
-						SearchByLastName(reqName1);
+						SearchByLastName(Requestor1);
 						// Click Search
 						Click_Search_Icon();
 					//verify user
-					//click on back to rquesor group
-					//edit tu_ius-requestor group
-					
+						//ClickOnBackToRefreshIcon();
+						ClickRequestorGrpLink();
+						
+						ClickonEditlinkofRequestorGroMgmt("TU_IUS Requestor Group");
+						// Verify Create/Edit Requestor Group Page
+						Verify_Create_Edit_Requestor_GroupPage();
 					// Click on Manage Requestors
 					clickManageRequestors();
-					SelectRequestorFromRightToLeft(Requestor);
+					SelectRequestorFromRightToLeft(Requestor1,1);
 					 ClickSaveChangesButton();
-					// Click on Requestor Requestor Group Users
-						ClickRequestorGrpLink();
+					 scrollUp();
+					ClickOnBackToRefreshIcon();
 						// click Requestor group link
-						ClickTU_IUSRequestorGroupTieredLink("TU_IUS Requestor Group Tiered");
-
+					ClickonEditlinkofRequestorGroMgmt("TU_IUS Requestor Group Tiered");
+scrollUp();
 						// Click on Manage Requestors
 						clickManageRequestors();	
-						SelectRequestorFromRightToLeft(Requestor);
+						SelectRequestorFromRightToLeft(Requestor1,1);
 						 ClickSaveChangesButton();
 						
 						

@@ -744,12 +744,26 @@ public int GetNumberOfRequestorGroupsb() throws Throwable {
 	List<WebElement> elem = driver.findElements(NumberOfRequestorGroupsb);
 	int count = elem.size();
 	if(count>0) {
+		
 		reporter.SuccessReport("Number Of Requestor Groups ", "Number Of Requestor Groups", String.valueOf(count), driver);
 	}
 	else {
 		reporter.failureReport("Number Of Requestor Groups ", "Number Of Requestor Groups are not available", "", driver);
 	}
 	return count;
+}
+public String GetNameOfLastRequestor() throws Throwable {
+	List<WebElement> elem = driver.findElements(NumberOfrequestors);
+	int count = elem.size();
+	String text ="";
+	if(count>0) {
+		 text = elem.get(count-1).getText().toString();
+		reporter.SuccessReport("LastName Of Requestor ", "LastName Of Requestor", text, driver);
+	}
+	else {
+		reporter.failureReport("LastName Of Requestor", "LastName Of Requestor doesn't exist", "", driver);
+	}
+	return text;
 }
 	public void ClickEditLinkINRequestorGrpPage(String reqGrpName) throws Throwable {
 		if (isElementPresent(clickRequestorGrpEdit(reqGrpName), "Requestor Group Edit Icon")) {
@@ -1771,9 +1785,21 @@ public void DeleteApproverOut(String strApprover) throws Throwable {
 	            "Approver Out Does Not Exist", "");
 	   }
 }
-public void SelectRequestorFromRightToLeft(String requestor) throws Throwable {
-	selectByVisibleText(RequestorFromRightToLeft(requestor), requestor, "requestor");
-	click(BackArrow_button,"Back Arrow button");
+public void SelectRequestorFromRightToLeft(String requestor,int count) throws Throwable {
+	//selectByVisibleText(RequestorFromRightToLeft(""), requestor, "requestor");
+	//click(BackArrow_button,"Back Arrow button");
+	if (isElementPresent(RequestorFromRightToLeft(requestor), "Requestror ")) {
+		selectByVisibleText(RequestorGroupList, requestor, "Requestror");
+		click(BackArrow_button,"Back Arrow button");
+		reporter.SuccessReport("Add Requestors on Create/Edit Requestor Group Page",
+				"Requestors Exist in the Available Requestors' List and Selected", requestor);
+	}
+	else {
+		reporter.SuccessReport("Add Requestors on Create/Edit Requestor Group Page",
+				"Add Arrow Link Exists and Clicked", "");
+		
+	}
+	
 }
 	public void Add_Requestor_Btn_Click() throws Throwable {
 		if (isElementPresent(SELECT_PATH_ADD_BUTTON, "Select Path option")) {
@@ -1974,6 +2000,9 @@ public void SelectRequestorFromRightToLeft(String requestor) throws Throwable {
 					"TU_IUS Requestor Group Tiered Link Does Not Exist", "");
 		}
 	}
+	public void ClickOnEditInrequestorGrpMgmt() {
+		
+	}
 public void Readdatfromexcel(String filePath) throws Throwable {
 	//File root = new File("C:\\Users\\e004303\\Downloads");
 			String sfile = System.getProperty("user.dir") + "\\" + "DownloadedFiles" + "\\" + filePath+".xls";
@@ -1997,15 +2026,17 @@ else {
 }
 	File file = new File(sfile);
 	if(!file.exists()) {
-		System.out.println("'");
+		System.out.println("F");
 	}
 	else {
+		fi.close();
 		file.delete();
-		System.out.println();
+		reporter.SuccessReport("Excel File", "File deleted successfully", "", driver);
 	}
 }
 public void ClickOnExporticon() throws Throwable {
 	click(Exporticon, "Export icon");
+	Thread.sleep(10000);
 }
 public void PageLinkText() throws Throwable {
 	String PageLink = getText(PageLinks, "Page Links");
@@ -2028,7 +2059,9 @@ public void PageLinkText() throws Throwable {
 					"TU_IUS Requestor Group Link Does Not Exist", "");
 		}
 	}
-
+public void ClickonEditlinkofRequestorGroMgmt(String requestor) throws Throwable {
+	click(EditbuttonInReqGrpMgmt(requestor), "Clicked on "+requestor+" Edit link In ReqGrpMgmt");
+}
 	public void Verify_Create_Edit_Requestor_GroupPage() throws Throwable {
 		if (isElementPresent(REQ_SAVE_CHANGES_BTN, "Create/Edit Requestor Group Page")) {
 			reporter.SuccessReport("Approval Management Create/Edit Requestor Group",
@@ -2060,14 +2093,16 @@ public void PageLinkText() throws Throwable {
 					"SEARCH Link Does Not Exist", "");
 		}
 	}
-
+public void ClickOnBackToRefreshIcon() throws Throwable {
+	 click(BackTorequestorGroup, "BackTorequestorGroup");
+}
 	public void RemoveUsers(String ReqGroupName, String reqName) throws Throwable {
 
 		// Click on General Settings to click Reports
 		ClickGeneralSettings();
 
 		// Click on Reports
-		ClickReports();
+		ClickReports(); 
 
 		// Click on Requestor Requestor Group Users
 		ClickRequestorGroupUsersLink();

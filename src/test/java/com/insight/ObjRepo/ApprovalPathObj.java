@@ -211,6 +211,8 @@ public static By CreateLinkInrequisationRejection = By.xpath("//table[@id='rejec
 	public static By createRequestorType=
 		 By.xpath("//select[@id='AvailRequestorsList']");
 	
+	public static By RequestorGroupList=
+			 By.xpath("//select[@id='requestorGroupList']");
 
 	public static By createRepApproverType() {
 		return By.xpath("//select[@id='oofReplacementApprover']");
@@ -328,8 +330,9 @@ public static By Monthandyearoffromdate = By.xpath("//div[@class='ui-datepicker-
 	}
 	public static By NumberOfRequestorGroupsb = By.xpath("//*[@id='requestor_search_table']//tr//td[@id='reqname']");
 	public static By MANAGE_REQUESTOR_LINK = By.xpath("//span[@id='li-ManageRequestors']");
-	
+	public static By NumberOfrequestors = By.xpath("//*[@id='reqGrpUserReport']//tr//td[@class='verticalAlignTop'][1]");
 	public static By REFRESH_ICON = By.xpath("//a[@id='viewAllLink']") ;
+	public static By BackTorequestorGroup= By.xpath("//span[@id='backtoReqSearch']/a");
 	public static By RequestorsOnLeftSide = By.xpath("//select[@id='AvailRequestorsList']//option");
 	public static By RequestorsOnRightSide = By.xpath("//select[@id='requestorGroupList']//option");
 	
@@ -362,6 +365,9 @@ public static By Monthandyearoffromdate = By.xpath("//div[@class='ui-datepicker-
 	public static By TU_IUS_Requestor_Group_Link = By.xpath("(//td[@class='verticalAlignTop']//div//a[text()='TU_IUS Requestor Group'])[1]");
 	public static By TU_IUS_Tired_Requestor_Group_Link (String requestor) {
 		return By.xpath("(//td[@class='verticalAlignTop']//div//a[text()='"+requestor+"'])[1]");
+	}
+	public static By EditbuttonInReqGrpMgmt(String requestor) {
+		return By.xpath("//table[@id='requestor_search_table']//td[text()='"+requestor+"']//following::a[contains(text(),'Edit')][1]");
 	}
 	public static By REQUESTOR_GRP_NAME_TXTBOX = By.xpath("//div[@class='rguSearchTextbox']//input[@id='repSkey']");
 	public static By SEARCH_REQ_GRP_ICON = By.xpath("//a[@title='SEARCH']");
