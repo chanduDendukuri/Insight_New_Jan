@@ -2,6 +2,7 @@ package com.insight.Lib;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.mortbay.log.Log;
@@ -904,16 +905,22 @@ public  void verifyDashboard()throws Throwable {
 		click(getOptionsunderCkeckoutsettings(user_Permissions), "Shipping Options");
 		click(DesignatedShippingOption_Button, "Designated_Shipping_Button");
 		if (isElementPresent(Designatedshippingoptions, "DesignatedShippingOption is Displayed")) {
-			selectByVisibleText(Designatedshippingoptions, text1, "Designated_Shipping_Option");
-			reporter.SuccessReport("Verify the Sucess message ", "DesignatedShippingOption is Displayed", text1);
+			List<String> carrierFedex = Arrays.asList(text1.split(","));
+			for(int i=0;i<carrierFedex.size();i++) {
+				selectByVisibleText(Designatedshippingoptions, carrierFedex.get(i), "Designated_Shipping_Option");
+				click(buttontoclickFedExoptin, "FedEx Option is selected And Moved to allowed Options");
+				reporter.SuccessReport("Verify the Sucess message ", "DesignatedShippingOption is Displayed", carrierFedex.get(i));
+			}
 		} else {
 			reporter.failureReport("Verify the sucess message", "DesignatedShippingOption is not Displayed.", "",
 					driver);
 		}
-		click(buttontoclickFedExoptin, "FedEx Option is selected And Moved to allowed Options");
-		click(DesignatedshippingFedoption_dropdown, "only FedEx Option is selected");
-		selectByVisibleText(DesignatedshippingFedoption_dropdown, text1,
-				"Designated_Shipping_Option FedEx is Selected");
+		
+		/*
+		 * click(DesignatedshippingFedoption_dropdown, "only FedEx Option is selected");
+		 * selectByVisibleText(DesignatedshippingFedoption_dropdown, text1,
+		 * "Designated_Shipping_Option FedEx is Selected");
+		 */
 
 	}
 

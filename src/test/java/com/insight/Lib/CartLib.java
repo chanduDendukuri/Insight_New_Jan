@@ -1063,7 +1063,7 @@ public class CartLib extends ActionEngine {
 	}
 
 	public String getShippingEstimateInCart() throws Throwable {
-		String shipingCharges = getText(CartObj.SHIPPING_ESTIMATE, "SHipping Charges");
+		String shipingCharges = getText(CartObj.SHIPPING_ESTIMATE, "Shipping Charges");
 		reporter.SuccessReport("Shipping estimate ", "Shipping estimate amount in cart ", shipingCharges, driver);
 		return shipingCharges;
 
@@ -1893,7 +1893,7 @@ public void verifyProductdetails() throws Throwable {
 
 			if (myList.get(i).isDisplayed()) {
 
-				reporter.SuccessReport("FedEx shpping carriers ", "" + myList.get(i).getText() + "are displayed", "");
+				reporter.SuccessReport("FedEx shpping carriers ", "" + myList.get(i).getText() + "are displayed", myList.get(i).getText());
 			} else {
 				reporter.failureReport("FedEx shpping carriers ", "" + myList.get(i).getText() + "are not displayed",
 						"", driver);
