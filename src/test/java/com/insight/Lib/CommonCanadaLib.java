@@ -647,5 +647,23 @@ public void getListOfAvailableBreadCrumbs() throws Throwable{
             click(closePrintPage,"Close Print Page");
         }
     }
+    public String getTotalPriceFromSearchProductsPage() throws Throwable{
+        return getText(summaryTotalInSearchPage,"Total Price");
+    }
+
+    public void getProductDescriptionInViewCartPage() throws Throwable{
+        List<WebElement> DescVal= driver.findElements(CART_PROD_DESC_RECENTLYADDEDTEM_loop);
+        for(int i=0 ; i<DescVal.size();i++){
+            reporter.SuccessReport("Product Description ","Item added to cart under contract",DescVal.get(i).getText());
+        }
+
+    }
+    public void getAllConractDetails() throws Throwable{
+        List<WebElement> DescVal= driver.findElements(AllContractDetails);
+        for(int i=0 ; i<DescVal.size();i++){
+            reporter.SuccessReport("Product Description ","Item added to cart under contract",DescVal.get(i).getText());
+        }
+
+    }
 }
 

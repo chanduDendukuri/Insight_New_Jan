@@ -2630,5 +2630,16 @@ List<String> orderdetails = new ArrayList<String>();
 	 public String getWG800NumberOnPrintPopup() throws Throwable {
 			 return getText(TELEPHONE_NUMBER_ON_PRINT_RECEIPT, "Telephone number on receipt page");
 	 }
+
+	public String getCartProductUnitPriceInViewCart() throws Throwable {
+			String value=null;
+		List<WebElement> myList = driver.findElements(CartObj.lblUnitpriceWithCurrency);
+		for (int i = 0; i < myList.size(); i++) {
+			 value =myList.get(i).getText();
+			 reporter.SuccessReport("Product Unit Price","Unit Price is ",value,driver);
+			break;
+		}
+		return value;
+	}
 	}
 

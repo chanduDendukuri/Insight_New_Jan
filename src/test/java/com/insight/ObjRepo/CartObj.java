@@ -372,6 +372,7 @@ public static By Productname_at_cart=By.xpath("//h4[@class='cart__item-heading']
 
 
 	public static By lblTotalAmountFromCartSearchResults= By.xpath("//*[@class='item-body item-body--bundle']//div//div[@class='columns small-12 large-1 print-2']//div[2]//span[@class='iw-currency item-body__value']");
+	public static By lblUnitpriceWithCurrency= By.xpath("//div[contains(@class,'columns flex-child-auto medium-flex-child-shrink cart__table-col cart__table-col--price medium')]//span[@class='iw-currency']");
 
 }
     
