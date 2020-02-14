@@ -2,20 +2,10 @@ package com.insight.WebTest.Cart;
 
 import java.util.Hashtable;
 
+import com.insight.Lib.*;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
-import com.insight.Lib.CMTLib;
-import com.insight.Lib.CanadaLib;
-import com.insight.Lib.CartLib;
-import com.insight.Lib.ChinaLib;
-import com.insight.Lib.CommonLib;
-import com.insight.Lib.OrderLib;
-import com.insight.Lib.ProductDetailLib;
-import com.insight.Lib.ProductDisplayInfoLib;
-import com.insight.Lib.SearchLib;
-import com.insight.Lib.SewpLib;
-import com.insight.Lib.ShipBillPayLib;
 import com.insight.accelerators.ReportControl;
 import com.insight.accelerators.TestEngineWeb;
 import com.insight.googledrive.ReportStatus;
@@ -32,6 +22,7 @@ public class CRT02_CartBasicIPSTest extends CartLib{
 	OrderLib orderLib=new OrderLib();
 	ProductDetailLib productdetLib = new ProductDetailLib();
 	SewpLib sewLib=new SewpLib();
+	CommonCanadaLib ccp=new CommonCanadaLib();
 
 
 
@@ -69,9 +60,6 @@ public class CRT02_CartBasicIPSTest extends CartLib{
 					cmtLib.clickOnTheWebGroup(data.get("WebGrp_Name"));
 					cmtLib.hoverOnManageWebGroupsAndSelectOptions(data.get("Manage_Web_Grp_Options"));
 					cmtLib.searchForaUserAndSelect(data.get("LnameEmailUname"), data.get("contactName"));
-
-					//cmtLib.loginToCMTSearchWebGrpAndUser(data.get("header"), data.get("WebGrp"), data.get("LnameEmailUname"), data.get("ContactName"));
-
 					cmtLib.setPermissionsToDisable(data.get("Menu_Name"),data.get("User_Permission"));
 					cmtLib.setPermissions(data.get("Menu_Name"),data.get("Enable_Purchasing_Popup"));
 					cmtLib.clickOnloginAs();
@@ -82,54 +70,30 @@ public class CRT02_CartBasicIPSTest extends CartLib{
 					//commonLib.addFirstDisplyedItemToCartAndVerify();
 					prodInfoLib.verifyTheManufacturerNumberInProductDetailsPage(data.get("Search_Item"));
 					search.increaseQuantity(data.get("quantity"));
-
-					//String partNumber1=cartLib.getPartNumber();
-
 					commonLib.addToCartAndVerify();
 					canadaLib.continueToCheckout();
-
+					String USCommunitiesContractPrice=orderLib.getCartProductUnitPriceInViewCart();
 					String totalAmountMarketPriceoff=shipbLib.getTotalAmountInCart(data.get("Total"));
 					commonLib.clickLogOutLink(data.get("Logout_Header"));
 
 					cmtLib.navigateBackToCMT();
 					cmtLib.setPermissions(data.get("Menu_Name"),data.get("User_Permission"));
+					cmtLib.permissionFromDD(data.get("User_Permission"), data.get("Permission_Dropdown_Option"));
+
 					cmtLib.clickOnloginAs();
 					switchToChildWindow();
 					cmtLib.loginVerification("User - "+data.get("contactName"));
 
 					commonLib.searchProduct(data.get("Search_Item"));
 					prodInfoLib.verifyTheManufacturerNumberInProductDetailsPage(data.get("Search_Item"));
-					//clickMorePricesAvilableInProductInfo();
-
-					//Get Data of selected
-					//clickOnOpenMarketPrice();
-
-
 					clickMorePricesAndViewContractsinProductsPage();
-
 
 					//ProductDetailLib.recomendedProductMoreAvailablePriceAndVerifyContracts();
 					clickOnAddToCartInAllContractPrices();
-					//cartLib.cartBasicsIPS_verifyPermissionAtUserLevel();
+					orderLib.continueToCheckOutOnAddCart();
+					String OpenMarketPrice=orderLib.getCartProductUnitPriceInViewCart();
 
-
-					/*String partNumber2=cartLib.getPartNumber();
-
-					commonLib.addToCartAndVerify();
-					canadaLib.continueToCheckout();*/
-
-
-					/*commonLib.searchProduct(partNumber1);
-					commonLib.clickCart();
-					String totalAmountMarketPriceOn=shipbLib.getTotalAmountInCart(data.get("Total"));
-					if(!totalAmountMarketPriceoff.equals(totalAmountMarketPriceOn))
-					{
-						reporter.SuccessReport("Us commdity price and open market price", "are not equal","");
-					}
-					else {
-						reporter.failureReport("Us commdity price and open market price", "are equal","");
-					}*/
-
+					assertTrue(OpenMarketPrice.contains(USCommunitiesContractPrice),"US IT Communities and Open Market  Both prices are matched");
 					commonLib.clickLogOutLink(data.get("Logout_Header"));
 					cmtLib.navigateBackToCMT();
 					cmtLib.clickOnLogout();
@@ -140,13 +104,6 @@ public class CRT02_CartBasicIPSTest extends CartLib{
 					cmtLib.hoverOnManageWebGroupsAndSelectOptions(data.get("Manage_Web_Grp_Options"));
 					cmtLib.searchForaUserAndSelect(data.get("LnameEmailUname2"), data.get("ContactName2"));
 
-
-					/*cmtLib.hoverOverMasterGroupAndSelectChangeGrp();
-				    cmtLib.searchForWebGroup(data.get("WebGrp2"));
-				    cmtLib.manageUsers();
-				    cmtLib.searchUsers(data.get("LnameEmailUname2"));
-				    cmtLib.verifyUserandClick(data.get("ContactName2"));*/
-
 					cmtLib.clickOnloginAs();
 					switchToChildWindow();
 					cmtLib.loginVerification("User - "+data.get("ContactName2"));
@@ -156,37 +113,32 @@ public class CRT02_CartBasicIPSTest extends CartLib{
 					Thread.sleep(10000);
 					cartLib.verifyDefaultContractinProductDisplay();
 
-					//commonLib.addToCartAndVerify();
-
-					//canadaLib.continueToCheckout();
-					//cartLib.verifyDefaultContractInCart();
 					search.searchInHomePage(data.get("SearchItem2"));
 					search.verifyBreadCrumbInSearchResultsPage(data.get("SearchItem2"));
 					prodInfoLib.selectFirstProductAddToCartAndVerifyCart();
 					Thread.sleep(5000);
 					cartLib.verifyDefaultContractInCart();
-
+					ccp.getProductDescriptionInViewCartPage();
 					search.searchInHomePage(data.get("Search_Item1"));
 					search.verifyBreadCrumbInSearchResultsPage(data.get("Search_Item1"));
 
-					//cartLib.clickMorePricesAvilableInSearchResultPage();
-					//search.clickOnMorePrices();
-					//search.allContractPricesPopup();
-					clickMorePricesAndViewContractsinSearchPage();
-					//10-02 Get Price and open Market
-					//search.verifyDefaultUSContractInAllContractPricesPopup("checked");
-					// STATE OF MINNESOTA - PC HARDWARE, & SERVICES-
-					//search.selectContractOnAllContractPricesPopup(data.get("Contarct_Name1"));
-
-					//cartLib.clickOnOpenMarketPrice();
-					//cartLib.clickOnAddToCartInAllContractPrices();
-					search.increaseQuantity(data.get("quantity2"));
+					clickMorePrices();
+					ccp.getAllConractDetails();
+					search.verifyDefaultUSContractInAllContractPricesPopup("checked");
+					clickOnOpenMarketPrice();
+					//search.increaseQuantity(data.get("quantity2"));
 					cartLib.clickOnAddToCartInAllContractPrices();
 					orderLib.continueToCheckOutOnAddCart();
+					prodInfoLib.verifyCartPageAndPartDetails();
 					// contract verification in cart page
 					prodInfoLib.verifyContractInCartScreen(data.get("Contarct_Name1"));
+					ccp.getProductDescriptionInViewCartPage();
+					prodInfoLib.enterQuantityForProductsInViewCartPage(data.get("quantity2"));
+					commonLib.clickOnUpdateLinkInViewCartPage(data.get("quantity2"));
 					prodInfoLib.verifyCartPageAndPartDetails();
 					//Add Delete
+					prodInfoLib.deleteSelectedProducts();
+
 					search.selectNewcontract(data.get("Contarct_Name2"));
 
 					search.searchInHomePage(data.get("Search_Item1"));

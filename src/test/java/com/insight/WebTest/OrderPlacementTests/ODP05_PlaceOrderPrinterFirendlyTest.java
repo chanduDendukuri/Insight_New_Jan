@@ -61,6 +61,8 @@ public class ODP05_PlaceOrderPrinterFirendlyTest extends OrderLib{
 						cmtLib.hoverOnManageWebGroupsAndSelectOptions(data.get("Manage_Web_Grp_Options"));
 						cmtLib.searchForaUserAndSelect(data.get("LnameEmailUname"), data.get("ContactName"));
 						cmtLib.loginAsAdminCMT();
+						// Login verification
+						cmtLib.loginVerification("User - "+data.get("ContactName"));
 
 						// Select First Product and Add to cart
 						searchLib.searchInHomePage(data.get("SearchText"));

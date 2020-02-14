@@ -123,6 +123,10 @@ public class CartObj extends CommonObj{
 	public static By UNIT_PRICE_IN_PRINT_POPUP = By.xpath("/html/body/div[13]/div/div[2]/div/div/div[2]/div[3]/div[1]/section/div[2]/div[1]/div/div[3]");
 	public static By QUANTITY_IN_PRINT_POPUP = By.xpath("/html/body/div[13]/div/div[2]/div/div/div[2]/div[3]/div[1]/section/div[2]/div[1]/div/div[4]");
 	public static By PRINT_SYMBOL_IN_PRINT_POPUP = By.xpath("/html/body/div[13]/div/div[2]/div/section/header/div/div/span[1]");
+	public static By WARRANTIES_ON_PRINT_POPUP=By.xpath("(//h5[@class='selected-warranty__item-heading'])[2]/following-sibling::p");
+	public static By getWarrantiesOnPrintPopUp(String partNumber) {
+		return By.xpath("//*[@class='cart-container hide-for-print']//*[@class='iw-modal cart-print-preview']//*[@aria-label='Your cart']//*[@class='cart__table-block']//*[@class='row expanded']//*[contains(@class,'desc')]//p[contains(.,'Insight Part #: "+partNumber+"')]//..//..//..//following-sibling::div//*[@class='cart-item__warranty']");
+	}
 	
 	/* *******************************************************************************
 	 * >>>>>>>>>>>>>>>>>LOCATORS IN SEND TO A COLLEGUE POPUP<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
@@ -372,6 +376,7 @@ public static By Productname_at_cart=By.xpath("//h4[@class='cart__item-heading']
 
 
 	public static By lblTotalAmountFromCartSearchResults= By.xpath("//*[@class='item-body item-body--bundle']//div//div[@class='columns small-12 large-1 print-2']//div[2]//span[@class='iw-currency item-body__value']");
+	public static By lblUnitpriceWithCurrency= By.xpath("//div[contains(@class,'columns flex-child-auto medium-flex-child-shrink cart__table-col cart__table-col--price medium')]//span[@class='iw-currency']");
 
 }
     

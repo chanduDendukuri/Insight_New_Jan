@@ -132,10 +132,11 @@ public class USM03_FCTWebCreateCoPassUserIPSTest  extends UserManagementLib {
 							cmtLib.hoverOnManageWebGroupsAndSelectOptions(data.get("Manage_Web_Grp_Options"));
 							cmtLib.searchForaUserAndSelect(email,firstName+" "+lastName);
 							cmtLib.clickOnRolesAndPermissionsTab(data.get("Menu_Name"));
-							String[] permissions2 = data.get("Set_Permission").split(",");
+							String[] permissions2 = data.get("Set_Permission_afterlogin").split(",");
 							for (i = 0; i < permissions2.length; i++) {
 								cmtLib.verifySetPermissions( permissions2[i]);
 							}
+							cmtLib.verifySetPermissionsDisabled(data.get("p3"));
 							cmtLib.verifyDDPermission(data.get("Permision4"),data.get("Option"));
 							cmtLib.verifyDDPermission(data.get("Permision5"),data.get("Option"));
 							//cmtLib.verifyDDPermission(data.get("Permision6"),data.get("Option"));

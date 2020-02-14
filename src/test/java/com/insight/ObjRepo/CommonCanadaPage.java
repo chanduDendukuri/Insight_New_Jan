@@ -79,6 +79,12 @@ public static By txtQuantityValue = By.xpath("//*[@class='cart-wrapper show-for-
     public static By printLinkiCon=By.xpath("//*[@class='icon print has-tip tip-top']");
     public static By availabilityOfPrintPage=By.xpath("//*[@id='js-print-invoice-target']");
     public static By closePrintPage=By.xpath("//*[@id='js-print-invoice-target']//a[contains(@class,'close')]");
+    public static By summaryTotalInSearchPage = By.xpath("//*[contains(@id,'js-product-detail-pricing-target')]//p[@class='prod-price']");
+    public static By lblProductDescription = By.xpath("//*[@class='cart__item-heading']");
+    public static By CART_PROD_DESC_RECENTLYADDEDTEM_loop=By.xpath("//div[@class='columns flex-child-auto cart__table-col--desc text-left']/a/h4");
+    public static By AllContractDetails=By.xpath("//div[@class='large-12 columns js-modal-pick-contract']//label");
+
+
 
 
 }

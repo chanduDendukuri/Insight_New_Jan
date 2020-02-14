@@ -158,6 +158,12 @@ public class CAN07_CartBasicTest extends CanadaLib{
 									}
 									slp.verifyProccedToCheckOutbuttonExists();
 									cmtLib.clickOnLogoutlink();
+
+									//CommonLib.clickLogOutLink(data.get("Logout_Header"));
+									cmtLib.navigateBackToCMT();
+									//	CommonLib.clickRolesAndPermissionsAtUserLevel();
+									//	cmtLib.setPermissions(data.get("Menu_Name"), data.get("Set_Permission"));
+									cmtLib.clickOnRolesAndPermissionsAndSetPermission(data.get("Menu_Name"), data.get("Set_Permission"));
 //Third loginAs
 									cmtLib.loginAsAdminCMT();
 									cmtLib.loginVerification(data.get("ContactName1"));

@@ -135,7 +135,7 @@ public class CartLib extends ActionEngine {
 	public void verifyDefaultContractInCart() throws Throwable {
 		if (isElementPresent(CartObj.DEAFULT_CONTARCT_IN_CART, "Default contarct")) {
 			reporter.SuccessReport("Verify Default Contract in the cart Page",
-					"Default Contract: US COMMUNITIES IT PRODUCTS & SERVICES", "");
+					"Default Contract: US COMMUNITIES IT PRODUCTS & SERVICES", getText(CartObj.DEAFULT_CONTARCT_IN_CART, "Default contarct"));
 		} else {
 			reporter.failureReport("Verify Default Contract in the cart Page",
 					"Default Contract is not: US COMMUNITIES IT PRODUCTS & SERVICES", "", driver);
@@ -151,7 +151,7 @@ public class CartLib extends ActionEngine {
 	 */
 	public void clickOnOpenMarketPrice() throws Throwable {
 		isElementPresent(productsDisplayInfoObj.OPEN_MARKET, "open market price");
-		click(productsDisplayInfoObj.OPEN_MARKET, "open market price");
+		click(productsDisplayInfoObj.OPEN_MARKET, "Clicked on open market price");
 	}
 
 	/**
@@ -1195,7 +1195,7 @@ public class CartLib extends ActionEngine {
 		waitForVisibilityOfElement(CartObj.getShoppingCartOrderUtilities(orderUtilities), "PRINT LINK");
 		click(CartObj.getShoppingCartOrderUtilities(orderUtilities), "PRINT LINK");
 		verifyPrintPopUp();
-		// clickPrintInPopUp();
+		 clickPrintInPopUp();
 		// NEED TO DO VALIDATION IN PRINT PDF
 		closePrintPopUp();
 	}
@@ -1581,6 +1581,14 @@ public class CartLib extends ActionEngine {
 		waitForVisibilityOfElement(CartObj.PRINT_SYMBOL_IN_PRINT_POPUP, "PRINT SYMBOL IN PRINT POPUP");
 		click(CartObj.PRINT_SYMBOL_IN_PRINT_POPUP, "PRINT SYMBOL IN PRINT POPUP");
 
+	}
+	
+	public void verifyPrintAndCloseIconexists() throws Throwable {
+		if(isVisibleOnly(CartObj.CLOSE_PRINT_POPUP, "Close icon")&& isVisibleOnly(CartObj.PRINT_SYMBOL_IN_PRINT_POPUP, "PRINT SYMBOL IN PRINT POPUP")) {
+			reporter.SuccessReport("View Printable POPUP", "Print and Close Links are Exists", "Link: Print and Close", driver);
+		}else {
+			reporter.failureReport("View Printable POPUP", "Print and Close Links does not Exists", "Link: Print and Close", driver);
+		}
 	}
 
 	/**
@@ -2408,6 +2416,7 @@ public void getpartnumberIncartpage() throws Throwable {
 	}
 	public void clickMorePricesAndViewContractsinProductsPage() throws Throwable {
 		if(isElementPresent(SewpObj.MORE_PRICES, "More prices available link",true)){
+
 			click(SewpObj.MORE_PRICES, "More prices available link");
 			reporter.SuccessReport("Verify and click 'More Prices Available' in Product Detail page"," 'More Prices Available' exists and clicked", "");
 		}
@@ -2418,7 +2427,7 @@ public void getpartnumberIncartpage() throws Throwable {
 		String openTextValue=getText(productsDisplayInfoObj.OPEN_MARKET,"Open Market Price");
 		String USValue=getText(CartObj.US_COMMIDITIES,"US COMMIDITIES Price");
 		clickOnOpenMarketPrice();
-		getText(productsDisplayInfoObj.OPEN_MARKET,"Open Market Price");
+		reporter.SuccessReport("Open Market price","The Open Market Price is ", getText(productsDisplayInfoObj.OPEN_MARKET,"Open Market Price"));
 	}
 	public void clickMorePricesAndViewContractsinSearchPage() throws Throwable {
 		if(isElementPresent(CartObj.MORE_AVAILABLE_PRICES, "More prices available link",true)){
@@ -2434,6 +2443,15 @@ public void getpartnumberIncartpage() throws Throwable {
 		search.verifyDefaultUSContractInAllContractPricesPopup("checked");
 		clickOnOpenMarketPrice();
 		String openTextValue2=getText(productsDisplayInfoObj.OPEN_MARKET,"Open Market Price");
+	}
+
+	public void clickMorePrices() throws Throwable {
+		if (isElementPresent(CartObj.MORE_AVAILABLE_PRICES, "More prices available link", true)) {
+			click(CartObj.MORE_AVAILABLE_PRICES, "More prices available link");
+			reporter.SuccessReport("Verify and click 'More Prices Available' in Search page", " 'More Prices Available' exists and clicked", "");
+		} else {
+			reporter.failureReport("Verify and click 'More Prices Available' in Search page", " 'More Prices Available' does not exists", "");
+		}
 	}
 
 }
