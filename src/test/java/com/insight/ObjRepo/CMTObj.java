@@ -21,7 +21,7 @@ public class CMTObj extends ActionEngine {
 	public static By CMT_WELCOME_POPUP = By.xpath("//span[@id='ui-id-1'][contains(text(),'Welcome to Insight Beta!')]");
 	public static By MANAGE_WEBGRP = By.id("manageWebGroupOptionsButton");
 	public static By LOGIN_AS_REPORTING_ADMIN = By.id("reportingAdminLoginAs");
-	public static By LOGIN_AS = By.xpath("//div[@id='userLoginAs']//a");
+	public static By LOGIN_AS = By.xpath("//div[@id='userLoginAs']//a | //*[@id='reportingAdminLoginAs']");
 	public static By MASTER_GROUP = By.xpath("//div[@id='masterGroupSale']");
 	public static By CHANGE_MASTER_GRP = By
 			.xpath("//div[@id='differentMasterGroup']//a[contains(text(),'Change Master Group')]");
@@ -705,6 +705,7 @@ public static By lnkDeleteProductGroups=By.xpath("//*[text()=' Delete Product Gr
     public static By DISPLAY_THIS_ON_WEB=By.xpath("//span[@class='wgDetailsRow'][contains(text(),'Client Support Phone Number :')]//input[@id='displayOnWebId']");
     public static By DEFUALTSOLDTOACCOUNT=By.xpath("//span[@id='defaultSoldtoforUser']");
 
+    public static By displayOnWebGroupList=By.xpath("//*[contains(@id,'accTeamDispWeb')]");
 
 
 }
