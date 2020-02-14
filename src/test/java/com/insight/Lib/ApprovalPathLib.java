@@ -2170,42 +2170,84 @@ public void ClickOnBackToRefreshIcon() throws Throwable {
 	 * @throws Throwable
 	 */
 
-	public void PreviousdatePicker(int months, String strCurrDay,String datetype) throws Throwable {
-		DateFormat dateFormat = new SimpleDateFormat("dd-mmmm-yyyy");
-		Date currentDate = new Date();
-		String day = strCurrDay.split("-")[0];
-		String month = strCurrDay.split("-")[1];
-		String year = strCurrDay.split("-")[2];
+	public void PreviousdatePicker(int daystoupdate,String datetype) throws Throwable {
+		DateFormat dateFormat = new SimpleDateFormat("dd MMM yyyy");
+		
+		/*
+		 * Date currentDate = new Date(); String day = strCurrDay.split("-")[0]; String
+		 * month = strCurrDay.split("-")[1]; String year = strCurrDay.split("-")[2];
+		 */
 		String MonthandYear ="";
 		Calendar c = Calendar.getInstance();
-        c.setTime(currentDate);
-
-       
-        c.add(Calendar.DATE,-380);
-        Date currentDatePlusOne = c.getTime();
-        System.out.println(dateFormat.format(currentDatePlusOne));
+        
+        Date date = Calendar.getInstance().getTime();
+        String today = dateFormat.format(date);
+        today = dateFormat.format(date);
+        System.out.println("Today : " + today);
+        
+        
+        c.add(Calendar.DAY_OF_MONTH,daystoupdate);
+        Date DateAfterAddingdays = c.getTime();
+        System.out.println(dateFormat.format(DateAfterAddingdays));
+        String strCurrDay1 = dateFormat.format(DateAfterAddingdays);
+        String day = strCurrDay1.split(" ")[0];
+		String month = strCurrDay1.split(" ")[1];
+		String year = strCurrDay1.split(" ")[2];
 		if(datetype.equals("FromDate")) {
 			click(StartDateCALENDAR, "Click on calendar");
+			String MonthandYearBeforeUpdating = driver.findElement(Monthandyearoffromdate).getText();
+			String dayBeforeUpdating = driver.findElement(By.xpath("//a[@class='ui-state-default ui-state-active']")).getText();
+			reporter.SuccessReport("From Date", "From Date before updating", dayBeforeUpdating+" "+MonthandYearBeforeUpdating, driver);
 			}
 			else {
-				click(EndDateCALENDAR, "Click on calendar");
+			click(EndDateCALENDAR, "Click on calendar");
 			}
+		
 		if (isElementPresent(PREV_MONTH_ARROW, "Previous month")) {
-			for (int i = 0; i <= months; i++) {
+			
+			for (int i = 0; i <= 50; i++) {
+				MonthandYear= driver.findElement(Monthandyearoffromdate).getText();
+				if(MonthandYear.contains(month)&& MonthandYear.contains(year)) {
+				click(dayInStartDayCalender(day), "From date after updating: "+day+" "+MonthandYear);
+				break;
+				}
+				else {
 				driver.findElement(PREV_MONTH_ARROW).click();
-				
+				}
 			}
-			MonthandYear = getText(Monthandyearoffromdate, "MonthandYear");
-			// Select Day
-			if (isElementPresent(dayInStartDayCalender(day), "From Date ")) {
-				click(dayInStartDayCalender(day), day+" "+MonthandYear);
-			}
-
+			
+			
 			reporter.SuccessReport("Change Month on Approval Management Page Approver Out of Office Settings",
-					"Arrow Button Exists and Clicked to Change the Month", month+"-"+day);
+					"Arrow Button Exists and Clicked to Change the Month", "");
 		} else {
 			reporter.failureReport("Change Month on Approval Management Page Approver Out of Office Settings",
 					"Arrow Button Does Not Exist", "");
+		}
+	}
+	public void VerifyRequestors() throws Throwable {
+		WebElement elem = driver.findElement(By.id("RSRResultTable"));
+		List<WebElement> elm = elem.findElements(By.tagName("tr"));
+		int count =0;
+		for (int i=1;i<=elm.size();i++) {
+			List<WebElement> elem1 = elm.get(i).findElements(By.tagName("td"));
+			//for (WebElement webElement2 : elem1) {
+			for(int j=1;j<=elem1.size();j++) {
+				//String text = elem1.get(j).getText();
+				String RequestedDate = elem1.get(0).getText();
+				String OrderOrDeniedDate = elem1.get(1).getText();
+				String Requestor = elem1.get(2).getText();
+				String RequestorGroup = elem1.get(3).getText();
+				String Approver = elem1.get(4).getText();
+				String DaysOpen = elem1.get(5).getText();
+				String ReferenceNo = elem1.get(6).getText();
+				String Status = elem1.get(7).getText();
+				String OrderNo = elem1.get(8).getText();
+				reporter.SuccessReport("Results:", "Request Date For all Records is Exists", "RequestedDate:"+RequestedDate+",OrderOrDeniedDate:"+OrderOrDeniedDate+",Requestor:"+Requestor+",RequestorGroup:"+RequestorGroup+",Approver:"+Approver+",DaysOpen:"+DaysOpen+",ReferenceNo:"+ReferenceNo+",Status:"+Status+",OrderNo:"+OrderNo, driver);
+			break;
+			}
+			count++;
+			if(count ==5)
+				break;
 		}
 	}
 	public void NextdatePicker(int months, String strCurrDay,String datetype) throws Throwable {
@@ -2286,7 +2328,7 @@ for(int i=0;i<=11;i++) {
 		driver.switchTo().alert().accept();
 		if (expectedtext.equalsIgnoreCase(actualtext)) {
 			reporter.SuccessReport("Approval Management Requisition Status Reports Page",
-					"Report cannot be retrieved for more than one year", "");
+					"Report cannot be retrieved for more than one year", expectedtext);
 		} else {
 			reporter.failureReport("Approval Management Requisition Status Reports Page",
 					"Report cannot be retrieved for more than one year does not exist", "", driver);
