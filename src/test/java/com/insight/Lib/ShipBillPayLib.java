@@ -627,7 +627,7 @@ public class ShipBillPayLib extends ShipBillPayObj {
 	 */
 	public void VisaCardErrorPayment(String cardNumber, String cardName, String month, String year, String poNumebr)
 			throws Throwable {
-		click(PAYMENT_METHOD_DD, "payment method drop down");
+	//	click(PAYMENT_METHOD_DD, "payment method drop down");
 		if(isVisibleOnly(OrderObj.PAYMENT_METHOD_VERIFICATION_TERMS,"Terms")) {
 			reporter.failureReport("Verify payment options:", "Terms Exists in payment Options", "Terms");
 			if(isVisibleOnly(OrderObj.PAYMENT_METHOD_VERIFICATION_procurementscard,"Procurement Card")) {
@@ -805,11 +805,12 @@ public class ShipBillPayLib extends ShipBillPayObj {
 		waitForVisibilityOfElement(ALLOWEDOPTIONS_CHECKOUTSETTINGS, "Allowed Options");
 		if(isVisibleOnly(PROCUREMENTCARD_OPTION,"Procurement Card Option")) {
 		selectByVisibleText(ALLOWEDOPTIONS_CHECKOUTSETTINGS, Paymentoption, "Payment option::" + Paymentoption + "");
-		click(CMTObj.LEFT_ARROW, Paymentoption + " is selected And Moved to Available Options");
+		click(CMTObj.LEFTARROWINPAYMENTOPTIONS, Paymentoption + " is selected And Moved to Available Options");
 		click(UPDATEBUTTON_SHPPINGADDRESS, "update Button");
 		waitForVisibilityOfElement(SUCCESMSG_PAYMENTOPTIONS, "Payment options updated Success Msg");
 		reporter.SuccessReport("Verify Payment Option", "Payment Option added to Avialble Options", "");
-		}else {
+		}
+		else {
 			reporter.SuccessReport("Verify Payment Option", "Payment Option Alredy added to Avialble Options", Paymentoption);
 		}
 	}
