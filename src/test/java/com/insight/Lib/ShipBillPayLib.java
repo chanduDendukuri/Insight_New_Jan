@@ -627,7 +627,7 @@ public class ShipBillPayLib extends ShipBillPayObj {
 	 */
 	public void VisaCardErrorPayment(String cardNumber, String cardName, String month, String year, String poNumebr)
 			throws Throwable {
-		click(PAYMENT_METHOD_DD, "payment method drop down");
+	//	click(PAYMENT_METHOD_DD, "payment method drop down");
 		if(isVisibleOnly(OrderObj.PAYMENT_METHOD_VERIFICATION_TERMS,"Terms")) {
 			reporter.failureReport("Verify payment options:", "Terms Exists in payment Options", "Terms");
 			if(isVisibleOnly(OrderObj.PAYMENT_METHOD_VERIFICATION_procurementscard,"Procurement Card")) {
