@@ -1972,7 +1972,7 @@ public void SelectRequestorFromRightToLeft(String requestor,int count) throws Th
 
 	public void VerifyPageCountInApprovalmgmt() throws Throwable {
 
-		if (isElementPresent(GET_SELECTED_COUNTinApprMgmt, "Page count")) {
+		if (isVisibleOnly(GET_SELECTED_COUNTinApprMgmt, "")) {
 			String pageCount = getSelectedDropdownOption(GET_SELECTED_COUNTinApprMgmt);
 			if (pageCount.equals("50")) {
 				reporter.SuccessReport("Approval Management Reports Page", "Paging Count is Verified", pageCount);
