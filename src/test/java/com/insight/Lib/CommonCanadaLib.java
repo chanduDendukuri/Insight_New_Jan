@@ -623,5 +623,47 @@ public void getListOfCardTypes() throws Throwable{
     }
 }
 
+public void getListOfAvailableBreadCrumbs() throws Throwable{
+        List<WebElement> bcrumb = driver.findElements(BreadCrumbdynamic);
+        for (int i=0;i<bcrumb.size();i++){
+             // String breadcrumb =bcrumb.get(i).getText();
+            reporter.SuccessReport("BreadCrumbsverification","VVerification of Breadcrumbs "," available breadcrumbs are"+bcrumb.get(i).getText());
+
+
+        }
+
+
+}
+    public void clickOnPrintIcon() throws Throwable{
+        if(isVisibleOnly(printLinkiCon,"Print Icon")){
+            click(printLinkiCon,"Print icon");
+        }
+    }
+    public boolean availabilityOfPrintPage() throws Throwable{
+        return isVisibleOnly(availabilityOfPrintPage,"Print Page Opened");
+    }
+    public void closePrintPage() throws Throwable{
+        if(availabilityOfPrintPage()){
+            click(closePrintPage,"Close Print Page");
+        }
+    }
+    public String getTotalPriceFromSearchProductsPage() throws Throwable{
+        return getText(summaryTotalInSearchPage,"Total Price");
+    }
+
+    public void getProductDescriptionInViewCartPage() throws Throwable{
+        List<WebElement> DescVal= driver.findElements(CART_PROD_DESC_RECENTLYADDEDTEM_loop);
+        for(int i=0 ; i<DescVal.size();i++){
+            reporter.SuccessReport("Product Description ","Item added to cart under contract",DescVal.get(i).getText());
+        }
+
+    }
+    public void getAllConractDetails() throws Throwable{
+        List<WebElement> DescVal= driver.findElements(AllContractDetails);
+        for(int i=0 ; i<DescVal.size();i++){
+            reporter.SuccessReport("Product Description ","Item added to cart under contract",DescVal.get(i).getText());
+        }
+
+    }
 }
 

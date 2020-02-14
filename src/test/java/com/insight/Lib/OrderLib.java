@@ -65,7 +65,8 @@ public class OrderLib extends OrderObj{
 		}
 	}
 	
-	public void addWarrantyInCartPage() throws Throwable {
+	public String addWarrantyInCartPage() throws Throwable {
+		String actaulWarrantyItemDec=null;
 		if(isElementPresent(ADD_WARRANTY_LINK,"Warranty link" )){
 			click(ADD_WARRANTY_LINK, "Warranty link");
 			waitForVisibilityOfElement(ADD_FIRST_WARRANTY, "warranty", driver);
@@ -74,7 +75,7 @@ public class OrderLib extends OrderObj{
 			String expectedWarrantyItemDec=driver.findElement(FIRST_WARRANTY_DESC_ON_POPUP).getAttribute("innerText");
 			click(ADD_TO_CART_IN_WARRANTY_POPUP, "Add to cart in warranty screen");
 			Thread.sleep(2000);
-			String actaulWarrantyItemDec=getText(WARRANTY_ITEM_DESC_ON_CART_SCREEN, "item description");
+			 actaulWarrantyItemDec=getText(WARRANTY_ITEM_DESC_ON_CART_SCREEN, "item description");
 			if (expectedWarrantyItemDec.equals(actaulWarrantyItemDec)) {
 				reporter.SuccessReport("Verify the warranty item added.","Warranty added successfully","Warranty: "+actaulWarrantyItemDec);
 			}else{
@@ -84,6 +85,7 @@ public class OrderLib extends OrderObj{
 		}else {
 			reporter.failureReport("Warranty link in add to cart", "Warranty link is not visible in cart page", "", driver);
 		}
+		return actaulWarrantyItemDec;
 			
 	}
 	
@@ -595,7 +597,7 @@ List<String> orderdetails = new ArrayList<String>();
 	 */
 	public void clickContinueOnLineLevelInfo() throws Throwable{
 		if(isVisible(LLI_CONTINUE_BTN, "Continue button Linelevel Info")){
-			click(LLI_CONTINUE_BTN, "Continue button of Linelevel Info");
+			clickUntil(LLI_CONTINUE_BTN,CONTINUE_BTN, "Continue button of Linelevel Info");
 		}
 		Thread.sleep(2000);
 	}
@@ -1460,6 +1462,19 @@ List<String> orderdetails = new ArrayList<String>();
 				 reporter.failureReport("Verify total price ", "Product total price verification failed. Actual is: ",""); 
 			 } 
 		}
+	}
+	
+	/*
+	 * Method is to verify warranties exists on print popup 
+	 */
+	public String verifyWarrantiesOnPrintPopup(String partNumber) throws Throwable {
+		String warranrty=getText(CartObj.getWarrantiesOnPrintPopUp(partNumber), "warranties on print popup");
+		if(isVisibleOnly(CartObj.getWarrantiesOnPrintPopUp(partNumber), "warranties on print popup")) {
+			reporter.SuccessReport("View Printable POPUP warranties", "Warranties exists", getText(CartObj.getWarrantiesOnPrintPopUp(partNumber), "warranties on print popup"), driver);
+		}else {
+			reporter.failureReport("View Printable POPUP warranties", "Warranties does not exists", "", driver);
+		}
+		return warranrty;
 	}
 
 	
@@ -2379,9 +2394,10 @@ List<String> orderdetails = new ArrayList<String>();
 			if(isVisibleOnly(PAYMENT_METHOD_VERIFICATION_procurementscard,"Procurement Card")) {
 				reporter.failureReport("Verify payment options:", "Procurementcard  Option exits", "");	
 			}
-		}else {
-			  reporter.SuccessReport("Verify payment options:", "Only Credit card exists as Payments Option", "Credit Card");	
-		   if(isElementPresent(PAYMENT_METHOD_DD, "payment DD")){
+		}
+		else {
+		  reporter.SuccessReport("Verify payment options:", "Only Credit card exists as Payments Option", "Credit Card");	
+		   if(isVisibleOnly(PAYMENT_METHOD_DD, "payment DD")){
 			//click(PAYMENT_METHOD_DD, "payment method drop down");
 			click(PAYMENT_METHOD_SELECTION, "payment method selection::Credit Card");
 		}
@@ -2630,5 +2646,30 @@ List<String> orderdetails = new ArrayList<String>();
 	 public String getWG800NumberOnPrintPopup() throws Throwable {
 			 return getText(TELEPHONE_NUMBER_ON_PRINT_RECEIPT, "Telephone number on receipt page");
 	 }
+
+
+	public String getCartProductUnitPriceInViewCart() throws Throwable {
+		String value = null;
+		List<WebElement> myList = driver.findElements(CartObj.lblUnitpriceWithCurrency);
+		for (int i = 0; i < myList.size(); i++) {
+			value = myList.get(i).getText();
+			reporter.SuccessReport("Product Unit Price", "Unit Price is ", value, driver);
+			break;
+		}
+		return value;
+	}
+	 /**
+	  * Method is to verify bundles in print popup
+	  * @param productGroup
+	  * @throws Throwable
+	  */
+	public void verifyBundleOnPrintPopup(String productGroup) throws Throwable {
+		if(isVisibleOnly(bundleOnPrintPopup(productGroup), "bundle on print popup")) {
+			reporter.SuccessReport("View Printable POPUP", "Cart item bundle in Print View Exist", "Cart item bundle in Print View :Insight Part #: BUNDLE-1", driver);
+		}else {
+			reporter.failureReport("View Printable POPUP", "Cart item bundle in Print View does not Exist", "", driver);
+		}
+		
+	}
 	}
 

@@ -21,7 +21,7 @@ public class CMTObj extends ActionEngine {
 	public static By CMT_WELCOME_POPUP = By.xpath("//span[@id='ui-id-1'][contains(text(),'Welcome to Insight Beta!')]");
 	public static By MANAGE_WEBGRP = By.id("manageWebGroupOptionsButton");
 	public static By LOGIN_AS_REPORTING_ADMIN = By.id("reportingAdminLoginAs");
-	public static By LOGIN_AS = By.xpath("//div[@id='userLoginAs']//a");
+	public static By LOGIN_AS = By.xpath("//div[@id='userLoginAs']//a | //*[@id='reportingAdminLoginAs']");
 	public static By MASTER_GROUP = By.xpath("//div[@id='masterGroupSale']");
 	public static By CHANGE_MASTER_GRP = By
 			.xpath("//div[@id='differentMasterGroup']//a[contains(text(),'Change Master Group')]");
@@ -216,7 +216,7 @@ public static By txt_QuoteDetails = By.xpath("//h2[contains(text(),'Quote Detail
 	public static By ALL_AVILABLE_OPTIONS = By.xpath("//select[@id='shipAvailableSel']//option");
 	public static By ALL_ALLOWED_OPTIONS = By.xpath("//select[@id='shipAllowedSel']//option");
 	public static By LEFT_ARROW = By.xpath("//a[@id='shipOptionsLeftArrowButton']");
-
+    public static By LEFTARROWINPAYMENTOPTIONS=By.xpath("//a[@id='paymentOptionsLeftArrowButton']");
 	public static By SELECT_ALLWOED_OPTION = By.xpath("//select[@id='shipAllowedSel']");
 
 	// Manage Web Group>> Contacts and Notifications
@@ -705,6 +705,7 @@ public static By lnkDeleteProductGroups=By.xpath("//*[text()=' Delete Product Gr
     public static By DISPLAY_THIS_ON_WEB=By.xpath("//span[@class='wgDetailsRow'][contains(text(),'Client Support Phone Number :')]//input[@id='displayOnWebId']");
     public static By DEFUALTSOLDTOACCOUNT=By.xpath("//span[@id='defaultSoldtoforUser']");
 
+    public static By displayOnWebGroupList=By.xpath("//*[contains(@id,'accTeamDispWeb')]");
 
 
 }

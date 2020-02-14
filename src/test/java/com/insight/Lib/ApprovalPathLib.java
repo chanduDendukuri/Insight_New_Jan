@@ -1,5 +1,10 @@
 package com.insight.Lib;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -18,6 +23,10 @@ import com.google.api.client.util.DateTime;
 import com.insight.ObjRepo.ApprovalPathObj;
 import com.insight.ObjRepo.CommonObj;
 import com.thoughtworks.selenium.webdriven.commands.Click;
+
+import jxl.Sheet;
+import jxl.Workbook;
+import jxl.read.biff.BiffException;
 
 public class ApprovalPathLib extends ApprovalPathObj {
 	OrderLib orderLib = new OrderLib();
@@ -316,7 +325,7 @@ for(int i=1;i<=count;i++) {
 	public void SelectSpecificRequestor(String strRequestorOption) throws Throwable {
 
 		if (isElementPresent(selectRequestorByText(strRequestorOption), "Approver ")) {
-			selectByVisibleText(createRequestorType(), strRequestorOption, "Approver");
+			selectByVisibleText(createRequestorType, strRequestorOption, "Approver");
 			reporter.SuccessReport("Add Requestors on Create/Edit Requestor Group Page",
 					"Requestors Exist in the Available Requestors' List and Selected", strRequestorOption);
 		} /*
@@ -480,6 +489,15 @@ for(int i=1;i<=count;i++) {
 	public void VerifySuccessUpdate() throws Throwable {
 		String updatemesasge = getText(SUCCESS_UPDATE_MSG,"Update succes message");
 		if (isElementPresent(SUCCESS_UPDATE_MSG, "Update approver success message")) {
+			reporter.SuccessReport("Verify Approval Path Management Page", "Successfully Edited Approval Path", updatemesasge);
+		} else {
+			reporter.failureReport("Verify Approval Path Management Page",
+					"edited approval Message path Does Not Exist", "");
+		}
+	}
+	public void VerifySuccessUpdateInRequestor() throws Throwable {
+		String updatemesasge = getText(UpdateMsgInRequestorGroup,"Update succes message");
+		if (isElementPresent(UpdateMsgInRequestorGroup, "Successfully updated requestors")) {
 			reporter.SuccessReport("Verify Approval Path Management Page", "Successfully Edited Approval Path", updatemesasge);
 		} else {
 			reporter.failureReport("Verify Approval Path Management Page",
@@ -723,16 +741,64 @@ for(int i=1;i<=count;i++) {
 			reporter.failureReport("Approval Management Reports Page", "Requestor Group Link Does Not Exist", "");
 		}
 	}
+	public void verifyApprovalMgmtReportPage() throws Throwable {
+		if(isVisibleOnly(ApprovalMgmtReports, "ApprovalMgmtReports")) {
+			String page= getText(ApprovalMgmtReports, "ApprovalMgmtReports");
+				reporter.SuccessReport("ApprovalMgmtReports", "ApprovalMgmtReports is visible", "", driver);
+			
+		}
+		else {
+			reporter.failureReport("ApprovalMgmtReports", "ApprovalMgmtReports is not visible", "", driver);
+		}
+	}
 public int GetNumberOfRequestorGroupsb() throws Throwable {
 	List<WebElement> elem = driver.findElements(NumberOfRequestorGroupsb);
 	int count = elem.size();
 	if(count>0) {
+		
 		reporter.SuccessReport("Number Of Requestor Groups ", "Number Of Requestor Groups", String.valueOf(count), driver);
 	}
 	else {
 		reporter.failureReport("Number Of Requestor Groups ", "Number Of Requestor Groups are not available", "", driver);
 	}
 	return count;
+}
+public String GetNameOfLastRequestor() throws Throwable {
+	List<WebElement> elem = driver.findElements(NumberOfrequestors);
+	int count = elem.size();
+	String text ="";
+	if(count>0) {
+		 text = elem.get(count-1).getText().toString();
+		reporter.SuccessReport("LastName Of Requestor ", "LastName Of Requestor", text, driver);
+		
+	}
+	else {
+		reporter.failureReport("LastName Of Requestor", "LastName Of Requestor doesn't exist", "", driver);
+	}
+	return text;
+}
+public String VerifyRequestorResults(String requestor) throws Throwable {
+	List<WebElement> elem = driver.findElements(NumberOfrequestors);
+	int count = elem.size();
+	String text ="";
+	if(count>0) {
+		for (WebElement webElement : elem) {
+			text = webElement.getText();
+			if(text.contains(requestor)) {
+				reporter.SuccessReport("Requestor", "Requestor displaying in the results", text, driver);
+				break;
+			}
+			else {
+				reporter.failureReport(" Requestor", "Requestors not displaying in the results", "", driver);
+			}
+		}
+		 
+		
+	}
+	else {
+		reporter.failureReport(" Requestor", "Requestors doesn't exist", "", driver);
+	}
+	return text;
 }
 	public void ClickEditLinkINRequestorGrpPage(String reqGrpName) throws Throwable {
 		if (isElementPresent(clickRequestorGrpEdit(reqGrpName), "Requestor Group Edit Icon")) {
@@ -1576,9 +1642,8 @@ public String GetGroupNamesDisplayed() throws Throwable {
 		// Add
 		//Add_Requestor_Btn_Click();
 
-		// Click Save Changes
 		ClickSaveChangesButton();
-	    VerifySuccessUpdate();
+		VerifySuccessUpdateInRequestor();
 
 	}
 	public void clickonRefreshIconRequestorGroupuser() throws Throwable {
@@ -1631,20 +1696,34 @@ public int GetNumberOfRequestorsOnRightSide() throws Throwable {
 	}
 	return elem.size();
 }
-	public String SelectRequestor(String Requestor_Name,int count) throws Throwable {
+	public void SelectRequestor(String Requestor_Name,int count) throws Throwable {
 		String strRequestorOption = null;
 		if (Requestor_Name != null) {
 			SelectSpecificRequestor(Requestor_Name);
 		} else {
 			// select Requestor id value
 			
-for(int i=0;i<=count;++i) {
-	WebElement elm = driver.findElement(ALL_REQUESTOR_OPTIONS(i));
-	if(i<=count) {
-			strRequestorOption = elm.getText();
+for(int i=1;i<=count;i++) {
+	ClickRefreshIcon();
+	WebElement elm = driver.findElement(createRequestorType);
+	List<WebElement> elem = elm.findElements(By.tagName("option"));
+		elem.get(i).click();
+		String req = elem.get(i).getText();
+		Add_Requestor_Btn_Click();
+		reporter.SuccessReport("Add Requestors on Create/Edit Requestor Group Page",
+				"Requestors Exist in the Available Requestors' List and Selected", req);
+	}
+	
+		
+		
+	
+}
+	/*if(i<=count) {
+			strRequestorOption = elm.get(i).getText();
 
 			if (isElementPresent(selectRequestor(strRequestorOption), "Approver ")) {
-				selectByVisibleText(createRequestorType(), strRequestorOption, "Approver");
+				elm.get(i).click();
+				//selectByVisibleText(createRequestorType(), strRequestorOption, "Approver");
 				reporter.SuccessReport("Add Requestors on Create/Edit Requestor Group Page",
 						"Requestors Exist in the Available Requestors' List and Selected", strRequestorOption);
 				// Add
@@ -1662,11 +1741,100 @@ for(int i=0;i<=count;++i) {
 	
 }}
 		}
-		return strRequestorOption;
+		return strRequestorOption;*/
+		}
+	public void ModifyDeleteApproverOutForToDate(String strApprover, String modifyDate,String ReplacementType) throws Throwable {
+		String EndDate= getText(Approvername("EndDateId"), "EndDate before updating");
+		   if (isElementClickable(editApprover(strApprover),3, "Click on Edit Icon ")) {
+		      //click(editApprover(strApprover), "Click on Edit Icon");
+		      reporter.SuccessReport("Approval Management Page Approver Out of Office Settings",
+		            "Created Approver Out is in Edit Mode", "");
+		   } else {
+		      reporter.failureReport("Approval Management Page Approver Out of Office Settings",
+		            "Approver Out Does Not Exist", "");
+		   }
+
+		   if (isElementPresent(getCalenderToUpdate, "End Date")) {
+		      //click(getCalenderToUpdate, "From date");
+		      scrollToBottomWithCordinate("-400");
+		      click(getCalenderEndUpdate, "End date");
+		   }
+
+		   
+
+		  // Modify the date
+		   if (isElementPresent(NEXT_MONTH_ARROW, "Next month ")) {
+		      click(NEXT_MONTH_ARROW, "Next Month");
+		      reporter.SuccessReport("Change Month on Approval Management Page Approver Out of Office Settings",
+		            "Arrow Button Exists and Clicked to Change the Month", "");
+		   } else {
+		      reporter.failureReport("Change Month on Approval Management Page Approver Out of Office Settings",
+		            "Arrow Button Does Not Exist", "");
+		   }
+
+		   String day = modifyDate.split("-")[0];
+		   // Select Day
+
+		   int date = Integer.parseInt(day);
+		   date = date + 1;
+		   day = String.valueOf(date);
+
+		   if (isElementPresent(dayInStartDayCalender(day), "From Date ")) {
+		      click(dayInStartDayCalender(day), day);
+		   }
+
+		   // Save
+		   if (isElementClickable(SAVE_APPROVER, 2,"Save Icon")) {
+		      //click(SAVE_APPROVER, "Save Icon");
+		      reporter.SuccessReport("Approval Management Page Approver Out of Office Settings",
+		            "Created Approver Out is Modified and Saved", "");
+		   } else {
+		      reporter.failureReport("Approval Management Page Approver Out of Office Settings",
+		            "Approver Out Does Not Exist", "");
+		   }
+		   String EndDateafterupdating= getText(Approvername("EndDateId"), "EndDate after updating");
+		   if(!EndDate.equals(EndDateafterupdating)) {
+			   reporter.SuccessReport("Todate updating", "Approval out modified as expected", "Before Updating: "+EndDate+"After Updating: "+EndDateafterupdating, driver);
+		   }
+		   else {
+			   reporter.failureReport("To date update", "Approval out not modified as expected", "", driver);
+		   }
+		   // Delete
+
+		   if (isElementClickable(deleteApprover(strApprover),2, "Delete Icon")) {
+		      //click(deleteApprover(strApprover), "Delete Icon");
+		      reporter.SuccessReport("Approval Management Page Approver Out of Office Settings",
+		            "Created Approver Out is Deleted", "");
+		   } else {
+		      reporter.failureReport("Approval Management Page Approver Out of Office Settings",
+		            "Approver Out Does Not Exist", "");
+		   }
+		}
+public void DeleteApproverOut(String strApprover) throws Throwable {
+	if (isElementClickable(deleteApprover(strApprover),2, "Delete Icon")) {
+	      //click(deleteApprover(strApprover), "Delete Icon");
+	      reporter.SuccessReport("Approval Management Page Approver Out of Office Settings",
+	            "Created Approver Out is Deleted", "");
+	   } else {
+	      reporter.failureReport("Approval Management Page Approver Out of Office Settings",
+	            "Approver Out Does Not Exist", "");
+	   }
+}
+public void SelectRequestorFromRightToLeft(String requestor,int count) throws Throwable {
+	//selectByVisibleText(RequestorFromRightToLeft(""), requestor, "requestor");
+	//click(BackArrow_button,"Back Arrow button");
+	if (isElementPresent(RequestorFromRightToLeft(requestor), "Requestror ")) {
+		selectByVisibleText(RequestorGroupList, requestor, "Requestror");
+		click(BackArrow_button,"Back Arrow button");
+		reporter.SuccessReport("Add Requestors on Create/Edit Requestor Group Page",
+				"Requestors Exist in the Available Requestors' List and Selected", requestor);
 	}
-public void SelectRequestorFromRightToLeft(String requestor) throws Throwable {
-	selectByVisibleText(RequestorFromRightToLeft(requestor), requestor, "requestor");
-	click(BackArrow_button,"Back Arrow button");
+	else {
+		reporter.SuccessReport("Add Requestors on Create/Edit Requestor Group Page",
+				"Add Arrow Link Exists and Clicked", "");
+		
+	}
+	
 }
 	public void Add_Requestor_Btn_Click() throws Throwable {
 		if (isElementPresent(SELECT_PATH_ADD_BUTTON, "Select Path option")) {
@@ -1704,16 +1872,18 @@ public void SelectRequestorFromRightToLeft(String requestor) throws Throwable {
 	}
 
 	public void UpdatedSuccessMsg() throws Throwable {
-		String Succesmessage = getText(SUCCESS_UPDATED_MSG, "Updated message");
-		if (isElementPresent(SUCCESS_UPDATED_MSG, "Updated success message")) {
+		
+		if (isVisibleOnly(SUCCESS_UPDATED_MSG, "Updated success message")) {
+			String Succesmessage = getText(SUCCESS_UPDATED_MSG, "Updated message");
 			reporter.SuccessReport("Add Requestors on Create/Edit Requestor Group Page", "Changes updated successfully",
-					"");
+					Succesmessage);
 		} else {
 			ClickSaveChangesButton();
 			Thread.sleep(2000);
+			String Succesmessage1 = getText(Successmsg, "Updated message");
 			if (isElementPresent(SUCCESS_UPDATED_MSG, "Updated success message")) {
 				reporter.SuccessReport("Add Requestors on Create/Edit Requestor Group Page",
-						"Changes updated successfully", Succesmessage);
+						"Changes updated successfully", Succesmessage1);
 			} else {
 				reporter.failureReport("Add Requestors on Create/Edit Requestor Group Page",
 						"Changes Not updated successfully", "");
@@ -1850,14 +2020,14 @@ public void SelectRequestorFromRightToLeft(String requestor) throws Throwable {
 
 	}
 
-	public void ClickTU_IUSRequestorGroupTieredLink() throws Throwable {
+	public void ClickTU_IUSRequestorGroupTieredLink(String requestor) throws Throwable {
 		scrollUp();
-		if (isElementPresent(TU_IUS_Tired_Requestor_Group_Link, "Requestor Group Name ")) {
+		if (isElementPresent(TU_IUS_Tired_Requestor_Group_Link(requestor), "Requestor Group Name ")) {
 			// mouseHover(TU_IUS_Tired_Requestor_Group_Link, "Requestor Group
 			// Name");
 			// scrollToWebElement(TU_IUS_Tired_Requestor_Group_Link);
 			// scrollUp();
-			click(TU_IUS_Tired_Requestor_Group_Link, "Click Requestor Group Name");
+			click(TU_IUS_Tired_Requestor_Group_Link(requestor), "Click Requestor Group Name");
 			reporter.SuccessReport("Approval Management Create/Edit Requestor Group",
 					"TU_IUS Requestor Group Tiered Link Exists and Clicked", "TU_IUS_Tired_Requestor_Group_Link");
 		} else {
@@ -1865,8 +2035,43 @@ public void SelectRequestorFromRightToLeft(String requestor) throws Throwable {
 					"TU_IUS Requestor Group Tiered Link Does Not Exist", "");
 		}
 	}
+	public void ClickOnEditInrequestorGrpMgmt() {
+		
+	}
+public void Readdatfromexcel(String filePath) throws Throwable {
+	//File root = new File("C:\\Users\\e004303\\Downloads");
+			String sfile = System.getProperty("user.dir") + "\\" + "DownloadedFiles" + "\\" + filePath+".xls";
+			
+			FileInputStream fi = new FileInputStream(sfile);
+	Workbook W = Workbook.getWorkbook(fi);
+
+	Sheet s = W.getSheet(0);
+
+
+
+	String Username = s.getCell(0,0).getContents();
+	String GroupName= s.getCell(1, 0).getContents();
+	System.out.println("Username " +Username);
+if(Username.contains("User Name")&& GroupName.contains("Approval Group Name")) {
+
+	reporter.SuccessReport("Excel details", "Excecl data contents are verified", "", driver);
+}
+else {
+	reporter.failureReport("Excel details", "Excecl data contents are not verified", "", driver);
+}
+	File file = new File(sfile);
+	if(!file.exists()) {
+		System.out.println("F");
+	}
+	else {
+		fi.close();
+		file.delete();
+		reporter.SuccessReport("Excel File", "File deleted successfully", "", driver);
+	}
+}
 public void ClickOnExporticon() throws Throwable {
 	click(Exporticon, "Export icon");
+	Thread.sleep(10000);
 }
 public void PageLinkText() throws Throwable {
 	String PageLink = getText(PageLinks, "Page Links");
@@ -1889,7 +2094,9 @@ public void PageLinkText() throws Throwable {
 					"TU_IUS Requestor Group Link Does Not Exist", "");
 		}
 	}
-
+public void ClickonEditlinkofRequestorGroMgmt(String requestor) throws Throwable {
+	click(EditbuttonInReqGrpMgmt(requestor), "Clicked on "+requestor+" Edit link In ReqGrpMgmt");
+}
 	public void Verify_Create_Edit_Requestor_GroupPage() throws Throwable {
 		if (isElementPresent(REQ_SAVE_CHANGES_BTN, "Create/Edit Requestor Group Page")) {
 			reporter.SuccessReport("Approval Management Create/Edit Requestor Group",
@@ -1903,7 +2110,7 @@ public void PageLinkText() throws Throwable {
 	public void SearchByLastName(String reqLastName) throws Throwable {
 		String lastName = reqLastName.split(",")[0];
 		if (isElementPresent(REQUESTOR_GRP_NAME_TXTBOX, "Requestor Group name textbox")) {
-			type(REQUESTOR_GRP_NAME_TXTBOX, lastName, "Click Requestor Group name textbox");
+			type(REQUESTOR_GRP_NAME_TXTBOX, lastName, "Enter Requestor Group name textbox");
 			reporter.SuccessReport("Approval Management Reports Page", "Last Name or Account Number Field Exists", "");
 		} else {
 			reporter.failureReport("Approval Management Reports Page",
@@ -1921,14 +2128,16 @@ public void PageLinkText() throws Throwable {
 					"SEARCH Link Does Not Exist", "");
 		}
 	}
-
+public void ClickOnBackToRefreshIcon() throws Throwable {
+	 click(BackTorequestorGroup, "BackTorequestorGroup");
+}
 	public void RemoveUsers(String ReqGroupName, String reqName) throws Throwable {
 
 		// Click on General Settings to click Reports
 		ClickGeneralSettings();
 
 		// Click on Reports
-		ClickReports();
+		ClickReports(); 
 
 		// Click on Requestor Requestor Group Users
 		ClickRequestorGroupUsersLink();
@@ -1962,11 +2171,19 @@ public void PageLinkText() throws Throwable {
 	 */
 
 	public void PreviousdatePicker(int months, String strCurrDay,String datetype) throws Throwable {
-
+		DateFormat dateFormat = new SimpleDateFormat("dd-mmmm-yyyy");
+		Date currentDate = new Date();
 		String day = strCurrDay.split("-")[0];
 		String month = strCurrDay.split("-")[1];
 		String year = strCurrDay.split("-")[2];
+		String MonthandYear ="";
+		Calendar c = Calendar.getInstance();
+        c.setTime(currentDate);
 
+       
+        c.add(Calendar.DATE,-380);
+        Date currentDatePlusOne = c.getTime();
+        System.out.println(dateFormat.format(currentDatePlusOne));
 		if(datetype.equals("FromDate")) {
 			click(StartDateCALENDAR, "Click on calendar");
 			}
@@ -1976,11 +2193,12 @@ public void PageLinkText() throws Throwable {
 		if (isElementPresent(PREV_MONTH_ARROW, "Previous month")) {
 			for (int i = 0; i <= months; i++) {
 				driver.findElement(PREV_MONTH_ARROW).click();
-				//click(NEXT_MONTH_ARROW, "Next Month");
+				
 			}
+			MonthandYear = getText(Monthandyearoffromdate, "MonthandYear");
 			// Select Day
 			if (isElementPresent(dayInStartDayCalender(day), "From Date ")) {
-				click(dayInStartDayCalender(day), "Day: "+day);
+				click(dayInStartDayCalender(day), day+" "+MonthandYear);
 			}
 
 			reporter.SuccessReport("Change Month on Approval Management Page Approver Out of Office Settings",
@@ -2075,7 +2293,9 @@ for(int i=0;i<=11;i++) {
 		}
 
 	}
-
+public void ClickOnSeeAllReports() throws Throwable {
+	click(SeeAllReports, "SeeAllReports");
+}
 	public void changeFilterStatus(String filters) throws Throwable {
 		if (isElementPresent(FILTER_BY_STATUS, "Filter by Statsus")) {
 			selectByVisibleText(FILTER_BY_STATUS, filters, "Filter Status");

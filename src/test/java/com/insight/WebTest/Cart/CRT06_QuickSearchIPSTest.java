@@ -22,7 +22,7 @@ public class CRT06_QuickSearchIPSTest extends CartLib {
 ProductDisplayInfoLib prodinfo= new ProductDisplayInfoLib();
 	// #############################################################################################################
 	// # Name of the Test : CRT06_QuickSearchIPS
-	// # Migration Author : Cigniti Technologies
+	// # Migration Author : Cigniti Technologies / lakshmi
 	// #
 	// # Date of Migration : August 2019
 	// # DESCRIPTION : This method is to perform Basic Cart operations.
@@ -63,7 +63,8 @@ ProductDisplayInfoLib prodinfo= new ProductDisplayInfoLib();
 					searchLib.verifyContractAllDisplayed();
 					commonLib.searchProduct(data.get("Search_Item"));
 					//ccp.verifyTheResultsForSearchTerm(data.get("Search_Item"));
-					searchLib.verifyBreadCrumbInSearchResultsPage(data.get("Search_Item"));
+					//searchLib.verifyBreadCrumbInSearchResultsPage(data.get("Search_Item"));
+					ccp.getListOfAvailableBreadCrumbs();
 
 					String a =prodinfo.getPartNumberInSearchResultsPage();
 					commonLib.addFirstDisplyedItemToCartAndVerify();
@@ -92,7 +93,8 @@ ProductDisplayInfoLib prodinfo= new ProductDisplayInfoLib();
 
 					commonLib.searchProduct(data.get("Search_Item3"));
 					//ccp.verifyTheResultsForSearchTerm(data.get("Search_Item3"));
-					searchLib.verifyBreadCrumbInSearchResultsPage(data.get("Search_Item3"));
+					//searchLib.verifyBreadCrumbInSearchResultsPage(data.get("Search_Item3"));
+					ccp.getListOfAvailableBreadCrumbs();
 
 					String b =prodinfo.getPartNumberInSearchResultsPage();
 					commonLib.addFirstDisplyedItemToCartAndVerify();
@@ -124,7 +126,9 @@ reporter.SuccessReport("Second Login AS","Second Login AS",data.get("Search_Item
 					searchLib.verifyContractAllDisplayed();
 					commonLib.searchProduct(data.get("Search_Item4"));
 					//ccp.verifyTheResultsForSearchTerm(data.get("Search_Item4"));
-					searchLib.verifyBreadCrumbInSearchResultsPage(data.get("Search_Item4"));
+					//searchLib.verifyBreadCrumbInSearchResultsPage(data.get("Search_Item4"));
+					ccp.getListOfAvailableBreadCrumbs();
+
 					String c =prodinfo.getPartNumberInSearchResultsPage();
 					commonLib.addFirstDisplyedItemToCartAndVerify();
 					String partNumber4 = cartLib.getPartNumber();
@@ -155,8 +159,9 @@ reporter.SuccessReport("Second Login AS","Second Login AS",data.get("Search_Item
 					cmtLib.clickOnTheWebGroup(data.get("WebGrp_Name"));
 					cmtLib.hoverOnManageWebGroupsAndSelectOptions(data.get("manage_Web_Grp_Options"));
 					cmtLib.searchForaUserAndSelect(data.get("LnameEmailUname"), data.get("ContactName"));
+					cmtLib.verifyManageWebGroupsUserManagement();
 					//cmtLib.setPermissions(data.get("Menu_Name"), data.get("Enable_Purchasing_Popup"));
-					cmtLib.clickOnRolesAndPermissionsAndSetPermission(data.get("Menu_Name"), data.get("Set_Permission"));
+					//cmtLib.clickOnRolesAndPermissionsAndSetPermission(data.get("Menu_Name"), data.get("Set_Permission"));
 					// Disable -- Enable Custom Catalog
 					cmtLib.setPermissionsToDisable(data.get("Menu_Name"), data.get("Set_Permission"));
 					reporter.SuccessReport("First Login As","First Login As",data.get("Search_Item"));
@@ -165,7 +170,8 @@ reporter.SuccessReport("Second Login AS","Second Login AS",data.get("Search_Item
 					cmtLib.loginVerification(data.get("ContactName"));
 					commonLib.searchProduct(data.get("Search_Item"));
 					//ccp.verifyTheResultsForSearchTerm(data.get("Search_Item"));
-					searchLib.verifyBreadCrumbInSearchResultsPage(data.get("Search_Item"));
+				//	searchLib.verifyBreadCrumbInSearchResultsPage(data.get("Search_Item"));
+					ccp.getListOfAvailableBreadCrumbs();
 
 					String z =prodinfo.getPartNumberInSearchResultsPage();
 					commonLib.addFirstDisplyedItemToCartAndVerify();
@@ -194,8 +200,8 @@ reporter.SuccessReport("Second Login AS","Second Login AS",data.get("Search_Item
 					cmtLib.loginVerification(data.get("ContactName"));
 					commonLib.searchProduct(data.get("Search_Item4"));
 					//ccp.verifyTheResultsForSearchTerm(data.get("Search_Item4"));
-					searchLib.verifyBreadCrumbInSearchResultsPage(data.get("Search_Item4"));
-
+					//searchLib.verifyBreadCrumbInSearchResultsPage(data.get("Search_Item4"));
+                    ccp.getListOfAvailableBreadCrumbs();
 					String aa =prodinfo.getPartNumberInSearchResultsPage();
 					commonLib.addFirstDisplyedItemToCartAndVerify();
 					String partNumber7 = cartLib.getPartNumber();

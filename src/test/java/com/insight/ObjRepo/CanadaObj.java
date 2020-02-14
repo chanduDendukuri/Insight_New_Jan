@@ -59,7 +59,7 @@ public class CanadaObj extends ActionEngine {
 
 	// summary amounts in cart
 	public static By EWR_AMOUNT = By.xpath(
-			"//section/following::div[@class='columns small-12 large-3 print-5 print-offset-7']//span[text()='EWR ']//parent::div/..//span[@class='iw-currency__amount']");
+			"(//*[@class='row is-collapse-child cart-summary__ewr']//div[@class='columns shrink cart-summary__value'])[2] | //section/following::div[@class='columns small-12 large-3 print-5 print-offset-7']//span[text()='EWR ']//parent::div/..//span[@class='iw-currency__amount']");
 
 	// save Quotes
 	public static By EWR_FEE_FOR_PRODUCT = By.xpath(

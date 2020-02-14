@@ -2,6 +2,7 @@ package com.insight.Lib;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.mortbay.log.Log;
@@ -904,16 +905,22 @@ public  void verifyDashboard()throws Throwable {
 		click(getOptionsunderCkeckoutsettings(user_Permissions), "Shipping Options");
 		click(DesignatedShippingOption_Button, "Designated_Shipping_Button");
 		if (isElementPresent(Designatedshippingoptions, "DesignatedShippingOption is Displayed")) {
-			selectByVisibleText(Designatedshippingoptions, text1, "Designated_Shipping_Option");
-			reporter.SuccessReport("Verify the Sucess message ", "DesignatedShippingOption is Displayed", text1);
+			List<String> carrierFedex = Arrays.asList(text1.split(","));
+			for(int i=0;i<carrierFedex.size();i++) {
+				selectByVisibleText(Designatedshippingoptions, carrierFedex.get(i), "Designated_Shipping_Option");
+				click(buttontoclickFedExoptin, "FedEx Option is selected And Moved to allowed Options");
+				reporter.SuccessReport("Verify the Sucess message ", "DesignatedShippingOption is Displayed", carrierFedex.get(i));
+			}
 		} else {
 			reporter.failureReport("Verify the sucess message", "DesignatedShippingOption is not Displayed.", "",
 					driver);
 		}
-		click(buttontoclickFedExoptin, "FedEx Option is selected And Moved to allowed Options");
-		click(DesignatedshippingFedoption_dropdown, "only FedEx Option is selected");
-		selectByVisibleText(DesignatedshippingFedoption_dropdown, text1,
-				"Designated_Shipping_Option FedEx is Selected");
+		
+		/*
+		 * click(DesignatedshippingFedoption_dropdown, "only FedEx Option is selected");
+		 * selectByVisibleText(DesignatedshippingFedoption_dropdown, text1,
+		 * "Designated_Shipping_Option FedEx is Selected");
+		 */
 
 	}
 
@@ -1572,7 +1579,10 @@ public  void verifyDashboard()throws Throwable {
 	}
 
 	public List<String> verifyDisplayWebIcon() throws Throwable {
-
+		String x = null;
+		String y= null;
+		String z= null;
+		String m= null;
 		// Verify Display Web Icon visibility
 		if (isVisibleOnly(DISPLAY_ON_WEB, "Web icon")) {
 			click(DISPLAY_ON_WEB, "Display web icon");
@@ -1595,45 +1605,60 @@ public  void verifyDashboard()throws Throwable {
 
 			for (i = 1; i <= salesRep.size(); i++) {
 				if (salesRep.size() >= 2) {
+					if(salesRep.size() >= 4){
+						 x="4";
+						 y="3";
+						 z="2";
+						 m="1";
+
+					}
+					if(salesRep.size() >= 3){
+						x="3";
+						y="2";
+						z="1";
+						m="1";
+
+					}
 
 					if (i == 1) {
-						String val = Integer.toString(i + 3);
-						type(getRepValuesOnDisplayWebPopup(i), val, "sales rep number text box");
+						int j= salesRep.size()-i;
+						String val = Integer.toString(i + salesRep.size()-i);
+						type(getRepValuesOnDisplayWebPopup(i), x, "sales rep number text box");
 
 						reporter.SuccessReport("Repo Name and its Value",
 								"Repo Name is "
 										+ getText(getRepNamesOnDisplayWebPopup(i), "Rep Names").replace(",", " ").trim()
-										+ " and order is -->" + val,
-								val);
+										+ " and order is -->" + x,
+								x);
 					}
 					if (i == 2) {
-						String val1 = Integer.toString(i + 1);
-						type(getRepValuesOnDisplayWebPopup(i), val1, "sales rep number text box");
+						String val1 = Integer.toString(i + salesRep.size()-(i+1));
+						type(getRepValuesOnDisplayWebPopup(i), y, "sales rep number text box");
 						reporter.SuccessReport("Repo Name and its Value",
 								"Repo Name is "
 										+ getText(getRepNamesOnDisplayWebPopup(i), "Rep Names").replace(",", " ").trim()
-										+ " and order is -->" + val1,
-								val1);
+										+ " and order is -->" + y,
+								y);
 
 					}
 					if (i == 3) {
-						String val2 = Integer.toString(i - 1);
-						type(getRepValuesOnDisplayWebPopup(i), val2, "sales rep number text box");
+						String val2 = Integer.toString(i - salesRep.size()-(i-2));
+						type(getRepValuesOnDisplayWebPopup(i), z, "sales rep number text box");
 						reporter.SuccessReport("Repo Name and its Value",
 								"Repo Name is "
 										+ getText(getRepNamesOnDisplayWebPopup(i), "Rep Names").replace(",", " ").trim()
-										+ " and order is --> " + val2,
-								val2);
+										+ " and order is --> " + z,
+								z);
 
 					}
 					if (i == 4) {
 						String val3 = Integer.toString(i - 3);
-						type(getRepValuesOnDisplayWebPopup(i), val3, "sales rep number text box");
+						type(getRepValuesOnDisplayWebPopup(i), m, "sales rep number text box");
 						reporter.SuccessReport("Repo Name and its Value",
 								"Repo Name is "
 										+ getText(getRepNamesOnDisplayWebPopup(i), "Rep Names").replace(",", " ").trim()
-										+ " and order is -->  " + val3,
-								val3);
+										+ " and order is -->  " + m,
+								m);
 
 					}
 
@@ -1671,7 +1696,7 @@ public  void verifyDashboard()throws Throwable {
 					if (salesRep.size() >= 2) {
 
 						if (i == 1) {
-							String val = Integer.toString(i + 3);
+							String val = Integer.toString(i + salesRep.size()-1);
 							type(getRepValuesOnDisplayWebPopup(i), val, "sales rep number text box");
 
 							reporter.SuccessReport("Repo Name and its Value", "Repo Name is "
@@ -3141,19 +3166,40 @@ public  void verifyDashboard()throws Throwable {
 	}
 
 	public boolean verifyCheckBoxSelectedForFirstElement() throws Throwable {
-		return isCheckBoxSelected(chkBxWebElement1);
+		boolean status = false;
+		if(isVisibleOnly(chkBxWebElement1,"First Element")) {
+			 isCheckBoxSelected(chkBxWebElement1);
+			 status=true;
+		}
+		return status;
 	}
 
 	public boolean verifyCheckBoxSelectedForSecondElement() throws Throwable {
-		return isCheckBoxSelected(chkBxWebElement2);
+		boolean status = false;
+		if(isVisibleOnly(chkBxWebElement2,"Second Element")) {
+
+			 isCheckBoxSelected(chkBxWebElement2);
+			status=true;
+		}
+		return status;
 	}
 
 	public boolean verifyCheckBoxSelectedForThirdElement() throws Throwable {
-		return isCheckBoxSelected(chkBxWebElement3);
+		boolean status = false;
+		if(isVisibleOnly(chkBxWebElement3,"Third Element")) {
+			 isCheckBoxSelected(chkBxWebElement3);
+			 status = true;
+		}
+		return status;
 	}
 
 	public boolean verifyCheckBoxSelectedForFourthElement() throws Throwable {
-		return isCheckBoxSelected(chkBxWebElement4);
+		boolean status = false;
+		if(isVisibleOnly(chkBxWebElement4,"Fourth Element")) {
+			 isCheckBoxSelected(chkBxWebElement4);
+			status = true;
+		}
+		return status;
 	}
 
 	public void clickOnAddCategoryPlusIcon() throws Throwable {
@@ -3812,5 +3858,23 @@ public void verifySetPermissionsDisabled(String userPermissions) throws Throwabl
 		}
 
 	}
-	
+
+	public boolean verifyCheckBoxSelectedForAllElement() throws Throwable {
+		boolean status = false;
+		List<WebElement> chb = driver.findElements(displayOnWebGroupList);
+		for(int i = 0; i< chb.size();i++) {
+
+			if(chb.get(i).isSelected()){
+				reporter.SuccessReport("Check Box selected ",i+"Check box is already selected","true");
+			}
+			else{
+				chb.get(i).click();
+				reporter.SuccessReport("Check Box selected ",i+"Check box is  selected Now ","true");
+			}
+
+		}
+		return status;
+	}
+
+
 }
