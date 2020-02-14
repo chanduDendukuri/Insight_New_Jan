@@ -409,5 +409,8 @@ public class OrderObj extends ActionEngine{
      // Receipt
      public static By PRINT_ON_RECEIPT_PAGE=By.xpath("//a[@class='ion-ios-printer-outline shopping-cart__print']//span[contains(text(),'Print')]");
      public static By TELEPHONE_NUMBER_ON_PRINT_RECEIPT=By.xpath("//span[@class='cart-print-header__telephone']");
-}
+     public static By bundleOnPrintPopup(String productGrp) {
+    		 return By.xpath("//*[@class='iw-modal cart-print-preview']//*[@class='cart__table-block']//h4[@class='cart__item-heading'][contains(text(),'"+productGrp+"')]/following-sibling::div[@class='cart__item-bundle'][contains(.,'Insight Part #: BUNDLE-1')]");
+      }
+     }
 

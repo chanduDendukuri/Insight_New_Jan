@@ -79,8 +79,12 @@ public class APR04_GroupRulesTest extends ApprovalPathLib {
 					//Click on Requestor Group Rules Report
 					ClickReqGrpRulesReport();
 					
+					VerifyRequestorGroupdata();
+					
+					
+					
 					//Display Results
-					VerifyReqGroupNames();
+					//VerifyReqGroupNames();
 					
 					//Check Show Users check box
 					ClickShowUsers();
@@ -99,18 +103,19 @@ public class APR04_GroupRulesTest extends ApprovalPathLib {
 					
 					//Click Search
 					ClickSearchButton();
-					
+					//Display Results
+					String GroupName = GetGroupNamesDisplayed();
 					//Displays Rules
 					VerifyDisplayRules();
 					
 					//Enter Request Group Name
-					EnterReqGrpName();
+					EnterReqGrpName(GroupName);
 					
 					//Click Search
 					ClickSearchButton();
 					
 					//Verify Results
-					VerifyReqGroupExists();
+					VerifyReqGroupExists(GroupName);
 					
 					//Click on General Settings to go back to main
 					ClickGeneralSettings();
@@ -132,7 +137,8 @@ public class APR04_GroupRulesTest extends ApprovalPathLib {
 					commonLib.clickLogOutLink(data.get("Logout"));
 
 					System.out.println("Test completed");
-									} catch (Exception e) {
+				} 
+			catch (Exception e) {
 					ReportStatus.blnStatus = false;
 					//gErrorMessage = e.getMessage();
 					gTestStatus = false;

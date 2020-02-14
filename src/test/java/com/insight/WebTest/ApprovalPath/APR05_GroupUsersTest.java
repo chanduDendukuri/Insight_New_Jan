@@ -77,94 +77,138 @@ public class APR05_GroupUsersTest extends ApprovalPathLib {
 					// Group
 					AddRequestorsRequestorGroup(ReqGroupName1);
 					scrollUp();
-					// Click on Reports
-					ClickReports();
-					// Click on Requestor Requestor Group Users
-					ClickRequestorGroupUsersLink();
-					// Add Requestors to Requestor Group - TU_IUS Requestor
-					// Group Tiered
+					clickOnApprovalManagementTabs("Approval Path");
+					
+					
 					AddRequestorsRequestorGroup(ReqGroupName2);
+					scrollUp();
+					clickOnApprovalManagementTabs("Approval Path");
+					
+					
 					scrollUp();
 					// Click on Reports
 					ClickReports();
 					// Click on Requestor Requestor Group Users
 					ClickRequestorGroupUsersLink();
-					// Click Refresh Icon To display Requestors
-					ClickRequestorPageRefreshIcon();
-					// Displays Requestors
+					clickonRefreshIconRequestorGroupuser();
 					DisplayRequestors();
-					// Verify the Paging Count 50
-					VerifyPageCount50InApprovalmgmt();
+					// Click on the Next Page and verify page count 50
+					VerifyPageCountInApprovalmgmt();
+					ClickOnExporticon();
+					Readdatfromexcel("requestorGroupUsers");
 					// Change the paging to 20
 					ChangePageCount(data.get("PageCount"));
-					// Click on the Next Page and verify page count 50
-					ClickNextPageAndVerify50();
-					Thread.sleep(2000);
+					VerifyPageCountInApprovalmgmt();
+					ClickNextPageAndVerify();
+					// Change the paging to 20
+					ChangePageCount(data.get("PageCount"));
 					// click Requestor group link
-					ClickTU_IUSRequestorGroupTieredLink();
+					ClickTU_IUSRequestorGroupTieredLink("TU_IUS Requestor Group Tiered");
+					
+					
 					// Verify Create/Edit Requestor Group Page
 					Verify_Create_Edit_Requestor_GroupPage();
-					// Click on Manage Requestors
-					clickManageRequestors();
-					// Click Refresh Icon To display Requestors
-					ClickRefreshIcon();
-					// Select the User and Add the Name to Requestors Included
-					// in the Requestor Group
-					// Select Requestors
-					SelectRequestor(data.get("Requestor1"));
-					// Add
-					Add_Requestor_Btn_Click();
-					// Click Save Changes
-					ClickSaveChangesButton();
-					Thread.sleep(2000);
-					UpdatedSuccessMsg();
-					// Click on General Settings to click Reports
-					ClickGeneralSettings();
-					// Click on Reports
-					ClickReports();
-					// Click on Requestor Requestor Group Users
-					ClickRequestorGroupUsersLink();
-					// Displays Requestors
-					String reqName = DisplayRequestors();
-					// Search by Last name
-					SearchByLastName(reqName);
-					// Click Search
-					Click_Search_Icon();
-					// Click on Requestor Requestor Group Users
-					ClickRequestorGrpLink();
-					// Verify
-					ClickReqGroupEditLinkButton(ReqGroupName1);
+					scrollUp();
+					String Requestor1 = "TU_IUSShared,TU_IUSShared";
 					// Click on Manage Requestors
 					clickManageRequestors();
 					// Click Refresh Icon To display Requestors
 					ClickRefreshIcon();
 					// Select Requestors
-					SelectRequestor(data.get("Requestor1"));
-					// Add
+					SelectRequestor(Requestor1,1);
 					Add_Requestor_Btn_Click();
-					// Click Save Changes
 					ClickSaveChangesButton();
-					Thread.sleep(2000);
 					UpdatedSuccessMsg();
-					// Click on General Settings to click Reports
-					ClickGeneralSettings();
+					//Add_Requestor_Btn_Click();
+					scrollUp();
+					clickOnApprovalManagementTabs("General Settings");
 					// Click on Reports
 					ClickReports();
+					
+					
+					/*
+					 * // Click on Requestor Requestor Group Users ClickRequestorGroupUsersLink();
+					 * //ClickOn Requestor Group link ClickTU_IUSRequestorGroupTieredLink(); //
+					 * Verify Create/Edit Requestor Group Page
+					 * Verify_Create_Edit_Requestor_GroupPage(); // Click on Manage Requestors
+					 * clickManageRequestors(); // Click Refresh Icon To display Requestors
+					 * ClickRefreshIcon(); SelectRequestor("TU_IUSShared,TU_IUSShared",1);
+					 * ClickSaveChangesButton(); UpdatedSuccessMsg(); //Add_Requestor_Btn_Click();
+					 * scrollUp(); clickOnApprovalManagementTabs("General Settings"); // Click on
+					 * Reports ClickReports();
+					 */
+					
+					
 					// Click on Requestor Requestor Group Users
 					ClickRequestorGroupUsersLink();
-					// Displays Requestors
-					String reqName1 = DisplayRequestors();
+					
+					String Requestor = GetNameOfLastRequestor();
 					// Search by Last name
-					SearchByLastName(reqName1);
+					SearchByLastName(Requestor);
 					// Click Search
 					Click_Search_Icon();
-					// Displays Requestors
-					DisplayRequestors();
-					// Remove users
-					RemoveUsers(ReqGroupName1, data.get("Requestor1"));
-					Thread.sleep(1000);
-					RemoveUsers(ReqGroupName2, data.get("Requestor1"));
-
+					scrollUp();
+					clickOnApprovalManagementTabs("General Settings");
+					// Click on Reports
+					ClickReports();
+					
+					
+					// Click on Requestor Requestor Group Users
+					ClickRequestorGroupUsersLink();
+					// click Requestor group link
+					ClickTU_IUSRequestorGroupTieredLink("TU_IUS Requestor Group");
+					// Verify Create/Edit Requestor Group Page
+					Verify_Create_Edit_Requestor_GroupPage();
+					scrollUp();
+					// Click on Manage Requestors
+					clickManageRequestors();
+					// Click Refresh Icon To display Requestors
+					ClickRefreshIcon();
+					// Select Requestors
+					SelectRequestor(Requestor1,1);
+					 ClickSaveChangesButton();
+					 scrollUp();
+					 clickOnApprovalManagementTabs("General Settings");
+						// Click on Reports
+						ClickReports();
+						
+						
+						
+						// Click on Requestor Requestor Group Users
+						ClickRequestorGroupUsersLink();
+						// Displays Requestors
+						//String reqName1 = DisplayRequestors();
+						// Search by Last name
+						SearchByLastName(Requestor1);
+						// Click Search
+						Click_Search_Icon();
+					//verify user
+						//VerifyRequestorResults(Requestor1);
+						//ClickOnBackToRefreshIcon();
+						ClickRequestorGrpLink();
+						
+						ClickonEditlinkofRequestorGroMgmt("TU_IUS Requestor Group");
+						// Verify Create/Edit Requestor Group Page
+						Verify_Create_Edit_Requestor_GroupPage();
+					// Click on Manage Requestors
+					clickManageRequestors();
+					SelectRequestorFromRightToLeft(Requestor1,1);
+					 ClickSaveChangesButton();
+					 UpdatedSuccessMsg();
+					 scrollUp();
+					ClickOnBackToRefreshIcon();
+						// click Requestor group link
+					ClickonEditlinkofRequestorGroMgmt("TU_IUS Requestor Group Tiered");
+					// Verify Create/Edit Requestor Group Page
+					Verify_Create_Edit_Requestor_GroupPage();
+					scrollUp();
+						// Click on Manage Requestors
+						clickManageRequestors();	
+						SelectRequestorFromRightToLeft(Requestor1,1);
+						 ClickSaveChangesButton();
+						 UpdatedSuccessMsg();
+					
+					
 					System.out.println("Test completed");
 				} catch (Exception e) {
 					ReportStatus.blnStatus = false;

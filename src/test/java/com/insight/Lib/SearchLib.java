@@ -723,25 +723,30 @@ public class SearchLib extends CommonObj {
 		}
 	}
 	
-	public void verifyDefaultUSContractInAllContractPricesPopup(String status) throws Throwable {
+	public boolean verifyDefaultUSContractInAllContractPricesPopup(String status) throws Throwable {
+		boolean Status=false;
 		switch (status) {
 		case "checked":
 		if(isCheckBoxSelected(productsDisplayInfoObj.US_CONTRACTS_RADIO_BTN)) {
+			Status= true;
 			reporter.SuccessReport("Verify Defaulted Contract", "Defaulted Contract is USC", "Defaulted Contract: U.S. COMMUNITIES IT PRODUCTS & SERVICES");
 		}else {
+			Status=false;
 			reporter.failureReport("Verify Defaulted Contract", "Defaulted Contract is not USC", "",driver);
 		}
 		break;
 	case "unchecked":
 		if(!isCheckBoxSelected(productsDisplayInfoObj.US_CONTRACTS_RADIO_BTN)) {
-			
+			Status=true;
 			reporter.SuccessReport("Verify Defaulted Contract", "Defaulted Contract is not  U.S. COMMUNITIES", "");
 		}else {
+			Status=false;
 			reporter.failureReport("Verify Defaulted Contract", "Defaulted Contract is USC", "",driver);
 		}
 	default:
 		break;
 	}
+	return Status;
 	  }
 	
 	/**

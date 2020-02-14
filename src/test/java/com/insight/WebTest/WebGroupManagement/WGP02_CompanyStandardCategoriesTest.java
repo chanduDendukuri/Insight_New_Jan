@@ -107,6 +107,8 @@ public class WGP02_CompanyStandardCategoriesTest extends CMTLib {
 					// Call the Function SelectUser
 					hoverOnManageWebGroupsAndSelectOptions(data.get("Manage_Web_Grp_Options1"));
 
+					//cmtLib.searchForaUserAndSelect(data.get("LnameEmailUname1"), data.get("ContactName1"));
+
 					// Call the Function Login As
 					loginAsAdminCMT();
 					commonLib.spinnerImage();

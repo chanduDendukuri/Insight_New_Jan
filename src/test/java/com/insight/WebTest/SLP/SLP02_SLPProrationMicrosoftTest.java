@@ -31,6 +31,7 @@ public class SLP02_SLPProrationMicrosoftTest extends SLPLib{
 	ShipBillPayLib sbpLib=new ShipBillPayLib();
 	CanadaLib canadaLib=new CanadaLib();
 	RequisitionProcessingLib ReqLib = new RequisitionProcessingLib();
+	
 	   
 	    // #############################################################################################################
 		// #       Name of the Test         :  SLP02_SLPProrationMicrosoft
@@ -75,7 +76,7 @@ public class SLP02_SLPProrationMicrosoftTest extends SLPLib{
 						// Select Software  Lic Agreements
 				     	canadaLib.selectSPLADetailsProductCheckBox(data.get("SPLA"));
 						// verify search results and select first product
-				     	searchLib.verifysearchResultsPage();
+				     	verifysearchResultsPageForSLP();
 				     	
 				       // Search for part or product and add to cart : part : 394-00559-SLP
 				     	searchLib.searchInHomePage(data.get("SearchText"));

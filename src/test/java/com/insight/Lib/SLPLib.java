@@ -41,13 +41,13 @@ public class SLPLib extends SLPObj {
 	 * @throws Throwable
 	 */
 	public void verifyProrationincartpage(String PartNum, double Actualprice) throws Throwable {
-		String Proratedprice = getText(Priceincart(PartNum), "Price in cart page").replace("$", "").replace("USD", "");
+		String Proratedprice = getText(Priceincart(PartNum), "Price in cart page").replace("$", "").replace("USD", "").replace(",", "");
 		Double actualProratedprice = Double.valueOf(Proratedprice);
 		if (Proratedprice.equals(Actualprice) && actualProratedprice >= Actualprice) {
-			reporter.failureReport("Prorartion::", "ProratedPrice Matches With Actual Price:","Product Actual Price: "+Actualprice+ "Prorated price USD $"+Proratedprice,driver);
+			reporter.failureReport("Prorartion::", "ProratedPrice Matches With Actual Price:","Product Actual Price: $"+Actualprice+ "Prorated price $"+Proratedprice,driver);
 		} else {
 			reporter.SuccessReport("Prorartion::",
-					" Prorated Price is displayed ","Product Actual Price: " +Actualprice+ "Prorated price USD $"+Proratedprice);
+					" Prorated Price is displayed ","Product Actual Price: " +Actualprice+ "Prorated price  $"+Proratedprice);
 		}
 	}
 
@@ -647,7 +647,7 @@ public class SLPLib extends SLPObj {
 		 */
 		public void verifyReportingPeriodWarning() throws Throwable{
 			if(isElementPresent(REPORTING_PERIOD_WARNING_MSG, "verify repoting warning message")){
-				reporter.SuccessReport("Verify reporting period warning message", "Reporting period warning message", "");
+				reporter.SuccessReport("Verify reporting period warning message", "Reporting period warning message", getText(REPORTING_PERIOD_WARNING_MSG, "Warning message"));
 			}else{
 				reporter.failureReport("Verify reporting period warning message", "Reporting period warning message does not exist", "",driver);
 			}

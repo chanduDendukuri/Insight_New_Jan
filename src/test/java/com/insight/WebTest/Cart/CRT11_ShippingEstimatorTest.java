@@ -68,8 +68,12 @@ public class CRT11_ShippingEstimatorTest extends CartLib {
 					cmtLib.searchForaUserAndSelect(data.get("LnameEmailUname"), data.get("ContactName"));
 					
 					cmtLib.loginAsAdminCMT();
+					// Login verification
+					cmtLib.loginVerification("User - "+data.get("ContactName"));
 					commonLib.searchProduct(data.get("SearchItem1"));
 					searchLib.verifyBreadCrumbInSearchResultsPage(data.get("SearchItem1"));
+					searchLib.verifyBreadCrumbInSearchResultsPage(data.get("In_Stock_Only"));
+					searchLib.removeTheFilterForInStockOnly(data.get("In_Stock_Only"));
 					cartLib.selectFirstProductDisplay();
 					String mfrNumber1=prodLib.getInsightPartNumberInProductInfopage();
 					// Cart verification
@@ -94,8 +98,12 @@ public class CRT11_ShippingEstimatorTest extends CartLib {
 					cmtLib.clickupdateatDefaultShippingOption();
 					
 					cmtLib.loginAsAdminCMT();
+					// Login verification
+					cmtLib.loginVerification("User - "+data.get("ContactName"));
 					commonLib.searchProduct(data.get("SearchItem1"));
 					searchLib.verifyBreadCrumbInSearchResultsPage(data.get("SearchItem1"));
+					//searchLib.verifyBreadCrumbInSearchResultsPage(data.get("In_Stock_Only"));
+					searchLib.removeTheFilterForInStockOnly(data.get("In_Stock_Only"));
 					cartLib.selectFirstProductDisplay();
 					String mfrNumber2=prodLib.getInsightPartNumberInProductInfopage();
 					// Cart verification
@@ -119,16 +127,20 @@ public class CRT11_ShippingEstimatorTest extends CartLib {
 					cmtLib.hoverOverMasterGroupAndSelectChangeGrp();
 					cmtLib.searchForWebGroup(data.get("WebGrp"));
 					cmtLib.clickOnTheWebGroup(data.get("WebGrp_Name"));
-					cmtLib.setCustomerLevelPermissionsON(data.get("customerPermissions"));
+					//cmtLib.setCustomerLevelPermissionsON(data.get("customerPermissions"));
 					cmtLib.hoverOnManageWebGroupsAndSelectOptions(data.get("ManageWebGrpOptions"));
 					cmtLib.searchForaUserAndSelect(data.get("LnameEmailUname"), data.get("ContactName"));
 					cmtLib.usertoServiceLevelShippingwithOnlyFedex(data.get("menuName"), data.get("user_Permissions"),
-							data.get("text1"));
+							data.get("Text1"));  // add all fedex carrier in cmt
 					cmtLib.clickupdateatDefaultShippingOption();
 					
 					cmtLib.loginAsAdminCMT();
+					// Login verification
+					cmtLib.loginVerification("User - "+data.get("ContactName"));
 					commonLib.searchProduct(data.get("SearchItem1"));
 					searchLib.verifyBreadCrumbInSearchResultsPage(data.get("SearchItem1"));
+					//searchLib.verifyBreadCrumbInSearchResultsPage(data.get("In_Stock_Only"));
+					searchLib.removeTheFilterForInStockOnly(data.get("In_Stock_Only"));
 					cartLib.selectFirstProductDisplay();
 					String mfrNumber3=prodLib.getInsightPartNumberInProductInfopage();
 					// Cart verification
@@ -137,7 +149,6 @@ public class CRT11_ShippingEstimatorTest extends CartLib {
 					cartLib.verifyShippingestimator();
 					cartLib.VerifyonlyFedExoptions(data.get("postalcode2"), data.get("fedexCarrier"));
 					commonLib.clickLogOutLink("Logout");    // -- 3rd logout 
-					
 					
 					cmtLib.navigateBackToCMT();
 					/*cmtLib.hoverOverMasterGroupAndSelectChangeGrp();
@@ -153,6 +164,8 @@ public class CRT11_ShippingEstimatorTest extends CartLib {
 					Thread.sleep(3000);
 					commonLib.searchProduct(data.get("SearchItem2"));
 					searchLib.verifyBreadCrumbInSearchResultsPage(data.get("SearchItem2"));
+					//searchLib.verifyBreadCrumbInSearchResultsPage(data.get("In_Stock_Only"));
+					searchLib.removeTheFilterForInStockOnly(data.get("In_Stock_Only"));
 					cartLib.selectFirstProductDisplay();
 					String mfrNumber4=prodLib.getInsightPartNumberInProductInfopage();
 					// Cart verification
