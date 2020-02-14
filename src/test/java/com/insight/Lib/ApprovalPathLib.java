@@ -735,7 +735,7 @@ for(int i=1;i<=count;i++) {
 
 	public void ClickRequestorGrpLink() throws Throwable {
 		if (isElementPresent(REQUESTOR_GRP_LINK, "Requestor Group Link")) {
-			click(REQUESTOR_GRP_LINK, "Click Approval Path Link");
+			click(REQUESTOR_GRP_LINK, "Click Requestor Group Link");
 			reporter.SuccessReport("Approval Management Reports Page", "Requestor Group Link Exists and Clicked", "");
 		} else {
 			reporter.failureReport("Approval Management Reports Page", "Requestor Group Link Does Not Exist", "");
@@ -1653,9 +1653,9 @@ public void clickOnApprovalManagementTabs(String requestorTab)throws Throwable {
 	click(ApprovalManagementTabs(requestorTab), "Clicked on "+requestorTab+" Tab");
 }
 	public void ClickReqGroupEditLinkButton(String reqGroupName) throws Throwable {
-		if (isElementPresent(RequestorGroupEditLink(reqGroupName), "Approval management page ")) {
-			click(RequestorGroupEditLink(reqGroupName), "Approval management page");
-			reporter.SuccessReport("Click Requestor Group Edit", "Requestor Group Edit Link Exists and Clicked", "");
+		if (isElementClickable(RequestorGroupEditLink(reqGroupName),3, "Requestor Group Edit Link Exists")) {
+			//click(RequestorGroupEditLink(reqGroupName), "Approval management page");
+			reporter.SuccessReport("Click Requestor Group Edit", "Requestor Group Edit Link Exists and Clicked", reqGroupName);
 		} else {
 			reporter.failureReport("Click Requestor Group Edit", "Requestor Group Edit  Link Does Not Exist", "");
 		}
@@ -1680,10 +1680,10 @@ public void clickOnApprovalManagementTabs(String requestorTab)throws Throwable {
 public void GetNumberOfRequestorsOnLeftSide() throws Throwable {
 	List<WebElement> elem = driver.findElements(RequestorsOnLeftSide);
 	if(elem.size()>0) {
-		reporter.SuccessReport("Requestors on Right side", "Requestors are displayed on right side", String.valueOf(elem.size()), driver);
+		reporter.SuccessReport("Requestors on Right side", "Requestors are displayed on Left side", String.valueOf(elem.size()), driver);
 	}
 	else {
-		reporter.failureReport("Requestors on Right side", "Requestors are not displayed on right side", "", driver);
+		reporter.failureReport("Requestors on Right side", "Requestors are not displayed on Left side", "", driver);
 	}
 }
 public int GetNumberOfRequestorsOnRightSide() throws Throwable {
@@ -1704,7 +1704,7 @@ public int GetNumberOfRequestorsOnRightSide() throws Throwable {
 			// select Requestor id value
 			
 for(int i=1;i<=count;i++) {
-	ClickRefreshIcon();
+	driver.findElement(REFRESH_ICON).click();
 	WebElement elm = driver.findElement(createRequestorType);
 	List<WebElement> elem = elm.findElements(By.tagName("option"));
 		elem.get(i).click();
@@ -2029,7 +2029,7 @@ public void SelectRequestorFromRightToLeft(String requestor,int count) throws Th
 			// scrollUp();
 			click(TU_IUS_Tired_Requestor_Group_Link(requestor), "Click Requestor Group Name");
 			reporter.SuccessReport("Approval Management Create/Edit Requestor Group",
-					"TU_IUS Requestor Group Tiered Link Exists and Clicked", "TU_IUS_Tired_Requestor_Group_Link");
+					"TU_IUS Requestor Group Tiered Link Exists and Clicked", requestor);
 		} else {
 			reporter.failureReport("Approval Management Create/Edit Requestor Group",
 					"TU_IUS Requestor Group Tiered Link Does Not Exist", "");
@@ -2054,7 +2054,7 @@ public void Readdatfromexcel(String filePath) throws Throwable {
 	System.out.println("Username " +Username);
 if(Username.contains("User Name")&& GroupName.contains("Approval Group Name")) {
 
-	reporter.SuccessReport("Excel details", "Excecl data contents are verified", "", driver);
+	reporter.SuccessReport("Excel details", "Excecl data contents are verified", "column1:"+Username+",column2:"+GroupName, driver);
 }
 else {
 	reporter.failureReport("Excel details", "Excecl data contents are not verified", "", driver);

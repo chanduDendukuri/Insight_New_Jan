@@ -80,9 +80,10 @@ public class APR05_GroupUsersTest extends ApprovalPathLib {
 					clickOnApprovalManagementTabs("Approval Path");
 					
 					
-					AddRequestorsRequestorGroup(ReqGroupName2);
-					scrollUp();
-					clickOnApprovalManagementTabs("Approval Path");
+					/*
+					 * AddRequestorsRequestorGroup(ReqGroupName2); scrollUp();
+					 * clickOnApprovalManagementTabs("Approval Path");
+					 */
 					
 					
 					scrollUp();
