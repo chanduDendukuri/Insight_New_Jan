@@ -88,7 +88,7 @@ public class SBP07_ThirdPartyCarrierAccountTest extends ShipBillPayLib{
 				orderLib.shippingBillPayContinueButton();
 				shipbLib.VeifyNoCarrier();
 				orderLib.shippingOptionsCarrierSelection();
-				orderLib.shippingBillPayContinueButton();// billing address continue
+				orderLib.billingAddressContinueButton();// billing address continue
 				selectPaymentInfoMethodCreditCard(data.get("PONumber"),data.get("POReleaseNumber"));
 				orderLib.clickOnReviewOrderButton();
 				Thread.sleep(3000);

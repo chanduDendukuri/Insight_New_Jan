@@ -597,7 +597,7 @@ List<String> orderdetails = new ArrayList<String>();
 	 */
 	public void clickContinueOnLineLevelInfo() throws Throwable{
 		if(isVisible(LLI_CONTINUE_BTN, "Continue button Linelevel Info")){
-			click(LLI_CONTINUE_BTN, "Continue button of Linelevel Info");
+			clickUntil(LLI_CONTINUE_BTN,CONTINUE_BTN, "Continue button of Linelevel Info");
 		}
 		Thread.sleep(2000);
 	}
