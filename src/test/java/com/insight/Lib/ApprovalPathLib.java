@@ -778,21 +778,20 @@ public String GetNameOfLastRequestor() throws Throwable {
 	return text;
 }
 public String VerifyRequestorResults(String requestor) throws Throwable {
-	List<WebElement> elem = driver.findElements(NumberOfrequestors);
+	List<WebElement> elem = driver.findElements(By.xpath("//table[@id='reqGrpUserReport']//td[1]"));
 	int count = elem.size();
 	String text ="";
 	if(count>0) {
-		for (WebElement webElement : elem) {
-			text = webElement.getText();
-			if(text.contains(requestor)) {
+		for (int i=0;i<count;i++) {
+			text =elem.get(i).getText();
+			String test = text.replace(" ", "");
+			if(test.contains(requestor)) {
 				reporter.SuccessReport("Requestor", "Requestor displaying in the results", text, driver);
 				break;
 			}
-			else {
-				reporter.failureReport(" Requestor", "Requestors not displaying in the results", "", driver);
-			}
+			
 		}
-		 
+		
 		
 	}
 	else {
@@ -2100,7 +2099,7 @@ public void ClickonEditlinkofRequestorGroMgmt(String requestor) throws Throwable
 	public void Verify_Create_Edit_Requestor_GroupPage() throws Throwable {
 		if (isElementPresent(REQ_SAVE_CHANGES_BTN, "Create/Edit Requestor Group Page")) {
 			reporter.SuccessReport("Approval Management Create/Edit Requestor Group",
-					"Create/Edit Requestor Group Page Exists", "");
+					"landed in Create/Edit Requestor Group Page", "");
 		} else {
 			reporter.failureReport("Approval Management Create/Edit Requestor Group",
 					"Create/Edit Requestor Group Page Does Not Exist", "");

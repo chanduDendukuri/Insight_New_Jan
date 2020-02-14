@@ -184,7 +184,7 @@ public class APR05_GroupUsersTest extends ApprovalPathLib {
 						// Click Search
 						Click_Search_Icon();
 					//verify user
-						//VerifyRequestorResults(Requestor1);
+						VerifyRequestorResults(Requestor1);
 						//ClickOnBackToRefreshIcon();
 						ClickRequestorGrpLink();
 						
