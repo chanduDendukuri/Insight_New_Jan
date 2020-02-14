@@ -2288,7 +2288,7 @@ public void ClickOnBackToRefreshIcon() throws Throwable {
 		click(StartDateCALENDAR, "Click on calendar");
 		}
 		else {
-			click(EndDateCALENDAR, "Click on calendar");
+			click(EndDateCALENDAR, "Click on To date calendar");
 		}
 for(int i=0;i<=11;i++) {
 	if(getText(MonthSelection, "Month Name").contains(month)) {
@@ -2298,8 +2298,9 @@ for(int i=0;i<=11;i++) {
 		click(NEXT_MONTH_ARROW, "Next Month");
 	}
 }
-	if (isElementPresent(dayInStartDayCalender(day), "From Date ")) {
-		click(dayInStartDayCalender(day), "Day: "+day);
+	if (isElementPresent(dayInStartDayCalender(day), "To Date ")) {
+		String MonthandYear= driver.findElement(Monthandyearoffromdate).getText();
+		click(dayInStartDayCalender(day), "Currentdate: "+day+" "+MonthandYear);
 	}
 }
 		
