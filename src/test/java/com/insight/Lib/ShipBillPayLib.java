@@ -805,11 +805,12 @@ public class ShipBillPayLib extends ShipBillPayObj {
 		waitForVisibilityOfElement(ALLOWEDOPTIONS_CHECKOUTSETTINGS, "Allowed Options");
 		if(isVisibleOnly(PROCUREMENTCARD_OPTION,"Procurement Card Option")) {
 		selectByVisibleText(ALLOWEDOPTIONS_CHECKOUTSETTINGS, Paymentoption, "Payment option::" + Paymentoption + "");
-		click(CMTObj.LEFT_ARROW, Paymentoption + " is selected And Moved to Available Options");
+		click(CMTObj.LEFTARROWINPAYMENTOPTIONS, Paymentoption + " is selected And Moved to Available Options");
 		click(UPDATEBUTTON_SHPPINGADDRESS, "update Button");
 		waitForVisibilityOfElement(SUCCESMSG_PAYMENTOPTIONS, "Payment options updated Success Msg");
 		reporter.SuccessReport("Verify Payment Option", "Payment Option added to Avialble Options", "");
-		}else {
+		}
+		else {
 			reporter.SuccessReport("Verify Payment Option", "Payment Option Alredy added to Avialble Options", Paymentoption);
 		}
 	}
