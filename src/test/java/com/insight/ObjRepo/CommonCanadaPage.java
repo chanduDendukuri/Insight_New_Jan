@@ -83,7 +83,7 @@ public static By txtQuantityValue = By.xpath("//*[@class='cart-wrapper show-for-
     public static By lblProductDescription = By.xpath("//*[@class='cart__item-heading']");
     public static By CART_PROD_DESC_RECENTLYADDEDTEM_loop=By.xpath("//div[@class='columns flex-child-auto cart__table-col--desc text-left']/a/h4");
     public static By AllContractDetails=By.xpath("//div[@class='large-12 columns js-modal-pick-contract']//label");
-
+    public static By newURLHeader=By.xpath("//*[@class='ips-contract-heading']");
 
 
 

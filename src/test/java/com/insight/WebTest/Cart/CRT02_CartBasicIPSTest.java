@@ -152,7 +152,7 @@ public class CRT02_CartBasicIPSTest extends CartLib{
 
 					commonLib.clickLogOutLink(data.get("Logout_Header"));
 					navigateTo(data.get("URL"));
-
+					assertTrue(ccp.availabilityOfPanasonicHeader(),"State Government page values is "+ccp.getHeaderValue());
 					System.out.println("Test completed");
 
 				} catch (Exception e) {
