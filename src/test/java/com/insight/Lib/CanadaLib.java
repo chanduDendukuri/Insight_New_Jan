@@ -339,6 +339,7 @@ public class CanadaLib extends CanadaObj {
 		
 		   click(CommonObj.ACCOUNT_TOOLS, "Account tools menu icon");
 		   click(CommonObj.accountToolsMenu(toolsMenuName), "Account tools menu:"+toolsMenuName);
+		   scrollToBottomWithCordinate("500");
 		   click(CommonObj.getAccountToolsDD(toolsMenuName, dropDown), "Select account tools: "+dropDown);	   
 	}
 	

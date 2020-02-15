@@ -597,7 +597,7 @@ List<String> orderdetails = new ArrayList<String>();
 	 */
 	public void clickContinueOnLineLevelInfo() throws Throwable{
 		if(isVisible(LLI_CONTINUE_BTN, "Continue button Linelevel Info")){
-			click(LLI_CONTINUE_BTN, "Continue button of Linelevel Info");
+			clickUntil(LLI_CONTINUE_BTN,CONTINUE_BTN, "Continue button of Linelevel Info");
 		}
 		Thread.sleep(2000);
 	}
@@ -2394,9 +2394,10 @@ List<String> orderdetails = new ArrayList<String>();
 			if(isVisibleOnly(PAYMENT_METHOD_VERIFICATION_procurementscard,"Procurement Card")) {
 				reporter.failureReport("Verify payment options:", "Procurementcard  Option exits", "");	
 			}
-		}else {
-			  reporter.SuccessReport("Verify payment options:", "Only Credit card exists as Payments Option", "Credit Card");	
-		   if(isElementPresent(PAYMENT_METHOD_DD, "payment DD")){
+		}
+		else {
+		  reporter.SuccessReport("Verify payment options:", "Only Credit card exists as Payments Option", "Credit Card");	
+		   if(isVisibleOnly(PAYMENT_METHOD_DD, "payment DD")){
 			//click(PAYMENT_METHOD_DD, "payment method drop down");
 			click(PAYMENT_METHOD_SELECTION, "payment method selection::Credit Card");
 		}

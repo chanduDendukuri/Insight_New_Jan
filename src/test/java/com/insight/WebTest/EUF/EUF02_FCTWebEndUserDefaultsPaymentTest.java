@@ -72,6 +72,7 @@ public class EUF02_FCTWebEndUserDefaultsPaymentTest extends EndUserFeaturesLib{
 						canadaLib.clickOnSideMenuSelectAccountToolOptions(data.get("Tools_Menu"),
 								data.get("Tools_Menu_DD"));
 						clickOnTabInUserProfile(data.get("Tab_Name"));
+						scrollToBottomWithCordinate("700");
 						selectedOptionPaymentMethod(data.get("Default_Payment_Option"));
 						//add condition  to select credit card from dropdown
 						selectPaymentMethodFromDropDown(data.get("cc"));
@@ -87,6 +88,7 @@ public class EUF02_FCTWebEndUserDefaultsPaymentTest extends EndUserFeaturesLib{
 						canadaLib.clickOnSideMenuSelectAccountToolOptions(data.get("Tools_Menu"),
 								data.get("Tools_Menu_DD"));
 						clickOnTabInUserProfile(data.get("Tab_Name"));
+						scrollToBottomWithCordinate("700");
 						selectedOptionPaymentMethod(data.get("Default_Payment_Option1"));
 						commonLib.clickLogOutLink(data.get("Logout_Header"));
 						System.out.println("Test completed");

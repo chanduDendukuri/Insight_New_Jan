@@ -216,7 +216,7 @@ public static By txt_QuoteDetails = By.xpath("//h2[contains(text(),'Quote Detail
 	public static By ALL_AVILABLE_OPTIONS = By.xpath("//select[@id='shipAvailableSel']//option");
 	public static By ALL_ALLOWED_OPTIONS = By.xpath("//select[@id='shipAllowedSel']//option");
 	public static By LEFT_ARROW = By.xpath("//a[@id='shipOptionsLeftArrowButton']");
-
+    public static By LEFTARROWINPAYMENTOPTIONS=By.xpath("//a[@id='paymentOptionsLeftArrowButton']");
 	public static By SELECT_ALLWOED_OPTION = By.xpath("//select[@id='shipAllowedSel']");
 
 	// Manage Web Group>> Contacts and Notifications
