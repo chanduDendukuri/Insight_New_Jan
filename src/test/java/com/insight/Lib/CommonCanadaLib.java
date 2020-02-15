@@ -666,7 +666,12 @@ public void getListOfAvailableBreadCrumbs() throws Throwable{
         }
 
     }
-
+    public boolean availabilityOfPanasonicHeader() throws Throwable{
+        return isVisibleOnly(newURLHeader,"State local government verification ");
+    }
+    public String getHeaderValue() throws Throwable{
+        return getText(newURLHeader,"State local government verification ");
+    }
 
 }
 
