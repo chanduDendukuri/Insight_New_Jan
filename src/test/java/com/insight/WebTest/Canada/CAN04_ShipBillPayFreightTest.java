@@ -133,6 +133,7 @@ public class CAN04_ShipBillPayFreightTest extends CanadaLib{
 									orderLib.clickContinueOnLineLevelInfo();
 									canadaLib.verifySBP();
 									orderLib.getgroundOptionInShipmentOptionsPage();
+									orderLib.clickContinueOnShippingAddress();
 									reporter.SuccessReport("Air Values in shipment options ","Air data in shipment options is ",orderLib.getAirValueFromShipbillOptions());
 									reporter.SuccessReport("Ground Values in shipment options ","Ground data in shipment options is ",orderLib.getGroundValueFromShipbillOptions());
 									canadaLib.verifyGroundIsDefaultShippingOption();
