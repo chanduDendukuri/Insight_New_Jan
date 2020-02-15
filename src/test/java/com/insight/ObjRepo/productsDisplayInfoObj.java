@@ -161,7 +161,7 @@ public static By PartNumberInprodutdetailsPage = By.xpath("//div[@id='search-ite
     public static By getproductName(int itemno){
     	return By.xpath("//div[@id='search-item-"+itemno+"']//div//a[@class='select-prod']");
     }
-    
+
     public static By getProductFeatures(int itemno){
     	return By.xpath("//div[@id='search-item-"+itemno+"']//div[@class='product-description']//ul");
     }
