@@ -366,8 +366,6 @@ List<String> orderdetails = new ArrayList<String>();
 				String dateOrdered = getText(DATE_ORDERED, "Date ordered");
 				String actualDate = getCurrentDateTime("dd-MMM-yyyy");
 
-				
-
 				if (actualDate.contains(dateOrdered)) {
 					orderdetails.add(actualDate);
 					reporter.SuccessReport("Verify the Date ordered ", " date ordered verification is successfull","Ordered Date : "+dateOrdered);
