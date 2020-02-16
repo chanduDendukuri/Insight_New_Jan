@@ -93,8 +93,12 @@ public class SLP06_SPLAZeroUsageTest extends SLPLib{
 				    	canadaLib.verifyPlaceCartLabel();
 				     	cartLib.verifyItemInCartByInsightPart(data.get("SearchText"));
 				     	Thread.sleep(3000);
-				     	int itemnumber=Integer.valueOf(data.get("Item_Number"));
-				     	verifyCartPageAndPartDetails(itemnumber-1);
+					 /*
+					 * int itemnumber=Integer.valueOf(data.get("Item_Number"));
+					 * verifyCartPageAndPartDetails(itemnumber-1);
+					 */
+				     	pipLib. verifyCartPageAndPartDetailsForRecentlyItemDynamically(data.get("SearchText"));
+				     	
 				    	
 				     	// account tools >> Software License Agreements
 						commonLib.clickOnAccountToolsAndClickOnProductGrp(data.get("Tools_Menu"), data.get("Tools_Menu_DD"));
@@ -151,7 +155,8 @@ public class SLP06_SPLAZeroUsageTest extends SLPLib{
 				     	commonLib.addToCartAndVerify();
 				     	orderLib.continueToCheckOutOnAddCart();
 				    	canadaLib.verifyPlaceCartLabel();
-				    	verifyCartPageAndPartDetails(itemnumber);
+				    	//verifyCartPageAndPartDetails(itemnumber);
+				    	pipLib. verifyCartPageAndPartDetailsForRecentlyItemDynamically(data.get("SearchText"));
 				     	verifyAllReportingPeriodsCurrentinCartPage();
 				     	commonLib.clickLogOutLink(data.get("Logout"));
 						
