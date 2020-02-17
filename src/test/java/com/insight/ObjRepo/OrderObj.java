@@ -7,7 +7,7 @@ import com.insight.accelerators.ActionEngine;
 public class OrderObj extends ActionEngine{
 
 	
-	public static By CONTINUE_TO_CHECKOUT=By.xpath("//a[@class='button primary medium'][contains(text(),'Continue to Checkout')]");
+	public static By CONTINUE_TO_CHECKOUT=By.xpath("//a[@class='button primary medium'][contains(text(),'Continue to Checkout') or contains(text(),'Passer à la caisse')]");
 	
 	// warranty pop-up locators
 	public static By ADD_WARRANTY_LINK=By.xpath("//span[@class='cart__table-col cart-item__add-warranty']");

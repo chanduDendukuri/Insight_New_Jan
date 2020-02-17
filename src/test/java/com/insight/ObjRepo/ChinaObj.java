@@ -23,7 +23,7 @@ public class ChinaObj extends ActionEngine{
 	  
 	  /** To verify part number in compare product list page **/
 	  public static By getpartNumberOnCompareProductsPageForFrench(String partNum){
-	      return By.xpath("//tr//th[contains(text(),'# de pièce du fabricant')]/following-sibling::td[contains(text(),'"+partNum+"')]");
+	      return By.xpath("//tr//th[contains(text(),'# de pièce du fabricant') or contains(text(),'Manufacturer Part Number')]/following-sibling::td[contains(text(),'"+partNum+"')]");
 	  }
 	  
 		
