@@ -55,6 +55,7 @@ public class ODP08_ConvertQuoteBundlesTest extends OrderLib{
 						cmtLib.hoverOnManageWebGroupsAndSelectOptions(data.get("Manage_Web_Grp_Options"));
 						cmtLib.searchForaUserAndSelect(data.get("LnameEmailUname"), data.get("ContactName"));
 						cmtLib.setPermissions(data.get("Menu_Name"), data.get("Set_Permission"));
+						cmtLib.setPermissions(data.get("Menu_Name"), data.get("Set_Permission3"));
 
 						// Login As to Web UAT
 						cmtLib.loginAsAdminCMT();
