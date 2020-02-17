@@ -163,7 +163,7 @@ public class ProductDetailObj extends ActionEngine {
     public static By SPECIFICATIONS_TAB = By.xpath("//a[@data-gtm-info='SPECIFICATIONS']");
 
     public static By SPECTIFICATIONS(String Tab) {
-        return By.xpath("//div[@id='tpl-specs-specs-target']//div[@class='ccs-ds-extendedSpec-header' and contains(text(),'" + Tab + "')]");
+        return By.xpath("//div[@id='tpl-specs-specs-target']//table/thead/tr/th[contains(text(),'"+Tab+"')]");
     }
 
     public static By WARRENYADDTOCART = By.xpath("//section[@id='detail-warranties']//div[@class='add-to-order-wrapper']/a");

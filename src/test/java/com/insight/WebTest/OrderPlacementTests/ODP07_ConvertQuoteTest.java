@@ -141,8 +141,6 @@ public class ODP07_ConvertQuoteTest extends OrderLib{
 						}
 						
 						commonLib.clickLogOutLink(data.get("Logout"));
-
-						// fnCloseTest();
 						System.out.println("Test completed");
 					} catch (Exception e) {
 						ReportStatus.blnStatus = false;

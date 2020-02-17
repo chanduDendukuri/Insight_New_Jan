@@ -61,6 +61,7 @@ public class PID02_WarrantiesTest extends ActionEngine{
                    //Login
 					cmtLib.loginToCMTSearchWebGrpAndUser(data.get("Header"), data.get("WebGrp"),
 							data.get("LnameEmailUname"), data.get("Contact_Name"));
+					cmtLib.setPermissions(data.get("Menu_Name"), data.get("Set_Permission"));
 					cmtLib.clickOnloginAs();
 					switchToChildWindow();
 					commonLib.searchProduct(data.get("SearchItem1"));

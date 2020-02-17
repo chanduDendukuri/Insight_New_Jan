@@ -1,5 +1,7 @@
 package com.insight.Lib;
 
+import java.awt.*;
+import java.awt.event.KeyEvent;
 import java.io.FileNotFoundException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -9,6 +11,7 @@ import java.util.Set;
 
 import org.omg.PortableServer.THREAD_POLICY_ID;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 
 import com.insight.ObjRepo.CanadaObj;
@@ -17,7 +20,8 @@ import com.insight.ObjRepo.OrderObj;
 import com.insight.ObjRepo.CommonObj;
 import com.insight.ObjRepo.InvoiceHistoryObj;
 import com.insight.ObjRepo.ShipBillPayObj;
-import java.awt.Toolkit;
+import org.openqa.selenium.interactions.Actions;
+
 import java.awt.datatransfer.StringSelection;
 
 
@@ -1050,7 +1054,7 @@ List<String> orderdetails = new ArrayList<String>();
 	public String verifyTheTaxOnPlaceOrderPage() throws Throwable {
 		Thread.sleep(3000);
 		String result = getText(ADDLICENCE_TAX_AMOUNT, "Tax displayed after adding LICENCE").replace("$", "");
-		if (isElementPresent(ADDLICENCE_TAX_AMOUNT, "Tax displayed", true) ) {
+		if (isElementPresent(ADDLICENCE_TAX_AMOUNT, "Tax displayed", true) && !result.equals("")) {
 			reporter.SuccessReport("Verify Taxes on Place Order Page", "Taxes Exist and shows as :" , "Tax estimate USD "+result);
 		} else
 			reporter.failureReport("Verify Taxes on Place Order Page", "Place Order Page Shows Tax as 0.00","",driver);
@@ -1237,8 +1241,9 @@ List<String> orderdetails = new ArrayList<String>();
 				//System.out.println(System.getProperty("user.dir") + "\\AutoIt\\" + exeFileNameOfAutoITWithExetension);
 				Thread.sleep(2000);
 				click(FILE_UPLOAD, "Upload file");
-				Runtime.getRuntime()
-						.exec(System.getProperty("user.dir") + "\\AutoIt\\" + exeFileNameOfAutoITWithExetension);
+				/*Runtime.getRuntime()
+						.exec(System.getProperty("user.dir") + "\\AutoIt\\" + exeFileNameOfAutoITWithExetension);*/
+				//sendKeys("");
 				Thread.sleep(3000);
 
 				Thread.sleep(2000);
@@ -2344,7 +2349,7 @@ List<String> orderdetails = new ArrayList<String>();
 	
 	public void verifyTaxEstimatesAreEqual(float tax1,float tax2) throws Throwable {
 		if(tax1==tax2) {
-			reporter.SuccessReport("Verify Tax estimates are equal", "Tax estimates are equal", "Tax 1: "+tax1+"  Tax2: "+tax2);
+			reporter.SuccessReport("Verify Tax estimates are equal", "Tax estimates are equal", "Tax 1: $"+tax1+"  Tax2: $"+tax2);
 		}else {
 			reporter.failureReport("Verify Tax estimates are equal", "Tax estimates are not equal", "");
 		}
@@ -2668,6 +2673,23 @@ List<String> orderdetails = new ArrayList<String>();
 			reporter.failureReport("View Printable POPUP", "Cart item bundle in Print View does not Exist", "", driver);
 		}
 		
+	}
+	public void enterFileNameInWindowsPopup() throws Throwable{
+		String path= "./AutoIt/UploadFile.xls";
+		String a =System.getProperty("user.dir") + "\\AutoIt\\UploadFile.xls";
+
+
+
+		setClipboardData(a);
+//native key strokes for CTRL, V and ENTER keys
+		Robot robot = new Robot();
+		robot.keyPress(KeyEvent.VK_CONTROL);
+		robot.keyPress(KeyEvent.VK_V);
+		robot.keyRelease(KeyEvent.VK_V);
+		robot.keyRelease(KeyEvent.VK_CONTROL);
+		robot.keyPress(KeyEvent.VK_ENTER);
+		robot.keyRelease(KeyEvent.VK_ENTER);
+		System.out.println("ABD");
 	}
 	}
 
