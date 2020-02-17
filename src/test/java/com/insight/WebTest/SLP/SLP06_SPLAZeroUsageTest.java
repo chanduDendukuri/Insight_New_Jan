@@ -164,7 +164,7 @@ public class SLP06_SPLAZeroUsageTest extends SLPLib{
 						ReportStatus.blnStatus = false;
 						//gErrorMessage = e.getMessage();
 						gTestStatus = false;
-						throw new RuntimeException(e);
+						//throw new RuntimeException(e);
 					}
 					
 				}
