@@ -1186,7 +1186,7 @@ List<String> orderdetails = new ArrayList<String>();
 		if(mnfNo[1].equals(mnfrNumber)){
 			reporter.SuccessReport("Verify manufacturer numebr in Receipt page", "Your cart verification is successful","");
 		}else{
-			reporter.failureReport("Verify manufacturer numebr in Receipt page", "Your cart verification is not successful","");
+			reporter.failureReport("Verify manufacturer numebr in Receipt page", "Your cart verification is not successful","",driver);
 		}
 	}
 	
@@ -2690,6 +2690,21 @@ List<String> orderdetails = new ArrayList<String>();
 		robot.keyPress(KeyEvent.VK_ENTER);
 		robot.keyRelease(KeyEvent.VK_ENTER);
 		System.out.println("ABD");
-	}
+	   }
+	
+	/**
+	 * verify file uploaded 
+	 * @param fileName
+	 * @throws Throwable
+	 */
+	
+	public void verfyFileUploadedSuccessfully(String fileName) throws Throwable {
+		if(isVisibleOnly(getUploadedFileName(fileName), "file name")) {
+			reporter.SuccessReport("Verify file upload", "File uploaded successfully", "File  : "+fileName, driver);
+		}else {
+			reporter.failureReport("Verify file upload", "File uploaded successfully", "", driver);
+		}
+		
+	   }
 	}
 
