@@ -59,6 +59,8 @@ public class ODP02_PlaceOrderBasicIPSTest extends OrderLib{
 						}
 						cmtLib.hoverOnManageWebGroupsAndSelectOptions(data.get("Manage_Web_Grp_Options"));
 						cmtLib.searchForaUserAndSelect(data.get("LnameEmailUname"), data.get("ContactName"));
+						//Purchasing popup - ON ;
+						cmtLib.setPermissions(data.get("Menu_Name"), data.get("Set_Permission"));
 						cmtLib.clickCheckOutSettings(data.get("Check_out_Settings"));
 
 						// navigate to checkout settings >>  check User Service Level Shipping and select SLS ground

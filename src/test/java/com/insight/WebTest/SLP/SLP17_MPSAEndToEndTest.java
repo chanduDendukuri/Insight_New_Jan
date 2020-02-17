@@ -181,6 +181,7 @@ public class SLP17_MPSAEndToEndTest extends SLPLib{
 				 ReqLib.clickUpdateInApprovalManagmentPage();
 				 clickonEnterNewcard();
 				 ReqLib.enterNewcarDetails(data.get("cardtype"), data.get("cardNum"), data.get("cardName"));
+				 scrollToBottomWithCordinate("300");
 				 ReqLib.continuebutton();
 				 ReqLib.verifyApproveRequisitionStatus();
 				 commonLib.clickOnInsightLogoOnHomePage();
