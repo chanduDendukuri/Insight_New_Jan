@@ -73,7 +73,7 @@ public class ODP01_PlaceOrderBasicFileUploadTest extends OrderLib{
 						// Proceed to Checkout
 						proceedToCheckout();
 						verifyFileUploadOption(data.get("File_Path")); // Need to add verification for File upload
-
+						enterFileNameInWindowsPopup();
 						clickOnAdditionalInfoContinueButton();
 						clickContinueOnLineLevelInfo();
 						canadaLib.verifySBP();

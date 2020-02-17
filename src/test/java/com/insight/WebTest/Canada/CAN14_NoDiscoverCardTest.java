@@ -203,15 +203,18 @@ scrollToBottomWithCordinate("200");
 
                 } catch (Exception e) {
                     ReportStatus.blnStatus = false;
-                    //gErrorMessage = e.getMessage();
+                   // reporter.failureReport("Exception Occurred","Exception ",e.getClass().getSimpleName(),driver);
+                    gErrorMessage = e.getClass().getSimpleName();
                     gTestStatus = false;
                 }
             }
         } catch (Exception e) {
             e.printStackTrace();
             ReportStatus.blnStatus = false;
-            //	gErrorMessage = e.toString();
+            	gErrorMessage = e.getClass().getSimpleName();
             gTestStatus = false;
+           // reporter.failureReport("Exception Occurred","Exception ",e.getClass().getSimpleName(),driver);
+
             ReportStatus.fnUpdateResultStatus("NoDiscoverCard", "Tc_CAN14", ReportStatus.strMethodName, 1, browser);
             throw new RuntimeException(e);
         } finally {
