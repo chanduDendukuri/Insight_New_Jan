@@ -199,7 +199,7 @@ public class SLP17_MPSAEndToEndTest extends SLPLib{
 				ReportStatus.blnStatus = false;
 				//gErrorMessage = e.getMessage();
 				gTestStatus = false;
-				throw new RuntimeException(e);
+				
 			}
 			
 		}
