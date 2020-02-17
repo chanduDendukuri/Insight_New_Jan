@@ -74,6 +74,7 @@ public class ODP01_PlaceOrderBasicFileUploadTest extends OrderLib{
 						proceedToCheckout();
 						verifyFileUploadOption(data.get("File_Path")); // Need to add verification for File upload
 						enterFileNameInWindowsPopup();
+						verfyFileUploadedSuccessfully(data.get("File_Name"));
 						clickOnAdditionalInfoContinueButton();
 						clickContinueOnLineLevelInfo();
 						canadaLib.verifySBP();
@@ -83,17 +84,18 @@ public class ODP01_PlaceOrderBasicFileUploadTest extends OrderLib{
 						selectPaymentInfoMethodCreditCard(data.get("Card_Number").toString(), data.get("Card_Name"),
 								data.get("Month"), data.get("Year"),data.get("PO_Number"),data.get("POReleaseNumber"));
 						clickOnReviewOrderButton();
-
 						verifyUploadedFileInReviewOrderPage(data.get("File_Name")); // Need to add verification
-						verifyReceiptVerbiage();
 						String summaryAmount=cartLib.getSummaryAmountInCart();
 						placeOrderAndVerifyReceiptOrderAndDate(summaryAmount);
-
+						//Verify Receipt
+						verifyReceiptVerbiage();
+						clickOrderDetailsLinkOnReceiptPage();
+						
 						verifyShippingAddressOnReceiptPage(data.get("Section_Name1")); // verifying shipping address in receipt page.
 						verifyBillingAddressOnReceiptPage(data.get("Section_Name2"));  // Verifying billing address in receipt page.
 
 						// verifying cart in Receipt page
-						verifyYourCartOnReceiptPage(data.get("SearchText"));
+						//verifyYourCartOnReceiptPage(data.get("SearchText"));
 						prodInfoLib.verifyCartPageAndPartDetails();
 						// fnCloseTest();
 						System.out.println("Test completed");

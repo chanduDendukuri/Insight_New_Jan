@@ -7,7 +7,7 @@ import com.insight.accelerators.ActionEngine;
 public class OrderObj extends ActionEngine{
 
 	
-	public static By CONTINUE_TO_CHECKOUT=By.xpath("//a[@class='button primary medium'][contains(text(),'Continue to Checkout')]");
+	public static By CONTINUE_TO_CHECKOUT=By.xpath("//a[@class='button primary medium'][contains(text(),'Continue to Checkout') or contains(text(),'Passer à la caisse')]");
 	
 	// warranty pop-up locators
 	public static By ADD_WARRANTY_LINK=By.xpath("//span[@class='cart__table-col cart-item__add-warranty']");
@@ -100,6 +100,10 @@ public class OrderObj extends ActionEngine{
 	public static By  BILLING_ADDRESS_IN_RECEIPT=By.xpath("//div//h3[contains(text(),'Billing address')]/following::div[1]//label[@class='form__label--readonly'][contains(text(),'Address:')]//p");
 	public static By SELCET_CARRIER=By.xpath("//div[@class='Select Select__shipping-carrier Select--single is-searchable has-value']");
 	public static By CARRIER_SELECTION_DD=By.xpath("//div[@class='Select-placeholder'][contains(text(),'Select a shipping carrier')]");
+	public static By getUploadedFileName(String file) {
+		return By.xpath("//div//p[contains(text(),'"+file+"')]");
+	}
+	
 	public static By selectCarrier(String carrier) {
 		return By.xpath("//div[@class='Select-menu-outer']//div[@class='Select-option'][contains(text(),'"+carrier+"')]");
 	}
