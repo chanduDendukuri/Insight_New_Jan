@@ -43,7 +43,7 @@ public class ROD10_FCTWebReviewOrderTaxTest extends OrderLib{
 						ReportControl.intRowCount = intCounter;
 						Hashtable<String, String> data = TestUtil.getDataByRowNo("ROD10_FCTWebReviewOrderTax", TestData, "Web_Review_Order", intCounter);
 						TestEngineWeb.reporter
-								.initTestCaseDescription("FCTWebReviewOrderESDParts");
+								.initTestCaseDescription("FCTWebReviewOrderTaxTest");
 						reporter.SuccessReport("Iteration Number : ",
 								"**************Iteration Number::  " + intCounter + " For:: " + data.get("LoginName") + " ::and:: "
 										+ data.get("Password") + " To Validate::" + data.get("errorMessage") + "  **************",
@@ -117,6 +117,9 @@ public class ROD10_FCTWebReviewOrderTaxTest extends OrderLib{
 						//enterAttentionField( data.get("Card_Name"));
 						shippingOptionsCarrierSelection();
 						billingAddressContinueButton();
+						if(isVisibleOnly(CARD_NUMBER_TEXTBX, "card Number text box")) {
+							selectPaymentInfoMethodCreditCard(data.get("cardNumber").toString(), data.get("cardName"), data.get("month"), data.get("year"),data.get("poNumebr"),data.get("POReleaseNumber"));
+						}
 						
 						taxDeclerationCheckBoxOFF();
 						clickOnReviewOrderButton();

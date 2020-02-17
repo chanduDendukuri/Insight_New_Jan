@@ -1,7 +1,9 @@
 package com.insight.Lib;
 
 import java.io.File;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.apache.poi.ss.usermodel.Workbook;
@@ -879,7 +881,14 @@ public class SLPLib extends SLPObj {
 		 * @throws Throwable
 		 */
 		public void verifyDateAppliedToAllPartAfterCopyAll(String actualDate,String expectedDate) throws Throwable {
-			if(actualDate.replaceFirst("0", "").equals(expectedDate)) {
+
+			char startingValue=actualDate.charAt(0);
+			if(startingValue=='0') {
+				actualDate=actualDate.replaceFirst("0", "");
+			}else {
+				// Do nothing
+			}
+			if(actualDate.equals(expectedDate)) {
 				reporter.SuccessReport("Verify date is copied to all parts", "Deploy date updted  ", "Deploy Date: "+actualDate);
 			}else {
 				reporter.failureReport("Verify date is copied to all parts", "Date is not copied to all parts", "", driver);

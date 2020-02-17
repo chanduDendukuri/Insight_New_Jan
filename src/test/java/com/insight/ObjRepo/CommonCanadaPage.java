@@ -73,7 +73,7 @@ public static By searchByProductByCategory=By.xpath("//*[@id='js-custom-search-f
 public static By lblTopBrands=By.xpath("//*[contains(text(),'Top brands')]");
 public static By btnAddToCartIst = By.xpath("//*[@class='cart-wrapper show-for-medium-up js-add-to-cart-container']//*[text()='Add to Cart']");
 public static By txtQuantityValue = By.xpath("//*[@class='cart-wrapper show-for-medium-up js-add-to-cart-container']//*[contains(@id,'qty')]");
-    public static By PaymentTypedpdn = By.xpath("//select[@id='insightPaymentcardType'] | //select[@id='cardTypeSelect'] | //div[@id='cardType']");
+    public static By PaymentTypedpdn = By.xpath("//select[@id='insightPaymentcardType'] | //select[@id='cardTypeSelect'] | //div[@id='cardType'] ");
     public static By PaymentTypedpdnOptions = By.xpath("//select[@id='insightPaymentcardType']/option | //select[@id='cardTypeSelect']/option");
     public static By BreadCrumbdynamic = By.xpath("//*[@class='filter-item js-filter-item']//a | //*[contains(@class,'filter-item js-filter-item')]//a");
     public static By printLinkiCon=By.xpath("//*[@class='icon print has-tip tip-top']");
@@ -83,7 +83,7 @@ public static By txtQuantityValue = By.xpath("//*[@class='cart-wrapper show-for-
     public static By lblProductDescription = By.xpath("//*[@class='cart__item-heading']");
     public static By CART_PROD_DESC_RECENTLYADDEDTEM_loop=By.xpath("//div[@class='columns flex-child-auto cart__table-col--desc text-left']/a/h4");
     public static By AllContractDetails=By.xpath("//div[@class='large-12 columns js-modal-pick-contract']//label");
-
+    public static By newURLHeader=By.xpath("//*[@class='ips-contract-heading']");
 
 
 

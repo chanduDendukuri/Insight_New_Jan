@@ -735,7 +735,7 @@ for(int i=1;i<=count;i++) {
 
 	public void ClickRequestorGrpLink() throws Throwable {
 		if (isElementPresent(REQUESTOR_GRP_LINK, "Requestor Group Link")) {
-			click(REQUESTOR_GRP_LINK, "Click Approval Path Link");
+			click(REQUESTOR_GRP_LINK, "Click Requestor Group Link");
 			reporter.SuccessReport("Approval Management Reports Page", "Requestor Group Link Exists and Clicked", "");
 		} else {
 			reporter.failureReport("Approval Management Reports Page", "Requestor Group Link Does Not Exist", "");
@@ -778,21 +778,20 @@ public String GetNameOfLastRequestor() throws Throwable {
 	return text;
 }
 public String VerifyRequestorResults(String requestor) throws Throwable {
-	List<WebElement> elem = driver.findElements(NumberOfrequestors);
+	List<WebElement> elem = driver.findElements(By.xpath("//table[@id='reqGrpUserReport']//td[1]"));
 	int count = elem.size();
 	String text ="";
 	if(count>0) {
-		for (WebElement webElement : elem) {
-			text = webElement.getText();
-			if(text.contains(requestor)) {
+		for (int i=0;i<count;i++) {
+			text =elem.get(i).getText();
+			String test = text.replace(" ", "");
+			if(test.contains(requestor)) {
 				reporter.SuccessReport("Requestor", "Requestor displaying in the results", text, driver);
 				break;
 			}
-			else {
-				reporter.failureReport(" Requestor", "Requestors not displaying in the results", "", driver);
-			}
+			
 		}
-		 
+		
 		
 	}
 	else {
@@ -1653,9 +1652,9 @@ public void clickOnApprovalManagementTabs(String requestorTab)throws Throwable {
 	click(ApprovalManagementTabs(requestorTab), "Clicked on "+requestorTab+" Tab");
 }
 	public void ClickReqGroupEditLinkButton(String reqGroupName) throws Throwable {
-		if (isElementPresent(RequestorGroupEditLink(reqGroupName), "Approval management page ")) {
-			click(RequestorGroupEditLink(reqGroupName), "Approval management page");
-			reporter.SuccessReport("Click Requestor Group Edit", "Requestor Group Edit Link Exists and Clicked", "");
+		if (isElementClickable(RequestorGroupEditLink(reqGroupName),3, "Requestor Group Edit Link Exists")) {
+			//click(RequestorGroupEditLink(reqGroupName), "Approval management page");
+			reporter.SuccessReport("Click Requestor Group Edit", "Requestor Group Edit Link Exists and Clicked", reqGroupName);
 		} else {
 			reporter.failureReport("Click Requestor Group Edit", "Requestor Group Edit  Link Does Not Exist", "");
 		}
@@ -1680,10 +1679,10 @@ public void clickOnApprovalManagementTabs(String requestorTab)throws Throwable {
 public void GetNumberOfRequestorsOnLeftSide() throws Throwable {
 	List<WebElement> elem = driver.findElements(RequestorsOnLeftSide);
 	if(elem.size()>0) {
-		reporter.SuccessReport("Requestors on Right side", "Requestors are displayed on right side", String.valueOf(elem.size()), driver);
+		reporter.SuccessReport("Requestors on Right side", "Requestors are displayed on Left side", String.valueOf(elem.size()), driver);
 	}
 	else {
-		reporter.failureReport("Requestors on Right side", "Requestors are not displayed on right side", "", driver);
+		reporter.failureReport("Requestors on Right side", "Requestors are not displayed on Left side", "", driver);
 	}
 }
 public int GetNumberOfRequestorsOnRightSide() throws Throwable {
@@ -1704,7 +1703,7 @@ public int GetNumberOfRequestorsOnRightSide() throws Throwable {
 			// select Requestor id value
 			
 for(int i=1;i<=count;i++) {
-	ClickRefreshIcon();
+	driver.findElement(REFRESH_ICON).click();
 	WebElement elm = driver.findElement(createRequestorType);
 	List<WebElement> elem = elm.findElements(By.tagName("option"));
 		elem.get(i).click();
@@ -1973,7 +1972,7 @@ public void SelectRequestorFromRightToLeft(String requestor,int count) throws Th
 
 	public void VerifyPageCountInApprovalmgmt() throws Throwable {
 
-		if (isElementPresent(GET_SELECTED_COUNTinApprMgmt, "Page count")) {
+		if (isVisibleOnly(GET_SELECTED_COUNTinApprMgmt, "")) {
 			String pageCount = getSelectedDropdownOption(GET_SELECTED_COUNTinApprMgmt);
 			if (pageCount.equals("50")) {
 				reporter.SuccessReport("Approval Management Reports Page", "Paging Count is Verified", pageCount);
@@ -2029,7 +2028,7 @@ public void SelectRequestorFromRightToLeft(String requestor,int count) throws Th
 			// scrollUp();
 			click(TU_IUS_Tired_Requestor_Group_Link(requestor), "Click Requestor Group Name");
 			reporter.SuccessReport("Approval Management Create/Edit Requestor Group",
-					"TU_IUS Requestor Group Tiered Link Exists and Clicked", "TU_IUS_Tired_Requestor_Group_Link");
+					"TU_IUS Requestor Group Tiered Link Exists and Clicked", requestor);
 		} else {
 			reporter.failureReport("Approval Management Create/Edit Requestor Group",
 					"TU_IUS Requestor Group Tiered Link Does Not Exist", "");
@@ -2054,7 +2053,7 @@ public void Readdatfromexcel(String filePath) throws Throwable {
 	System.out.println("Username " +Username);
 if(Username.contains("User Name")&& GroupName.contains("Approval Group Name")) {
 
-	reporter.SuccessReport("Excel details", "Excecl data contents are verified", "", driver);
+	reporter.SuccessReport("Excel details", "Excecl data contents are verified", "column1:"+Username+",column2:"+GroupName, driver);
 }
 else {
 	reporter.failureReport("Excel details", "Excecl data contents are not verified", "", driver);
@@ -2100,7 +2099,7 @@ public void ClickonEditlinkofRequestorGroMgmt(String requestor) throws Throwable
 	public void Verify_Create_Edit_Requestor_GroupPage() throws Throwable {
 		if (isElementPresent(REQ_SAVE_CHANGES_BTN, "Create/Edit Requestor Group Page")) {
 			reporter.SuccessReport("Approval Management Create/Edit Requestor Group",
-					"Create/Edit Requestor Group Page Exists", "");
+					"landed in Create/Edit Requestor Group Page", "");
 		} else {
 			reporter.failureReport("Approval Management Create/Edit Requestor Group",
 					"Create/Edit Requestor Group Page Does Not Exist", "");
@@ -2170,42 +2169,84 @@ public void ClickOnBackToRefreshIcon() throws Throwable {
 	 * @throws Throwable
 	 */
 
-	public void PreviousdatePicker(int months, String strCurrDay,String datetype) throws Throwable {
-		DateFormat dateFormat = new SimpleDateFormat("dd-mmmm-yyyy");
-		Date currentDate = new Date();
-		String day = strCurrDay.split("-")[0];
-		String month = strCurrDay.split("-")[1];
-		String year = strCurrDay.split("-")[2];
+	public void PreviousdatePicker(int daystoupdate,String datetype) throws Throwable {
+		DateFormat dateFormat = new SimpleDateFormat("dd MMM yyyy");
+		
+		/*
+		 * Date currentDate = new Date(); String day = strCurrDay.split("-")[0]; String
+		 * month = strCurrDay.split("-")[1]; String year = strCurrDay.split("-")[2];
+		 */
 		String MonthandYear ="";
 		Calendar c = Calendar.getInstance();
-        c.setTime(currentDate);
-
-       
-        c.add(Calendar.DATE,-380);
-        Date currentDatePlusOne = c.getTime();
-        System.out.println(dateFormat.format(currentDatePlusOne));
+        
+        Date date = Calendar.getInstance().getTime();
+        String today = dateFormat.format(date);
+        today = dateFormat.format(date);
+        System.out.println("Today : " + today);
+        
+        
+        c.add(Calendar.DAY_OF_MONTH,daystoupdate);
+        Date DateAfterAddingdays = c.getTime();
+        System.out.println(dateFormat.format(DateAfterAddingdays));
+        String strCurrDay1 = dateFormat.format(DateAfterAddingdays);
+        String day = strCurrDay1.split(" ")[0];
+		String month = strCurrDay1.split(" ")[1];
+		String year = strCurrDay1.split(" ")[2];
 		if(datetype.equals("FromDate")) {
 			click(StartDateCALENDAR, "Click on calendar");
+			String MonthandYearBeforeUpdating = driver.findElement(Monthandyearoffromdate).getText();
+			String dayBeforeUpdating = driver.findElement(By.xpath("//a[@class='ui-state-default ui-state-active']")).getText();
+			reporter.SuccessReport("From Date", "From Date before updating", dayBeforeUpdating+" "+MonthandYearBeforeUpdating, driver);
 			}
 			else {
-				click(EndDateCALENDAR, "Click on calendar");
+			click(EndDateCALENDAR, "Click on calendar");
 			}
+		
 		if (isElementPresent(PREV_MONTH_ARROW, "Previous month")) {
-			for (int i = 0; i <= months; i++) {
+			
+			for (int i = 0; i <= 50; i++) {
+				MonthandYear= driver.findElement(Monthandyearoffromdate).getText();
+				if(MonthandYear.contains(month)&& MonthandYear.contains(year)) {
+				click(dayInStartDayCalender(day), "From date after updating: "+day+" "+MonthandYear);
+				break;
+				}
+				else {
 				driver.findElement(PREV_MONTH_ARROW).click();
-				
+				}
 			}
-			MonthandYear = getText(Monthandyearoffromdate, "MonthandYear");
-			// Select Day
-			if (isElementPresent(dayInStartDayCalender(day), "From Date ")) {
-				click(dayInStartDayCalender(day), day+" "+MonthandYear);
-			}
-
+			
+			
 			reporter.SuccessReport("Change Month on Approval Management Page Approver Out of Office Settings",
-					"Arrow Button Exists and Clicked to Change the Month", month+"-"+day);
+					"Arrow Button Exists and Clicked to Change the Month", "");
 		} else {
 			reporter.failureReport("Change Month on Approval Management Page Approver Out of Office Settings",
 					"Arrow Button Does Not Exist", "");
+		}
+	}
+	public void VerifyRequestors() throws Throwable {
+		WebElement elem = driver.findElement(By.id("RSRResultTable"));
+		List<WebElement> elm = elem.findElements(By.tagName("tr"));
+		int count =0;
+		for (int i=1;i<=elm.size();i++) {
+			List<WebElement> elem1 = elm.get(i).findElements(By.tagName("td"));
+			//for (WebElement webElement2 : elem1) {
+			for(int j=1;j<=elem1.size();j++) {
+				//String text = elem1.get(j).getText();
+				String RequestedDate = elem1.get(0).getText();
+				String OrderOrDeniedDate = elem1.get(1).getText();
+				String Requestor = elem1.get(2).getText();
+				String RequestorGroup = elem1.get(3).getText();
+				String Approver = elem1.get(4).getText();
+				String DaysOpen = elem1.get(5).getText();
+				String ReferenceNo = elem1.get(6).getText();
+				String Status = elem1.get(7).getText();
+				String OrderNo = elem1.get(8).getText();
+				reporter.SuccessReport("Results:", "Request Date For all Records is Exists", "RequestedDate:"+RequestedDate+",OrderOrDeniedDate:"+OrderOrDeniedDate+",Requestor:"+Requestor+",RequestorGroup:"+RequestorGroup+",Approver:"+Approver+",DaysOpen:"+DaysOpen+",ReferenceNo:"+ReferenceNo+",Status:"+Status+",OrderNo:"+OrderNo, driver);
+			break;
+			}
+			count++;
+			if(count ==5)
+				break;
 		}
 	}
 	public void NextdatePicker(int months, String strCurrDay,String datetype) throws Throwable {
@@ -2246,7 +2287,7 @@ public void ClickOnBackToRefreshIcon() throws Throwable {
 		click(StartDateCALENDAR, "Click on calendar");
 		}
 		else {
-			click(EndDateCALENDAR, "Click on calendar");
+			click(EndDateCALENDAR, "Click on To date calendar");
 		}
 for(int i=0;i<=11;i++) {
 	if(getText(MonthSelection, "Month Name").contains(month)) {
@@ -2256,8 +2297,9 @@ for(int i=0;i<=11;i++) {
 		click(NEXT_MONTH_ARROW, "Next Month");
 	}
 }
-	if (isElementPresent(dayInStartDayCalender(day), "From Date ")) {
-		click(dayInStartDayCalender(day), "Day: "+day);
+	if (isElementPresent(dayInStartDayCalender(day), "To Date ")) {
+		String MonthandYear= driver.findElement(Monthandyearoffromdate).getText();
+		click(dayInStartDayCalender(day), "Currentdate: "+day+" "+MonthandYear);
 	}
 }
 		
@@ -2286,7 +2328,7 @@ for(int i=0;i<=11;i++) {
 		driver.switchTo().alert().accept();
 		if (expectedtext.equalsIgnoreCase(actualtext)) {
 			reporter.SuccessReport("Approval Management Requisition Status Reports Page",
-					"Report cannot be retrieved for more than one year", "");
+					"Report cannot be retrieved for more than one year", expectedtext);
 		} else {
 			reporter.failureReport("Approval Management Requisition Status Reports Page",
 					"Report cannot be retrieved for more than one year does not exist", "", driver);

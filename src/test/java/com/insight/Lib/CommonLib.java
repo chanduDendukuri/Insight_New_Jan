@@ -244,8 +244,7 @@ public class CommonLib extends ActionEngine{
 		 *  
 		 *  @author : Cigniti
 		 */
-		public void addToCartAndVerify() throws Throwable
-		{	
+		public void addToCartAndVerify() throws Throwable{	
 			Thread.sleep(5000);
 			scrollBottom();
 			scrollToBottomWithCordinate("300");

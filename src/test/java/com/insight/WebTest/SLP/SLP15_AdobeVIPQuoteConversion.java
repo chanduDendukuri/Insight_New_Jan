@@ -202,7 +202,6 @@ public class SLP15_AdobeVIPQuoteConversion extends SLPLib{
 						gTestStatus = false;
 						throw new RuntimeException(e);
 					}
-					
 				}
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -217,7 +216,7 @@ public class SLP15_AdobeVIPQuoteConversion extends SLPLib{
 	        	ReportStatus.fnUpdateResultStatus("AdobeVIPQuoteConversion", "SLP15", ReportStatus.strMethodName, counter, browser);
 				fnCloseTest();
 				ReportControl.fnNextTestJoin(nextTestJoin);
-			}
+			  }
 			}
 	}
 		
