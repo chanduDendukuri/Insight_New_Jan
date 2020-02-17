@@ -124,7 +124,7 @@ public class OrderObj extends ActionEngine{
 	public static By PLACE_ORDER_BTN=By.xpath("//section[@class='cart cart']/following::div[@class='cart-summary-container']//button[contains(text(),'Place order')]");
 	public static By SUMMARY_TOTAL_AMOUNT=By.xpath("//section/following::div[@class='row is-collapse-child cart-summary__total']//span[@class='iw-currency__amount']");
 	public static By DEFAULT_TAX_AMOUNT=By.xpath("//section/following::div[@class='row is-collapse-child cart-summary__tax']//span[@class='iw-currency__amount']");
-	public static By ADDLICENCE_TAX_AMOUNT=By.xpath("//section/following::div[@class='row is-collapse-child cart-summary__tax']//span[@class='iw-currency__amount']");
+	public static By ADDLICENCE_TAX_AMOUNT=By.xpath("(//section/following::div[@class='row is-collapse-child cart-summary__tax']//span[@class='iw-currency__amount'])[2]");
 	public static By EWR_FEE_AMOUNT=By.xpath("//section/following::div[@class='row is-collapse-child cart-summary__ewr']//span[@class='iw-currency__amount']");
 	
 	// Recipt
