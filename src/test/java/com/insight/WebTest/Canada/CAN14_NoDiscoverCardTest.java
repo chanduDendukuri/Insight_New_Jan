@@ -13,16 +13,8 @@ import com.insight.utilities.TestUtil;
 
 public class CAN14_NoDiscoverCardTest extends CanadaLib {
 
-    CMTLib cmtLib = new CMTLib();
-    CommonLib commonLib = new CommonLib();
-    CartLib cartLib = new CartLib();
     SearchLib searchLib = new SearchLib();
-    ProductDetailLib prodDetailsLib = new ProductDetailLib();
-    OrderLib orderLib = new OrderLib();
-    ProductDisplayInfoLib pipLib = new ProductDisplayInfoLib();
-    SewpLib sewpLib = new SewpLib();
     ShipBillPayLib shipbLib = new ShipBillPayLib();
-    MarriottIntlCorpLib mic = new MarriottIntlCorpLib();
     CommonCanadaLib ccp = new CommonCanadaLib();
 
     // #############################################################################################################
@@ -64,7 +56,7 @@ public class CAN14_NoDiscoverCardTest extends CanadaLib {
                     canadaLib.CandaHomePageVerification();
                     cmtLib.loginAsEndUser(data.get("EndUSER"), data.get("Password"));
                     Thread.sleep(9000);
-//Canada verification
+                    //Canada verification
 
                    // shipbLib.verifyWEbsiteIsCannada();
                     ccp.verifyCompanyLogosAvailability();
@@ -80,9 +72,7 @@ public class CAN14_NoDiscoverCardTest extends CanadaLib {
                     clickOnEnterNewCard();
                     clickOnCancelButton();
                     scrollToBottomWithCordinate("-100");
-                    //canadaLib.clickOnSideMenuSelectAccountToolOptions("Orders","My Requisition History" );
-                    commonLib.clickOnAccountToolsAndClickOnProductGrp("Orders", "My Requisition History");
-                    //canadaLib.clickOnSideMenuSelectAccountToolOptions(data.get("Tools_Menu1"),data.get("Tools_Menu_DD1"));
+                    canadaLib.clickOnSideMenuSelectAccountToolOptions(data.get("Tools_Menu1"),data.get("Tools_Menu_DD1"));
                     req.clickExpandSearchIcon();
 
                     selectStartDateFromCal("1 December 2018");
@@ -134,10 +124,10 @@ public class CAN14_NoDiscoverCardTest extends CanadaLib {
                     orderLib.billingAddressContinueButton();
                     //orderLib.termsInPaymentInfo(data.get("PONumber"), data.get("POReleaseNumber"));
                     //orderLib.termsInPaymentInfo("7989517711", "8886366331");
-					/*	orderLib.selectPaymentInfoMethodCreditCard(data.get("cardNumber"), data.get("cardName"), data.get("month"),
-								data.get("year"),data.get("PO_Number"),data.get("POReleaseNumber"));*/
-                    orderLib.selectPaymentInfoMethodCreditCard("6011111111111117", "Chandu Dendukuri", "12",
-                            "2020", "01919", "123");
+					orderLib.selectPaymentInfoMethodCreditCard(data.get("cardNumber"), data.get("cardName"), data.get("month"),
+								data.get("year"),data.get("PO_Number"),data.get("POReleaseNumber"));
+                   /* orderLib.selectPaymentInfoMethodCreditCard("6011111111111117", "Chandu Dendukuri", "12",
+                            "2020", "01919", "123");*/
                     orderLib.getNoCardErrorMessage();
 
                     //mic.SwitchWebGroup(data.get("webGroup"));
@@ -161,22 +151,21 @@ scrollToBottomWithCordinate("200");
 //verification disco();
                        ccp.getListOfCardTypes();
                        scrollToBottomWithCordinate("-500");
-                    ccp.clickOnAccountToolsAndClickOnProductGrp("My Company");
-                   // ccp.clickOnAccountToolsAndClickOnProductGrp(data.get("Tools_Menu1"));
+                    //ccp.clickOnAccountToolsAndClickOnProductGrp("My Company");
+                    ccp.clickOnAccountToolsAndClickOnProductGrp(data.get("Tools_Men2"));
                     cmtLib.handlebetaPopup();
-                    commonLib.clickOnAccountToolsAndClickOnProductGrp("Orders", "My Requisition History");
+                    canadaLib.clickOnSideMenuSelectAccountToolOptions(data.get("Tools_Menu1"),data.get("Tools_Menu_DD1"));
+                    //commonLib.clickOnAccountToolsAndClickOnProductGrp("Orders", "My Requisition History");
                     cmtLib.handlebetaPopup();
-                    commonLib.searchProduct("HP Workstations");
+                    commonLib.searchProduct(data.get("Search_Item"));
                     //searchLib.verifyTheResultsForSearchTerm(data.get("Search_Item"));
-                    searchLib.verifyTheResultsForSearchTerm("HP Workstations");
+                    searchLib.verifyTheResultsForSearchTerm(data.get("Search_Item"));
                     searchLib.removeTheFilterForInStockOnly("filter");
                     prodinfo.getPartNumberInSearchResultsPage();
                     commonLib.addFirstDisplyedItemToCartAndVerify();
 
                     String partNumber2 = cartLib.getPartNumber();
                     System.out.println("partNumber1" + partNumber2);
-//						//commonLib.continueToShopping();
-//						commonLib.clickCart();
                     canadaLib.continueToCheckout();
                     cartLib.verifyCartPageAvailablity();
                     prodinfo.verifyCartPageAndPartDetails();
@@ -189,14 +178,16 @@ scrollToBottomWithCordinate("200");
                     orderLib.shippingOptionsCarrierSelection();
                     // Click continue on shipping options
                     orderLib.billingAddressContinueButton();
-                    orderLib.selectPaymentInfoMethodCreditCard("6011111111111117", "Chandu Dendukuri", "12",
-                            "2020", "01919", "123");
+                    orderLib.selectPaymentInfoMethodCreditCard(data.get("cardNumber"), data.get("cardName"), data.get("month"),
+                            data.get("year"),data.get("PO_Number"),data.get("POReleaseNumber"));
+                    /*orderLib.selectPaymentInfoMethodCreditCard("6011111111111117", "Chandu Dendukuri", "12",
+                            "2020", "01919", "123");*/
                     orderLib.clickOnReviewOrderButton();
                     assertTrue(ccp.verifyPlaceOrderHeader(),"Place order header is visible");
                     assertTrue(ccp.verifyDiscoveryCardAvailability(),"Available Credit card name " + ccp.getDiscoveryCardInformation()) ;
 
-//verify place order
-//Discovery card availability nneeds to be verifed in shipbill page
+                    //verify place order
+                    //Discovery card availability nneeds to be verifed in shipbill page
 
                     commonLib.clickLogOutLink(data.get("Logout_Header"));
                     System.out.println("Test completed");

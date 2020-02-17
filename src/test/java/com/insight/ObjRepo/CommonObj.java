@@ -10,7 +10,8 @@ public class CommonObj extends ActionEngine{
     public static By SEARCH=By.xpath("//input[@class='c-input  c-header-search__input']");
     public static By RESULT_FOR_SEARCH=By.xpath("//div//a[@class='button call-to-action']");
     public static By SEARCH_SUGGESSIONS=By.xpath("//div[@class='c-header-search-suggestions  is-visible']//ul//li");
-    public static By COMPARE_LIST_ITEMS=By.xpath("//a[2][contains(.,'Compare Your List')]//span[@class='js-compare-list-count']");
+    public static By COMPARE_LIST_ITEMS=By.xpath("//a[2][contains(.,'Compare Your List') or contains(.,'Comparer votre liste')]//span[@class='js-compare-list-count']");
+
     public static By FRENCH_COMPARE_LIST_ITEMS=By.xpath("//a[2][contains(.,'Comparer votre liste')]//span[@class='js-compare-list-count']");
 
     public static By getPrimaryNavLink(String header){
