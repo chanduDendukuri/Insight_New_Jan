@@ -670,9 +670,11 @@ public class LineLevelInfoLib extends LineLevelInfoObj{
 	 * @throws Throwable
 	 */
 	public void clickOnSplitIntoIndividualLines() throws Throwable{
-		if(isElementPresent(SPLIT_INTO_INDIVIDUAL_LINES_LINK,"Split into lines link") || isElementPresent(SPLIT_INTO_INDIVIDUAL_BUNDLES_LINK,"Split into lines link")){
+		if(isElementPresent(SPLIT_INTO_INDIVIDUAL_LINES_LINK,"Split into lines link")){
 			clickUntil(SPLIT_INTO_INDIVIDUAL_LINES_LINK, CommonObj.SPINNER_IMAGE, "Split into individual lines link");
-		}else{
+		}else if(isElementPresent(SPLIT_INTO_INDIVIDUAL_BUNDLES_LINK,"Split into lines link")){
+			clickUntil(SPLIT_INTO_INDIVIDUAL_BUNDLES_LINK, CommonObj.SPINNER_IMAGE, "Split into individual lines link");
+		}else {
 			reporter.failureReport("Verify Split into link exists", "Split into link does not exists", "", driver);
 		}
 	}
