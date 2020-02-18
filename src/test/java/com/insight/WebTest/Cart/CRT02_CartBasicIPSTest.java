@@ -78,7 +78,7 @@ public class CRT02_CartBasicIPSTest extends CartLib{
 
 					cmtLib.navigateBackToCMT();
 					cmtLib.setPermissions(data.get("Menu_Name"),data.get("User_Permission"));
-					cmtLib.permissionFromDD(data.get("User_Permission"), data.get("Permission_Dropdown_Option"));
+					//cmtLib.permissionFromDD(data.get("User_Permission"), data.get("Permission_Dropdown_Option"));
 
 					cmtLib.clickOnloginAs();
 					switchToChildWindow();
