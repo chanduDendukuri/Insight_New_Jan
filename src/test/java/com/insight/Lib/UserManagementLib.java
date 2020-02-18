@@ -83,7 +83,7 @@ public class UserManagementLib extends UserManagementObj {
 		if (isElementPresent(getEmailUser(userId), "Email User")) {					
 			reporter.SuccessReport("Verify that user matching the UserId are returned", "User matching the UserId returned - "+userId+"", "");
 		} else {
-			reporter.failureReport("Verify that user matching the UserId are returned", "User matching the UserId is not returned ", "");
+			reporter.failureReport("Verify that user matching the UserId are returned", "User matching the UserId is not returned ", "",driver);
 		} 
 		}
 	
@@ -96,7 +96,7 @@ public class UserManagementLib extends UserManagementObj {
 			click(EXPORT, "Exprt To Excel ");
 			reporter.SuccessReport("Click on Export To Excel button on User Management Page", "Export To Excel button was  found and clicked ", "");
 		} else {
-			reporter.failureReport("Click on Export To Excel button on User Management Page", "Export To Excel button was not found ", "");
+			reporter.failureReport("Click on Export To Excel button on User Management Page", "Export To Excel button was not found ", "",driver);
 		} 
 		}
 	
@@ -177,7 +177,7 @@ public class UserManagementLib extends UserManagementObj {
 		reporter.SuccessReport("Click on page "+pageNo+"to verify results", "Page  "+pageNo+" results displayed",pageNo);
 	}
 		else{
-		reporter.failureReport("Click on page 3 to verify results", "No Pagination","");
+		reporter.failureReport("Click on page 3 to verify results", "No Pagination","",driver);
 	}
 }
 	
@@ -194,7 +194,7 @@ public class UserManagementLib extends UserManagementObj {
 	    cmtLib.searchUsers("");
 		reporter.SuccessReport("Only "+userType+" users are returned in First Page", "Only "+userType+" and "+userStatus+" users are there","");
 		} else {
-			reporter.failureReport("Only "+userType+" users are returned in First Page", "Only "+userType+" and "+userStatus+"  users are not there","");
+			reporter.failureReport("Only "+userType+" users are returned in First Page", "Only "+userType+" and "+userStatus+"  users are not there","",driver);
 		}	
 			}
 	
@@ -208,7 +208,7 @@ public class UserManagementLib extends UserManagementObj {
 	    cmtLib.searchUsers("");
 			reporter.SuccessReport("Only "+userType+" users are returned in First Page", "Only "+userType+" users are there","");
 		} else {
-			reporter.failureReport("Only "+userType+" users are returned in First Page", "Only "+userType+" users are not there","");
+			reporter.failureReport("Only "+userType+" users are returned in First Page", "Only "+userType+" users are not there","",driver);
 		}	
 			}
 	
@@ -223,7 +223,7 @@ public class UserManagementLib extends UserManagementObj {
 	    cmtLib.searchUsers("");
 			reporter.SuccessReport("Only "+webGroup+" users are returned in First Page", "Only "+webGroup+" users are there","");
 		} else {
-			reporter.failureReport("Only "+webGroup+" users are returned in First Page", "Only "+webGroup+" users are not there","");
+			reporter.failureReport("Only "+webGroup+" users are returned in First Page", "Only "+webGroup+" users are not there","",driver);
 		}	
 			}
 	
@@ -235,7 +235,7 @@ public class UserManagementLib extends UserManagementObj {
 		if (isVisibleOnly(HEADER_LOGO, "WelcomePage")) {	
 			reporter.SuccessReport("Shared User WelCome Page", "Welcome Home Page exists","");
 		} else {
-			reporter.failureReport("Shared User WelCome Page", "WelCome Page does not exist","");
+			reporter.failureReport("Shared User WelCome Page", "WelCome Page does not exist","",driver);
 		}	
 			}
 	
@@ -244,7 +244,7 @@ public class UserManagementLib extends UserManagementObj {
 			String Error=getText(Error_MSG,"Error Msg");
 			reporter.SuccessReport("Verify Error Msg::", "Error Message exists",Error);
 		} else {
-			reporter.failureReport("Verify Error Msg::", "Error Message does not exist","");
+			reporter.failureReport("Verify Error Msg::", "Error Message does not exist","",driver);
 		}	
 			}
 	public void verifyUserPermissionInvoice_DD() throws Throwable {
@@ -267,7 +267,7 @@ public class UserManagementLib extends UserManagementObj {
 		reporter.SuccessReport("Verify Error Msg", "Error Message Exists", getText(FERROR_MSG,"Error Msg"));
 		}
 		else {
-			reporter.failureReport("Verify Error Msg", "Error Message Not Exists", getText(FERROR_MSG,"Error Msg"));
+			reporter.failureReport("Verify Error Msg", "Error Message Not Exists", getText(FERROR_MSG,"Error Msg"),driver);
 	
 		}
 	}
@@ -277,7 +277,7 @@ public class UserManagementLib extends UserManagementObj {
 		reporter.SuccessReport("Verify Error Msg", "Error Message Exists", getText(LERROR_MSG,"Error Msg"));
 		}
 		else {
-			reporter.failureReport("Verify Error Msg", "Error Message Not Exists", getText(LERROR_MSG,"Error Msg"));
+			reporter.failureReport("Verify Error Msg", "Error Message Not Exists", getText(LERROR_MSG,"Error Msg"),driver);
 	
 		}
 	}
@@ -286,7 +286,7 @@ public class UserManagementLib extends UserManagementObj {
 		reporter.SuccessReport("Verify Error Msg", "Error Message Exists", getText(PhoneError_MSG,"Error Msg"));
 		}
 		else {
-			reporter.failureReport("Verify Error Msg", "Error Message Not Exists", getText(PhoneError_MSG,"Error Msg"));
+			reporter.failureReport("Verify Error Msg", "Error Message Not Exists", getText(PhoneError_MSG,"Error Msg"),driver);
 	
 		}
 	}
@@ -298,7 +298,7 @@ public class UserManagementLib extends UserManagementObj {
 		reporter.SuccessReport("Verify Default Linked to Account# in the Linked Accounts Tab on Manage Web groups: Create User Page", "Default Linked to Account# in Linked Accounts Tab", "Account#"+Account);
 		}
 		else {
-			reporter.failureReport("Verify Default Linked to Account# in the Linked Accounts Tab on Manage Web groups: Create User Page", "Default Linked to Account# in Linked Accounts Tab Not Exists", getText(LINKEDACCOUNTS_Defualtacc,"Defualt Account"));
+			reporter.failureReport("Verify Default Linked to Account# in the Linked Accounts Tab on Manage Web groups: Create User Page", "Default Linked to Account# in Linked Accounts Tab Not Exists", getText(LINKEDACCOUNTS_Defualtacc,"Defualt Account"),driver);
 		}
 		}else {
 			reporter.failureReport("Verify Default Linked to Account# in the Linked Accounts Tab on Manage Web groups: Create User Page", "Default Linked to Account# in Linked Accounts Tab Not Exists", getText(LINKEDACCOUNTS_Defualtacc,"Defualt Account"));
@@ -314,7 +314,7 @@ public class UserManagementLib extends UserManagementObj {
 		reporter.SuccessReport("Click on page "+pageNo+"to verify results", "Page  "+pageNo+" results displayed",pageNo);
 	}
 		else{
-		reporter.failureReport("Click on page 3 to verify results", "No Pagination","");
+		reporter.failureReport("Click on page 3 to verify results", "No Pagination","",driver);
 	}
 }
 	

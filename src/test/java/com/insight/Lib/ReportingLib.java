@@ -51,7 +51,7 @@ public class ReportingLib extends ReportsObj {
 		}
 		else {
 			reporter.failureReport("Verify  "+reportName+" is selected to Select DeliveryReport on Reports Page",
-					"Delivery Option are Not selected to "+reportName+"", "");
+					"Delivery Option are Not selected to "+reportName+"", "",driver);
 		}
 		}
 	
@@ -69,7 +69,7 @@ public class ReportingLib extends ReportsObj {
 		}
 		else {
 			reporter.failureReport("Enter Custom Name On the Invoiced orders Report Page",
-					"Custom Name Field Not Exists and Entered", "");
+					"Custom Name Field Not Exists and Entered", "",driver);
 		}
 
 	}
@@ -115,7 +115,7 @@ public class ReportingLib extends ReportsObj {
 		reporter.SuccessReport("Verify Schedule report Options on Report Page"," Schedule Report Options exist on Report Page", "");
 		}
 		else {
-			reporter.failureReport("Verify Schedule report Options on Report Page"," Schedule Report Options doesnot exist on Report Page", "");
+			reporter.failureReport("Verify Schedule report Options on Report Page"," Schedule Report Options doesnot exist on Report Page", "",driver);
 		}
 
 	}
@@ -134,7 +134,7 @@ public class ReportingLib extends ReportsObj {
 		reporter.SuccessReport("Verify Schedule report "+Options.get(i)+" Options on Report Page"," Schedule Report  "+Options.get(i)+" Options exist on Report Page", "");
 		}
 		else {
-			reporter.failureReport("Verify Schedule report Options"+Options.get(i)+" on Report Page"," Schedule Report Options doesnot exist on Report Page", "");
+			reporter.failureReport("Verify Schedule report Options"+Options.get(i)+" on Report Page"," Schedule Report Options doesnot exist on Report Page", "",driver);
 		}
 		}
 
@@ -152,7 +152,7 @@ public class ReportingLib extends ReportsObj {
 		reporter.SuccessReport("Verify Schedule report "+Options.get(i)+" Options on Report Page"," Schedule Report  "+Options.get(i)+" Options exist on Report Page", Options.get(i));
 		}
 		else {
-			reporter.failureReport("Verify Schedule report Options"+Options.get(i)+" on Report Page"," Schedule Report  "+Options.get(i)+" Options doesnot exist on Report Page", "");
+			reporter.failureReport("Verify Schedule report Options"+Options.get(i)+" on Report Page"," Schedule Report  "+Options.get(i)+" Options doesnot exist on Report Page", "",driver);
 		}
 		}
 
@@ -162,7 +162,7 @@ public void verifyScheduleReportOption(String Options) throws Throwable {
 		reporter.SuccessReport("Verify Schedule report "+Options+" Options on Report Page"," Schedule Report  "+Options+" Options exist on Report Page",Options);
 		}
 		else {
-			reporter.failureReport("Verify Schedule report Options"+Options+" on Report Page"," Schedule Report  "+Options+" Options doesnot exist on Report Page", "");
+			reporter.failureReport("Verify Schedule report Options"+Options+" on Report Page"," Schedule Report  "+Options+" Options doesnot exist on Report Page", "",driver);
 		}
 		}
 
@@ -181,7 +181,7 @@ public void verifyScheduleReportOption(String Options) throws Throwable {
 		reporter.SuccessReport("Verify Schedule report "+Options.get(i)+" Options on Report Page"," Schedule Report  "+Options.get(i)+" Options exist on Report Page", "");
 		}
 		else {
-			reporter.failureReport("Verify Schedule report Options"+Options.get(i)+" on Report Page"," Schedule Report  "+Options.get(i)+" Options doesnot exist on Report Page", "");
+			reporter.failureReport("Verify Schedule report Options"+Options.get(i)+" on Report Page"," Schedule Report  "+Options.get(i)+" Options doesnot exist on Report Page", "",driver);
 		}
 		}
 
@@ -200,7 +200,7 @@ public void verifyScheduleReportOption(String Options) throws Throwable {
 		reporter.SuccessReport("Verify Account Selections Default to  "+accountSelection+" Options on Report Page"," Account Selections Default to  "+accountSelection+" Options exist on Report Page", "");
 		}
 		else {
-			reporter.failureReport("Verify Account Selections Default to "+accountSelection+" on Report Page"," Account Selections Default to "+accountSelection+" Options doesnot exist on Report Page", "");
+			reporter.failureReport("Verify Account Selections Default to "+accountSelection+" on Report Page"," Account Selections Default to "+accountSelection+" Options doesnot exist on Report Page", "",driver);
 		}
 		}
 	
@@ -218,7 +218,7 @@ public void verifyScheduleReportOption(String Options) throws Throwable {
 		reporter.SuccessReport("Quick Date defaults to  "+currentDate+" Options on Report Page"," Quick Date defaults to  "+currentDate+"  exist on Report Page", "");
 		}
 		else {
-			reporter.failureReport("Quick Date defaults to "+currentDate+" on Report Page"," Quick Date defaults to  "+currentDate+" doesnot exist on Report Page", "");
+			reporter.failureReport("Quick Date defaults to "+currentDate+" on Report Page"," Quick Date defaults to  "+currentDate+" doesnot exist on Report Page", "",driver);
 		}
 		}
 	
@@ -236,7 +236,7 @@ public void verifyScheduleReportOption(String Options) throws Throwable {
 		reporter.SuccessReport("Click on Smart tracker "," Smart Traker checkbox exists and clicked", "");
 		}
 		else {
-			reporter.failureReport("Click on Smart tracker "," Smart Traker checkbox not exists ", "");
+			reporter.failureReport("Click on Smart tracker "," Smart Traker checkbox not exists ", "",driver);
 		}
 		}
 
@@ -270,7 +270,7 @@ public void verifyScheduleReportOption(String Options) throws Throwable {
 				if (downloadedExcelContent.equals(columnHeaders)) {
 					reporter.SuccessReport(columnHeaders, "are avilable", "");
 				} else {
-					reporter.failureReport(columnHeaders, "are not avilable", "");
+					reporter.failureReport(columnHeaders, "are not avilable", "",driver);
 				}
 			}
 			if(rowNumbers==2)
@@ -280,7 +280,7 @@ public void verifyScheduleReportOption(String Options) throws Throwable {
 				if (downloadedExcelContent.equals(excelActualData)) {
 					reporter.SuccessReport("Excel data are avilable", "","");
 				} else {
-					reporter.failureReport("Excel data are not avilable", "","");
+					reporter.failureReport("Excel data are not avilable", "","",driver);
 				}
 			}
 
@@ -306,7 +306,7 @@ public void verifyScheduleReportOption(String Options) throws Throwable {
 		}
 		else {
 			reporter.failureReport("Enter 2 Emails(1Valid and 1 Invalid) in Email Report  on Reports Page",
-					"Email Report Textbox Exists and Entered", "");
+					"Email Report Textbox Exists and Entered", "",driver);
 		}
 
 	}
@@ -331,7 +331,7 @@ public void verifyScheduleReportOption(String Options) throws Throwable {
 	}
 			else{
 				reporter.failureReport("Verify the Warrning Message on Reports Page",
-						"Warrning Message doesnot exists","");
+						"Warrning Message doesnot exists","",driver);
 			}
 		}	}
 	
@@ -351,7 +351,7 @@ public void verifyScheduleReportOption(String Options) throws Throwable {
 		}
 		else {
 			reporter.failureReport("Enter theTemplate Name on Reports Page",
-					"Template Name field doesnot exists and entered", "");
+					"Template Name field doesnot exists and entered", "",driver);
 			}
 		}
 
@@ -369,7 +369,7 @@ public void verifyScheduleReportOption(String Options) throws Throwable {
 		reporter.SuccessReport("Verify Schedule report "+Options+" Options on Report Page"," Schedule Report  "+Options+" Options exist on Report Page", "");
 		}
 		else {
-			reporter.failureReport("Verify Schedule report Options"+Options+" on Report Page"," Schedule Report Options doesnot exist on Report Page", "");
+			reporter.failureReport("Verify Schedule report Options"+Options+" on Report Page"," Schedule Report Options doesnot exist on Report Page", "",driver);
 		}
 		}
 
@@ -408,7 +408,7 @@ public void verifyScheduleReportOption(String Options) throws Throwable {
 		}
 		else {
 			reporter.failureReport("Report Templates on Reporting Management Page",
-					"Report Templates doesnot exists and selected", "");
+					"Report Templates doesnot exists and selected", "",driver);
 			}
 		}
 	
@@ -429,7 +429,7 @@ public void verifyScheduleReportOption(String Options) throws Throwable {
 		 }
 		 else{
 			 reporter.failureReport("Verify the Report Name on Reporting Management Page",
-						"Report Name exists", "");
+						"Report Name exists", "",driver);
 		 }
 		 if (isElementPresent(LAST_RUN_DATE,"Last run Dates", true)){
 			 SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy");
@@ -445,7 +445,7 @@ public void verifyScheduleReportOption(String Options) throws Throwable {
 		 }
 		 else{
 			 reporter.failureReport("Last Run Date in Report Templates on Reporting Management Page",
-						"Last Run Date doesnot exists with Not Today's Date", "");
+						"Last Run Date doesnot exists with Not Today's Date", "",driver);
 		 }
 		 
 		reporter.SuccessReport("Report Templates on Reporting Management Page",
@@ -454,7 +454,7 @@ public void verifyScheduleReportOption(String Options) throws Throwable {
 		}
 		else {
 			reporter.failureReport("Report Templates on Reporting Management Page",
-					"Report Templates exists and selected", "");
+					"Report Templates exists and selected", "",driver);
 		}
 		}
 	
@@ -472,7 +472,7 @@ public void verifyScheduleReportOption(String Options) throws Throwable {
 		}
 		else {
 			reporter.failureReport("Verify  Report Name: QTP_Test_InvTemp on Reporting Management Page",
-					"Report Name: QTP_Test_InvTemp not exists and Deleted", "");
+					"Report Name: QTP_Test_InvTemp not exists and Deleted", "",driver);
 			}
 		}
 
@@ -502,7 +502,7 @@ public void verifyScheduleReportOption(String Options) throws Throwable {
 		}
 		else {
 			reporter.failureReport("Verify Manufacturers Filter Default to ALL  on Reports Page",
-					"Manufacturers Filter Not Default to 'ALL'  on Reports Page", "");
+					"Manufacturers Filter Not Default to 'ALL'  on Reports Page", "",driver);
 			}
 		
 		
@@ -512,7 +512,7 @@ public void verifyScheduleReportOption(String Options) throws Throwable {
 	   }
 	 else {
 		reporter.failureReport("Verify Product type Filter Default to ALL  on Reports Page",
-				"Product types Filter Not Default to 'ALL'  on Reports Page", "");
+				"Product types Filter Not Default to 'ALL'  on Reports Page", "",driver);
 		}
 		
 	  if (isElementPresent(PROD_CAT, " Product Categories product ")){				
@@ -521,7 +521,7 @@ public void verifyScheduleReportOption(String Options) throws Throwable {
 	   }
 	 else {
 		reporter.failureReport("Verify Product Categories Filter Default to ALL  on Reports Page",
-				"Product Categories Filter Not Default to 'ALL'  on Reports Page", "");
+				"Product Categories Filter Not Default to 'ALL'  on Reports Page", "",driver);
 		}
 	  if (isElementPresent(PROD_SUB, " Product subCategories product ")){				
 		reporter.SuccessReport("Verify Manufacturers Filter Default to ALL  on Reports Page",
@@ -529,7 +529,7 @@ public void verifyScheduleReportOption(String Options) throws Throwable {
 	   }
 	 else {
 		reporter.failureReport("Verify Product SubCategories Filter Default to ALL  on Reports Page",
-				"Product SubCategories Filter Not Default to 'ALL'  on Reports Page", "");
+				"Product SubCategories Filter Not Default to 'ALL'  on Reports Page", "",driver);
 		}
 	}
 
@@ -553,7 +553,7 @@ public void verifyScheduleReportOption(String Options) throws Throwable {
 		    }
 		    else{
 		    	reporter.failureReport("Verify Include Insight Partner Data Checkbox Default to OFF on Reports Page",
-	    				"Include Insight Partner Data Checkbox is not  Default to OFF on Reports Page", "");
+	    				"Include Insight Partner Data Checkbox is not  Default to OFF on Reports Page", "",driver);
 		    }
 		}
 		else {
@@ -575,7 +575,7 @@ public void verifyScheduleReportOption(String Options) throws Throwable {
 		}
 		else {
 			reporter.failureReport("Verify  Hierarchy tree displays with a list of soldto's that are selected on Reports Page",
-					"soldto's are not selected", "");
+					"soldto's are not selected", "",driver);
 				}
 		}
 
@@ -693,7 +693,7 @@ public void verifyScheduleReportOption(String Options) throws Throwable {
 		}
 		else {
 			reporter.failureReport("Select Reporting Admin Login As Link from User Management Page",
-					"Reporting Admin Login As Link does not Exist", "");
+					"Reporting Admin Login As Link does not Exist", "",driver);
 		}
 		switchToChildWindow();
 		}
@@ -767,7 +767,7 @@ public void verifyScheduleReportOption(String Options) throws Throwable {
 			}
 			else {
 				reporter.failureReport("Select Insight Canada, Spain and United Kingdom in Select Regions List",
-						"Insight North America and Insight EMEA Items does not Exists and Selected", "");
+						"Insight North America and Insight EMEA Items does not Exists and Selected", "",driver);
 			}
 	}
 	
@@ -786,7 +786,7 @@ public void verifyScheduleReportOption(String Options) throws Throwable {
 		}
 		else {
 			reporter.failureReport("Select Reporting Admin Login As Link from User Management Page",
-					"Reporting Admin Login As Link does not Exist", "");
+					"Reporting Admin Login As Link does not Exist", "",driver);
 		}
 		}
 	/**
@@ -803,7 +803,7 @@ public void verifyScheduleReportOption(String Options) throws Throwable {
 		}
 		else {
 			reporter.failureReport("Hierarchy Tree on Reports Page",
-					"Hierarchy Tree but Exists and not  Selected", "");
+					"Hierarchy Tree but Exists and not  Selected", "",driver);
 		}
 		}
 	
@@ -850,7 +850,7 @@ public void grandParentCheckboxNotClicked()throws Throwable {
 		}
 		reporter.SuccessReport("Verify the all soldto's on Reports Page" ,"1st soldto and 2nd soldto under the current soldto is selected","No.of Slected soldtos"+total);	
 		}else {
-			reporter.failureReport("Verify the all soldto's on Reports Page" ,"1st soldto and 2nd soldto under the current soldto is Not selected", "");	
+			reporter.failureReport("Verify the all soldto's on Reports Page" ,"1st soldto and 2nd soldto under the current soldto is Not selected", "",driver);	
 		}
 
 		
@@ -967,7 +967,7 @@ public void grandParentCheckboxNotClicked()throws Throwable {
 			reporter.SuccessReport("Verify Schedule report "+Options.get(i)+" Options on Report Page"," Schedule Report  "+Options.get(i)+" Options exist on Report Page", Options.get(i));
 			}
 			else {
-				reporter.failureReport("Verify Schedule report Options"+Options.get(i)+" on Report Page"," Schedule Report  "+Options.get(i)+" Options doesnot exist on Report Page", "");
+				reporter.failureReport("Verify Schedule report Options"+Options.get(i)+" on Report Page"," Schedule Report  "+Options.get(i)+" Options doesnot exist on Report Page", "",driver);
 			}
 			}
 
@@ -982,7 +982,7 @@ public void grandParentCheckboxNotClicked()throws Throwable {
 					reporter.SuccessReport("Verify Select Report Options"," Select Report Options exist on Report Page", Options);
 				}
 			}else{
-				reporter.failureReport("Verify Select Report Options","Select Report Options doesnot exist on Report Page", "");
+				reporter.failureReport("Verify Select Report Options","Select Report Options doesnot exist on Report Page", "",driver);
 			}
 			}
 		

@@ -118,7 +118,7 @@ public class ProductDetailLib extends ProductDetailObj {
         } else {
             reporter.failureReport("Verify the part number",
                     "Part number verification is not successful. expected is : " + partNo + "Actual is : " + result,
-                    "");
+                    "",driver);
         }
 
     }
@@ -139,7 +139,7 @@ public class ProductDetailLib extends ProductDetailObj {
                     "Product is sucessfully deleted", partNo);
         } else {
             reporter.failureReport("Verifying Expected product should be deleted on Personal products List",
-                    "Product is not sucessfully deleted", partNo);
+                    "Product is not sucessfully deleted", partNo,driver);
         }
     }
 
@@ -170,7 +170,7 @@ public class ProductDetailLib extends ProductDetailObj {
         } else {
             reporter.failureReport("Verify the part number",
                     "Part number verification is not successful. expected is : " + partNo + "Actual is : " + result,
-                    "");
+                    "",driver);
         }
 
     }
@@ -190,7 +190,7 @@ public class ProductDetailLib extends ProductDetailObj {
         if (isElementPresent(COMPARE_PRODUCTS, "compare products")) {
             reporter.SuccessReport("Verify Compare products Page", "Product Compare List  Exists", "");
         } else {
-            reporter.failureReport("Verify Compare products Page", "Product Compare List  Exists", "");
+            reporter.failureReport("Verify Compare products Page", "Product Compare List  Exists", "",driver);
         }
     }
 
@@ -214,7 +214,7 @@ public class ProductDetailLib extends ProductDetailObj {
             reporter.SuccessReport("Recently viewed products", "Recently viewed products are Visible", "");
 
         } else {
-            reporter.failureReport("Recently viewed products", "Recently viewed products is Not Visible", "");
+            reporter.failureReport("Recently viewed products", "Recently viewed products is Not Visible", "",driver);
         }
     }
 
@@ -270,7 +270,7 @@ public class ProductDetailLib extends ProductDetailObj {
                 x.add(myList2.get(i).getText());
             } else {
                 reporter.failureReport("Recently viewd products Not Displayed ",
-                        "Recently viewd products Not Displayed", "");
+                        "Recently viewd products Not Displayed", "",driver);
             }
         }
         return x;
@@ -369,7 +369,7 @@ public class ProductDetailLib extends ProductDetailObj {
         if (isElementPresent(BREADCRUMB, "Bread Crumb")) {
             reporter.SuccessReport("Verify the navigation", "Sucessfully Navigated to : ", productName);
         } else {
-            reporter.failureReport("Verify the navigation", "Navigation is not Sucessfully : ", productName);
+            reporter.failureReport("Verify the navigation", "Navigation is not Sucessfully : ", productName,driver);
         }
     }
 
@@ -381,7 +381,7 @@ public class ProductDetailLib extends ProductDetailObj {
                 reporter.SuccessReport("Verify over view tab contents are getting Loaded", "Over View Tab Contents", "" + myList2.get(i).getText() + "");
             } else {
                 reporter.failureReport("over view tab contents Not Visible ", "over view tab contents Not Visible ",
-                        "");
+                        "",driver);
             }
 
         }
@@ -401,7 +401,7 @@ public class ProductDetailLib extends ProductDetailObj {
             if (myList2.get(i).isDisplayed()) {
                 reporter.SuccessReport("Product Details ::", "" + myList2.get(i).getText() + "", "");
             } else {
-                reporter.failureReport("Product Details Not Displayed ", "Product Details Not Displayed", "");
+                reporter.failureReport("Product Details Not Displayed ", "Product Details Not Displayed", "",driver);
             }
         }
     }
@@ -419,7 +419,7 @@ public class ProductDetailLib extends ProductDetailObj {
             reporter.SuccessReport("Add Accessroies", "Add Accessroies", "");
 
         } else {
-            reporter.failureReport("Add Accessroies", "Add Accessroies Not Visible", "");
+            reporter.failureReport("Add Accessroies", "Add Accessroies Not Visible", "",driver);
         }
         click(CartObj.CONTINUE_TO_SHOPPING, "Continue Shopping");
     }
@@ -437,7 +437,7 @@ public class ProductDetailLib extends ProductDetailObj {
             reporter.SuccessReport("Update Quantity", "Quantity is updated", "2");
 
         } else {
-            reporter.failureReport("Update Quantity", "Quantity is Not updated", "");
+            reporter.failureReport("Update Quantity", "Quantity is Not updated", "",driver);
         }
         click(CartObj.ADD_TO_CART_IN_PRODUCT_DISPLAY, "Add To Cart");
         click(CartObj.CONTINUE_TO_SHOPPING, "Continue shopping");
@@ -457,7 +457,7 @@ public class ProductDetailLib extends ProductDetailObj {
             if (isElementPresent(STOCK, "Stock")) {
                 reporter.SuccessReport("Verify the Stock/Availability on Search Results page", "Stock and Avaialbility exists ", "");
             } else {
-                reporter.failureReport("Verify the Stock/Availability on Search Results page", "Stock and Avaialbility does not exist  ", "");
+                reporter.failureReport("Verify the Stock/Availability on Search Results page", "Stock and Avaialbility does not exist  ", "",driver);
             }
         }
     }
@@ -473,7 +473,7 @@ public class ProductDetailLib extends ProductDetailObj {
         if (isElementPresent(STOCK_PRODUCT_DETAIL_PAGE, "Stock in product detail page")) {
             reporter.SuccessReport("Verify the Stock/Availability on product Results page", "Stock and Avaialbility exists ", "Unlimited Availablity");
         } else {
-            reporter.failureReport("Verify the Stock/Availability on product Results page", "Stock and Avaialbility does not exist", "");
+            reporter.failureReport("Verify the Stock/Availability on product Results page", "Stock and Avaialbility does not exist", "",driver);
         }
 
     }
@@ -537,7 +537,7 @@ public class ProductDetailLib extends ProductDetailObj {
                 reporter.SuccessReport("verify the PPP window displayed for the selected product", "PPP mini window displayed and the selected product displayed : \n ", actualDesc);
             }
         } else {
-            reporter.failureReport("verify the PPP window displayed for the selected product", "PPP window is not opened", "");
+            reporter.failureReport("verify the PPP window displayed for the selected product", "PPP window is not opened", "",driver);
         }
         driver.close();
         ArrayList<String> tabs = new ArrayList<String>(driver.getWindowHandles());
@@ -555,7 +555,7 @@ public class ProductDetailLib extends ProductDetailObj {
             reporter.SuccessReport("The Loggedin UserName::", "Loggin User Name is Verified", "" + LnameEmailUname + "");
 
         } else {
-            reporter.failureReport("LnameEmailUname is Not valid", "LnameEmailUname is Not valid", "");
+            reporter.failureReport("LnameEmailUname is Not valid", "LnameEmailUname is Not valid", "",driver);
         }
     }
 
@@ -573,7 +573,7 @@ public class ProductDetailLib extends ProductDetailObj {
             type(TEXTFIELD_ZIPCODE, ZIPcode, "ZIP code");
             reporter.SuccessReport("ZIP code Textfield", "ZIP code Textfield", "");
         } else {
-            reporter.failureReport("ZIP code Textfield unable to type", "ZIP code Textfield unable to type", "");
+            reporter.failureReport("ZIP code Textfield unable to type", "ZIP code Textfield unable to type", "",driver);
         }
         Thread.sleep(2000);
         click(ESTIMATE_BUTTON, "Estimate Button");
@@ -589,7 +589,7 @@ public class ProductDetailLib extends ProductDetailObj {
         if (isElementPresent(ESTIMATEDTAX_LABEL, "Estimated Tax")) {
             String EstimatedTax = getText(ESTIMATEDTAX, "Estimated Tax").trim();
             if (EstimatedTax.contains("0.00")) {
-                reporter.failureReport("Verify Tax on Total Price Estimation POPUP", "Estimated Tax is Zero ", "Estimated Tax:" + EstimatedTax);
+                reporter.failureReport("Verify Tax on Total Price Estimation POPUP", "Estimated Tax is Zero ", "Estimated Tax:" + EstimatedTax,driver);
             } else {
                 reporter.SuccessReport("Estimated Tax", "Estimated Tax is not Zero", EstimatedTax);
             }
@@ -608,7 +608,7 @@ public class ProductDetailLib extends ProductDetailObj {
             String Estimatedshipping = getText(ESTIMATEDSHIPPING, "Estimated Shipping Charges").trim();
             reporter.SuccessReport("Verify Shipping Charges", "Shipping Charges Exists", Estimatedshipping);
         } else {
-            reporter.failureReport("Estimated Shipping", "Estimated Shipping is not visible", "");
+            reporter.failureReport("Estimated Shipping", "Estimated Shipping is not visible", "",driver);
         }
     }
 
@@ -622,7 +622,7 @@ public class ProductDetailLib extends ProductDetailObj {
             String EstimatedPrice = getText(ESTIMATEDPRICE, "Total Estimated Price").trim();
             reporter.SuccessReport("Veriy Total Price Estimation POPUP", "USD " + EstimatedPrice + "", "");
         } else {
-            reporter.failureReport("Estimated Price", "Estimated Price is not visible", "");
+            reporter.failureReport("Estimated Price", "Estimated Price is not visible", "",driver);
         }
     }
 
@@ -748,7 +748,7 @@ public class ProductDetailLib extends ProductDetailObj {
         if (isElementPresent(CONTRACT_IN_PRODUCTDETAIL, "contract in product detail")) {
             reporter.SuccessReport("Products Details Page", "Contract exists", getText(CONTRACT_IN_PRODUCTDETAIL, "Contract in Product Detail Page"));
         } else {
-            reporter.failureReport("Products Details Page", "Contract does not exists", "");
+            reporter.failureReport("Products Details Page", "Contract does not exists", "",driver);
         }
     }
 
@@ -765,7 +765,7 @@ public class ProductDetailLib extends ProductDetailObj {
         if (RATING.contains(rating)) {
             reporter.SuccessReport("Verify Reviews", "Reviews Visible in Product Display Page as Expected", RATING);
         } else {
-            reporter.failureReport("Reviews Visible", "Reviews not Visible", "");
+            reporter.failureReport("Reviews Visible", "Reviews not Visible", "",driver);
         }
     }
 
@@ -783,7 +783,7 @@ public class ProductDetailLib extends ProductDetailObj {
                 reporter.SuccessReport("Verify Review Symbols Exists and ", "Clicked on Review Symbol", "");
             } else {
                 reporter.failureReport("Reviews ",
-                        "Reviews Not Clicked", "");
+                        "Reviews Not Clicked", "",driver);
             }
         }
     }
@@ -797,7 +797,7 @@ public class ProductDetailLib extends ProductDetailObj {
         if (isElementPresent(REVIEWSERROR_MSG, "Reviews Submission Form")) {
             reporter.SuccessReport("Reviews Error Msg", "Reviews Error Msg Already Exists", "");
         } else {
-            reporter.failureReport("Reviews Error Msg", "Reviews Error Msg Not Exists", "");
+            reporter.failureReport("Reviews Error Msg", "Reviews Error Msg Not Exists", "",driver);
         }
     }
 
@@ -818,7 +818,7 @@ public class ProductDetailLib extends ProductDetailObj {
             click(RECOMNDEDPRODUCT_RADIO, "Recomnded Product Button");
             click(TERMSANDCONDI, "Accept Terms&conditions");
         } else {
-            reporter.failureReport("Reviews Submission Form", "Reviews Submission Form Unable To Fill", "");
+            reporter.failureReport("Reviews Submission Form", "Reviews Submission Form Unable To Fill", "",driver);
         }
     }
 
@@ -833,7 +833,7 @@ public class ProductDetailLib extends ProductDetailObj {
             click(SUBMISSIONFORMCLOSE, "Close Button");
             reporter.SuccessReport("Reviews Error Msg", "Reviews Error Msg Exists", "");
         } else {
-            reporter.failureReport("Reviews Error Msg", "Reviews Error Msg Not Exists", "");
+            reporter.failureReport("Reviews Error Msg", "Reviews Error Msg Not Exists", "",driver);
         }
     }
 
@@ -849,7 +849,7 @@ public class ProductDetailLib extends ProductDetailObj {
             click(LEAVEAREVIEW_BUTTON, "Leave Review Button");
             reporter.SuccessReport("Reviews Submission Form", "Reviews Submission Form Is Opened", "");
         } else {
-            reporter.failureReport("Reviews Submission Form", "Reviews Submission Form Is Not Opened", "");
+            reporter.failureReport("Reviews Submission Form", "Reviews Submission Form Is Not Opened", "",driver);
         }
     }
 
@@ -873,7 +873,7 @@ public class ProductDetailLib extends ProductDetailObj {
                 result = myList.get(i).getText();
                 if (myList.size() < 1) {
                     reporter.failureReport("Verify the contract prices displayed ",
-                            "contract price are not displayed ", "");
+                            "contract price are not displayed ", "",driver);
                 } else {
                     reporter.SuccessReport("Verify the contract prices displayed ",
                             "contract price is displayed as : ", result);
@@ -968,7 +968,7 @@ public class ProductDetailLib extends ProductDetailObj {
             if (Estimatedshipping.contains(ShippingOption)) {
                 reporter.SuccessReport("Verify Shipping Option::", "Defualt Shipping Option Verify", ShippingOption);
             } else {
-                reporter.failureReport("Estimated Shipping Option", "Estimated Shipping is not visible", "");
+                reporter.failureReport("Estimated Shipping Option", "Estimated Shipping is not visible", "",driver);
             }
         }
     }
@@ -982,7 +982,7 @@ public class ProductDetailLib extends ProductDetailObj {
         if (isVisibleOnly(SPECTIFICATIONS(Tab), "Specifications")) {
             reporter.SuccessReport("Verify Technical Specifications on specifications Tab", "Technical specification on specifications Tab exists", Tab);
         } else {
-            reporter.failureReport("Verify Technical Specifications on specifications Tab", "Technical specification on specifications Tab Does not exists", Tab);
+            reporter.failureReport("Verify Technical Specifications on specifications Tab", "Technical specification on specifications Tab Does not exists", Tab,driver);
         }
     }
 
@@ -993,7 +993,7 @@ public class ProductDetailLib extends ProductDetailObj {
         if (isVisibleOnly(HEADER_LOGO, "WelcomePage")) {
             reporter.SuccessReport("Insight Home Page", "Insight Home Page Exists", "");
         } else {
-            reporter.failureReport("Insight Home Page", "Insight Home does Page Exists", "");
+            reporter.failureReport("Insight Home Page", "Insight Home does Page Exists", "",driver);
         }
     }
 
@@ -1049,7 +1049,7 @@ public class ProductDetailLib extends ProductDetailObj {
         if (isVisibleOnly(PEOPLEWHOBOUGHTS, "People who bought also bought")) {
             reporter.SuccessReport("Verify People who bought also bought", "People who bought also bought Exists", "");
         } else {
-            reporter.failureReport("Verify People who bought also bought", "People who bought also bought does not Exists", "");
+            reporter.failureReport("Verify People who bought also bought", "People who bought also bought does not Exists", "",driver);
         }
     }
 
@@ -1058,13 +1058,13 @@ public class ProductDetailLib extends ProductDetailObj {
         if (isVisibleOnly(RECOMENDED_PRODUCTS, "recommonded Products")) {
             reporter.SuccessReport("Verify Recommended with Printers", "Recommended with Printers Exists", "");
         } else {
-            reporter.failureReport("Verify Recommended with Printers", "Recommended with Printers does not Exists", "");
+            reporter.failureReport("Verify Recommended with Printers", "Recommended with Printers does not Exists", "",driver);
         }
     }
 
     public void verifyNoRecommondedProducts() throws Throwable {
         if (isVisibleOnly(RECOMENDED_PRODUCTS, "recommonded Products")) {
-            reporter.failureReport("Verify Recommended with Printers", "Recommended  products Exists", "");
+            reporter.failureReport("Verify Recommended with Printers", "Recommended  products Exists", "",driver);
         } else {
             reporter.SuccessReport("Verify Recommended with Printers", "Recommended proucts does not Exists", "");
         }
@@ -1092,21 +1092,21 @@ public class ProductDetailLib extends ProductDetailObj {
         if (isVisibleOnly(IMAGE, "Image")) {
             reporter.SuccessReport("Verify Image", "Image is Loaded Successfully", Product);
         } else {
-            reporter.failureReport("Verify Image", "Image is Not Loaded Successfully", "");
+            reporter.failureReport("Verify Image", "Image is Not Loaded Successfully", "",driver);
         }//PRICE
     }
     public void verifyPriceofProduct(String Product) throws Throwable {
         if (isVisibleOnly(PRICE, "Image")) {
             reporter.SuccessReport("Verify Price", "Price is Loaded Successfully", Product);
         } else {
-            reporter.failureReport("Verify Price", "Price is Not Loaded Successfully", "");
+            reporter.failureReport("Verify Price", "Price is Not Loaded Successfully", "",driver);
         }//PRICE
     }
     public void viewdetails(String product) throws Throwable {
     	if(isVisibleOnly(Clickviewdetailsunderproduct(product), "view details")) {
       reporter.SuccessReport("Verify ViewDetails", "View Details Link is visible", product);
     }else {
-    	reporter.failureReport("Verify ViewDetails", "View Details Link is Not visible", "");
+    	reporter.failureReport("Verify ViewDetails", "View Details Link is Not visible", "",driver);
     }
     }
     
@@ -1120,7 +1120,7 @@ public class ProductDetailLib extends ProductDetailObj {
     } 
     public void VerifyOKIProductisNotVisible(String product) throws Throwable {
     	if(isVisibleOnly(Clickviewdetailsunderproduct(product), "view details")) {
-      reporter.failureReport("Verify OKI Product", "OKI Product is visible", product);
+      reporter.failureReport("Verify OKI Product", "OKI Product is visible", product,driver);
     }else {
     	reporter.SuccessReport("Verify OKI Product", "Verify OKI Product is Not visible", product);
     }
