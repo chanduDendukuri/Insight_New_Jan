@@ -2702,7 +2702,7 @@ List<String> orderdetails = new ArrayList<String>();
 		if(isVisibleOnly(getUploadedFileName(fileName), "file name")) {
 			reporter.SuccessReport("Verify file upload", "File uploaded successfully", "File  : "+fileName, driver);
 		}else {
-			reporter.failureReport("Verify file upload", "File uploaded successfully", "", driver);
+			reporter.failureReport("Verify file upload", "File uploaded is not successful", "", driver);
 		}
 		
 	   }

@@ -30,7 +30,7 @@ public class SewpLib extends SewpObj {
 			}
 		 else {
 			reporter.failureReport("Verify  is dispalyed beside 'Mfr.#' ", " is not dispalyed beside 'Mfr.#'",
-					searchItem);
+					searchItem,driver);
 		}
 		}
 	}
@@ -54,7 +54,7 @@ public class SewpLib extends SewpObj {
 		}
 		else
 		{
-			reporter.failureReport("Search field on SEWP landing page","Search field does not exists", SearchItem);
+			reporter.failureReport("Search field on SEWP landing page","Search field does not exists", SearchItem,driver);
 		}
 		
 	}
@@ -78,7 +78,7 @@ public class SewpLib extends SewpObj {
 			}
 		} else {
 			reporter.failureReport("Verify  is dispalyed beside 'Insight Part # / CLIN#' ",
-					" is not dispalyed beside 'Insight Part # / CLIN#'", searchItem);
+					" is not dispalyed beside 'Insight Part # / CLIN#'", searchItem,driver);
 		}
 
 	}
@@ -97,7 +97,7 @@ public class SewpLib extends SewpObj {
 		}
 		else
 		{
-			reporter.failureReport("Verify and enter Quantity on Product Detail Page "," Quantity Field does not exist", "");
+			reporter.failureReport("Verify and enter Quantity on Product Detail Page "," Quantity Field does not exist", "",driver);
 		
 		}
 	}
@@ -120,7 +120,7 @@ public class SewpLib extends SewpObj {
 		}
 		else
 		{
-			reporter.failureReport("Verify  Product Detail Page Exists "," Product Detail Pagedoes not exist", "");	
+			reporter.failureReport("Verify  Product Detail Page Exists "," Product Detail Pagedoes not exist", "",driver);	
 		}
 	}
 	
@@ -152,7 +152,7 @@ public class SewpLib extends SewpObj {
        }
        else 
        {
-    	   reporter.failureReport("Verify and click 'More Prices Available' in Product Detail page"," 'More Prices Available' does not exists", "");  
+    	   reporter.failureReport("Verify and click 'More Prices Available' in Product Detail page"," 'More Prices Available' does not exists", "",driver);  
        }
        
    		 cartLib.clickOnOpenMarketPrice();
@@ -167,7 +167,7 @@ public class SewpLib extends SewpObj {
 		}
 		else
 		{
-			 reporter.failureReport("Verify and click the Cart in the top nav"," Cart does not exist", "");
+			 reporter.failureReport("Verify and click the Cart in the top nav"," Cart does not exist", "",driver);
 		}
 		cmtLib.handleWelcomeToInsightBetaPopUp();
 	}
@@ -185,7 +185,7 @@ public class SewpLib extends SewpObj {
 		}
 		else 
 		{
-			reporter.failureReport("Click on ADD TO CART Button in Product Details Page ","ADD TO CART button does not exists", "");	
+			reporter.failureReport("Click on ADD TO CART Button in Product Details Page ","ADD TO CART button does not exists", "",driver);	
 		}
 
 	}
@@ -203,7 +203,7 @@ public class SewpLib extends SewpObj {
 		}
 		else 
 		{
-			reporter.failureReport("Click on ADD TO CART Button in Product Details Page "," ADD TO CART button does not exists", "");	
+			reporter.failureReport("Click on ADD TO CART Button in Product Details Page "," ADD TO CART button does not exists", "",driver);	
 		}
 
 	}
@@ -222,7 +222,7 @@ public class SewpLib extends SewpObj {
 		}
 		else 
 		{
-			reporter.failureReport("Verify  Continue to Checkout on Purchasing Pop Up "," Continue To checkout existed ", "");
+			reporter.failureReport("Verify  Continue to Checkout on Purchasing Pop Up "," Continue To checkout existed ", "",driver);
 		}
 	}
 
@@ -379,7 +379,7 @@ public class SewpLib extends SewpObj {
 			reporter.SuccessReport("Organisation::","Orginisation Exists and selected",""+Organization+"");
 		}
 		else{
-			reporter.SuccessReport("Organisation::","Orginisation does not  exists ", ""+Organization+"");
+			reporter.failureReport("Organisation::","Orginisation does not  exists ", ""+Organization+"");
 		}
 	}
 
@@ -397,7 +397,7 @@ public class SewpLib extends SewpObj {
 			reporter.SuccessReport("Agency::","Agency Exists and selected",""+agency+"");
 		}
 		else{
-			reporter.SuccessReport("Agency::","Agency not able to select ", ""+agency+"");
+			reporter.failureReport("Agency::","Agency not able to select ", ""+agency+"");
 		}
 	}
 	/*
@@ -414,7 +414,7 @@ public class SewpLib extends SewpObj {
 			reporter.SuccessReport("subAgency::","subAgency Exists and selected",""+subAgency+"");
 		}
 		else{
-			reporter.SuccessReport("subAgency::","subAgency not able to select ", ""+subAgency+"");
+			reporter.failureReport("subAgency::","subAgency not able to select ", ""+subAgency+"");
 		}
 	}
 
@@ -443,7 +443,7 @@ public class SewpLib extends SewpObj {
 		}
 		else
 		{
-			reporter.failureReport(" Click SAVE AND CREATE ACCOUNT button in address confirmation popupp", " SAVE AND CREATE ACCOUNT button does not exists" ,"" );
+			reporter.failureReport(" Click SAVE AND CREATE ACCOUNT button in address confirmation popupp", " SAVE AND CREATE ACCOUNT button does not exists" ,"",driver );
 		}
 		
 		
