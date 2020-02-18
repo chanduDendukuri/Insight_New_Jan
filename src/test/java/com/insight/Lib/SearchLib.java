@@ -524,7 +524,7 @@ public class SearchLib extends CommonObj {
 	public void searchInHeaderSelectFromSuggestions(String searchText) throws Throwable{
 		WebElement element = driver.findElement(SEARCH);
 		typeForSearchingProduct(SEARCH,searchText , "Search text : "+searchText);
-		Thread.sleep(5000);
+		Thread.sleep(7000);
 		String result =null;
 		if(isElementPresent(SEARCH_SUGGESSIONS, "Search suggessions")){
 			List<WebElement> myList = driver.findElements(SEARCH_SUGGESSIONS);
