@@ -59,6 +59,7 @@ public class ActionEngine extends TestEngineWeb {
 	public static Xls_Reader TestData = new Xls_Reader(System.getProperty("user.dir") + "/TestData/TestData.xlsx");
 	protected String SMART_URL = ConfigFileReadWrite.read(ReporterConstants.configReporterFile, "smart");
 	protected String CANADA_URL =ConfigFileReadWrite.read(ReporterConstants.configReporterFile, "canada");
+	protected String CANADA_FR_URL =ConfigFileReadWrite.read(ReporterConstants.configReporterFile, "canada_fr");
 	public static Xls_Reader TestDataInsight = new Xls_Reader(System.getProperty("user.dir") + "/TestData/TestData_Insight.xlsx");
 	public static Xls_Reader TestData_Smart = new Xls_Reader(System.getProperty("user.dir") + "/TestData/TestData_Smart.xlsx");
 	protected String EMW_BASE_URL = ConfigFileReadWrite.read(ReporterConstants.configReporterFile, "emBaseUrl");
@@ -3251,6 +3252,16 @@ public class ActionEngine extends TestEngineWeb {
 					driver.navigate().to(CANADA_URL);
 					acceptAlert();
 					landingURL = CANADA_URL;
+					break;
+				case "CANADA_FR":
+					LOG.info("++++++++++++++++++++++++++++"+CANADA_URL+"+++++++++++++++++++++++++++++++++++++++++++");
+					LOG.info("++++++++++++++++++++++++++++"+url+"+++++++++++++++++++++++++++++++++++++++++++");
+
+					driver.get(CANADA_FR_URL);
+					acceptAlert();
+					driver.navigate().to(CANADA_FR_URL);
+					acceptAlert();
+					landingURL = CANADA_FR_URL;
 					break;
 					
 			}

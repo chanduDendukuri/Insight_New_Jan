@@ -672,8 +672,22 @@ public class LineLevelInfoLib extends LineLevelInfoObj{
 	public void clickOnSplitIntoIndividualLines() throws Throwable{
 		if(isElementPresent(SPLIT_INTO_INDIVIDUAL_LINES_LINK,"Split into lines link")){
 			clickUntil(SPLIT_INTO_INDIVIDUAL_LINES_LINK, CommonObj.SPINNER_IMAGE, "Split into individual lines link");
-		}else{
+		}else if(isElementPresent(SPLIT_INTO_INDIVIDUAL_BUNDLES_LINK,"Split into lines link")){
+			clickUntil(SPLIT_INTO_INDIVIDUAL_BUNDLES_LINK, CommonObj.SPINNER_IMAGE, "Split into individual lines link");
+		}else {
 			reporter.failureReport("Verify Split into link exists", "Split into link does not exists", "", driver);
+		}
+	}
+	
+	/**
+	 * Method is to click on the Split Into Individual bundles link
+	 * @throws Throwable
+	 */
+	public void clickOnSplitIntoIndividualbundlesLink() throws Throwable{
+		if(isElementPresent(SPLIT_INTO_INDIVIDUAL_BUNDLES_LINK,"Split into lines link")){
+			clickUntil(SPLIT_INTO_INDIVIDUAL_BUNDLES_LINK, CommonObj.SPINNER_IMAGE, "Split into individual bundles link");
+		}else{
+			reporter.failureReport("Verify Split into link exists", "Split into individual bundle link does not exists", "", driver);
 		}
 	}
 	
@@ -683,7 +697,7 @@ public class LineLevelInfoLib extends LineLevelInfoObj{
 	 */
 	public void verifySplitLineItemsLabel() throws Throwable{
 		if(isElementPresent(TWO_LINE_ITEMS_LABEL,"Line items label")){
-			reporter.SuccessReport("Verify line items", "Line itmes exists", "Split into 2 individual lines");
+			reporter.SuccessReport("Verify line items", "Line itmes exists", getText(TWO_LINE_ITEMS_LABEL, "individual line items"));
 		}else{
 			reporter.failureReport("Verify line items", "Line itmes does exists", "",driver);
 		}

@@ -177,7 +177,6 @@ public class SLP13_CITRIX_ZeroUsage extends SLPLib{
 					ReportStatus.blnStatus = false;
 					//gErrorMessage = e.getMessage();
 					gTestStatus = false;
-					throw new RuntimeException(e);
 				}
 				
 			}
