@@ -112,7 +112,13 @@ public class CAN07_CartBasicTest extends CanadaLib{
 									prodInfoLib.verifyTheManufacturerNumberInProductDetailsPage(data.get("SearchItem2"));
 									search.increaseQuantity(data.get("quantity"));
 
-									CommonLib.addToCartAndVerify();
+									ccp.clickOnAddToCartButtonUnderProductDynamically(data.get("quantity"));
+
+									String man3=cartLib.getPartNumber();
+
+
+									slp.verifyProccedToCheckOutbuttonExists();
+
 									canadaLib.continueToCheckout();
 //adding review commentsString s1=Boolean.toString(verifyCartPageAvailablity());
 									String s2=Boolean.toString(cartLib.verifyCartPageAvailablity());
@@ -143,10 +149,11 @@ public class CAN07_CartBasicTest extends CanadaLib{
 									prodInfoLib.verifyTheManufacturerNumberInProductDetailsPage(data.get("SearchItem2"));
 									ccp.clickOnAddToCartButtonUnderProductDynamically(data.get("quantity"));
 
-									String man3=cartLib.getPartNumber();
+									String man31=cartLib.getPartNumber();
 
 									//CommonLib.addToCartAndVerify();
 									canadaLib.continueToCheckout();
+									prodInfoLib.verifyCartPageAndPartDetailsForRecentlyItemDynamicaly(man31);
 //adding review commentsString s1=Boolean.toString(verifyCartPageAvailablity());
 									String s4=Boolean.toString(cartLib.verifyCartPageAvailablity());
 									if(cartLib.verifyCartPageAvailablity())
@@ -189,14 +196,14 @@ public class CAN07_CartBasicTest extends CanadaLib{
 									System.out.println("Test completed");
 					} catch (Exception e) {
 						ReportStatus.blnStatus = false;
-						//gErrorMessage = e.getMessage();
+						gErrorMessage = e.getClass().getSimpleName();
 						gTestStatus = false;
 					}
 				}
 			} catch (Exception e) {
 				e.printStackTrace();
 				ReportStatus.blnStatus = false;
-				//gErrorMessage = e.toString();
+				gErrorMessage = e.getClass().getSimpleName();;
 				gTestStatus = false;
 				ReportStatus.fnUpdateResultStatus("CartBasic", "TC_CAN05", ReportStatus.strMethodName, 1, browser);
 				throw new RuntimeException(e);
