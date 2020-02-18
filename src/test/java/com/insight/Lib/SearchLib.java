@@ -538,7 +538,7 @@ public class SearchLib extends CommonObj {
 		reporter.SuccessReport("Verifying whether the suggessions are displayed ","Suggessions are displayed for : ",searchText);*/
 			element.sendKeys(Keys.ENTER);
 		}else {
-			reporter.failureReport("Verifying whether the suggestions are displayed  "," Enter a valid text.You entered : ",searchText);
+			reporter.failureReport("Verifying whether the suggestions are displayed  "," Enter a valid text.You entered : ",searchText,driver);
 		}
 		/*else 
 			if(isElementNotPresent(SEARCH_SUGGESSIONS, "Search suggessions")){
@@ -575,7 +575,7 @@ public class SearchLib extends CommonObj {
 	    	if(isElementPresent(ACCOUNT_FAVORITES,"ACCOUNT FAVORITES")){
 	    		LOG.info("Element is present and active");
 	    	}else{
-	    		reporter.failureReport("Verify the selected tab in active state","Selected tab is not in active state",tabName);
+	    		reporter.failureReport("Verify the selected tab in active state","Selected tab is not in active state",tabName,driver);
 	    	}
 	    }
 	    click(getFavoritesTabs(tabName1), "User preference tab");
@@ -609,7 +609,7 @@ public class SearchLib extends CommonObj {
 		if(actualTest.contains(expectedText)){
 			reporter.SuccessReport("Verify the filter displayed","searched product filter is displayed",actualTest);
 		}else {
-			reporter.failureReport("Verify the filter displayed","searched product filter is not displayed displayed",expectedText);
+			reporter.failureReport("Verify the filter displayed","searched product filter is not displayed displayed",expectedText,driver);
 		}
 	}
 	
@@ -685,7 +685,7 @@ public class SearchLib extends CommonObj {
 			}
 			click(productsDisplayInfoObj.CLOSE_CONTRACTS_POPUP, "close popup");
 		} else {
-			reporter.failureReport("Verify the Open Market price", "Open Market price is not displayed","");
+			reporter.failureReport("Verify the Open Market price", "Open Market price is not displayed","",driver);
 		}
 	}
 	
@@ -785,7 +785,7 @@ public class SearchLib extends CommonObj {
 		if (USDprice.contains(actaulPrice)){
 			reporter.SuccessReport("Verify the product default price displayed ","product default price displayed correctly as : " ,actaulPrice);
 		}else{
-			reporter.failureReport("Verify the product default price displayed ","product default price not displayed correctly ","");
+			reporter.failureReport("Verify the product default price displayed ","product default price not displayed correctly ","",driver);
 		}
 		click(productsDisplayInfoObj.CLOSE_CONTRACTS_POPUP, "close popup");
 	}
@@ -819,7 +819,7 @@ public class SearchLib extends CommonObj {
 			
 			reporter.SuccessReport("Verify the default contracts displayed in product search page first product ","USC contract price is not displayed by default for the product.Displayed contract is: ",contractLabel);
 		}else{
-			reporter.failureReport("Verify the default contracts displayed in product search page first product ","USC is displayed by default",contractLabel);
+			reporter.failureReport("Verify the default contracts displayed in product search page first product ","USC is displayed by default",contractLabel,driver);
 		}
 	}
 	
@@ -884,7 +884,7 @@ public class SearchLib extends CommonObj {
 				   reporter.SuccessReport("verify the PPP window displayed for the selected product","PPP mini window displayed and the selected product in the product group table displayed correctly: \n ","Mini-PPP:  "+actualDesc);
 			   }
 	    	}else{
-			reporter.failureReport("verify the PPP window displayed for the selected product", "PPP window is not opened","");
+			reporter.failureReport("verify the PPP window displayed for the selected product", "PPP window is not opened","",driver);
 		}
 		   driver.close();
 		   ArrayList<String> tabs = new ArrayList<String>(driver.getWindowHandles());
@@ -928,7 +928,7 @@ public class SearchLib extends CommonObj {
 					
 				}
 		}else{
-			reporter.failureReport("verify the selected product group is displayed","Selected product is not displayed correctly under the product group.","");
+			reporter.failureReport("verify the selected product group is displayed","Selected product is not displayed correctly under the product group.","",driver);
 		}
 		
 	}		
@@ -965,11 +965,11 @@ public void selectProductGroupAndVerify1(String productGroup,String productName)
 						click(VIEW_CART_PRODUCT_GROUP, "View cart Link","View cart Link");
 						reporter.SuccessReport("verify View cart Link on Items added to cart Popup on Company standards", "View cart Link is visible and clicked","");
 					}else{
-						reporter.failureReport("verify View cart Link on Items added to cart Popup on Company standards", "View cart Link is not visible","");
+						reporter.failureReport("verify View cart Link on Items added to cart Popup on Company standards", "View cart Link is not visible","",driver);
 					}
 				}
 		}else{
-			reporter.failureReport("verify the selected product group is displayed","Selected product is not displayed correctly under the product group.","");
+			reporter.failureReport("verify the selected product group is displayed","Selected product is not displayed correctly under the product group.","",driver);
 		}
 		
 	}		
@@ -989,7 +989,7 @@ public void selectProductGroupAndVerify1(String productGroup,String productName)
 		if(isElementPresent(ITEMS_ADDED_TO_CART_POPUP, "items added to cart")){
 			reporter.SuccessReport("verify items are added to acart as bundle","Items are added to cart",productName);
 		}else{
-			reporter.failureReport("verify items are added to acart as bundle","Items are not added to cart","");
+			reporter.failureReport("verify items are added to acart as bundle","Items are not added to cart","",driver);
 		}
 		click(PROD_GRP_CLOSE_ICON, "Close icon");
 	}
@@ -1014,7 +1014,7 @@ public void selectProductGroupAndVerify1(String productGroup,String productName)
 						"Column name displayed correctly : " , result);
 			} else {
 				reporter.failureReport("verify the column names displayed correctly",
-						"Column name not displayed correctly. Expected  is : " + colName[i] + " .Actual is: " , result);
+						"Column name not displayed correctly. Expected  is : " + colName[i] + " .Actual is: " , result,driver);
 			}
 		}
 	}
@@ -1106,7 +1106,7 @@ public void selectProductGroupAndVerify1(String productGroup,String productName)
 			click(VIEW_CART_PRODUCT_GROUP, "View cart Link","View cart Link");
 			reporter.SuccessReport("verify View cart Link on Items added to cart Popup on Company standards", "View cart Link is visible and clicked","");
 		}else{
-			reporter.failureReport("verify View cart Link on Items added to cart Popup on Company standards", "View cart Link is not visible","");
+			reporter.failureReport("verify View cart Link on Items added to cart Popup on Company standards", "View cart Link is not visible","",driver);
 		}
    }
 	/**
@@ -1148,7 +1148,7 @@ public void selectProductGroupAndVerify1(String productGroup,String productName)
 			reporter.SuccessReport("Title", "IPS Contract Page Loaded", Contracttitle);
 		}
 		else {
-			reporter.failureReport("Title", "IPS Contract Page not Loaded","");
+			reporter.failureReport("Title", "IPS Contract Page not Loaded","",driver);
 		}
 	}
 	/**
@@ -1218,7 +1218,7 @@ public void selectProductGroupAndVerify1(String productGroup,String productName)
 		if(isElementPresent(PRODUCTSGRP_HDR,"Verify products standard page")){
 			reporter.SuccessReport("Product Standards Page","Product Standards Page Exist","" );
 		}else
-			   reporter.SuccessReport("Product Standards Page","Product Standards Page Exist" ,"");
+			   reporter.failureReport("Product Standards Page","Product Standards Page does not Exist" ,"",driver);
 		}
 	
 	/**
@@ -1236,7 +1236,7 @@ public void selectProductGroupAndVerify1(String productGroup,String productName)
 				         if(myradioList.get(i).isDisplayed()){
 					          reporter.SuccessReport("Description Column in Configuration Section on Product Standards Page","Description Column Exist","");
 				   }else
-					   reporter.SuccessReport("Description Column in Configuration Section on Product Standards Page","Description Column does Not Exists" ,"");
+					   reporter.failureReport("Description Column in Configuration Section on Product Standards Page","Description Column does Not Exists" ,"",driver);
 			         }
 				         
 		   if(isElementPresent(ADD_ITEMS_RADIO_BUTTON, "add items to cart radio button")){
@@ -1271,7 +1271,7 @@ public void selectProductGroupAndVerify1(String productGroup,String productName)
 		if (isElementPresent(SEARCH_RESULTS_PAGE, "Search results")) {
 			reporter.SuccessReport("Verify search results page", "Search results page displayed", "Search results ");
 		} else {
-			reporter.failureReport("Verify search results page", "Search results page not verified successfully", "");
+			reporter.failureReport("Verify search results page", "Search results page not verified successfully", "",driver);
 		}
 	}
 	
@@ -1322,7 +1322,7 @@ public void selectProductGroupAndVerify1(String productGroup,String productName)
 			list=getText(COMPARE_LIST_ITEMS, "compare list items");
 			reporter.SuccessReport("Items in the compare list", "Compare Your List label exists and items in the list are : ", "Items in the List: "+list);
 		}else {
-			reporter.failureReport("Items in the compare list", "Compare Your List label does not exists ", "Items in the List: "+list);
+			reporter.failureReport("Items in the compare list", "Compare Your List label does not exists ", "Items in the List: "+list,driver);
 		}
 		return list;
 
@@ -1347,10 +1347,10 @@ public void selectProductGroupAndVerify1(String productGroup,String productName)
 			if((hover_data.replace("InsightCommon.showTooltip('", "").replace("',this);", "")).equals(toolTipMsg)) {
 			reporter.SuccessReport("Verify Adobe Products has  Message Option on Product Standards Page", "Adobe Product has Tooltip message",toolTipMsg);			
 		}else{
-			reporter.failureReport("Verify Adobe Products has  Message Option on Product Standards Page", "Adobe Product  has No Message tooltip ", "");
+			reporter.failureReport("Verify Adobe Products has  Message Option on Product Standards Page", "Adobe Product  has No Message tooltip ", "",driver);
 		}
 		}else {
-			reporter.failureReport("Verify Adobe Products has  Message Option on Product Standards Page", "Adobe Product  has No Message Options", "");
+			reporter.failureReport("Verify Adobe Products has  Message Option on Product Standards Page", "Adobe Product  has No Message Options", "",driver);
 		}
 	}
 	
@@ -1369,7 +1369,7 @@ public void selectProductGroupAndVerify1(String productGroup,String productName)
 				         if(myradioList.get(i).isDisplayed()){
 					          reporter.SuccessReport("Description Column in Configuration Section on Product Standards Page","Description Column Exist","");
 				   }else
-					   reporter.failureReport("Description Column in Configuration Section on Product Standards Page","Description Column does Not Exists" ,"");
+					   reporter.failureReport("Description Column in Configuration Section on Product Standards Page","Description Column does Not Exists" ,"",driver);
 			         }
 		   }
 	}
@@ -1408,7 +1408,7 @@ public void selectProductGroupAndVerify1(String productGroup,String productName)
 		if(comparedProducts==count) {
 			reporter.SuccessReport("verify Compared  products", "Similar products exists",Integer.toString(comparedProducts));
 		}else {
-			reporter.failureReport("verify Compared products", "Similar products does not exists",Integer.toString(comparedProducts));
+			reporter.failureReport("verify Compared products", "Similar products does not exists",Integer.toString(comparedProducts),driver);
 		}
 	}
 	
@@ -1432,7 +1432,7 @@ public void selectProductGroupAndVerify1(String productGroup,String productName)
 			 prodCount=getText(productsDisplayInfoObj.PRODUCT_COUNT, "products count");
 			reporter.SuccessReport("Available Products Counter in Search Results Page", "	Available Products Counter Exists and the count is : ", prodCount);
 		}else {
-			reporter.failureReport("Available Products Counter in Search Results Page", "	Available Products Counter does not Exists", prodCount);
+			reporter.failureReport("Available Products Counter in Search Results Page", "	Available Products Counter does not Exists", prodCount,driver);
 		}
 		return prodCount;
 	}
@@ -1476,7 +1476,7 @@ public void selectProductGroupAndVerify1(String productGroup,String productName)
 			         if(myradioList.get(i).isSelected()){
 				          reporter.SuccessReport("Add Column with Radio button Selected in product group Section on Product Standards Page","Add Column with Radio button Selected Exists","");
 			   }else {
-				   reporter.failureReport("verify the radio button checked or not","products are not checked ","");
+				   reporter.failureReport("verify the radio button checked or not","products are not checked ","",driver);
 			   }
 	       }
 		}
@@ -1512,7 +1512,7 @@ public void selectProductGroupAndVerify1(String productGroup,String productName)
 		if (isVisibleOnly(BreadCrumb, "Bread Crumb")) {
 			reporter.SuccessReport("Verify the navigation", "Sucessfully Navigated to "+searchText ,searchText);
 		} else {
-			reporter.failureReport("Verify the navigation", "Navigation is not Sucessfully " , searchText);
+			reporter.failureReport("Verify the navigation", "Navigation is not Sucessfully " , searchText,driver);
 		}
 	}
 
@@ -1593,7 +1593,7 @@ public void selectProductGroupAndVerify1(String productGroup,String productName)
 						"Menus verification is sucessfull. Expected menu item is:" , result);
 			} else {
 				reporter.failureReport("Verify the results for menu items",
-						"Expected menu item is  " + strArray[i] + "Actual menu item is: " , result);
+						"Expected menu item is  " + strArray[i] + "Actual menu item is: " , result,driver);
 			}
 		}
 	}
@@ -1603,7 +1603,7 @@ public void selectProductGroupAndVerify1(String productGroup,String productName)
 		if (isVisibleOnly(POPULAR_PRODUCTS_LABEL_CA, "Popular products")) {
 			reporter.SuccessReport("Verify that", "Sucessfully Popular products label is displayed " ,"Popular products");
 		} else {
-			reporter.failureReport("Verify that", "Popular products label not displayed " , "Popular products");
+			reporter.failureReport("Verify that", "Popular products label not displayed " , "Popular products",driver);
 		}
 	}
 	
