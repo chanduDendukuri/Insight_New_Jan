@@ -81,7 +81,7 @@ public class PID05_RecommendedProductsTest extends ActionEngine {
                     commonLib.searchProduct(data.get("Search_Item2"));
                     cartLib.selectFirstProductDisplay();
                     productdetLib.getProductNameInProductDetailPage(data.get("Search_Item2"));
-                    Thread.sleep(20000);
+                    Thread.sleep(50000);
                     productdetLib.getMFRNumberInProductInfopage();
                     productdetLib.verifyContractInproductDetailPage();
                     commonLib.clickLogOutLink("Logout");
