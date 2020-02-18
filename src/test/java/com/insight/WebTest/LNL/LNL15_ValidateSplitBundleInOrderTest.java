@@ -86,7 +86,7 @@ public class LNL15_ValidateSplitBundleInOrderTest extends LineLevelInfoLib{
 						verifyOrderAndItemInfoBreadCrumb();
 				     	orderLib.continueButtonOnAdditionalInformationSection();
 				     	clickOnSplitIntoIndividualLines();
-				     	verifySplitLineItemsLabel();
+				     	verifySplitLineItemsLabel(data.get("Quantity"));
 				     	verifyBundleIsAddedToCart(data.get("Bundle_One"));
 				     	verifyBundleIsAddedToCart(data.get("Bundle_Two"));
 				     	orderLib.clickContinueOnLineLevelInfo();
