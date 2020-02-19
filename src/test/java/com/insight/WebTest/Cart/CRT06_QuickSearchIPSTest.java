@@ -159,7 +159,8 @@ reporter.SuccessReport("Second Login AS","Second Login AS",data.get("Search_Item
 					cmtLib.clickOnTheWebGroup(data.get("WebGrp_Name"));
 					cmtLib.hoverOnManageWebGroupsAndSelectOptions(data.get("manage_Web_Grp_Options"));
 					cmtLib.searchForaUserAndSelect(data.get("LnameEmailUname"), data.get("ContactName"));
-					cmtLib.verifyManageWebGroupsUserManagement();
+					//cmtLib.verifyManageWebGroupsUserManagement();
+					cmtLib.verifyWebGroupsManagementUsers();
 					//cmtLib.setPermissions(data.get("Menu_Name"), data.get("Enable_Purchasing_Popup"));
 					//cmtLib.clickOnRolesAndPermissionsAndSetPermission(data.get("Menu_Name"), data.get("Set_Permission"));
 					// Disable -- Enable Custom Catalog
