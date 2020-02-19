@@ -840,6 +840,15 @@ public class LineLevelInfoLib extends LineLevelInfoObj{
 		}
 	}
 	
+	public void verifyLineLevelOptionalLinks(String Quantity) throws Throwable {
+		int quantity=Integer.valueOf(Quantity);
+		List <WebElement> element=driver.findElements(LINE_LEVEL_INO_LABEL);
+		if(element.size()==quantity) {
+			reporter.SuccessReport("verify split into line level items", "item split into "+quantity, "", driver);
+		}else {
+			reporter.failureReport("verify split into line level items", "item not split properly", "", driver);
+		}
+	}
 }
 
 

@@ -20,6 +20,7 @@ public class ODP01_PlaceOrderBasicFileUploadTest extends OrderLib{
 	OrderLib orderLib =new OrderLib();
 	CanadaLib canadaLib=new CanadaLib();
 	ProductDetailLib prodLib=new ProductDetailLib();
+	InvoiceHistoryLib invoiceHistoryLib = new InvoiceHistoryLib();
 
 	// #############################################################################################################
 	// #    Name of the Test         : ODP01_PlaceOrderBasicFileUpload
@@ -87,18 +88,26 @@ public class ODP01_PlaceOrderBasicFileUploadTest extends OrderLib{
 						verifyUploadedFileInReviewOrderPage(data.get("File_Name")); // Need to add verification
 						String summaryAmount=cartLib.getSummaryAmountInCart();
 						placeOrderAndVerifyReceiptOrderAndDate(summaryAmount);
+						
 						//Verify Receipt
 						verifyReceiptVerbiage();
+						 String RefNumber= orderLib.getTextfromReferenceNumber();
 						clickOrderDetailsLinkOnReceiptPage();
 						
 						verifyShippingAddressOnReceiptPage(data.get("Section_Name1")); // verifying shipping address in receipt page.
 						verifyBillingAddressOnReceiptPage(data.get("Section_Name2"));  // Verifying billing address in receipt page.
-
-						// verifying cart in Receipt page
-						//verifyYourCartOnReceiptPage(data.get("SearchText"));
+                       //Verify part details
 						prodInfoLib.verifyCartPageAndPartDetails();
-						// fnCloseTest();
-						System.out.println("Test completed");
+						
+						searchLib.verifyAccountToolsFromSideMenuAndClick(data.get("toolsMenuName"),data.get("dropDown"));
+					    scrollToBottomWithCordinate("110");
+						clickonorderNumLinkinRecentorders(RefNumber);
+						invoiceHistoryLib.verifyOrderDetailsPage();
+						verifytabsinOrderDetailsPage(data.get("TabName"));
+						scrollToBottomWithCordinate("110");
+						verifyDownloadedAttachmentLinkOnCustomerDetailsTab();
+						commonLib.clickLogOutLink(data.get("Logout"));
+						
 					} catch (Exception e) {
 						ReportStatus.blnStatus = false;
 						//gErrorMessage = e.getMessage();
