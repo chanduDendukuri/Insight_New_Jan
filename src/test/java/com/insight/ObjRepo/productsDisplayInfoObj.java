@@ -37,7 +37,7 @@ public class productsDisplayInfoObj extends CommonObj{
 
   // Add to cart
     public static By ADD_TO_CART=By.xpath("//a[@class='small button expand js-add-to-cart']");
-    public static By ADDED_TO_CART_LABEL=By.xpath("//div[@class='added-to-cart'][contains(text(),'Added to Your Cart')]");
+    public static By ADDED_TO_CART_LABEL=By.xpath("//div[@class='added-to-cart'][contains(text(),'Added to Your Cart') or contains(text(),'Ajouté à votre panier')]");
     public static By ADDED_TO_CART_CANADA=By.xpath("//div[@class='added-to-cart'][contains(text(),'Added to Your Basket')]");
     
     public static By ADD_TO_CART_FRENCH_MSG=By.xpath("//div[@class='added-to-cart'][contains(text(),'Ajouté à votre panier')]");
@@ -141,7 +141,7 @@ public class productsDisplayInfoObj extends CommonObj{
     public static By ACCESSORIES_PROD_DETAILS=By.xpath("//section[@id='detail-accessories']//a[contains(text(),'accessories')]");
     public static By MFR_NUM_ACCESSORIES=By.xpath("//div[@class='content-inner']//div[@class='row'][1]//div[@class='product-details'][contains(.,'Mfr Part #:')]");
     public static By LONG_DESC_PROD_DETAILS=By.xpath("//div[@id='tpl-product-detail-order-target']/preceding-sibling::div[1]//p");
-public static By PartNumberInprodutdetailsPage = By.xpath("//div[@id='search-item-0']//div[@class='prod-top-section']//p");
+    public static By PartNumberInprodutdetailsPage = By.xpath("//div[@id='search-item-0']//div[@class='prod-top-section']//p");
 
     // Accessories
     public static By ACCESSORIES_DESC=By.xpath("//div[@class='section-inner-accordion']//section[@class='active']//div[@class='row'][1]//div[@class='columns medium-8 large-5']//h4//a");

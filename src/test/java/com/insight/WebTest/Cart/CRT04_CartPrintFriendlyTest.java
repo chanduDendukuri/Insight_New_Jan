@@ -95,6 +95,7 @@ public class CRT04_CartPrintFriendlyTest extends CartLib {
 					String mfrNumber2=prodDetailsLib.getInsightPartNumberInProductInfopage();
 					prodInfoLib.clickOnWarrantiesTabOnProductDetailsPage();
 					//ccp.getPriceinWarrenty();
+					// commented warranty code as there are no warranties for the part taken
 					ccp.clickOnAddToCartButtonUnderWarrentyDynamically();
 					String warrantyPartNumber=cartLib.getPartNumber();
 					commonLib.addToCartAndVerify();

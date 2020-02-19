@@ -73,7 +73,7 @@ public class CAN02_ShipBillPayEWRFeeTest extends CanadaLib{
 									switchToChildWindow();
 									cmtLib.loginVerification(data.get("MgContactName"));
 									//shipbLib.verifyWEbsiteIsCannada();
-									assertTrue(driver.getCurrentUrl().contains("ca"),"Current application URL is CANADA");
+									assertTrue(driver.getCurrentUrl().toLowerCase().contains("ca"),"Current application URL is CANADA");
 						canadaLib.verifyCanadaWebgroup();
 						// Adding first product to cart
 
