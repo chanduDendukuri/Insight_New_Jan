@@ -562,6 +562,7 @@ public class LineLevelInfoLib extends LineLevelInfoObj{
 		if(isElementPresent(DiversityPartner(partNum), "DIVERSITY PARTNER")){
 			click(DiversityPartner(partNum), "Diversity partner");
 			selectByVisibleText(DiversityPartner(partNum), diversityPartner, "diversityPartner");
+			click(DiversityPartner(partNum), "Diversity partner");
 		}else{
 			reporter.failureReport("Verify diversity Partner exists", "diversity Partner option does not exists", "",driver);
 		}
