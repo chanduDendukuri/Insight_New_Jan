@@ -63,8 +63,8 @@ public class CHN02_SearchandCompareTest extends ChinaLib{
 						// select language and country
 						selectLanguageOnHomePage(data.get("Country"), data.get("Language"));
 						canadaLib.verifyCountry("cn");
-						navigateTo(data.get("URL"));
-						verify_url(WebDriver, data.get("URL"));
+						navigateToApplication("CHINA_ZH");
+						verify_url(WebDriver, CHINA_ZH_URL);
 						// Search for a product
 						searchLib.searchInHomePage(data.get("SearchText"));
 						searchLib.verifyBreadCrumbInSearchResultsPage(data.get("SearchText"));

@@ -104,8 +104,7 @@ public class CRT03_CartExportTest extends CartLib{
 								driver.navigate().refresh();
 								ccp.clickOnEmptyCart();
 								commonLib.verifyCartIsEMpty();
-								canadaLib.clickOnSideMenuSelectAccountToolOptions(data.get("Tools_Menu"),
-										data.get("Tools_Menu_DD1"));
+								commonLib.clickOnAccountToolsAndClickOnProductGrp(data.get("Tools_Menu"), data.get("Tools_Menu_DD1"));
 								assertTrue(ccp.verifyCompanyStandard(),"Product standard page is available");
 								ccp.clickOnIUSAMandatoryCTOlink();
 								ccp.clickOnAddToOrderButton();

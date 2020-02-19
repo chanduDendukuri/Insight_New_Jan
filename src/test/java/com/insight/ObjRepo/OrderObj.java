@@ -129,6 +129,7 @@ public class OrderObj extends ActionEngine{
 	public static By SUMMARY_TOTAL_AMOUNT=By.xpath("//section/following::div[@class='row is-collapse-child cart-summary__total']//span[@class='iw-currency__amount']");
 	public static By DEFAULT_TAX_AMOUNT=By.xpath("//section/following::div[@class='row is-collapse-child cart-summary__tax']//span[@class='iw-currency__amount']");
 	public static By ADDLICENCE_TAX_AMOUNT=By.xpath("(//section/following::div[@class='row is-collapse-child cart-summary__tax']//span[@class='iw-currency__amount'])[2]");
+	public static By ADDLICENCE_TAX_AMOUNT_NEW=By.xpath("//section/following::div[@class='row is-collapse-child cart-summary__tax']//span[@class='iw-currency__amount']");
 	public static By EWR_FEE_AMOUNT=By.xpath("//section/following::div[@class='row is-collapse-child cart-summary__ewr']//span[@class='iw-currency__amount']");
 	
 	// Recipt
@@ -413,7 +414,7 @@ public class OrderObj extends ActionEngine{
      
      // Receipt
      public static By PRINT_ON_RECEIPT_PAGE=By.xpath("//a[@class='ion-ios-printer-outline shopping-cart__print']//span[contains(text(),'Print')]");
-     public static By TELEPHONE_NUMBER_ON_PRINT_RECEIPT=By.xpath("//span[@class='cart-print-header__telephone']");
+     public static By TELEPHONE_NUMBER_ON_PRINT_RECEIPT=By.xpath("(//span[@class='cart-print-header__telephone'])[2]");
      public static By bundleOnPrintPopup(String productGrp) {
     		 return By.xpath("//*[@class='iw-modal cart-print-preview']//*[@class='cart__table-block']//h4[@class='cart__item-heading'][contains(text(),'"+productGrp+"')]/following-sibling::div[@class='cart__item-bundle'][contains(.,'Insight Part #: BUNDLE-1')]");
       }

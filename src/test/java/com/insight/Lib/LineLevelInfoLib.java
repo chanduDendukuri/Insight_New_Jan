@@ -695,9 +695,10 @@ public class LineLevelInfoLib extends LineLevelInfoObj{
 	 * method is to verify split line level items
 	 * @throws Throwable
 	 */
-	public void verifySplitLineItemsLabel() throws Throwable{
-		if(isElementPresent(TWO_LINE_ITEMS_LABEL,"Line items label")){
-			reporter.SuccessReport("Verify line items", "Line itmes exists", getText(TWO_LINE_ITEMS_LABEL, "individual line items"));
+	public void verifySplitLineItemsLabel(String quantity) throws Throwable{
+		String requiredLineitems=getText(TWO_LINE_ITEMS_LABEL, "line item label");
+		if(isElementPresent(TWO_LINE_ITEMS_LABEL,"Line items label") && requiredLineitems.equals(quantity+ " line items require information")){
+			reporter.SuccessReport("Verify line items", "Line itmes required label exists", getText(TWO_LINE_ITEMS_LABEL, "individual line items"));
 		}else{
 			reporter.failureReport("Verify line items", "Line itmes does exists", "",driver);
 		}

@@ -60,6 +60,8 @@ public class ActionEngine extends TestEngineWeb {
 	protected String SMART_URL = ConfigFileReadWrite.read(ReporterConstants.configReporterFile, "smart");
 	protected String CANADA_URL =ConfigFileReadWrite.read(ReporterConstants.configReporterFile, "canada");
 	protected String CANADA_FR_URL =ConfigFileReadWrite.read(ReporterConstants.configReporterFile, "canada_fr");
+	protected String CHINA_ZH_URL =ConfigFileReadWrite.read(ReporterConstants.configReporterFile, "china_zh");
+
 	public static Xls_Reader TestDataInsight = new Xls_Reader(System.getProperty("user.dir") + "/TestData/TestData_Insight.xlsx");
 	public static Xls_Reader TestData_Smart = new Xls_Reader(System.getProperty("user.dir") + "/TestData/TestData_Smart.xlsx");
 	protected String EMW_BASE_URL = ConfigFileReadWrite.read(ReporterConstants.configReporterFile, "emBaseUrl");
@@ -3254,7 +3256,7 @@ public class ActionEngine extends TestEngineWeb {
 					landingURL = CANADA_URL;
 					break;
 				case "CANADA_FR":
-					LOG.info("++++++++++++++++++++++++++++"+CANADA_URL+"+++++++++++++++++++++++++++++++++++++++++++");
+					LOG.info("++++++++++++++++++++++++++++"+CANADA_FR_URL+"+++++++++++++++++++++++++++++++++++++++++++");
 					LOG.info("++++++++++++++++++++++++++++"+url+"+++++++++++++++++++++++++++++++++++++++++++");
 
 					driver.get(CANADA_FR_URL);
@@ -3262,6 +3264,16 @@ public class ActionEngine extends TestEngineWeb {
 					driver.navigate().to(CANADA_FR_URL);
 					acceptAlert();
 					landingURL = CANADA_FR_URL;
+					break;
+				case "CHINA_ZH":
+					LOG.info("++++++++++++++++++++++++++++"+CHINA_ZH_URL+"+++++++++++++++++++++++++++++++++++++++++++");
+					LOG.info("++++++++++++++++++++++++++++"+url+"+++++++++++++++++++++++++++++++++++++++++++");
+
+					driver.get(CHINA_ZH_URL);
+					acceptAlert();
+					driver.navigate().to(CHINA_ZH_URL);
+					acceptAlert();
+					landingURL = CHINA_ZH_URL;
 					break;
 					
 			}

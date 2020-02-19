@@ -84,7 +84,11 @@ public static By txtQuantityValue = By.xpath("//*[@class='cart-wrapper show-for-
     public static By CART_PROD_DESC_RECENTLYADDEDTEM_loop=By.xpath("//div[@class='columns flex-child-auto cart__table-col--desc text-left']/a/h4");
     public static By AllContractDetails=By.xpath("//div[@class='large-12 columns js-modal-pick-contract']//label");
     public static By newURLHeader=By.xpath("//*[@class='ips-contract-heading']");
+    public static By lblProductDetailsOnAllContactPrices=By.xpath("//*[@id='buy-more-prices-modal']//p[@class='prod-part-number show-for-medium-up']");
 
+    public static By icnDeleteByProductNumber(String header){
+        return By.xpath("//*[contains(@class,'part cart') and contains(.,'"+header+"')][1]//..//..//..//..//..//div//span[@title='Delete']");
+    }
 
 
 }

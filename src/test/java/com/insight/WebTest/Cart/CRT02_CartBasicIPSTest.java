@@ -78,7 +78,7 @@ public class CRT02_CartBasicIPSTest extends CartLib{
 
 					cmtLib.navigateBackToCMT();
 					cmtLib.setPermissions(data.get("Menu_Name"),data.get("User_Permission"));
-					cmtLib.permissionFromDD(data.get("User_Permission"), data.get("Permission_Dropdown_Option"));
+					//cmtLib.permissionFromDD(data.get("User_Permission"), data.get("Permission_Dropdown_Option"));
 
 					cmtLib.clickOnloginAs();
 					switchToChildWindow();
@@ -120,14 +120,22 @@ public class CRT02_CartBasicIPSTest extends CartLib{
 					cartLib.verifyDefaultContractInCart();
 					ccp.getProductDescriptionInViewCartPage();
 					search.searchInHomePage(data.get("Search_Item1"));
+
 					search.verifyBreadCrumbInSearchResultsPage(data.get("Search_Item1"));
 
 					clickMorePrices();
+					String value=ccp.getProductDetailsFromAllContactDetailsPopup();
+
+					String strArray[] = value.split("#:");
+					String mfr=strArray[1];
+					String manF[]=mfr.split(" ");
+					String part=manF[1];
 					ccp.getAllConractDetails();
 					search.verifyDefaultUSContractInAllContractPricesPopup("checked");
 					clickOnOpenMarketPrice();
 					//search.increaseQuantity(data.get("quantity2"));
 					cartLib.clickOnAddToCartInAllContractPrices();
+
 					orderLib.continueToCheckOutOnAddCart();
 					prodInfoLib.verifyCartPageAndPartDetails();
 					// contract verification in cart page
@@ -137,8 +145,8 @@ public class CRT02_CartBasicIPSTest extends CartLib{
 					commonLib.clickOnUpdateLinkInViewCartPage(data.get("quantity2"));
 					prodInfoLib.verifyCartPageAndPartDetails();
 					//Add Delete
-					prodInfoLib.deleteSelectedProducts();
-
+					//prodInfoLib.deleteSelectedProducts();
+					ccp.clickOnDeleteIconBasedUpOnProductNumberSearch(part);
 					search.selectNewcontract(data.get("Contarct_Name2"));
 
 					search.searchInHomePage(data.get("Search_Item1"));
