@@ -120,6 +120,6 @@ public class LineLevelInfoObj extends ActionEngine{
 	 
 	 public static By COUNTRY=By.xpath("//select[@id='country']");
 	 public static By QTP_TEXT_TXTBOX(String partNum) {
-			 return By.xpath("//p[contains(.,'Insight Part #: "+partNum+"')]/following::div[@class='row expanded is-collapse-child']//input[@name='smartTracker.st-582412']");
+			 return By.xpath("//p[contains(.,'Insight Part #: "+partNum+"')]/following::div[@class='row expanded is-collapse-child']//input[@name='smartTracker.st-595529']");
 	 }
 }

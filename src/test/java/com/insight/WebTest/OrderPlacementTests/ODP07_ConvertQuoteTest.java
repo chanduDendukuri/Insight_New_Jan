@@ -133,7 +133,7 @@ public class ODP07_ConvertQuoteTest extends OrderLib{
 						//verifyTheTaxForSearchTerm(taxAmount);
 						String result = getText(ADDLICENCE_TAX_AMOUNT, "Tax displayed after adding LICENCE").replace("$", "");
 						Float actualtax=Float.valueOf(result);
-						if (actualtax >(Float.valueOf(taxAmount))) {
+						if (actualtax!=0 && actualtax >(Float.valueOf(taxAmount))) {
 							reporter.SuccessReport("Verify the TAX on receipt page","Tax in Order Recipet for Quote Converion",
 									"Tax in Order Recipet for Quote Converion:Tax estimateUSD $"+actualtax);
 						} else {

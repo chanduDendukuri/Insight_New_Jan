@@ -605,8 +605,8 @@ public class CReporterWeb {
 					+ "</th> ");
 			// writer.write("<th>&nbsp;:&nbsp;08-Apr-2013&nbsp;06:24:21&nbsp;PM</th> ");
 			writer.write("<th> &nbsp;" + CReporterWeb.dateTime() + "&nbsp;</th> ");
-			writer.write("<th>&nbsp;OnError&nbsp;:&nbsp;</th> ");
-			writer.write("<th>" + ReporterConstants.ON_ERROR_ACTION + "</th> ");
+			writer.write("<th>&nbsp;Application Under Test&nbsp;:&nbsp;</th> ");
+			writer.write("<th>" + ReporterConstants.APP_UNDER_TEST + "</th> ");
 			writer.write("</tr> ");
 
 			writer.write("<tr class='subheading'> ");
@@ -624,21 +624,22 @@ public class CReporterWeb {
 			writer.write("<th>" + InetAddress.getLocalHost().getHostName()
 					+ "</th> ");
 			writer.write("<th>&nbsp;No.&nbsp;Of&nbsp;Threads&nbsp;:&nbsp;</th> ");
-			writer.write("<th>" + "NA" + "</th> ");
+			writer.write("<th>" + "1" + "</th> ");
 			writer.write("</tr> ");
 
 			writer.write("<tr class='subheading'> ");
 			writer.write("<th>&nbsp;Device&nbsp;Name&nbsp;:</th> ");
 			writer.write("<th>" + ReporterConstants.BROWSER_PLATFORM + "</th> ");
-			//writer.write("<th>" + this.browserContext.getBrowserName() + "</th> ");
-			//writer.write("<th>" +this.browserContext.get + "</th> ");
-			//writer.write("<th>Version&nbsp;:</th> ");
+/*
+			writer.write("<th>" + this.browserContext.getBrowserName() + "</th> ");
+*/
+			writer.write("<th>Environment&nbsp;:</th> ");
 			writer.write("<th>" + this.browserContext.getBrowserPlatform()+ "</th> ");
 			writer.write("</tr> ");
 
 			writer.write("<tr class='subheading'> ");
 			writer.write("<th colspan='4'> ");
-			writer.write("&nbsp;Environment -  " + Url + "");
+			writer.write("&nbsp;Environment URL -  " + Url + "");
 			writer.write("</th> ");
 			writer.write("</tr> ");
 			writer.write("</thread> ");
@@ -874,7 +875,9 @@ public class CReporterWeb {
 			writer.write("<td><small>" + strPassTime + "</small></td> ");
 			writer.write("</tr> ");
 			writer.close();
-
+			if(input=="" || input==null || input.equals("NA")){
+				input=" ";
+			}
 			//Store the step details in xml
 			ReportXML.captureTestStepDetails(TestResult.stepNum.get(CReporterWeb.browserContext), strStepName, strStepDes, input,
 					strPassTime, "PASS");
@@ -896,7 +899,7 @@ public class CReporterWeb {
 	private void onFailure(String strStepName, String strStepDes,String input,
 						   String fileName) throws Exception {
 
-		
+
 		String href = "./"
 				+ fileName
 				.substring(
@@ -928,10 +931,10 @@ public class CReporterWeb {
 					+ "</td> ");
 			writer.write("<td class='justified'>" + strStepName + "</td>");
 			writer.write("<td class='justified'>" + strStepDes + "</td> ");
-			if(input==null)
+			if(input==null || input=="")
 			//writer.write("<td class='justified'>" + input + "</td>");
 			{
-				input="NA";
+				input=" ";
 			}
 			writer.write("<td class='justified'>" + input + "</td>"); 
 
@@ -974,6 +977,7 @@ public class CReporterWeb {
 			ReportXML.createImageForFailedStep(strStepDes);
 
 			//Store the step details in xml
+
 			ReportXML.captureTestStepDetails(TestResult.stepNum.get(CReporterWeb.browserContext), strStepName, strStepDes, input,
 					CReporterWeb.getTime(), "FAIL");
 		} catch (Exception e) {
@@ -985,6 +989,7 @@ public class CReporterWeb {
 	private void onWarning(String strStepName, String strStepDes,String... input) {
 
 		Writer writer = null;
+
 		try {
 			File file = new File(this.filePath() + File.separatorChar
 					+ TestResult.strTestName.get(this.browserContext) + "_Results"
@@ -1520,7 +1525,7 @@ Chandu Testing Ended
 	private static String dateTime() {
 		Date todaysDate = new Date();
 		SimpleDateFormat formatter = new SimpleDateFormat(
-				"dd-MM-yyyy HH:mm:ss a");
+				"MM-dd-yyyy HH:mm:ss a");
 		String formattedDate = formatter.format(todaysDate);
 		return formattedDate;
 

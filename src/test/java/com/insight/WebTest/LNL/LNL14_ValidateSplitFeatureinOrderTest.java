@@ -87,7 +87,7 @@ public class LNL14_ValidateSplitFeatureinOrderTest extends LineLevelInfoLib{
 				     	verifyOrderAndItemInfoBreadCrumb();
 				     	orderLib.continueButtonOnAdditionalInformationSection();
 				     	clickOnSplitIntoIndividualLines();
-				     	verifySplitLineItemsLabel();
+				     	verifySplitLineItemsLabel(data.get("Quantity"));
 				     	orderLib.clickContinueOnLineLevelInfo();
 				     	canadaLib.verifySBP();
 				     	orderLib.shippingBillPayContinueButton(); // Click continue on shipping address Section

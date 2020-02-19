@@ -673,5 +673,14 @@ public void getListOfAvailableBreadCrumbs() throws Throwable{
         return getText(newURLHeader,"State local government verification ");
     }
 
+    public void clickOnDeleteIconBasedUpOnProductNumberSearch(String partNumber) throws Throwable{
+        if(isVisibleOnly(icnDeleteByProductNumber(partNumber),"Delete icon ")){
+            click(icnDeleteByProductNumber(partNumber),"Clicking on Deleted icon For ",partNumber);
+        }
+    }
+
+    public String getProductDetailsFromAllContactDetailsPopup() throws Throwable{
+        return getText(lblProductDetailsOnAllContactPrices,"Product Details");
+    }
 }
 
