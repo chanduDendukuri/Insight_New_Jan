@@ -842,7 +842,7 @@ public class LineLevelInfoLib extends LineLevelInfoObj{
 	
 	public void verifyLineLevelOptionalLinks(String Quantity) throws Throwable {
 		int quantity=Integer.valueOf(Quantity);
-		List <WebElement> element=driver.findElements(LINE_LEVEL_INO_LABEL);
+		List <WebElement> element=driver.findElements(By.xpath("//h4[@class='line-level__heading line-level__heading--required'][contains(text(),'Line level information (required)')]"));
 		if(element.size()==quantity) {
 			reporter.SuccessReport("verify split into line level items", "item split into "+quantity, "", driver);
 		}else {
