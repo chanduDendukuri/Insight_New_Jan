@@ -214,8 +214,8 @@ public class SearchLib extends CommonObj {
 	 * @throws Throwable
 	 */
 	public void searchInHomePage(String productName) throws Throwable {
-		if (isVisibleOnly(CommonObj.CLOSEBUTTON_COOKIES, "close cookie")) {
-			click(CommonObj.CLOSEBUTTON_COOKIES, "close cookie");
+		if (isVisibleOnly(CommonObj.ACCEPT_COOKIES, "Accept cookie")) {
+			click(CommonObj.ACCEPT_COOKIES, "Accept cookie");
 		}
 		Thread.sleep(3000);
 		waitForVisibilityOfElement(SEARCH,"Search Field");

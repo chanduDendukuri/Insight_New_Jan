@@ -64,7 +64,7 @@ public class SER06_KeywordSearchTest extends SearchLib {
 					cmtLib.loginToCMT(data.get("Login"));
 					cmtLib.searchForWebGroup(data.get("WebGrp"));
 					cmtLib.clickOnTheWebGroup(data.get("WebGrp_Name"));
-					cmtLib.hoverOnManageWebGroupsAndSelectOptions(data.get("ManageWebGrpOptions"));
+					//cmtLib.hoverOnManageWebGroupsAndSelectOptions(data.get("ManageWebGrpOptions"));
 					cmtLib.hoverOnManageWebGroupsAndSelectOptions(data.get("Users"));
 					cmtLib.searchForaUserAndSelect(data.get("LnameEmailUname"), data.get("ContactName"));
 					cmtLib.loginAsAdminCMT();
