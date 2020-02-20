@@ -75,7 +75,7 @@ public class SER06_KeywordSearchTest extends SearchLib {
 					verifyTheResultsForSearchTerm(data.get("SearchText4"));
 					// in-stock filter verification
 					verifyFilterBreadCrumb(data.get("In_Stock_Only"));
-					scrollToBottomWithCordinate("300");
+					scrollToBottomWithCordinate("600");
 					// Approve items only
 					filterSelectionInProductsSearchPage(data.get("Approved_Items"));
 					verifyBreadCrumbInSearchResultsPage(data.get("Approved_Items_Remove_Filter"));
