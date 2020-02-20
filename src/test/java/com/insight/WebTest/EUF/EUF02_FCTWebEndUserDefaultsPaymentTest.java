@@ -15,6 +15,7 @@ import com.insight.Lib.ProductDetailLib;
 import com.insight.Lib.ProductDisplayInfoLib;
 import com.insight.Lib.SearchLib;
 import com.insight.Lib.ShipBillPayLib;
+import com.insight.ObjRepo.CommonObj;
 import com.insight.accelerators.ReportControl;
 import com.insight.accelerators.TestEngineWeb;
 import com.insight.googledrive.ReportStatus;
@@ -68,9 +69,15 @@ public class EUF02_FCTWebEndUserDefaultsPaymentTest extends EndUserFeaturesLib{
 						cmtLib.selectpaymentOptionsInCheckOutSettings(data.get("Options"));
 						//cmtLib.selectDefaultPaymentOption(data.get("Default_Payment_Option"));
 						cmtLib.clickOnloginAs();
-						switchToChildWindow();
-						canadaLib.clickOnSideMenuSelectAccountToolOptions(data.get("Tools_Menu"),
-								data.get("Tools_Menu_DD"));
+					
+						if (isVisibleOnly(CommonObj.CLOSEBUTTON_COOKIES, "close cookie")) {
+								click(CommonObj.CLOSEBUTTON_COOKIES, "close cookie");
+						}
+							 
+
+						switchToChildWindow();						
+						//canadaLib.clickOnSideMenuSelectAccountToolOptions(data.get("Tools_Menu"),data.get("Tools_Menu_DD"));
+						commonLib.clickOnAccountToolsAndClickOnProductGrp(data.get("Tools_Menu"), data.get("Tools_Menu_DD"));
 						clickOnTabInUserProfile(data.get("Tab_Name"));
 						scrollToBottomWithCordinate("700");
 						selectedOptionPaymentMethod(data.get("Default_Payment_Option"));
@@ -85,8 +92,8 @@ public class EUF02_FCTWebEndUserDefaultsPaymentTest extends EndUserFeaturesLib{
 						cmtLib.selectDefaultPaymentOption(data.get("Default_Payment_Option_None"));
 						cmtLib.clickOnloginAs();
 						switchToChildWindow();
-						canadaLib.clickOnSideMenuSelectAccountToolOptions(data.get("Tools_Menu"),
-								data.get("Tools_Menu_DD"));
+						//canadaLib.clickOnSideMenuSelectAccountToolOptions(data.get("Tools_Menu"),data.get("Tools_Menu_DD"));
+						commonLib.clickOnAccountToolsAndClickOnProductGrp(data.get("Tools_Menu"), data.get("Tools_Menu_DD"));
 						clickOnTabInUserProfile(data.get("Tab_Name"));
 						scrollToBottomWithCordinate("700");
 						selectedOptionPaymentMethod(data.get("Default_Payment_Option1"));
@@ -112,7 +119,7 @@ public class EUF02_FCTWebEndUserDefaultsPaymentTest extends EndUserFeaturesLib{
 			finally {
 	        	ReportControl.fnEnableJoin();
 	        	ReportStatus.fnUpdateResultStatus("FCTWebEndUserDefaultsPayment", "TC_EUF02", ReportStatus.strMethodName, counter, browser);
-				fnCloseTest();
+				//fnCloseTest();
 				ReportControl.fnNextTestJoin(nextTestJoin);
 			}
 		}
