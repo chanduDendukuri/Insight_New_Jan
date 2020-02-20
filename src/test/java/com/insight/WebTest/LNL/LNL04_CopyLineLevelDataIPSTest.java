@@ -173,6 +173,7 @@ public class LNL04_CopyLineLevelDataIPSTest  extends LineLevelInfoLib{
 						verifyDiversityPartnerexists(data.get("Diversity_Partner2"),mfrNumber1);
 						//clickCopyToAllLink(mfrNumber1);
 						enterQTPText(mfrNumber3, data.get("QTP_Text"));
+						scrollUp();
 						clickCopyOfSmartTracer(mfrNumber3);
 						Thread.sleep(4000);
                          scrollBottom();
