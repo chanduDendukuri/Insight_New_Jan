@@ -1641,6 +1641,9 @@ Chandu Testing Ended
 		if(strStepName.contains("Iteration Number")){
 			strStepName =  strStepName ;
 			strStepDes =  strStepDes ;
+			if(input=="" || input==null || input.equalsIgnoreCase("NA")){
+				input=" ";
+			}
 			input=input;
 
 		}
@@ -1717,7 +1720,9 @@ Chandu Testing Ended
 
 
 				fileName = makeUniqueImagePath(fileName);
-
+				if(input=="" || input==null || input.equalsIgnoreCase("NA")){
+					input=" ";
+				}
 				/* Logic to take screenshot */
 				/*
 				 * WebDriver webDriver = WebDriverFactory.getWebDriver(null,

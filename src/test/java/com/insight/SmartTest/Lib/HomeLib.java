@@ -3546,13 +3546,15 @@ public float getSellPriceFromInlineItemsContract(String contractid) throws Throw
 	}
 	public void VerifyZPMLMinusZDMLShouldbeEqualToYP001(float ZPML, float ZDML, float YP00) throws Throwable {
 		double val = 0.03;
-		float ZpmlminusZdml = (float) (ZPML - ZDML-val);
-		if ((YP00 == ZpmlminusZdml)) {
+		float ZpmlminusZdml = (float) (ZPML + ZDML-val);
+		float roundOffZPMLMinusZdmlValu=roundToDecimals(ZpmlminusZdml,1);
+
+		if ((YP00 == roundOffZPMLMinusZdmlValu)) {
 			reporter.SuccessReport("Verify that ZPML minus  ZDML equals the YP00 value",
-					"ZPML Minus ZDML::" + ZpmlminusZdml + " equals the YP00 :" + YP00 + "value ", "");
+					"ZPML Minus ZDML::" + roundOffZPMLMinusZdmlValu + " equals the YP00 :" + YP00 + "value ",  roundOffZPMLMinusZdmlValu + " equals to :" + YP00 );
 		} else {
 			reporter.failureReport("Verify that ZPML Minus ZDML equals the YP00 value",
-					"ZPML Minus ZDML Not equals the YP00 value", "", driver);
+					"ZPML Minus ZDML Not equals the YP00 value", roundOffZPMLMinusZdmlValu + " equals to :" + YP00, driver);
 		}
 	}
 	/**
