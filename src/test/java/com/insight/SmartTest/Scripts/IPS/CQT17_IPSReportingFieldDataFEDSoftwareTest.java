@@ -55,17 +55,17 @@ public class CQT17_IPSReportingFieldDataFEDSoftwareTest extends HomeLib {
 				ClickOnXsymbolunderCon();
 		        driver.switchTo().defaultContent();
 				//SelectContractId(1);
-		        selectCOntractID(data.get("ContractId"), data.get("ContractTabName"));
+		        selectCOntractID(data.get("ContractId1"), data.get("ContractTabName"));
 				enterUSCOMMmember(data.get("USCOMMmember"));
 				ClickonArrowNextToLineitem();
 				String lineitemvalue=getLineItemText();
 				if(lineitemvalue.equals("000020"))
-					selectContractID(data.get("ContractId2"));
+					selectCOntractID(data.get("ContractId2"), data.get("ContractTabName"));
 				enterUSCOMMmember(data.get("USCOMMmember"));
 				ClickonArrowNextToLineitem();  
 				String lineitemvalue1=getLineItemText();
 				if(lineitemvalue1.equals("000030"))
-					selectContractID(data.get("ContractId3"));
+					selectCOntractID(data.get("ContractId3"), data.get("ContractTabName"));
 				enterUSCOMMmember(data.get("USCOMMmember"));
 				clickDoneButton();
 				clickUpdateCosting();

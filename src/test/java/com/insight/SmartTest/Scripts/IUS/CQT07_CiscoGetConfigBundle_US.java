@@ -71,12 +71,13 @@ public class CQT07_CiscoGetConfigBundle_US extends HomeLib {
 						
 						//	To Get Updated  Rep cost for Line 20
 						String UpdatedRepPrice1= getRepCostValueFromLineItemTable(data.get("Pricevalue")); //2--Line 20
-						 Float UpdatedP1= Float.valueOf(UpdatedRepPrice1);		
+					 Float UpdatedP1= Float.valueOf(UpdatedRepPrice1);
 						 if(P1!=UpdatedP1){
-							 reporter.SuccessReport("Verify the 'Rep Cost' for line 20","The Rep Cost exists and noted.", "Rep cost # "+P1+" Updated Rep Cost # "+UpdatedP1);
+							 reporter.SuccessReport("Verify the 'Rep Cost' for line 20 and Updated Rep cost both should not match","The Rep Cost exists and noted.", "Rep cost # "+P1+" Updated Rep Cost # "+UpdatedP1+" Both are not matched");
 							} else {
-								reporter.failureReport("Verify the 'Rep Cost' for line 20", "The Rep Cost does not exist","Rep cost # "+P1+" Updated Rep Cost # "+UpdatedP1, driver);							
+								reporter.failureReport("Verify the 'Rep Cost' for line 20 and Updated Rep cost both should not match", "The Rep Cost does not exist","Rep cost # "+P1+" Updated Rep Cost # "+UpdatedP1, driver);
 						 }
+						 //assertTrue(P1!=UpdatedP1,"The Rep Cost exists and noted. and Rep Cost "+P1+ " And updated value is "+ UpdatedP1);
 						 //click on material ID
 						clickOnVCSymbolinLineItemsList(data.get("LineItem")); //000020
 						 selectCOntractSubTabName(data.get("contactTabName"));// Pricing

@@ -875,7 +875,7 @@ public class CReporterWeb {
 			writer.write("<td><small>" + strPassTime + "</small></td> ");
 			writer.write("</tr> ");
 			writer.close();
-			if(input=="" || input==null || input.equals("NA")){
+			if(input=="" || input==null || input.equalsIgnoreCase("NA")){
 				input=" ";
 			}
 			//Store the step details in xml

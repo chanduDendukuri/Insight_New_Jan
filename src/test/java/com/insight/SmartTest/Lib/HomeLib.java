@@ -4575,8 +4575,14 @@ public void VerifyZPFXvalue(String ZPFXvalue)throws Throwable{
 	}
 
 	public String getRepCostValueFromLineItemTable(String Pricevalue) throws Throwable {
-		isVisibleOnly(REPCOST_INLINEITEMS(Pricevalue), "Price Value");
-		String Price = getText(REPCOST_INLINEITEMS(Pricevalue), "Price Value");
+		/*isVisibleOnly(REPCOST_INLINEITEMS(Pricevalue), "Price Value");
+		String Price = getText(REPCOST_INLINEITEMS(Pricevalue), "Price Value");*/
+		String Price=null;
+		List <WebElement> price= driver.findElements(lblRepCostWithVCverification);
+		for (int i=0;i<price.size();i++) {
+			 Price = price.get(i).getText();
+			break;
+		}
 		return Price;
 	}
 
