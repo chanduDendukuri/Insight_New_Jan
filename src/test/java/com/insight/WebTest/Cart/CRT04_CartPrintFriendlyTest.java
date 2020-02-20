@@ -98,6 +98,7 @@ public class CRT04_CartPrintFriendlyTest extends CartLib {
 					// commented warranty code as there are no warranties for the part taken
 					ccp.clickOnAddToCartButtonUnderWarrentyDynamically();
 					String warrantyPartNumber=cartLib.getPartNumber();
+			commonLib.continueToShopping();
 					commonLib.addToCartAndVerify();
 					order.continueToCheckOutOnAddCart();
 					canadaLib.verifyPlaceCartLabel();
@@ -120,7 +121,7 @@ public class CRT04_CartPrintFriendlyTest extends CartLib {
 
 					order.clickPrintIconOnCartPage(data.get("OrderUtilities"));
 					order.VerifyPrintPopup(prodDesc1,quantity1,stock1,totalPrice1,unitPrice1);
-					order.verifyWarrantiesOnPrintPopup(data.get("SearchItem2"));
+					//order.verifyWarrantiesOnPrintPopup(data.get("SearchItem2"));
 					verifyPrintAndCloseIconexists();
 					// clickPrintInPopUp();
 					cartLib.closePrintPopUp();
