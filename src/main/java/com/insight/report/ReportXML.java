@@ -507,8 +507,11 @@ LOG.info("Exception dir" + ex.getMessage());
                 String anc="<";
                 String les=">";
                 href= createImageForFailedStep("");
-                b="<a" + " href=\"HTMLReports/screenshots/"+ href +"\">";
+                String rep[] = href.split("HTMLReports");
+                String value="\\HTMLReports"+rep[1];
+                b="<a" + " href=\""+ value +"\">";
                // b="<a" + " href=\""+ href +"\">";
+
                 c= "<i style=\"width:30px;color:red\" class=\"fa fa-close fa-3x\"></i></a>";
                 imgSrc= b+c;
                 System.out.println(imgSrc);
@@ -876,7 +879,11 @@ LOG.info("Exception dir" + ex.getMessage());
             File summaryFile = new File(sReportPath + File.separator + "SummaryResults" + "." + fileType);
             if (summaryFile.exists()) {
                 LOG.info("Summary file exists");
-                updateXMLForSummary(summaryFile, xmlFiles);
+               try {
+                   updateXMLForSummary(summaryFile, xmlFiles);
+               }catch (Exception e){
+                   System.out.println(e.getStackTrace());
+                }
             } else {
                 try {
                     summaryFile.createNewFile();
