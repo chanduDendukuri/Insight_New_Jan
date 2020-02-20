@@ -107,6 +107,10 @@ public class ShipBillPayObj extends ActionEngine{
 	public static By PAYMENT_METHOD_DD=By.xpath("//div[@class='Select Select__Payment-method Select--single has-value']");
 	public static By OPTIONSINCLUDED_REQUESTORGRP=By.xpath("//select[@id='GrpPaymntSelected']");
 	public static By  ALLOWEDOPTIONS_CHECKOUTSETTINGS=By.xpath("//select[@id='payAllowedSel']");
+	public static By  ALLOWEDOPTIONCREDITCARD_CHECKOUTSETTINGS=By.xpath("//select[@id='payAvailableSel']/option[contains(text(),'Credit Card')]");
+	public static By  RIGHTARROW=By.xpath("//a[@id='paymentOptionsRightArrowButton']");
+	
+	
 	public static By DEFUALTPAYMENTTYPE=By.xpath("//select[@id='defaultPayTypeSelID']");
 	public static By SUCCESMSG_PAYMENTOPTIONS=By.xpath("//div[@id='checkoutSettUpdateMsg' and contains(text(),'Payment options updated successfully')]");
 	public static By SELECT_CARRIER_DD=By.xpath("//div[@class='Select-value']//span[contains(text(),'FedEx')]");

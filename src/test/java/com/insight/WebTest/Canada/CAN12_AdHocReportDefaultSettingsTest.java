@@ -129,7 +129,7 @@ public class CAN12_AdHocReportDefaultSettingsTest extends CanadaLib{
 							clickOnRun();
 							//String file=ccp.FileNameWithdateSplit(customName);
 							Thread.sleep(60000);
-							ccp.verifyExportFile("Page1","3","Operations Center,Region,Account Number",ccp.getLatestFilefromDir());
+							ccp.verifyExportFile("Page1","3","Ad-Hoc,Period",ccp.getLatestFilefromDir());
 							//cartLib.verifyExportFile("Page1","1","Ad-Hoc");
 
 

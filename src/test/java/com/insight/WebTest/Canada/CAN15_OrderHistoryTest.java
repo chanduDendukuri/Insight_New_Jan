@@ -73,18 +73,18 @@ public class CAN15_OrderHistoryTest extends ActionEngine {
                     cmtLib.loginVerification(data.get("ContactName"));
                     shipbLib.verifyWEbsiteIsCannada();
                     canadaLib.verifyCanadaWebgroup();
-                    canadaLib.clickOnSideMenuSelectAccountToolOptions(data.get("Tools_Menu"), data.get("Tools_Menu_DD"));
+                    commonLib.clickOnAccountToolsAndClickOnProductGrp(data.get("Tools_Menu"), data.get("Tools_Menu_DD"));
                     invoice.verifyRecentHistoryHeader();
                     canadaLib.advanceSearchInOrderHistory(data.get("SelectOrder"), data.get("OrderNumber"));
                     scrollToBottomWithCordinate("-200");
                     canadaLib.verifyAccountNumberDetailsInResultsGrid();
                     //verification required
-                    canadaLib.clickOnSideMenuSelectAccountToolOptions(data.get("Tools_Menu"), data.get("Tools_Menu_DD"));
+                    commonLib.clickOnAccountToolsAndClickOnProductGrp(data.get("Tools_Menu"), data.get("Tools_Menu_DD"));
                     invoice.verifyRecentHistoryHeader();
                     canadaLib.advanceSearchInOrderHistory(data.get("SelectReference"), data.get("ReferenceNumber"));
                     canadaLib.verifyAccountNumberDetailsInResultsGrid();
                     scrollToBottomWithCordinate("-200");
-                    canadaLib.clickOnSideMenuSelectAccountToolOptions(data.get("Tools_Menu"), data.get("Tools_Menu_DD"));
+                    commonLib.clickOnAccountToolsAndClickOnProductGrp(data.get("Tools_Menu"), data.get("Tools_Menu_DD"));
                     invoice.verifyRecentHistoryHeader();
                     canadaLib.advanceSearchInOrderHistory(data.get("SelectPurchaseOrder"), data.get("PurchaseNumber"));
                     canadaLib.verifyAccountNumberDetailsInResultsGrid();
@@ -92,7 +92,7 @@ public class CAN15_OrderHistoryTest extends ActionEngine {
                     canadaLib.verifyOrderDetailsHeader();
                     canadaLib.getEwrVlaue();
                     //canadaLib.verifyDetailsInOrderPage(data.get("OrderNumber"), data.get("PurchaseNumber"), data.get("ReferenceNumber"), data.get("EWR"));
-                    //
+                    Thread.sleep(3000);
                     if (canadaLib.clickOnAssetAndSerialNumber()) {
                         if (canadaLib.verifyAssetSerialNuberValues()) {
                             canadaLib.getAssetAndSerialNumberValuesOnPopups();

@@ -331,7 +331,7 @@ public class OrderLib extends OrderObj{
 	 * @throws Throwable
 	 */
 	public List<String> placeOrderAndVerifyReceiptOrderAndDate(String totalSummary) throws Throwable {
-List<String> orderdetails = new ArrayList<String>();
+               List<String> orderdetails = new ArrayList<String>();
 		clickUntil(PLACE_ORDER_BTN, RECEIPT_LABEL,"Place order button");
 		Thread.sleep(3000);
 
@@ -2704,7 +2704,14 @@ List<String> orderdetails = new ArrayList<String>();
 		}else {
 			reporter.failureReport("Verify file upload", "File uploaded is not successful", "", driver);
 		}
-		
 	   }
+	
+	public void verifyDownloadedAttachmentLinkOnCustomerDetailsTab() throws Throwable {
+		if(isVisibleOnly(CLICK_TO_VIEW_ATTACHMENT, "click to view attachment link")) {
+			click(CLICK_TO_VIEW_ATTACHMENT, "click to view or download attachment link", "");
+		}else {
+			reporter.failureReport("verify click to view or download attachment link", "click to view or download attachment link does not exists", "", driver);
+		}
+	}
 	}
 

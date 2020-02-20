@@ -89,7 +89,7 @@ public class ODP11_SmartTrackersPlaceOrderTest extends OrderLib{
 					//	scrollToBottomWithCordinate("110");
 						clickOrderDetailsLinkOnReceiptPage();
 						searchLib.verifyAccountToolsFromSideMenuAndClick(data.get("toolsMenuName"),data.get("dropDown"));
-					scrollToBottomWithCordinate("110");
+					    scrollToBottomWithCordinate("110");
 						clickonorderNumLinkinRecentorders(RefNumber);
 						//Order details Page verification
 						getLineItemInfoValues();

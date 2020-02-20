@@ -562,6 +562,7 @@ public class LineLevelInfoLib extends LineLevelInfoObj{
 		if(isElementPresent(DiversityPartner(partNum), "DIVERSITY PARTNER")){
 			click(DiversityPartner(partNum), "Diversity partner");
 			selectByVisibleText(DiversityPartner(partNum), diversityPartner, "diversityPartner");
+			click(DiversityPartner(partNum), "Diversity partner");
 		}else{
 			reporter.failureReport("Verify diversity Partner exists", "diversity Partner option does not exists", "",driver);
 		}
@@ -839,6 +840,15 @@ public class LineLevelInfoLib extends LineLevelInfoObj{
 		}
 	}
 	
+	public void verifyLineLevelOptionalLinks(String Quantity) throws Throwable {
+		int quantity=Integer.valueOf(Quantity);
+		List <WebElement> element=driver.findElements(By.xpath("//h4[@class='line-level__heading line-level__heading--required'][contains(text(),'Line level information (required)')]"));
+		if(element.size()==quantity) {
+			reporter.SuccessReport("verify split into line level items", "item split into "+quantity, "", driver);
+		}else {
+			reporter.failureReport("verify split into line level items", "item not split properly", "", driver);
+		}
+	}
 }
 
 

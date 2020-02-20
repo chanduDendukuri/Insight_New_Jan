@@ -88,7 +88,7 @@ public class SWP02_SEWPIPSContractTest extends SewpLib{
 			Thread.sleep(3000);
 			orderLib.selectPaymentInfoMethodCreditCard(data.get("Card_Number"), data.get("Card_Name"),data.get("Month"), data.get("Year"),data.get("PO_Number"),data.get("POReleaseNumber"));
 			orderLib.clickOnReviewOrderButton();
-			cartLib.verifyItemInCart(data.get("SEWPPart"));
+			//cartLib.verifyItemInCart(data.get("SEWPPart"));
 		    Thread.sleep(3000);
 		    cartLib.verifyContractNameInCart(data.get("Contract"));
 			Thread.sleep(3000);

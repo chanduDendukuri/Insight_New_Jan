@@ -290,6 +290,8 @@ public class OrderObj extends ActionEngine{
 		public static By orderlinkInOrderHistory(String refNum){
 			return By.xpath("//td[contains(text(),'"+refNum+"')]/preceding-sibling::td/div");
 		}
+		   public static By CLICK_TO_VIEW_ATTACHMENT=By.xpath("//span[@class='orders__link-text'][contains(text(),'Click to view or download attachment')]");
+		
 			public static By REPORTINGFIELD4_ORDERHISTORY =By.xpath("//span[@class='line-item-info__label'][contains(text(),'REPORTING FIELD 4')]");
 			public static By REPORTINGFIELD5_ORDERHISTORY =By.xpath("//span[@class='line-item-info__label'][contains(text(),'REPORTING FIELD 5')]");
 			public static By REPORTINGFIELD6_ORDERHISTORY =By.xpath("//span[@class='line-item-info__label'][contains(text(),'REPORTING FIELD 6')]");
