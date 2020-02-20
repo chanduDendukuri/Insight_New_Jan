@@ -268,14 +268,16 @@ public class SewpLib extends SewpObj {
 	 * @throws Throwable
 	 */
 	public void CreateAnAccount(String testCaseName) throws Throwable {
+		
 
 		if (testCaseName.equalsIgnoreCase("SWP01_SEWPEndToEndTest")) {
 
 			waitForVisibilityOfElement(CREATE_AN_ACCOUNT, "CREATE AN ACCOUNT");
 			if (isElementPresent(CREATE_AN_ACCOUNT, "CREATE AN ACCOUNT", true)) {
 				click(CREATE_AN_ACCOUNT, "CREATE AN ACCOUNT");
+				commonLib.acceptCookies();
 			} else {
-
+           reporter.failureReport("Verify create account button exists", "create account button does not exists", "", driver);
 			}
 		}
 
