@@ -91,7 +91,7 @@ public class APR06_RequisitionStatusTest extends ApprovalPathLib {
 					
 					  String strCurrDay = GetCurrDay(); 
 					   
-					  PreviousdatePicker(-380,"FromDate");
+					  PreviousdatePicker(-370,"FromDate");
 					  SelectCurrentDate("ToDate");
 
 					clickSearch();
