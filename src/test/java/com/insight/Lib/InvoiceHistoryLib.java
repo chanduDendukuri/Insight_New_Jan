@@ -1164,7 +1164,7 @@ public class InvoiceHistoryLib extends InvoiceHistoryObj {
 	public void getInvoiceNumberFromSearchResults() throws Throwable {
 		List<WebElement> myList = driver.findElements(INVOICE_NUMBER);
 		if (myList.size() != 0) {
-			for (int i = 1; i <= 2; i++) {
+			for (int i = 0; i <= 3; i++) {
 				String invoicenumber = (myList.get(i)).getText();
 				reporter.SuccessReport("Verify the Invoice details", "Invoice results are displayed",
 						"Invoice number:" + invoicenumber);
