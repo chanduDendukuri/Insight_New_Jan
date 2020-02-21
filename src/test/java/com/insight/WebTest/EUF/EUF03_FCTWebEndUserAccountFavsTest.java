@@ -65,7 +65,7 @@ public class EUF03_FCTWebEndUserAccountFavsTest extends EndUserFeaturesLib{
 						//addSearchListtoFavorites();
 						clearAndSearchWithAccountNum(data.get("Search"));//60601
 						addSearchListtoFavorites();
-						clearAndSearchWithAccountNum("10544857");
+						clearAndSearchWithAccountNum("10562720");
 						addSearchListtoFavorites();
 						clearAndSearchWithAccountNum(data.get("AccountName"));//ACC
 						addSearchListtoFavorites();

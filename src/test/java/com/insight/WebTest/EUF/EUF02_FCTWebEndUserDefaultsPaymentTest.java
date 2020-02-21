@@ -70,10 +70,7 @@ public class EUF02_FCTWebEndUserDefaultsPaymentTest extends EndUserFeaturesLib{
 						//cmtLib.selectDefaultPaymentOption(data.get("Default_Payment_Option"));
 						cmtLib.clickOnloginAs();
 					
-						if (isVisibleOnly(CommonObj.CLOSEBUTTON_COOKIES, "close cookie")) {
-								click(CommonObj.CLOSEBUTTON_COOKIES, "close cookie");
-						}
-							 
+
 
 						switchToChildWindow();						
 						//canadaLib.clickOnSideMenuSelectAccountToolOptions(data.get("Tools_Menu"),data.get("Tools_Menu_DD"));
