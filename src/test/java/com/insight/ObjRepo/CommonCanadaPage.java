@@ -89,6 +89,9 @@ public static By txtQuantityValue = By.xpath("//*[@class='cart-wrapper show-for-
     public static By icnDeleteByProductNumber(String header){
         return By.xpath("//*[contains(@class,'part cart') and contains(.,'"+header+"')][1]//..//..//..//..//..//div//span[@title='Delete']");
     }
+    public static By getProductNumberinViewCartPage(String header){
+        return By.xpath("//*[contains(@class,'part cart') and contains(.,'"+header+"')][1]");
+    }
 
 
 }

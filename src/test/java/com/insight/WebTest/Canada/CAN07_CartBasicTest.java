@@ -191,6 +191,7 @@ public class CAN07_CartBasicTest extends CanadaLib{
 									else{
 										reporter.failureReport("Cart Landing Page", "Availability of Cart Landing Page is ",s5,driver );
 									}
+									scrollToBottomWithCordinate("500");
 									slp.verifyProccedToCheckOutbuttonExists();
 									cmtLib.clickOnLogoutlink();
 									System.out.println("Test completed");

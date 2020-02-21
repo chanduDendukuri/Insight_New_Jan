@@ -527,6 +527,7 @@ public class CommonLib extends ActionEngine{
 			
 			   click(CommonObj.ACCOUNT_TOOLS, "Account tools menu icon");
 			   click(CommonObj.getAccountToolsMenu(toolsMenuName), "Account tools menu:"+toolsMenuName);
+			   scrollToBottomWithCordinate("300");
 			   click(CommonObj.getAccountToolsDD(toolsMenuName, dropDown), "Select account tools: "+dropDown);	   
 		}
 		

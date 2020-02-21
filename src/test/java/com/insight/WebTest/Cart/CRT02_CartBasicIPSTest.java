@@ -156,6 +156,7 @@ public class CRT02_CartBasicIPSTest extends CartLib{
 					prodInfoLib.verifyContractInCartScreen(data.get("Contarct_Name2"));
 					prodInfoLib.verifyContract2InCartScreen(data.get("Contarct_Name1"));
 
+
 					commonLib.emptyCartAndVerify();
 
 					commonLib.clickLogOutLink(data.get("Logout_Header"));
