@@ -3876,6 +3876,13 @@ public void verifySetPermissionsDisabled(String userPermissions) throws Throwabl
 		return status;
 	}
 
+/**
+ * Method is to click on "Search for client link"	
+ * @throws Throwable
+ */
+	public void clickOnSearchForClientLink() throws Throwable {
+		click(SEARCH_FOR_CLIENT_LINK, "Search for client link", "Search for client link");
+	}
 	
 
 }

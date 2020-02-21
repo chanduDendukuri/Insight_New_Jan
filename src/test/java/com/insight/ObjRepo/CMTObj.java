@@ -706,6 +706,8 @@ public static By lnkDeleteProductGroups=By.xpath("//*[text()=' Delete Product Gr
     public static By DEFUALTSOLDTOACCOUNT=By.xpath("//span[@id='defaultSoldtoforUser']");
 
     public static By displayOnWebGroupList=By.xpath("//*[contains(@id,'accTeamDispWeb')]");
+    
+    public static By SEARCH_FOR_CLIENT_LINK=By.xpath("//span[@class='mainTopHeaderLabels']//strong[contains(text(),'Search For Client >>')]");
 
 
 }
