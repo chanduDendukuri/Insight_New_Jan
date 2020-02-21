@@ -296,7 +296,7 @@ public class InvoiceHistoryLib extends InvoiceHistoryObj {
 		if (isVisibleOnly(LINE_LEVEL_INFO, "Header level info")) {
 			reporter.SuccessReport("Verify Line Level Smart Trackers on Account Management - Invoice History Page","Line Level Smart Trackers is present", "");
 			for(int  i=1;i<=4;i++) {
-				By LNLinfo=By.xpath("(//tr//td[@class='footable-visible footable-last-column footable-first-column']//following::text()[1])["+i+"]");
+				By LNLinfo=By.xpath("(//tr//td[@class='footable-visible footable-last-column footable-first-column']//following::text()[1])");
 			//if(!element.get(i).getText().equals("")) {
 					reporter.SuccessReport("Verify Line Level Smart Trackers on Account Manaement ", "Line Level Smart Trackers on Account Management  present ",getText(LNLinfo, "Line level info").trim(), driver);
 				/*}else {
@@ -320,7 +320,7 @@ public class InvoiceHistoryLib extends InvoiceHistoryObj {
 		if (isVisibleOnly(LICENSE_PROOF_LINK, "License proof link")) {
 			status = true;
 			reporter.SuccessReport("Verify LicenceProof Link Exist", "LicenceProof Link Exist", "");
-			click(LICENSE_PROOF_LINK, "License proof link");
+			JSClick(LICENSE_PROOF_LINK, "License proof link");
 
 		} else {
 			reporter.failureReport("Verify LicenceProof Link Exist", "LicenceProof Link Exist", "", driver);
@@ -337,6 +337,7 @@ public class InvoiceHistoryLib extends InvoiceHistoryObj {
 	public void verifyLicenseProofPopUp() throws Throwable {
 		if (isVisibleOnly(LICENSE_PROOF_POP_UP, "License proof link")) {
 			reporter.SuccessReport("Verify Invoice License Proof", "Invoice License Proof Information POPUP Exist", "");
+			click(CLOSE_POPUP, "Close popup", "close popup");
 		} else {
 			reporter.failureReport("Verify Invoice License Proof", "Invoice License Proof Information POPUP not Exist",
 					"", driver);
@@ -1180,6 +1181,7 @@ public class InvoiceHistoryLib extends InvoiceHistoryObj {
 	public void verifyExcelDownload() throws Throwable {
 		Files.deleteIfExists(Paths.get("./\\DownloadedFiles\\orderhistory.xls"));
 		click(EXPORT_TO_EXCEL, "export to excel");
+		Thread.sleep(5000);
 		if (Files.exists(Paths.get("./\\DownloadedFiles\\orderhistory.xls"))) {
 			reporter.SuccessReport("Export excel verification", "Exported excel file successfully", "");
 		} else {
