@@ -676,6 +676,14 @@ public void getListOfAvailableBreadCrumbs() throws Throwable{
     public void clickOnDeleteIconBasedUpOnProductNumberSearch(String partNumber) throws Throwable{
         if(isVisibleOnly(icnDeleteByProductNumber(partNumber),"Delete icon ")){
             click(icnDeleteByProductNumber(partNumber),"Clicking on Deleted icon For ",partNumber);
+            reporter.SuccessReport("Deleting part number","Deleted Partnumber is : ",partNumber);
+            if(!isVisibleOnly(icnDeleteByProductNumber(partNumber),"Delete icon ")){
+                reporter.SuccessReport("Deleting part number"," Part number is : ",partNumber +"Deleted");
+
+            }else{
+                reporter.failureReport("Deleting part number"," Part number is : ",partNumber +"Not Deleted",driver);
+
+            }
         }
     }
 
