@@ -272,8 +272,15 @@ public class InvoiceHistoryLib extends InvoiceHistoryObj {
 	 */
 	public void verifyHeaderLevelInfo() throws Throwable {
 		if (isVisibleOnly(HEADER_LEVEL_INFO, "Header level info")) {
-			reporter.SuccessReport("Verify Hedder Level Smart Trackers on Account Management - Invoice History Page",
-					"Hedder Level Smart Trackers Exist", "");
+			click(HEADER_LEVEL_INFO, "Header level info", "Header level info");
+			List <WebElement> element=driver.findElements(By.xpath("//section[@id='invoiceHeader']//dl"));
+			for(int  i=0;i<element.size();i++) {
+				if(!element.get(i).getText().equals("")) {
+					reporter.SuccessReport("Verify Header evel info", "Header level info present ",element.get(i).getText(), driver);
+				}else {
+					reporter.failureReport("Verify Header evel info", "Header level info not present ",element.get(i).getText(), driver);
+				}
+			}
 		} else {
 			reporter.failureReport("Verify Hedder Level Smart Trackers on Account Management - Invoice History Page",
 					"Hedder Level Smart Trackers not Exist", "", driver);
@@ -287,12 +294,20 @@ public class InvoiceHistoryLib extends InvoiceHistoryObj {
 	 */
 	public void verifyLineLevelInfo() throws Throwable {
 		if (isVisibleOnly(LINE_LEVEL_INFO, "Header level info")) {
-			reporter.SuccessReport("Verify Line Level Smart Trackers on Account Management - Invoice History Page",
-					"Line Level Smart Trackers Exist", "");
-		} else {
+			reporter.SuccessReport("Verify Line Level Smart Trackers on Account Management - Invoice History Page","Line Level Smart Trackers is present", "");
+			for(int  i=1;i<=4;i++) {
+				By LNLinfo=By.xpath("(//tr//td[@class='footable-visible footable-last-column footable-first-column']//following::text()[1])["+i+"]");
+			//if(!element.get(i).getText().equals("")) {
+					reporter.SuccessReport("Verify Line Level Smart Trackers on Account Manaement ", "Line Level Smart Trackers on Account Management  present ",getText(LNLinfo, "Line level info").trim(), driver);
+				/*}else {
+					reporter.failureReport("Verify Line Level Smart Trackers on Account Management ", "Line Level Smart Trackers on Account Management  not present ",element.get(i).getText(), driver);
+				}*/
+		} 
+		}
+		else {
 			reporter.failureReport("Verify Line Level Smart Trackers on Account Management - Invoice History Page",
 					"Line Level Smart Trackers not Exist", "", driver);
-		}
+	  }
 	}
 
 	/**
@@ -1183,6 +1198,10 @@ public class InvoiceHistoryLib extends InvoiceHistoryObj {
 
 	public void selectSearchBy(String searchby) throws Throwable {
 		selectByVisibleText(CanadaObj.drpSearchBy, searchby, "Sort by dropdown");
+	}
+	
+	public void clickOnInvoiceDetailsTab() throws Throwable {
+		click(INVOICE_DETAILS_TAB, "Invoice detais tab", "");
 	}
 
 }

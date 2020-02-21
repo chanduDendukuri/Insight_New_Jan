@@ -332,17 +332,15 @@ public class CanadaLib extends CanadaObj {
 		Thread.sleep(2000);
      CommonLib cmnlib=new CommonLib();
           cmnlib.acceptCookies() ;
-		Thread.sleep(20000);
+		//Thread.sleep(20000);
 		if(isVisibleOnly(InvoiceHistoryLib.COSE_ACCOUNT_TOOLS, "close account tools")) {
 			click(InvoiceHistoryLib.COSE_ACCOUNT_TOOLS, "close account tools");
 		} 
-		
 		   click(CommonObj.ACCOUNT_TOOLS, "Account tools menu icon");
 		   click(CommonObj.accountToolsMenu(toolsMenuName), "Account tools menu:"+toolsMenuName);
 		    scrollToBottomWithCordinate("300");
-		    Thread.sleep(20000);
 		    click(CommonObj.getAccountToolsDD(toolsMenuName, dropDown), "Select account tools: "+dropDown);
-		    navigateToBackPage();		   
+		   // navigateToBackPage();		   
 	}
 	
 	public void verifyGroundIsDefaultShippingOption() throws Throwable {

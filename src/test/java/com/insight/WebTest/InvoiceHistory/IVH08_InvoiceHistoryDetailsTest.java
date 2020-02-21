@@ -73,6 +73,7 @@ public class IVH08_InvoiceHistoryDetailsTest extends InvoiceHistoryLib {
 					 canadaLib.invoiceNumberLink();
 					 canadaLib.verifyInvoiceHistoryPageOpened();
 					 verifyHeaderLevelInfo();
+					 clickOnInvoiceDetailsTab();
 					 verifyLineLevelInfo();
 					 if(verifyLicenseProofLinkAndClick()) {
 						 verifyLicenseProofPopUp();
