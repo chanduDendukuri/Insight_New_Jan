@@ -479,6 +479,7 @@ public class HomePage extends ActionEngine
 		 public static By REPCOST_INLINEITEMS(String value){
 			 return By.xpath("(//*[@colid='repCost' and  @tabindex])["+value+"]");
 		 }
+		 public static By lblRepCostWithVCverification = By.xpath("//div[@colid='vc']//i[contains(@class,'text-green')]//..//..//..//following-sibling::div[@colid='repCost' and  @tabindex]");
 		 
 		 public static By FIRSTELM_PRICEVALUE_INLINEITEMS = By.xpath("//*[@id='center']/div/div[4]/div[3]/div/div/div[1]/div[13]/div/span"); 
 		 
