@@ -176,6 +176,7 @@ public static By Delete_UnderRouteButton1 = By.xpath("(//span[text()='Delete Rou
 		public static By createtabNames(String tabName){
 			return By.xpath("//span[@id='"+tabName+"']/a");
 		}
+		public static By REQUESTER_CANCEL_REQUSET=By.xpath("//select[@id='reqselection']");
 		public static By REQUESTOR_AVAILABLE(String GroupName) {
 				return By.xpath("//select[@id='AvailRequestorsList']//option[contains(text(),'"+GroupName+"')]");
 		}
@@ -189,7 +190,7 @@ public static By Delete_UnderRouteButton1 = By.xpath("(//span[text()='Delete Rou
 		public static By CANCELTN_STATUSMESSAGE= By.xpath("//div[@id='serach_msgbar2'][contains(text(),'Requisition Status Update Successful')]");
 		public static By EXPANDSEARCH= By.xpath("//div[@id='expndsearch1']/a");
 		
-		
+		public static By CANCEL_REQUISITION_BTN=By.xpath("//a[@id='cancelReq']//span[contains(text(),'CANCEL REQUISITION')]");
 		
 		
 	

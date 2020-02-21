@@ -32,7 +32,7 @@ public class REQ04_CancelRequisitionTest extends ChinaLib{
 	RequisitionProcessingLib ReqLib = new RequisitionProcessingLib();
 	   
 	   
-	// #############################################################################################################
+	           // #############################################################################################################
 				// # Name of the Test : REQ04_CancelRequisition
 				// # Migration Author : Cigniti Technologies
 				// #
@@ -71,6 +71,7 @@ public class REQ04_CancelRequisitionTest extends ChinaLib{
 						ReqLib.clickOnRequestorGroupID(data.get("ReqName1"));
 						ReqLib.verifyCreate_EditRequestoreGrpGeader();
 						ReqLib.verifyandclickManagerRequestors(data.get("tabName"));
+						ReqLib.AllowRequestorToCancelRequest("No");
 						ReqLib.selectRequestorgrpNameFromList(data.get("ReqName UFT"));
 						commonLib.clickLogOutLink(data.get("header1"));
 						//Login with 4th User
@@ -113,7 +114,8 @@ public class REQ04_CancelRequisitionTest extends ChinaLib{
 						orderLib.verifyandClickonRefLink(RefNumber);     
 						ReqLib.verifyApprovalManagmentPage();
 						//Need to verify cancel button not exists
-						ReqLib.verifyCancelRequisition();
+						//ReqLib.verifyCancelRequisition();
+						ReqLib.verifyCancelRequisitionButton("No");
 						commonLib.clickLogOutLink(data.get("header1"));
 						// LogIN with 1st User
 						cmtLib.navigateBackToCMT();
@@ -125,6 +127,7 @@ public class REQ04_CancelRequisitionTest extends ChinaLib{
 						ReqLib.clickOnRequestorGroupID(data.get("ReqName1"));
 						ReqLib.verifyCreate_EditRequestoreGrpGeader();
 						ReqLib.verifyandclickManagerRequestors(data.get("tabName"));
+						ReqLib.AllowRequestorToCancelRequest("Yes");
 						ReqLib.selectRequestorgrpNameFromList(data.get("ReqName UFT"));
 						commonLib.clickLogOutLink(data.get("header1"));
 						//Login with 4th User

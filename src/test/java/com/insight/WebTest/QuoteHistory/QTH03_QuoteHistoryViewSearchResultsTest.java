@@ -131,7 +131,7 @@ public class QTH03_QuoteHistoryViewSearchResultsTest extends QuoteHistoryLib {
 							quoteNumberLink();
 							verifyQuoteDetails();
 							getDelailsOnQuotePage();
-							verifyConvertQuoteButton();
+							verifyConvertQuoteButtonEnable();
 							verifyPrint();
 							verifyEmailIcon();
 							verifyEditThisQuoteIcon();

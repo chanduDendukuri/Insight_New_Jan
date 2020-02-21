@@ -89,8 +89,7 @@ public class QTH13_CQTRecalculatesOnFreightChangeTest extends QuoteHistoryLib {
 						String quoteNumber=quoteHistoryLib.getQuoteNumber();
 						
 						//quote history
-						canadaLib.clickOnSideMenuSelectAccountToolOptions(data.get("Tools_Menu"),
-								data.get("Tools_Menu_DD"));
+						commonLib.clickOnAccountToolsAndClickOnProductGrp(data.get("Tools_Menu"),data.get("Tools_Menu_DD"));
 						//quick search
 						orderLib.searchByInQuoteHistory(referenceNumber,data.get("Quote_DD_option"));
 						orderLib.convertQuote();
@@ -120,9 +119,10 @@ public class QTH13_CQTRecalculatesOnFreightChangeTest extends QuoteHistoryLib {
 								//orderLib.clickOrderDetailsLinkOnReceiptPage();
 								//verifyContactName(data.get("ContactName"));
 								//canadaLib.clickOnInvoiceHistory();
-								scrollToBottomWithCordinate("1000");
+								//scrollToBottomWithCordinate("1000");
 								//canadaLib.clickOnSideMenuSelectAccountToolOptions(data.get("Tools_Menu"),  data.get("Tools_Menu_DD"));
-								canadaLib.clickOnSideMenuSelectAccountToolOptions("Orders",  "Order Tracking/History");
+								//canadaLib.clickOnSideMenuSelectAccountToolOptions("Orders",  "Order Tracking/History");
+								commonLib.clickOnAccountToolsAndClickOnProductGrp("Orders",  "Order Tracking/History");
 								//canadaLib.clickOnInvoiceHistory();
 								//quickSearchAndVerifySearchResults(data.get("Search_Item"),ReferenceNumber);
 								orderLib.clickonorderNumLinkinRecentorders(ReferenceNumber);

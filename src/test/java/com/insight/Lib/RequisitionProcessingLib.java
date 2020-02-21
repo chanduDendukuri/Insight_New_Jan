@@ -882,10 +882,39 @@ public void ClickAddRoute() throws Throwable {
 	 * @throws Throwable
 	 */
 	public void verifyandclickManagerRequestors(String tabName) throws Throwable {
-		if (isElementPresent(createtabNames(tabName), tabName+"Tab")) {
+		
 			click(createtabNames(tabName), tabName+"Tab");
 		}
+	
+	public void AllowRequestorToCancelRequest(String text) throws Throwable {
+		if(isVisibleOnly(REQUESTER_CANCEL_REQUSET, "requester cancel request")) {
+			click(REQUESTER_CANCEL_REQUSET, "requester cancel request");
+			selectByVisibleText(REQUESTER_CANCEL_REQUSET, text, "requester cancel request");
+			click(REQUESTOR_SAVEBTN, "Save changes button");
+		}else {
+			reporter.failureReport("Verify Allow Requestor to cancel request drop down exists", "Allow Requestor to cancel request drop down does not exists", "", driver);
 		}
+	}
+	
+	public void verifyCancelRequisitionButton(String status) throws Throwable {
+		switch(status) {
+		case "No":
+			if(isElementNotPresent(CANCEL_REQUISITION_BTN, "CANCEL REQUISITION BUTTON")) {
+				reporter.SuccessReport("Verify requisition cancel button ", "Requisition cancel button does not exists", "", driver);
+		}else {
+			reporter.failureReport("Verify requisition cancel button ", "Requisition cancel button does exists", "", driver);
+		   }
+			break;
+			
+		case "Yes":
+			if(isElementPresent(CANCEL_REQUISITION_BTN, "CANCEL REQUISITION BUTTON")) {
+				reporter.SuccessReport("Verify requisition cancel button ", "Requisition cancel button exists", "", driver);
+		}else {
+			reporter.failureReport("Verify requisition cancel button ", "Requisition cancel button does not exists", "", driver);
+		   }break;
+		}
+		
+	}
 	
 	 /**
 		 * 
