@@ -1434,35 +1434,35 @@ public class OrderLib extends OrderObj{
 			 if(desc.equals(prodDesc.get(i))){
 				 reporter.SuccessReport("Verify product description ", "Product description : ","");
 			 }else{
-				 reporter.failureReport("Verify product description ", "Product description verification failed. Actual is: ",""); 
+				 reporter.failureReport("Verify product description ", "Product description verification failed. Actual is: ","",driver); 
 			 }
 			 
 			 String quantity = qty.get(i).getAttribute("value");
 			 if(quantity.equals(quantity2.get(i))){
 				 reporter.SuccessReport("Verify product Quantity ", "Product Quantity : ",quantity2.get(i));
 			 }else{
-				 reporter.failureReport("Verify product Quantity ", "Product Quantity verification failed. Actual is: ",""); 
+				 reporter.failureReport("Verify product Quantity ", "Product Quantity verification failed. Actual is: ","",driver); 
 			 }
 			 
 			 String expectedstock = stock.get(i).getText();
 			 if(expectedstock.equals(stock2.get(i))){
 				 reporter.SuccessReport("Verify product stock ", "Product stock : ","");
 			 }else{
-				 reporter.failureReport("Verify product stock ", "Product stock verification failed. Actual is: ",""); 
+				 reporter.failureReport("Verify product stock ", "Product stock verification failed. Actual is: ","",driver); 
 			 } 
 			 
 			 String expectedtoatalprice= total_price.get(i).getText();
 			 if(expectedtoatalprice.equals(totalPrice.get(i))){
 				 reporter.SuccessReport("Verify total price ", "Product total price : ",expectedtoatalprice);
 			 }else{
-				 reporter.SuccessReport("Verify total price ", "Product total price verification failed. Actual is: ",""); 
+				 reporter.SuccessReport("Verify total price ", "Product total price verification failed. Actual is: ","",driver); 
 			 } 
 			
 			 String expectedUnitPrice= unit_price.get(i).getText();
 			 if(expectedUnitPrice.equals(unitPrice.get(i))){
 				 reporter.SuccessReport("Verify total price ", "Product total price : ",expectedUnitPrice);
 			 }else{
-				 reporter.failureReport("Verify total price ", "Product total price verification failed. Actual is: ",""); 
+				 reporter.failureReport("Verify total price ", "Product total price verification failed. Actual is: ","",driver); 
 			 } 
 		}
 	}
@@ -1497,7 +1497,7 @@ public class OrderLib extends OrderObj{
 		if(isElementPresent(SAVE_QUOTE_MSG, "Success message")){
 			 reporter.SuccessReport("Verify Success message", "Save as Quote - Successful message displayed","");
 		 }else{
-			 reporter.failureReport("Verify Success message ", "Save as Quote - Successful message not displayed ",""); 
+			 reporter.failureReport("Verify Success message ", "Save as Quote - Successful message not displayed ","",driver); 
 		 
 		}
 	}
@@ -1627,7 +1627,7 @@ public class OrderLib extends OrderObj{
 		if(isElementPresent(BUNDLE_TABLE_IN_SAVE_QUOTE, "Product bundle table in save Quote")){
 			reporter.SuccessReport("Verify Product bundle table in save Quote", "Product bundle table is loaded successfully","");
 		}else{
-			reporter.failureReport("Verify Product bundle table in save Quote", "Product bundle table is not loaded.","");
+			reporter.failureReport("Verify Product bundle table in save Quote", "Product bundle table is not loaded.","",driver);
 		}
 	}
 	
@@ -1671,7 +1671,9 @@ public class OrderLib extends OrderObj{
 			 if(isElementPresent(SMART_TRACKER_LABEL,"Smart tracker in LL info section")){
 			type(RP_LNL_Txt, rP_LNL_Txt, "RP_LNL_Txt text box");
 			click(LLI_CONTINUE_BTN, "Continue button");
-		    }
+		       }
+			}else {
+				reporter.failureReport("Line levl info", "Line level information is not present", "", driver);
 			}
 	 }
 	 /**
@@ -1685,7 +1687,7 @@ public class OrderLib extends OrderObj{
 				if(Phnmbr.isEmpty()){
 					reporter.SuccessReport("Verify Phone number is cleared", "Phone Number is empty","");
 				}else{
-					reporter.failureReport("Verify Phone number is cleared", "Phone Number is not null","");
+					reporter.failureReport("Verify Phone number is cleared", "Phone Number is not null","",driver);
 				}
 			}
 			}
@@ -1698,7 +1700,7 @@ public class OrderLib extends OrderObj{
 			click(COPY_TOALL_LNK, "Copy to all link");
 				reporter.SuccessReport("Click Copy to all on Line Level Information Page","Copy to all Link Exists and Clicked","");
 			}else
-				reporter.failureReport("Click Copy to all on Line Level Information Page","Copy to all Link Does Not Exist","");
+				reporter.failureReport("Click Copy to all on Line Level Information Page","Copy to all Link Does Not Exist","",driver);
 		}
 	 /**
 	  * 
@@ -1804,7 +1806,7 @@ public class OrderLib extends OrderObj{
 		if (PONum.isEmpty()) {
 			reporter.SuccessReport("Delete PO Number in Ship, Bill & Pay Page", "PO Number Field Exists and Deleted","PO Number:"+PONum);
 		} else
-			reporter.failureReport("Delete PO Number in Ship, Bill & Pay Page", "PONumber Field does not Exist","PO Number:"+PONum);
+			reporter.failureReport("Delete PO Number in Ship, Bill & Pay Page", "PONumber Field does not Exist","PO Number:"+PONum,driver);
 
 	}
 
@@ -1856,7 +1858,7 @@ public class OrderLib extends OrderObj{
 			click(tabNameinOrderDetails(TabName), TabName + "link");
 			reporter.SuccessReport("Verify" + TabName + "link in the Order Detail ","Link Exist and Clicked",TabName);
 		} else
-			reporter.failureReport("Verify" + TabName + " link in the Order Details ",  "Link Does not Exist",TabName);
+			reporter.failureReport("Verify" + TabName + " link in the Order Details ",  "Link Does not Exist",TabName,driver);
 	}
 
 	/**
@@ -1881,7 +1883,7 @@ public class OrderLib extends OrderObj{
 			reporter.SuccessReport(" Smart Trackers Verification in customer details page", "Header Level Smart Tracker exists in customer details page","");
 		} else
 			reporter.failureReport(" Smart Trackers Verification in customer details page",
-					"Header Level Smart Tracker Does not Exist in customer details page","");
+					"Header Level Smart Tracker Does not Exist in customer details page","",driver);
 	}
 	/**
 	 * 
@@ -1910,6 +1912,8 @@ public class OrderLib extends OrderObj{
 			click(ReferenceLink(refNum), "Reference Number Link");
 			reporter.SuccessReport("Click  Ref Number on Requisition Search Results Page",
 					"Ref Number Link Exists and Clicked",refNum);
+		}else {
+			reporter.failureReport("ApprovalManagement Header", "ApprovalManagement Header doe not exists", "", driver);
 		}
 	}
 
@@ -1920,20 +1924,18 @@ public class OrderLib extends OrderObj{
 	public void verifyApprovalManagmentHeaderandClickonUpdateLink() throws Throwable {
 		if (isElementPresent(APPROVAL_MNGMNT_HDR2, "ApprovalManagement Header")) {
 			reporter.SuccessReport("Verify Approval Management  Page", "Approval Management Page Exist","");
-		} else
-			reporter.failureReport("Verify Approval Management  Page", "Approval Management Page does Not Exists","");
 		click(UPDATE_BTN, "Update Button");
 		click(CONTINUE_BTNIN, "Continue Button");
-		reporter.SuccessReport("Approve Requisition", "Continue Button Exists and Clicked","");
 		navigateToBackPage();
-		if (isElementPresent(APPROVAL_MNGMNT_HDR2, "ApprovalManagement Header")) {
-			if (isElementPresent(APPROVAL_MNGMNT_HDR2, "ApprovalManagement Header")) {
+		if (isElementPresent(APPROVAL_MNGMNT_HDR2, "ApprovalManagement Header") && isElementPresent(OrderObj.APPROVED_STATUS, "ApprovalManagement Header")) {
 				reporter.SuccessReport("Verify Requisition Status on  Approval Management Page ",
 						"Requisition Aprroved","");
 			} else
 				reporter.failureReport("Verify Requisition Status on  Approval Management Page ",
-						"Requisition Not Aprroved","");
-		}
+						"Requisition Not Aprroved","",driver);
+		    }
+	else {
+		reporter.failureReport("Verify Approval Management  Page", "Approval Management Page does Not Exists","",driver);}
 	}
 
 	/**
@@ -1943,13 +1945,10 @@ public class OrderLib extends OrderObj{
 	public void verifyOrderNumberandClickonUpdateLink() throws Throwable {
 		if (isElementPresent(APPROVAL_MNGMNT_HDR2, "ApprovalManagement Header")) {
 			reporter.SuccessReport("Verify Approval Management  Page", "Approval Management Page Exist","");
+			click(UPDATE_BTN, "Update Button");
+			click(CONTINUE_BTNIN, "Continue Button");
 		} else
-			reporter.failureReport("Verify Approval Management  Page", "Approval Management Page does Not Exists","");
-		click(UPDATE_BTN, "Update Button");
-		click(CONTINUE_BTNIN, "Continue Button");
-		reporter.SuccessReport("Approve Requisition", "Continue Button Exists and Clicked","");
-		
-		
+			reporter.failureReport("Verify Approval Management  Page", "Approval Management Page does Not Exists","",driver);
 	}
 
 	/**
@@ -1992,7 +1991,7 @@ public class OrderLib extends OrderObj{
 			type(ADDINFO_EMAIL, email, "Email");
 		} else {
 			reporter.failureReport("Verify the the Order and item information page",
-					"Order and item information page is not displayed","");
+					"Order and item information page is not displayed","",driver);
 		}
 	}
 
@@ -2007,7 +2006,7 @@ public class OrderLib extends OrderObj{
 					"Order Placed By Name,Phone,Email Fields is Verfied","");
 		} else {
 			reporter.failureReport("Verify Order Placed By fields on Cart : Ship, Bill & Pay : Place Requisition Page",
-					"Order Placed By Name,Phone,Email Fields is not Verfied","");
+					"Order Placed By Name,Phone,Email Fields is not Verfied","",driver);
 		}
 	}
 
@@ -2022,7 +2021,7 @@ public class OrderLib extends OrderObj{
 		if (OrdNum.equals(RefNumber)) {
 			reporter.SuccessReport("Get The Order Number on Aproval management Page", "Order Number Exist in Approval Management page:"+OrdNum,"");
 		} else
-			reporter.failureReport("Get The Order Number on Aproval management Page", "Order Number Not Exists:"+OrdNum,"");
+			reporter.failureReport("Get The Order Number on Aproval management Page", "Order Number Not Exists:"+OrdNum,"",driver);
 
 	}
 
@@ -2040,7 +2039,7 @@ public class OrderLib extends OrderObj{
 				reporter.SuccessReport("Verify success message",
 						"Shipping payments options success message is displayed","");
 			} else {
-				reporter.failureReport("Verify success message", "Success message is not displayed","");
+				reporter.failureReport("Verify success message", "Success message is not displayed","",driver);
 			}
 		} else {
 			// Do nothing
@@ -2083,14 +2082,10 @@ public class OrderLib extends OrderObj{
 	public void verifyApprovalManagmentandClickUpdate() throws Throwable {
 		if (isElementPresent(APPROVAL_MNGMNT_HDR2, "ApprovalManagement Header")) {
 			reporter.SuccessReport("Verify Approval Management  Page", "Approval Management Page Exist","");
+			click(UPDATE_BTN, "Update Button");
 		} else
-			reporter.failureReport("Verify Approval Management  Page", "Approval Management Page does Not Exists","");
-		if(click(UPDATE_BTN, "Update Button")){
-			reporter.SuccessReport("Verify Approval Management  Page", "Requisition placed has been Approved.","");
-		} else
-			reporter.failureReport("Verify Approval Management  Page", "Requisition not Approved.","");
-		}
-	
+			reporter.failureReport("Verify Approval Management  Page", "Approval Management Page does Not Exists","",driver);
+	}	
 	/**
 	 * 
 	 * @param quoteName
@@ -2103,7 +2098,7 @@ public class OrderLib extends OrderObj{
 		if(isElementPresent(SAVE_QUOTE_MSG, "Success message")){
 			 reporter.SuccessReport("Verify Success message", "Save as Quote - Successful message displayed","");
 		 }else{
-			 reporter.failureReport("Verify Success message ", "Save as Quote - Successful message not displayed ",""); 
+			 reporter.failureReport("Verify Success message ", "Save as Quote - Successful message not displayed ","",driver); 
 		}
 	}
 	/**
@@ -2148,7 +2143,7 @@ public class OrderLib extends OrderObj{
 		if(companyName.equals(address)) {
 			reporter.SuccessReport("Verify company name ", "company name verified successfully. Name is : ", address);
 		}else {
-			reporter.failureReport("Verify company name ", "company name is not verified. Name is : ", address);
+			reporter.failureReport("Verify company name ", "company name is not verified. Name is : ", address,driver);
 		}
 	}
 	
@@ -2351,7 +2346,7 @@ public class OrderLib extends OrderObj{
 		if(tax1==tax2) {
 			reporter.SuccessReport("Verify Tax estimates are equal", "Tax estimates are equal", "Tax 1: $"+tax1+"  Tax2: $"+tax2);
 		}else {
-			reporter.failureReport("Verify Tax estimates are equal", "Tax estimates are not equal", "");
+			reporter.failureReport("Verify Tax estimates are equal", "Tax estimates are not equal", "",driver);
 		}
 	}
 	
@@ -2395,7 +2390,7 @@ public class OrderLib extends OrderObj{
 		if(isVisibleOnly(PAYMENT_METHOD_VERIFICATION_TERMS,"Terms")) {
 			reporter.failureReport("Verify payment options:", "Terms Exists in payment Options", "Terms");
 			if(isVisibleOnly(PAYMENT_METHOD_VERIFICATION_procurementscard,"Procurement Card")) {
-				reporter.failureReport("Verify payment options:", "Procurementcard  Option exits", "");	
+				reporter.failureReport("Verify payment options:", "Procurementcard  Option exits", "",driver);	
 			}
 		}
 		else {
@@ -2528,7 +2523,7 @@ public class OrderLib extends OrderObj{
 					"Order Placed By Name:"+Name+" Email:"+Email+" Fields are Verfied", "");
 		} else {
 			reporter.failureReport("Verify Order Placed By fields on Cart : Ship, Bill & Pay : Place Requisition Page",
-					"Order Placed By Name:"+Name+" Email:"+Email+" Fields is not Verfied", "");
+					"Order Placed By Name:"+Name+" Email:"+Email+" Fields is not Verfied", "",driver);
 		}
 	}
 
@@ -2543,7 +2538,7 @@ public class OrderLib extends OrderObj{
 					"Order Placed By Name"+Name+" Email:"+Email+" Fields are Verfied", "");
 		} else {
 			reporter.failureReport("Verify Order Placed By fields on Customer details Page",
-					"Order Placed By Name:"+Name+" Email:"+Email+" Fields is not Verfied", "");
+					"Order Placed By Name:"+Name+" Email:"+Email+" Fields is not Verfied", "",driver);
 		}
 
 	  }
@@ -2678,10 +2673,8 @@ public class OrderLib extends OrderObj{
 		String path= "./AutoIt/UploadFile.xls";
 		String a =System.getProperty("user.dir") + "\\AutoIt\\UploadFile.xls";
 
-
-
 		setClipboardData(a);
-//native key strokes for CTRL, V and ENTER keys
+        //native key strokes for CTRL, V and ENTER keys
 		Robot robot = new Robot();
 		robot.keyPress(KeyEvent.VK_CONTROL);
 		robot.keyPress(KeyEvent.VK_V);
@@ -2712,6 +2705,6 @@ public class OrderLib extends OrderObj{
 		}else {
 			reporter.failureReport("verify click to view or download attachment link", "click to view or download attachment link does not exists", "", driver);
 		}
-	}
+	   }
 	}
 
