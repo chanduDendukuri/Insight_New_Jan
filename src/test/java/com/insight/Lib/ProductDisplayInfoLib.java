@@ -532,6 +532,7 @@ public class ProductDisplayInfoLib extends productsDisplayInfoObj {
      */
     public void verifyContractInCartScreen(String contractName) throws Throwable {
         String actualcontractName = getText(CART_CONTRACT_NAME, "contract name");
+
         if (contractName.contains(actualcontractName)) {
             reporter.SuccessReport("Verify the contract name", " Contract name verified successfully in cart page and is same as selected", actualcontractName);
         } else {

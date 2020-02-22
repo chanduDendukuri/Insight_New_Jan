@@ -146,7 +146,7 @@ public class EUF17_FCTWebSelectSoldToTest extends EndUserFeaturesLib{
 						System.out.println("Test completed");
 					} catch (Exception e) {
 						ReportStatus.blnStatus = false;
-						//gErrorMessage = e.getMessage();
+						gErrorMessage = e.getClass().getSimpleName();
 						gTestStatus = false;
 					}
 					
@@ -154,7 +154,7 @@ public class EUF17_FCTWebSelectSoldToTest extends EndUserFeaturesLib{
 			} catch (Exception e) {
 				e.printStackTrace();
 				ReportStatus.blnStatus = false;
-				//gErrorMessage = e.getMessage();
+				gErrorMessage = e.getClass().getSimpleName();
 				gTestStatus = false;
 				ReportStatus.fnUpdateResultStatus("FCTWebSelectSoldToTest", "TC_EUF17", ReportStatus.strMethodName, 1, browser);
 				throw new RuntimeException(e);

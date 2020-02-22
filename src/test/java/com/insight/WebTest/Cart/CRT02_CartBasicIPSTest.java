@@ -73,7 +73,7 @@ public class CRT02_CartBasicIPSTest extends CartLib{
 					commonLib.addToCartAndVerify();
 					canadaLib.continueToCheckout();
 					String USCommunitiesContractPrice=orderLib.getCartProductUnitPriceInViewCart();
-					String totalAmountMarketPriceoff=shipbLib.getTotalAmountInCart(data.get("Total"));
+					//String totalAmountMarketPriceoff=shipbLib.getTotalAmountInCart(data.get("Total"));
 					commonLib.clickLogOutLink(data.get("Logout_Header"));
 
 					cmtLib.navigateBackToCMT();
@@ -109,12 +109,16 @@ public class CRT02_CartBasicIPSTest extends CartLib{
 					cmtLib.loginVerification("User - "+data.get("ContactName2"));
 
 					search.searchInHomePage(data.get("Search_Item1"));
+					String search1 = prodInfoLib.getPartNumberInSearchResultsPage();
 					search.verifyBreadCrumbInSearchResultsPage(data.get("Search_Item1"));
 					Thread.sleep(10000);
 					cartLib.verifyDefaultContractinProductDisplay();
 
 					search.searchInHomePage(data.get("SearchItem2"));
 					search.verifyBreadCrumbInSearchResultsPage(data.get("SearchItem2"));
+					String search2 = prodInfoLib.getPartNumberInSearchResultsPage();
+					String strArray2[] = search2.split("#:");
+					String secondPart = strArray2[1];
 					prodInfoLib.selectFirstProductAddToCartAndVerifyCart();
 					Thread.sleep(5000);
 					cartLib.verifyDefaultContractInCart();
@@ -140,6 +144,7 @@ public class CRT02_CartBasicIPSTest extends CartLib{
 					prodInfoLib.verifyCartPageAndPartDetails();
 					// contract verification in cart page
 					prodInfoLib.verifyContractInCartScreen(data.get("Contarct_Name1"));
+					ccp.getProductNumberInCartPage(secondPart);
 					ccp.getProductDescriptionInViewCartPage();
 					prodInfoLib.enterQuantityForProductsInViewCartPage(data.get("quantity2"));
 					commonLib.clickOnUpdateLinkInViewCartPage(data.get("quantity2"));
@@ -155,9 +160,12 @@ public class CRT02_CartBasicIPSTest extends CartLib{
 					//cartLib.verifyDefaultContractInCart();
 					prodInfoLib.verifyContractInCartScreen(data.get("Contarct_Name2"));
 					prodInfoLib.verifyContract2InCartScreen(data.get("Contarct_Name1"));
+					ccp.getProductNumberInCartPage(part);
+					ccp.getProductNumberInCartPage(secondPart);
 
-
-					commonLib.emptyCartAndVerify();
+					//Deleting parts
+					ccp.clickOnDeleteIconBasedUpOnProductNumberSearch(part);
+					ccp.clickOnDeleteIconBasedUpOnProductNumberSearch(secondPart);
 
 					commonLib.clickLogOutLink(data.get("Logout_Header"));
 					navigateTo(data.get("URL"));

@@ -92,6 +92,8 @@ public static By txtQuantityValue = By.xpath("//*[@class='cart-wrapper show-for-
     public static By getProductNumberinViewCartPage(String header){
         return By.xpath("//*[contains(@class,'part cart') and contains(.,'"+header+"')][1]");
     }
+    public static By getInsightProductNumberInCartPage = By.xpath("//*[contains(@class,'part cart') and contains(.,'Insight')]");
+    public static By CART_CONTRACT_NAME=By.xpath("//div[@class='cart__table-block']//div[@class='columns']//strong");
 
 
 }

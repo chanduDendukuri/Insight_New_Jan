@@ -407,6 +407,16 @@ public class EndUserFeaturesLib extends EndUserFeaturesObj{
 		}
 
 	}
+	public void verifyAccountFavouritesLinksPageOpened() throws Throwable {
+		if(isVisibleOnly(AccountFavLinkAvailablity, "Account Favourites links header")) {
+			reporter.SuccessReport("Verify Account Favorite Links Page", "Page Loaded","");
+		}
+		else {
+			reporter.failureReport("Verify Manage Favorite Links Page", "Page does Not Exists","",driver);
+
+		}
+
+	}
 
 
 	/**
@@ -872,5 +882,9 @@ public class EndUserFeaturesLib extends EndUserFeaturesObj{
 			reporter.failureReport("System displays Remove Link on Current Account Tab in Account Management -Account Tools Page", "Remove Link on Current Account Tab is Not Exists",getText(REMOVEDEFUALT,"Remove default account"),driver);
 
 		}
+	}
+	public void selectToolsOnHeader() throws Throwable{
+		click(CommonObj.TOOLS_DD_HEADER, "tools drop down");
+
 	}
 }
