@@ -3862,6 +3862,7 @@ public void verifySetPermissionsDisabled(String userPermissions) throws Throwabl
 	public boolean verifyCheckBoxSelectedForAllElement() throws Throwable {
 		boolean status = false;
 		List<WebElement> chb = driver.findElements(displayOnWebGroupList);
+		List<WebElement> save = driver.findElements(icnListAllSaveButton);
 		for(int i = 0; i< chb.size();i++) {
 
 			if(chb.get(i).isSelected()){
@@ -3869,6 +3870,7 @@ public void verifySetPermissionsDisabled(String userPermissions) throws Throwabl
 			}
 			else{
 				chb.get(i).click();
+				save.get(i).click();
 				reporter.SuccessReport("Check Box selected ",i+"Check box is  selected Now ","true");
 			}
 
