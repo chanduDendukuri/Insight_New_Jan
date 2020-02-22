@@ -690,5 +690,17 @@ public void getListOfAvailableBreadCrumbs() throws Throwable{
     public String getProductDetailsFromAllContactDetailsPopup() throws Throwable{
         return getText(lblProductDetailsOnAllContactPrices,"Product Details");
     }
+    public void getProductNumberInCartPage() throws Throwable{
+        List <WebElement> prtNum=driver.findElements(getInsightProductNumberInCartPage);
+        List <WebElement> contractName=driver.findElements(CART_CONTRACT_NAME);
+        for(int i =0 ;i<prtNum.size();i++)
+        {
+            reporter.SuccessReport("Part Number","Insight Part Number in Cart Page for product "+i +"is", prtNum.get(i).getText() + " is  Associated to " + contractName.get(i).getText());
+
+
+        }
+
+    }
+
 }
 

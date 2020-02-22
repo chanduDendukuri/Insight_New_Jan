@@ -160,7 +160,7 @@ public class SLPLib extends SLPObj {
 
 	/**
 	 * 
-	 * @param This method is to verify license type in cart page
+	 * This method is to verify license type in cart page
 	 * @throws Throwable
 	 */
 	public void verifylicensetype(String partnum) throws Throwable {
@@ -1077,6 +1077,19 @@ public class SLPLib extends SLPObj {
 					reporter.failureReport("Verify MSPA Products are Prorated in Quotes details", "MSPA Products are not Prorated in Quotes details", "",driver);
 				   }
 				}
-			}
+	/**
+	 * Method is to verify the invisibility of proceed to checkout button
+	 * @throws Throwable
+	 */
+	public void verifyProceedToCheckOutButton() throws Throwable {
+		commonLib.spinnerImage();
+		if(isElementPresent(OrderLib.PROCEED_TO_CHECKOUT, "Proceed to checkout") && isEnabled(OrderLib.PROCEED_TO_CHECKOUT, "Proceed to checkout")){
+			reporter.SuccessReport("Verify proceed to checkout button", "Proceed to checkout button exists","",driver);
+		}else{
+			reporter.failureReport("Verify proceed to checkout button", "Proceed to checkout button does not exists", "");
+		}
+	}
+}
+
 
 
