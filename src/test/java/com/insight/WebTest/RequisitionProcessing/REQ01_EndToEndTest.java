@@ -72,7 +72,6 @@ public class REQ01_EndToEndTest extends ChinaLib{
 
 						searchLib.searchInHomePage(data.get("SearchItem"));
 						searchLib.verifyBreadCrumbInSearchResultsPage(data.get("SearchItem"));
-						
 						prodinfo.getPartNumberInSearchResultsPage();
 						scrollBottom();
 						// Add a item to cart >> proceed To Checkout >> place order >>
@@ -95,8 +94,6 @@ public class REQ01_EndToEndTest extends ChinaLib{
 
 						orderLib.continueButtonOnAdditionalInformationSection();
 						orderLib.clickContinueOnLineLevelInfo(); // Click continue on Line
-						/////
-						
 						// level Info
 						ReqLib.clearPhoneNumber();
 						canadaLib.verifySBP();
@@ -190,7 +187,7 @@ public class REQ01_EndToEndTest extends ChinaLib{
 						// history
 						
 						/////
-						
+						////ul[@class='row expanded order-details__table orders__list orders__list--no-bullets']//li//span[contains(text(),'PO / PO release')]/following-sibling::span
 						// Verifying PO Numbers
 						ReqLib.verifyPOandPORelease(RefNumber, PO, PORelease);
 						// Logout

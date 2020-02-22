@@ -1432,7 +1432,7 @@ public class OrderLib extends OrderObj{
 		for (int i = 0; i <myList.size() ; i++) {
 		    String desc = myList.get(i).getText();
 			 if(desc.equals(prodDesc.get(i))){
-				 reporter.SuccessReport("Verify product description ", "Product description : ","");
+				 reporter.SuccessReport("Verify product description ", "Product description : ",prodDesc.get(i));
 			 }else{
 				 reporter.failureReport("Verify product description ", "Product description verification failed. Actual is: ","",driver); 
 			 }
@@ -1441,14 +1441,14 @@ public class OrderLib extends OrderObj{
 			 if(quantity.equals(quantity2.get(i))){
 				 reporter.SuccessReport("Verify product Quantity ", "Product Quantity : ",quantity2.get(i));
 			 }else{
-				 reporter.failureReport("Verify product Quantity ", "Product Quantity verification failed. Actual is: ","",driver); 
+				 reporter.failureReport("Verify product Quantity ", "Product Quantity verification failed. Actual is: ",quantity2.get(i),driver); 
 			 }
 			 
 			 String expectedstock = stock.get(i).getText();
 			 if(expectedstock.equals(stock2.get(i))){
-				 reporter.SuccessReport("Verify product stock ", "Product stock : ","");
+				 reporter.SuccessReport("Verify product stock ", "Product stock : ",stock2.get(i));
 			 }else{
-				 reporter.failureReport("Verify product stock ", "Product stock verification failed. Actual is: ","",driver); 
+				 reporter.failureReport("Verify product stock ", "Product stock verification failed. Actual is: ",stock2.get(i),driver); 
 			 } 
 			 
 			 String expectedtoatalprice= total_price.get(i).getText();

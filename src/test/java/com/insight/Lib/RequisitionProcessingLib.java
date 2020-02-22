@@ -460,6 +460,21 @@ public void ClickAddRoute() throws Throwable {
 	    WebElement element = driver.findElement(REQ_GRP_DROPDOWN_TYPE);
 		element.sendKeys(Keys.ENTER);
 	}
+	
+	/**
+	 * This method is to check deny radio button in approval management page
+	 * @throws Throwable
+	 */
+	public void selectRequestorGroupNameFromDD(String ReqName)  throws Throwable{
+		By REQ_GRP_DROPDOWN_ARROW=By.xpath("//span[@id='react-select-6--value']/following::span[@class='Select-arrow'][4]");
+		click(REQ_GRP_DROPDOWN_ARROW,"Requestor group name dropdown");
+		click(REQ_GRP_DROPDOWN_OPTION(ReqName),"Rep name");
+		/*
+		 * //type(REQ_GRP_DROPDOWN_TYPE,ReqName,"Selected Requestor Group Name");
+		 * WebElement element = driver.findElement(REQ_GRP_DROPDOWN_TYPE);
+		 * element.sendKeys(Keys.ENTER);
+		 */
+	}
 	/**
 	 * This method is to check deny radio button in approval management page
 	 * @throws Throwable
@@ -547,18 +562,33 @@ public void ClickAddRoute() throws Throwable {
 }
 	}
 	public void verifyPOandPORelease(String refNum,String PO,String PORelease) throws Throwable {
-		String PONUM_OH= getText(PONumInOrderHistory(refNum),"PO Number in order history page");
-		String PORELEASE_OH = getText(PONumInOrderHistory(refNum),"PO Number in order history page");
-		if(PONUM_OH.contains(PO)){
-			reporter.SuccessReport("Verify PO Number in Order History ", "PO Number: " , PONUM_OH);
-		}else{
-			reporter.failureReport("Verify PO Number in Order History", "PO Number not updated correctly. ","");
+		/*
+		 * String PONUM_OH=
+		 * getText(PONumInOrderHistory(refNum),"PO Number in order history page");
+		 * String PORELEASE_OH =
+		 * getText(PONumInOrderHistory(refNum),"PO Number in order history page");
+		 */
+		By poNumPoReleaseNum=By.xpath("//ul[@class='row expanded order-details__table orders__list orders__list--no-bullets']//li//span[contains(text(),'PO / PO release')]/following-sibling::span");
+		String PO_PORelease=PO+"/"+PORelease;
+		
+		/*
+		 * if(PONUM_OH.contains(PO)){
+		 * reporter.SuccessReport("Verify PO Number in Order History ", "PO Number: " ,
+		 * PONUM_OH); }else{ reporter.failureReport("Verify PO Number in Order History",
+		 * "PO Number not updated correctly. ",""); }
+		 * if(PORELEASE_OH.contains(PORelease)){
+		 * reporter.SuccessReport("Verify PO Release Number in Order History",
+		 * "PO Release Number: " , PORELEASE_OH); }else{
+		 * reporter.failureReport("Verify PO Release Number in Order History",
+		 * "PO Release Number is not updated correctly. ",""); }
+		 */
+		
+		if(getText(poNumPoReleaseNum, "poNum and PoReleaseNum").equals(PO_PORelease)) {
+			reporter.SuccessReport("Verify PO Number in Order History ", "PO Number & Po release number: " ,PO_PORelease);
+		}else {
+			reporter.failureReport("Verify PO Number in Order History ", "PO Number & Po release number does not exists " ,PO_PORelease,driver);
 		}
-		if(PORELEASE_OH.contains(PORelease)){
-			reporter.SuccessReport("Verify PO Release Number in Order History", "PO Release Number: " , PORELEASE_OH);
-		}else{
-			reporter.failureReport("Verify PO Release Number in Order History", "PO Release Number is not updated correctly. ","");
-		}
+		
 	}
 	public void enterNewCardInformation(String cardtype,String cardNum,String cardName,String month,String year) throws Throwable {
 		click(OrderObj.CONTINUE_BTNIN, "Continue Button");	

@@ -73,8 +73,11 @@ public class CRT04_CartPrintFriendlyTest extends CartLib {
 					cmtLib.hoverOnManageWebGroupsAndSelectOptions(data.get("Manage_Web_Grp_Options"));
 					cmtLib.searchForaUserAndSelect(data.get("LnameEmailUname"), data.get("ContactName"));
 					cmtLib.setPermissions(data.get("menuName1"), data.get("Enable_Purchasing_Popup"));
-					cmtLib.AssigntheusertoServiceLevelShippingwithnodefault(data.get("menuName2"),
-							data.get("user_Permissions"), data.get("indexvalue"));
+					//Shipping Address
+					cmtLib.clickCheckOutSettings(data.get("Checkout_Settings"));
+					cmtLib.selectOptionInCheckoutSettings(data.get("Shipping_address"));
+					cmtLib.verifyDefaultShippingAddress(data.get("Account_Name"));
+					//commonLib.verifyDefualtShippingSelectedOption();
 					cmtLib.clickOnloginAs();
 					switchToChildWindow();
 					// Login verification
@@ -98,17 +101,21 @@ public class CRT04_CartPrintFriendlyTest extends CartLib {
 					// commented warranty code as there are no warranties for the part taken
 					ccp.clickOnAddToCartButtonUnderWarrentyDynamically();
 					String warrantyPartNumber=cartLib.getPartNumber();
-			commonLib.continueToShopping();
-					commonLib.addToCartAndVerify();
+					// commonLib.continueToShopping(); commonLib.addToCartAndVerify();
+					 
 					order.continueToCheckOutOnAddCart();
 					canadaLib.verifyPlaceCartLabel();
 					
 					// adding third part
 					commonLib.searchProduct(data.get("SearchItem3"));
 					String mfrNumber3=prodDetailsLib.getInsightPartNumberInProductInfopage();
-					commonLib.addToCartAndVerify();
+					prodInfoLib.clickOnWarrantiesTabOnProductDetailsPage();
+					ccp.clickOnAddToCartButtonUnderWarrentyDynamically();
+					//commonLib.addToCartAndVerify();
 					order.continueToCheckOutOnAddCart();
 					canadaLib.verifyPlaceCartLabel();
+					
+					
 					//commonLib.closePopUp();
 					//cartLib.clickAndVerifyViewPrintablePopUp(data.get("OrderUtilities"));
 					
@@ -121,21 +128,23 @@ public class CRT04_CartPrintFriendlyTest extends CartLib {
 
 					order.clickPrintIconOnCartPage(data.get("OrderUtilities"));
 					order.VerifyPrintPopup(prodDesc1,quantity1,stock1,totalPrice1,unitPrice1);
+					
 					//order.verifyWarrantiesOnPrintPopup(data.get("SearchItem2"));
 					verifyPrintAndCloseIconexists();
 					// clickPrintInPopUp();
 					cartLib.closePrintPopUp();
 					// verify first part added on cart
 					prodInfoLib.verifyCartPageAndPartDetailsForRecentlyItemDynamically(data.get("SearchItem1"));
-					String warranty=order.addWarrantyInCartPage();
-					order.clickPrintIconOnCartPage(data.get("OrderUtilities"));
-					String printWarranty=order.verifyWarrantiesOnPrintPopup(data.get("SearchItem1"));
-					if(warranty.equals(printWarranty)) {
-						reporter.SuccessReport("View Printable POPUP", "Warranty info Exist", "Warranty info : "+printWarranty, driver);
-					}else {
-						reporter.failureReport("View Printable POPUP", "Warranty info does not Exist", "", driver);
-					}
-					cartLib.closePrintPopUp();
+					/*
+					 * String warranty=order.addWarrantyInCartPage();
+					 * order.clickPrintIconOnCartPage(data.get("OrderUtilities")); String
+					 * printWarranty=order.verifyWarrantiesOnPrintPopup(data.get("SearchItem1"));
+					 * if(warranty.equals(printWarranty)) {
+					 * reporter.SuccessReport("View Printable POPUP", "Warranty info Exist",
+					 * "Warranty info : "+printWarranty, driver); }else {
+					 * reporter.failureReport("View Printable POPUP",
+					 * "Warranty info does not Exist", "", driver); } cartLib.closePrintPopUp();
+					 */
 					// Empty cart
 					commonLib.emptyCartAndVerify();
 					

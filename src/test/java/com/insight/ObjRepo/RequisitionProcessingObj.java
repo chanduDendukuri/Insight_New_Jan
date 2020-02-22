@@ -192,6 +192,9 @@ public static By Delete_UnderRouteButton1 = By.xpath("(//span[text()='Delete Rou
 		
 		public static By CANCEL_REQUISITION_BTN=By.xpath("//a[@id='cancelReq']//span[contains(text(),'CANCEL REQUISITION')]");
 		
+		public static By REQ_GRP_DROPDOWN_OPTION(String ReqName) {
+			return By.xpath("//div[@class='Select-menu-outer']//div[@role='option'][contains(text(),'"+ReqName+"')]");
+		}
 		
 	
 }

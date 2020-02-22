@@ -3744,7 +3744,18 @@ public void defualtShippingAddressCheckBox()throws Throwable{
 	}else {
 		reporter.failureReport("Verify No Default Shipping Addresses are Not Selected","Default Shipping Addresses are Selected","");	
 	}
-	
+}
+
+public void verifyDefaultShippingAddress(String accountName) throws Throwable {
+	if(isVisibleOnly(getShippingAddressAccountName(accountName), "Account Name")) {
+		if(isVisibleOnly(getShippingAddressCheckbox(accountName), "Linked account Name check box") && isVisibleOnly(getShippingAddressDefaultAddressRadioButtn(accountName), "Default radio button")) {
+			reporter.SuccessReport("verify Linked account check box and default account radio button status", "Linked account check box and default account radio button checked for required account : "+accountName, "", driver);
+		}else {
+			reporter.failureReport("verify Linked account check box and default account radio button status", "Linked account check box and default account radio button is not checked  for required account : "+accountName, "", driver);
+		}
+	}else {
+		reporter.failureReport("verify account name is present", "Account name does not exists", "", driver);
+	}
 }
 public void verifySetPermissionsDisabled(String userPermissions) throws Throwable {
 	if (isCheckBoxSelected(getUserPermission(userPermissions))) {
