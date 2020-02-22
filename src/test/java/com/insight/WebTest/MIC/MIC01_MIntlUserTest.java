@@ -84,7 +84,7 @@ public class MIC01_MIntlUserTest extends MarriottIntlCorpLib {
 							data.get("Approving_Manager_Email"), data.get("Non_IRFA_PC"));
 					addShippingInfo(data.get("Ship_Attention"), data.get("Ship_Suite"), data.get("Ship_Phone"));
 					Thread.sleep(5000);
-					orderLib.shippingOptionsCarrierSelection();
+					//orderLib.shippingOptionsCarrierSelection();
 					addBillingInfo(data.get("Bill_Attention"), data.get("Bill_Suite"), data.get("Bill_Phone"));
 					Thread.sleep(3000);
 					termsInPaymentInfo();

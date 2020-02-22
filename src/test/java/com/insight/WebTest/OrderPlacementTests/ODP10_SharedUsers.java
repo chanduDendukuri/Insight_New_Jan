@@ -56,7 +56,7 @@ public class ODP10_SharedUsers extends OrderLib{
 					ReportControl.intRowCount = intCounter;
 					Hashtable<String, String> data = TestUtil.getDataByRowNo("ODP10_SharedUser",
 							TestData, "Web_Order_Placement", intCounter);
-					TestEngineWeb.reporter.initTestCaseDescription("ODP10_SharedUser");
+					TestEngineWeb.reporter.initTestCaseDescription("SharedUser");
 
 						// Login to CMT enable Display Additional Notes during the transaction process,Allow File Upload during Checkout,Display Invoice Notes during the transaction process settings at web group level.
 						
