@@ -386,6 +386,7 @@ public static By txt_QuoteDetails = By.xpath("//h2[contains(text(),'Quote Detail
 	}
 
 	public static By icnSaveButtonForFourthRecord = By.xpath("(//*[@alt='Save'])[4]");
+	public static By icnListAllSaveButton = By.xpath("(//*[@alt='Save'])[4]");
 	public static By lnkProductGroupToDelete = By.xpath("//*[@class='cs-editProdGroup row']");
 public static By lnkDeleteProductGroups=By.xpath("//*[text()=' Delete Product Group']");
 	public static By PRD_GRP_TO_MODIFY = By
