@@ -295,15 +295,12 @@ public class InvoiceHistoryLib extends InvoiceHistoryObj {
 	public void verifyLineLevelInfo() throws Throwable {
 		if (isVisibleOnly(LINE_LEVEL_INFO, "Header level info")) {
 			reporter.SuccessReport("Verify Line Level Smart Trackers on Account Management - Invoice History Page","Line Level Smart Trackers is present", "");
-			for(int  i=1;i<=4;i++) {
-				By LNLinfo=By.xpath("(//tr//td[@class='footable-visible footable-last-column footable-first-column']//following::text()[1])");
-			//if(!element.get(i).getText().equals("")) {
-					reporter.SuccessReport("Verify Line Level Smart Trackers on Account Manaement ", "Line Level Smart Trackers on Account Management  present ",getText(LNLinfo, "Line level info").trim(), driver);
-				/*}else {
-					reporter.failureReport("Verify Line Level Smart Trackers on Account Management ", "Line Level Smart Trackers on Account Management  not present ",element.get(i).getText(), driver);
-				}*/
-		} 
-		}
+			if(!getText(LINE_LEVEL_INFO, "Line level info").equals("")) {
+				reporter.SuccessReport("Verify Line Level Smart Trackers on Account Manaement ", "Line Level Smart Trackers on Account Management  present ",getText(LINE_LEVEL_INFO, "Line level info").trim(), driver);
+				}else {
+					reporter.failureReport("Verify Line Level Smart Trackers on Account Manaement ", "Line Level Smart Trackers on Account Management  is empty", "", driver);
+				}
+			}
 		else {
 			reporter.failureReport("Verify Line Level Smart Trackers on Account Management - Invoice History Page",
 					"Line Level Smart Trackers not Exist", "", driver);
@@ -337,7 +334,7 @@ public class InvoiceHistoryLib extends InvoiceHistoryObj {
 	public void verifyLicenseProofPopUp() throws Throwable {
 		if (isVisibleOnly(LICENSE_PROOF_POP_UP, "License proof link")) {
 			reporter.SuccessReport("Verify Invoice License Proof", "Invoice License Proof Information POPUP Exist", "");
-			click(CLOSE_POPUP, "Close popup", "close popup");
+			JSClick(LICENCE_PROOF_CLOSE_POPUP, "Close popup");
 		} else {
 			reporter.failureReport("Verify Invoice License Proof", "Invoice License Proof Information POPUP not Exist",
 					"", driver);
