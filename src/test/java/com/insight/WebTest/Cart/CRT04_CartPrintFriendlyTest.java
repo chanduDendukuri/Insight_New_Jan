@@ -122,29 +122,28 @@ public class CRT04_CartPrintFriendlyTest extends CartLib {
 					// verify print popup
 					List<String> prodDesc1=order.getProductDescriptionOfCartProduct();
 					List<String> quantity1=order.getCartProductQuantity();
-					List<String> stock1=order.getCartProductStock();
 					List<String> totalPrice1=order.getCartProductTotalPrice();
 					List<String> unitPrice1=order.getCartProductUnitPrice();
 
 					order.clickPrintIconOnCartPage(data.get("OrderUtilities"));
-					order.VerifyPrintPopup(prodDesc1,quantity1,stock1,totalPrice1,unitPrice1);
-					
+					order.VerifyPrintPopupWithWarranties(prodDesc1,quantity1,totalPrice1,unitPrice1);
+					order.getSubTotalAmountOnPrintPopup();
 					//order.verifyWarrantiesOnPrintPopup(data.get("SearchItem2"));
 					verifyPrintAndCloseIconexists();
 					// clickPrintInPopUp();
 					cartLib.closePrintPopUp();
 					// verify first part added on cart
 					prodInfoLib.verifyCartPageAndPartDetailsForRecentlyItemDynamically(data.get("SearchItem1"));
-					/*
-					 * String warranty=order.addWarrantyInCartPage();
-					 * order.clickPrintIconOnCartPage(data.get("OrderUtilities")); String
-					 * printWarranty=order.verifyWarrantiesOnPrintPopup(data.get("SearchItem1"));
-					 * if(warranty.equals(printWarranty)) {
-					 * reporter.SuccessReport("View Printable POPUP", "Warranty info Exist",
-					 * "Warranty info : "+printWarranty, driver); }else {
-					 * reporter.failureReport("View Printable POPUP",
-					 * "Warranty info does not Exist", "", driver); } cartLib.closePrintPopUp();
-					 */
+					String warranty=order.addWarrantyInCartPage();
+					  order.clickPrintIconOnCartPage(data.get("OrderUtilities")); 
+					  String printWarranty=order.verifyWarrantiesOnPrintPopup(data.get("SearchItem1"));
+					 if(warranty.equals(printWarranty)) {
+					reporter.SuccessReport("View Printable POPUP", "Warranty info Exist","Warranty info : "+printWarranty, driver); 
+					}else {
+					 reporter.failureReport("View Printable POPUP","Warranty info does not Exist", "", driver); 
+					 } 
+					 cartLib.closePrintPopUp();
+					 
 					// Empty cart
 					commonLib.emptyCartAndVerify();
 					

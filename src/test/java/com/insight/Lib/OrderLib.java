@@ -2663,7 +2663,7 @@ public class OrderLib extends OrderObj{
 	  */
 	public void verifyBundleOnPrintPopup(String productGroup) throws Throwable {
 		if(isVisibleOnly(bundleOnPrintPopup(productGroup), "bundle on print popup")) {
-			reporter.SuccessReport("View Printable POPUP", "Cart item bundle in Print View Exist", "Cart item bundle in Print View :Insight Part #: BUNDLE-1", driver);
+			reporter.SuccessReport("View Printable POPUP", "Cart item bundle in Print View Exist", "Cart item bundle in Print View :Insight Part #: BUNDLE-1 for :"+productGroup, driver);
 		}else {
 			reporter.failureReport("View Printable POPUP", "Cart item bundle in Print View does not Exist", "", driver);
 		}
@@ -2706,5 +2706,54 @@ public class OrderLib extends OrderObj{
 			reporter.failureReport("verify click to view or download attachment link", "click to view or download attachment link does not exists", "", driver);
 		}
 	   }
+	
+public void VerifyPrintPopupWithWarranties(List<String> prodDesc,List<String> quantity2,List<String> totalPrice,List<String> unitPrice) throws Throwable{
+		
+		// verifying the Product description
+		List<WebElement> myList = driver.findElements(CartObj.ITEM_DESC);
+		List<WebElement> qty = driver.findElements(CartObj.QUANTITY_PRINT_POPUP);
+		List<WebElement> total_price = driver.findElements(CartObj.TOTAL_PRICE_PRINT_POPUP);
+		List<WebElement> unit_price = driver.findElements(CartObj.TOTAL_PRICE_PRINT_POPUP);
+		getWG800NumberOnPrintPopup();
+		for (int i = 0; i <myList.size() ; i++) {
+		    String desc = myList.get(i).getText();
+			 if(desc.equals(prodDesc.get(i))){
+				 reporter.SuccessReport("Verify product description ", "Product description : ",prodDesc.get(i));
+			 }else{
+				 reporter.failureReport("Verify product description ", "Product description verification failed. Actual is: ","",driver); 
+			 }
+			 
+			 String quantity = qty.get(i).getAttribute("value");
+			 if(quantity.equals(quantity2.get(i))){
+				 reporter.SuccessReport("Verify product Quantity ", "Product Quantity : ",quantity2.get(i));
+			 }else{
+				 reporter.failureReport("Verify product Quantity ", "Product Quantity verification failed. Actual is: ",quantity2.get(i),driver); 
+			 }
+			 
+			 
+			 String expectedtoatalprice= total_price.get(i).getText();
+			 if(expectedtoatalprice.equals(totalPrice.get(i))){
+				 reporter.SuccessReport("Verify total price ", "Product total price : ",expectedtoatalprice);
+			 }else{
+				 reporter.SuccessReport("Verify total price ", "Product total price verification failed. Actual is: ","",driver); 
+			 } 
+			
+			 String expectedUnitPrice= unit_price.get(i).getText();
+			 if(expectedUnitPrice.equals(unitPrice.get(i))){
+				 reporter.SuccessReport("Verify total price ", "Product total price : ",expectedUnitPrice);
+			 }else{
+				 reporter.failureReport("Verify total price ", "Product total price verification failed. Actual is: ","",driver); 
+			 } 
+		}
+	   }
+
+public void getSubTotalAmountOnPrintPopup() throws Throwable {
+	String subtotal=getText(CartObj.SUBTOTAL_AMOUNT, "subtotal");
+	if(isVisibleOnly(CartObj.SUBTOTAL_AMOUNT, "Print page subtotal amount") && !subtotal.equals("")) {
+		reporter.SuccessReport("Verify subtotal amount in print popup", "Subtotal amount exists", subtotal, driver);
+	}else{
+		reporter.failureReport("Verify subtotal amount in print popup", "Subtotal amount exists", "", driver);
+	}
+}
 	}
 
