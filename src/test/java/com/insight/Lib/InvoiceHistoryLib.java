@@ -334,12 +334,14 @@ public class InvoiceHistoryLib extends InvoiceHistoryObj {
 	public void verifyLicenseProofPopUp() throws Throwable {
 		if (isVisibleOnly(LICENSE_PROOF_POP_UP, "License proof link")) {
 			reporter.SuccessReport("Verify Invoice License Proof", "Invoice License Proof Information POPUP Exist", "");
-			JSClick(LICENCE_PROOF_CLOSE_POPUP, "Close popup");
 		} else {
 			reporter.failureReport("Verify Invoice License Proof", "Invoice License Proof Information POPUP not Exist",
 					"", driver);
 		}
-
+	}
+	
+	public void clickCloseLicensePopup() throws Throwable {
+		JSClick(LICENCE_PROOF_CLOSE_POPUP, "Close popup");
 	}
 
 	/**

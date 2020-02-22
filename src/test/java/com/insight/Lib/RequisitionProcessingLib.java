@@ -899,7 +899,7 @@ public void ClickAddRoute() throws Throwable {
 	public void verifyCancelRequisitionButton(String status) throws Throwable {
 		switch(status) {
 		case "No":
-			if(isElementNotPresent(CANCEL_REQUISITION_BTN, "CANCEL REQUISITION BUTTON")) {
+			if(!isVisibleOnly(CANCEL_REQUISITION_BTN, "CANCEL REQUISITION BUTTON")) {
 				reporter.SuccessReport("Verify requisition cancel button ", "Requisition cancel button does not exists", "", driver);
 		}else {
 			reporter.failureReport("Verify requisition cancel button ", "Requisition cancel button does exists", "", driver);
@@ -907,7 +907,7 @@ public void ClickAddRoute() throws Throwable {
 			break;
 			
 		case "Yes":
-			if(isElementPresent(CANCEL_REQUISITION_BTN, "CANCEL REQUISITION BUTTON")) {
+			if(isVisibleOnly(CANCEL_REQUISITION_BTN, "CANCEL REQUISITION BUTTON")) {
 				reporter.SuccessReport("Verify requisition cancel button ", "Requisition cancel button exists", "", driver);
 		}else {
 			reporter.failureReport("Verify requisition cancel button ", "Requisition cancel button does not exists", "", driver);

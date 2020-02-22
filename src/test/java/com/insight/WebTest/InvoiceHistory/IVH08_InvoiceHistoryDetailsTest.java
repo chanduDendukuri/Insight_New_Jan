@@ -78,6 +78,7 @@ public class IVH08_InvoiceHistoryDetailsTest extends InvoiceHistoryLib {
 					 if(verifyLicenseProofLinkAndClick()) {
 						 verifyLicenseProofPopUp();
 						 verifyLicenseProofPopUpDetails(data.get("Invoice_Number"), data.get("Inovice_date"), data.get("Sales_Order_Number"), data.get("Customer_PO_Number"));
+						 clickCloseLicensePopup();
 					 }
 					// Quick search
 					 canadaLib.clickOnSideMenuSelectAccountToolOptions(data.get("Tools_Menu"),
