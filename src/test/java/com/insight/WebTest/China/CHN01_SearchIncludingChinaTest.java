@@ -60,6 +60,7 @@ public class CHN01_SearchIncludingChinaTest extends ChinaLib{
 
 						// select language and country
 						selectLanguageOnHomePage(data.get("Country"), data.get("Language"));
+						Thread.sleep(1000);
 						canadaLib.verifyCountry("cn");
 						navigateToApplication("CHINA_ZH");
 						verify_url(WebDriver, CHINA_ZH_URL);

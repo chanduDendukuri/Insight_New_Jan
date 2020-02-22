@@ -112,6 +112,7 @@ public class CRT13_DeleteCartItemsTest extends CartLib {
 					
 					canadaLib.verifyPlaceCartLabel();
 					commonLib.verifyBundleIsAddedToCart();
+					Thread.sleep(3000);
 					deleteBundle();
 					commonLib.clickLogOutLink(data.get("Logout_Header"));
 					System.out.println("Test completed");

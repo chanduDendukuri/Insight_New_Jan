@@ -155,6 +155,7 @@ public class CRT01_CartBasicTest extends CartLib {
 					slp.verifyProccedToCheckOutbuttonExists();
 					commonLib.clickLogOutLink(data.get("Logout_Header"));
 					cmtLib.navigateBackToCMT();
+					Thread.sleep(1000);
 					cmtLib.clickOnLogout();
 					cmtLib.loginToCMT(data.get("Header"));
 

@@ -1427,7 +1427,7 @@ public class OrderLib extends OrderObj{
 		List<WebElement> qty = driver.findElements(CartObj.QUANTITY_PRINT_POPUP);
 		List<WebElement> stock = driver.findElements(CartObj.STOCK_PRINT_POPUP);
 		List<WebElement> total_price = driver.findElements(CartObj.TOTAL_PRICE_PRINT_POPUP);
-		List<WebElement> unit_price = driver.findElements(CartObj.TOTAL_PRICE_PRINT_POPUP);
+		List<WebElement> unit_price = driver.findElements(CartObj.UNIT_PRICE_PRINT_POPUP);
 		getWG800NumberOnPrintPopup();
 		for (int i = 0; i <myList.size() ; i++) {
 		    String desc = myList.get(i).getText();
@@ -1455,14 +1455,14 @@ public class OrderLib extends OrderObj{
 			 if(expectedtoatalprice.equals(totalPrice.get(i))){
 				 reporter.SuccessReport("Verify total price ", "Product total price : ",expectedtoatalprice);
 			 }else{
-				 reporter.SuccessReport("Verify total price ", "Product total price verification failed. Actual is: ","",driver); 
+				 reporter.failureReport("Verify total price ", "Product total price verification failed. Actual is: ",expectedtoatalprice,driver);
 			 } 
 			
 			 String expectedUnitPrice= unit_price.get(i).getText();
 			 if(expectedUnitPrice.equals(unitPrice.get(i))){
 				 reporter.SuccessReport("Verify total price ", "Product total price : ",expectedUnitPrice);
 			 }else{
-				 reporter.failureReport("Verify total price ", "Product total price verification failed. Actual is: ","",driver); 
+				 reporter.failureReport("Verify total price ", "Product total price verification failed. Actual is: ",expectedUnitPrice,driver);
 			 } 
 		}
 	}
@@ -2713,7 +2713,7 @@ public void VerifyPrintPopupWithWarranties(List<String> prodDesc,List<String> qu
 		List<WebElement> myList = driver.findElements(CartObj.ITEM_DESC);
 		List<WebElement> qty = driver.findElements(CartObj.QUANTITY_PRINT_POPUP);
 		List<WebElement> total_price = driver.findElements(CartObj.TOTAL_PRICE_PRINT_POPUP);
-		List<WebElement> unit_price = driver.findElements(CartObj.TOTAL_PRICE_PRINT_POPUP);
+		List<WebElement> unit_price = driver.findElements(CartObj.UNIT_PRICE_PRINT_POPUP);
 		getWG800NumberOnPrintPopup();
 		for (int i = 0; i <myList.size() ; i++) {
 		    String desc = myList.get(i).getText();
@@ -2730,19 +2730,19 @@ public void VerifyPrintPopupWithWarranties(List<String> prodDesc,List<String> qu
 				 reporter.failureReport("Verify product Quantity ", "Product Quantity verification failed. Actual is: ",quantity2.get(i),driver); 
 			 }
 			 
-			 
+
 			 String expectedtoatalprice= total_price.get(i).getText();
 			 if(expectedtoatalprice.equals(totalPrice.get(i))){
 				 reporter.SuccessReport("Verify total price ", "Product total price : ",expectedtoatalprice);
 			 }else{
-				 reporter.SuccessReport("Verify total price ", "Product total price verification failed. Actual is: ",totalPrice.get(i),driver); 
+				 reporter.failureReport("Verify total price ", "Product total price verification failed. Actual is: ",totalPrice.get(i),driver);
 			 } 
 			
 			 String expectedUnitPrice= unit_price.get(i).getText();
 			 if(expectedUnitPrice.equals(unitPrice.get(i))){
-				 reporter.SuccessReport("Verify total price ", "Product total price : ",expectedUnitPrice);
+				 reporter.SuccessReport("Verify unit price ", "Unit price : ",expectedUnitPrice);
 			 }else{
-				 reporter.failureReport("Verify total price ", "Product total price verification failed. Actual is: ","",driver); 
+				 reporter.failureReport("Verify unit price ", "Unit price verification failed. Actual is: ",expectedUnitPrice,driver);
 			 } 
 		}
 	   }
