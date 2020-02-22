@@ -144,7 +144,7 @@ public class CRT02_CartBasicIPSTest extends CartLib{
 					prodInfoLib.verifyCartPageAndPartDetails();
 					// contract verification in cart page
 					prodInfoLib.verifyContractInCartScreen(data.get("Contarct_Name1"));
-					ccp.getProductNumberInCartPage();
+					ccp.getProductNumberInCartPage(secondPart);
 					ccp.getProductDescriptionInViewCartPage();
 					prodInfoLib.enterQuantityForProductsInViewCartPage(data.get("quantity2"));
 					commonLib.clickOnUpdateLinkInViewCartPage(data.get("quantity2"));
@@ -160,7 +160,8 @@ public class CRT02_CartBasicIPSTest extends CartLib{
 					//cartLib.verifyDefaultContractInCart();
 					prodInfoLib.verifyContractInCartScreen(data.get("Contarct_Name2"));
 					prodInfoLib.verifyContract2InCartScreen(data.get("Contarct_Name1"));
-					ccp.getProductNumberInCartPage();
+					ccp.getProductNumberInCartPage(part);
+					ccp.getProductNumberInCartPage(secondPart);
 
 					//Deleting parts
 					ccp.clickOnDeleteIconBasedUpOnProductNumberSearch(part);
