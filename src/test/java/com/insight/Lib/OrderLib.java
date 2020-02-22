@@ -2735,7 +2735,7 @@ public void VerifyPrintPopupWithWarranties(List<String> prodDesc,List<String> qu
 			 if(expectedtoatalprice.equals(totalPrice.get(i))){
 				 reporter.SuccessReport("Verify total price ", "Product total price : ",expectedtoatalprice);
 			 }else{
-				 reporter.SuccessReport("Verify total price ", "Product total price verification failed. Actual is: ","",driver); 
+				 reporter.SuccessReport("Verify total price ", "Product total price verification failed. Actual is: ",totalPrice.get(i),driver); 
 			 } 
 			
 			 String expectedUnitPrice= unit_price.get(i).getText();
