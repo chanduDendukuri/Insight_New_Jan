@@ -107,7 +107,7 @@ public class EUF17_FCTWebSelectSoldToTest extends EndUserFeaturesLib{
 						toClickOnAcoountDropdown();
 						verifyFavoriteAccountssoldto(data.get("SoldtoCount2"));
 						Thread.sleep(5000);
-						canadaLib.clickOnSideMenuSelectAccountToolOptions(data.get("Tools_Menu"),  data.get("Tools_Menu_DD"));
+						commonLib.clickOnAccountToolsAndClickOnProductGrp(data.get("Tools_Menu"), data.get("Tools_Menu_DD"));
 						verifyAccountFavertesTab(data.get("Tab"));
 						verifyRemoveDefualtLink();
 						verifyRemoveDefualtLinkandSelect();
@@ -124,8 +124,8 @@ public class EUF17_FCTWebSelectSoldToTest extends EndUserFeaturesLib{
 						Thread.sleep(5000);
 						clickOnTabInUserProfile(data.get("Tab"));
 						verifyCurrentaccountPageinAccounttools();
-						verifyAccountFavertesTab(data.get("Tabname1"));
 						verifyDefualtLinkRemovedwarning();
+						verifyAccountFavertesTab(data.get("Tabname1"));
 						clearMyFavoriteAccountsList();
 						clickUpdateButton();
 						verifyupdateSuccessMessage();

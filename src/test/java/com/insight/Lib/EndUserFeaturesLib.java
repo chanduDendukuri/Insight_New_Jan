@@ -437,12 +437,12 @@ public class EndUserFeaturesLib extends EndUserFeaturesObj{
 	 * Method is to verify Account SearchBar from account drop down in Home Page
 	 */
 	public void verifyAccountNamechanged(String accountName,String accountname) throws Throwable {
-		Thread.sleep(10000);
+		Thread.sleep(15000);
 		if(accountName.equals(accountname)){
-			reporter.failureReport("Account Name in Changed in Welcome Page", "Account Name does Not Changed","",driver);
+			reporter.failureReport("Account Name in Changed in Welcome Page", "Account Name does Not Changed",accountName +" and "+accountname +" Both are matched",driver);
 		}
 		else {
-			reporter.SuccessReport("Account Name is Changed in Welcome Page", "Account Name Changed","");
+			reporter.SuccessReport("Account Name is Changed in Welcome Page", "Account Name Changed",accountName +" and "+accountname +" Both are not matching");
 		}
 	}
 	
