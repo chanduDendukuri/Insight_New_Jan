@@ -21,7 +21,7 @@
          <parameter name="executionType" value="Sequential"></parameter>
         <classes>
 
-            <class name="com.insight.WebTest.QuoteHistory.QTH01_QuoteHistoryViewQuoteHistPageTest">
+            <class name="com.insight.WebTest.Cart.CRT05_QuickSearchTest">
             
 
                 <methods>

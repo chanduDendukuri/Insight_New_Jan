@@ -1,0 +1,393 @@
+<?xml version="1.0" encoding="UTF-8"?><TestCaseDetails>
+<Tc_CRT23>
+<SerialNo>1</SerialNo>
+<StepName>Visible of element is true :: </StepName>
+<StepDescription>Element :: SEARCH FIELD  is visible</StepDescription>
+<TestData>NA</TestData>
+<Status><![CDATA[<i style="width:30px;color:green" class="fa fa-check-circle fa-3x"></i>]]></Status>
+<ExecutionTime>16:41:05 PM</ExecutionTime>
+</Tc_CRT23>
+<Tc_CRT23>
+<SerialNo>2</SerialNo>
+<StepName>IsVisible : </StepName>
+<StepDescription>Printers Element is Visible : true</StepDescription>
+<TestData>NA</TestData>
+<Status><![CDATA[<i style="width:30px;color:green" class="fa fa-check-circle fa-3x"></i>]]></Status>
+<ExecutionTime>16:41:05 PM</ExecutionTime>
+</Tc_CRT23>
+<Tc_CRT23>
+<SerialNo>3</SerialNo>
+<StepName>Enter text in :: Printers</StepName>
+<StepDescription>Successfully Entered value </StepDescription>
+<TestData>Printers</TestData>
+<Status><![CDATA[<i style="width:30px;color:green" class="fa fa-check-circle fa-3x"></i>]]></Status>
+<ExecutionTime>16:41:15 PM</ExecutionTime>
+</Tc_CRT23>
+<Tc_CRT23>
+<SerialNo>4</SerialNo>
+<StepName>isElementPresent : Product in Breadcrumb</StepName>
+<StepDescription>Product in Breadcrumb is visible</StepDescription>
+<TestData>NA</TestData>
+<Status><![CDATA[<i style="width:30px;color:green" class="fa fa-check-circle fa-3x"></i>]]></Status>
+<ExecutionTime>16:41:24 PM</ExecutionTime>
+</Tc_CRT23>
+<Tc_CRT23>
+<SerialNo>5</SerialNo>
+<StepName>Verify Breadcrumb</StepName>
+<StepDescription>Breadcrumb in search results page:: Printers</StepDescription>
+<TestData>Breadcrumb: Printers</TestData>
+<Status><![CDATA[<i style="width:30px;color:green" class="fa fa-check-circle fa-3x"></i>]]></Status>
+<ExecutionTime>16:41:24 PM</ExecutionTime>
+</Tc_CRT23>
+<Tc_CRT23>
+<SerialNo>6</SerialNo>
+<StepName>GetText :: get product number</StepName>
+<StepDescription>get product number is :</StepDescription>
+<TestData>&lt;b&gt;Insight Part # : C5J91A#BGJ
+Mfr Part #: C5J91A#BGJ&lt;/b&gt;</TestData>
+<Status><![CDATA[<i style="width:30px;color:green" class="fa fa-check-circle fa-3x"></i>]]></Status>
+<ExecutionTime>16:41:24 PM</ExecutionTime>
+</Tc_CRT23>
+<Tc_CRT23>
+<SerialNo>7</SerialNo>
+<StepName>Verify the product part Number</StepName>
+<StepDescription>Product part Number is displayed as : </StepDescription>
+<TestData>part Number # : Insight Part # : C5J91A#BGJ
+Mfr Part #: C5J91A#BGJ</TestData>
+<Status><![CDATA[<i style="width:30px;color:green" class="fa fa-check-circle fa-3x"></i>]]></Status>
+<ExecutionTime>16:41:24 PM</ExecutionTime>
+</Tc_CRT23>
+<Tc_CRT23>
+<SerialNo>8</SerialNo>
+<StepName>Visibility Of Elemenet :Product price</StepName>
+<StepDescription>Successfully Found Element Product price</StepDescription>
+<TestData>NA</TestData>
+<Status><![CDATA[<i style="width:30px;color:green" class="fa fa-check-circle fa-3x"></i>]]></Status>
+<ExecutionTime>16:41:26 PM</ExecutionTime>
+</Tc_CRT23>
+<Tc_CRT23>
+<SerialNo>9</SerialNo>
+<StepName>GetText :: List price</StepName>
+<StepDescription>List price is :</StepDescription>
+<TestData>&lt;b&gt;USD $324.99&lt;/b&gt;</TestData>
+<Status><![CDATA[<i style="width:30px;color:green" class="fa fa-check-circle fa-3x"></i>]]></Status>
+<ExecutionTime>16:41:26 PM</ExecutionTime>
+</Tc_CRT23>
+<Tc_CRT23>
+<SerialNo>10</SerialNo>
+<StepName>Verify the List Price on Search Results Page</StepName>
+<StepDescription>Product list Price exists</StepDescription>
+<TestData>Price for 1st Product: USD $324.99</TestData>
+<Status><![CDATA[<i style="width:30px;color:green" class="fa fa-check-circle fa-3x"></i>]]></Status>
+<ExecutionTime>16:41:27 PM</ExecutionTime>
+</Tc_CRT23>
+<Tc_CRT23>
+<SerialNo>11</SerialNo>
+<StepName>isElementPresent : ADD TO CART BUTTON FOR FIRST DISPLAYED ITEM</StepName>
+<StepDescription>ADD TO CART BUTTON FOR FIRST DISPLAYED ITEM is visible</StepDescription>
+<TestData>NA</TestData>
+<Status><![CDATA[<i style="width:30px;color:green" class="fa fa-check-circle fa-3x"></i>]]></Status>
+<ExecutionTime>16:41:27 PM</ExecutionTime>
+</Tc_CRT23>
+<Tc_CRT23>
+<SerialNo>12</SerialNo>
+<StepName>Click : ADD TO CART BUTTON FOR FIRST DISPLAYED ITEM</StepName>
+<StepDescription>Successfully Clicked On </StepDescription>
+<TestData>&lt;b&gt;ADD TO CART BUTTON FOR FIRST DISPLAYED ITEM&lt;/b&gt;</TestData>
+<Status><![CDATA[<i style="width:30px;color:green" class="fa fa-check-circle fa-3x"></i>]]></Status>
+<ExecutionTime>16:41:27 PM</ExecutionTime>
+</Tc_CRT23>
+<Tc_CRT23>
+<SerialNo>13</SerialNo>
+<StepName>Visible of element is true :: </StepName>
+<StepDescription>Element :: ADD TO CART SUCCESS MESSAGE  is visible</StepDescription>
+<TestData>NA</TestData>
+<Status><![CDATA[<i style="width:30px;color:green" class="fa fa-check-circle fa-3x"></i>]]></Status>
+<ExecutionTime>16:41:28 PM</ExecutionTime>
+</Tc_CRT23>
+<Tc_CRT23>
+<SerialNo>14</SerialNo>
+<StepName>IsVisible : </StepName>
+<StepDescription>Continue to checkout Element is Visible : true</StepDescription>
+<TestData>NA</TestData>
+<Status><![CDATA[<i style="width:30px;color:green" class="fa fa-check-circle fa-3x"></i>]]></Status>
+<ExecutionTime>16:41:28 PM</ExecutionTime>
+</Tc_CRT23>
+<Tc_CRT23>
+<SerialNo>15</SerialNo>
+<StepName>Click : Continue to checkout</StepName>
+<StepDescription>Successfully Clicked On </StepDescription>
+<TestData>&lt;b&gt;Continue to checkout&lt;/b&gt;</TestData>
+<Status><![CDATA[<i style="width:30px;color:green" class="fa fa-check-circle fa-3x"></i>]]></Status>
+<ExecutionTime>16:41:34 PM</ExecutionTime>
+</Tc_CRT23>
+<Tc_CRT23>
+<SerialNo>16</SerialNo>
+<StepName>Visible of element is true :: </StepName>
+<StepDescription>Element :: POP UP TO ENTER EMAIL ID  is visible</StepDescription>
+<TestData>NA</TestData>
+<Status><![CDATA[<i style="width:30px;color:green" class="fa fa-check-circle fa-3x"></i>]]></Status>
+<ExecutionTime>16:41:44 PM</ExecutionTime>
+</Tc_CRT23>
+<Tc_CRT23>
+<SerialNo>17</SerialNo>
+<StepName>Enter text in :: POP UP TO ENTER EMAIL ID</StepName>
+<StepDescription>Successfully Entered value </StepDescription>
+<TestData>POP UP TO ENTER EMAIL ID&lt;b&gt; Ajay.Cherukuri@insight.com&lt;/b&gt;</TestData>
+<Status><![CDATA[<i style="width:30px;color:green" class="fa fa-check-circle fa-3x"></i>]]></Status>
+<ExecutionTime>16:41:50 PM</ExecutionTime>
+</Tc_CRT23>
+<Tc_CRT23>
+<SerialNo>18</SerialNo>
+<StepName>Click : POP UP SUBMIT BUTTON</StepName>
+<StepDescription>Successfully Clicked On </StepDescription>
+<TestData>&lt;b&gt;POP UP SUBMIT BUTTON&lt;/b&gt;</TestData>
+<Status><![CDATA[<i style="width:30px;color:green" class="fa fa-check-circle fa-3x"></i>]]></Status>
+<ExecutionTime>16:41:50 PM</ExecutionTime>
+</Tc_CRT23>
+<Tc_CRT23>
+<SerialNo>19</SerialNo>
+<StepName>Click : CART</StepName>
+<StepDescription>Successfully Clicked On </StepDescription>
+<TestData>&lt;b&gt;CART&lt;/b&gt;</TestData>
+<Status><![CDATA[<i style="width:30px;color:green" class="fa fa-check-circle fa-3x"></i>]]></Status>
+<ExecutionTime>16:42:00 PM</ExecutionTime>
+</Tc_CRT23>
+<Tc_CRT23>
+<SerialNo>20</SerialNo>
+<StepName>Verify wether user navigates to cart page </StepName>
+<StepDescription>User successfully navigated to cart page</StepDescription>
+<TestData>PageDetails : Cart</TestData>
+<Status><![CDATA[<i style="width:30px;color:green" class="fa fa-check-circle fa-3x"></i>]]></Status>
+<ExecutionTime>16:42:00 PM</ExecutionTime>
+</Tc_CRT23>
+<Tc_CRT23>
+<SerialNo>21</SerialNo>
+<StepName>GetText :: Product description of recently added item</StepName>
+<StepDescription>Product description of recently added item is :</StepDescription>
+<TestData>&lt;b&gt;HP LaserJet Pro M402dne - printer - monochrome - laser&lt;/b&gt;</TestData>
+<Status><![CDATA[<i style="width:30px;color:green" class="fa fa-check-circle fa-3x"></i>]]></Status>
+<ExecutionTime>16:42:01 PM</ExecutionTime>
+</Tc_CRT23>
+<Tc_CRT23>
+<SerialNo>22</SerialNo>
+<StepName>GetText :: ProductTotalPriceForRecentlyAddedItem</StepName>
+<StepDescription>ProductTotalPriceForRecentlyAddedItem is :</StepDescription>
+<TestData>&lt;b&gt;$324.99&lt;/b&gt;</TestData>
+<Status><![CDATA[<i style="width:30px;color:green" class="fa fa-check-circle fa-3x"></i>]]></Status>
+<ExecutionTime>16:42:01 PM</ExecutionTime>
+</Tc_CRT23>
+<Tc_CRT23>
+<SerialNo>23</SerialNo>
+<StepName>GetText :: CartProductQuantityForRecentlyAddedItem</StepName>
+<StepDescription>CartProductQuantityForRecentlyAddedItem is :</StepDescription>
+<TestData>&lt;b&gt;&lt;/b&gt;</TestData>
+<Status><![CDATA[<i style="width:30px;color:green" class="fa fa-check-circle fa-3x"></i>]]></Status>
+<ExecutionTime>16:42:21 PM</ExecutionTime>
+</Tc_CRT23>
+<Tc_CRT23>
+<SerialNo>24</SerialNo>
+<StepName>GetText :: CartProductStockForRecentlyAddedItem</StepName>
+<StepDescription>CartProductStockForRecentlyAddedItem is :</StepDescription>
+<TestData>&lt;b&gt;Stock: 883&lt;/b&gt;</TestData>
+<Status><![CDATA[<i style="width:30px;color:green" class="fa fa-check-circle fa-3x"></i>]]></Status>
+<ExecutionTime>16:42:21 PM</ExecutionTime>
+</Tc_CRT23>
+<Tc_CRT23>
+<SerialNo>25</SerialNo>
+<StepName>Verify the part added to cart </StepName>
+<StepDescription>Part added to cart and cart details are: </StepDescription>
+<TestData>  prod Description : HP LaserJet Pro M402dne - printer - monochrome - laser Quantity : Total Price: $324.99 Unit price: Stock :Stock: 883</TestData>
+<Status><![CDATA[<i style="width:30px;color:green" class="fa fa-check-circle fa-3x"></i>]]></Status>
+<ExecutionTime>16:42:21 PM</ExecutionTime>
+</Tc_CRT23>
+<Tc_CRT23>
+<SerialNo>26</SerialNo>
+<StepName>GetText :: summaryTotalAmount</StepName>
+<StepDescription>summaryTotalAmount is :</StepDescription>
+<TestData>&lt;b&gt;$324.99&lt;/b&gt;</TestData>
+<Status><![CDATA[<i style="width:30px;color:green" class="fa fa-check-circle fa-3x"></i>]]></Status>
+<ExecutionTime>16:42:26 PM</ExecutionTime>
+</Tc_CRT23>
+<Tc_CRT23>
+<SerialNo>27</SerialNo>
+<StepName>GetText :: Currency type</StepName>
+<StepDescription>Currency type is :</StepDescription>
+<TestData>&lt;b&gt;USD&lt;/b&gt;</TestData>
+<Status><![CDATA[<i style="width:30px;color:green" class="fa fa-check-circle fa-3x"></i>]]></Status>
+<ExecutionTime>16:42:26 PM</ExecutionTime>
+</Tc_CRT23>
+<Tc_CRT23>
+<SerialNo>28</SerialNo>
+<StepName>Verify the Non LoggedIn list price in cart</StepName>
+<StepDescription>list price same as in cart</StepDescription>
+<TestData>USD $324.99</TestData>
+<Status><![CDATA[<i style="width:30px;color:green" class="fa fa-check-circle fa-3x"></i>]]></Status>
+<ExecutionTime>16:42:26 PM</ExecutionTime>
+</Tc_CRT23>
+<Tc_CRT23>
+<SerialNo>29</SerialNo>
+<StepName>isElementPresent : Proceed to checkout</StepName>
+<StepDescription>Proceed to checkout is visible</StepDescription>
+<TestData>NA</TestData>
+<Status><![CDATA[<i style="width:30px;color:green" class="fa fa-check-circle fa-3x"></i>]]></Status>
+<ExecutionTime>16:43:11 PM</ExecutionTime>
+</Tc_CRT23>
+<Tc_CRT23>
+<SerialNo>30</SerialNo>
+<StepName>IsEnabled : </StepName>
+<StepDescription>Proceed to checkout Element is Enabled : </StepDescription>
+<TestData>NA</TestData>
+<Status><![CDATA[<i style="width:30px;color:green" class="fa fa-check-circle fa-3x"></i>]]></Status>
+<ExecutionTime>16:43:11 PM</ExecutionTime>
+</Tc_CRT23>
+<Tc_CRT23>
+<SerialNo>31</SerialNo>
+<StepName>Click : Proceed to checkout</StepName>
+<StepDescription>Successfully Clicked On Proceed to checkout</StepDescription>
+<TestData>NA</TestData>
+<Status><![CDATA[<i style="width:30px;color:green" class="fa fa-check-circle fa-3x"></i>]]></Status>
+<ExecutionTime>16:44:37 PM</ExecutionTime>
+</Tc_CRT23>
+<Tc_CRT23>
+<SerialNo>32</SerialNo>
+<StepName>Visible of element is true :: </StepName>
+<StepDescription>Element :: user name  is visible</StepDescription>
+<TestData>NA</TestData>
+<Status><![CDATA[<i style="width:30px;color:green" class="fa fa-check-circle fa-3x"></i>]]></Status>
+<ExecutionTime>16:45:00 PM</ExecutionTime>
+</Tc_CRT23>
+<Tc_CRT23>
+<SerialNo>33</SerialNo>
+<StepName>Enter text in :: user name</StepName>
+<StepDescription>Successfully Entered value </StepDescription>
+<TestData>user name&lt;b&gt; insightmarriottsupport&lt;/b&gt;</TestData>
+<Status><![CDATA[<i style="width:30px;color:green" class="fa fa-check-circle fa-3x"></i>]]></Status>
+<ExecutionTime>16:45:05 PM</ExecutionTime>
+</Tc_CRT23>
+<Tc_CRT23>
+<SerialNo>34</SerialNo>
+<StepName>Visible of element is true :: </StepName>
+<StepDescription>Element :: Password  is visible</StepDescription>
+<TestData>NA</TestData>
+<Status><![CDATA[<i style="width:30px;color:green" class="fa fa-check-circle fa-3x"></i>]]></Status>
+<ExecutionTime>16:45:05 PM</ExecutionTime>
+</Tc_CRT23>
+<Tc_CRT23>
+<SerialNo>35</SerialNo>
+<StepName>Enter text in :: Password</StepName>
+<StepDescription>Successfully Entered value </StepDescription>
+<TestData>Password&lt;b&gt; Jan2020!&lt;/b&gt;</TestData>
+<Status><![CDATA[<i style="width:30px;color:green" class="fa fa-check-circle fa-3x"></i>]]></Status>
+<ExecutionTime>16:45:10 PM</ExecutionTime>
+</Tc_CRT23>
+<Tc_CRT23>
+<SerialNo>36</SerialNo>
+<StepName>Click : LOG IN BUTTON</StepName>
+<StepDescription>Successfully Clicked On </StepDescription>
+<TestData>&lt;b&gt;LOG IN BUTTON&lt;/b&gt;</TestData>
+<Status><![CDATA[<i style="width:30px;color:green" class="fa fa-check-circle fa-3x"></i>]]></Status>
+<ExecutionTime>16:45:41 PM</ExecutionTime>
+</Tc_CRT23>
+<Tc_CRT23>
+<SerialNo>37</SerialNo>
+<StepName>Click : Continue button Additional Info Section</StepName>
+<StepDescription>Successfully Clicked On </StepDescription>
+<TestData>&lt;b&gt;Continue button Additional Info Section&lt;/b&gt;</TestData>
+<Status><![CDATA[<i style="width:30px;color:green" class="fa fa-check-circle fa-3x"></i>]]></Status>
+<ExecutionTime>16:45:51 PM</ExecutionTime>
+</Tc_CRT23>
+<Tc_CRT23>
+<SerialNo>38</SerialNo>
+<StepName>GetText :: summaryTotalAmount</StepName>
+<StepDescription>summaryTotalAmount is :</StepDescription>
+<TestData>&lt;b&gt;$286.16&lt;/b&gt;</TestData>
+<Status><![CDATA[<i style="width:30px;color:green" class="fa fa-check-circle fa-3x"></i>]]></Status>
+<ExecutionTime>16:45:56 PM</ExecutionTime>
+</Tc_CRT23>
+<Tc_CRT23>
+<SerialNo>39</SerialNo>
+<StepName>Verify the Non LoggedIn and LoggedIn list price in SBP Page</StepName>
+<StepDescription>	LoggedIn price changed in SBP Page</StepDescription>
+<TestData>LoggedIn Price: USD $286.16and Non-LoggedIn price: USD $324.99</TestData>
+<Status><![CDATA[<i style="width:30px;color:green" class="fa fa-check-circle fa-3x"></i>]]></Status>
+<ExecutionTime>16:45:56 PM</ExecutionTime>
+</Tc_CRT23>
+<Tc_CRT23>
+<SerialNo>40</SerialNo>
+<StepName>Click : CART</StepName>
+<StepDescription>Successfully Clicked On </StepDescription>
+<TestData>&lt;b&gt;CART&lt;/b&gt;</TestData>
+<Status><![CDATA[<i style="width:30px;color:green" class="fa fa-check-circle fa-3x"></i>]]></Status>
+<ExecutionTime>16:46:06 PM</ExecutionTime>
+</Tc_CRT23>
+<Tc_CRT23>
+<SerialNo>41</SerialNo>
+<StepName>Verify wether user navigates to cart page </StepName>
+<StepDescription>User successfully navigated to cart page</StepDescription>
+<TestData>PageDetails : Cart</TestData>
+<Status><![CDATA[<i style="width:30px;color:green" class="fa fa-check-circle fa-3x"></i>]]></Status>
+<ExecutionTime>16:46:06 PM</ExecutionTime>
+</Tc_CRT23>
+<Tc_CRT23>
+<SerialNo>42</SerialNo>
+<StepName>InVisible of element is true :: </StepName>
+<StepDescription>Element :: spinner image  is not visible</StepDescription>
+<TestData>NA</TestData>
+<Status><![CDATA[<i style="width:30px;color:green" class="fa fa-check-circle fa-3x"></i>]]></Status>
+<ExecutionTime>16:47:24 PM</ExecutionTime>
+</Tc_CRT23>
+<Tc_CRT23>
+<SerialNo>43</SerialNo>
+<StepName>Visible of element is true :: </StepName>
+<StepDescription>Element :: EMPTY CART  is visible</StepDescription>
+<TestData>NA</TestData>
+<Status><![CDATA[<i style="width:30px;color:green" class="fa fa-check-circle fa-3x"></i>]]></Status>
+<ExecutionTime>16:47:44 PM</ExecutionTime>
+</Tc_CRT23>
+<Tc_CRT23>
+<SerialNo>44</SerialNo>
+<StepName>Click : EMPTY CART</StepName>
+<StepDescription>Successfully Clicked On </StepDescription>
+<TestData>&lt;b&gt;EMPTY CART&lt;/b&gt;</TestData>
+<Status><![CDATA[<i style="width:30px;color:green" class="fa fa-check-circle fa-3x"></i>]]></Status>
+<ExecutionTime>16:47:44 PM</ExecutionTime>
+</Tc_CRT23>
+<Tc_CRT23>
+<SerialNo>45</SerialNo>
+<StepName>Visible of element is true :: </StepName>
+<StepDescription>Element :: EMPTY CART MESSAGE  is visible</StepDescription>
+<TestData>NA</TestData>
+<Status><![CDATA[<i style="width:30px;color:green" class="fa fa-check-circle fa-3x"></i>]]></Status>
+<ExecutionTime>16:47:44 PM</ExecutionTime>
+</Tc_CRT23>
+<Tc_CRT23>
+<SerialNo>46</SerialNo>
+<StepName>Verifying Cart is empty</StepName>
+<StepDescription>Cart is emptied</StepDescription>
+<TestData/>
+<Status><![CDATA[<i style="width:30px;color:green" class="fa fa-check-circle fa-3x"></i>]]></Status>
+<ExecutionTime>16:47:44 PM</ExecutionTime>
+</Tc_CRT23>
+<Tc_CRT23>
+<SerialNo>47</SerialNo>
+<StepName>End of the test for iteration : 1</StepName>
+<StepDescription>************ END OF THE TEST ********************</StepDescription>
+<TestData>NA</TestData>
+<Status><![CDATA[<i style="width:30px;color:green" class="fa fa-check-circle fa-3x"></i>]]></Status>
+<ExecutionTime>16:47:46 PM</ExecutionTime>
+</Tc_CRT23>
+<TestCase>
+<Browser>chrome</Browser>
+<Version>76.0</Version>
+<OS>windows 10</OS>
+<ExecutionDate>2020-02-07</ExecutionDate>
+<HostName>CTLINDT-2226</HostName>
+<TestCaseName>Tc_CRT23</TestCaseName>
+<TestCaseDescription>LoginFromCartPricing</TestCaseDescription>
+<PassCount>47</PassCount>
+<FailCount>0</FailCount>
+<TestCaseExecutionTimeInSeconds>470 seconds</TestCaseExecutionTimeInSeconds>
+<OStatus>PASS</OStatus>
+</TestCase>
+</TestCaseDetails>

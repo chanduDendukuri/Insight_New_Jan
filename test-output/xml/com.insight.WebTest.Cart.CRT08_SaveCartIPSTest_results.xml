@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="WebApplication"
+<testsuite name="USM01"
            tests="1"
            failures="0"
            errors="0"
            skipped="0"
-           time="228.051">
+           time="381.668">
   <properties />
   
   
-            <testcase name="TC_CRT08" time="228.051" classname="com.insight.WebTest.Cart.CRT08_SaveCartIPSTest" />
+            <testcase name="TC_CRT08" time="381.668" classname="com.insight.WebTest.Cart.CRT08_SaveCartIPSTest" />
       
 </testsuite>

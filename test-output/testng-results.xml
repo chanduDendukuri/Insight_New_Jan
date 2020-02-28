@@ -2,16 +2,16 @@
 <testng-results skipped="0" failed="0" total="1" passed="1">
   <reporter-output>
   </reporter-output>
-  <suite name="INSIGHT Automation test suite" duration-ms="392844" started-at="2019-12-10T09:30:28Z" finished-at="2019-12-10T09:37:01Z">
+  <suite name="INSIGHT Automation test suite" duration-ms="559609" started-at="2020-02-07T12:04:18Z" finished-at="2020-02-07T12:13:37Z">
     <groups>
     </groups>
-    <test name="WebApplication" duration-ms="392844" started-at="2019-12-10T09:30:28Z" finished-at="2019-12-10T09:37:01Z">
-      <class name="com.insight.WebTest.Cart.CRT07_SaveCartTest">
-        <test-method status="PASS" signature="beforeSuite(org.testng.ITestContext, java.lang.String, java.lang.String)[pri:0, instance:com.insight.WebTest.Cart.CRT07_SaveCartTest@27462a88]" name="beforeSuite" is-config="true" duration-ms="59" started-at="2019-12-10T15:00:28Z" finished-at="2019-12-10T15:00:28Z">
+    <test name="USM01" duration-ms="559609" started-at="2020-02-07T12:04:18Z" finished-at="2020-02-07T12:13:37Z">
+      <class name="com.insight.WebTest.Cart.CRT05_QuickSearchTest">
+        <test-method status="PASS" signature="beforeSuite(org.testng.ITestContext, java.lang.String, java.lang.String)[pri:0, instance:com.insight.WebTest.Cart.CRT05_QuickSearchTest@26e356f0]" name="beforeSuite" is-config="true" duration-ms="34" started-at="2020-02-07T17:34:18Z" finished-at="2020-02-07T17:34:18Z">
           <params>
             <param index="0">
               <value>
-                <![CDATA[org.testng.TestRunner@4ab550d5]]>
+                <![CDATA[org.testng.TestRunner@7c6189d5]]>
               </value>
             </param>
             <param index="1">
@@ -28,7 +28,7 @@
           <reporter-output>
           </reporter-output>
         </test-method> <!-- beforeSuite -->
-        <test-method status="PASS" signature="beforeClass(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, org.testng.ITestContext)[pri:0, instance:com.insight.WebTest.Cart.CRT07_SaveCartTest@27462a88]" name="beforeClass" is-config="true" duration-ms="619" started-at="2019-12-10T15:00:28Z" finished-at="2019-12-10T15:00:28Z">
+        <test-method status="PASS" signature="beforeClass(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, org.testng.ITestContext)[pri:0, instance:com.insight.WebTest.Cart.CRT05_QuickSearchTest@26e356f0]" name="beforeClass" is-config="true" duration-ms="116" started-at="2020-02-07T17:34:18Z" finished-at="2020-02-07T17:34:18Z">
           <params>
             <param index="0">
               <value>
@@ -67,25 +67,25 @@
             </param>
             <param index="7">
               <value>
-                <![CDATA[org.testng.TestRunner@4ab550d5]]>
+                <![CDATA[org.testng.TestRunner@7c6189d5]]>
               </value>
             </param>
           </params>
           <reporter-output>
           </reporter-output>
         </test-method> <!-- beforeClass -->
-        <test-method status="PASS" signature="beforeMethod(java.lang.reflect.Method)[pri:0, instance:com.insight.WebTest.Cart.CRT07_SaveCartTest@27462a88]" name="beforeMethod" is-config="true" duration-ms="558" started-at="2019-12-10T15:00:28Z" finished-at="2019-12-10T15:00:29Z">
+        <test-method status="PASS" signature="beforeMethod(java.lang.reflect.Method)[pri:0, instance:com.insight.WebTest.Cart.CRT05_QuickSearchTest@26e356f0]" name="beforeMethod" is-config="true" duration-ms="11" started-at="2020-02-07T17:34:18Z" finished-at="2020-02-07T17:34:18Z">
           <params>
             <param index="0">
               <value>
-                <![CDATA[public void com.insight.WebTest.Cart.CRT07_SaveCartTest.Tc_CRT07(int,java.lang.String,boolean) throws java.lang.Throwable]]>
+                <![CDATA[public void com.insight.WebTest.Cart.CRT05_QuickSearchTest.Tc_CRT05(int,java.lang.String,boolean) throws java.lang.Throwable]]>
               </value>
             </param>
           </params>
           <reporter-output>
           </reporter-output>
         </test-method> <!-- beforeMethod -->
-        <test-method status="PASS" signature="Tc_CRT07(int, java.lang.String, boolean)[pri:0, instance:com.insight.WebTest.Cart.CRT07_SaveCartTest@27462a88]" name="Tc_CRT07" duration-ms="391531" started-at="2019-12-10T15:00:29Z" finished-at="2019-12-10T15:07:00Z">
+        <test-method status="PASS" signature="Tc_CRT05(int, java.lang.String, boolean)[pri:0, instance:com.insight.WebTest.Cart.CRT05_QuickSearchTest@26e356f0]" name="Tc_CRT05" duration-ms="559448" started-at="2020-02-07T17:34:18Z" finished-at="2020-02-07T17:43:37Z">
           <params>
             <param index="0">
               <value>
@@ -103,12 +103,12 @@
           </params>
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- Tc_CRT07 -->
-        <test-method status="PASS" signature="afterMethod()[pri:0, instance:com.insight.WebTest.Cart.CRT07_SaveCartTest@27462a88]" name="afterMethod" is-config="true" duration-ms="111" started-at="2019-12-10T15:07:00Z" finished-at="2019-12-10T15:07:01Z">
+        </test-method> <!-- Tc_CRT05 -->
+        <test-method status="PASS" signature="afterMethod()[pri:0, instance:com.insight.WebTest.Cart.CRT05_QuickSearchTest@26e356f0]" name="afterMethod" is-config="true" duration-ms="17" started-at="2020-02-07T17:43:37Z" finished-at="2020-02-07T17:43:37Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- afterMethod -->
-        <test-method status="PASS" signature="afterClass(java.lang.String)[pri:0, instance:com.insight.WebTest.Cart.CRT07_SaveCartTest@27462a88]" name="afterClass" is-config="true" duration-ms="0" started-at="2019-12-10T15:07:01Z" finished-at="2019-12-10T15:07:01Z">
+        <test-method status="PASS" signature="afterClass(java.lang.String)[pri:0, instance:com.insight.WebTest.Cart.CRT05_QuickSearchTest@26e356f0]" name="afterClass" is-config="true" duration-ms="0" started-at="2020-02-07T17:43:37Z" finished-at="2020-02-07T17:43:37Z">
           <params>
             <param index="0">
               <value>
@@ -119,11 +119,11 @@
           <reporter-output>
           </reporter-output>
         </test-method> <!-- afterClass -->
-        <test-method status="PASS" signature="afterSuite(org.testng.ITestContext, java.lang.String, java.lang.String)[pri:0, instance:com.insight.WebTest.Cart.CRT07_SaveCartTest@27462a88]" name="afterSuite" is-config="true" duration-ms="978" started-at="2019-12-10T15:07:01Z" finished-at="2019-12-10T15:07:02Z">
+        <test-method status="PASS" signature="afterSuite(org.testng.ITestContext, java.lang.String, java.lang.String)[pri:0, instance:com.insight.WebTest.Cart.CRT05_QuickSearchTest@26e356f0]" name="afterSuite" is-config="true" duration-ms="395" started-at="2020-02-07T17:43:38Z" finished-at="2020-02-07T17:43:38Z">
           <params>
             <param index="0">
               <value>
-                <![CDATA[org.testng.TestRunner@4ab550d5]]>
+                <![CDATA[org.testng.TestRunner@7c6189d5]]>
               </value>
             </param>
             <param index="1">
@@ -140,7 +140,7 @@
           <reporter-output>
           </reporter-output>
         </test-method> <!-- afterSuite -->
-      </class> <!-- com.insight.WebTest.Cart.CRT07_SaveCartTest -->
-    </test> <!-- WebApplication -->
+      </class> <!-- com.insight.WebTest.Cart.CRT05_QuickSearchTest -->
+    </test> <!-- USM01 -->
   </suite> <!-- INSIGHT Automation test suite -->
 </testng-results>

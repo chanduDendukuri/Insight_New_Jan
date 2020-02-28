@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?><Summary>
+<Header>
+<SuiteExecuted>Sample-Regression</SuiteExecuted>
+<Browser>chrome</Browser>
+<Version>76.0</Version>
+<OS>windows 10</OS>
+<DateTime>07-Feb-2020</DateTime>
+<HostName>CTLINDT-2226</HostName>
+<Environment>https://uat1.insight.com/</Environment>
+<PassTestCases>1</PassTestCases>
+<FailTestCases>0</FailTestCases>
+<SuiteExecutionTime>531 seconds</SuiteExecutionTime>
+</Header>
+<TestDetails>
+<SerialNo>1</SerialNo>
+<TestCase>Tc_CRT05</TestCase>
+<href>Tc_CRT05.html</href>
+<Description>QuickSearch</Description>
+<PassCount>89</PassCount>
+<FailCount>0</FailCount>
+<Time>559 seconds</Time>
+<Status>PASS</Status>
+</TestDetails>
+<TestDetails>
+<SerialNo>2</SerialNo>
+<TestCase>Tc_CRT23</TestCase>
+<href>Tc_CRT23.html</href>
+<Description>LoginFromCartPricing</Description>
+<PassCount>47</PassCount>
+<FailCount>0</FailCount>
+<Time>470 seconds</Time>
+<Status>PASS</Status>
+</TestDetails>
+</Summary>

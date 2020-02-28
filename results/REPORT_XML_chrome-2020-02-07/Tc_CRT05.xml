@@ -1,0 +1,727 @@
+<?xml version="1.0" encoding="UTF-8"?><TestCaseDetails>
+<Tc_CRT05>
+<SerialNo>1</SerialNo>
+<StepName>Click : Login link</StepName>
+<StepDescription>Successfully Clicked On </StepDescription>
+<TestData>&lt;b&gt;Login link&lt;/b&gt;</TestData>
+<Status><![CDATA[<i style="width:30px;color:green" class="fa fa-check-circle fa-3x"></i>]]></Status>
+<ExecutionTime>17:34:47 PM</ExecutionTime>
+</Tc_CRT05>
+<Tc_CRT05>
+<SerialNo>2</SerialNo>
+<StepName>Click : Close icon</StepName>
+<StepDescription>Successfully Clicked On </StepDescription>
+<TestData>&lt;b&gt;Close icon&lt;/b&gt;</TestData>
+<Status><![CDATA[<i style="width:30px;color:green" class="fa fa-check-circle fa-3x"></i>]]></Status>
+<ExecutionTime>17:34:51 PM</ExecutionTime>
+</Tc_CRT05>
+<Tc_CRT05>
+<SerialNo>3</SerialNo>
+<StepName>Enter text in :: User Name</StepName>
+<StepDescription>Successfully Entered value 'QTPSvcAdmin '</StepDescription>
+<TestData>QTPSvcAdmin </TestData>
+<Status><![CDATA[<i style="width:30px;color:green" class="fa fa-check-circle fa-3x"></i>]]></Status>
+<ExecutionTime>17:35:11 PM</ExecutionTime>
+</Tc_CRT05>
+<Tc_CRT05>
+<SerialNo>4</SerialNo>
+<StepName>Enter text in :: password</StepName>
+<StepDescription>Successfully Entered value 'Password@11'</StepDescription>
+<TestData>Password@11</TestData>
+<Status><![CDATA[<i style="width:30px;color:green" class="fa fa-check-circle fa-3x"></i>]]></Status>
+<ExecutionTime>17:35:11 PM</ExecutionTime>
+</Tc_CRT05>
+<Tc_CRT05>
+<SerialNo>5</SerialNo>
+<StepName>Click : Login button</StepName>
+<StepDescription>Successfully Clicked On </StepDescription>
+<TestData>&lt;b&gt;Login button&lt;/b&gt;</TestData>
+<Status><![CDATA[<i style="width:30px;color:green" class="fa fa-check-circle fa-3x"></i>]]></Status>
+<ExecutionTime>17:35:30 PM</ExecutionTime>
+</Tc_CRT05>
+<Tc_CRT05>
+<SerialNo>6</SerialNo>
+<StepName>Visible of element is true :: </StepName>
+<StepDescription>Element :: WEB GROUP in CMT TOOL HOME PAGE  is visible</StepDescription>
+<TestData>NA</TestData>
+<Status><![CDATA[<i style="width:30px;color:green" class="fa fa-check-circle fa-3x"></i>]]></Status>
+<ExecutionTime>17:35:33 PM</ExecutionTime>
+</Tc_CRT05>
+<Tc_CRT05>
+<SerialNo>7</SerialNo>
+<StepName>Enter text in :: POP UP TO ENTER EMAIL ID</StepName>
+<StepDescription>Successfully Entered value </StepDescription>
+<TestData>POP UP TO ENTER EMAIL ID&lt;b&gt; Ajay.Cherukuri@insight.com&lt;/b&gt;</TestData>
+<Status><![CDATA[<i style="width:30px;color:green" class="fa fa-check-circle fa-3x"></i>]]></Status>
+<ExecutionTime>17:35:38 PM</ExecutionTime>
+</Tc_CRT05>
+<Tc_CRT05>
+<SerialNo>8</SerialNo>
+<StepName>Click : POP UP SUBMIT BUTTON</StepName>
+<StepDescription>Successfully Clicked On </StepDescription>
+<TestData>&lt;b&gt;POP UP SUBMIT BUTTON&lt;/b&gt;</TestData>
+<Status><![CDATA[<i style="width:30px;color:green" class="fa fa-check-circle fa-3x"></i>]]></Status>
+<ExecutionTime>17:35:39 PM</ExecutionTime>
+</Tc_CRT05>
+<Tc_CRT05>
+<SerialNo>9</SerialNo>
+<StepName>Verify login</StepName>
+<StepDescription>Sucessfully logged in to the account</StepDescription>
+<TestData>User name is : QTPSvcAdmin password is : Password@11</TestData>
+<Status><![CDATA[<i style="width:30px;color:green" class="fa fa-check-circle fa-3x"></i>]]></Status>
+<ExecutionTime>17:35:39 PM</ExecutionTime>
+</Tc_CRT05>
+<Tc_CRT05>
+<SerialNo>10</SerialNo>
+<StepName>Visibility Of Elemenet :CMT home page</StepName>
+<StepDescription>Successfully Found Element CMT home page</StepDescription>
+<TestData>NA</TestData>
+<Status><![CDATA[<i style="width:30px;color:green" class="fa fa-check-circle fa-3x"></i>]]></Status>
+<ExecutionTime>17:35:41 PM</ExecutionTime>
+</Tc_CRT05>
+<Tc_CRT05>
+<SerialNo>11</SerialNo>
+<StepName>Verify Client Admin Search Page</StepName>
+<StepDescription>Client Admin Search Page Exists with client search label</StepDescription>
+<TestData>CMT home screen</TestData>
+<Status><![CDATA[<i style="width:30px;color:green" class="fa fa-check-circle fa-3x"></i>]]></Status>
+<ExecutionTime>17:35:41 PM</ExecutionTime>
+</Tc_CRT05>
+<Tc_CRT05>
+<SerialNo>12</SerialNo>
+<StepName>Visible of element is true :: </StepName>
+<StepDescription>Element :: WEB GROUP in CMT TOOL HOME PAGE  is visible</StepDescription>
+<TestData>NA</TestData>
+<Status><![CDATA[<i style="width:30px;color:green" class="fa fa-check-circle fa-3x"></i>]]></Status>
+<ExecutionTime>17:35:41 PM</ExecutionTime>
+</Tc_CRT05>
+<Tc_CRT05>
+<SerialNo>13</SerialNo>
+<StepName>Enter text in :: Web Group field Exists and Entered</StepName>
+<StepDescription>Successfully Entered value </StepDescription>
+<TestData>Web Group field Exists and Entered&lt;b&gt; 860792779&lt;/b&gt;</TestData>
+<Status><![CDATA[<i style="width:30px;color:green" class="fa fa-check-circle fa-3x"></i>]]></Status>
+<ExecutionTime>17:35:46 PM</ExecutionTime>
+</Tc_CRT05>
+<Tc_CRT05>
+<SerialNo>14</SerialNo>
+<StepName>Click : SEARCH BUTTON in CMT TOOL HOME PAGE</StepName>
+<StepDescription>Successfully Clicked On </StepDescription>
+<TestData>&lt;b&gt;SEARCH BUTTON in CMT TOOL HOME PAGE&lt;/b&gt;</TestData>
+<Status><![CDATA[<i style="width:30px;color:green" class="fa fa-check-circle fa-3x"></i>]]></Status>
+<ExecutionTime>17:35:47 PM</ExecutionTime>
+</Tc_CRT05>
+<Tc_CRT05>
+<SerialNo>15</SerialNo>
+<StepName>Visibility Of Elemenet :Search results are displayed on Client Search Page</StepName>
+<StepDescription>Successfully Found Element Search results are displayed on Client Search Page</StepDescription>
+<TestData>NA</TestData>
+<Status><![CDATA[<i style="width:30px;color:green" class="fa fa-check-circle fa-3x"></i>]]></Status>
+<ExecutionTime>17:35:49 PM</ExecutionTime>
+</Tc_CRT05>
+<Tc_CRT05>
+<SerialNo>16</SerialNo>
+<StepName>Click : Web Group link exists :TU IUS Test Group</StepName>
+<StepDescription>Successfully Clicked On </StepDescription>
+<TestData>&lt;b&gt;Web Group link exists :TU IUS Test Group&lt;/b&gt;</TestData>
+<Status><![CDATA[<i style="width:30px;color:green" class="fa fa-check-circle fa-3x"></i>]]></Status>
+<ExecutionTime>17:35:55 PM</ExecutionTime>
+</Tc_CRT05>
+<Tc_CRT05>
+<SerialNo>17</SerialNo>
+<StepName>MouseOver :: </StepName>
+<StepDescription>MouserOver Action is Done on  :: Manage Web group</StepDescription>
+<TestData>NA</TestData>
+<Status><![CDATA[<i style="width:30px;color:green" class="fa fa-check-circle fa-3x"></i>]]></Status>
+<ExecutionTime>17:35:58 PM</ExecutionTime>
+</Tc_CRT05>
+<Tc_CRT05>
+<SerialNo>18</SerialNo>
+<StepName>Click : Change Web group option: Users</StepName>
+<StepDescription>Successfully Clicked On </StepDescription>
+<TestData>&lt;b&gt;Change Web group option: Users&lt;/b&gt;</TestData>
+<Status><![CDATA[<i style="width:30px;color:green" class="fa fa-check-circle fa-3x"></i>]]></Status>
+<ExecutionTime>17:36:01 PM</ExecutionTime>
+</Tc_CRT05>
+<Tc_CRT05>
+<SerialNo>19</SerialNo>
+<StepName>Visibility Of Elemenet :User Management page</StepName>
+<StepDescription>Successfully Found Element User Management page</StepDescription>
+<TestData>NA</TestData>
+<Status><![CDATA[<i style="width:30px;color:green" class="fa fa-check-circle fa-3x"></i>]]></Status>
+<ExecutionTime>17:36:03 PM</ExecutionTime>
+</Tc_CRT05>
+<Tc_CRT05>
+<SerialNo>20</SerialNo>
+<StepName>Verify Web Group Management: Users Page</StepName>
+<StepDescription>User management page is displayed</StepDescription>
+<TestData>Page: Web Group Management: Users</TestData>
+<Status><![CDATA[<i style="width:30px;color:green" class="fa fa-check-circle fa-3x"></i>]]></Status>
+<ExecutionTime>17:36:03 PM</ExecutionTime>
+</Tc_CRT05>
+<Tc_CRT05>
+<SerialNo>21</SerialNo>
+<StepName>Visible of element is true :: </StepName>
+<StepDescription>Element :: LNAME EMAIL USERNAME: TU_IUSAdmin  is visible</StepDescription>
+<TestData>NA</TestData>
+<Status><![CDATA[<i style="width:30px;color:green" class="fa fa-check-circle fa-3x"></i>]]></Status>
+<ExecutionTime>17:36:08 PM</ExecutionTime>
+</Tc_CRT05>
+<Tc_CRT05>
+<SerialNo>22</SerialNo>
+<StepName>Enter text in :: LNAME EMAIL USERNAME: TU_IUSAdmin</StepName>
+<StepDescription>Successfully Entered value </StepDescription>
+<TestData>LNAME EMAIL USERNAME: TU_IUSAdmin&lt;b&gt; TU_IUSAdmin&lt;/b&gt;</TestData>
+<Status><![CDATA[<i style="width:30px;color:green" class="fa fa-check-circle fa-3x"></i>]]></Status>
+<ExecutionTime>17:36:13 PM</ExecutionTime>
+</Tc_CRT05>
+<Tc_CRT05>
+<SerialNo>23</SerialNo>
+<StepName>Click : Search button Exists and Clicked</StepName>
+<StepDescription>Successfully Clicked On </StepDescription>
+<TestData>&lt;b&gt;Search button Exists and Clicked&lt;/b&gt;</TestData>
+<Status><![CDATA[<i style="width:30px;color:green" class="fa fa-check-circle fa-3x"></i>]]></Status>
+<ExecutionTime>17:36:15 PM</ExecutionTime>
+</Tc_CRT05>
+<Tc_CRT05>
+<SerialNo>24</SerialNo>
+<StepName>GetText :: TU_IUSAdmin TU_IUSAdmin</StepName>
+<StepDescription>TU_IUSAdmin TU_IUSAdmin is :</StepDescription>
+<TestData>&lt;b&gt;TU_IUSAdmin TU_IUSAdmin&lt;/b&gt;</TestData>
+<Status><![CDATA[<i style="width:30px;color:green" class="fa fa-check-circle fa-3x"></i>]]></Status>
+<ExecutionTime>17:36:23 PM</ExecutionTime>
+</Tc_CRT05>
+<Tc_CRT05>
+<SerialNo>25</SerialNo>
+<StepName>Visibility Of Elemenet :Manage Web Groups:  User Management</StepName>
+<StepDescription>Successfully Found Element Manage Web Groups:  User Management</StepDescription>
+<TestData>NA</TestData>
+<Status><![CDATA[<i style="width:30px;color:green" class="fa fa-check-circle fa-3x"></i>]]></Status>
+<ExecutionTime>17:36:25 PM</ExecutionTime>
+</Tc_CRT05>
+<Tc_CRT05>
+<SerialNo>26</SerialNo>
+<StepName>Verify Web Group Management: Users Page</StepName>
+<StepDescription>Web Group Management: Users Page loaded</StepDescription>
+<TestData>Page: Web Group Management: Users</TestData>
+<Status><![CDATA[<i style="width:30px;color:green" class="fa fa-check-circle fa-3x"></i>]]></Status>
+<ExecutionTime>17:36:25 PM</ExecutionTime>
+</Tc_CRT05>
+<Tc_CRT05>
+<SerialNo>27</SerialNo>
+<StepName>Verifying User Contact Name :</StepName>
+<StepDescription>User Contact Name present is : </StepDescription>
+<TestData>Contact name : TU_IUSAdmin TU_IUSAdmin</TestData>
+<Status><![CDATA[<i style="width:30px;color:green" class="fa fa-check-circle fa-3x"></i>]]></Status>
+<ExecutionTime>17:36:25 PM</ExecutionTime>
+</Tc_CRT05>
+<Tc_CRT05>
+<SerialNo>28</SerialNo>
+<StepName>Click : TU_IUSAdmin TU_IUSAdmin</StepName>
+<StepDescription>Successfully Clicked On </StepDescription>
+<TestData>&lt;b&gt;TU_IUSAdmin TU_IUSAdmin&lt;/b&gt;</TestData>
+<Status><![CDATA[<i style="width:30px;color:green" class="fa fa-check-circle fa-3x"></i>]]></Status>
+<ExecutionTime>17:36:27 PM</ExecutionTime>
+</Tc_CRT05>
+<Tc_CRT05>
+<SerialNo>29</SerialNo>
+<StepName>Visibility Of Elemenet :user contaact page</StepName>
+<StepDescription>Successfully Found Element user contaact page</StepDescription>
+<TestData>NA</TestData>
+<Status><![CDATA[<i style="width:30px;color:green" class="fa fa-check-circle fa-3x"></i>]]></Status>
+<ExecutionTime>17:36:30 PM</ExecutionTime>
+</Tc_CRT05>
+<Tc_CRT05>
+<SerialNo>30</SerialNo>
+<StepName>Verify user contact page</StepName>
+<StepDescription>Uers contact page verified successfully</StepDescription>
+<TestData>Web Group Management: Users</TestData>
+<Status><![CDATA[<i style="width:30px;color:green" class="fa fa-check-circle fa-3x"></i>]]></Status>
+<ExecutionTime>17:36:30 PM</ExecutionTime>
+</Tc_CRT05>
+<Tc_CRT05>
+<SerialNo>31</SerialNo>
+<StepName>Click : Roles And Permissions</StepName>
+<StepDescription>Successfully Clicked On </StepDescription>
+<TestData>&lt;b&gt;Roles And Permissions&lt;/b&gt;</TestData>
+<Status><![CDATA[<i style="width:30px;color:green" class="fa fa-check-circle fa-3x"></i>]]></Status>
+<ExecutionTime>17:36:33 PM</ExecutionTime>
+</Tc_CRT05>
+<Tc_CRT05>
+<SerialNo>32</SerialNo>
+<StepName>Enable Purchasing Popup</StepName>
+<StepDescription>check box already checked::Enable Purchasing Popup ON</StepDescription>
+<TestData>Enable Purchasing Popup ON</TestData>
+<Status><![CDATA[<i style="width:30px;color:green" class="fa fa-check-circle fa-3x"></i>]]></Status>
+<ExecutionTime>17:36:36 PM</ExecutionTime>
+</Tc_CRT05>
+<Tc_CRT05>
+<SerialNo>33</SerialNo>
+<StepName>Click : Login as</StepName>
+<StepDescription>Successfully Clicked On </StepDescription>
+<TestData>&lt;b&gt;Login as&lt;/b&gt;</TestData>
+<Status><![CDATA[<i style="width:30px;color:green" class="fa fa-check-circle fa-3x"></i>]]></Status>
+<ExecutionTime>17:36:36 PM</ExecutionTime>
+</Tc_CRT05>
+<Tc_CRT05>
+<SerialNo>34</SerialNo>
+<StepName>Visible of element is true :: </StepName>
+<StepDescription>Element :: contact Name is TU_IUSAdmin TU_IUSAdmin  is visible</StepDescription>
+<TestData>NA</TestData>
+<Status><![CDATA[<i style="width:30px;color:green" class="fa fa-check-circle fa-3x"></i>]]></Status>
+<ExecutionTime>17:36:50 PM</ExecutionTime>
+</Tc_CRT05>
+<Tc_CRT05>
+<SerialNo>35</SerialNo>
+<StepName>Verify the Same User Logged into Insight from CMT</StepName>
+<StepDescription>User login verification is successfull. User is : </StepDescription>
+<TestData>TU_IUSAdmin TU_IUSAdmin</TestData>
+<Status><![CDATA[<i style="width:30px;color:green" class="fa fa-check-circle fa-3x"></i>]]></Status>
+<ExecutionTime>17:36:51 PM</ExecutionTime>
+</Tc_CRT05>
+<Tc_CRT05>
+<SerialNo>36</SerialNo>
+<StepName>Visible of element is true :: </StepName>
+<StepDescription>Element :: SEARCH FIELD  is visible</StepDescription>
+<TestData>NA</TestData>
+<Status><![CDATA[<i style="width:30px;color:green" class="fa fa-check-circle fa-3x"></i>]]></Status>
+<ExecutionTime>17:37:31 PM</ExecutionTime>
+</Tc_CRT05>
+<Tc_CRT05>
+<SerialNo>37</SerialNo>
+<StepName>IsVisible : </StepName>
+<StepDescription>UM.FV6AA.003 Element is Visible : true</StepDescription>
+<TestData>NA</TestData>
+<Status><![CDATA[<i style="width:30px;color:green" class="fa fa-check-circle fa-3x"></i>]]></Status>
+<ExecutionTime>17:37:31 PM</ExecutionTime>
+</Tc_CRT05>
+<Tc_CRT05>
+<SerialNo>38</SerialNo>
+<StepName>Enter text in :: UM.FV6AA.003</StepName>
+<StepDescription>Successfully Entered value </StepDescription>
+<TestData>UM.FV6AA.003</TestData>
+<Status><![CDATA[<i style="width:30px;color:green" class="fa fa-check-circle fa-3x"></i>]]></Status>
+<ExecutionTime>17:37:41 PM</ExecutionTime>
+</Tc_CRT05>
+<Tc_CRT05>
+<SerialNo>39</SerialNo>
+<StepName>GetText :: MFR_NUMBER_PRODUCT_DETAILS_PAGE</StepName>
+<StepDescription>MFR_NUMBER_PRODUCT_DETAILS_PAGE is :</StepDescription>
+<TestData>&lt;b&gt;Mfr. # UM.FV6AA.003&lt;/b&gt;</TestData>
+<Status><![CDATA[<i style="width:30px;color:green" class="fa fa-check-circle fa-3x"></i>]]></Status>
+<ExecutionTime>17:38:04 PM</ExecutionTime>
+</Tc_CRT05>
+<Tc_CRT05>
+<SerialNo>40</SerialNo>
+<StepName>Verify manufacturer number UM.FV6AA.003in product details page</StepName>
+<StepDescription>Mfr Part# Exists and is same as searched result</StepDescription>
+<TestData>Mfr Part# UM.FV6AA.003</TestData>
+<Status><![CDATA[<i style="width:30px;color:green" class="fa fa-check-circle fa-3x"></i>]]></Status>
+<ExecutionTime>17:38:04 PM</ExecutionTime>
+</Tc_CRT05>
+<Tc_CRT05>
+<SerialNo>41</SerialNo>
+<StepName>Click : warranties</StepName>
+<StepDescription>Successfully Clicked On </StepDescription>
+<TestData>&lt;b&gt;warranties&lt;/b&gt;</TestData>
+<Status><![CDATA[<i style="width:30px;color:green" class="fa fa-check-circle fa-3x"></i>]]></Status>
+<ExecutionTime>17:38:04 PM</ExecutionTime>
+</Tc_CRT05>
+<Tc_CRT05>
+<SerialNo>42</SerialNo>
+<StepName>GetText :: Manufacturer Number</StepName>
+<StepDescription>Manufacturer Number is :</StepDescription>
+<TestData>&lt;b&gt;Mfr Part #: 146.EE320.003 | Insight Part #: 146.EE320.003&lt;/b&gt;</TestData>
+<Status><![CDATA[<i style="width:30px;color:green" class="fa fa-check-circle fa-3x"></i>]]></Status>
+<ExecutionTime>17:38:04 PM</ExecutionTime>
+</Tc_CRT05>
+<Tc_CRT05>
+<SerialNo>43</SerialNo>
+<StepName>Click : Add to cart</StepName>
+<StepDescription>Successfully Clicked On </StepDescription>
+<TestData>&lt;b&gt;Add to cart&lt;/b&gt;</TestData>
+<Status><![CDATA[<i style="width:30px;color:green" class="fa fa-check-circle fa-3x"></i>]]></Status>
+<ExecutionTime>17:38:04 PM</ExecutionTime>
+</Tc_CRT05>
+<Tc_CRT05>
+<SerialNo>44</SerialNo>
+<StepName>IsVisible : </StepName>
+<StepDescription>Continue to checkout Element is Visible : true</StepDescription>
+<TestData>NA</TestData>
+<Status><![CDATA[<i style="width:30px;color:green" class="fa fa-check-circle fa-3x"></i>]]></Status>
+<ExecutionTime>17:38:30 PM</ExecutionTime>
+</Tc_CRT05>
+<Tc_CRT05>
+<SerialNo>45</SerialNo>
+<StepName>Click : Continue to checkout</StepName>
+<StepDescription>Successfully Clicked On </StepDescription>
+<TestData>&lt;b&gt;Continue to checkout&lt;/b&gt;</TestData>
+<Status><![CDATA[<i style="width:30px;color:green" class="fa fa-check-circle fa-3x"></i>]]></Status>
+<ExecutionTime>17:38:41 PM</ExecutionTime>
+</Tc_CRT05>
+<Tc_CRT05>
+<SerialNo>46</SerialNo>
+<StepName>Verify wether user navigates to cart page </StepName>
+<StepDescription>User successfully navigated to cart page</StepDescription>
+<TestData>PageDetails : Cart</TestData>
+<Status><![CDATA[<i style="width:30px;color:green" class="fa fa-check-circle fa-3x"></i>]]></Status>
+<ExecutionTime>17:39:08 PM</ExecutionTime>
+</Tc_CRT05>
+<Tc_CRT05>
+<SerialNo>47</SerialNo>
+<StepName>IsVisible : </StepName>
+<StepDescription>Product Link Element is Visible : true</StepDescription>
+<TestData>NA</TestData>
+<Status><![CDATA[<i style="width:30px;color:green" class="fa fa-check-circle fa-3x"></i>]]></Status>
+<ExecutionTime>17:39:29 PM</ExecutionTime>
+</Tc_CRT05>
+<Tc_CRT05>
+<SerialNo>48</SerialNo>
+<StepName>Click : Product Link</StepName>
+<StepDescription>Successfully Clicked On </StepDescription>
+<TestData>&lt;b&gt;Product Link&lt;/b&gt;</TestData>
+<Status><![CDATA[<i style="width:30px;color:green" class="fa fa-check-circle fa-3x"></i>]]></Status>
+<ExecutionTime>17:39:29 PM</ExecutionTime>
+</Tc_CRT05>
+<Tc_CRT05>
+<SerialNo>49</SerialNo>
+<StepName>GetText :: MFR_NUMBER_PRODUCT_DETAILS_PAGE</StepName>
+<StepDescription>MFR_NUMBER_PRODUCT_DETAILS_PAGE is :</StepDescription>
+<TestData>&lt;b&gt;Mfr. # 146.EE320.003&lt;/b&gt;</TestData>
+<Status><![CDATA[<i style="width:30px;color:green" class="fa fa-check-circle fa-3x"></i>]]></Status>
+<ExecutionTime>17:39:34 PM</ExecutionTime>
+</Tc_CRT05>
+<Tc_CRT05>
+<SerialNo>50</SerialNo>
+<StepName>Verify manufacturer number Mfr Part #: 146.EE320.003 | Insight Part #: 146.EE320.003in product details page</StepName>
+<StepDescription>Mfr Part# Exists and is same as searched result</StepDescription>
+<TestData>Mfr Part# Mfr Part #: 146.EE320.003 | Insight Part #: 146.EE320.003</TestData>
+<Status><![CDATA[<i style="width:30px;color:green" class="fa fa-check-circle fa-3x"></i>]]></Status>
+<ExecutionTime>17:39:34 PM</ExecutionTime>
+</Tc_CRT05>
+<Tc_CRT05>
+<SerialNo>51</SerialNo>
+<StepName>Click : CART</StepName>
+<StepDescription>Successfully Clicked On </StepDescription>
+<TestData>&lt;b&gt;CART&lt;/b&gt;</TestData>
+<Status><![CDATA[<i style="width:30px;color:green" class="fa fa-check-circle fa-3x"></i>]]></Status>
+<ExecutionTime>17:39:42 PM</ExecutionTime>
+</Tc_CRT05>
+<Tc_CRT05>
+<SerialNo>52</SerialNo>
+<StepName>Verify wether user navigates to cart page </StepName>
+<StepDescription>User successfully navigated to cart page</StepDescription>
+<TestData>PageDetails : Cart</TestData>
+<Status><![CDATA[<i style="width:30px;color:green" class="fa fa-check-circle fa-3x"></i>]]></Status>
+<ExecutionTime>17:39:42 PM</ExecutionTime>
+</Tc_CRT05>
+<Tc_CRT05>
+<SerialNo>53</SerialNo>
+<StepName>Visible of element is true :: </StepName>
+<StepDescription>Element :: QUICK SHOP ITEM FIELD  is visible</StepDescription>
+<TestData>NA</TestData>
+<Status><![CDATA[<i style="width:30px;color:green" class="fa fa-check-circle fa-3x"></i>]]></Status>
+<ExecutionTime>17:39:42 PM</ExecutionTime>
+</Tc_CRT05>
+<Tc_CRT05>
+<SerialNo>54</SerialNo>
+<StepName>Enter text in :: QUICK SHOP ITEM FIELD</StepName>
+<StepDescription>Successfully Entered value </StepDescription>
+<TestData>QUICK SHOP ITEM FIELD&lt;b&gt; CZ993A#B1H&lt;/b&gt;</TestData>
+<Status><![CDATA[<i style="width:30px;color:green" class="fa fa-check-circle fa-3x"></i>]]></Status>
+<ExecutionTime>17:39:48 PM</ExecutionTime>
+</Tc_CRT05>
+<Tc_CRT05>
+<SerialNo>55</SerialNo>
+<StepName>Enter text in :: QUICK SHOP QUANTITY FIELD</StepName>
+<StepDescription>Successfully Entered value </StepDescription>
+<TestData>QUICK SHOP QUANTITY FIELD&lt;b&gt; 4&lt;/b&gt;</TestData>
+<Status><![CDATA[<i style="width:30px;color:green" class="fa fa-check-circle fa-3x"></i>]]></Status>
+<ExecutionTime>17:39:53 PM</ExecutionTime>
+</Tc_CRT05>
+<Tc_CRT05>
+<SerialNo>56</SerialNo>
+<StepName>Click : Add quick shop button</StepName>
+<StepDescription>Successfully Clicked On Add quick shop button</StepDescription>
+<TestData>NA</TestData>
+<Status><![CDATA[<i style="width:30px;color:green" class="fa fa-check-circle fa-3x"></i>]]></Status>
+<ExecutionTime>17:40:17 PM</ExecutionTime>
+</Tc_CRT05>
+<Tc_CRT05>
+<SerialNo>57</SerialNo>
+<StepName>InVisible of element is true :: </StepName>
+<StepDescription>Element :: spinner image  is not visible</StepDescription>
+<TestData>NA</TestData>
+<Status><![CDATA[<i style="width:30px;color:green" class="fa fa-check-circle fa-3x"></i>]]></Status>
+<ExecutionTime>17:40:39 PM</ExecutionTime>
+</Tc_CRT05>
+<Tc_CRT05>
+<SerialNo>58</SerialNo>
+<StepName>Verify wether user navigates to cart page </StepName>
+<StepDescription>User successfully navigated to cart page</StepDescription>
+<TestData>PageDetails : Cart</TestData>
+<Status><![CDATA[<i style="width:30px;color:green" class="fa fa-check-circle fa-3x"></i>]]></Status>
+<ExecutionTime>17:41:04 PM</ExecutionTime>
+</Tc_CRT05>
+<Tc_CRT05>
+<SerialNo>59</SerialNo>
+<StepName>Unit Price </StepName>
+<StepDescription>Unit price is for Insight Part #: CZ993A#B1H is </StepDescription>
+<TestData>HP Officejet 200 Mobile Printer - printer - color - ink-jet</TestData>
+<Status><![CDATA[<i style="width:30px;color:green" class="fa fa-check-circle fa-3x"></i>]]></Status>
+<ExecutionTime>17:41:05 PM</ExecutionTime>
+</Tc_CRT05>
+<Tc_CRT05>
+<SerialNo>60</SerialNo>
+<StepName>Product Description</StepName>
+<StepDescription>Product Description is Insight Part #: CZ993A#B1H is </StepDescription>
+<TestData>$1,152.60</TestData>
+<Status><![CDATA[<i style="width:30px;color:green" class="fa fa-check-circle fa-3x"></i>]]></Status>
+<ExecutionTime>17:41:05 PM</ExecutionTime>
+</Tc_CRT05>
+<Tc_CRT05>
+<SerialNo>61</SerialNo>
+<StepName>Unit Price </StepName>
+<StepDescription>Unit price is Insight Part #: CZ993A#B1H is </StepDescription>
+<TestData>$288.15</TestData>
+<Status><![CDATA[<i style="width:30px;color:green" class="fa fa-check-circle fa-3x"></i>]]></Status>
+<ExecutionTime>17:41:05 PM</ExecutionTime>
+</Tc_CRT05>
+<Tc_CRT05>
+<SerialNo>62</SerialNo>
+<StepName>Quantity List</StepName>
+<StepDescription>Quantity List is Insight Part #: CZ993A#B1H is </StepDescription>
+<TestData/>
+<Status><![CDATA[<i style="width:30px;color:green" class="fa fa-check-circle fa-3x"></i>]]></Status>
+<ExecutionTime>17:41:05 PM</ExecutionTime>
+</Tc_CRT05>
+<Tc_CRT05>
+<SerialNo>63</SerialNo>
+<StepName>Stock List</StepName>
+<StepDescription>Stock List is Insight Part #: CZ993A#B1H is </StepDescription>
+<TestData>Available</TestData>
+<Status><![CDATA[<i style="width:30px;color:green" class="fa fa-check-circle fa-3x"></i>]]></Status>
+<ExecutionTime>17:41:05 PM</ExecutionTime>
+</Tc_CRT05>
+<Tc_CRT05>
+<SerialNo>64</SerialNo>
+<StepName>Visible of element is true :: </StepName>
+<StepDescription>Element :: QUICK SHOP ITEM FIELD  is visible</StepDescription>
+<TestData>NA</TestData>
+<Status><![CDATA[<i style="width:30px;color:green" class="fa fa-check-circle fa-3x"></i>]]></Status>
+<ExecutionTime>17:41:05 PM</ExecutionTime>
+</Tc_CRT05>
+<Tc_CRT05>
+<SerialNo>65</SerialNo>
+<StepName>Enter text in :: QUICK SHOP ITEM FIELD</StepName>
+<StepDescription>Successfully Entered value </StepDescription>
+<TestData>QUICK SHOP ITEM FIELD&lt;b&gt; X205TA-EDU,F1M43UT#ABA&lt;/b&gt;</TestData>
+<Status><![CDATA[<i style="width:30px;color:green" class="fa fa-check-circle fa-3x"></i>]]></Status>
+<ExecutionTime>17:41:10 PM</ExecutionTime>
+</Tc_CRT05>
+<Tc_CRT05>
+<SerialNo>66</SerialNo>
+<StepName>Click : ADD BUTTON IN QUICK SHOP</StepName>
+<StepDescription>Successfully Clicked On </StepDescription>
+<TestData>&lt;b&gt;ADD BUTTON IN QUICK SHOP&lt;/b&gt;</TestData>
+<Status><![CDATA[<i style="width:30px;color:green" class="fa fa-check-circle fa-3x"></i>]]></Status>
+<ExecutionTime>17:41:11 PM</ExecutionTime>
+</Tc_CRT05>
+<Tc_CRT05>
+<SerialNo>67</SerialNo>
+<StepName>isElementPresent : error message</StepName>
+<StepDescription>error message is visible</StepDescription>
+<TestData>NA</TestData>
+<Status><![CDATA[<i style="width:30px;color:green" class="fa fa-check-circle fa-3x"></i>]]></Status>
+<ExecutionTime>17:41:11 PM</ExecutionTime>
+</Tc_CRT05>
+<Tc_CRT05>
+<SerialNo>68</SerialNo>
+<StepName>Error Message for invalid Part #s on the Cart Page</StepName>
+<StepDescription> Error Message for invalid Part #s Exists</StepDescription>
+<TestData/>
+<Status><![CDATA[<i style="width:30px;color:green" class="fa fa-check-circle fa-3x"></i>]]></Status>
+<ExecutionTime>17:41:11 PM</ExecutionTime>
+</Tc_CRT05>
+<Tc_CRT05>
+<SerialNo>69</SerialNo>
+<StepName>Visible of element is true :: </StepName>
+<StepDescription>Element :: QUICK SHOP ITEM FIELD  is visible</StepDescription>
+<TestData>NA</TestData>
+<Status><![CDATA[<i style="width:30px;color:green" class="fa fa-check-circle fa-3x"></i>]]></Status>
+<ExecutionTime>17:41:11 PM</ExecutionTime>
+</Tc_CRT05>
+<Tc_CRT05>
+<SerialNo>70</SerialNo>
+<StepName>Enter text in :: QUICK SHOP ITEM FIELD</StepName>
+<StepDescription>Successfully Entered value </StepDescription>
+<TestData>QUICK SHOP ITEM FIELD&lt;b&gt; CZ993A#B1H&lt;/b&gt;</TestData>
+<Status><![CDATA[<i style="width:30px;color:green" class="fa fa-check-circle fa-3x"></i>]]></Status>
+<ExecutionTime>17:41:16 PM</ExecutionTime>
+</Tc_CRT05>
+<Tc_CRT05>
+<SerialNo>71</SerialNo>
+<StepName>Enter text in :: QUICK SHOP QUANTITY FIELD</StepName>
+<StepDescription>Successfully Entered value </StepDescription>
+<TestData>QUICK SHOP QUANTITY FIELD&lt;b&gt; 4&lt;/b&gt;</TestData>
+<Status><![CDATA[<i style="width:30px;color:green" class="fa fa-check-circle fa-3x"></i>]]></Status>
+<ExecutionTime>17:41:22 PM</ExecutionTime>
+</Tc_CRT05>
+<Tc_CRT05>
+<SerialNo>72</SerialNo>
+<StepName>Click : Add quick shop button</StepName>
+<StepDescription>Successfully Clicked On Add quick shop button</StepDescription>
+<TestData>NA</TestData>
+<Status><![CDATA[<i style="width:30px;color:green" class="fa fa-check-circle fa-3x"></i>]]></Status>
+<ExecutionTime>17:41:45 PM</ExecutionTime>
+</Tc_CRT05>
+<Tc_CRT05>
+<SerialNo>73</SerialNo>
+<StepName>InVisible of element is true :: </StepName>
+<StepDescription>Element :: spinner image  is not visible</StepDescription>
+<TestData>NA</TestData>
+<Status><![CDATA[<i style="width:30px;color:green" class="fa fa-check-circle fa-3x"></i>]]></Status>
+<ExecutionTime>17:42:08 PM</ExecutionTime>
+</Tc_CRT05>
+<Tc_CRT05>
+<SerialNo>74</SerialNo>
+<StepName>GetAttribute :: </StepName>
+<StepDescription>Quantity in cart is </StepDescription>
+<TestData>8</TestData>
+<Status><![CDATA[<i style="width:30px;color:green" class="fa fa-check-circle fa-3x"></i>]]></Status>
+<ExecutionTime>17:42:33 PM</ExecutionTime>
+</Tc_CRT05>
+<Tc_CRT05>
+<SerialNo>75</SerialNo>
+<StepName>Quantity is increased on the Cart Page</StepName>
+<StepDescription>Quantity Exists and increased</StepDescription>
+<TestData/>
+<Status><![CDATA[<i style="width:30px;color:green" class="fa fa-check-circle fa-3x"></i>]]></Status>
+<ExecutionTime>17:42:33 PM</ExecutionTime>
+</Tc_CRT05>
+<Tc_CRT05>
+<SerialNo>76</SerialNo>
+<StepName>Visible of element is true :: </StepName>
+<StepDescription>Element :: QUICK SHOP ITEM FIELD  is visible</StepDescription>
+<TestData>NA</TestData>
+<Status><![CDATA[<i style="width:30px;color:green" class="fa fa-check-circle fa-3x"></i>]]></Status>
+<ExecutionTime>17:42:33 PM</ExecutionTime>
+</Tc_CRT05>
+<Tc_CRT05>
+<SerialNo>77</SerialNo>
+<StepName>Enter text in :: QUICK SHOP ITEM FIELD</StepName>
+<StepDescription>Successfully Entered value </StepDescription>
+<TestData>QUICK SHOP ITEM FIELD&lt;b&gt; X205TA-EDU,CZ993A#B1H&lt;/b&gt;</TestData>
+<Status><![CDATA[<i style="width:30px;color:green" class="fa fa-check-circle fa-3x"></i>]]></Status>
+<ExecutionTime>17:42:39 PM</ExecutionTime>
+</Tc_CRT05>
+<Tc_CRT05>
+<SerialNo>78</SerialNo>
+<StepName>Enter text in :: QUICK SHOP QUANTITY FIELD</StepName>
+<StepDescription>Successfully Entered value </StepDescription>
+<TestData>QUICK SHOP QUANTITY FIELD&lt;b&gt; 1&lt;/b&gt;</TestData>
+<Status><![CDATA[<i style="width:30px;color:green" class="fa fa-check-circle fa-3x"></i>]]></Status>
+<ExecutionTime>17:42:44 PM</ExecutionTime>
+</Tc_CRT05>
+<Tc_CRT05>
+<SerialNo>79</SerialNo>
+<StepName>Click : Add quick shop button</StepName>
+<StepDescription>Successfully Clicked On Add quick shop button</StepDescription>
+<TestData>NA</TestData>
+<Status><![CDATA[<i style="width:30px;color:green" class="fa fa-check-circle fa-3x"></i>]]></Status>
+<ExecutionTime>17:43:07 PM</ExecutionTime>
+</Tc_CRT05>
+<Tc_CRT05>
+<SerialNo>80</SerialNo>
+<StepName>Verify wether user navigates to cart page </StepName>
+<StepDescription>User successfully navigated to cart page</StepDescription>
+<TestData>PageDetails : Cart</TestData>
+<Status><![CDATA[<i style="width:30px;color:green" class="fa fa-check-circle fa-3x"></i>]]></Status>
+<ExecutionTime>17:43:34 PM</ExecutionTime>
+</Tc_CRT05>
+<Tc_CRT05>
+<SerialNo>81</SerialNo>
+<StepName>Unit Price </StepName>
+<StepDescription>Unit price is for Insight Part #: CZ993A#B1H is </StepDescription>
+<TestData>HP Officejet 200 Mobile Printer - printer - color - ink-jet</TestData>
+<Status><![CDATA[<i style="width:30px;color:green" class="fa fa-check-circle fa-3x"></i>]]></Status>
+<ExecutionTime>17:43:35 PM</ExecutionTime>
+</Tc_CRT05>
+<Tc_CRT05>
+<SerialNo>82</SerialNo>
+<StepName>Product Description</StepName>
+<StepDescription>Product Description is Insight Part #: CZ993A#B1H is </StepDescription>
+<TestData>$2,593.35</TestData>
+<Status><![CDATA[<i style="width:30px;color:green" class="fa fa-check-circle fa-3x"></i>]]></Status>
+<ExecutionTime>17:43:35 PM</ExecutionTime>
+</Tc_CRT05>
+<Tc_CRT05>
+<SerialNo>83</SerialNo>
+<StepName>Unit Price </StepName>
+<StepDescription>Unit price is Insight Part #: CZ993A#B1H is </StepDescription>
+<TestData>$288.15</TestData>
+<Status><![CDATA[<i style="width:30px;color:green" class="fa fa-check-circle fa-3x"></i>]]></Status>
+<ExecutionTime>17:43:35 PM</ExecutionTime>
+</Tc_CRT05>
+<Tc_CRT05>
+<SerialNo>84</SerialNo>
+<StepName>Quantity List</StepName>
+<StepDescription>Quantity List is Insight Part #: CZ993A#B1H is </StepDescription>
+<TestData/>
+<Status><![CDATA[<i style="width:30px;color:green" class="fa fa-check-circle fa-3x"></i>]]></Status>
+<ExecutionTime>17:43:35 PM</ExecutionTime>
+</Tc_CRT05>
+<Tc_CRT05>
+<SerialNo>85</SerialNo>
+<StepName>Stock List</StepName>
+<StepDescription>Stock List is Insight Part #: CZ993A#B1H is </StepDescription>
+<TestData>Available</TestData>
+<Status><![CDATA[<i style="width:30px;color:green" class="fa fa-check-circle fa-3x"></i>]]></Status>
+<ExecutionTime>17:43:35 PM</ExecutionTime>
+</Tc_CRT05>
+<Tc_CRT05>
+<SerialNo>86</SerialNo>
+<StepName>GetAttribute :: </StepName>
+<StepDescription>Quantity in cart is </StepDescription>
+<TestData>9</TestData>
+<Status><![CDATA[<i style="width:30px;color:green" class="fa fa-check-circle fa-3x"></i>]]></Status>
+<ExecutionTime>17:43:35 PM</ExecutionTime>
+</Tc_CRT05>
+<Tc_CRT05>
+<SerialNo>87</SerialNo>
+<StepName>Quantity is increased on the Cart Page</StepName>
+<StepDescription>Quantity Exists and increased</StepDescription>
+<TestData/>
+<Status><![CDATA[<i style="width:30px;color:green" class="fa fa-check-circle fa-3x"></i>]]></Status>
+<ExecutionTime>17:43:35 PM</ExecutionTime>
+</Tc_CRT05>
+<Tc_CRT05>
+<SerialNo>88</SerialNo>
+<StepName>Verify wether user navigates to cart page </StepName>
+<StepDescription>User successfully navigated to cart page</StepDescription>
+<TestData>PageDetails : Cart</TestData>
+<Status><![CDATA[<i style="width:30px;color:green" class="fa fa-check-circle fa-3x"></i>]]></Status>
+<ExecutionTime>17:43:35 PM</ExecutionTime>
+</Tc_CRT05>
+<Tc_CRT05>
+<SerialNo>89</SerialNo>
+<StepName>End of the test for iteration : 1</StepName>
+<StepDescription>************ END OF THE TEST ********************</StepDescription>
+<TestData>NA</TestData>
+<Status><![CDATA[<i style="width:30px;color:green" class="fa fa-check-circle fa-3x"></i>]]></Status>
+<ExecutionTime>17:43:37 PM</ExecutionTime>
+</Tc_CRT05>
+<TestCase>
+<Browser>chrome</Browser>
+<Version>76.0</Version>
+<OS>windows 10</OS>
+<ExecutionDate>2020-02-07</ExecutionDate>
+<HostName>CTLINDT-2226</HostName>
+<TestCaseName>Tc_CRT05</TestCaseName>
+<TestCaseDescription>QuickSearch</TestCaseDescription>
+<PassCount>89</PassCount>
+<FailCount>0</FailCount>
+<TestCaseExecutionTimeInSeconds>559 seconds</TestCaseExecutionTimeInSeconds>
+<OStatus>PASS</OStatus>
+</TestCase>
+</TestCaseDetails>
