@@ -91,8 +91,11 @@ public class SLP13_CITRIX_ZeroUsage extends SLPLib{
 				     	orderLib.verifyCartHeaderLabel();
 				     	//Verify part item added in cart page
 				     	cartLib.verifyItemInCart(data.get("PartNum1"));
-				     	int itemnumber=Integer.valueOf(data.get("Item_Number"));
-				     	verifyCartPageAndPartDetails(itemnumber-1);
+					/*
+					 * int itemnumber=Integer.valueOf(data.get("Item_Number"));
+					 * verifyCartPageAndPartDetails(itemnumber-1);
+					 */
+				     	pipLib. verifyCartPageAndPartDetailsForRecentlyItemDynamically(data.get("PartNum1"));
 				        
 				     	// account tools >> Software License Agreements
 				     	orderLib.clickOnSideMenuSelectAccountToolOptions(data.get("Tools_Menu"), data.get("Tools_Menu_DD"));						
@@ -166,7 +169,7 @@ public class SLP13_CITRIX_ZeroUsage extends SLPLib{
 				     	orderLib.verifyCartHeaderLabel();
 				     	//Verify part item added in cart page
 				     	cartLib.verifyItemInCart(data.get("PartNum1"));
-				     	verifyCartPageAndPartDetails(itemnumber-1);
+				    	pipLib. verifyCartPageAndPartDetailsForRecentlyItemDynamically(data.get("PartNum1"));
 				     	verifyAllReportingPeriodsCurrentinCartPage();
 						commonLib.clickLogOutLink(data.get("Logout"));				    
 						
@@ -174,7 +177,6 @@ public class SLP13_CITRIX_ZeroUsage extends SLPLib{
 					ReportStatus.blnStatus = false;
 					//gErrorMessage = e.getMessage();
 					gTestStatus = false;
-					throw new RuntimeException(e);
 				}
 				
 			}

@@ -32,6 +32,7 @@ public class REQ06_NOForceRequestorEnterCCTest extends ChinaLib{
 	OrderLib orderLib = new OrderLib();
 	RequisitionProcessingLib ReqLib = new RequisitionProcessingLib();
 	OrderHistoryLib orderhistory=new OrderHistoryLib(); 
+	CanadaLib canadaLib= new CanadaLib();
 
 	   
 	// #############################################################################################################
@@ -94,13 +95,14 @@ public class REQ06_NOForceRequestorEnterCCTest extends ChinaLib{
 																	// level Info
 						//
 						ReqLib.clearPhoneNumber();
+						canadaLib.verifySBP();
 						orderLib.shippingBillPayContinueButton(); // Click continue on
 																	// shipping address
 						orderLib.shippingOptionsCarrierSelection(); // Click continue on
-																	// shipping options
-						orderLib.shippingBillPayContinueButton(); // Billing address
+						// shipping option s
+                        orderLib.billingAddressContinueButton(); // Billing address
 																	// continue button
-						// Review requisition without entering payment info details and
+						// Review requisition without entering payment info details ands
 						// observe the validation messages
 						orderLib.clickOnReviewRequisitionButton();
 						ReqLib.verifyCreditCardErrorMessages();
@@ -131,11 +133,12 @@ public class REQ06_NOForceRequestorEnterCCTest extends ChinaLib{
 						orderLib.clickContinueOnLineLevelInfo(); // Click continue on Line
 																	// level Info
 						ReqLib.clearPhoneNumber();
+						canadaLib.verifySBP();
 						orderLib.shippingBillPayContinueButton(); // Click continue on
 																	// shipping address
 						orderLib.shippingOptionsCarrierSelection(); // Click continue on
 																	// shipping options
-						orderLib.shippingBillPayContinueButton(); // Billing address
+						orderLib.billingAddressContinueButton(); // Billing address
 																	// continue button
 						// Review requisition without entering payment info details
 						orderLib.clickOnReviewRequisitionButton();
@@ -182,9 +185,11 @@ public class REQ06_NOForceRequestorEnterCCTest extends ChinaLib{
 						scrollUp();
 						searchLib.verifyAccountToolForOrderMenuItem(data.get("toolsMenuName"), data.get("dropDown1")); // Order
 						orderhistory.verifyOrderHistoryPage();	
-						orderhistory.selectQuickSearchDropdown(data.get("sortby"), RefNumber);
+						//orderhistory.selectQuickSearchDropdown(data.get("sortby"), RefNumber);
 						//orderhistory.verifySearchResultsAreDisplayed();
-						orderhistory.clickOnFirstOrderHistoryResult();
+						//orderhistory.clickOnFirstOrderHistoryResult();
+						refreshPage();
+						orderLib.clickonorderNumLinkinRecentorders(RefNumber);
 						
 						// Logout
 						commonLib.clickLogOutLink(data.get("header1"));

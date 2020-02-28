@@ -7,7 +7,7 @@ import com.insight.accelerators.ActionEngine;
 public class OrderObj extends ActionEngine{
 
 	
-	public static By CONTINUE_TO_CHECKOUT=By.xpath("//a[@class='button primary medium'][contains(text(),'Continue to Checkout')]");
+	public static By CONTINUE_TO_CHECKOUT=By.xpath("//a[@class='button primary medium'][contains(text(),'Continue to Checkout') or contains(text(),'Passer à la caisse')]");
 	
 	// warranty pop-up locators
 	public static By ADD_WARRANTY_LINK=By.xpath("//span[@class='cart__table-col cart-item__add-warranty']");
@@ -65,6 +65,7 @@ public class OrderObj extends ActionEngine{
 	public static By PAYMENT_METHOD_SELECTION=By.xpath("//div[@class='Select-menu']//div[contains(text(),'Credit card')]");
 	public static By PAYMENT_METHOD_VERIFICATION_TERMS=By.xpath("//div[@class='Select-menu']//div[contains(text(),'Terms')]");
 	public static By PAYMENT_METHOD_VERIFICATION_procurementscard=By.xpath("//div[@class='Select-menu']//div[contains(text(),'Procurement Card')]");
+	public static By Creditcard=By.xpath("//div[contains(text(),'Credit card')]");
 
 	
 	
@@ -72,6 +73,8 @@ public class OrderObj extends ActionEngine{
 	public static By PROD_DESC_PLACE_ORDER_PAGE=By.xpath("//h4[@class='cart__item-heading'] ");
 	public static By PAYMENT_METHOD_TERM= By.xpath("//span[@class='Select-value-label'][contains(text(),'Terms')]"); 
 	public static By PAYMENT_INFO_CREDIT_CARD_DEFAULT=By.xpath("//span[@class='Select-value-label'][contains(text(),'Credit card')]");
+	public static By VALID_VISA_CARD_ERROR_MSG=By.xpath("//div[@class='form__field-msg form__field-msg--error'][contains(text(),'VISA card type is not supported')]");
+	public static By VALID_DIACOVER_CARD_ERROR_MSG=By.xpath("//div[@class='form__field-msg form__field-msg--error'][contains(text(),'Discover card type is not supported')]");
 	
 	public static By paymentSelection(String paymentType) {
 		return By.xpath("//div[@class='Select-menu']//div[contains(text(),'"+paymentType+"')]");
@@ -90,12 +93,17 @@ public class OrderObj extends ActionEngine{
 	public static By SELECT_UPS_CARRIER=By.xpath("//div[@class='Select-menu-outer']//div[@class='Select-option'][contains(text(),'UPS')]");
 	public static By CARRIER_PRICE_RADIO_BTN=By.xpath("//input[@type='radio']");
 	public static By UPLOAD_FILE=By.xpath("//input[@id='fileUpload']/following::div//label[@for='fileUpload']");
+	public static By FILE_UPLOAD=By.xpath("//input[@id='fileUpload']/following::div//p//i[@class='ion ion-ios-upload-outline']");
 	public static By SHIPPING_ADDRESS_COMPANY_NAME=By.xpath("//div//h3[contains(text(),'Shipping address')]/following::div[1]//label[@class='form__label--readonly'][contains(text(),'Company:')]//p");
 	public static By SHIPPING_ADDRESS_IN_RECEIPT=By.xpath("//div//h3[contains(text(),'Shipping address')]/following::div[1]//label[@class='form__label--readonly'][contains(text(),'Address:')]//p");
 	public static By BILLING_ADDRESS_COMPANY_NAME=By.xpath("//div//h3[contains(text(),'Billing address')]/following::div//label[@class='form__label--readonly'][contains(text(),'Company:')]//p");
 	public static By  BILLING_ADDRESS_IN_RECEIPT=By.xpath("//div//h3[contains(text(),'Billing address')]/following::div[1]//label[@class='form__label--readonly'][contains(text(),'Address:')]//p");
 	public static By SELCET_CARRIER=By.xpath("//div[@class='Select Select__shipping-carrier Select--single is-searchable has-value']");
 	public static By CARRIER_SELECTION_DD=By.xpath("//div[@class='Select-placeholder'][contains(text(),'Select a shipping carrier')]");
+	public static By getUploadedFileName(String file) {
+		return By.xpath("//div//p[contains(text(),'"+file+"')]");
+	}
+	
 	public static By selectCarrier(String carrier) {
 		return By.xpath("//div[@class='Select-menu-outer']//div[@class='Select-option'][contains(text(),'"+carrier+"')]");
 	}
@@ -120,7 +128,8 @@ public class OrderObj extends ActionEngine{
 	public static By PLACE_ORDER_BTN=By.xpath("//section[@class='cart cart']/following::div[@class='cart-summary-container']//button[contains(text(),'Place order')]");
 	public static By SUMMARY_TOTAL_AMOUNT=By.xpath("//section/following::div[@class='row is-collapse-child cart-summary__total']//span[@class='iw-currency__amount']");
 	public static By DEFAULT_TAX_AMOUNT=By.xpath("//section/following::div[@class='row is-collapse-child cart-summary__tax']//span[@class='iw-currency__amount']");
-	public static By ADDLICENCE_TAX_AMOUNT=By.xpath("//section/following::div[@class='row is-collapse-child cart-summary__tax']//span[@class='iw-currency__amount']");
+	public static By ADDLICENCE_TAX_AMOUNT=By.xpath("(//section/following::div[@class='row is-collapse-child cart-summary__tax']//span[@class='iw-currency__amount'])[2]");
+	public static By ADDLICENCE_TAX_AMOUNT_NEW=By.xpath("//section/following::div[@class='row is-collapse-child cart-summary__tax']//span[@class='iw-currency__amount']");
 	public static By EWR_FEE_AMOUNT=By.xpath("//section/following::div[@class='row is-collapse-child cart-summary__ewr']//span[@class='iw-currency__amount']");
 	
 	// Recipt
@@ -132,8 +141,9 @@ public class OrderObj extends ActionEngine{
 
 
 
-	public static By THANK_YOU_FOR_ORDER_MSG=By.xpath("//div[@id='CartContainer']//div/h3[contains(text(),'Thank you for your order')]");
+	public static By THANK_YOU_FOR_ORDER_MSG=By.xpath("//div//h1[contains(text(),'Thank you for your order')]");
 	public static By THANK_YOU_FOR_ORDER_REQUEST_MSG=By.xpath("//div[@id='CartContainer']//div/h3[contains(text(),'Thank you for your request')]");
+	public static By THANK_YOU_FOR_ORDER_MSG_ON_RECEIPT=By.xpath("//div[@id='CartContainer']//div/h3[contains(text(),'Thank you for your order')]");
 
 	public static By PART_NUMBER_ON_RECEIPT_PAGE=By.xpath("//p[@class='cart__item-part cart__font-size--sm'][contains(text(),'Mfr Part #')]");
 	
@@ -280,6 +290,8 @@ public class OrderObj extends ActionEngine{
 		public static By orderlinkInOrderHistory(String refNum){
 			return By.xpath("//td[contains(text(),'"+refNum+"')]/preceding-sibling::td/div");
 		}
+		   public static By CLICK_TO_VIEW_ATTACHMENT=By.xpath("//span[@class='orders__link-text'][contains(text(),'Click to view or download attachment')]");
+		
 			public static By REPORTINGFIELD4_ORDERHISTORY =By.xpath("//span[@class='line-item-info__label'][contains(text(),'REPORTING FIELD 4')]");
 			public static By REPORTINGFIELD5_ORDERHISTORY =By.xpath("//span[@class='line-item-info__label'][contains(text(),'REPORTING FIELD 5')]");
 			public static By REPORTINGFIELD6_ORDERHISTORY =By.xpath("//span[@class='line-item-info__label'][contains(text(),'REPORTING FIELD 6')]");
@@ -398,7 +410,15 @@ public class OrderObj extends ActionEngine{
 			return	By.xpath("//div/span[contains(.,'"+Email+"')]");//TestUser@gmail.com
 		}
 	 
-	 
+	 public static By WG_800_NUMBER_ON_QUOTE_PRINTABLE_PAGE=By.xpath("//span[@id='insightSpanId']");
 	 public static By SHIPPING_ADDRESS_ON_RECEIPT_PAGE=By.xpath("//div//h3[contains(text(),'Shipping address')]/following::div[1]//label[@class='form__label--readonly']");
-}
+     public static By ORDER_UTILITIES_QUOTE_PAGE=By.xpath("//select[@id='utilityOption']");
+     
+     // Receipt
+     public static By PRINT_ON_RECEIPT_PAGE=By.xpath("//a[@class='ion-ios-printer-outline shopping-cart__print']//span[contains(text(),'Print')]");
+     public static By TELEPHONE_NUMBER_ON_PRINT_RECEIPT=By.xpath("(//span[@class='cart-print-header__telephone'])[2]");
+     public static By bundleOnPrintPopup(String productGrp) {
+    		 return By.xpath("//*[@class='iw-modal cart-print-preview']//*[@class='cart__table-block']//h4[@class='cart__item-heading'][contains(text(),'"+productGrp+"')]/following-sibling::div[@class='cart__item-bundle'][contains(.,'Insight Part #: BUNDLE-1')]");
+      }
+     }
 

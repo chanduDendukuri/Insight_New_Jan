@@ -107,7 +107,7 @@ public class EUF17_FCTWebSelectSoldToTest extends EndUserFeaturesLib{
 						toClickOnAcoountDropdown();
 						verifyFavoriteAccountssoldto(data.get("SoldtoCount2"));
 						Thread.sleep(5000);
-						canadaLib.clickOnSideMenuSelectAccountToolOptions(data.get("Tools_Menu"),  data.get("Tools_Menu_DD"));
+						commonLib.clickOnAccountToolsAndClickOnProductGrp(data.get("Tools_Menu"), data.get("Tools_Menu_DD"));
 						verifyAccountFavertesTab(data.get("Tab"));
 						verifyRemoveDefualtLink();
 						verifyRemoveDefualtLinkandSelect();
@@ -124,8 +124,8 @@ public class EUF17_FCTWebSelectSoldToTest extends EndUserFeaturesLib{
 						Thread.sleep(5000);
 						clickOnTabInUserProfile(data.get("Tab"));
 						verifyCurrentaccountPageinAccounttools();
-						verifyAccountFavertesTab(data.get("Tabname1"));
 						verifyDefualtLinkRemovedwarning();
+						verifyAccountFavertesTab(data.get("Tabname1"));
 						clearMyFavoriteAccountsList();
 						clickUpdateButton();
 						verifyupdateSuccessMessage();
@@ -146,7 +146,7 @@ public class EUF17_FCTWebSelectSoldToTest extends EndUserFeaturesLib{
 						System.out.println("Test completed");
 					} catch (Exception e) {
 						ReportStatus.blnStatus = false;
-						//gErrorMessage = e.getMessage();
+						gErrorMessage = e.getClass().getSimpleName();
 						gTestStatus = false;
 					}
 					
@@ -154,7 +154,7 @@ public class EUF17_FCTWebSelectSoldToTest extends EndUserFeaturesLib{
 			} catch (Exception e) {
 				e.printStackTrace();
 				ReportStatus.blnStatus = false;
-				//gErrorMessage = e.getMessage();
+				gErrorMessage = e.getClass().getSimpleName();
 				gTestStatus = false;
 				ReportStatus.fnUpdateResultStatus("FCTWebSelectSoldToTest", "TC_EUF17", ReportStatus.strMethodName, 1, browser);
 				throw new RuntimeException(e);

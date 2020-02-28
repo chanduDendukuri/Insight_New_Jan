@@ -2,6 +2,7 @@ package com.insight.WebTest.Canada;
 
 import com.insight.Lib.CanadaLib;
 import com.insight.Lib.*;
+import com.insight.ObjRepo.CommonObj;
 import com.insight.accelerators.ReportControl;
 import com.insight.accelerators.TestEngineWeb;
 import com.insight.googledrive.ReportStatus;
@@ -56,6 +57,7 @@ public class CAN02_ShipBillPayEWRFeeTest extends CanadaLib{
 						ShipBillPayLib shipbLib = new ShipBillPayLib();
 						CanadaLib canadaLib = new CanadaLib();
 						ProductDisplayInfoLib prodinfo = new ProductDisplayInfoLib();
+						CommonCanadaLib ccp = new CommonCanadaLib();
 
 
 									cmtLib.loginToCMT(data.get("Header"));
@@ -70,7 +72,8 @@ public class CAN02_ShipBillPayEWRFeeTest extends CanadaLib{
 									cmtLib.clickOnloginAs();
 									switchToChildWindow();
 									cmtLib.loginVerification(data.get("MgContactName"));
-									shipbLib.verifyWEbsiteIsCannada();
+									//shipbLib.verifyWEbsiteIsCannada();
+									assertTrue(driver.getCurrentUrl().toLowerCase().contains("ca"),"Current application URL is CANADA");
 						canadaLib.verifyCanadaWebgroup();
 						// Adding first product to cart
 
@@ -150,12 +153,17 @@ public class CAN02_ShipBillPayEWRFeeTest extends CanadaLib{
 
 									cartLib.clickOnContinueButtonInAddInformtion();
 									canadaLib.verifySBP();
+								//	ccp.clickOnStoredAddressesLink();
+									shipbLib.selectStoredAddress("B");
+									String a = ccp.getStoredAddresses();
+									assertTrue(ccp.verifySroredAddresswithSearchResults(),"Canada address successfully selected");
 									orderLib.shippingBillPayContinueButton();
 									orderLib.shippingOptionsCarrierSelection(); // Click continue on shipping options
 									orderLib.billingAddressContinueButton();
 									orderLib.termsInPaymentInfo(data.get("PONumber"), data.get("POReleaseNumber"));
 									orderLib.verifyPlaceOrderLabel();
 									String EWRAMOUNT2 = canadaLib.getEWRFeeInSummary();
+									reporter.SuccessReport("EWR Fee Amount","WER Fee Amount is " , EWRAMOUNT2);
 
 									canadaLib.verifyEWRAmonunts(EWRAMOUNT, EWRAMOUNT1);
 						String summaryAmount1 = cartLib.getSummaryAmountInCart();
@@ -163,7 +171,7 @@ public class CAN02_ShipBillPayEWRFeeTest extends CanadaLib{
 						shipbLib.clickOrderDetailsButtonInREceipt();
 					//	String EWRAMOUNT2 = canadaLib.getEWRFeeInSummary();
 									String EWRAMOUNT3 = canadaLib.getEWRFeeInSummary();
-
+reporter.SuccessReport("EWR Fee Amount","WER Fee Amount is " , EWRAMOUNT3);
 					commonLib.clickLogOutLink(data.get("Logout_Header"));
 						//fnCloseTest();
 						System.out.println("Test completed");

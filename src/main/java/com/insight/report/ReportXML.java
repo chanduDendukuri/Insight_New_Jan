@@ -506,8 +506,12 @@ LOG.info("Exception dir" + ex.getMessage());
                 imgSrc = imgSrc + ReporterConstants.LOCATION_FAILED_LOGO.substring(startIndex + 1);
                 String anc="<";
                 String les=">";
-               
-                b="<a" + " href=\"HTMLReports/screenshots/"+ href +"\">";
+                href= createImageForFailedStep("");
+                String rep[] = href.split("HTMLReports");
+                String value="\\HTMLReports"+rep[1];
+                b="<a" + " href=\""+ value +"\">";
+               // b="<a" + " href=\""+ href +"\">";
+
                 c= "<i style=\"width:30px;color:red\" class=\"fa fa-close fa-3x\"></i></a>";
                 imgSrc= b+c;
                 System.out.println(imgSrc);
@@ -875,7 +879,11 @@ LOG.info("Exception dir" + ex.getMessage());
             File summaryFile = new File(sReportPath + File.separator + "SummaryResults" + "." + fileType);
             if (summaryFile.exists()) {
                 LOG.info("Summary file exists");
-                updateXMLForSummary(summaryFile, xmlFiles);
+               try {
+                   updateXMLForSummary(summaryFile, xmlFiles);
+               }catch (Exception e){
+                   System.out.println(e.getStackTrace());
+                }
             } else {
                 try {
                     summaryFile.createNewFile();
@@ -925,10 +933,10 @@ LOG.info("Exception dir" + ex.getMessage());
 
     }    /**
      * Create image file for failed test step
-     * @param strStepDes A variable of type String
+    // * @param strStepDes A variable of type String
      */
     
-    public static String generateRandomNumberBasedOnLength(int length) throws Throwable {
+    public static String generateRandomNumberBasedOnLength(int length) {
 		/*Random generator = new Random();
 		return generator.nextInt(9999) + 10000;*/
 		Date date = new Date();
@@ -936,7 +944,7 @@ LOG.info("Exception dir" + ex.getMessage());
 		String currentdate = sdf.format(date);
 		return new StringBuffer().append(currentdate).reverse().substring(0,length);
 	}
-    public static void createImageForFailedStep(String strStepDes) {
+    public static String createImageForFailedStep(String strStepDes)  {
     	String fileName=null;
     	String rand=null;
 		try {
@@ -957,16 +965,26 @@ LOG.info("Exception dir" + ex.getMessage());
         strStepDes = strStepDes.replaceAll("&", "_");
         strStepDes = strStepDes.replaceAll(" ", "_");
         strStepDes = strStepDes.replaceAll(".", "_");
-        
-         fileName = sReportPath + File.separator + htmlReportsFolderName +
+
+         /*fileName = sReportPath + File.separator + htmlReportsFolderName +
                 File.separator + ReporterConstants.FOLDER_SCREENRSHOTS + File.separator +
                 strStepDes.replaceAll("<b>", "").replaceAll("</b>", "")+
+                ".jpeg";*/
+      //  String tcName = TestResult.tc_name.get(this.browserContext);
+
+       /* fileName = sReportPath + File.separator + htmlReportsFolderName +
+                File.separator + ReporterConstants.FOLDER_SCREENRSHOTS + File.separator +
+                strStepDes+generateRandomNumberBasedOnLength(6)+
+                ".jpeg";*/
+        fileName = sReportPath + File.separator + htmlReportsFolderName +
+                File.separator + ReporterConstants.FOLDER_SCREENRSHOTS + File.separator +
+                "Failed"+generateRandomNumberBasedOnLength(6)+
                 ".jpeg";
         File file = new File(fileName);
         if(file.exists()) {
         	 fileName = sReportPath + File.separator + htmlReportsFolderName +
                     File.separator + ReporterConstants.FOLDER_SCREENRSHOTS + File.separator +
-                    strStepDes.replaceAll("<b>", "").replaceAll("</b>", "")+rand+
+                   "Failed"+ generateRandomNumberBasedOnLength(6)+
                     ".jpeg";
         }
 
@@ -976,14 +994,15 @@ LOG.info("Exception dir" + ex.getMessage());
             File myPngImage = new File(fileName);
             int counter = 1;
             while (myPngImage.exists()) {
-                newFileName = fileName + "_" + counter;
+               // newFileName = fileName + "_" + counter;
+                newFileName = "failed"+ counter;
                 myPngImage = new File(newFileName);
                 counter++;
             }
             ReportXML.screenShot(TestEngineWeb.driver, newFileName);
         } catch (Exception e) {
             e.printStackTrace();
-        }
+        }return fileName;
     }
     
     public  void copyCompleteFolderForAjaxReporting(String... logos) {

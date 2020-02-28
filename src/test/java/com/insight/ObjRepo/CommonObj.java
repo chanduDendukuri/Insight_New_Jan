@@ -10,7 +10,8 @@ public class CommonObj extends ActionEngine{
     public static By SEARCH=By.xpath("//input[@class='c-input  c-header-search__input']");
     public static By RESULT_FOR_SEARCH=By.xpath("//div//a[@class='button call-to-action']");
     public static By SEARCH_SUGGESSIONS=By.xpath("//div[@class='c-header-search-suggestions  is-visible']//ul//li");
-    public static By COMPARE_LIST_ITEMS=By.xpath("//a[2][contains(.,'Compare Your List')]//span[@class='js-compare-list-count']");
+    public static By COMPARE_LIST_ITEMS=By.xpath("//a[2][contains(.,'Compare Your List') or contains(.,'Comparer votre liste')]//span[@class='js-compare-list-count']");
+
     public static By FRENCH_COMPARE_LIST_ITEMS=By.xpath("//a[2][contains(.,'Comparer votre liste')]//span[@class='js-compare-list-count']");
 
     public static By getPrimaryNavLink(String header){
@@ -112,7 +113,8 @@ public class CommonObj extends ActionEngine{
 	public static By ITEMS_ADDED_TO_CART_POPUP=By.xpath("//div[@id='header']//b[contains(text(),'Items added to Cart')]");
 	public static By PROD_GRP_CLOSE_ICON=By.xpath("//span[@class='insightLightBoxClose frameworkIcons Deep_Close_Icon']");
 	public static By ADD_ITEMS_RADIO_BUTTON=By.xpath("//table[@id='prodGroupTable']//td//input[@type='radio' and @checked='checked']");
-    public static By ADD_ITEMS_CHECKBOX=By.xpath("//table[@id='prodGroupTable']//td//input[@type='checkbox']");
+    public static By ITEM_DESCRIPTION=By.xpath("//table[@id='prodGroupTable']//td[1]//a");
+	public static By ADD_ITEMS_CHECKBOX=By.xpath("//table[@id='prodGroupTable']//td//input[@type='checkbox']");
     public static By ADD_TO_ORDER=By.xpath("//div[@id='csProductGroupAddToOrder']//a//span[contains(text(),'ADD TO ORDER')]");
 	public static By SAVEDCART=By.xpath("//div[@class='sidebar-nav']//a[text()='Saved Carts / Order Templates']");	
 	public static By VIEW_CART_PRODUCT_GROUP=By.xpath("//a[@title='View Cart >>']");
@@ -125,7 +127,8 @@ public class CommonObj extends ActionEngine{
 	 * >>>>>>>>>>>>>>>>>>>> LOCATORS TO SELECT ACCOUNT TOOLS  MENU AND SELECTS DROP DOWN LIST <<<<<<<<<<<<<<<<<<<<<<<<<<
 	 * ******************************************************************************************************************/
 	public static By getAccountToolsMenu(String toolsMenuName){
-		return By.xpath("//div[@id='manage-wrapper']//a[contains(text(),'"+toolsMenuName+"')]");
+		//return By.xpath("//div[@id='manage-wrapper']//a[contains(text(),'"+toolsMenuName+"')]");
+		return By.xpath("//div[@id='manage-wrapper']//ul[@class='metismenu']//a[contains(text(),'"+toolsMenuName+"')]");
 	}
 	
 	public static By getAccountToolsDD(String toolsMenuName,String dropDown){
@@ -165,6 +168,7 @@ public class CommonObj extends ActionEngine{
 	
 	//contract
 	public static By CONTRACT_DD=By.xpath("//div[@class='c-header__middle']//button[@id='contractDropdown']");
+	public static By SELETED_CONTRACT=By.xpath("//div[@class='c-header__middle']//button[@id='contractDropdown']//span");
 	public static By SELECTED_CONTRACT=By.xpath("//div[@class='c-header__middle']//button[@id='contractDropdown']//span");
     public static By title_Contracttitle = By.xpath("//div[@id='ipsContractDetailTitle']");
 	public static By getContractsFromDD(String contractName){
@@ -186,7 +190,7 @@ public class CommonObj extends ActionEngine{
 	public static By PRODUCTSGRP_HDR=By.xpath("//div[@id='companyStandardsHeading']/h1[contains(text(),'Product Standards')]");
 	public static By DESCRIPTION_COLUMN =By.xpath("//table[@id='prodGroupTable']/tbody/tr/th[contains(text(),'Description')]");
 	public static By CONTRACT_VERIFY = By.xpath("//div[@class='columns']/strong");
-	
+	public static By SELECTED_CONTRACT_PAGE=By.xpath("//div[contains(@id,'ContractDetailTitle')]");
 	public static By  INSIGHT_LOGO_HOME_PAGE=By.xpath("//a[@class='c-button  c-button--none c-header-logo__btn']");
 	
 	// Inventory Blow Out 
@@ -208,6 +212,7 @@ public class CommonObj extends ActionEngine{
 	   return By.xpath("//ul[@class='metismenu']//a[contains(text(),'"+toolsMenuName+"')]/following::ul//li//a[contains(text(),'"+dropDown+"')]");
 	}
     public static By CLOSEBUTTON_COOKIES=By.xpath("//div[@id='onetrust-close-btn-container']/a");
+	public static By ACCEPT_COOKIES=By.xpath("//button[@id='onetrust-accept-btn-handler']");
     public static By defaultShippingOptionSelected= By.xpath("//select[@id='defaultShipTypeSelID1']//option[text()='SLS Ground' and @selected]");
 
     public static By lblDescription=By.xpath("//*[text()='Description']");
@@ -218,7 +223,9 @@ public static By closePopup=By.xpath("//*[@id='cookieModal']//a[@aria-label='Clo
 public static By accountToolsMenu(String toolsMenuName){
 	return By.xpath("//div[@class='sidebar-nav']//a[contains(text(),'"+toolsMenuName+"')]");
 }
-
+// popup - receipt page
+public static By WHAT_YOU_THINK_POPUP_NO_THANKS_BTN=By.xpath("//a[@class='ng-binding'][contains(text(),'No thanks')]");
+public static By FRAME_ELEMENT=By.xpath("//*[@title='Usabilla Feedback Form']");
 
 }
 

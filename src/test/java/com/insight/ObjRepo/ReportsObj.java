@@ -14,7 +14,9 @@ public class ReportsObj extends ActionEngine {
      public static By SCHEDULEREPORT_OPTIONS = By.xpath("//select[@id='ddlInterval']");
      public static By SCHEDULEREPORT_DATES = By.xpath("//select[@id='ddlQuickDates']");
      public static By DELIVERY_METHODOPTIONS = By.xpath("//select[@id='ddlDeliveryMethod']");
- 
+     public static By ScheduledOption(String defaultOption){
+    	 return By.xpath("//select[@id='ddlInterval']/option[contains(text(),'"+defaultOption+"')]");
+     }
 
      public static By getAcccountSelection(String defaultOption){
 			return By.xpath("//select[@id='selectionList']//option[contains(.,'"+defaultOption+"')]");
@@ -81,10 +83,21 @@ public class ReportsObj extends ActionEngine {
 		return By.xpath("//div[@id='reportContents2']//div//a[contains(.,'"+reportOption+"')]");				
 	}
 	
- public static By STANDARDREPORTS=By.xpath("//label[text()='Standard Reports']//parent::span//parent::div//span");
+public static By STANDARDREPORTS=By.xpath("//label[text()='Standard Reports']//parent::span//parent::div//span");
 public static By PARENT_CHECKBOX=By.xpath("//div[@id='p2-9006465']/input[@class='wtvinput1' and @checked]");
 public static By GRANDPARENT_CHECKBOX=By.xpath("//input[@id='c1-9009688']");
 public static By SOLTOS=By.xpath("//div[@id='a2-9006465']//input[@checked]");
 public static By GREATEGRANDPARENT_CHECKBOX=By.xpath("//input[@id='c0-9009687']");
+public static By USDCURRENCY=By.xpath("//select[@id='currencyOptionsSelectSUPPLY']/option[@selected and contains(text(),'USD')]");
+public static By startDate=By.xpath("//div[@id='StartDateInput']//input[@aria-label='reportStartDate']/following-sibling::input");
+public static By STARTDATEINPUTFIELD=By.xpath("//div[@id='StartDateInput']//input[@aria-label='reportStartDate']");
+public static By ENDDATEINPUTFIELD=By.xpath("//div[@id='EndDateInput']//input[@aria-label='reportEndDate']");
+public static By ENDDATEINPUT=By.xpath("//div[@id='EndDateInput']//input[@aria-label='reportEndDate']/following-sibling::input");
+public static By LINKEDSOLDTOS=By.xpath("//input[@checked='checked']/parent::td//tbody/tr/td[1]");
+public static By LINKEDSOLDTO=By.xpath("//input[@checked='checked']");
+public static By SELECTEDCENTERS=By.xpath("//td[@id='selectedRegionsLabel']");
+public static By SELECTEDREGIONS=By.xpath("//td[@id='selectedOpsRegionsLabel']");
+public static By SELECTEDREPORTSOPTIONS=By.xpath("//select[@id='selectionList']/option");
+
 
 }

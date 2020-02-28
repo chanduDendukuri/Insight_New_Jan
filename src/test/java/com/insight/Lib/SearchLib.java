@@ -214,8 +214,8 @@ public class SearchLib extends CommonObj {
 	 * @throws Throwable
 	 */
 	public void searchInHomePage(String productName) throws Throwable {
-		if (isVisibleOnly(CommonObj.CLOSEBUTTON_COOKIES, "close cookie")) {
-			click(CommonObj.CLOSEBUTTON_COOKIES, "close cookie");
+		if (isVisibleOnly(CommonObj.ACCEPT_COOKIES, "Accept cookie")) {
+			click(CommonObj.ACCEPT_COOKIES, "Accept cookie");
 		}
 		Thread.sleep(3000);
 		waitForVisibilityOfElement(SEARCH,"Search Field");
@@ -524,7 +524,7 @@ public class SearchLib extends CommonObj {
 	public void searchInHeaderSelectFromSuggestions(String searchText) throws Throwable{
 		WebElement element = driver.findElement(SEARCH);
 		typeForSearchingProduct(SEARCH,searchText , "Search text : "+searchText);
-		Thread.sleep(5000);
+		Thread.sleep(7000);
 		String result =null;
 		if(isElementPresent(SEARCH_SUGGESSIONS, "Search suggessions")){
 			List<WebElement> myList = driver.findElements(SEARCH_SUGGESSIONS);
@@ -538,7 +538,7 @@ public class SearchLib extends CommonObj {
 		reporter.SuccessReport("Verifying whether the suggessions are displayed ","Suggessions are displayed for : ",searchText);*/
 			element.sendKeys(Keys.ENTER);
 		}else {
-			reporter.failureReport("Verifying whether the suggestions are displayed  "," Enter a valid text.You entered : ",searchText);
+			reporter.failureReport("Verifying whether the suggestions are displayed  "," Enter a valid text.You entered : ",searchText,driver);
 		}
 		/*else 
 			if(isElementNotPresent(SEARCH_SUGGESSIONS, "Search suggessions")){
@@ -575,7 +575,7 @@ public class SearchLib extends CommonObj {
 	    	if(isElementPresent(ACCOUNT_FAVORITES,"ACCOUNT FAVORITES")){
 	    		LOG.info("Element is present and active");
 	    	}else{
-	    		reporter.failureReport("Verify the selected tab in active state","Selected tab is not in active state",tabName);
+	    		reporter.failureReport("Verify the selected tab in active state","Selected tab is not in active state",tabName,driver);
 	    	}
 	    }
 	    click(getFavoritesTabs(tabName1), "User preference tab");
@@ -609,7 +609,7 @@ public class SearchLib extends CommonObj {
 		if(actualTest.contains(expectedText)){
 			reporter.SuccessReport("Verify the filter displayed","searched product filter is displayed",actualTest);
 		}else {
-			reporter.failureReport("Verify the filter displayed","searched product filter is not displayed displayed",expectedText);
+			reporter.failureReport("Verify the filter displayed","searched product filter is not displayed displayed",expectedText,driver);
 		}
 	}
 	
@@ -635,6 +635,16 @@ public class SearchLib extends CommonObj {
 			reporter.SuccessReport("Verify the contract drop down displayed","Default Contract: Contract – All","Default Contract: Contract – All");
 		}else{
 			reporter.failureReport("Verify the contract drop down displayed","Default Contract: Contract – All is not displayed in the home page","");
+		}
+	}
+	
+	public void verifyContract(String contractName) throws Throwable {
+		String contract=getText(SELETED_CONTRACT, "Selected contract");
+		if(contract.contains(contractName)) {
+			reporter.SuccessReport("Verify selected contract", "Selected contract is:", contractName, driver);
+		}
+		else {
+			reporter.failureReport("Verify selected contract", "Selected contract is not as expected", contract, driver);
 		}
 	}
 	
@@ -675,7 +685,7 @@ public class SearchLib extends CommonObj {
 			}
 			click(productsDisplayInfoObj.CLOSE_CONTRACTS_POPUP, "close popup");
 		} else {
-			reporter.failureReport("Verify the Open Market price", "Open Market price is not displayed","");
+			reporter.failureReport("Verify the Open Market price", "Open Market price is not displayed","",driver);
 		}
 	}
 	
@@ -713,25 +723,30 @@ public class SearchLib extends CommonObj {
 		}
 	}
 	
-	public void verifyDefaultUSContractInAllContractPricesPopup(String status) throws Throwable {
+	public boolean verifyDefaultUSContractInAllContractPricesPopup(String status) throws Throwable {
+		boolean Status=false;
 		switch (status) {
 		case "checked":
 		if(isCheckBoxSelected(productsDisplayInfoObj.US_CONTRACTS_RADIO_BTN)) {
+			Status= true;
 			reporter.SuccessReport("Verify Defaulted Contract", "Defaulted Contract is USC", "Defaulted Contract: U.S. COMMUNITIES IT PRODUCTS & SERVICES");
 		}else {
+			Status=false;
 			reporter.failureReport("Verify Defaulted Contract", "Defaulted Contract is not USC", "",driver);
 		}
 		break;
 	case "unchecked":
 		if(!isCheckBoxSelected(productsDisplayInfoObj.US_CONTRACTS_RADIO_BTN)) {
-			
+			Status=true;
 			reporter.SuccessReport("Verify Defaulted Contract", "Defaulted Contract is not  U.S. COMMUNITIES", "");
 		}else {
+			Status=false;
 			reporter.failureReport("Verify Defaulted Contract", "Defaulted Contract is USC", "",driver);
 		}
 	default:
 		break;
 	}
+	return Status;
 	  }
 	
 	/**
@@ -770,7 +785,7 @@ public class SearchLib extends CommonObj {
 		if (USDprice.contains(actaulPrice)){
 			reporter.SuccessReport("Verify the product default price displayed ","product default price displayed correctly as : " ,actaulPrice);
 		}else{
-			reporter.failureReport("Verify the product default price displayed ","product default price not displayed correctly ","");
+			reporter.failureReport("Verify the product default price displayed ","product default price not displayed correctly ","",driver);
 		}
 		click(productsDisplayInfoObj.CLOSE_CONTRACTS_POPUP, "close popup");
 	}
@@ -787,7 +802,7 @@ public class SearchLib extends CommonObj {
 		click(getContractsFromDD(contractName),"Contract name : "+contractName);
 		Thread.sleep(3000);
 		if(isElementPresent(CONTRACT_TITLE, "contract title")){
-			reporter.SuccessReport("Verify the contracts page displayed ","contracts title page displayed successfully as : ",contractName );
+			reporter.SuccessReport("Verify the contracts page displayed ","contracts title page displayed successfully as : ",getText(CONTRACT_TITLE, "Contract title") );
 		}else{
 			reporter.failureReport("Verify the contracts page displayed ","contracts title page is not displayed successfully",contractName);
 		}
@@ -804,7 +819,7 @@ public class SearchLib extends CommonObj {
 			
 			reporter.SuccessReport("Verify the default contracts displayed in product search page first product ","USC contract price is not displayed by default for the product.Displayed contract is: ",contractLabel);
 		}else{
-			reporter.failureReport("Verify the default contracts displayed in product search page first product ","USC is displayed by default",contractLabel);
+			reporter.failureReport("Verify the default contracts displayed in product search page first product ","USC is displayed by default",contractLabel,driver);
 		}
 	}
 	
@@ -869,7 +884,7 @@ public class SearchLib extends CommonObj {
 				   reporter.SuccessReport("verify the PPP window displayed for the selected product","PPP mini window displayed and the selected product in the product group table displayed correctly: \n ","Mini-PPP:  "+actualDesc);
 			   }
 	    	}else{
-			reporter.failureReport("verify the PPP window displayed for the selected product", "PPP window is not opened","");
+			reporter.failureReport("verify the PPP window displayed for the selected product", "PPP window is not opened","",driver);
 		}
 		   driver.close();
 		   ArrayList<String> tabs = new ArrayList<String>(driver.getWindowHandles());
@@ -890,26 +905,71 @@ public class SearchLib extends CommonObj {
 			 reporter.SuccessReport("verify the selected product is displayed under the product group","Selected product is displayed correctly under the product group.",productName);
 			  if(isElementPresent(ADD_ITEMS_RADIO_BUTTON, "add items to cart radio button")){
 			     List<WebElement> myradioList=driver.findElements(ADD_ITEMS_RADIO_BUTTON);
+			     List<WebElement> myList=driver.findElements(ITEM_DESCRIPTION);
 			         for (int i = 0; i < myradioList.size(); i++) {
 				         if(myradioList.get(i).isSelected()){
-					          reporter.SuccessReport("verify the radio button checked or not","products are added","");
+					          reporter.SuccessReport("verify the radio button checked or not","product is checked",myList.get(i).getText());
 				   }
 				}
 			  }else
 					if(isElementPresent(ADD_ITEMS_CHECKBOX, "Add items check box")){
 						scrollToBottomWithCordinate("200");
 					List<WebElement> myList1=driver.findElements(ADD_ITEMS_CHECKBOX);
+					List<WebElement> myList=driver.findElements(ITEM_DESCRIPTION);
 					for (int j = 0; j < myList1.size(); j++) {
 						myList1.get(j).click();
+						reporter.SuccessReport("verify the radio button checked or not","product is checked",myList.get(j).getText());
 						Thread.sleep(6000);
 					}
 					
 					click(ADD_TO_ORDER, "Add to oreder button");
 					isElementPresent(ITEMS_ADDED_TO_CART_POPUP, "items added to cart",true);
 					click(PROD_GRP_CLOSE_ICON, "Close icon");
+					
 				}
 		}else{
-			reporter.failureReport("verify the selected product group is displayed","Selected product is not displayed correctly under the product group.","");
+			reporter.failureReport("verify the selected product group is displayed","Selected product is not displayed correctly under the product group.","",driver);
+		}
+		
+	}		
+	
+public void selectProductGroupAndVerify1(String productGroup,String productName) throws Throwable{
+		
+		click(getCompanyStandardsProductGroup(productGroup, productName), "select product from product group","Link : "+productName);
+		
+		if(isElementPresent(getProductGrpNavigation(productGroup, productName), "NAVIGATED PRODUCT GROUP")){
+			 reporter.SuccessReport("verify the selected product is displayed under the product group","Selected product is displayed correctly under the product group.",productName);
+			  if(isElementPresent(ADD_ITEMS_RADIO_BUTTON, "add items to cart radio button")){
+			     List<WebElement> myradioList=driver.findElements(ADD_ITEMS_RADIO_BUTTON);
+			     List<WebElement> myList=driver.findElements(ITEM_DESCRIPTION);
+			         for (int i = 0; i < myradioList.size(); i++) {
+				         if(myradioList.get(i).isSelected()){
+					          reporter.SuccessReport("verify the radio button checked or not","product is checked",myList.get(i).getText());
+				   }
+				}
+			  }else
+					if(isElementPresent(ADD_ITEMS_CHECKBOX, "Add items check box")){
+						scrollToBottomWithCordinate("200");
+					List<WebElement> myList1=driver.findElements(ADD_ITEMS_CHECKBOX);
+					List<WebElement> myList=driver.findElements(ITEM_DESCRIPTION);
+					for (int j = 0; j < myList1.size(); j++) {
+						myList1.get(j).click();
+						reporter.SuccessReport("verify the radio button checked or not","product is checked",myList.get(j).getText());
+						Thread.sleep(6000);
+					}
+					
+					click(ADD_TO_ORDER, "Add to oreder button");
+					//isElementPresent(ITEMS_ADDED_TO_CART_POPUP, "items added to cart",true);
+					//click(PROD_GRP_CLOSE_ICON, "Close icon");
+					if(isVisibleOnly(VIEW_CART_PRODUCT_GROUP, "View cart Link")){
+						click(VIEW_CART_PRODUCT_GROUP, "View cart Link","View cart Link");
+						reporter.SuccessReport("verify View cart Link on Items added to cart Popup on Company standards", "View cart Link is visible and clicked","");
+					}else{
+						reporter.failureReport("verify View cart Link on Items added to cart Popup on Company standards", "View cart Link is not visible","",driver);
+					}
+				}
+		}else{
+			reporter.failureReport("verify the selected product group is displayed","Selected product is not displayed correctly under the product group.","",driver);
 		}
 		
 	}		
@@ -929,7 +989,7 @@ public class SearchLib extends CommonObj {
 		if(isElementPresent(ITEMS_ADDED_TO_CART_POPUP, "items added to cart")){
 			reporter.SuccessReport("verify items are added to acart as bundle","Items are added to cart",productName);
 		}else{
-			reporter.failureReport("verify items are added to acart as bundle","Items are not added to cart","");
+			reporter.failureReport("verify items are added to acart as bundle","Items are not added to cart","",driver);
 		}
 		click(PROD_GRP_CLOSE_ICON, "Close icon");
 	}
@@ -954,7 +1014,7 @@ public class SearchLib extends CommonObj {
 						"Column name displayed correctly : " , result);
 			} else {
 				reporter.failureReport("verify the column names displayed correctly",
-						"Column name not displayed correctly. Expected  is : " + colName[i] + " .Actual is: " , result);
+						"Column name not displayed correctly. Expected  is : " + colName[i] + " .Actual is: " , result,driver);
 			}
 		}
 	}
@@ -1023,7 +1083,7 @@ public class SearchLib extends CommonObj {
 		     List<WebElement> myradioList=driver.findElements(ADD_ITEMS_RADIO_BUTTON);
 		         for (int i = 0; i < myradioList.size(); i++) {
 			         if(myradioList.get(i).isSelected()){
-				          reporter.SuccessReport("verify the radio button checked or not","products are added","");
+				          //reporter.SuccessReport("verify the radio button checked or not","products are added","");
 			   }else {
 				   reporter.failureReport("verify the radio button checked or not","products are not checked","");
 			   }
@@ -1033,7 +1093,7 @@ public class SearchLib extends CommonObj {
 			for (int j = 0; j < myList1.size(); j++) {
 				myList1.get(j).click();
 				if(myList1.get(j).isSelected()){
-			          reporter.SuccessReport("verify the check box checked or not","Check box ("+j+") is checked ","");
+			          //reporter.SuccessReport("verify the check box checked or not","Check box ("+j+") is checked ","");
 		   }else {
 			   reporter.failureReport("verify the checkbox checked or not","check box is not checked","");
 		   }
@@ -1046,7 +1106,7 @@ public class SearchLib extends CommonObj {
 			click(VIEW_CART_PRODUCT_GROUP, "View cart Link","View cart Link");
 			reporter.SuccessReport("verify View cart Link on Items added to cart Popup on Company standards", "View cart Link is visible and clicked","");
 		}else{
-			reporter.failureReport("verify View cart Link on Items added to cart Popup on Company standards", "View cart Link is not visible","");
+			reporter.failureReport("verify View cart Link on Items added to cart Popup on Company standards", "View cart Link is not visible","",driver);
 		}
    }
 	/**
@@ -1088,7 +1148,7 @@ public class SearchLib extends CommonObj {
 			reporter.SuccessReport("Title", "IPS Contract Page Loaded", Contracttitle);
 		}
 		else {
-			reporter.failureReport("Title", "IPS Contract Page not Loaded","");
+			reporter.failureReport("Title", "IPS Contract Page not Loaded","",driver);
 		}
 	}
 	/**
@@ -1098,7 +1158,7 @@ public class SearchLib extends CommonObj {
 	 */
 	
 	public void selectContractInCartPage(String contractName) throws Throwable{
-		clickUntil(CONTRACT_DD, getContractsFromDD(contractName), "contract drop down");
+		clickUntil(CONTRACT_DD, getContractsFromDD(contractName), "clicked on contract-all");
 		click(getContractsFromDD(contractName),"Selected contract name");
 		//click(CartObj.CART,"CART");
 		Thread.sleep(2000);
@@ -1108,6 +1168,15 @@ public class SearchLib extends CommonObj {
 		}else{
 			reporter.failureReport("Verify the selected contract displayed in cart page ","contracts title page is not displayed successfully.Expceted is: ",contractName);
 		}
+		String selectedContract=getText(SELECTED_CONTRACT_PAGE, "Selected contract");
+		if(selectedContract.contains(contractName)) {
+			reporter.SuccessReport("Verify selected contract", "Selected contract is:", selectedContract, driver);
+		}
+			else {
+				reporter.failureReport("Verify selected contract", "Selected contract is not as expected:", selectedContract, driver);
+			}
+			
+		
 	}
 	public void selectContractInCartPageforTcQTH07(String contractName) throws Throwable{
 		clickUntil(CONTRACT_DD, getContractsFromDD(contractName), "contract drop down");
@@ -1149,7 +1218,7 @@ public class SearchLib extends CommonObj {
 		if(isElementPresent(PRODUCTSGRP_HDR,"Verify products standard page")){
 			reporter.SuccessReport("Product Standards Page","Product Standards Page Exist","" );
 		}else
-			   reporter.SuccessReport("Product Standards Page","Product Standards Page Exist" ,"");
+			   reporter.failureReport("Product Standards Page","Product Standards Page does not Exist" ,"",driver);
 		}
 	
 	/**
@@ -1167,7 +1236,7 @@ public class SearchLib extends CommonObj {
 				         if(myradioList.get(i).isDisplayed()){
 					          reporter.SuccessReport("Description Column in Configuration Section on Product Standards Page","Description Column Exist","");
 				   }else
-					   reporter.SuccessReport("Description Column in Configuration Section on Product Standards Page","Description Column does Not Exists" ,"");
+					   reporter.failureReport("Description Column in Configuration Section on Product Standards Page","Description Column does Not Exists" ,"",driver);
 			         }
 				         
 		   if(isElementPresent(ADD_ITEMS_RADIO_BUTTON, "add items to cart radio button")){
@@ -1202,7 +1271,7 @@ public class SearchLib extends CommonObj {
 		if (isElementPresent(SEARCH_RESULTS_PAGE, "Search results")) {
 			reporter.SuccessReport("Verify search results page", "Search results page displayed", "Search results ");
 		} else {
-			reporter.failureReport("Verify search results page", "Search results page not verified successfully", "");
+			reporter.failureReport("Verify search results page", "Search results page not verified successfully", "",driver);
 		}
 	}
 	
@@ -1253,7 +1322,7 @@ public class SearchLib extends CommonObj {
 			list=getText(COMPARE_LIST_ITEMS, "compare list items");
 			reporter.SuccessReport("Items in the compare list", "Compare Your List label exists and items in the list are : ", "Items in the List: "+list);
 		}else {
-			reporter.failureReport("Items in the compare list", "Compare Your List label does not exists ", "Items in the List: "+list);
+			reporter.failureReport("Items in the compare list", "Compare Your List label does not exists ", "Items in the List: "+list,driver);
 		}
 		return list;
 
@@ -1278,10 +1347,10 @@ public class SearchLib extends CommonObj {
 			if((hover_data.replace("InsightCommon.showTooltip('", "").replace("',this);", "")).equals(toolTipMsg)) {
 			reporter.SuccessReport("Verify Adobe Products has  Message Option on Product Standards Page", "Adobe Product has Tooltip message",toolTipMsg);			
 		}else{
-			reporter.failureReport("Verify Adobe Products has  Message Option on Product Standards Page", "Adobe Product  has No Message tooltip ", "");
+			reporter.failureReport("Verify Adobe Products has  Message Option on Product Standards Page", "Adobe Product  has No Message tooltip ", "",driver);
 		}
 		}else {
-			reporter.failureReport("Verify Adobe Products has  Message Option on Product Standards Page", "Adobe Product  has No Message Options", "");
+			reporter.failureReport("Verify Adobe Products has  Message Option on Product Standards Page", "Adobe Product  has No Message Options", "",driver);
 		}
 	}
 	
@@ -1300,7 +1369,7 @@ public class SearchLib extends CommonObj {
 				         if(myradioList.get(i).isDisplayed()){
 					          reporter.SuccessReport("Description Column in Configuration Section on Product Standards Page","Description Column Exist","");
 				   }else
-					   reporter.failureReport("Description Column in Configuration Section on Product Standards Page","Description Column does Not Exists" ,"");
+					   reporter.failureReport("Description Column in Configuration Section on Product Standards Page","Description Column does Not Exists" ,"",driver);
 			         }
 		   }
 	}
@@ -1339,7 +1408,7 @@ public class SearchLib extends CommonObj {
 		if(comparedProducts==count) {
 			reporter.SuccessReport("verify Compared  products", "Similar products exists",Integer.toString(comparedProducts));
 		}else {
-			reporter.failureReport("verify Compared products", "Similar products does not exists",Integer.toString(comparedProducts));
+			reporter.failureReport("verify Compared products", "Similar products does not exists",Integer.toString(comparedProducts),driver);
 		}
 	}
 	
@@ -1363,7 +1432,7 @@ public class SearchLib extends CommonObj {
 			 prodCount=getText(productsDisplayInfoObj.PRODUCT_COUNT, "products count");
 			reporter.SuccessReport("Available Products Counter in Search Results Page", "	Available Products Counter Exists and the count is : ", prodCount);
 		}else {
-			reporter.failureReport("Available Products Counter in Search Results Page", "	Available Products Counter does not Exists", prodCount);
+			reporter.failureReport("Available Products Counter in Search Results Page", "	Available Products Counter does not Exists", prodCount,driver);
 		}
 		return prodCount;
 	}
@@ -1407,7 +1476,7 @@ public class SearchLib extends CommonObj {
 			         if(myradioList.get(i).isSelected()){
 				          reporter.SuccessReport("Add Column with Radio button Selected in product group Section on Product Standards Page","Add Column with Radio button Selected Exists","");
 			   }else {
-				   reporter.failureReport("verify the radio button checked or not","products are not checked ","");
+				   reporter.failureReport("verify the radio button checked or not","products are not checked ","",driver);
 			   }
 	       }
 		}
@@ -1443,7 +1512,7 @@ public class SearchLib extends CommonObj {
 		if (isVisibleOnly(BreadCrumb, "Bread Crumb")) {
 			reporter.SuccessReport("Verify the navigation", "Sucessfully Navigated to "+searchText ,searchText);
 		} else {
-			reporter.failureReport("Verify the navigation", "Navigation is not Sucessfully " , searchText);
+			reporter.failureReport("Verify the navigation", "Navigation is not Sucessfully " , searchText,driver);
 		}
 	}
 
@@ -1496,9 +1565,10 @@ public class SearchLib extends CommonObj {
 	 * @throws Throwable
 	 */
 	public void selectBrandByAlphabetOrderSectionForCA(String url,String brand) throws Throwable {
+		scrollToBottomWithCordinate("3990");
 		click(getShopByBrandByAlphabetForCA(brand), "brand By Alphabets");
 		Thread.sleep(2000);
-		verify_url(driver, url);
+		//verify_url(driver, url);
 	}
 	
 	/**
@@ -1523,7 +1593,7 @@ public class SearchLib extends CommonObj {
 						"Menus verification is sucessfull. Expected menu item is:" , result);
 			} else {
 				reporter.failureReport("Verify the results for menu items",
-						"Expected menu item is  " + strArray[i] + "Actual menu item is: " , result);
+						"Expected menu item is  " + strArray[i] + "Actual menu item is: " , result,driver);
 			}
 		}
 	}
@@ -1533,7 +1603,7 @@ public class SearchLib extends CommonObj {
 		if (isVisibleOnly(POPULAR_PRODUCTS_LABEL_CA, "Popular products")) {
 			reporter.SuccessReport("Verify that", "Sucessfully Popular products label is displayed " ,"Popular products");
 		} else {
-			reporter.failureReport("Verify that", "Popular products label not displayed " , "Popular products");
+			reporter.failureReport("Verify that", "Popular products label not displayed " , "Popular products",driver);
 		}
 	}
 	

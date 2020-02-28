@@ -20,8 +20,10 @@ import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.mortbay.log.Log;
 import org.omg.PortableServer.THREAD_POLICY_ID;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 import org.testng.Reporter;
 
 public class CommonLib extends ActionEngine{
@@ -242,8 +244,7 @@ public class CommonLib extends ActionEngine{
 		 *  
 		 *  @author : Cigniti
 		 */
-		public void addToCartAndVerify() throws Throwable
-		{	
+		public void addToCartAndVerify() throws Throwable{	
 			Thread.sleep(5000);
 			scrollBottom();
 			scrollToBottomWithCordinate("300");
@@ -278,7 +279,7 @@ public class CommonLib extends ActionEngine{
 		public void addFirstDisplyedItemToCartAndVerify() throws Throwable
 		{	
 			if(isElementPresent(CartObj.ADD_TO_CART_BUTTON_FOR_FIRST_DISPLAYED_ITEM,"ADD TO CART BUTTON FOR FIRST DISPLAYED ITEM")) {
-				click(CartObj.ADD_TO_CART_BUTTON_FOR_FIRST_DISPLAYED_ITEM,"ADD TO CART BUTTON FOR FIRST DISPLAYED ITEM");
+				click(CartObj.ADD_TO_CART_BUTTON_FOR_FIRST_DISPLAYED_ITEM,"CLICKED ON ADD TO CART BUTTON FOR FIRST DISPLAYED ITEM");
 			}
 			//Thread.sleep(120000);
 			waitForVisibilityOfElement(CartObj.ADD_TO_CART_SUCCESS_MESSAGE,"ADD TO CART SUCCESS MESSAGE");
@@ -307,8 +308,9 @@ public class CommonLib extends ActionEngine{
 		{	
 			spinnerImage();
 			waitForVisibilityOfElement(CartObj.BUNDLE,"Bundle");
+			String text=getText(CartObj.BUNDLE_NAME, "Bundle name");
 			if(isElementPresent(CartObj.BUNDLE,"Bundle",true)) {
-				reporter.SuccessReport("Verify the Bundle  on Cart", "Bundle Field Exists", "Bundle-1");
+				reporter.SuccessReport("Verify the Bundle  on Cart", "Bundle Field Exists", text+": " +"Bundle-1");
 			}
 			else {
 				reporter.failureReport("Verify the Bundle  on Cart", "Bundle Field Does Not Exist", "Bundle-1");
@@ -369,7 +371,7 @@ public class CommonLib extends ActionEngine{
 		public void addSecondDisplyedItemToCartAndVerify() throws Throwable
 		{	
 			waitForVisibilityOfElement(CartObj.ADD_TO_CART_BUTTON_FOR_SECOND_DISPLAYED_ITEM,"ADD TO CART BUTTON FOR SECOND DISPLAYED ITEM");
-			click(CartObj.ADD_TO_CART_BUTTON_FOR_SECOND_DISPLAYED_ITEM,"ADD TO CART BUTTON FOR SECOND DISPLAYED ITEM");
+			click(CartObj.ADD_TO_CART_BUTTON_FOR_SECOND_DISPLAYED_ITEM,"CLICKED ON ADD TO CART BUTTON FOR SECOND DISPLAYED ITEM");
 			Thread.sleep(120000);
 			waitForVisibilityOfElement(CartObj.ADD_TO_CART_SUCCESS_MESSAGE,"ADD TO CART SUCCESS MESSAGE");
 			isElementPresent(CartObj.ADD_TO_CART_SUCCESS_MESSAGE,"ADD TO CART SUCCESS MESSAGE",true);
@@ -512,17 +514,20 @@ public class CommonLib extends ActionEngine{
 		 * @throws Throwable
 		 */
 		public void clickOnAccountToolsAndClickOnProductGrp(String toolsMenuName, String dropDown ) throws Throwable{
-			acceptCookies() ;
-			Thread.sleep(10000);
-			if (isVisibleOnly(CommonObj.CLOSEBUTTON_COOKIES, "close cookie")) {
-				click(CommonObj.CLOSEBUTTON_COOKIES, "close cookie");
-			}
+			//acceptCookies() ;
+			//Thread.sleep(10000);
+		
+		
+		 if (isVisibleOnly(CommonObj.CLOSEBUTTON_COOKIES, "close cookie")) {
+		     click(CommonObj.CLOSEBUTTON_COOKIES, "close cookie"); }
+		 
 			if(isElementPresent(InvoiceHistoryLib.COSE_ACCOUNT_TOOLS, "close account tools")) {
 				click(InvoiceHistoryLib.COSE_ACCOUNT_TOOLS, "close account tools");
 			} 
 			
 			   click(CommonObj.ACCOUNT_TOOLS, "Account tools menu icon");
 			   click(CommonObj.getAccountToolsMenu(toolsMenuName), "Account tools menu:"+toolsMenuName);
+			   scrollToBottomWithCordinate("300");
 			   click(CommonObj.getAccountToolsDD(toolsMenuName, dropDown), "Select account tools: "+dropDown);	   
 		}
 		
@@ -633,17 +638,12 @@ public class CommonLib extends ActionEngine{
 		public void spinnerImage() throws Throwable {
 			Thread.sleep(2000);
 			if(isVisibleOnly(CommonObj.SPINNER_IMAGE, "spinner image")) {
-			waitForInVisibilityOfElement(CommonObj.SPINNER_IMAGE, "spinner image");
-			if(isVisibleOnly(CommonObj.SPINNER_IMAGE, "spinner image")) {
-				LOG.info("spinner image disapperaed");
+				waitForInVisibilityOfElement(CommonObj.SPINNER_IMAGE, "spinner image");
 			}else {
-				//reporter.failureReport("spinner image","spinner image not disapperaed","");
+				LOG.info("Spinner image disappeared");
 			}
 			}
-			else {
-				LOG.info("spinner image not present");
-			}
-		}
+			
 		
 		/**
 		 * Method is to get the contract name on the product details page.
@@ -872,7 +872,24 @@ public class CommonLib extends ActionEngine{
 		}
 	}
 
-	public void selectRecommendedPrinters()throws Throwable{
+	/*public void selectRecommendedPrinters()throws Throwable{
 
+	}*/
+	
+	/**
+	 * Method is to handle the "Care to tell us what you think?" popup
+	 * @throws Throwable
+	 */
+	
+	public void clickOnNoThanksOnWhatYouThinkPopup() throws Throwable {
+		WebElement iframeElement = driver.findElement(CommonObj.FRAME_ELEMENT);
+		driver.switchTo().frame(iframeElement);
+		if(isElementPresent(CommonObj.WHAT_YOU_THINK_POPUP_NO_THANKS_BTN, "No Thanks")) {
+			click(CommonObj.WHAT_YOU_THINK_POPUP_NO_THANKS_BTN, "No thanks link");
+		}else {
+			//do nothing
+			Log.info("Do nothing");
+		}
+		driver.switchTo().defaultContent();
 	}
 }

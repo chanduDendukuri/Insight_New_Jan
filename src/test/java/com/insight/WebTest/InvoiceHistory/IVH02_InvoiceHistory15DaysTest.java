@@ -65,8 +65,8 @@ public class IVH02_InvoiceHistory15DaysTest extends InvoiceHistoryLib {
 					invoiceHistoryLib.clickOnAdvancedSearch();
 					// calender date
 					//invoiceHistoryLib.datePickerStartDateCalender(date);
-					setAccountHirerachydropdown(data.get("Hirerachy_Dropdown_option"));
-					clickOnAdvancedSearchSearchButton();
+					//setAccountHirerachydropdown(data.get("Hirerachy_Dropdown_option"));
+					//clickOnAdvancedSearchSearchButton();
 					verifySearchResultsAreDisplayed();
 					getInvoiceNumberFromSearchResults();
 					commonLib.clickLogOutLink(data.get("Logout_Header"));

@@ -26,6 +26,7 @@ public class CRT24_WebGuidedPurchaseTest extends CartLib {
 	CartLib cartLib = new CartLib();
 	SearchLib searchLib = new SearchLib();
 	OrderLib OrderLib = new OrderLib();
+	ProductDisplayInfoLib prodInfoLib = new ProductDisplayInfoLib();
 
 	// #############################################################################################################
 	// # Name of the Test : CRT25_QuickCheckOutTest
@@ -55,9 +56,14 @@ public class CRT24_WebGuidedPurchaseTest extends CartLib {
 							"Web_Cart", intCounter);
 					TestEngineWeb.reporter.initTestCaseDescription("WebGuidedPurchase");
 
-					cmtLib.loginToCMTSearchWebGrpAndUser(data.get("Header"), data.get("WebGrp"),
-							data.get("LnameEmailUname"), data.get("ContactName"));
+					//cmtLib.loginToCMTSearchWebGrpAndUser(data.get("Header"), data.get("WebGrp"),
+							//data.get("LnameEmailUname"), data.get("ContactName"));
 					// cmtLib.setPermissions(data.get("menuName"),data.get("Enable_Purchasing_Popup"));
+					cmtLib.loginToCMT(data.get("Header"));
+					cmtLib.searchForWebGroup(data.get("WebGrp"));
+					cmtLib.clickOnTheWebGroup(data.get("WebGrp_Name"));
+					cmtLib.hoverOnManageWebGroupsAndSelectOptions(data.get("Manage_Web_Grp_Options"));
+					cmtLib.searchForaUserAndSelect(data.get("LnameEmailUname"), data.get("ContactName"));
 					cmtLib.clickOnloginAs();
 					switchToChildWindow();
 					cartLib.verifyWelcomeHeader();
@@ -73,6 +79,7 @@ public class CRT24_WebGuidedPurchaseTest extends CartLib {
 					String PartNum = cartLib.getPartNumAndswitchToParentWindow();
 					Thread.sleep(3000);
 					// Get part id for the second product
+					//cartLib.clickOnChooseThisItemLnk(Num);
 					cartLib.clickOnProductLink(data.get("ProductLink2"));
 					Thread.sleep(3000);
 					String PartNum1 = cartLib.getPartNumAndswitchToParentWindow();
@@ -98,10 +105,10 @@ public class CRT24_WebGuidedPurchaseTest extends CartLib {
 					// Verify landed to cart page or not
 					OrderLib.verifyCartHeaderLabel();
 					// Comparing part numbers which are added to cart
-					cartLib.verifyItemInCart(PartNum);
-					cartLib.verifyItemInCart(PartNum1);
-					cartLib.verifyItemInCart(PartNum2);
-
+					
+					prodInfoLib.verifyCartPageAndPartDetailsForRecentlyItemDynamically(PartNum);
+					prodInfoLib.verifyCartPageAndPartDetailsForRecentlyItemDynamically(PartNum1);
+					prodInfoLib.verifyCartPageAndPartDetailsForRecentlyItemDynamically(PartNum2);
 					System.out.println("Test completed");
 
 				} catch (Exception e) {

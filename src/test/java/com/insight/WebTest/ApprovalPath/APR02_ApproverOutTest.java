@@ -76,7 +76,7 @@ public class APR02_ApproverOutTest extends ApprovalPathLib {
 					
 					// Click on General Settings
 					ClickGeneralSettings();
-
+					Thread.sleep(5000);
 					// Click Create with out Entering Any thing - Click on
 					// Create
 					ClickCreateLink();
@@ -105,7 +105,7 @@ public class APR02_ApproverOutTest extends ApprovalPathLib {
 					
 					// Get Date
 					strCurrDay = GetCurrDay();
-
+                    //SelectApproverfromApproverdropdown(strApprover);
 					// Create Approver Out
 					CreateApproverOut(strApproverId, strReplacementType, strReplacementApproverId, strCurrDay);
 
@@ -117,14 +117,15 @@ public class APR02_ApproverOutTest extends ApprovalPathLib {
 					VerifyCreateApproverOut(strApprover);
 
 					// Create with Same Rule
-					CreateApproverOut(strApproverId, strReplacementType, strReplacementApprover, strCurrDay);
+					CreateApproverOut(strApproverId, strReplacementType, strReplacementApproverId, strCurrDay);
 
 					// System warning click ok
 					VerifyOverLapRulePopup();
 
 					// Edit and Delete Created Approver Out
-					ModifyDeleteApproverOut(strApprover, strCurrDay);
-
+					ModifyDeleteApproverOutForToDate(strApprover, strCurrDay,strReplacementType);
+					// Click on General Settings
+					ClickGeneralSettings();
 					// Get Data as Forward request					
 					CreateApproverOut(strApproverId, forwardRequestReplacementType, strReplacementApproverId, strCurrDay);
 
@@ -132,18 +133,20 @@ public class APR02_ApproverOutTest extends ApprovalPathLib {
 					VerifyCreateApproverOut(strApprover);
 					
 					// Edit and Delete Created Approver Out
-					ModifyDeleteApproverOut(strApprover, strCurrDay);
-
+					ModifyDeleteApproverOutForToDate(strApprover, strCurrDay,forwardRequestReplacementType);
+					// Click on General Settings
+					ClickGeneralSettings();
+					// Get Data as peramanent request					
+					CreateApproverOut(strApproverId, permanentReplaceReplacementType, strApproverId, strCurrDay);
+					// System warning click ok
+					VerifyOverLapRulePopup();
 					// Get Data as peramanent request					
 					CreateApproverOut(strApproverId, permanentReplaceReplacementType, strReplacementApproverId, strCurrDay);
-
 					// Verify Created Approver Out
 					VerifyCreateApproverOut(strApprover);
+					DeleteApproverOut(strApprover);
 					
-					// Edit and Delete Created Approver Out
-					ModifyDeleteApproverOut(strApprover, strCurrDay);
-
-										
+												
 					commonLib.clickLogOutLink(data.get("Logout"));
 
 					System.out.println("Test completed");

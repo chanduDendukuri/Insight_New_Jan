@@ -23,7 +23,11 @@ import com.insight.utilities.TestUtil;
 public class CRT09_SendToColleagueTest extends CartLib {
 	CommonLib commonLib = new CommonLib();
 	CartLib cartLib = new CartLib();
-
+	SearchLib searchLib = new SearchLib();
+	CanadaLib canadaLib = new CanadaLib();
+	ProductDisplayInfoLib prodInfoLib = new ProductDisplayInfoLib();
+	SearchLib search = new SearchLib();
+	CMTLib cmtLib = new CMTLib();
 	// #############################################################################################################
 	// # Name of the Test : CRT09_SendToColleague
 	// # Migration Author : Cigniti Technologies
@@ -51,42 +55,65 @@ public class CRT09_SendToColleagueTest extends CartLib {
 					Hashtable<String, String> data = TestUtil.getDataByRowNo("CRT09_SendToColleague", TestDataInsight,
 							"Web_Cart", intCounter);
 					TestEngineWeb.reporter.initTestCaseDescription("SendToColleague");
-					String searchItem1 = data.get("SearchItem1");
-					String searchItem2 = data.get("SearchItem2");
-					String searchItem3 = data.get("SearchItem3");
-					commonLib.searchProduct(searchItem1);
+					cmtLib.loginToCMT(data.get("header"));
+					cmtLib.searchForWebGroup(data.get("WebGrp"));
+					cmtLib.clickOnTheWebGroup(data.get("WebGrp_Name"));
+					cmtLib.hoverOnManageWebGroupsAndSelectOptions(data.get("Manage_Web_Grp_Options"));
+					cmtLib.searchForaUserAndSelect(data.get("LnameEmailUname"), data.get("ContactName"));
+					String mainWindow = parentWindow();
+					cmtLib.clickOnloginAs();
+					switchToWindow(mainWindow);	
+					cmtLib.loginVerification(data.get("ContactName"));
+					commonLib.searchProduct(data.get("SearchItem1"));
+					prodInfoLib.verifyTheManufacturerNumberInProductDetailsPage(data.get("SearchItem1"));
 					commonLib.addToCartAndVerify();
-					commonLib.continueToShopping();
-					commonLib.searchProduct(searchItem2);
+					canadaLib.continueToCheckout();
+					canadaLib.verifyPlaceCartLabel();
+					prodInfoLib.verifyCartPageAndPartDetailsForRecentlyItemDynamically(data.get("SearchItem1"));
+
+					commonLib.searchProduct(data.get("SearchItem2"));
+					prodInfoLib.verifyTheManufacturerNumberInProductDetailsPage(data.get("SearchItem2"));
 					commonLib.addToCartAndVerify();
-					commonLib.continueToShopping();
-					commonLib.searchProduct(searchItem3);
+					canadaLib.continueToCheckout();
+					canadaLib.verifyPlaceCartLabel();
+					prodInfoLib.verifyCartPageAndPartDetailsForRecentlyItemDynamically(data.get("SearchItem2"));
+
+					commonLib.searchProduct(data.get("SearchItem3"));
+					prodInfoLib.verifyTheManufacturerNumberInProductDetailsPage(data.get("SearchItem3"));
 					commonLib.addToCartAndVerify();
-					commonLib.closePopUp();
+					canadaLib.continueToCheckout();
+					canadaLib.verifyPlaceCartLabel();
+					prodInfoLib.verifyCartPageAndPartDetailsForRecentlyItemDynamically(data.get("SearchItem3"));
+
 					cartLib.clickAndVerifySendToAColleagueErrorMSG(data.get("OrderUtilities"));
 					cartLib.verifySendToAColleague(data.get("OrderUtilities"), data.get("YourName"),
+							data.get("YourEmail1"), data.get("YourEmail1"), data.get("YourComments"));
+					verifyErrorMessagesInSendToAColleaguePopUpForEmail();
+					cartLib.verifySendToAColleague(data.get("OrderUtilities"), data.get("YourName"),
 							data.get("YourEmail"), data.get("RecipientEmail"), data.get("YourComments"));
-					   System.out.println("Test completed");
-		 				
+					verifySendToAColleagueSucessMessage();
+					commonLib.clickLogOutLink(data.get("Logout_Header"));
+					System.out.println("Test completed");
+
 				} catch (Exception e) {
 					ReportStatus.blnStatus = false;
-					//gErrorMessage = e.getMessage();
+					// gErrorMessage = e.getMessage();
 					gTestStatus = false;
 				}
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 			ReportStatus.blnStatus = false;
-			//gErrorMessage = e.toString();
+			// gErrorMessage = e.toString();
 			gTestStatus = false;
 			ReportStatus.fnUpdateResultStatus("SendToColleague", "Tc_CRT09", ReportStatus.strMethodName, 1, browser);
 			throw new RuntimeException(e);
+		} finally {
+			ReportControl.fnEnableJoin();
+			ReportStatus.fnUpdateResultStatus("SendToColleague", "Tc_CRT09", ReportStatus.strMethodName, counter,
+					browser);
+			fnCloseTest();
+			ReportControl.fnNextTestJoin(nextTestJoin);
 		}
-finally {
-ReportControl.fnEnableJoin();
-ReportStatus.fnUpdateResultStatus("SendToColleague", "Tc_CRT09", ReportStatus.strMethodName, counter, browser);
-fnCloseTest();
-ReportControl.fnNextTestJoin(nextTestJoin);
+	}
 }
-	}
-	}

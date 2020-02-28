@@ -1,7 +1,11 @@
 package com.insight.WebTest.Canada;
 
+import java.io.File;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.Hashtable;
 import java.util.List;
 
@@ -28,7 +32,9 @@ public class CAN12_AdHocReportDefaultSettingsTest extends CanadaLib{
 	ShipBillPayLib shipbLib=new ShipBillPayLib();
 	MarriottIntlCorpLib mic=new MarriottIntlCorpLib();
 	CommonCanadaLib ccp = new CommonCanadaLib();
-	
+	CanadaLib canadaLib = new CanadaLib();
+	ReportingLib report = new ReportingLib();
+
 	@Parameters({ "StartRow", "EndRow", "nextTestJoin" })
 	@Test
 	public void TC_CAN12(int StartRow, String EndRow, boolean nextTestJoin) throws Throwable {
@@ -111,13 +117,21 @@ public class CAN12_AdHocReportDefaultSettingsTest extends CanadaLib{
 							assertTrue(!ccp.verifySMART_CHECK(),"By default SmartCheck was not selected");
 							verifyFilterOrder();
 							ccp.addAvailableItemsToAllowItems();
+
+					/*		ccp.clickOnReportNameDD();
+							//ccp.getListOfReportNameOption();
+							report.clickOnDeliveryReport("Custom Report Name");
+							String customName="AdHoc";
+							report.clickOnCustomName(customName);*/
+							DateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+							Date datev = new Date();
+
 							clickOnRun();
-							String a = data.get("ReportOption");
-							List<String> excelOptions= Arrays.asList(data.get("ExcelOptions").split(","));
-							canadaLib.openDirectoryToVerifyFileExist(a);
-							verifyDownloadedReportExcelFile(excelOptions,data.get("ReportOption"));
-							//cartLib.ClickExportCartAndVerify(data.get("Order_Utilities"),data.get("Sheet_Name"),data.get("Row_number"),data.get("Column_Headers"));
-						//	cartLib.verifyExportFile();
+							//String file=ccp.FileNameWithdateSplit(customName);
+							Thread.sleep(60000);
+							ccp.verifyExportFile("Page1","3","Ad-Hoc,Period",ccp.getLatestFilefromDir());
+							//cartLib.verifyExportFile("Page1","1","Ad-Hoc");
+
 
 							commonLib.clickLogOutLink(data.get("Logout_Header"));
 				System.out.println("Test completed");

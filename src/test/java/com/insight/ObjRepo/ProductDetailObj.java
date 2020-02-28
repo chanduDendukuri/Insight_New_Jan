@@ -163,7 +163,7 @@ public class ProductDetailObj extends ActionEngine {
     public static By SPECIFICATIONS_TAB = By.xpath("//a[@data-gtm-info='SPECIFICATIONS']");
 
     public static By SPECTIFICATIONS(String Tab) {
-        return By.xpath("//div[@id='tpl-specs-specs-target']//div[@class='ccs-ds-extendedSpec-header' and contains(text(),'" + Tab + "')]");
+        return By.xpath("//div[@id='tpl-specs-specs-target']//table/thead/tr/th[contains(text(),'"+Tab+"')]");
     }
 
     public static By WARRENYADDTOCART = By.xpath("//section[@id='detail-warranties']//div[@class='add-to-order-wrapper']/a");
@@ -183,5 +183,7 @@ public class ProductDetailObj extends ActionEngine {
     public static By MOREAVAILABLEPRICESPOPUP = By.xpath("//div[@class='row js-modal-prices-contract-selection']");
     public static By recommendedPrinters = By.xpath("//*[@id='recs-carousel-title' and text()='Recommended with Printers']//..//div//section//div[@class='rr-name-wrapper']");
     public static By BreadcrumbForProduct = By.xpath("//*[@aria-label='breadcrumb']//li[3]//a");
-
+    public static By IMAGE = By.xpath(" //img[@class='c-image c-image--optimal c-image--is-loaded']");
+    public static By PRICE = By.xpath("//div[@class='price']");
+    
 }

@@ -29,7 +29,7 @@ public class ShipBillPayLib extends ShipBillPayObj {
 			reporter.SuccessReport("Stored Cards :", textinPaymentandcards, "Stored Cards Disabled : 1");
 		} else {
 			reporter.failureReport("Payments And Cards Msg is not visible", "Payments And Cards Msg is not visible",
-					"");
+					"",driver);
 		}
 	}
 	public void ApproveRequesitionEndUser(String RefNum) throws Throwable {
@@ -42,7 +42,7 @@ public class ShipBillPayLib extends ShipBillPayObj {
 			reporter.SuccessReport("Stored Cards :", textinPaymentandcards, "Stored Cards is Enabled");
 		} else {
 			reporter.failureReport("Payments And Cards Msg is not visible", "Payments And Cards Msg is not visible",
-					"");
+					"",driver);
 		}
 	}
 	
@@ -66,7 +66,7 @@ public class ShipBillPayLib extends ShipBillPayObj {
 					Shippingcarrie2);
 		} else {
 			reporter.failureReport("Verify shipping carrier is not present", "shipping carrier is not present ",
-					Shippingcarrie2);
+					Shippingcarrie2,driver);
 		}
 
 	}
@@ -114,7 +114,7 @@ public class ShipBillPayLib extends ShipBillPayObj {
 					textinPaymentandcards);
 		} else {
 			reporter.failureReport("Payments info credit card Msg is not visible",
-					"Payments info Credit Card Msg is not visible", "");
+					"Payments info Credit Card Msg is not visible", "",driver);
 		}
 	}
 
@@ -127,7 +127,7 @@ public class ShipBillPayLib extends ShipBillPayObj {
 		if (isElementPresent(ShipBillPayObj.USA_WEBGROUP, "US Webgroup")) {
 			reporter.SuccessReport("Verify it is Logged in US Web Group", "User is Logged into US Web Group", "US WebGrp::Web Group – USA - Praxair");
 		} else {
-			reporter.failureReport("Verify it is Logged in US Web Group", "User is not Logged into US Web Group", "");
+			reporter.failureReport("Verify it is Logged in US Web Group", "User is not Logged into US Web Group", "",driver);
 		}
 	}
 
@@ -156,7 +156,7 @@ public class ShipBillPayLib extends ShipBillPayObj {
 			reporter.SuccessReport("Verify Canada Web Site Login", "User is Logged into Canada Insight", "Canada Webgrp::Web Group – Canada - Praxair");
 		}
 		else {
-			reporter.failureReport("Verify Canada Web Site Login", "User is Not Logged into Canada Insight", "");
+			reporter.failureReport("Verify Canada Web Site Login", "User is Not Logged into Canada Insight", "",driver);
 		}
 	}
 
@@ -173,7 +173,7 @@ public class ShipBillPayLib extends ShipBillPayObj {
 						"Subtotal Before Taxes is Showing as Canadian Dollars in the Cart", "");
 			} else {
 				reporter.failureReport("Verify Subtotal Before Taxes in the Cart",
-						"USubtotal Before Taxes is Not Showing as Canadian Dollars in the Cart", "");
+						"USubtotal Before Taxes is Not Showing as Canadian Dollars in the Cart", "",driver);
 			}
 		}
 
@@ -196,7 +196,7 @@ public class ShipBillPayLib extends ShipBillPayObj {
 					subTotalAmount);
 		} else {
 			reporter.failureReport("Verify Subtotal Before Taxes in the Cart",
-					"subtotal Before Taxes Does Not Exist in the Cart", "");
+					"subtotal Before Taxes Does Not Exist in the Cart", "",driver);
 
 		}
 
@@ -206,14 +206,14 @@ public class ShipBillPayLib extends ShipBillPayObj {
 					shippingEstimateAmount);
 		} else {
 			reporter.failureReport("Verify Shipping Estimate in the Cart",
-					"Shipping Estimate Does Not Exist in the Cart", "");
+					"Shipping Estimate Does Not Exist in the Cart", "",driver);
 		}
 
 		if (isElementPresent(getAmountsInSummary(total), "Total Amount")) {
 			String totalAmount = getText(getAmountsInSummary(total), "Total Amount");
 			reporter.SuccessReport("Verify Total Amount in the Cart", "Total Amount: ", totalAmount);
 		} else {
-			reporter.failureReport("Verify Total Amount in the Cart", "Total Amount Does Not Exist in the Cart", "");
+			reporter.failureReport("Verify Total Amount in the Cart", "Total Amount Does Not Exist in the Cart", "",driver);
 		}
 
 	}
@@ -226,7 +226,7 @@ public class ShipBillPayLib extends ShipBillPayObj {
 	public void verifyBillmycarrier() throws Throwable {
 		if (isCheckBoxSelected(BILLMYCARRIER_CHECKBOX)) {
 			reporter.failureReport("Bill my carrier Check Box is cliked Already",
-					"Bill my carrier Check box is clicked Already", "");
+					"Bill my carrier Check box is clicked Already", "",driver);
 		} else {
 			reporter.SuccessReport("Bill my carrier Check Box is Not clicked",
 					"Bill my carrier Check box is Not Clicked", "");
@@ -239,7 +239,7 @@ public class ShipBillPayLib extends ShipBillPayObj {
 			reporter.SuccessReport("Shipping carrier is Present  ", "Shipping carrier is : ", carrierName);
 
 		} else {
-			reporter.failureReport("Shipping carrier is Not Presnt", "Shipping Carrier is Not Present", "");
+			reporter.failureReport("Shipping carrier is Not Presnt", "Shipping Carrier is Not Present", "",driver);
 		}
 	}
 
@@ -250,10 +250,10 @@ public class ShipBillPayLib extends ShipBillPayObj {
 				reporter.SuccessReport("Billmy carrier  Presnt", "Bill your carrier account Options are Exist and Verified", ""+DefCarrier+"");
 			} else {
 				reporter.failureReport("Billmy carrier Option is Not Presnt", "Billmy Carrier Option is Not Present",
-						"");
+						"",driver);
 			}
 		} else {
-			reporter.failureReport("Billmy carrier is Not Presnt", "Billmy Carrier is Not Present", "");
+			reporter.failureReport("Billmy carrier is Not Presnt", "Billmy Carrier is Not Present", "",driver);
 		}
 		//click(GROUND_CARRIER,"Shipping Carrier::Ground");
 	}
@@ -262,7 +262,7 @@ public class ShipBillPayLib extends ShipBillPayObj {
 		if (isElementPresent(CARRIER_ACCOUNT, "Carrier Account Number is Present")) {
 			reporter.SuccessReport("Carrier Account Number is Presnt", "Carrier Account Number is Present", "");
 		} else {
-			reporter.failureReport("Carrier Account Number is Not Presnt", "Carrier Account Number is Not Present", "");
+			reporter.failureReport("Carrier Account Number is Not Presnt", "Carrier Account Number is Not Present", "",driver);
 		}
 	}
 
@@ -271,7 +271,7 @@ public class ShipBillPayLib extends ShipBillPayObj {
 		if (isElementPresent(CHOOSENCARRIERNOTMATCH_MSG, "Choosen carrier msg is visible")) {
 			reporter.SuccessReport("Choosen carrier msg is Presnt", "Choosen carrier msg is is Present", MSG);
 		} else {
-			reporter.failureReport("Choosen carrier msg is Not Presnt", "Choosen carrier msg is Not Present", "");
+			reporter.failureReport("Choosen carrier msg is Not Presnt", "Choosen carrier msg is Not Present", "",driver);
 
 		}
 	}
@@ -283,12 +283,12 @@ public class ShipBillPayLib extends ShipBillPayObj {
 			click(FEDX_CARRIER, "FedEx Carrier is Selected");
 			reporter.SuccessReport("Carrier::", "FedEx Carrier is Selected", "FedEx");
 		} else {
-			reporter.failureReport("Carriers Dropdown is Not Presnt", "Carriers Dropdown is Not Present", "");
+			reporter.failureReport("Carriers Dropdown is Not Presnt", "Carriers Dropdown is Not Present", "",driver);
 		}
 		if (isElementPresent(DISABLED_OPTIONS_SHIPPINGOTIONS(disabledcarrier), "Carriers Are Disabled")) {
 			reporter.SuccessReport("Carriers Are Disabled", "Carriers Are Disabled", "");
 		} else {
-			reporter.failureReport("Carriers Are Not Disabled", "Carriers Are Not Disabled", "");
+			reporter.failureReport("Carriers Are Not Disabled", "Carriers Are Not Disabled", "",driver);
 		}
 	}
 
@@ -326,7 +326,7 @@ public class ShipBillPayLib extends ShipBillPayObj {
 			reporter.SuccessReport("Verify stored card Verification Success", "Expected QTP Stored Card 1 Exists and Selected QTP Stored Card 1",
 					textinPaymentandcards);
 		} else {
-			reporter.failureReport("Stored card Verification not Success", "Stored card Verification not Success", "");
+			reporter.failureReport("Stored card Verification not Success", "Stored card Verification not Success", "",driver);
 		}
 	}
 
@@ -337,7 +337,7 @@ public class ShipBillPayLib extends ShipBillPayObj {
 			waitForVisibilityOfElement(REFERENCE_NUMBER, "Reference Number");
 			reporter.SuccessReport("Reference Number ", "Referenace Number is Visible", "");
 		} else {
-			reporter.failureReport("Reference Number is Not created", "Reference Number is Not created", "");
+			reporter.failureReport("Reference Number is Not created", "Reference Number is Not created", "",driver);
 		}
 	}
 
@@ -385,7 +385,7 @@ public class ShipBillPayLib extends ShipBillPayObj {
 			selectByVisibleText(WG_HDL_Lst, A, "WG_HDL_Lst");
 		} else {
 			reporter.failureReport("Additional information is Not able to Enter",
-					"Additional information is Not able to Enter", "");
+					"Additional information is Not able to Enter", "",driver);
 		}
 
 	}
@@ -404,7 +404,7 @@ public class ShipBillPayLib extends ShipBillPayObj {
 		if (driver.findElement(RADIOBUTTON_DEFUALTADDRESS).isSelected()) {
 			reporter.SuccessReport("Stored address is selected", "Stored Address is selected", Text);
 		} else {
-			reporter.failureReport("Stored address is Not selected", "Stored address is Not selected", "");
+			reporter.failureReport("Stored address is Not selected", "Stored address is Not selected", "",driver);
 		}
 		click(CONTINUE_BUTTONSTOREDADDRESS, "continue Button of Stored Address");
 		getText(COMPANY,"Shiping address Company::").trim();
@@ -424,7 +424,7 @@ public class ShipBillPayLib extends ShipBillPayObj {
 					"Your cart has been successfully saved message is displayed", "");
 		} else {
 			reporter.failureReport("Save cart error message ",
-					"Your cart has been successfully saved message is not displayed", "");
+					"Your cart has been successfully saved message is not displayed", "",driver);
 
 		}
 		click(CartObj.CONTINUE, "Continue button");
@@ -454,7 +454,7 @@ public class ShipBillPayLib extends ShipBillPayObj {
 		typeText(WG_LNL, Wg_LNL_Txt, "RP_LNL_Txt text box::"+Wg_LNL_Txt+"");
 		click(CopyToALL,"Copt To ALL Exixts and Clicked");
 		}else{
-			reporter.failureReport("Verify reporting fields displayed in the Line level information section","Reporting fields are not displayed Line level information","");
+			reporter.failureReport("Verify reporting fields displayed in the Line level information section","Reporting fields are not displayed Line level information","",driver);
 		}
 	}
 
@@ -465,7 +465,7 @@ public class ShipBillPayLib extends ShipBillPayObj {
 					storedaddress);
 		} else {
 			reporter.failureReport("Verify default stored address", "Defualt Stored Address is Not displayed",
-					"Defualt Stored Address is not displayed");
+					"Defualt Stored Address is not displayed",driver);
 
 		}
 		Thread.sleep(2000);
@@ -490,7 +490,7 @@ public class ShipBillPayLib extends ShipBillPayObj {
 					Userstoredaddress);
 		} else {
 			reporter.failureReport("Stored Address Account Name is Not displayed", "Stored Address is not displayed",
-					"");
+					"",driver);
 
 		}
 	}
@@ -558,7 +558,7 @@ public class ShipBillPayLib extends ShipBillPayObj {
 			//String Addres2=getText(SHIPPING_ADDRESESSECONDLINE,"Shiping address").trim();
 			reporter.SuccessReport("Verify New address ", "New Is Verified successfully", Company+ Addres);
 		} else {
-			reporter.failureReport("New Address Is Not Created", "New Address Is Not Created", "");
+			reporter.failureReport("New Address Is Not Created", "New Address Is Not Created", "",driver);
 		}
 	}
 	public void VerifyDefualtSoldtoAddress(String Company) throws Throwable {
@@ -570,7 +570,7 @@ public class ShipBillPayLib extends ShipBillPayObj {
 			//String Addres2=getText(SHIPPING_ADDRESESSECONDLINE,"Shiping address").trim();
 			reporter.SuccessReport("Verify Sold-To Shipping Address", "Sold-To Shipping Address", "ADDRESS ::"+Company +Addres);
 		} else {
-			reporter.failureReport("Verify Sold-To Shipping Address", "Sold-To Shipping Address", "");
+			reporter.failureReport("Verify Sold-To Shipping Address", "Sold-To Shipping Address", "",driver);
 		}
 	}
 
@@ -579,7 +579,7 @@ public class ShipBillPayLib extends ShipBillPayObj {
 			selectByVisibleText(LINKEDACCOUNTSDROPDOWN, Linkuseraddresses, "Link User To addresses");
 		} else {
 			reporter.failureReport("Unable to Link user to Available Adresses",
-					"Unable to Link user to Available Adresses", "");
+					"Unable to Link user to Available Adresses", "",driver);
 		}
 		click(UPDATEBUTTON_SHPPINGADDRESS, "Update Button Permissions");
 		waitForVisibilityOfElement(SUCCESSMSG_SHIPPINGADDRESS, "Shipping Address Option Updated Msg");
@@ -592,7 +592,7 @@ public class ShipBillPayLib extends ShipBillPayObj {
 					"No Defualt Address", "No Default Shipping Address is set.Please select below.");	
 		} else {
 			reporter.failureReport("verify Defualt Address::",
-					"Unable to Verify No Defualt Address Adresses", "");
+					"Unable to Verify No Defualt Address Adresses", "",driver);
 		}
 		click(UPDATEBUTTON_SHPPINGADDRESS, "Update Button Permissions");
 		waitForVisibilityOfElement(SUCCESSMSG_SHIPPINGADDRESS, "Shipping Address Option Updated Msg");
@@ -627,11 +627,11 @@ public class ShipBillPayLib extends ShipBillPayObj {
 	 */
 	public void VisaCardErrorPayment(String cardNumber, String cardName, String month, String year, String poNumebr)
 			throws Throwable {
-		click(PAYMENT_METHOD_DD, "payment method drop down");
+	//	click(PAYMENT_METHOD_DD, "payment method drop down");
 		if(isVisibleOnly(OrderObj.PAYMENT_METHOD_VERIFICATION_TERMS,"Terms")) {
-			reporter.failureReport("Verify payment options:", "Terms Exists in payment Options", "Terms");
+			reporter.failureReport("Verify payment options:", "Terms Exists in payment Options", "Terms",driver);
 			if(isVisibleOnly(OrderObj.PAYMENT_METHOD_VERIFICATION_procurementscard,"Procurement Card")) {
-				reporter.failureReport("Verify payment options:", "Procurementcard  Option exits", "");	
+				reporter.failureReport("Verify payment options:", "Procurementcard  Option exits", "",driver);	
 			}
 		}else {
 			 reporter.SuccessReport("Verify payment options:", "Only Credit card exists as Payments Option", "Credit Card");	
@@ -648,7 +648,7 @@ public class ShipBillPayLib extends ShipBillPayObj {
 		if (isElementPresent(VISA_CARD_ERROR_MESSAGE, "Visa card error message")) {
 			reporter.SuccessReport("Verify visa card error message", "Visa card type is not supported", "");
 		} else {
-			reporter.failureReport("Verify visa card error message", "Visa card type is supported", "");
+			reporter.failureReport("Verify visa card error message", "Visa card type is supported", "",driver);
 		}
 		}
 	}
@@ -679,12 +679,12 @@ public class ShipBillPayLib extends ShipBillPayObj {
 			if (isElementPresent(CREDITCARDOPTION(Creditcard), "payment DD")) {
 				reporter.SuccessReport("Verify payment options", "Payemnt Option::", textinPaymentandcards);
 			} else {
-				reporter.failureReport("Payemnt Option", "payemnt Option is not visible", "");
+				reporter.failureReport("Payemnt Option", "payemnt Option is not visible", "",driver);
 			}
 		}
 
 		else {
-			reporter.failureReport("Payment Method dropdown", "Payment Method dropdown is not visible", "");
+			reporter.failureReport("Payment Method dropdown", "Payment Method dropdown is not visible", "",driver);
 		}
 	}
 	
@@ -735,7 +735,7 @@ public class ShipBillPayLib extends ShipBillPayObj {
 			reporter.SuccessReport("Verifying home page", "User is navigated to login page", "login");
 		}
 		else {
-			reporter.failureReport("Verifying home page", "User is not navigated to login page", "login");
+			reporter.failureReport("Verifying home page", "User is not navigated to login page", "login",driver);
 		}
 	}
 	/**
@@ -760,7 +760,7 @@ public class ShipBillPayLib extends ShipBillPayObj {
 			reporter.SuccessReport("Verifying products displayed","are of contract "+contractOption , contractOption);
 		}
 		else {
-			reporter.failureReport("Verifying products displayed","are not of contract "+contractOption , contractOption);
+			reporter.failureReport("Verifying products displayed","are not of contract "+contractOption , contractOption,driver);
 		}
 		
 	}
@@ -796,7 +796,7 @@ public class ShipBillPayLib extends ShipBillPayObj {
 			reporter.SuccessReport("Verify success message", "Shipping payments options success message is displayed",
 					"");
 		} else {
-			reporter.failureReport("Verify success message", "Success message is not displayed", "");
+			reporter.failureReport("Verify success message", "Success message is not displayed", "",driver);
 		}
 
 	}
@@ -805,11 +805,13 @@ public class ShipBillPayLib extends ShipBillPayObj {
 		waitForVisibilityOfElement(ALLOWEDOPTIONS_CHECKOUTSETTINGS, "Allowed Options");
 		if(isVisibleOnly(PROCUREMENTCARD_OPTION,"Procurement Card Option")) {
 		selectByVisibleText(ALLOWEDOPTIONS_CHECKOUTSETTINGS, Paymentoption, "Payment option::" + Paymentoption + "");
-		click(CMTObj.LEFT_ARROW, Paymentoption + " is selected And Moved to Available Options");
+		click(CMTObj.LEFTARROWINPAYMENTOPTIONS, Paymentoption + " is selected And Moved to Available Options");
+		optionNotExistsinPaymentOptions();
 		click(UPDATEBUTTON_SHPPINGADDRESS, "update Button");
 		waitForVisibilityOfElement(SUCCESMSG_PAYMENTOPTIONS, "Payment options updated Success Msg");
 		reporter.SuccessReport("Verify Payment Option", "Payment Option added to Avialble Options", "");
-		}else {
+		}
+		else {
 			reporter.SuccessReport("Verify Payment Option", "Payment Option Alredy added to Avialble Options", Paymentoption);
 		}
 	}
@@ -827,10 +829,10 @@ public class ShipBillPayLib extends ShipBillPayObj {
 				reporter.SuccessReport("FedEx Ground Career is selected", "FedEx Ground Career is selected", "FedEx Ground - USD $30.46");
 			} else {
 				reporter.failureReport("FedEx Ground Career is Not selected", "FedEx Ground Career is Not selected",
-						"");
+						"",driver);
 			}
 		} else {
-			reporter.failureReport("FedEx Ground Career is Not selected", "FedEx Ground Career is Not selected", "");
+			reporter.failureReport("FedEx Ground Career is Not selected", "FedEx Ground Career is Not selected", "",driver);
 		}
 		orderLib.selectShippingOptionsCarrierSection();
 	}
@@ -840,7 +842,7 @@ public class ShipBillPayLib extends ShipBillPayObj {
 		if (isElementPresent(SHIPINGCAREER, "Shipping carrer")) {
 			reporter.SuccessReport("Shipping carrer", "Shipping carrer is verified", "");
 		} else {
-			reporter.failureReport("Shipping carrer", "Shipping carrer is Not verified", "");
+			reporter.failureReport("Shipping carrer", "Shipping carrer is Not verified", "",driver);
 		}
 	}
 
@@ -865,6 +867,7 @@ public class ShipBillPayLib extends ShipBillPayObj {
 	 */
 	public String getTotalAmountInCart(String total) throws Throwable {
 		String totalAmount = getText(getAmountsInSummary(total), "Total Amount");
+		reporter.SuccessReport("Amount", "Amount is displayed as ", totalAmount, driver);
 		return totalAmount;
 	}
 	
@@ -907,7 +910,7 @@ public class ShipBillPayLib extends ShipBillPayObj {
 		if (isElementPresent(NO_SHIPPING_CARRIER, "Shipping Carrier")) {
 			reporter.SuccessReport("Verify Shipping Carrier", "Shipping carrier", "No carrier preference");
 		} else {
-			reporter.failureReport("Verify Shipping Carrier", "Choosen carrier msg is Not Present", "");
+			reporter.failureReport("Verify Shipping Carrier", "Choosen carrier msg is Not Present", "",driver);
 
 		}
 	}
@@ -952,7 +955,7 @@ public class ShipBillPayLib extends ShipBillPayObj {
 			reporter.SuccessReport("Calander Date", "1/1/2019 was found and Selected", "Date 1/1/2019");
 			
 		}else {
-			reporter.failureReport("Calander Date", "Unable to choose the date in calander", "");
+			reporter.failureReport("Calander Date", "Unable to choose the date in calander", "",driver);
 		}
 	}
     public void clickSearchButtonInApprovalmanagementPage()	throws Throwable{
@@ -971,7 +974,7 @@ public class ShipBillPayLib extends ShipBillPayObj {
 				reporter.SuccessReport("Defualt carrier", "Default Carrier Account Field is Exists and Entered", DefCarrier);
 			} else {
 				reporter.failureReport("Defualt carrier", "Billmy Carrier Option is Not Present",
-						"");
+						"",driver);
 			}
 	}
 	public void clickCreditCard()throws Throwable {
@@ -986,7 +989,7 @@ public class ShipBillPayLib extends ShipBillPayObj {
 				reporter.SuccessReport("Credit Card Info::", "Stored Card Number Exisits", CardNum);
 			} else {
 				reporter.failureReport("Credit Card Info::", "Stored Card Number Does not Exists",
-						"");
+						"",driver);
 			}
 	}
 		public void verifyCardName() throws Throwable {
@@ -995,7 +998,7 @@ public class ShipBillPayLib extends ShipBillPayObj {
 					reporter.SuccessReport("Credit Card Info::", "Stored Card Name Exists", CardNam);
 				} else {
 					reporter.failureReport("Credit Card Info::", "Stored Card Name Does not Exists",
-							"");
+							"",driver);
 				}
 	}
 		public void verifyCardDate() throws Throwable {
@@ -1004,7 +1007,7 @@ public class ShipBillPayLib extends ShipBillPayObj {
 					reporter.SuccessReport("Credit Card Info::", "Stored Card Expiry Date Exists", Carddate);
 				} else {
 					reporter.failureReport("Credit Card Info::", "Stored Card Expiry Does not Exists",
-							"");
+							"",driver);
 				}
 	}
 		public void verifyThiredPartyCarrierMsg() throws Throwable {
@@ -1013,7 +1016,7 @@ public class ShipBillPayLib extends ShipBillPayObj {
 					reporter.SuccessReport("Verify ThirdParty carried Msg::", "ThirdParty carried Msg exists", MSG);
 				} else {
 					reporter.failureReport("ThirdParty carried Msg::", "ThirdParty carried Msg Does not Exists",
-							"");
+							"",driver);
 				}
 	}
 		public void cmtLogout() throws Throwable {
@@ -1060,7 +1063,7 @@ public class ShipBillPayLib extends ShipBillPayObj {
 						reporter.SuccessReport("verify PartNum In ProductDetail Page::", "PartNum  Exists", Partnum);
 					} else {
 						reporter.failureReport("verify PartNum In ProductDetail Page::", "PartNum Does not Exists",
-								"");
+								"",driver);
 					}
 		}
 			/**
@@ -1088,7 +1091,7 @@ public class ShipBillPayLib extends ShipBillPayObj {
 					click(FEDX_CARRIER, "FedEx Carrier is Selected");
 					reporter.SuccessReport("Carrier::", "FedEx Carrier is Selected", "FedEx");
 				} else {
-					reporter.failureReport("Carriers Dropdown is Not Presnt", "Carriers Dropdown is Not Present", "");
+					reporter.failureReport("Carriers Dropdown is Not Presnt", "Carriers Dropdown is Not Present", "",driver);
 				}
 				click(GROUND_CARRIER,"Shipping Carrier::Ground");
 	}
@@ -1104,7 +1107,7 @@ public class ShipBillPayLib extends ShipBillPayObj {
 					reporter.SuccessReport("Quantity", "Quantity Exists", "Quantitiy::1");
 
 				} else {
-					reporter.failureReport("Quantity", "Quantity Not Exists", "");
+					reporter.failureReport("Quantity", "Quantity Not Exists", "",driver);
 				}
 			}
 
@@ -1189,7 +1192,7 @@ public class ShipBillPayLib extends ShipBillPayObj {
 						storedaddress);
 			} else {
 				reporter.failureReport("Verify default stored address", "Defualt Stored Address is Not displayed",
-						"Defualt Stored Address is not displayed");
+						"Defualt Stored Address is not displayed",driver);
 
 			}
 			click(SEARCH_FIELD,"Link:SEARCH AVAILABLE ADDRESSES");
@@ -1257,7 +1260,7 @@ public class ShipBillPayLib extends ShipBillPayObj {
 			if(isVisibleOnly(OPTION(Option),"Procurement Card Option")) {
 			reporter.SuccessReport("Verify "+Option+" is Selected in Allowed Options in Payment Options in the Checkout Settings Tab on Manage Web groups: Create User Page", ""+Option+"  in Allowed Options in Payment Options on Checkout Settings Tab Exists", Option);
 			}else {
-				reporter.failureReport("Verify Payment Option", "Payment Option is Not in Allowed Options", "");
+				reporter.failureReport("Verify Payment Option", "Payment Option is Not in Allowed Options", "",driver);
 			}
 		}
 		public void verifyNoDefaultAddressBillingAddress() throws Throwable {
@@ -1266,7 +1269,7 @@ public class ShipBillPayLib extends ShipBillPayObj {
 						"No Default Billing Addresses Linked to Account# in Checkout Settings Tab", "");	
 			} else {
 				reporter.failureReport("verify Defualt Address::",
-						"Unable to Verify No Defualt Address Adresses", "");
+						"Unable to Verify No Defualt Address Adresses", "",driver);
 			}
 		}
 
@@ -1354,7 +1357,15 @@ public class ShipBillPayLib extends ShipBillPayObj {
 		}	
 		
 		
-		
+		public void optionNotExistsinPaymentOptions()throws Throwable {
+			if(isVisibleOnly(CMTObj.ALL_PAYMENT_OPTIONS,"")) {
+			}else {
+				click(ALLOWEDOPTIONCREDITCARD_CHECKOUTSETTINGS,"Credit Card Option in Available Options");
+			    click(RIGHTARROW,"Right Arrow");
+			    click(UPDATEBUTTON_SHPPINGADDRESS, "update Button");
+				waitForVisibilityOfElement(SUCCESMSG_PAYMENTOPTIONS, "Payment options updated Success Msg");
+			}
+		}		
 		
 		
 		

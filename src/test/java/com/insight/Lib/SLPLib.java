@@ -1,7 +1,9 @@
 package com.insight.Lib;
 
 import java.io.File;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.apache.poi.ss.usermodel.Workbook;
@@ -41,13 +43,13 @@ public class SLPLib extends SLPObj {
 	 * @throws Throwable
 	 */
 	public void verifyProrationincartpage(String PartNum, double Actualprice) throws Throwable {
-		String Proratedprice = getText(Priceincart(PartNum), "Price in cart page").replace("$", "").replace("USD", "");
+		String Proratedprice = getText(Priceincart(PartNum), "Price in cart page").replace("$", "").replace("USD", "").replace(",", "");
 		Double actualProratedprice = Double.valueOf(Proratedprice);
 		if (Proratedprice.equals(Actualprice) && actualProratedprice >= Actualprice) {
-			reporter.failureReport("Prorartion::", "ProratedPrice Matches With Actual Price:","Product Actual Price: "+Actualprice+ "Prorated price USD $"+Proratedprice,driver);
+			reporter.failureReport("Prorartion::", "ProratedPrice Matches With Actual Price:","Product Actual Price: $"+Actualprice+ "Prorated price $"+Proratedprice,driver);
 		} else {
 			reporter.SuccessReport("Prorartion::",
-					" Prorated Price is displayed ","Product Actual Price: " +Actualprice+ "Prorated price USD $"+Proratedprice);
+					" Prorated Price is displayed ","Product Actual Price: " +Actualprice+ "Prorated price  $"+Proratedprice);
 		}
 	}
 
@@ -158,7 +160,7 @@ public class SLPLib extends SLPObj {
 
 	/**
 	 * 
-	 * @param This method is to verify license type in cart page
+	 * This method is to verify license type in cart page
 	 * @throws Throwable
 	 */
 	public void verifylicensetype(String partnum) throws Throwable {
@@ -647,7 +649,7 @@ public class SLPLib extends SLPObj {
 		 */
 		public void verifyReportingPeriodWarning() throws Throwable{
 			if(isElementPresent(REPORTING_PERIOD_WARNING_MSG, "verify repoting warning message")){
-				reporter.SuccessReport("Verify reporting period warning message", "Reporting period warning message", "");
+				reporter.SuccessReport("Verify reporting period warning message", "Reporting period warning message", getText(REPORTING_PERIOD_WARNING_MSG, "Warning message"));
 			}else{
 				reporter.failureReport("Verify reporting period warning message", "Reporting period warning message does not exist", "",driver);
 			}
@@ -879,7 +881,14 @@ public class SLPLib extends SLPObj {
 		 * @throws Throwable
 		 */
 		public void verifyDateAppliedToAllPartAfterCopyAll(String actualDate,String expectedDate) throws Throwable {
-			if(actualDate.replaceFirst("0", "").equals(expectedDate)) {
+
+			char startingValue=actualDate.charAt(0);
+			if(startingValue=='0') {
+				actualDate=actualDate.replaceFirst("0", "");
+			}else {
+				// Do nothing
+			}
+			if(actualDate.equals(expectedDate)) {
 				reporter.SuccessReport("Verify date is copied to all parts", "Deploy date updted  ", "Deploy Date: "+actualDate);
 			}else {
 				reporter.failureReport("Verify date is copied to all parts", "Date is not copied to all parts", "", driver);
@@ -1068,6 +1077,19 @@ public class SLPLib extends SLPObj {
 					reporter.failureReport("Verify MSPA Products are Prorated in Quotes details", "MSPA Products are not Prorated in Quotes details", "",driver);
 				   }
 				}
-			}
+	/**
+	 * Method is to verify the invisibility of proceed to checkout button
+	 * @throws Throwable
+	 */
+	public void verifyProceedToCheckOutButton() throws Throwable {
+		commonLib.spinnerImage();
+		if(isElementPresent(OrderLib.PROCEED_TO_CHECKOUT, "Proceed to checkout") && isEnabled(OrderLib.PROCEED_TO_CHECKOUT, "Proceed to checkout")){
+			reporter.SuccessReport("Verify proceed to checkout button", "Proceed to checkout button exists","",driver);
+		}else{
+			reporter.failureReport("Verify proceed to checkout button", "Proceed to checkout button does not exists", "");
+		}
+	}
+}
+
 
 

@@ -21,7 +21,7 @@ public class MarriottIntlCorpLib extends MarriottIntlCorpObj {
 
 	public void handleinsightpopup() throws Throwable {
 		CMTLib cmtLib = new CMTLib();
-		if (driver.findElement(CartObj.POP_UP_EMAILID).isDisplayed()) {
+		if (isVisibleOnly(CartObj.POP_UP_EMAILID,"Pop UP")) {
 			cmtLib.handleWelcomeToInsightBetaPopUp();
 		} else {
 			// do nothing
@@ -45,7 +45,7 @@ public class MarriottIntlCorpLib extends MarriottIntlCorpObj {
 			Thread.sleep(4000);
 			reporter.SuccessReport("Switch to Account", "Switched To Gitve Account", "");
 		} else {
-			reporter.failureReport("Switch to Account", "Unable to Switch To Gitve Account", "");
+			reporter.failureReport("Switch to Account", "Unable to Switch To Gitve Account", "",driver);
 		}
 	}
 
@@ -61,7 +61,7 @@ public class MarriottIntlCorpLib extends MarriottIntlCorpObj {
 			reporter.SuccessReport("Welcome to e Procurement page", "Welcome to e Procurement page is Visible", "");
 
 		} else {
-			reporter.failureReport("Welcome to e Procurement page", "Welcome to e Procurement page is Not Visible", "");
+			reporter.failureReport("Welcome to e Procurement page", "Welcome to e Procurement page is Not Visible", "",driver);
 		}
 	}
 
@@ -103,7 +103,7 @@ public class MarriottIntlCorpLib extends MarriottIntlCorpObj {
 			reporter.SuccessReport("PartNum::", "PartNum is Verified " + partnum + "", ""+ partnum +"");
 
 		} else {
-			reporter.failureReport("PartNum::", "PartNum in is Not Verified", "");
+			reporter.failureReport("PartNum::", "PartNum in is Not Verified", "",driver);
 		}
 	}
 
@@ -120,7 +120,7 @@ public class MarriottIntlCorpLib extends MarriottIntlCorpObj {
 
 		} else {
 			reporter.failureReport("Price of PartNum in Selected Product group",
-					"Price of PartNum in Selected Product group is Not Visible", "");
+					"Price of PartNum in Selected Product group is Not Visible", "",driver);
 		}
 	}
 
@@ -140,7 +140,7 @@ public class MarriottIntlCorpLib extends MarriottIntlCorpObj {
 
 		} else {
 			reporter.failureReport("Quantity of  PartNum in Selected Product group",
-					"PartNum in Selected Product group is Not Visible", "");
+					"PartNum in Selected Product group is Not Visible", "",driver);
 		}
 		click(CommonObj.ADD_TO_ORDER, "ADD To Order Button is Clicked");
 		Thread.sleep(4000);
@@ -188,7 +188,7 @@ public class MarriottIntlCorpLib extends MarriottIntlCorpObj {
 			reporter.SuccessReport("Cart Bread Crumb", "Cart Bread Crumb is verified", "");
 
 		} else {
-			reporter.failureReport("Cart Bread Crumb", "Cart Bread Crumb is Not verified", "");
+			reporter.failureReport("Cart Bread Crumb", "Cart Bread Crumb is Not verified", "",driver);
 		}
 	}
 
@@ -206,7 +206,7 @@ public class MarriottIntlCorpLib extends MarriottIntlCorpObj {
 
 		} else {
 			reporter.failureReport("Price of PartNum in Selected Product group in Cart",
-					"Price of PartNum in Selected Product group is Not Visible  in Cart", "");
+					"Price of PartNum in Selected Product group is Not Visible  in Cart", "",driver);
 		}
 	}
 
@@ -223,7 +223,7 @@ public class MarriottIntlCorpLib extends MarriottIntlCorpObj {
 
 		} else {
 			reporter.failureReport("Quantity of PartNum in Selected Product group in Cart",
-					"Price of PartNum in Selected Product group is Not Visible  in Cart", "");
+					"Price of PartNum in Selected Product group is Not Visible  in Cart", "",driver);
 		}
 	}
 
@@ -241,7 +241,7 @@ public class MarriottIntlCorpLib extends MarriottIntlCorpObj {
 			reporter.SuccessReport("Save As Quote:: ", "Quote is saved", "");
 
 		} else {
-			reporter.failureReport("Save As Quote::", "Quote is Unable to save", "");
+			reporter.failureReport("Save As Quote::", "Quote is Unable to save", "",driver);
 		}
 	}
 
@@ -259,7 +259,7 @@ public class MarriottIntlCorpLib extends MarriottIntlCorpObj {
 		if (isElementPresent(SAVEASQUOTE_NAME, "Quote Name")) {
 			reporter.SuccessReport("Quote name", "Quote name is Visible", "");
 		} else {
-			reporter.failureReport("Quote name", "Quote name is Not Visible", "");
+			reporter.failureReport("Quote name", "Quote name is Not Visible", "",driver);
 		}
 	}
 
@@ -273,7 +273,7 @@ public class MarriottIntlCorpLib extends MarriottIntlCorpObj {
 		if (isElementPresent(SAVEASQUOTE_NOTES, "PartPrice")) {
 			reporter.SuccessReport("Quote Notes ", "Quote Notes in Quote success msg", "");
 		} else {
-			reporter.failureReport("Quote Notes", "Quote Notes in Quote success msg is Not Visible", "");
+			reporter.failureReport("Quote Notes", "Quote Notes in Quote success msg is Not Visible", "",driver);
 		}
 	}
 
@@ -299,7 +299,7 @@ public class MarriottIntlCorpLib extends MarriottIntlCorpObj {
 		if (isElementPresent(REFNUM_SAVEASQUTESSUCCESSPG, "RefNum")) {
 			reporter.SuccessReport("RefNum Of Quote ", "RefNum Of Quote" + RefNum + "", "");
 		} else {
-			reporter.failureReport("RefNum Of Quote", "RefNum Of Quote is Not Visible", "");
+			reporter.failureReport("RefNum Of Quote", "RefNum Of Quote is Not Visible", "",driver);
 		}
 		return RefNum;
 	}
@@ -314,7 +314,7 @@ public class MarriottIntlCorpLib extends MarriottIntlCorpObj {
 		if (isElementPresent(QUOTENAME_SAVEASQUTESSUCCESSPG, "Quote Name")) {
 			reporter.SuccessReport("Quote name", "Quote name is visible::"+Quote_name+"", "");
 		} else {
-			reporter.failureReport("Quote name", "Quote name is Not Visible", "");
+			reporter.failureReport("Quote name", "Quote name is Not Visible", "",driver);
 		}
 		return Quote_name;
 	}
@@ -328,7 +328,7 @@ public class MarriottIntlCorpLib extends MarriottIntlCorpObj {
 		if (isElementPresent(QUOTENOTES_SAVEASQUTESSUCCESSPG, "PartPrice")) {
 			reporter.SuccessReport("Quote Notes ", "Quote Notes in Quote success msg is visible", "");
 		} else {
-			reporter.failureReport("Quote Notes", "Quote Notes in Quote success msg is Not Visible", "");
+			reporter.failureReport("Quote Notes", "Quote Notes in Quote success msg is Not Visible", "",driver);
 		}
 	}
 
@@ -398,7 +398,7 @@ public class MarriottIntlCorpLib extends MarriottIntlCorpObj {
 
 	public void Compareaddress(Object mylist1, Object mylist2) throws Throwable {
 		if (mylist1.equals(mylist2)) {
-			reporter.failureReport("Shipping addresses Company::", "Shipping Address Companies Are Matching", "");
+			reporter.failureReport("Shipping addresses Company::", "Shipping Address Companies Are Matching", "",driver);
 		} else {
 			reporter.SuccessReport("Shipping addresses Company::", "Shipping Address Companies Are Not Matching", "");
 		}
@@ -406,7 +406,7 @@ public class MarriottIntlCorpLib extends MarriottIntlCorpObj {
 
 	public void CompareaddressCompanyname(String Company1, String Company2) throws Throwable {
 		if (Company1.equals(Company2)) {
-			reporter.failureReport("Shipping address::", "Shipping Address Are Matching", "");
+			reporter.failureReport("Shipping address::", "Shipping Address Are Matching", "",driver);
 		} else {
 			reporter.SuccessReport("Shipping address::", "Shipping Address Are Not Matching", "");
 		}
@@ -431,7 +431,7 @@ public class MarriottIntlCorpLib extends MarriottIntlCorpObj {
 			reporter.SuccessReport("WebGroup", "WebGroup is displayed as " + webgrp + "", "");
 		}
 		 else {
-				reporter.failureReport("Switch to WebGroup", "WebGroup is not displaying as expected", "");
+				reporter.failureReport("Switch to WebGroup", "WebGroup is not displaying as expected", "",driver);
 			}
 	}
 
@@ -447,7 +447,7 @@ public class MarriottIntlCorpLib extends MarriottIntlCorpObj {
 			type(ENDUSER_MARSHA, endusermarsha, "End User Marsha");
 			reporter.SuccessReport("Additional Info In Swb", "Additional Info In Swb is Updated", "");
 		} else {
-			reporter.failureReport("Additional Info In Swb", "Additional Info In Swb is Unable To Update", "");
+			reporter.failureReport("Additional Info In Swb", "Additional Info In Swb is Unable To Update", "",driver);
 		}
 	}
 
@@ -477,7 +477,7 @@ public class MarriottIntlCorpLib extends MarriottIntlCorpObj {
 		} else {
 
 			reporter.failureReport("Quantity of  PartNum in Selected Product group",
-					"PartNum in Selected Product group is Not Visible", "");
+					"PartNum in Selected Product group is Not Visible", "",driver);
 
 		}
 
@@ -492,7 +492,7 @@ public class MarriottIntlCorpLib extends MarriottIntlCorpObj {
 			click(VIEW_CART, "Cart");
 			reporter.SuccessReport("Cart Bread Crumb", "Cart Bread Crumb is verified", "");
 		} else {
-			reporter.failureReport("Cart Bread Crumb", "Cart Bread Crumb is Not verified", "");
+			reporter.failureReport("Cart Bread Crumb", "Cart Bread Crumb is Not verified", "",driver);
 		}
 		Thread.sleep(5000);
 	}
@@ -568,7 +568,7 @@ public class MarriottIntlCorpLib extends MarriottIntlCorpObj {
 		} else {
 
 			reporter.failureReport("Price of PartNum in Selected Product group in Cart",
-					"Price of PartNum in Selected Product group is Not Visible  in Cart", "");
+					"Price of PartNum in Selected Product group is Not Visible  in Cart", "",driver);
 
 		}
 	}
@@ -847,7 +847,7 @@ public class MarriottIntlCorpLib extends MarriottIntlCorpObj {
 		if (isElementPresent(verifybrandidentifiertext(Brand_Identifier), "Brand_Identifier")) {
 			reporter.SuccessReport("Brand_Identifier::", "" + Brand_Identifier + "- Is visible",Brand_Identifier);
 		} else {
-			reporter.failureReport("Brand_Identifier::", "Brand_Identifier is Not Visible", "");
+			reporter.failureReport("Brand_Identifier::", "Brand_Identifier is Not Visible", "",driver);
 		}
 	}
 
@@ -862,7 +862,7 @@ public class MarriottIntlCorpLib extends MarriottIntlCorpObj {
 			reporter.SuccessReport("Order Contain PC(or)Laptop::", "" + PC_Laptop + " Is visible On Place Order Page",
 					"");
 		} else {
-			reporter.failureReport("Order Contain PC(or)Laptop::", "Option is Not Visible", "");
+			reporter.failureReport("Order Contain PC(or)Laptop::", "Option is Not Visible", "",driver);
 		}
 	}
 
@@ -877,7 +877,7 @@ public class MarriottIntlCorpLib extends MarriottIntlCorpObj {
 			reporter.SuccessReport("PC_End_User_MARSHA::", "" + PC_End_User_MARSHA + " Is visible On Place Order Page",
 					"");
 		} else {
-			reporter.failureReport("PC_End_User_MARSHA::", "PC_End_User_MARSHA is Not Visible", "");
+			reporter.failureReport("PC_End_User_MARSHA::", "PC_End_User_MARSHA is Not Visible", "",driver);
 		}
 	}
 
@@ -891,7 +891,7 @@ public class MarriottIntlCorpLib extends MarriottIntlCorpObj {
 		if (isElementPresent(verifypcusernametext(PC_User_Name), "PC_User_Name")) {
 			reporter.SuccessReport("PC UserName::", "" + PC_User_Name + " Is visible On Place Order Page", PC_User_Name);
 		} else {
-			reporter.failureReport("PC UserName::", "PC_User_Name is Not Visible", "");
+			reporter.failureReport("PC UserName::", "PC_User_Name is Not Visible", "",driver);
 		}
 	}
 
@@ -905,7 +905,7 @@ public class MarriottIntlCorpLib extends MarriottIntlCorpObj {
 		if (isElementPresent(verifyrequestoremailtext(Requester_Email), "Requester_Email")) {
 			reporter.SuccessReport("Requester Email::", "" + Requester_Email + " Is visible On Place Order Page", "");
 		} else {
-			reporter.failureReport("Requester Email::", "Requester Email is Not Visible", "");
+			reporter.failureReport("Requester Email::", "Requester Email is Not Visible", "",driver);
 		}
 	}
 
@@ -919,7 +919,7 @@ public class MarriottIntlCorpLib extends MarriottIntlCorpObj {
 		if (isElementPresent(verifynotestext(Notes), "Notes")) {
 			reporter.SuccessReport("Notes::", "" + Notes + " Is visible On Place Order Page",Notes);
 		} else {
-			reporter.failureReport("Notes::", "Notes is Not Visible", "");
+			reporter.failureReport("Notes::", "Notes is Not Visible", "",driver);
 		}
 	}
 
@@ -934,7 +934,7 @@ public class MarriottIntlCorpLib extends MarriottIntlCorpObj {
 			reporter.SuccessReport("Shiiping address Attention::",
 					"" + Ship_Attention + " Is visible On Place Order Page", "");
 		} else {
-			reporter.failureReport("Shiiping address Attention::", "Shiiping address Attention is Not Visible", "");
+			reporter.failureReport("Shiiping address Attention::", "Shiiping address Attention is Not Visible", "",driver);
 		}
 	}
 
@@ -948,7 +948,7 @@ public class MarriottIntlCorpLib extends MarriottIntlCorpObj {
 		if (isElementPresent(Billingaddressattentiontext(Notes), "Billing address Attention")) {
 			reporter.SuccessReport("Billing address Attention::", "" + Notes + "Is visible On Place Order Page", "");
 		} else {
-			reporter.failureReport("Billing address Attention::", "Billing address Attention is Not Visible", "");
+			reporter.failureReport("Billing address Attention::", "Billing address Attention is Not Visible", "",driver);
 		}
 	}
 
@@ -968,7 +968,7 @@ public class MarriottIntlCorpLib extends MarriottIntlCorpObj {
 
 		} else {
 			reporter.failureReport("Quantity of  PartNum in Selected Product group",
-					"PartNum in Selected Product group is Not Visible", "");
+					"PartNum in Selected Product group is Not Visible", "",driver);
 		}
 		click(ADDPRODUCT, "ADD Product");
 		waitForVisibilityOfElement(CommonObj.ADD_TO_ORDER, "ADD To Order Button is Clicked");
@@ -1026,7 +1026,7 @@ public class MarriottIntlCorpLib extends MarriottIntlCorpObj {
 		if (isElementPresent(verifyRequisitortext(Requester_Name), "Requester_Name")) {
 			reporter.SuccessReport("Requester Name::", "" + Requester_Name + " -Is visible On Place Order Page", Requester_Name);
 		} else {
-			reporter.failureReport("Requester Name::", "Requester Name is Not Visible", "");
+			reporter.failureReport("Requester Name::", "Requester Name is Not Visible", "",driver);
 		}
 	}
 
@@ -1040,7 +1040,7 @@ public class MarriottIntlCorpLib extends MarriottIntlCorpObj {
 		if (isElementPresent(Costumerrefernce(Customer_Reference), "Customer_Reference")) {
 			reporter.SuccessReport("Customer Reference::", "" + Customer_Reference + " -Is visible On Place Order Page",Customer_Reference);
 		} else {
-			reporter.failureReport("Customer Reference::", "Customer_Reference is Not Visible", "");
+			reporter.failureReport("Customer Reference::", "Customer_Reference is Not Visible", "",driver);
 		}
 	}
 
@@ -1054,7 +1054,7 @@ public class MarriottIntlCorpLib extends MarriottIntlCorpObj {
 		if (isElementPresent(verifyEndusertext(End_User_People), "End_User_People")) {
 			reporter.SuccessReport("End_User_People::", "" + End_User_People + " -Is visible On Place Order Page",End_User_People);
 		} else {
-			reporter.failureReport("End_User_People::", "End_User_People is Not Visible", "");
+			reporter.failureReport("End_User_People::", "End_User_People is Not Visible", "",driver);
 		}
 	}
 
@@ -1069,7 +1069,7 @@ public class MarriottIntlCorpLib extends MarriottIntlCorpObj {
 			reporter.SuccessReport("Approving_Manager_Email::",
 					"" + Approving_Manager + " - Is visible On Place Order Page", Approving_Manager);
 		} else {
-			reporter.failureReport("Approving_Manager_Email::", "Approving_Manager_Email is Not Visible", "");
+			reporter.failureReport("Approving_Manager_Email::", "Approving_Manager_Email is Not Visible", "",driver);
 		}
 	}
 
@@ -1083,7 +1083,7 @@ public class MarriottIntlCorpLib extends MarriottIntlCorpObj {
 		if (isElementPresent(Enduseremail(End_User_Email), "End_User_Email")) {
 			reporter.SuccessReport("End_User_Email::", "" + End_User_Email + " - Is visible On Place Order Page", End_User_Email);
 		} else {
-			reporter.failureReport("End_User_Email::", "End_User_Email is Not Visible", "");
+			reporter.failureReport("End_User_Email::", "End_User_Email is Not Visible", "",driver);
 		}
 	}
 
@@ -1097,7 +1097,7 @@ public class MarriottIntlCorpLib extends MarriottIntlCorpObj {
 		if (isElementPresent(nonirfapc(Non_IRFA_PC), "Non_IRFA_PC")) {
 			reporter.SuccessReport("Non_IRFA_PC::", "" + Non_IRFA_PC + " - Is visible On Place Order Page",Non_IRFA_PC);
 		} else {
-			reporter.failureReport("Non_IRFA_PC::", "Non_IRFA_PC is Not Visible", "");
+			reporter.failureReport("Non_IRFA_PC::", "Non_IRFA_PC is Not Visible", "",driver);
 		}
 	}
 
@@ -1112,7 +1112,7 @@ public class MarriottIntlCorpLib extends MarriottIntlCorpObj {
 			reporter.SuccessReport("End_User_Div_Unit_Dept::",
 					"" + PC_End_User_Div_Unit_Dept + " - Is visible On Place Order Page",PC_End_User_Div_Unit_Dept);
 		} else {
-			reporter.failureReport("End_User_Div_Unit_Dept::", "End_User_Div_Unit_Dept is Not Visible", "");
+			reporter.failureReport("End_User_Div_Unit_Dept::", "End_User_Div_Unit_Dept is Not Visible", "",driver);
 		}
 	}
 
@@ -1144,7 +1144,7 @@ public class MarriottIntlCorpLib extends MarriottIntlCorpObj {
 		if (isElementPresent(verifydomain(Domain), "Non_IRFA_PC")) {
 			reporter.SuccessReport("Non_IRFA_PC::", "" + Domain + " - Is visible On Place Order Page", "");
 		} else {
-			reporter.failureReport("Non_IRFA_PC::", "Non_IRFA_PC is Not Visible", "");
+			reporter.failureReport("Non_IRFA_PC::", "Non_IRFA_PC is Not Visible", "",driver);
 		}
 	}
 
@@ -1158,7 +1158,7 @@ public class MarriottIntlCorpLib extends MarriottIntlCorpObj {
 		if (isElementPresent(verifyEnduserEid(End_User_Eid), "End_User_Eid")) {
 			reporter.SuccessReport("End_User_Eid::", "" + End_User_Eid + " -Is visible On Place Order Page", "");
 		} else {
-			reporter.failureReport("End_User_Eid::", "End_User_Eid is Not Visible", "");
+			reporter.failureReport("End_User_Eid::", "End_User_Eid is Not Visible", "",driver);
 		}
 	}
 
@@ -1172,7 +1172,7 @@ public class MarriottIntlCorpLib extends MarriottIntlCorpObj {
 		if (isElementPresent(verifyEndusername(End_User_Name), "End_User_Name")) {
 			reporter.SuccessReport("End_User_Name::", "" + End_User_Name + " -Is visible On Place Order Page", "");
 		} else {
-			reporter.failureReport("End_User_Name::", "End_User_Name is Not Visible", "");
+			reporter.failureReport("End_User_Name::", "End_User_Name is Not Visible", "",driver);
 		}
 	}
 
@@ -1186,7 +1186,7 @@ public class MarriottIntlCorpLib extends MarriottIntlCorpObj {
 		if (isElementPresent(Shipinfoattention(Attention), "Attention")) {
 			reporter.SuccessReport("Shipping Address::", "" + Attention + " -Is visible On Place Order Page", "");
 		} else {
-			reporter.failureReport("Shipping Address::", "Attention is Not Visible", "");
+			reporter.failureReport("Shipping Address::", "Attention is Not Visible", "",driver);
 		}
 	}
 
@@ -1200,7 +1200,7 @@ public class MarriottIntlCorpLib extends MarriottIntlCorpObj {
 		if (isElementPresent(Billinfoattention(Attention), "Attention")) {
 			reporter.SuccessReport("Billing Address::", "" + Attention + " -Is visible On Place Order Page", "");
 		} else {
-			reporter.failureReport("Billing Address::", "Attention is Not Visible", "");
+			reporter.failureReport("Billing Address::", "Attention is Not Visible", "",driver);
 		}
 	}
 	/**
@@ -1238,7 +1238,7 @@ public class MarriottIntlCorpLib extends MarriottIntlCorpObj {
 			click(CONTINUEBUTTON_SWITCHTOACC, "Continue Button");
 			reporter.SuccessReport("Switch to Account", "Switched To Gitve Account", "");
 		} else {
-			reporter.failureReport("Switch to Account", "Unable to Switch To Gitve Account", "");
+			reporter.failureReport("Switch to Account", "Unable to Switch To Gitve Account", "",driver);
 		}
 	}
 	public void setQuantityAddProductMIC03(String value, String PartNum) throws Throwable {
@@ -1250,7 +1250,7 @@ public class MarriottIntlCorpLib extends MarriottIntlCorpObj {
 
 		} else {
 			reporter.failureReport("Quantity of  PartNum in Selected Product group",
-					"PartNum in Selected Product group is Not Visible", "");
+					"PartNum in Selected Product group is Not Visible", "",driver);
 		}
 		click(ADDPMI(PartNum), "Check BoX to Add Product");
 		waitForVisibilityOfElement(CommonObj.ADD_TO_ORDER, "ADD To Order Button is Clicked");

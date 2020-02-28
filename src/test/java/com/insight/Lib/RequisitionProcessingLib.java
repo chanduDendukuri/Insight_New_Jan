@@ -18,10 +18,10 @@ import com.insight.ObjRepo.RequisitionProcessingObj;
 public class RequisitionProcessingLib extends RequisitionProcessingObj {
 	OrderLib orderLib = new OrderLib();
 	public void verifyApprovalManagementPage() throws Throwable {
-		waitForVisibilityOfElement(RequisitionProcessingObj.APPROVAL_MANAGEMENT_PAGE,
-				"Approval management page display");
+		
 
-		if (isElementPresent(APPROVAL_MANAGEMENT_PAGE, "Approval management page")) {
+		if (waitForVisibilityOfElement(RequisitionProcessingObj.APPROVAL_MANAGEMENT_PAGE,
+				"")) {
 			reporter.SuccessReport("Verify Approval Management  Page", "Approval Management Page is Exists", "");
 		} else {
 			reporter.failureReport("Verify Approval Management  Page", "Approval Management Page does not Exists", "");
@@ -30,15 +30,15 @@ public class RequisitionProcessingLib extends RequisitionProcessingObj {
 	}
 
 	public void clickTestRulesLink() throws Throwable {
-		waitForVisibilityOfElement(TESTRULES_EDIT_LINK, "TestRules Edit link click");
+		waitForVisibilityOfElement(TESTRULES_EDIT_LINK, "TestRules Edit icon");
 
-		if (isElementPresent(TESTRULES_EDIT_LINK, "TestRules Edit link click")) {
+		if (isElementPresent(TESTRULES_EDIT_LINK, "TestRules Edit icon")) {
 			click(TESTRULES_EDIT_LINK, "TestRules Edit link click");
-			reporter.SuccessReport("Verify TestRules Edit link click in Approval Management  Page",
-					"TestRules Edit link clicked", "");
+			reporter.SuccessReport("Verify TestRules Edit icon in Approval Management  Page",
+					"TestRules Edit icon clicked", "");
 		} else {
 			reporter.failureReport("Verify TestRules Edit link click in Approval Management  Page",
-					"TestRules Edit link could not clicked", "");
+					"TestRules Edit icon could not clicked", "");
 		}
 
 	}
@@ -185,25 +185,31 @@ public class RequisitionProcessingLib extends RequisitionProcessingObj {
 		}*/
 	}
 
-	public void createRule(String cart_type, String Min_Amt, String Max_Amt, String path, String item)
+	public void createRule(String cart_type,String ApprovalPath, String Min_Amt, String Max_Amt, String path, String item)
 			throws Throwable {
 		// Click Add Rule
+		
 
 		clickAddRule();
 
 		if (isElementPresent(createCartType(item), "Test Approvals Rules Cart Type")) {
 			selectByVisibleText(createCartType(item), cart_type, "Test Approvals Cart Type");
 		}
-
+		if (isElementPresent(APPROVAL_PATH, "Test ApprovalPath Rules ")) {
+			selectByVisibleText(APPROVAL_PATH, ApprovalPath, "Select ApprovalPath");
+		}
 		if (isElementPresent(createMinAmt(item), "Test Approvals Rules Min Amount")) {
 			type(createMinAmt(item), Min_Amt, "Test Approvals Rules Min Amount");
 		}
 		if (isElementPresent(createMaxAmt(item), "Test Approvals Rules Max Amount")) {
 			type(createMaxAmt(item), Max_Amt, "Test Approvals Rules Max Amount");
 		}
-		if (isElementPresent(createPath(item), "Test Approvals Rules validation path")) {
-			selectByVisibleText(createPath(item), path, "Test Approval Rules Validation Path");
-		}
+		/*
+		 * if (isElementPresent(createPath(item),
+		 * "Test Approvals Rules validation path")) {
+		 * selectByVisibleText(createPath(item), path,
+		 * "Test Approval Rules Validation Path"); }
+		 */
 
 		if (isElementPresent(saveRule(item), "Click on save rule icon")) {
 			click(saveRule(item), "Click on save rule icon");
@@ -255,9 +261,9 @@ public class RequisitionProcessingLib extends RequisitionProcessingObj {
 		}
 	}
 
-	public void selectHDLListOption(String hdlllistoption) throws Throwable {
-		if (isElementPresent(HDLLIST_OPTION, "Select HDLLIst option")) {
-			selectByVisibleText(HDLLIST_OPTION, hdlllistoption, "Select HDLLIst option");
+	public void selectSelectaListToUseOption(String hdlllistoption) throws Throwable {
+		if (isElementPresent(dd_SelectaListToUse, "Select HDLLIst option")) {
+			selectByVisibleText(dd_SelectaListToUse, hdlllistoption, "Select HDLLIst option");
 		}
 	}
 
@@ -266,10 +272,12 @@ public class RequisitionProcessingLib extends RequisitionProcessingObj {
 		if (isElementPresent(ADD_RULE_WITH_LIST, "ADD RULE Button")) {
 			click(ADD_RULE_WITH_LIST, "ADD RULE Button");
 
-			if (isElementPresent(createListValue(item), "Test Approvals Rules Cart Type")) {
-				selectByVisibleText(createListValue(item), cart_type, "Test Approvals Cart Type");
+			if (isElementPresent(createListValue(item), "Create List Value")) {
+				selectByVisibleText(createListValue(item), List_Option, "Create List Value");
 			}
-
+			if (isElementPresent(createCartType(item), "Test Approvals Rules Cart Type")) {
+				selectByVisibleText(createCartType(item), cart_type, "Test Approvals Cart Type");
+			}
 			if (isElementPresent(createMinAmt(item), "Test Approvals Rules Min Amount")) {
 				type(createMinAmt(item), Min_Amt, "Test Approvals Rules Min Amount");
 			}
@@ -290,7 +298,7 @@ public class RequisitionProcessingLib extends RequisitionProcessingObj {
 	public void deleteRoutingOption() throws Throwable {
 
 		if (isElementPresent(By.xpath("//a[@class='deleteRoute']"), "Delete routing option")) {
-			click(By.xpath("//a[@class='deleteRoute']"), "Delete routing option");
+			click(By.xpath("//span[contains(text(),'Delete Route')]//following::span[contains(text(),'Delete')]"), "Delete routing option");
 			if (isElementPresent(By.xpath("(//div[@class='buttons dbDiv']//a//span[contains(text(),'Delete')])[5]"),
 					"Delete rule icon")) {
 				click(By.xpath("(//div[@class='buttons dbDiv']//a//span[contains(text(),'Delete')])[5]"),
@@ -299,7 +307,25 @@ public class RequisitionProcessingLib extends RequisitionProcessingObj {
 		}
 
 	}
+	public void VerifyIfRoutingOptionsareVisibleandDelete() throws Throwable {
 
+		if (isVisibleOnly(DeleteRoutingOption, "Delete routing icon")) {
+			click(DeleteRoutingOption, "Delete routing icon", "");
+			if(isVisibleOnly(Delete_UnderRouteButton, "Delete button")){
+				click(Delete_UnderRouteButton, "Clicked on Delete button", "");
+				reporter.SuccessReport("Delete Route", "All routes are deleted", "", driver);
+			}
+			else if(isVisibleOnly(Delete_UnderRouteButton1, "Delete button")){
+				click(Delete_UnderRouteButton1, "Clicked on Delete button", "");
+				reporter.SuccessReport("Delete Route", "All routes are deleted", "", driver);
+			}
+			else {
+				reporter.failureReport("Delete Route", "All routes are not deleted", "", driver);
+			}
+			
+		}
+
+	}
 	public void backtoReqSearchForCreateRules() throws Throwable {
 		if (isElementPresent(BACKTO_REQSEARCH, "Back To Requestor Group Search")) {
 			// click(BACKTO_REQSEARCH, "Click Back To Requestor Group Search
@@ -309,7 +335,20 @@ public class RequisitionProcessingLib extends RequisitionProcessingObj {
 
 		}
 	}
-
+public void SelectCretaeRule(String Rule) throws Throwable {
+	if(isVisible(CreateRule, "Create rule dropdown")) {
+		
+	selectByVisibleText(CreateRule, Rule, "Rule option");
+	reporter.SuccessReport("Create Rule", "Created Rules Field Exist and Selected", Rule, driver);
+	}
+	else {
+		reporter.failureReport("Create Rule", "Created Rules Field not Exist", "",driver);
+	}
+}
+public void ClickAddRoute() throws Throwable {
+	scrollUp();
+	click(btn_AddRoute, "AddRoute button","");
+}
 	
 	public void checkDenyRadioBtn(String text)  throws Throwable{
 		click(DENY_RADIOBTN,"Check Deny radio button");
@@ -319,8 +358,9 @@ public class RequisitionProcessingLib extends RequisitionProcessingObj {
 	 * 
 	 * @param text
 	 * @throws Throwable
-	 */
+	 *///
 	public void verifyDenyedstatusRefNum(String status,String refNum)  throws Throwable{
+		//click(expandsearch,"Search button expander link");
 		if(isElementPresent(SEARCH_HDR,"Requisition search header")){
 			if(isElementPresent(STATUS_DROPDOWN,"Requisition status dropdown")){
 				selectByVisibleText(STATUS_DROPDOWN,status,"Requisition status dropdown");
@@ -331,8 +371,10 @@ public class RequisitionProcessingLib extends RequisitionProcessingObj {
 						"Requsition Status Not Exists","");
 			}
 			 type(REFERENCE_TEXTBOX,refNum,"Deneyed request");
-			 reporter.SuccessReport("Enter Reference Number on Requisition Search Results Page",
-						"Reference Number Field Exist Entered","");
+			
+			  reporter.SuccessReport("Enter Reference Number on Requisition Search Results Page",
+			 "Reference Number Field Exist Entered","");
+			
 			 click(SERACH1_BTN,"Search button");
 			 reporter.SuccessReport("Click  SEARCH  on Requisition Search Results Page",
 						"SEARCH Link Exists and Clicked","");
@@ -343,7 +385,38 @@ public class RequisitionProcessingLib extends RequisitionProcessingObj {
 			acceptAlert();
 	}
 	}
-	
+	/**
+	 * 
+	 * @param status
+	 * @throws Throwable
+	 */
+	public void verifyDenyedstatusRefNuminRequisition(String status)  throws Throwable{
+		click(expandsearch,"Search button expander link");
+		if(isElementPresent(SEARCH_HDR,"Requisition search header")){
+			if(isElementPresent(STATUS_DROPDOWN,"Requisition status dropdown")){
+				selectByVisibleText(STATUS_DROPDOWN,status,"Requisition status dropdown");
+				reporter.SuccessReport("Select Requsition Status on  Requisition Search Results Page",
+						"Requsition Status Field Exist Selected","");
+			} else {
+				reporter.failureReport("Select Requsition Status on  Requisition Search Results Page",
+						"Requsition Status Not Exists","");
+			}
+			// type(REFERENCE_TEXTBOX,refNum,"Deneyed request");
+			/*
+			 * reporter.
+			 * SuccessReport("Enter Reference Number on Requisition Search Results Page",
+			 * "Reference Number Field Exist Entered","");
+			 */
+			 click(SERACH1_BTN,"Search button");
+			 reporter.SuccessReport("Click  SEARCH  on Requisition Search Results Page",
+						"SEARCH Link Exists and Clicked","");
+		}else {
+			reporter.failureReport("Verify search on  Requisition Search Results Page",
+					"Requsition search header Not Exists","");
+			Thread.sleep(3000);
+			//acceptAlert();
+	}
+	}
 	/**
 	 * 
 	 * @param orderLink
@@ -386,6 +459,21 @@ public class RequisitionProcessingLib extends RequisitionProcessingObj {
 	    type(REQ_GRP_DROPDOWN_TYPE,ReqName,"Selected Requestor Group Name");
 	    WebElement element = driver.findElement(REQ_GRP_DROPDOWN_TYPE);
 		element.sendKeys(Keys.ENTER);
+	}
+	
+	/**
+	 * This method is to check deny radio button in approval management page
+	 * @throws Throwable
+	 */
+	public void selectRequestorGroupNameFromDD(String ReqName)  throws Throwable{
+		By REQ_GRP_DROPDOWN_ARROW=By.xpath("//span[@id='react-select-6--value']/following::span[@class='Select-arrow'][4]");
+		click(REQ_GRP_DROPDOWN_ARROW,"Requestor group name dropdown");
+		click(REQ_GRP_DROPDOWN_OPTION(ReqName),"Rep name");
+		/*
+		 * //type(REQ_GRP_DROPDOWN_TYPE,ReqName,"Selected Requestor Group Name");
+		 * WebElement element = driver.findElement(REQ_GRP_DROPDOWN_TYPE);
+		 * element.sendKeys(Keys.ENTER);
+		 */
 	}
 	/**
 	 * This method is to check deny radio button in approval management page
@@ -474,18 +562,33 @@ public class RequisitionProcessingLib extends RequisitionProcessingObj {
 }
 	}
 	public void verifyPOandPORelease(String refNum,String PO,String PORelease) throws Throwable {
-		String PONUM_OH= getText(PONumInOrderHistory(refNum),"PO Number in order history page");
-		String PORELEASE_OH = getText(PONumInOrderHistory(refNum),"PO Number in order history page");
-		if(PONUM_OH.contains(PO)){
-			reporter.SuccessReport("Verify PO Number in Order History ", "PO Number: " , PONUM_OH);
-		}else{
-			reporter.failureReport("Verify PO Number in Order History", "PO Number not updated correctly. ","");
+		/*
+		 * String PONUM_OH=
+		 * getText(PONumInOrderHistory(refNum),"PO Number in order history page");
+		 * String PORELEASE_OH =
+		 * getText(PONumInOrderHistory(refNum),"PO Number in order history page");
+		 */
+		By poNumPoReleaseNum=By.xpath("//ul[@class='row expanded order-details__table orders__list orders__list--no-bullets']//li//span[contains(text(),'PO / PO release')]/following-sibling::span");
+		String PO_PORelease=PO+"/"+PORelease;
+		
+		/*
+		 * if(PONUM_OH.contains(PO)){
+		 * reporter.SuccessReport("Verify PO Number in Order History ", "PO Number: " ,
+		 * PONUM_OH); }else{ reporter.failureReport("Verify PO Number in Order History",
+		 * "PO Number not updated correctly. ",""); }
+		 * if(PORELEASE_OH.contains(PORelease)){
+		 * reporter.SuccessReport("Verify PO Release Number in Order History",
+		 * "PO Release Number: " , PORELEASE_OH); }else{
+		 * reporter.failureReport("Verify PO Release Number in Order History",
+		 * "PO Release Number is not updated correctly. ",""); }
+		 */
+		
+		if(getText(poNumPoReleaseNum, "poNum and PoReleaseNum").equals(PO_PORelease)) {
+			reporter.SuccessReport("Verify PO Number in Order History ", "PO Number & Po release number: " ,PO_PORelease);
+		}else {
+			reporter.failureReport("Verify PO Number in Order History ", "PO Number & Po release number does not exists " ,PO_PORelease,driver);
 		}
-		if(PORELEASE_OH.contains(PORelease)){
-			reporter.SuccessReport("Verify PO Release Number in Order History", "PO Release Number: " , PORELEASE_OH);
-		}else{
-			reporter.failureReport("Verify PO Release Number in Order History", "PO Release Number is not updated correctly. ","");
-		}
+		
 	}
 	public void enterNewCardInformation(String cardtype,String cardNum,String cardName,String month,String year) throws Throwable {
 		click(OrderObj.CONTINUE_BTNIN, "Continue Button");	
@@ -592,20 +695,21 @@ public class RequisitionProcessingLib extends RequisitionProcessingObj {
 	 * @throws Throwable
 	 */
    public  void getCheckboxesCount()  throws Throwable {
-	if (isElementPresent(CHECK_BOX, "Checkboxes checked")) {
-		List<WebElement> checkList = driver.findElements(CHECK_BOX);		
-		for (int j = 1; j < checkList.size(); j++) {
-		if(!checkList.get(j).isSelected()){
-			click(checkboxes(j),"Check particular checkbox");
-			reporter.SuccessReport("Select All the Check Boxes For Allow approver to Edit: on Approval Path Settings",
-					"Selected  All the Check Boxes For Allow approver to Edit: on Approval Path Settings","");
-		}else
-			reporter.SuccessReport("Select All the Check Boxes For Allow approver to Edit: on Approval Path Settings",
-					"Select All the Check Boxes For Allow approver to Edit: on Approval Path Settings Not Exist","");
+	   if (isElementPresent(CHECK_BOX, "Checkboxes checked")) {
+			List<WebElement> checkList = driver.findElements(CHECK_BOX);		
+			for (int j = 1; j < checkList.size(); j++) {
+			if(!checkList.get(j).isSelected()){
+				//click(checkboxes(j),"Check particular checkbox");
+				checkList.get(j).click();
+				reporter.SuccessReport("Select All the Check Boxes For Allow approver to Edit: on Approval Path Settings",
+						"Selected  All the Check Boxes For Allow approver to Edit: on Approval Path Settings","");
+			}else
+				reporter.SuccessReport("Select All the Check Boxes For Allow approver to Edit: on Approval Path Settings",
+						"Select All the Check Boxes For Allow approver to Edit: on Approval Path Settings Not Exist","");
+			}
+			click(SAVE_CHANGESBTN, "Save changes button");	
 		}
-		click(SAVE_CHANGESBTN, "Save changes button");	
-	}
-	}
+		}
 
    /**
     * 
@@ -749,26 +853,23 @@ public class RequisitionProcessingLib extends RequisitionProcessingObj {
 	 * @throws Throwable
 	 */
   public void UnCheckAllCheckboxesCount()  throws Throwable {
-	if (isElementPresent(CHECK_BOX, "Checkboxes checked")) {
-		List<WebElement> myList = driver.findElements(CHECK_BOX);		
-		for (int m = 1; m < myList.size(); m++) {
-		if(myList.get(m).isSelected()){
-			click(checkboxes(i),"Checkboxes");
-			for (int j = 1; j < myList.size(); j++) {
-				if(!myList.get(j).isSelected()){
-			reporter.SuccessReport("Select All the Check Boxes For Allow approver to Edit: on Approval Path Settings",
-					"Unchecked  All the Check Boxes For Allow approver to Edit: on Approval Path Settings","");
-			
-		}else
+	  if (isElementPresent(CHECK_BOX, "Checkboxes checked")) {
+			List<WebElement> myList = driver.findElements(CHECK_BOX);		
+			for (int m = 0; m < myList.size(); m++) {
+			if(myList.get(m).isSelected()){
+				//click(checkboxes(i),"Checkboxes");
+				myList.get(m).click();
+				reporter.SuccessReport("Select All the Check Boxes For Allow approver to Edit: on Approval Path Settings",
+						"Unchecked  All the Check Boxes For Allow approver to Edit: on Approval Path Settings","");
+			}else {
 			reporter.failureReport("Select All the Check Boxes For Allow approver to Edit: on Approval Path Settings",
-					"Unchecked All the Check Boxes For Allow approver to Edit: on Approval Path Settings Not Exist","");	
-		click(SAVE_CHANGESBTN, "Save changes button");	
-	}
-	}
-}
-	}
+					"Unchecked All the Check Boxes For Allow approver to Edit: on Approval Path Settings Not Exist","");
+		}
+
+		}
+			click(SAVE_CHANGESBTN, "Save changes button");	
+	  }
   }
-  
   /**
 	 * this method is to enter new card details
 	 * @throws Throwable
@@ -811,10 +912,39 @@ public class RequisitionProcessingLib extends RequisitionProcessingObj {
 	 * @throws Throwable
 	 */
 	public void verifyandclickManagerRequestors(String tabName) throws Throwable {
-		if (isElementPresent(createtabNames(tabName), tabName+"Tab")) {
+		
 			click(createtabNames(tabName), tabName+"Tab");
 		}
+	
+	public void AllowRequestorToCancelRequest(String text) throws Throwable {
+		if(isVisibleOnly(REQUESTER_CANCEL_REQUSET, "requester cancel request")) {
+			click(REQUESTER_CANCEL_REQUSET, "requester cancel request");
+			selectByVisibleText(REQUESTER_CANCEL_REQUSET, text, "requester cancel request");
+			click(REQUESTOR_SAVEBTN, "Save changes button");
+		}else {
+			reporter.failureReport("Verify Allow Requestor to cancel request drop down exists", "Allow Requestor to cancel request drop down does not exists", "", driver);
 		}
+	}
+	
+	public void verifyCancelRequisitionButton(String status) throws Throwable {
+		switch(status) {
+		case "No":
+			if(!isVisibleOnly(CANCEL_REQUISITION_BTN, "CANCEL REQUISITION BUTTON")) {
+				reporter.SuccessReport("Verify requisition cancel button ", "Requisition cancel button does not exists", "", driver);
+		}else {
+			reporter.failureReport("Verify requisition cancel button ", "Requisition cancel button does exists", "", driver);
+		   }
+			break;
+			
+		case "Yes":
+			if(isVisibleOnly(CANCEL_REQUISITION_BTN, "CANCEL REQUISITION BUTTON")) {
+				reporter.SuccessReport("Verify requisition cancel button ", "Requisition cancel button exists", "", driver);
+		}else {
+			reporter.failureReport("Verify requisition cancel button ", "Requisition cancel button does not exists", "", driver);
+		   }break;
+		}
+		
+	}
 	
 	 /**
 		 * 
@@ -843,7 +973,7 @@ public class RequisitionProcessingLib extends RequisitionProcessingObj {
 		
 		public void verifyorderNuminReqHistoryPage(String orderLink) throws Throwable {
 			if (isElementPresent(OrderObj.APPROVAL_MNGMNT_HDR1, "ApprovalManagement Header")) {
-			if(isElementNotPresent(OrderObj.ReferenceLink(orderLink), "Approved Reference Number Link")){
+			if(isElementPresent(OrderObj.ReferenceLink(orderLink), "Approved Reference Number Link")){
 				reporter.SuccessReport("Verify  Ref Number on Requisition List",
 						"Ref Number Link Exists","");
 			} else {

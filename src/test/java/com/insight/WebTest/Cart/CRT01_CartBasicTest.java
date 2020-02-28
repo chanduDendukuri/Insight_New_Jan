@@ -13,7 +13,7 @@ import com.insight.googledrive.ReportStatus;
 import com.insight.utilities.TestUtil;
 
 public class CRT01_CartBasicTest extends CartLib {
-	CommonLib CommonLib = new CommonLib();
+	CommonLib commonLib = new CommonLib();
 	CMTLib cmtLib = new CMTLib();
 	CanadaLib canadaLib = new CanadaLib();
 	SearchLib search = new SearchLib();
@@ -63,11 +63,11 @@ public class CRT01_CartBasicTest extends CartLib {
 					cmtLib.loginAsAdminCMT();
 					cmtLib.loginVerification(data.get("ContactName"));
 					
-					CommonLib.searchProduct(data.get("SearchItem1"));
+					commonLib.searchProduct(data.get("SearchItem1"));
 					prodInfoLib.verifyTheManufacturerNumberInProductDetailsPage(data.get("SearchItem1"));
 					search.increaseQuantity(data.get("quantity"));
 
-					CommonLib.addToCartAndVerify();
+					commonLib.addToCartAndVerify();
 					canadaLib.continueToCheckout();
 //adding review commentsString s1=Boolean.toString(verifyCartPageAvailablity());
 					String s1=Boolean.toString(verifyCartPageAvailablity());
@@ -78,7 +78,7 @@ public class CRT01_CartBasicTest extends CartLib {
 					else{
 						reporter.failureReport("Cart Landing Page", "Availability of Cart Landing Page is ",s1,driver );
 					}
-					CommonLib.searchProduct(data.get("SearchItem2"));
+					commonLib.searchProduct(data.get("SearchItem2"));
 					prodInfoLib.verifyTheManufacturerNumberInProductDetailsPage(data.get("SearchItem2"));
 					prodInfoLib.clickOnWarrantiesTabOnProductDetailsPage();
 					String manfa=prodInfoLib.getManfNumberFromWarrentiesPage(data.get("index"));
@@ -86,26 +86,27 @@ public class CRT01_CartBasicTest extends CartLib {
 					canadaLib.continueToCheckout();
 					prodInfoLib.getProductManfNumber(manfa);
 					prodInfoLib.enterQuantityForProductsInViewCartPage(data.get("Quantity"));
-					CommonLib.clickOnUpdateLinkInViewCartPage(data.get("Quantity"));
+					reporter.SuccessReport("Update Quantity" ,"Quantity was update with ",data.get("Quantity"));
+					commonLib.clickOnUpdateLinkInViewCartPage(data.get("Quantity"));
 //with zero
 					prodInfoLib.enterQuantityForProductsInViewCartPage(data.get("quan"));
-					if(!CommonLib.clickOnUpdateLinkInViewCartPage(data.get("quan"))){
+					if(!commonLib.clickOnUpdateLinkInViewCartPage(data.get("quan"))){
 						reporter.SuccessReport("Update link","Update link is not enabled with given input ",data.get("quan"));
 					}
 //characters
 					prodInfoLib.enterQuantityForProductsInViewCartPage(data.get("quant"));
-					if(!CommonLib.clickOnUpdateLinkInViewCartPage(data.get("quant"))){
+					if(!commonLib.clickOnUpdateLinkInViewCartPage(data.get("quant"))){
 						reporter.SuccessReport("Update link","Update link is not enabled with given input ",data.get("quant"));
 					}
 
 					prodInfoLib.getSummaryCartDetails();
 					prodInfoLib.deleteSelectedProducts();
 //Second time searching for same product after deleting
-					CommonLib.searchProduct(data.get("SearchItem1"));
+					commonLib.searchProduct(data.get("SearchItem1"));
 					prodInfoLib.verifyTheManufacturerNumberInProductDetailsPage(data.get("SearchItem1"));
 					search.increaseQuantity(data.get("quantity"));
 
-					CommonLib.addToCartAndVerify();
+					commonLib.addToCartAndVerify();
 					canadaLib.continueToCheckout();
 //adding review commentsString s1=Boolean.toString(verifyCartPageAvailablity());
 					String s2=Boolean.toString(verifyCartPageAvailablity());
@@ -130,16 +131,17 @@ public class CRT01_CartBasicTest extends CartLib {
 
 					cmtLib.hoverOnManageWebGroupsAndSelectOptions(data.get("Manage_Web_Grp_Options1"));
 					cmtLib.searchForaUserAndSelect(data.get("userName"), data.get("contract"));
-					CommonLib.clickRolesAndPermissionsAtUserLevel();
-					cmtLib.setPermissionsToDisable(data.get("menuName"), data.get("userPermission2"));
-					cmtLib.setPermissionsToDisableOnly(data.get("userPermission3"));
+					commonLib.clickRolesAndPermissionsAtUserLevel();
+					Thread.sleep(10000);
+					cmtLib.setPermissionsToDisable(data.get("menuName"), data.get("userPermission3"));
+					//cmtLib.setPermissionsToDisableOnly(data.get("userPermission2"));
 					cmtLib.loginAsAdminCMT();
 					cmtLib.loginVerification(data.get("contract"));
-					CommonLib.searchProduct(data.get("SearchItem1"));
+					commonLib.searchProduct(data.get("SearchItem1"));
 					prodInfoLib.verifyTheManufacturerNumberInProductDetailsPage(data.get("SearchItem1"));
 					search.increaseQuantity(data.get("quantity"));
 
-					CommonLib.addToCartAndVerify();
+					commonLib.addToCartAndVerify();
 					canadaLib.continueToCheckout();
 //adding review commentsString s1=Boolean.toString(verifyCartPageAvailablity());
 					String s4=Boolean.toString(verifyCartPageAvailablity());
@@ -151,9 +153,10 @@ public class CRT01_CartBasicTest extends CartLib {
 						reporter.failureReport("Cart Landing Page", "Availability of Cart Landing Page is ",s4,driver );
 					}
 					slp.verifyProccedToCheckOutbuttonExists();
-					cmtLib.clickOnLogoutlink();
-
-
+					commonLib.clickLogOutLink(data.get("Logout_Header"));
+					cmtLib.navigateBackToCMT();
+					Thread.sleep(1000);
+					cmtLib.clickOnLogout();
 					cmtLib.loginToCMT(data.get("Header"));
 
 					cmtLib.searchForWebGroup(data.get("WebGrp"));
@@ -164,11 +167,11 @@ public class CRT01_CartBasicTest extends CartLib {
 					cmtLib.clickOnRolesAndPermissionsAndSetPermission(data.get("menuName"), data.get("userPermission3"));
 					cmtLib.loginAsAdminCMT();
 					cmtLib.loginVerification(data.get("contract"));
-					CommonLib.searchProduct(data.get("SearchItem1"));
+					commonLib.searchProduct(data.get("SearchItem1"));
 					prodInfoLib.verifyTheManufacturerNumberInProductDetailsPage(data.get("SearchItem1"));
 					search.increaseQuantity(data.get("quantity"));
 
-					CommonLib.addToCartAndVerify();
+					commonLib.addToCartAndVerify();
 					canadaLib.continueToCheckout();
 //adding review commentsString s1=Boolean.toString(verifyCartPageAvailablity());
 					Thread.sleep(10000);
@@ -191,7 +194,6 @@ public class CRT01_CartBasicTest extends CartLib {
 					scrollToBottomWithCordinate("-2000");
 					canadaLib.clickOnSideMenuSelectAccountToolOptions(data.get("Tools_Menu"),
 							data.get("Manage_Web_Grp_Options"));
-					cmtLib.selectCompanyStandardsLink();
 					assertTrue(ccp.verifyCompanyStandard(),"Product standard page is available");
 					ccp.addToOderInProductStandardsPage();
 					assertTrue(cartLib.verifyCartPageAvailablity(),"View Cart page loaded");

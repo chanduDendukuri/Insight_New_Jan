@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="CAN04"
+<testsuite name="USM01"
            tests="1"
            failures="0"
            errors="0"
            skipped="0"
-           time="283.179">
+           time="663.748">
   <properties />
   
   
-            <testcase name="TC_CAN04" time="283.179" classname="com.insight.WebTest.Canada.CAN04_ShipBillPayFreightTest" />
+            <testcase name="TC_CAN04" time="663.748" classname="com.insight.WebTest.Canada.CAN04_ShipBillPayFreightTest" />
       
 </testsuite>

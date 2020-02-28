@@ -114,7 +114,8 @@ public class QTH01_QuoteHistoryViewQuoteHistPageTest extends QuoteHistoryLib {
 						ClickFirstQuoteNumber();
 						commonLib.clickLogOutLink(data.get("Logout_Header"));
 						cmtLib.navigateBackToCMT();
-						cmtLib.hoverOverMasterGroupAndSelectChangeGrp();
+					    scrollUp();
+						cmtLib.clickOnSearchForClientLink();
 						cmtLib.searchForWebGroup(data.get("WebGrp2"));
 						commonLib.clickOnWebGroupNumber(data.get("WebGrp2"));
 						cmtLib.verifyManageWebGroupSettings();

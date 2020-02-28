@@ -52,9 +52,11 @@ public class InvoiceHistoryObj extends ActionEngine {
 
 	//Invoice page after search results
 	public static By HEADER_LEVEL_INFO = By.xpath("//a[text()='Header Level Info']");
-	public static By LINE_LEVEL_INFO = By.xpath("//table[@class='footable dark full m-t-md default footable-loaded']");
+	public static By LINE_LEVEL_INFO = By.xpath("//td[@class='footable-visible footable-last-column footable-first-column']");
 	public static By LICENSE_PROOF_LINK = By.xpath("//a[@data-page='licenseProof']");
 	public static By LICENSE_PROOF_POP_UP = By.xpath("//h5[text()='Proof of License Purchase']");
+	public static By LICENCE_PROOF_CLOSE_POPUP =By.xpath("(//a[@class='close-reveal-modal'])[2]");
+	public static By INVOICE_DETAILS_TAB=By.xpath("//a[@href='#invoiceDetails']");
 
 	public static By licensePopUpDetails(String details) {
 		return By.xpath("//h5[text()='Proof of License Purchase']//parent::div//dl//dt[contains(text(),'" + details + "')]");

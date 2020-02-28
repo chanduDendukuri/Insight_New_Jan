@@ -55,7 +55,7 @@ public class SLP06_SPLAZeroUsageTest extends SLPLib{
 						ReportControl.intRowCount = intCounter;
 						Hashtable<String, String> data = TestUtil.getDataByRowNo("SLP06_SPLA-ZeroUsage", TestData, "SLP", intCounter);
 						TestEngineWeb.reporter
-								.initTestCaseDescription("SLPProrationMicrosoft");
+								.initTestCaseDescription("SPLAZeroUsageTest");
 						reporter.SuccessReport("Iteration Number : ",
 								"**************Iteration Number::  " + intCounter + " For:: " + data.get("LoginName") + " ::and:: "
 										+ data.get("Password") + " To Validate::" + data.get("errorMessage") + "  **************","");
@@ -93,8 +93,12 @@ public class SLP06_SPLAZeroUsageTest extends SLPLib{
 				    	canadaLib.verifyPlaceCartLabel();
 				     	cartLib.verifyItemInCartByInsightPart(data.get("SearchText"));
 				     	Thread.sleep(3000);
-				     	int itemnumber=Integer.valueOf(data.get("Item_Number"));
-				     	verifyCartPageAndPartDetails(itemnumber-1);
+					 /*
+					 * int itemnumber=Integer.valueOf(data.get("Item_Number"));
+					 * verifyCartPageAndPartDetails(itemnumber-1);
+					 */
+				     	pipLib. verifyCartPageAndPartDetailsForRecentlyItemDynamically(data.get("SearchText"));
+				     	
 				    	
 				     	// account tools >> Software License Agreements
 						commonLib.clickOnAccountToolsAndClickOnProductGrp(data.get("Tools_Menu"), data.get("Tools_Menu_DD"));
@@ -151,7 +155,8 @@ public class SLP06_SPLAZeroUsageTest extends SLPLib{
 				     	commonLib.addToCartAndVerify();
 				     	orderLib.continueToCheckOutOnAddCart();
 				    	canadaLib.verifyPlaceCartLabel();
-				    	verifyCartPageAndPartDetails(itemnumber);
+				    	//verifyCartPageAndPartDetails(itemnumber);
+				    	pipLib. verifyCartPageAndPartDetailsForRecentlyItemDynamically(data.get("SearchText"));
 				     	verifyAllReportingPeriodsCurrentinCartPage();
 				     	commonLib.clickLogOutLink(data.get("Logout"));
 						
@@ -159,7 +164,7 @@ public class SLP06_SPLAZeroUsageTest extends SLPLib{
 						ReportStatus.blnStatus = false;
 						//gErrorMessage = e.getMessage();
 						gTestStatus = false;
-						throw new RuntimeException(e);
+						//throw new RuntimeException(e);
 					}
 					
 				}

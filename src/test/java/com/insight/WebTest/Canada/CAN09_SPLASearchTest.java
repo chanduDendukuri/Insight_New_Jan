@@ -6,11 +6,13 @@ import org.testng.annotations.Test;
 import com.insight.Lib.CMTLib;
 import com.insight.Lib.CanadaLib;
 import com.insight.Lib.CartLib;
+import com.insight.Lib.CommonCanadaLib;
 import com.insight.Lib.CommonLib;
 import com.insight.Lib.MarriottIntlCorpLib;
 import com.insight.Lib.OrderLib;
 import com.insight.Lib.ProductDetailLib;
 import com.insight.Lib.ProductDisplayInfoLib;
+import com.insight.Lib.SLPLib;
 import com.insight.Lib.SearchLib;
 import com.insight.Lib.ShipBillPayLib;
 import com.insight.accelerators.ReportControl;
@@ -29,6 +31,9 @@ public class CAN09_SPLASearchTest  extends CanadaLib{
 	ProductDisplayInfoLib pipLib=new ProductDisplayInfoLib();
 	ShipBillPayLib sbpLib=new ShipBillPayLib();
 	MarriottIntlCorpLib micLib=new MarriottIntlCorpLib();
+	ProductDisplayInfoLib prodInfoLib=new ProductDisplayInfoLib();
+	SLPLib slpLib=new SLPLib();
+	CommonCanadaLib ccp = new CommonCanadaLib();
 	   
 	    // #############################################################################################################
 		// #       Name of the Test         :  CAN09_SPLASearch
@@ -57,61 +62,82 @@ public class CAN09_SPLASearchTest  extends CanadaLib{
 								"Canada", intCounter);
 						TestEngineWeb.reporter.initTestCaseDescription("SPLASearch");				
 
-			// Login to CMT
-			cmtLib.loginToCMT(data.get("Header"));
-			cmtLib.searchForWebGroup(data.get("WebGrp"));
-			cmtLib.clickOnTheWebGroup(data.get("WebGrp_Name"));
-			cmtLib.hoverOnManageWebGroupsAndSelectOptions(data.get("Manage_Web_Grp_Options1"));
-			
-			// Clear usage
-			cmtLib.AddMonthInHostedLicensingAdministrationPage(data.get("Month1"), data.get("Year1"), data.get("Type"),data.get("SoldTO"),data.get("SalesOrg"));
-			// select user
-			cmtLib.hoverOnManageWebGroupsAndSelectOptions(data.get("Manage_Web_Grp_Options2"));
-			cmtLib.searchForaUserAndSelect(data.get("LnameEmailUname"), data.get("ContactName"));
-			///	Enable Purchasing Popup - ON
-			cmtLib.setPermissions(data.get("Menu_Name"), data.get("Set_Permission"));
-			cmtLib.setPermissions(data.get("Menu_Name"), data.get("Set_Permission1"));
-			// Login as to UAT
-			cmtLib.loginAsAdminCMT();
-			// Login Verification 
-			cmtLib.loginVerification(data.get("ContactName"));
-			// account tools >> Software License Agreements
-			commonLib.clickOnAccountToolsAndClickOnProductGrp(data.get("Tools_Menu"), data.get("Tools_Menu_DD"));
-			// Select Software  Lic Agreements
-	     	selectSPLADetailsProductCheckBox(data.get("SPLA"));
-			// verify search results and select first product
-	     	searchLib.verifysearchResultsPage();
-			pipLib.selectFirstProductAddToCartAndVerifyCart();
-			// search for product and add to cart
-			searchLib.searchInHomePage(data.get("SearchText1"));
-			searchLib.verifyBreadCrumbInSearchResultsPage(data.get("SearchText1"));
+						// Login to CMT
+						cmtLib.loginToCMT(data.get("Header"));
+						cmtLib.searchForWebGroup(data.get("WebGrp"));
+						cmtLib.clickOnTheWebGroup(data.get("WebGrp_Name"));
+						cmtLib.hoverOnManageWebGroupsAndSelectOptions(data.get("Manage_Web_Grp_Options1"));
+						
+						// Clear usage
+						cmtLib.AddMonthInHostedLicensingAdministrationPage(data.get("Month1"), data.get("Year1"), data.get("Type"),data.get("SoldTO"),data.get("SalesOrg"));
+						cmtLib.hoverOnManageWebGroupsAndSelectOptions(data.get("Manage_Web_Grp_Options2"));
+						cmtLib.searchForaUserAndSelect(data.get("LnameEmailUname"), data.get("ContactName"));
+						
+						// enable_purchase_popup;ON";
+						cmtLib.setPermissions(data.get("Menu_Name"), data.get("Set_Permission"));
+						cmtLib.loginAsAdminCMT();
+						
+						// Login Verification 
+						cmtLib.loginVerification(data.get("ContactName"));
+						
+						// account tools >> Software License Agreements
+						commonLib.clickOnAccountToolsAndClickOnProductGrp(data.get("Tools_Menu"), data.get("Tools_Menu_DD"));
+						verifySPLAPage();
+						// Select Software  Lic Agreements
+				     	selectSPLADetailsProductCheckBox(data.get("SPLA"));
+				     	// verify search results and select first product
+				     	searchLib.verifysearchResultsPage();
+				     	// Search for part or product and add to cart : part : 7NQ-00302-MSPLA
+				     	 // Search for a product and add to cart
+	                    searchLib.searchInHomePage(data.get("SearchText1"));
+	                    String manNum1=ccp.getManfNumberFromProductSearchScreen();
+	                    commonLib.updateCartQuantity(data.get("Quantity"));
 
-	     	searchLib.verifysearchResultsPage();
-			pipLib.selectFirstProductAddToCartAndVerifyCart();
-			// Verify Non Spla Items Message
-			//VerifyNonSplaItemsMessage();
-			///	Remove Non Spla Items from the Cart
-			// Add First Item to Cart
-			//commonLib.addFirstDisplyedItemToCartAndVerify();
-			//pipLib.selectFirstProductAddToCartAndVerifyCart();
-
-			commonLib.deleteItemFromCart();
-			//verifyReportingUsagePeriod();
-			//Proceed to checkout
-			 orderLib.proceedToCheckout();
-			 orderLib.clickContinueOnLLIAndShipBillPaySections();
-			 orderLib.addNewCardInPayment(data.get("cardNumber"), data.get("cardName"), data.get("month"), data.get("year"),data.get("poNumebr"),data.get("POReleaseNumber"));
-			 orderLib.clickOnReviewOrderButton();  // Click Review order button
-			// Place Order
-			String summaryAmount = cartLib.getSummaryAmountInCart();
-			orderLib.placeOrderAndVerifyReceiptOrderAndDate(summaryAmount);
-			//Verify Receipt
-			orderLib.verifyReceiptVerbiage();
-			orderLib.clickOrderDetailsLinkOnReceiptPage();
-			// Logout 
-			commonLib.clickLogOutLink(data.get("Logout"));
-			
-			System.out.println("Test completed");
+	                    commonLib.addToCartAndVerify();
+	                    orderLib.continueToCheckOutOnAddCart();
+	                    pipLib. verifyCartPageAndPartDetailsForRecentlyItemDynamically(data.get("SearchText1"));
+				     	
+				        // search for product and add to cart  : LENOVO
+						searchLib.searchInHomePage(data.get("SearchText2"));
+						searchLib.verifyTheResultsForSearchTerm(data.get("SearchText2"));
+						// in-stock filter verification
+						//searchLib.verifyFilterBreadCrumb(data.get("In_Stock_Only"));
+						pipLib.getFirstProdDescription();
+						
+						cartLib.selectFirstProductDisplay();
+						String prodMfrNumber=prodDetailsLib.getInsightPartNumberInProductInfopage();
+				        commonLib.addToCartAndVerify();
+				        orderLib.continueToCheckOutOnAddCart();
+				        verifyPlaceCartLabel();
+				        cartLib.verifyItemInCartByInsightPart(prodMfrNumber);
+				        pipLib. verifyCartPageAndPartDetailsForRecentlyItemDynamically(prodMfrNumber);
+						cartLib.verifySLPAProductOnCart(data.get("SearchText1"));
+						
+						// Verify Non Spla Items Message
+						VerifyNonSplaItemsMessage();
+						///	Remove Non Spla Items from the Cart
+						//deleteParticularItemInCart
+						commonLib.deleteItemFromCart();
+						
+						verifyReportingUsagePeriodWarningMessage();
+						//Proceed to checkout
+						 orderLib.proceedToCheckout();
+						 //orderLib.clickOnAdditionalInfoContinueButton();
+						 orderLib.clickContinueOnLineLevelInfo();   // Click continue on Line level Info
+						 verifySBP();
+						 orderLib.clickContinueOnShippingAddress();
+						 //orderLib.shippingOptionsCarrierSelection();
+						 orderLib.billingAddressContinueButton(); // Billing address continue button
+						 orderLib.addNewCardInPayment(data.get("cardNumber"), data.get("cardName"), data.get("month"), data.get("year"),data.get("poNumebr"),data.get("POReleaseNumber"));
+						 orderLib.clickOnReviewOrderButton();  // Click Review order button
+						// Place Order
+						String summaryAmount = cartLib.getSummaryAmountInCart();
+						orderLib.placeOrderAndVerifyReceiptOrderAndDate(summaryAmount);
+						//Verify Receipt
+						orderLib.verifyReceiptVerbiage();
+						//orderLib.clickOrderDetailsLinkOnReceiptPage();
+						// Logout 
+						commonLib.clickLogOutLink(data.get("Logout"));
 			
 					} catch (Exception e) {
 						ReportStatus.blnStatus = false;

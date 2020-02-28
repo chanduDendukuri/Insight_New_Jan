@@ -2,6 +2,7 @@ package com.insight.Lib;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.mortbay.log.Log;
@@ -245,8 +246,8 @@ public class CMTLib extends CMTObj {
 	 */
 	public void hoverOverMasterGroupAndSelectChangeGrp() throws Throwable {
 		
-		mouseHover(MASTER_GROUP, "Master Group");
-		driver.navigate().refresh();
+		/*mouseHover(MASTER_GROUP, "Master Group");
+		driver.navigate().refresh();*/
 	  
 		mouseHover(MASTER_GROUP, "Master Group");
 		click(CHANGE_MASTER_GRP, "Change master group option");
@@ -383,7 +384,7 @@ public class CMTLib extends CMTObj {
 	 */
 	public void searchUsers(String LnameEmailUname) throws Throwable {
 		waitForVisibilityOfElement(CMTObj.LNAME_EMAIL_USERNAME, "LNAME EMAIL USERNAME: " + LnameEmailUname);
-		type(CMTObj.LNAME_EMAIL_USERNAME, LnameEmailUname, "LNAME EMAIL USERNAME: " + LnameEmailUname);
+		type(CMTObj.LNAME_EMAIL_USERNAME, LnameEmailUname, "LNAME EMAIL USERNAME: ");
 		click(CMTObj.USERNAME_SEARCH_BUTTON, "Search button Exists and Clicked", "Link: Search");
 	}
 
@@ -808,11 +809,11 @@ public  void verifyDashboard()throws Throwable {
 	public void AssigntheusertoServiceLevelShippingwithnodefault(String menuName, String user_Permissions, String Value)
 			throws Throwable {
 		click(getUsersTabMenus(menuName), "Checkout Settings");
-		click(getOptionsunderCkeckoutsettings(user_Permissions), "Shipping Options");
+		click(getOptionsunderCkeckoutsettings(user_Permissions), "Expand span Shipping Options");
 		click(USER_SERVICE_LEVEL_SHIPPING, "User level shipping option is selected ");
 		if (isElementPresent(DefaultShippingOption, "DefaultShippingOption is Displayed")) {
 			selectByValue(DefaultShippingOption, Value, "Default_Shipping_Option:: " + user_Permissions + "");
-			reporter.SuccessReport("Verify the Sucess message ", "DefaultShippingOption is Displayed", "");
+			reporter.SuccessReport("Verify the Sucess message ", "Service Level Shipping with Select One is Exists and Selected", "");
 		} else {
 			reporter.failureReport("Verify the sucess message", "DefaultShippingOption is not Displayed", "", driver);
 		}
@@ -863,7 +864,7 @@ public  void verifyDashboard()throws Throwable {
 	 */
 	public void enterUserName(String text) throws Throwable {
 		clearData(USER_NAME_FIELD);
-		type(USER_NAME_FIELD, text, "user name"+text);
+		type(USER_NAME_FIELD, text, "user name");
 		click(CHECK_AVAILABLITY_BUTTON, "check availability");
 
 	}
@@ -904,16 +905,22 @@ public  void verifyDashboard()throws Throwable {
 		click(getOptionsunderCkeckoutsettings(user_Permissions), "Shipping Options");
 		click(DesignatedShippingOption_Button, "Designated_Shipping_Button");
 		if (isElementPresent(Designatedshippingoptions, "DesignatedShippingOption is Displayed")) {
-			selectByVisibleText(Designatedshippingoptions, text1, "Designated_Shipping_Option");
-			reporter.SuccessReport("Verify the Sucess message ", "DesignatedShippingOption is Displayed", text1);
+			List<String> carrierFedex = Arrays.asList(text1.split(","));
+			for(int i=0;i<carrierFedex.size();i++) {
+				selectByVisibleText(Designatedshippingoptions, carrierFedex.get(i), "Designated_Shipping_Option");
+				click(buttontoclickFedExoptin, "FedEx Option is selected And Moved to allowed Options");
+				reporter.SuccessReport("Verify the Sucess message ", "DesignatedShippingOption is Displayed", carrierFedex.get(i));
+			}
 		} else {
 			reporter.failureReport("Verify the sucess message", "DesignatedShippingOption is not Displayed.", "",
 					driver);
 		}
-		click(buttontoclickFedExoptin, "FedEx Option is selected And Moved to allowed Options");
-		click(DesignatedshippingFedoption_dropdown, "only FedEx Option is selected");
-		selectByVisibleText(DesignatedshippingFedoption_dropdown, text1,
-				"Designated_Shipping_Option FedEx is Selected");
+		
+		/*
+		 * click(DesignatedshippingFedoption_dropdown, "only FedEx Option is selected");
+		 * selectByVisibleText(DesignatedshippingFedoption_dropdown, text1,
+		 * "Designated_Shipping_Option FedEx is Selected");
+		 */
 
 	}
 
@@ -1063,13 +1070,16 @@ public  void verifyDashboard()throws Throwable {
 		}
 		type(USER_NAME, userName, "user Name");
 		click(CHECK_AVAILABILITY, "Check availability");
-		if (isVisibleOnly(USER_NAME_MESSAGE, "user name Not Available")) {
-			clearData(USER_NAME);
-			type(USER_NAME, userName1, "user Name");
-			return userName1;
-		} else {
+		 if (isVisibleOnly(USER_NAME_MESSAGE, "user name Not Available")) {
+		 getText(USER_NAME_MESSAGE,"Error Msg");
+		 clearData(USER_NAME);
+		 type(USER_NAME, userName1, "user Name");
+		  click(CHECK_AVAILABILITY, "Check availability");
+		  reporter.SuccessReport("verifying message", "Message exists for User: "+userName , "Available");
+		  return userName1; 
+		  } else {
 			return userName;
-		}
+		  }
 	}
 
 	public void enterUserNameToValidate(String userName) throws Throwable {
@@ -1091,7 +1101,7 @@ public  void verifyDashboard()throws Throwable {
 	 *
 	 */
 	public void enterConfirmPasswordInCreateAnAccount(String password) throws Throwable {
-		type(CONFIRM_PASSWORD, password, "password");
+		type(CONFIRM_PASSWORD, password, "Enter Confirm password");
 
 	}
 
@@ -1110,8 +1120,8 @@ public  void verifyDashboard()throws Throwable {
 	 *
 	 */
 	public void clickContinueButtonInCreateAnAccount() throws Throwable {
-		if (isElementPresent(SAVE_AND_CONTNUE, "Save and continue button")) {
-			click(SAVE_AND_CONTNUE, "Save and continue button");
+		if (isVisibleOnly(SAVE_AND_CONTNUE, "Save and continue button")) {
+			clickUntil(SAVE_AND_CONTNUE, WELCOME_PAGE,"Save and continue button");
 		}
 	}
 
@@ -1569,7 +1579,10 @@ public  void verifyDashboard()throws Throwable {
 	}
 
 	public List<String> verifyDisplayWebIcon() throws Throwable {
-
+		String x = null;
+		String y= null;
+		String z= null;
+		String m= null;
 		// Verify Display Web Icon visibility
 		if (isVisibleOnly(DISPLAY_ON_WEB, "Web icon")) {
 			click(DISPLAY_ON_WEB, "Display web icon");
@@ -1592,45 +1605,60 @@ public  void verifyDashboard()throws Throwable {
 
 			for (i = 1; i <= salesRep.size(); i++) {
 				if (salesRep.size() >= 2) {
+					if(salesRep.size() >= 4){
+						 x="4";
+						 y="3";
+						 z="2";
+						 m="1";
+
+					}
+					if(salesRep.size() >= 3){
+						x="3";
+						y="2";
+						z="1";
+						m="1";
+
+					}
 
 					if (i == 1) {
-						String val = Integer.toString(i + 3);
-						type(getRepValuesOnDisplayWebPopup(i), val, "sales rep number text box");
+						int j= salesRep.size()-i;
+						String val = Integer.toString(i + salesRep.size()-i);
+						type(getRepValuesOnDisplayWebPopup(i), x, "sales rep number text box");
 
 						reporter.SuccessReport("Repo Name and its Value",
 								"Repo Name is "
 										+ getText(getRepNamesOnDisplayWebPopup(i), "Rep Names").replace(",", " ").trim()
-										+ " and order is -->" + val,
-								val);
+										+ " and order is -->" + x,
+								x);
 					}
 					if (i == 2) {
-						String val1 = Integer.toString(i + 1);
-						type(getRepValuesOnDisplayWebPopup(i), val1, "sales rep number text box");
+						String val1 = Integer.toString(i + salesRep.size()-(i+1));
+						type(getRepValuesOnDisplayWebPopup(i), y, "sales rep number text box");
 						reporter.SuccessReport("Repo Name and its Value",
 								"Repo Name is "
 										+ getText(getRepNamesOnDisplayWebPopup(i), "Rep Names").replace(",", " ").trim()
-										+ " and order is -->" + val1,
-								val1);
+										+ " and order is -->" + y,
+								y);
 
 					}
 					if (i == 3) {
-						String val2 = Integer.toString(i - 1);
-						type(getRepValuesOnDisplayWebPopup(i), val2, "sales rep number text box");
+						String val2 = Integer.toString(i - salesRep.size()-(i-2));
+						type(getRepValuesOnDisplayWebPopup(i), z, "sales rep number text box");
 						reporter.SuccessReport("Repo Name and its Value",
 								"Repo Name is "
 										+ getText(getRepNamesOnDisplayWebPopup(i), "Rep Names").replace(",", " ").trim()
-										+ " and order is --> " + val2,
-								val2);
+										+ " and order is --> " + z,
+								z);
 
 					}
 					if (i == 4) {
 						String val3 = Integer.toString(i - 3);
-						type(getRepValuesOnDisplayWebPopup(i), val3, "sales rep number text box");
+						type(getRepValuesOnDisplayWebPopup(i), m, "sales rep number text box");
 						reporter.SuccessReport("Repo Name and its Value",
 								"Repo Name is "
 										+ getText(getRepNamesOnDisplayWebPopup(i), "Rep Names").replace(",", " ").trim()
-										+ " and order is -->  " + val3,
-								val3);
+										+ " and order is -->  " + m,
+								m);
 
 					}
 
@@ -1668,7 +1696,7 @@ public  void verifyDashboard()throws Throwable {
 					if (salesRep.size() >= 2) {
 
 						if (i == 1) {
-							String val = Integer.toString(i + 3);
+							String val = Integer.toString(i + salesRep.size()-1);
 							type(getRepValuesOnDisplayWebPopup(i), val, "sales rep number text box");
 
 							reporter.SuccessReport("Repo Name and its Value", "Repo Name is "
@@ -2507,7 +2535,7 @@ public  void verifyDashboard()throws Throwable {
 	 * Method is to click on add a smart tracker link
 	 */
 	public void clickOnAddSmartTrackerLink() throws Throwable {
-		click(ADD_A_SMART_TRACKER, "add smart tracker link");
+		click(ADD_A_SMART_TRACKER, "Add smart tracker link");
 	}
 
 	/**
@@ -2562,7 +2590,8 @@ public  void verifyDashboard()throws Throwable {
 	 * @throws Throwable
 	 */
 	public void editSmartTracker(String label) throws Throwable {
-		click(SMART_TRACKER_EXPEND, "smart tracker field");
+		click(SMART_TRACKER_EXPEND,label);
+		Thread.sleep(3000);
 		click(EDIT_SMART_TRACKER, "edit button");
 		if (isEnabled(MAKE_INACTIVE_CHECK_BOX, "make inactive check box")) {
 			click(MAKE_INACTIVE_CHECK_BOX, "make inactive check box");
@@ -2579,10 +2608,10 @@ public  void verifyDashboard()throws Throwable {
 	 * @throws Throwable
 	 */
 	public void verifyInactiveSmartTrackerError() throws Throwable {
-		if (isElementPresent(INACTIVE_SMART_TRACKER_ERROR, "smart tracker error")) {
-			reporter.SuccessReport("verify smart tracker error", "Smart tracker inactive error is diaplayed ", "Smart Tracker Status:Inactive");
+		if (isVisibleOnly(INACTIVE_SMART_TRACKER_ERROR, "smart tracker inactive Message")) {
+			reporter.SuccessReport("verify smart tracker Message", "Smart tracker inactive Message is diaplayed ", "Smart Tracker Status:Inactive");
 		} else {
-			reporter.failureReport("verify smart tracker error", "Smart tracker inactive error is not diaplayed ", "",
+			reporter.failureReport("verify smart tracker Message", "Smart tracker inactive Message is not diaplayed ", "",
 					driver);
 		}
 	}
@@ -2595,6 +2624,7 @@ public  void verifyDashboard()throws Throwable {
 	 */
 	public void enterLinkedAccountSearch(String accountSearch) throws Throwable {
 		if (isVisibleOnly(LINKED_ACCOUNTS_SEARCH, "Linked account search")) {
+			clearData(LINKED_ACCOUNTS_SEARCH);
 			typeText(LINKED_ACCOUNTS_SEARCH, accountSearch, "");
 			click(SEARCH_ICON, "search icon");
 			reporter.SuccessReport("Web Group Management", "Under Linked Accounts Quick Find Box Exist and Value Entered", "Search Input:"+accountSearch);
@@ -2612,8 +2642,8 @@ public  void verifyDashboard()throws Throwable {
 	public void clearSearch() throws Throwable {
 		if(isVisibleOnly(LINKED_ACCOUNTS_SEARCH,"Linked Account Search")) {
 		clearData(LINKED_ACCOUNTS_SEARCH);
-		click(SEARCH_ICON, "search icon");
 		reporter.SuccessReport("Web Group Management", "Under Linked Accounts Results are Cleared", "");
+		click(SEARCH_ICON, "search icon");
 	}
 	}
 
@@ -2658,7 +2688,7 @@ public  void verifyDashboard()throws Throwable {
 	public void clickUpdateButtonOnLinkedAccountsScreen() throws Throwable {
 		if (isEnabled(UPDATEUSER_BTN, "Update Button")) {
 			click(UPDATEUSER_BTN, "update button");
-			isElementPresent(LINKED_ACCOUNT_UPADTE_MSG, "Update Success message", true);
+			waitForVisibilityOfElement(LINKED_ACCOUNT_UPADTE_MSG, "Update Success message");
 		} else {
 			reporter.failureReport("verify update button enabled", "update user button is not enabled", "", driver);
 		}
@@ -2707,8 +2737,10 @@ public  void verifyDashboard()throws Throwable {
 	 * @throws Throwable
 	 */
 	public void selectSmartTrackersHeaders(String headerName) throws Throwable {
-		if (isElementVisible(getManageSmartTrackersHeaders(headerName), 4, "smart tracker header")) {
-			click(getManageSmartTrackersHeaders(headerName), "smart tracker header");
+		waitForVisibilityOfElement(getManageSmartTrackersHeaders(headerName), "smart tracker header", driver);
+		Thread.sleep(3000);
+		if (isVisibleOnly(getManageSmartTrackersHeaders(headerName), "smart tracker header")) {
+			click(getManageSmartTrackersHeaders(headerName), " Tab : "+headerName);
 		} else {
 			reporter.failureReport("Verify Smart Trackers Headers", "Smart Tracker Header is not present", headerName,
 					driver);
@@ -2724,7 +2756,7 @@ public  void verifyDashboard()throws Throwable {
 	 */
 	public void selectmanageSmartTrackertabs(String tabName) throws Throwable {
 		if (isElementPresent(getSmartTrackerstabs(tabName), "manage Smart Tracker tabs")) {
-			click(getSmartTrackerstabs(tabName), "manage Smart Tracker tabs");
+			click(getSmartTrackerstabs(tabName), "Tabs: "+tabName);
 		} else {
 			reporter.failureReport("Verify Smart Trackers tabs exist", "Smart Tracker tab is not present", tabName,
 					driver);
@@ -2772,7 +2804,7 @@ public  void verifyDashboard()throws Throwable {
                   int C= list.size();
                   System.out.println(C);
 		if (status.equals("Checked")) {
-			for (i = 0; i <= 10; i++) {
+			for (i = 0; i <= 9; i++) {
 				if (isCheckBoxSelected(LINKED_ACCOUNT_CHECKBOX)) {
 					reporter.SuccessReport("Under Linked Accounts Linking Weblist Exist and Selected",
 							"Verify Check Boxes Status:Checkbox is Checked", "");
@@ -2851,14 +2883,28 @@ public  void verifyDashboard()throws Throwable {
 	 */
 	public void clickLinkedAccountCheckBox(String i) throws Throwable {
 		if(isVisibleOnly(getLinkedAccountCheckBoxByIndex(i), "Linked account check box")) {
-		click(getLinkedAccountCheckBoxByIndex(i), "Under Linked Accounts CheckBox of index "+i+" Exist and Checked");
+		click(getLinkedAccountCheckBoxByIndex(i), "Under Linked Accounts CheckBox :"+i+" Exist and Checked");
 		String Value=driver.findElement(CMTObj.getLinkedAccountCheckBoxByIndex(i)).getAttribute("value");
 		reporter.SuccessReport("Web Group Management", "The Sold To is Linked to User", "Account Number:"+Value);
 		}
 	}
 
+	public void VerifyLinkedAccountCheckBoxisClicked(String i) throws Throwable {
+		if(driver.findElement(getLinkedAccountCheckBoxByIndex(i)).isSelected()) {
+		reporter.SuccessReport("Web Group Management", "Under Linked Accounts CheckBox : "+i+" Exist and Checked","");
+		}else {
+			reporter.SuccessReport("Web Group Management", "Under Linked Accounts CheckBox : "+i+" Exist and Not Checked","");
+		}
+	}
+	public void clickLinkedAccountUnCheckBox(String i) throws Throwable {
+		if(driver.findElement(getLinkedAccountCheckBoxByIndex(i)).isSelected()) {
+		click(getLinkedAccountCheckBoxByIndex(i), "Under Linked Accounts CheckBox :"+i+" Exist and UnChecked");
+		}
+	}
+	
 	public void clickOnDefaultAccountLoginByIndex(String i) throws Throwable {
-		click(getDefaultLoginByIndex(i), "Last Sold TO is Linked to User");
+		String Account=driver.findElement(getDefaultLoginByIndex(i)).getAttribute("value");
+		click(getDefaultLoginByIndex(i), "Last Sold TO is Linked to User:"+Account);
 	}
 
 	/**
@@ -2878,10 +2924,9 @@ public  void verifyDashboard()throws Throwable {
 	 * @throws Throwable
 	 */
 	public List<String> getAccountNameInLinkedAccounts() throws Throwable {
-
 		List<WebElement> myList = driver.findElements(ACCOUNT_NAME);
 		List<String> all_elements_text = new ArrayList<>();
-		for (int i = 0; i < myList.size(); i++) {
+		for (int i = 0; i <myList.size(); i++) {
 			all_elements_text.add(myList.get(i).getText());
 		}
 		return all_elements_text;
@@ -2895,7 +2940,7 @@ public  void verifyDashboard()throws Throwable {
 	 * @throws Throwable
 	 */
 	public void verifyAccountNameStartsWith(List<String> expectedName, String actualName) throws Throwable {
-		for (i = 0; i < 5; i++) {
+		for (i = 0; i < 6; i++) {
 			if ((expectedName.get(i).toUpperCase()).startsWith(actualName)) {
 				reporter.SuccessReport("verify Account Name Starts With",
 						"All Sold To Accounts Started with "+expectedName+" are Exist and Returned",  expectedName.get(i));
@@ -3121,19 +3166,40 @@ public  void verifyDashboard()throws Throwable {
 	}
 
 	public boolean verifyCheckBoxSelectedForFirstElement() throws Throwable {
-		return isCheckBoxSelected(chkBxWebElement1);
+		boolean status = false;
+		if(isVisibleOnly(chkBxWebElement1,"First Element")) {
+			 isCheckBoxSelected(chkBxWebElement1);
+			 status=true;
+		}
+		return status;
 	}
 
 	public boolean verifyCheckBoxSelectedForSecondElement() throws Throwable {
-		return isCheckBoxSelected(chkBxWebElement2);
+		boolean status = false;
+		if(isVisibleOnly(chkBxWebElement2,"Second Element")) {
+
+			 isCheckBoxSelected(chkBxWebElement2);
+			status=true;
+		}
+		return status;
 	}
 
 	public boolean verifyCheckBoxSelectedForThirdElement() throws Throwable {
-		return isCheckBoxSelected(chkBxWebElement3);
+		boolean status = false;
+		if(isVisibleOnly(chkBxWebElement3,"Third Element")) {
+			 isCheckBoxSelected(chkBxWebElement3);
+			 status = true;
+		}
+		return status;
 	}
 
 	public boolean verifyCheckBoxSelectedForFourthElement() throws Throwable {
-		return isCheckBoxSelected(chkBxWebElement4);
+		boolean status = false;
+		if(isVisibleOnly(chkBxWebElement4,"Fourth Element")) {
+			 isCheckBoxSelected(chkBxWebElement4);
+			status = true;
+		}
+		return status;
 	}
 
 	public void clickOnAddCategoryPlusIcon() throws Throwable {
@@ -3612,9 +3678,9 @@ public void verifyProductStandardsTitle() throws Throwable
 	{
 		isVisible(CMTObj.lblWebGroupManagement, "Web group create User page verification");
 	}
-	public void verifyWebGroupsManagementUsers() throws Throwable
+	public boolean verifyWebGroupsManagementUsers() throws Throwable
 	{
-		isVisible(lblWebGroupManagementUsers, "WebGroupsManagementUsers page loaded");
+		return isVisible(lblWebGroupManagementUsers, "WebGroupsManagementUsers page loaded");
 	}
 
 	/*public void setPermissionsWithMultipleOptions(String menuName, String userPermissions) throws Throwable {
@@ -3678,7 +3744,18 @@ public void defualtShippingAddressCheckBox()throws Throwable{
 	}else {
 		reporter.failureReport("Verify No Default Shipping Addresses are Not Selected","Default Shipping Addresses are Selected","");	
 	}
-	
+}
+
+public void verifyDefaultShippingAddress(String accountName) throws Throwable {
+	if(isVisibleOnly(getShippingAddressAccountName(accountName), "Account Name")) {
+		if(isVisibleOnly(getShippingAddressCheckbox(accountName), "Linked account Name check box") && isVisibleOnly(getShippingAddressDefaultAddressRadioButtn(accountName), "Default radio button")) {
+			reporter.SuccessReport("verify Linked account check box and default account radio button status", "Linked account check box and default account radio button checked for required account : "+accountName, "", driver);
+		}else {
+			reporter.failureReport("verify Linked account check box and default account radio button status", "Linked account check box and default account radio button is not checked  for required account : "+accountName, "", driver);
+		}
+	}else {
+		reporter.failureReport("verify account name is present", "Account name does not exists", "", driver);
+	}
 }
 public void verifySetPermissionsDisabled(String userPermissions) throws Throwable {
 	if (isCheckBoxSelected(getUserPermission(userPermissions))) {
@@ -3716,9 +3793,9 @@ public void verifySetPermissionsDisabled(String userPermissions) throws Throwabl
 		List<String> values = new ArrayList<String>();
 				if(isVisibleOnly(LinkedAccountsText,"Linked Accounts Data")) {
 					List<WebElement> list2 = driver.findElements(LinkedAccountsText);
-					for (int i = 0; i<15; i++) {
-						for (int j=0;j<5;j++) {
-						String textlinkedaccount= list2.get(i).getText().trim();
+					for (int i = 0; i<49; i++) {
+						for (int j = 0; j < 5; j++) {
+						String textlinkedaccount= list2.get(j).getText().trim();
 						values.add(textlinkedaccount);
 						}
 					reporter.SuccessReport("Web Group Management", "All Active Sold to's for the Current Web Group Displays", "AccountName,AccountNumber,Address,AccountStatus,DefaultLogin:"+values);
@@ -3742,6 +3819,83 @@ public void verifySetPermissionsDisabled(String userPermissions) throws Throwabl
 		} else {
 			reporter.failureReport("Web Group Management", "Under Linked Accounts Next Page is Not Exist", "", driver);
 		}
+	    }else {
+	    	reporter.failureReport("Default account address", "default account address does not exists", "", driver);
+	    }
+	}
+	
+	/**
+	 * Method is to enter WG Custom 800 Number And check Display On Web check box
+	 * @throws Throwable 
+	 */
+	public void enterWGCustom800NumberAndDisplayOnWeb(String phoneNumebr) throws Throwable {
+		type(CLIENT_SUPPORT_800_PHONE_NUMEBR, phoneNumebr, "800 Number", driver);
+		if(isCheckBoxSelected(DISPLAY_THIS_ON_WEB)) {
+			reporter.SuccessReport("Display this on web check box", "Display this on web check box is already checked", "", driver);
+		}else {
+			click(DISPLAY_THIS_ON_WEB, "Display this on web check box", "Display this on web check box");
+		}
+		click(UPDATE_CUSTOMER_PERMISSIONS_BTN, "Update button");
+		if (isElementPresent(CUSTOMER_PERMISSION_UPDATE_MSG, "update sucessful message")) {
+			reporter.SuccessReport("Verify the Success message ", "Permissions Updated Succesfully","");
+		} else {
+			reporter.failureReport("Verify the sucess message", "Display this on web check box not checked Succesfully", "",
+					driver);
+		}
+	}//DEFUALTSOLDTOACCOUNT
+	
+	public void verifyDefualtSoldToinLinkedAccounts(String account) throws Throwable {
+	if(isVisibleOnly(DEFUALTSOLDTOACCOUNT,"Defualt Sold To")) {
+		String Account =getText(DEFUALTSOLDTOACCOUNT,"Sold To").trim();
+		if(Account.contains(account)) {
+		reporter.SuccessReport("Verify User Name is Matches to Soldto in Linked Accounts Tab on Manage Web groups: Users Page", "User Name Exists and Matches to Soldto Name",Account);
+	}else {
+		reporter.failureReport("Verify User Name is Matches to Soldto in Linked Accounts Tab on Manage Web groups: Users Page", "User Name Exists not Matches to Soldto Name", "",
+				driver);
 	}
 	}
+	}
+	
+	public void verifyAccountName(List<String> expectedName) throws Throwable {
+		for (i = 0; i < 5; i++) {
+			if ((expectedName.get(i).toUpperCase())==null) {
+				reporter.failureReport("verify Account Name Starts With",
+						"Account Name verification is not successfull", "", driver);
+				} else {
+				reporter.SuccessReport("verify Account Names",
+						"All Sold To Accounts"+expectedName+" are Exist and Returned", expectedName.get(i));
+		
+			}
+		}
+
+	}
+
+	public boolean verifyCheckBoxSelectedForAllElement() throws Throwable {
+		boolean status = false;
+		List<WebElement> chb = driver.findElements(displayOnWebGroupList);
+		List<WebElement> save = driver.findElements(icnListAllSaveButton);
+		for(int i = 0; i< chb.size();i++) {
+
+			if(chb.get(i).isSelected()){
+				reporter.SuccessReport("Check Box selected ",i+"Check box is already selected","true");
+			}
+			else{
+				chb.get(i).click();
+				save.get(i).click();
+				reporter.SuccessReport("Check Box selected ",i+"Check box is  selected Now ","true");
+			}
+
+		}
+		return status;
+	}
+
+/**
+ * Method is to click on "Search for client link"	
+ * @throws Throwable
+ */
+	public void clickOnSearchForClientLink() throws Throwable {
+		click(SEARCH_FOR_CLIENT_LINK, "Search for client link", "Search for client link");
+	}
+	
+
 }

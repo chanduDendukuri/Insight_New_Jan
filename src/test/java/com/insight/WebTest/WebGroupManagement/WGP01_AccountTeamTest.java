@@ -55,8 +55,8 @@ public class WGP01_AccountTeamTest extends CMTLib {
 					// Click on Display Icon
 					List<String> RepNamesInDisplayOnWeb = verifyDisplayWebIcon();
 					String s1=null;
-					
-					if(verifyCheckBoxSelectedForFirstElement()){
+					verifyCheckBoxSelectedForAllElement();
+				/*	if(verifyCheckBoxSelectedForFirstElement()){
 						boolean a = verifyCheckBoxSelectedForFirstElement();
 						 s1=Boolean.toString(a);
 						reporter.SuccessReport("Display on web check box ", "Display on web check is selected", s1);
@@ -87,7 +87,7 @@ public class WGP01_AccountTeamTest extends CMTLib {
 					}else{
 						reporter.failureReport("Display on web check box ", "Display on web check is selected", s1,driver);
 					}
-					
+				*/
 					// Click on Product Exp
 					verifyProductExpIconFeature();
 

@@ -57,7 +57,7 @@ import com.insight.utilities.WriteIntoExcel;
 
 @Listeners(CustomTestListenerCT.class)
 public class TestEngineWeb {
-	public static Logger LOG = Logger.getLogger(TestEngineWeb.class);	
+	public static Logger LOG = Logger.getLogger(TestEngineWeb.class);
 	public WebDriver WebDriver = null;
 	public static EventFiringWebDriver driver = null;
 	public static CReporterWeb reporter = null;
@@ -66,6 +66,7 @@ public class TestEngineWeb {
 	public static String gErrorMessage=null;
 	public static boolean gTestStatus=false;
 	public static String callIDCreated = null;
+	public  static String currentBrowserVersion = null;
 
 	/* cloud platform */
 	public String browser = null;
@@ -93,6 +94,7 @@ public class TestEngineWeb {
 	public String RSO_WEB_URL = null;
 	public String RSO_WEB_URL_MESTAG = null;
 	public String RSP_WEB_URL = null;
+	public String url = null;
 	public static String LOCATION_CLIENT_LOGO = null;
 	//public ATUTestRecorder recorder;
 
@@ -174,6 +176,7 @@ public class TestEngineWeb {
 		String testName = iTestContext.getName();
 		APP_BASE_URL = ConfigFileReadWrite.read(ReporterConstants.configReporterFile, "insightWebURL");
 		SUMMARY_REPORTER_BASEURL = APP_BASE_URL;
+		//SUMMARY_REPORTER_BASEURL = url;
 		LOG.info("---------------------");
 		LOG.info("-----Before Class----");
 		LOG.info("---------------------");
@@ -437,8 +440,9 @@ public class TestEngineWeb {
 		System.out.println("----------------------END afterMethod---------------");
 	}
 
-	public void setWebDriverForLocal(String browser, String seleniumurl) throws IOException, InterruptedException {
+	public String setWebDriverForLocal(String browser, String seleniumurl) throws IOException, InterruptedException {
 		 System.out.println("----------------------START setWebDriverForLocal---------------");
+
 		 if(driver!=null) {
 			 driver.quit();
 		 }
@@ -515,6 +519,7 @@ public class TestEngineWeb {
 		 }
 		   
 		 System.out.println("----------------------END setWebDriverForLocal---------------");
+		 return currentBrowserVersion;
 		}	
 
 	@Parameters({ "executionType", "suiteExecuted" })

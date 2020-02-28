@@ -2,19 +2,10 @@ package com.insight.WebTest.EUF;
 
 import java.util.Hashtable;
 
+import com.insight.Lib.*;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
-import com.insight.Lib.CMTLib;
-import com.insight.Lib.CanadaLib;
-import com.insight.Lib.CartLib;
-import com.insight.Lib.CommonLib;
-import com.insight.Lib.EndUserFeaturesLib;
-import com.insight.Lib.OrderLib;
-import com.insight.Lib.ProductDetailLib;
-import com.insight.Lib.ProductDisplayInfoLib;
-import com.insight.Lib.SearchLib;
-import com.insight.Lib.ShipBillPayLib;
 import com.insight.ObjRepo.CMTObj;
 import com.insight.accelerators.ReportControl;
 import com.insight.accelerators.TestEngineWeb;
@@ -31,6 +22,7 @@ public class EUF09_FCTWebEndDisplayMyContactNotificationsTest extends EndUserFea
 	ProductDisplayInfoLib pipLib=new ProductDisplayInfoLib();
 	ShipBillPayLib sbpLib=new ShipBillPayLib();
 	CanadaLib canadaLib = new CanadaLib();
+	CommonCanadaLib ccp = new CommonCanadaLib();
 	   
 	    // #############################################################################################################
 		// #       Name of the Test         :  EUF09_FCTWebEndDisplayMyContactNotifications
@@ -66,7 +58,9 @@ public class EUF09_FCTWebEndDisplayMyContactNotificationsTest extends EndUserFea
 						cmtLib.verifySalesRepAreDisplayed();
 						cmtLib.addNewSalesRep(data.get("Rep_Email"));
 						cmtLib.verifyNewSalesRepAdded(data.get("Rep_Name"));
+						cmtLib.verifyCheckBoxSelectedForAllElement();
 						// create client notifications
+/*
 						String s1=null;
 						if(cmtLib.verifyCheckBoxSelectedForFourthElement())
 						{
@@ -75,10 +69,13 @@ public class EUF09_FCTWebEndDisplayMyContactNotificationsTest extends EndUserFea
 							reporter.SuccessReport("Display on web check box ", "Display on web check is selected", s1);
 						}else{
 							click(CMTObj.chkBxWebElement4,"Selecting check box","CheckBox Selection");
-							click(CMTObj.icnSaveButtonForFourthRecord,"Save button","Save Button");
+							//click(CMTObj.icnSaveButtonForFourthRecord,"Save button","Save Button");
 							reporter.SuccessReport("Display on web check box ", "Display on web check is selected", s1);
 						}
-						
+						click(CMTObj.icnSaveButtonForFourthRecord,"Save button","Save Button");
+*/
+
+
 						cmtLib.createClientNotification(data.get("Rep_Email"));
 						// Login as user selected
 						cmtLib.hoverOnManageWebGroupsAndSelectOptions(data.get("Manage_Web_Grp_Options2"));

@@ -59,7 +59,7 @@ public class CanadaObj extends ActionEngine {
 
 	// summary amounts in cart
 	public static By EWR_AMOUNT = By.xpath(
-			"//section/following::div[@class='columns small-12 large-3 print-5 print-offset-7']//span[text()='EWR ']//parent::div/..//span[@class='iw-currency__amount']");
+			"(//*[@class='row is-collapse-child cart-summary__ewr']//div[@class='columns shrink cart-summary__value'])[2] | //section/following::div[@class='columns small-12 large-3 print-5 print-offset-7']//span[text()='EWR ']//parent::div/..//span[@class='iw-currency__amount']");
 
 	// save Quotes
 	public static By EWR_FEE_FOR_PRODUCT = By.xpath(
@@ -340,7 +340,7 @@ public class CanadaObj extends ActionEngine {
 			public static By ApprovalManagmentHeader=By.xpath("//h1[text()='Approval Management']");
 			public static By btnUpdateButton=By.xpath("//*[@title='Update']");
 			public static By btnEnterNewCard = By.xpath("//*[text()='Enter New Card'] | //div[@class='row whiteBackground storeCardContainer']//div//div/a[text()='Enter a new card']");
-			public static By PaymentTypedpdn = By.xpath("//select[@id='insightPaymentcardType']");
-			public static By PaymentTypedpdnOptions = By.xpath("//select[@id='insightPaymentcardType']/option");
+			public static By PaymentTypedpdn = By.xpath("//select[@id='insightPaymentcardType'] | //select[@id='cardTypeSelect']");
+			public static By PaymentTypedpdnOptions = By.xpath("//select[@id='insightPaymentcardType']/option | //select[@id='cardTypeSelect']/option");
 
 }

@@ -32,7 +32,7 @@ public class REQ04_CancelRequisitionTest extends ChinaLib{
 	RequisitionProcessingLib ReqLib = new RequisitionProcessingLib();
 	   
 	   
-	// #############################################################################################################
+	           // #############################################################################################################
 				// # Name of the Test : REQ04_CancelRequisition
 				// # Migration Author : Cigniti Technologies
 				// #
@@ -71,8 +71,9 @@ public class REQ04_CancelRequisitionTest extends ChinaLib{
 						ReqLib.clickOnRequestorGroupID(data.get("ReqName1"));
 						ReqLib.verifyCreate_EditRequestoreGrpGeader();
 						ReqLib.verifyandclickManagerRequestors(data.get("tabName"));
+						ReqLib.AllowRequestorToCancelRequest("No");
 						ReqLib.selectRequestorgrpNameFromList(data.get("ReqName UFT"));
-						
+						commonLib.clickLogOutLink(data.get("header1"));
 						//Login with 4th User
 						cmtLib.navigateBackToCMT();
 						cmtLib.hoverOnManageWebGroupsAndSelectOptions(data.get("Manage_Web_Grp_Options"));
@@ -96,7 +97,7 @@ public class REQ04_CancelRequisitionTest extends ChinaLib{
 																	// shipping address
 						orderLib.shippingOptionsCarrierSelection(); // Click continue on
 																	// shipping options
-						orderLib.shippingBillPayContinueButton(); // Billing address
+						orderLib.billingAddressContinueButton(); // Billing address
 																	// continue button
 						// MX card details
 						orderLib.enterCreditCard(data.get("Card_Number").toString(), data.get("Card_Name"), data.get("Month"),
@@ -113,7 +114,9 @@ public class REQ04_CancelRequisitionTest extends ChinaLib{
 						orderLib.verifyandClickonRefLink(RefNumber);     
 						ReqLib.verifyApprovalManagmentPage();
 						//Need to verify cancel button not exists
-						ReqLib.verifyCancelRequisition();
+						//ReqLib.verifyCancelRequisition();
+						ReqLib.verifyCancelRequisitionButton("No");
+						commonLib.clickLogOutLink(data.get("header1"));
 						// LogIN with 1st User
 						cmtLib.navigateBackToCMT();
 						cmtLib.hoverOnManageWebGroupsAndSelectOptions(data.get("Manage_Web_Grp_Options"));
@@ -124,8 +127,9 @@ public class REQ04_CancelRequisitionTest extends ChinaLib{
 						ReqLib.clickOnRequestorGroupID(data.get("ReqName1"));
 						ReqLib.verifyCreate_EditRequestoreGrpGeader();
 						ReqLib.verifyandclickManagerRequestors(data.get("tabName"));
+						ReqLib.AllowRequestorToCancelRequest("Yes");
 						ReqLib.selectRequestorgrpNameFromList(data.get("ReqName UFT"));
-						
+						commonLib.clickLogOutLink(data.get("header1"));
 						//Login with 4th User
 						cmtLib.navigateBackToCMT();
 						cmtLib.hoverOnManageWebGroupsAndSelectOptions(data.get("Manage_Web_Grp_Options"));
@@ -137,7 +141,7 @@ public class REQ04_CancelRequisitionTest extends ChinaLib{
 						ReqLib.verifyApprovalManagmentPage();
 						ReqLib.verifyandClickCancelRequisitionBtn();
 						ReqLib.verifyCancelRequisitionStatusMesssage();
-						
+						commonLib.clickLogOutLink(data.get("header1"));
 						//LogIN with 1st User
 						cmtLib.navigateBackToCMT();
 						cmtLib.hoverOnManageWebGroupsAndSelectOptions(data.get("Manage_Web_Grp_Options"));
@@ -161,7 +165,7 @@ public class REQ04_CancelRequisitionTest extends ChinaLib{
 																	// shipping address
 						orderLib.shippingOptionsCarrierSelection(); // Click continue on
 																	// shipping options
-						orderLib.shippingBillPayContinueButton(); // Billing address
+						orderLib.billingAddressContinueButton(); // Billing address
 																	// continue button
 						// MX card details
 						orderLib.enterCreditCard(data.get("Card_Number").toString(), data.get("Card_Name"), data.get("Month"),
@@ -173,7 +177,7 @@ public class REQ04_CancelRequisitionTest extends ChinaLib{
 						Thread.sleep(4000);
 						orderLib.verifyReceiptVerbiage();
 						String RefNumber1 = orderLib.getTextfromReferenceNumber();
-						
+						commonLib.clickLogOutLink(data.get("header1"));
 						//Login with 2nd User
 						cmtLib.navigateBackToCMT();
 						cmtLib.hoverOnManageWebGroupsAndSelectOptions(data.get("Manage_Web_Grp_Options"));
@@ -183,6 +187,7 @@ public class REQ04_CancelRequisitionTest extends ChinaLib{
 						orderLib.verifyandClickonRefLink(RefNumber1);
 						ReqLib.verifyApprovalManagmentPage();
 						ReqLib.clickUpdateInApprovalManagmentPage();
+						commonLib.clickLogOutLink(data.get("header1"));
 						//LogIN with 1st User
 						cmtLib.navigateBackToCMT();
 						cmtLib.hoverOnManageWebGroupsAndSelectOptions(data.get("Manage_Web_Grp_Options"));
@@ -194,7 +199,7 @@ public class REQ04_CancelRequisitionTest extends ChinaLib{
 						ReqLib.verifyApprovalManagmentPage();
 						ReqLib.verifyandClickCancelRequisitionBtn();
 						ReqLib.verifyCancelRequisitionStatusMesssage();
-						
+						commonLib.clickLogOutLink(data.get("header1"));
 						//Login with 3rd User
 						cmtLib.navigateBackToCMT();
 						cmtLib.hoverOnManageWebGroupsAndSelectOptions(data.get("Manage_Web_Grp_Options"));

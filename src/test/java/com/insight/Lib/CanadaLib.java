@@ -8,12 +8,14 @@ import java.io.StringReader;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
 import com.insight.report.ReporterConstants;
 
 import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.ss.usermodel.WorkbookFactory;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.mortbay.log.Log;
@@ -25,6 +27,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 
+import com.google.api.services.sheets.v4.model.Sheet;
 import com.insight.ObjRepo.CanadaObj;
 import com.insight.ObjRepo.CartObj;
 import com.insight.ObjRepo.CommonObj;
@@ -329,14 +332,15 @@ public class CanadaLib extends CanadaObj {
 		Thread.sleep(2000);
      CommonLib cmnlib=new CommonLib();
           cmnlib.acceptCookies() ;
-		Thread.sleep(20000);
+		//Thread.sleep(20000);
 		if(isVisibleOnly(InvoiceHistoryLib.COSE_ACCOUNT_TOOLS, "close account tools")) {
 			click(InvoiceHistoryLib.COSE_ACCOUNT_TOOLS, "close account tools");
 		} 
-		
 		   click(CommonObj.ACCOUNT_TOOLS, "Account tools menu icon");
 		   click(CommonObj.accountToolsMenu(toolsMenuName), "Account tools menu:"+toolsMenuName);
-		   click(CommonObj.getAccountToolsDD(toolsMenuName, dropDown), "Select account tools: "+dropDown);	   
+		    scrollToBottomWithCordinate("300");
+		    click(CommonObj.getAccountToolsDD(toolsMenuName, dropDown), "Select account tools: "+dropDown);
+		   // navigateToBackPage();		   
 	}
 	
 	public void verifyGroundIsDefaultShippingOption() throws Throwable {
@@ -820,7 +824,7 @@ public class CanadaLib extends CanadaObj {
 	public void verifyProductPrice() throws Throwable {
 		waitForVisibilityOfElement(PROD_PRICE, "Canada Product Price");
 		if (isVisibleOnly(PROD_PRICE, "Canada Product Price")) {
-			reporter.SuccessReport("Price on Product Detail Page", "Price Exists", "");
+			reporter.SuccessReport("Price on Product Detail Page", "Price Exists", getText(PROD_PRICE, "product price"));
 		} else {
 			reporter.failureReport("Price on Product Detail Page", "Price Does Not Exist", "", driver);
 		}
@@ -829,7 +833,7 @@ public class CanadaLib extends CanadaObj {
 	public void verifyProratedPrice() throws Throwable {
 		waitForVisibilityOfElement(PRORATED_PRICE, "Canada Product Prorated Price");
 		if (isVisibleOnly(PRORATED_PRICE, "Canada Product Prorated Price")) {
-			reporter.SuccessReport("Prorated Price displayed in the Cart Page", "Prorated Price is displayed", "");
+			reporter.SuccessReport("Prorated Price displayed in the Cart Page", "Prorated Price is displayed", getText(PRORATED_PRICE, "prorated price"));
 		} else {
 			reporter.failureReport("Prorated Price displayed in the Cart Page", "Prorated Price is Not displayed", "", driver);
 		}
@@ -928,7 +932,7 @@ public class CanadaLib extends CanadaObj {
 	 */
 	public void clickOnReportZeroUsageLinkOnCart() throws Throwable {
 		waitForVisibilityOfElement(REPORT_ZERO_USAGE_LINK, "report zero usage");
-		click(REPORT_ZERO_USAGE_LINK, "report zero usgae link");
+		click(REPORT_ZERO_USAGE_LINK, "Report Zero Usage For This Period");
 	}
 
 	/**
@@ -1147,15 +1151,15 @@ public void selectOption() throws Throwable {
 	 * @return
 	 * @throws Throwable
 	 */
-	public String enterNameOnAdditionalInfo() throws Throwable {
-		String name = DynamicTestDataGenerator.generateRandomFirstName();
+	public String enterNameOnAdditionalInfo(String contactName) throws Throwable {
+		//String name = DynamicTestDataGenerator.generateRandomFirstName();
 		if (isVisibleOnly(MarriottIntlCorpObj.NAME, "Name")) {
 			click(MarriottIntlCorpObj.NAME, "Name");
-			type(MarriottIntlCorpObj.NAME, name, "Name");
+			type(MarriottIntlCorpObj.NAME, contactName, "Name");
 		}else {
 			reporter.failureReport("Verify Name fields exists", "Name field does not exists", "", driver);
 		}
-		return name;
+		return contactName;
 	}
 
 /*
@@ -1581,6 +1585,7 @@ public void addShippingAddress(String name, String userName,String street1,Strin
 		waitForVisibilityOfElement(SMART_CHECK, "Smart Check");
 		if (isVisibleOnly(SMART_CHECK, "Smart Check")) {
 			status=true;
+			click(SMART_CHECK,"Smart Check");
 			reporter.SuccessReport("Verify Smart Tracker Check Box on Reports Page",
 					"Smart Tracker Check Box Exists and UnChecked", "");
 		} else {
@@ -1673,7 +1678,6 @@ public void addShippingAddress(String name, String userName,String street1,Strin
 					"Run Reports Field Not Exists and Clicked", "", driver);
 		}
 	}
-
 	/**
 	 * Method to verify download excel file
 	 *
@@ -1682,37 +1686,36 @@ public void addShippingAddress(String name, String userName,String street1,Strin
 	public void verifyDownloadedReportExcelFile(List<String> actualData, String filePath) throws Throwable {
 		Thread.sleep(10000);
 		File root = new File(System.getProperty("user.dir") + "\\" + "DownloadedFiles" + "\\");
+		Thread.sleep(10000);
 		FilenameFilter beginswithm = new FilenameFilter() {
 			public boolean accept(File directory, String filename) {
+
 				return filename.startsWith(filePath);
 			}
 		};
 		File[] files = root.listFiles(beginswithm);
 
 		if (files[0] != null) {
-			
-			  // PATH
-			  
-			  // load file
-			 FileInputStream fis = new FileInputStream(files[0]); // Load
-			  Workbook  wb = new XSSFWorkbook(fis);
-			  List<String> expectedData =new ArrayList<String>();
-			  XSSFSheet sh1 = (XSSFSheet) wb.getSheetAt(0); 
-			  String data1 = sh1.getRow(0).getCell(0).getStringCellValue();
-			  expectedData.add(data1);
-			  if
-			  (sh1.getRow(2).getCell(0).getStringCellValue() != null) {
-				String data3 =sh1.getRow(2).getCell(0).getStringCellValue(); 
+			// PATH
+
+			// load file
+			FileInputStream fis = new FileInputStream(files[0]);
+			// Load workbook
+			XSSFWorkbook wb = new XSSFWorkbook(fis);
+			XSSFSheet sh1 =  wb.getSheetAt(0);
+			String data1 = sh1.getRow(0).getCell(0).getStringCellValue();
+			List<String> expectedData = new ArrayList<String>();
+			expectedData.add(data1);
+			if (sh1.getRow(2).getCell(0).getStringCellValue() != null) {
+				String data3 = sh1.getRow(2).getCell(0).getStringCellValue();
 				expectedData.add(data3);
-			 
-			
-			  } else {
-			String data3 = sh1.getRow(3).getCell(0).getStringCellValue();
-			  expectedData.add(data3); }
-			  
-			  Assert.assertEquals(actualData, expectedData);
-			 
-			reporter.SuccessReport("Verify the Excel Downloaded", "Excel sheet is present as expected", "");
+			} else {
+				String data3 = sh1.getRow(3).getCell(0).getStringCellValue();
+				expectedData.add(data3);
+			}
+
+			Assert.assertEquals(actualData, expectedData);
+			reporter.SuccessReport("Verify the Excel Data ", "Excel Data is present as expected", "");
 
 		}
 	}
@@ -2084,6 +2087,11 @@ public void addShippingAddress(String name, String userName,String street1,Strin
 			reporter.SuccessReport("Verify the Excel Downloaded", "Excel sheet is present as expected", "");
 
 		}
+	}
+
+	public boolean availabilityOfContinueCheckout() throws Throwable {
+		return isVisible(CONTINUE_TO_CHECKOUT, "Continue to checkout");
+
 	}
 
 }

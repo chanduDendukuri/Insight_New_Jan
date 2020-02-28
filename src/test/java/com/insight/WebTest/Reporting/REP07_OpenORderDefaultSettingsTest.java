@@ -10,11 +10,13 @@ import org.testng.annotations.Test;
 import com.insight.Lib.CMTLib;
 import com.insight.Lib.CanadaLib;
 import com.insight.Lib.CartLib;
+import com.insight.Lib.CommonCanadaLib;
 import com.insight.Lib.CommonLib;
 import com.insight.Lib.MarriottIntlCorpLib;
 import com.insight.Lib.OrderLib;
 import com.insight.Lib.ProductDetailLib;
 import com.insight.Lib.ProductDisplayInfoLib;
+import com.insight.Lib.ReportingLib;
 import com.insight.Lib.SearchLib;
 import com.insight.Lib.SewpLib;
 import com.insight.Lib.ShipBillPayLib;
@@ -34,6 +36,7 @@ public class REP07_OpenORderDefaultSettingsTest extends CanadaLib{
 	SewpLib sewpLib=new SewpLib();
 	ShipBillPayLib shipbLib=new ShipBillPayLib();
 	MarriottIntlCorpLib mic=new MarriottIntlCorpLib();
+	ReportingLib reportingLib=new ReportingLib();
 	
 	@Parameters({ "StartRow", "EndRow", "nextTestJoin" })
 	@Test
@@ -59,6 +62,8 @@ public class REP07_OpenORderDefaultSettingsTest extends CanadaLib{
 				CMTLib cmtLib = new CMTLib();
 			//	OrderLib orderLib = new OrderLib();
 				CanadaLib canadaLib=new CanadaLib();
+				CommonCanadaLib ccp = new CommonCanadaLib();
+				
 				cmtLib.loginToCMTSearchWebGrpAndUser(data.get("Header"), data.get("WebGrp"), data.get("LnameEmailUname"),data.get("ContactName"));
 				cmtLib.clickOnRolesAndPermissionsAndSetPermission(data.get("Menu_Name"), data.get("Set_Permission"));
 				cmtLib.loginAsAdminCMT();
@@ -66,23 +71,27 @@ public class REP07_OpenORderDefaultSettingsTest extends CanadaLib{
 						data.get("Tools_Menu_DD"));	
 				clickOnReportOptions(data.get("ReportOption"));
 				verifyReportsPage();
+				reportingLib.verifySelectReportOptions();
 				verifySelectReport(data.get("SelectReport"));
 				verifyAccountSelections(data.get("AccountSelections"));
-				
+				reportingLib.verifytheLinkedSoldTosText();
+				reportingLib.verifyDefualtCurrancyUSD();
 				verifyFilterbyCurrency(data.get("Currency"));
 				verifyFilterOption();
 				verifyScheduleReport(data.get("ScheduleOption"));
 				verifyDeliveryOption();
-				clickOnAccountSelections(data.get("AccountSelectionsOpt"));
+				clickOnAccountSelections(data.get("AccountSelections"));
 				verifyQuickDateOption(data.get("QuickDateOptions"));
-				verifyCustomDate();
 				verifySmartcheck();
-				
+				reportingLib.verifyStartDate("01");
+				reportingLib.EndDateVerification();
 				clickOnDeliveryMethod(data.get("DeliveryMethod"));
 				clickOnDeliveryFormat(data.get("DeliveryFormat"));
-				clickOnRun();	
-				List<String> excelOptions= Arrays.asList(data.get("ExcelOptions").split(","));
-			    canadaLib.verifyDownloadedReportExcelFile(excelOptions,data.get("ReportOption"));
+				clickOnRun();
+				//commonLib.spinnerImage();
+				Thread.sleep(60000);
+				String List="Sales Rep Name,Service Rep,Account Number,Account Name,Billing Account Number,Billing Account Name,Status,Order Number,Order Date,Reference Number,Web Group,PO Number,PO Release No.,Order Line Number,Insight Part ID,Manufacturer Part ID,Material Description,Country of Usage,Invoiced Qty Shipped,Open Order Quantity,Manufacturer,Unit Price,Ext Price,Tax,Freight Line,Freight Total,EWR Fee,Total Price,Currency,Product Category,Product Subcategory,Carrier,Shipping Method,Estimated Ship Date,Shipping Account Number,Shipping Name,Shipping Attention,Shipping Street,Shipping City,Shipping State / Province,Shipping Postal Code,Shipping Country";
+				ccp.verifyExportFile("Page1","2",List,ccp.getLatestFilefromDir());
 				commonLib.clickLogOutLink(data.get("Logout_Header"));
 				} catch (Exception e) {
 					ReportStatus.blnStatus = false;

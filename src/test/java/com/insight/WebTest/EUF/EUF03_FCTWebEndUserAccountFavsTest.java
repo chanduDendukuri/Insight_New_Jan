@@ -59,13 +59,15 @@ public class EUF03_FCTWebEndUserAccountFavsTest extends EndUserFeaturesLib{
 								data.get("ContactName"));
 						cmtLib.clickOnloginAs();
 						switchToChildWindow();
-						orderLib.clickOnSideMenuSelectAccountToolOptions(data.get("Tools_Menu"), data.get("Tools_Menu_DD"));
+						//orderLib.clickOnSideMenuSelectAccountToolOptions(data.get("Tools_Menu"), data.get("Tools_Menu_DD"));
+						commonLib.clickOnAccountToolsAndClickOnProductGrp(data.get("Tools_Menu"), data.get("Tools_Menu_DD"));
+
 						clickOnTabInUserProfile(data.get("Tab_Name"));
 						clearMyFavoriteAccountsList();
 						//addSearchListtoFavorites();
 						clearAndSearchWithAccountNum(data.get("Search"));//60601
 						addSearchListtoFavorites();
-						clearAndSearchWithAccountNum("10544857");
+						clearAndSearchWithAccountNum("10013841");
 						addSearchListtoFavorites();
 						clearAndSearchWithAccountNum(data.get("AccountName"));//ACC
 						addSearchListtoFavorites();

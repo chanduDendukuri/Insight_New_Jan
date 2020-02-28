@@ -52,19 +52,48 @@ public class CommonCanadaPage extends ActionEngine{
     public static By lblHostedLicensingAdminPage = By.xpath("//h1[text()='Hosted Licensing Administration']");
     public static By lblReturnTOSoftwareLicenseAggrements = By.xpath("//*[text()='Return to My Software License Agreements']");
     public static By lblManifacturerNumberFormProductScreen = By.xpath("//*[@class='product-specs top-horizontal']//td[2]");
-    public static By lblProductStandards = By.xpath("//div[@id='csProductGroupsHeading']");
+    public static By lblProductStandards = By.xpath("//div[@id='companyStandardsHeading']");
     public static By addToCartIcon = By.xpath("//*[contains(@id,'cartIcon')]");
     public static By viewCartlnk = By.xpath("//span[text()='View Cart >>']");
     public static By lblCartLebel=By.xpath("//*[@class='shopping-cart__header-title']");
+    public static By emptyCartLink=By.xpath("//a[@class='columns section__header-action' and text()='Empty cart']");
+    public static By StoredAddresses=By.xpath("//*[text()='Stored addresses']");
+    public static By getStoredAddresses=By.xpath("//*[@class='columns small-12 medium-expand'][2]");
+    public static By getSroredAddressFromResultsGrid=By.xpath("//div[@class='table']//*[@class='row align-middle']//div[@class='columns table__col table__col--body']");
+    public static By btnContinue=By.xpath("//*[@class='row stored-address']//following-sibling::footer//div//button[text()='Continue']");
+    public static By rbtnDefaultAddress=By.xpath("//*[@name='defaultAddress']");
+public static By addTocartButtonInWarrenty = By.xpath("//*[@id='tpl-specs-warranties-target']//*[@class='button primary small js-add-to-cart'][1]");
+public static By addTocartButtonInWarrenty1 = By.xpath("(//*[@id='tpl-specs-warranties-target']//*[@class='button primary small js-add-to-cart'])[4]");
+public static By priceInWarrenty=By.xpath("//*[@id='tpl-specs-warranties-target']//div[@class='product-price'][1]");
+public static By exportToXLSlink=By.xpath("//*[text()='Export as a file']");
+public static By IUSAMandatoryCTOlink=By.xpath("//*[text()='IUSA Mandatory CTO']");
+public static By AddtoOrder=By.xpath("//*[text()='ADD TO ORDER']");
+public static By blackBerrylogo=By.xpath("//*[@title='BlackBerry']");
+public static By searchByProductByCategory=By.xpath("//*[@id='js-custom-search-field']");
+public static By lblTopBrands=By.xpath("//*[contains(text(),'Top brands')]");
+public static By btnAddToCartIst = By.xpath("//*[@class='cart-wrapper show-for-medium-up js-add-to-cart-container']//*[text()='Add to Cart']");
+public static By txtQuantityValue = By.xpath("//*[@class='cart-wrapper show-for-medium-up js-add-to-cart-container']//*[contains(@id,'qty')]");
+    public static By PaymentTypedpdn = By.xpath("//select[@id='insightPaymentcardType'] | //select[@id='cardTypeSelect'] | //div[@id='cardType'] ");
+    public static By PaymentTypedpdnOptions = By.xpath("//select[@id='insightPaymentcardType']/option | //select[@id='cardTypeSelect']/option");
+    public static By BreadCrumbdynamic = By.xpath("//*[@class='filter-item js-filter-item']//a | //*[contains(@class,'filter-item js-filter-item')]//a");
+    public static By printLinkiCon=By.xpath("//*[@class='icon print has-tip tip-top']");
+    public static By availabilityOfPrintPage=By.xpath("//*[@id='js-print-invoice-target']");
+    public static By closePrintPage=By.xpath("//*[@id='js-print-invoice-target']//a[contains(@class,'close')]");
+    public static By summaryTotalInSearchPage = By.xpath("//*[contains(@id,'js-product-detail-pricing-target')]//p[@class='prod-price']");
+    public static By lblProductDescription = By.xpath("//*[@class='cart__item-heading']");
+    public static By CART_PROD_DESC_RECENTLYADDEDTEM_loop=By.xpath("//div[@class='columns flex-child-auto cart__table-col--desc text-left']/a/h4");
+    public static By AllContractDetails=By.xpath("//div[@class='large-12 columns js-modal-pick-contract']//label");
+    public static By newURLHeader=By.xpath("//*[@class='ips-contract-heading']");
+    public static By lblProductDetailsOnAllContactPrices=By.xpath("//*[@id='buy-more-prices-modal']//p[@class='prod-part-number show-for-medium-up']");
 
-
-
-
-
-
-
-
-
+    public static By icnDeleteByProductNumber(String header){
+        return By.xpath("//*[contains(@class,'part cart') and contains(.,'"+header+"')][1]//..//..//..//..//..//div//span[@title='Delete']");
+    }
+    public static By getProductNumberinViewCartPage(String header){
+        return By.xpath("//*[contains(@class,'part cart') and contains(.,'"+header+"')][1]");
+    }
+    public static By getInsightProductNumberInCartPage = By.xpath("//*[contains(@class,'part cart') and contains(.,'Insight')]");
+    public static By CART_CONTRACT_NAME=By.xpath("//div[@class='cart__table-block']//div[@class='columns']//strong");
 
 
 }

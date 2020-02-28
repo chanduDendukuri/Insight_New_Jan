@@ -54,13 +54,7 @@ public class REP10_InvoicedSummaryPDFTest extends ReportingLib {
 					TestEngineWeb.reporter.initTestCaseDescription("InvoicedSummaryPDF");
 	
 					CMTLib cmtLib = new CMTLib();
-					SearchLib searchLib = new SearchLib();
-					OrderLib orderLib = new OrderLib();
 					CanadaLib canadaLib = new CanadaLib();
-					CartLib cartLib = new CartLib();
-					MarriottIntlCorpLib mic = new MarriottIntlCorpLib();
-					InvoiceHistoryLib invoiceHistoryLib = new InvoiceHistoryLib();
-					MarriottIntlCorpLib marriottIntlCorpLib = new MarriottIntlCorpLib();
 					CommonLib commonLib = new CommonLib();
 					
 					cmtLib.loginToCMTSearchWebGrpAndUser(data.get("Header"), data.get("WebGrp"),
@@ -75,6 +69,7 @@ public class REP10_InvoicedSummaryPDFTest extends ReportingLib {
 					canadaLib.verifyReportsPage();
 					canadaLib.verifySelectReport(data.get("SelectReport"));
 					verifyScheduleReport();
+					verifytheLinkedSoldTosText();
 					List<String> optionList = Arrays.asList(data.get("ScheduleOptions").split(","));
 					verifyScheduleReportOptions(optionList);
 					canadaLib.verifyFilterbyCurrency(data.get("Currency"));
@@ -83,9 +78,15 @@ public class REP10_InvoicedSummaryPDFTest extends ReportingLib {
 					verifyDeliveryMethodOptions(deliveryOptionsList);
 					verifyDefaultAccountSelection(data.get("DefaultAccountSelOpt"));
 					verifyTreeForAllAccounts();
+					canadaLib.verifyFilterbyCurrency(data.get("Currency"));
 					verifyDefaultCurrentDate(data.get("CurrentDate"));
-					List<String> dateOptionsList = Arrays.asList(data.get("ScheduleDates").split(","));
-					verifyScheduleReportOptionsDates(dateOptionsList);					
+					verifytheLinkedSoldTosText();
+					verifyDefualtCurrancyUSD();
+					verifyStartDate(data.get("DayOne"));
+					EndDateVerification();
+					List<String> ScheduleOptions = Arrays.asList(data.get("ScheduleOptions").split(","));
+					verifyScheduleReportOptionsDates(ScheduleOptions);
+					verifyScheduleReportOption(data.get("Soption"));
 					canadaLib.clickOnDeliveryMethod(data.get("DeliveryMethod"));
 					canadaLib.clickOnDeliveryFormat(data.get("DeliverFormat"));
 					canadaLib.clickOnRun();

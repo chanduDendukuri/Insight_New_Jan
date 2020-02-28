@@ -62,8 +62,9 @@ public class EUF19_FavoriteLinksTest extends EndUserFeaturesLib{
 						
 						cmtLib.clickOnloginAs();
 						switchToChildWindow();
-						canadaLib.clickOnSideMenuSelectAccountToolOptions(data.get("Tools_Menu"),
-								data.get("Tools_Menu_DD"));
+
+						commonLib.clickOnAccountToolsAndClickOnProductGrp(data.get("Tools_Menu"), data.get("Tools_Menu_DD"));
+
 						clickOnTabInUserProfile(data.get("Tab_Name"));
 						Thread.sleep(14000);
 						commonLib.spinnerImage();
@@ -77,16 +78,27 @@ public class EUF19_FavoriteLinksTest extends EndUserFeaturesLib{
 					//	orderHistoryLib.verifyOrderHistoryPage();
 						//Verifying 1st favourite link
 						Thread.sleep(7000);
+						selectToolsOnHeader();
 						selectToolsDropDownInHomepage(data.get("Invoice_History"));
 						//canadaLib.verifyInvoiceHistoryPageOpened();
 						//manage fav link
+						selectToolsOnHeader();
+
 						clickSettingsIconInToolsDD();
 
 						Thread.sleep(5000);
+						//scrollToBottomWithCordinate("-300");
+	//Extra requirement
+						//clickOnTabInUserProfile("Favorites");
+						scrollToBottomWithCordinate("500");
 						verifyFavouritesLinksPageOpened();
+						//verifyAccountFavouritesLinksPageOpened();
+
 						deleteAllFavouriteLinks();
 						clickUpdateButtonInFavouritesLinks();
 						selectToolsDropdownAndVerifyFavouriteLinkIsNotPresent(data.get("Order_Tracking"));
+						selectToolsOnHeader();
+
 						selectToolsDropdownAndVerifyFavouriteLinkIsNotPresent(data.get("Invoice_History"));
 
 
@@ -94,14 +106,15 @@ public class EUF19_FavoriteLinksTest extends EndUserFeaturesLib{
 						System.out.println("Test completed");
 					} catch (Exception e) {
 						ReportStatus.blnStatus = false;
-						//gErrorMessage = e.getMessage();
+						//e.getClass().getSimpleName();
+						gErrorMessage = e.getClass().getSimpleName();
 						gTestStatus = false;
 					}
 									}
 			} catch (Exception e) {
 				e.printStackTrace();
 				ReportStatus.blnStatus = false;
-				//gErrorMessage = e.getMessage();
+				gErrorMessage = e.getClass().getSimpleName();
 				gTestStatus = false;
 				ReportStatus.fnUpdateResultStatus("FavoriteLinks", "TC_EUF19", ReportStatus.strMethodName, 1, browser);
 				throw new RuntimeException(e);

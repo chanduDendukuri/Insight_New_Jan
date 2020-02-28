@@ -106,6 +106,7 @@ public class LineLevelInfoObj extends ActionEngine{
 	 
 	 // Split into individual lines
 	 public static By SPLIT_INTO_INDIVIDUAL_LINES_LINK=By.xpath("//a[@class='line-level__split-link'][contains(text(),'Split into individual lines')]");
+	 public static By SPLIT_INTO_INDIVIDUAL_BUNDLES_LINK=By.xpath("//a[@class='line-level__split-link float--right'][contains(text(),'Split into individual bundles')]");
 	 public static By TWO_LINE_ITEMS_LABEL=By.xpath("//span[contains(text(),' line items require information')]");
 	 
 	 public static By ORDER_DETAILS_ITEMS=By.xpath("//div[@class='item-body item-body--contract']");
@@ -119,6 +120,6 @@ public class LineLevelInfoObj extends ActionEngine{
 	 
 	 public static By COUNTRY=By.xpath("//select[@id='country']");
 	 public static By QTP_TEXT_TXTBOX(String partNum) {
-			 return By.xpath("//p[contains(.,'Insight Part #: "+partNum+"')]/following::div[@class='row expanded is-collapse-child']//input[@name='smartTracker.st-582412']");
+			 return By.xpath("//p[contains(.,'Insight Part #: "+partNum+"')]/following::div[@class='row expanded is-collapse-child']//input[@name='smartTracker.st-595529']");
 	 }
 }

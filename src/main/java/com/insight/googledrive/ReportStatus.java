@@ -23,7 +23,7 @@ public class ReportStatus extends TestEngineWeb {
 	public static void fnUpdateResultStatus(String strModuleName,String strTestCaseID,String strScriptName,int Iteration,String strBrowserNameIn) throws Throwable
 	{
 		if(!blnStatus){
-			reporter.failureReport("Test :"+strModuleName+" - "+strTestCaseID+"-"+strScriptName+"strScriptName","Execution Failed...!"+gErrorMessage,"NA");
+			reporter.failureReport("Test :"+strModuleName+" - "+strTestCaseID+"-"+strScriptName+"strScriptName","Execution Failed"+gErrorMessage,"NA");
 			gTestStatus=blnStatus;
 		}
 		fnDefaultReportStatus();

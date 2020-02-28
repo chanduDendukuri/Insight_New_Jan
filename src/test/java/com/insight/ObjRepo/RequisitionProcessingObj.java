@@ -57,7 +57,11 @@ public class RequisitionProcessingObj extends CommonObj {
 	public static By OPTIONAL_RULES_LINK = By.xpath("//span[@id='li-OptionalRules']");
 
 	public static By BACKTO_REQSEARCH = By.xpath("//span[@id='backtoReqSearch']//a");
+	public static By DeleteRoutingOption = By.xpath("//a[@class='deleteRoute']");
+	
+public static By Delete_UnderRouteButton = By.xpath("//span[text()='Delete Route']//following::span[text()='Delete']");
 
+public static By Delete_UnderRouteButton1 = By.xpath("(//span[text()='Delete Route']//following::span[text()='Delete'])[2]");
 	public static By SMARTTRACKERRULES_EDIT_LINK = By
 			.xpath("//td[@id='reqname' and contains(text(),'SmartTrackerRules')]/..//td/a[contains(text(),'Edit')]");
 
@@ -71,24 +75,24 @@ public class RequisitionProcessingObj extends CommonObj {
 			"//tr[@class='table_row']//td[@class='opt_rul_col_currency col4Header']//input[@id='currRange1'][@class='minAmt']");
 	public static By MAX_AMT = By.xpath(
 			"//tr[@class='table_row']//td[@class='opt_rul_col_currency col4Header']//input[@id='currRange2'][@class='maxAmt']");
-	public static By APPROVAL_PATH = By.xpath("//tr[@class='table_row']//select[@class='approvalPathId normal']");
+	public static By APPROVAL_PATH = By.xpath("//tr[@class='table_row']//select[@class='approvalPathId normal'][not(contains(@disabled,'disabled'))]");
 	public static By SAVE_RULE = By.xpath("//tr[@class='table_row']//div[@class='createOptions']//a[@id='optrule_create_button']//img[@alt='create']");
 	public static By DELETE_RULE = By.xpath("//tr[@class='table_row']//div[@class='updateOptions']//a[@id='optrule_cncl_button']//img[@alt='create']");
 	public static By RULE_SUCCESS_CREATE_MSG = By.xpath("//div[@id='mesg_bar']//p[contains(text(),'Routing rule successfully created')]");
 	public static By SURE_DELETE = By.xpath("//a//span[contains(text(),'Delete')]");
-	
+	public static By CreateRule = By.xpath("//b[contains(text(),'Create Rule:')]//following-sibling::Select[@id='routing-selbox']");
 	//Create Rules 
 	public static By CREATERULES_EDIT_LINK = By
 			.xpath("//td[@id='reqname' and contains(text(),'Create Rules')]/..//td/a[contains(text(),'Edit')]");
 	
-	
+	public static By btn_AddRoute = By.xpath("//a[@id='addRoute']");
 	public static By WITHRULE_LISTING_FACTOR = By.xpath("//select[@id='routing-selbox']");
 	
 	public static By SMARTRULE_LISTING_OPTION = By.xpath("//select[@id='smartTrackerNameList']");
 	
 	public static By ADD_ROUTE_BTN = By.xpath("//a//span[contains(text(),' ADD ROUTE ')]");
 	
-	public static By HDLLIST_OPTION = By.xpath("//ul[@id='sortable']//tr[@class='table_row']//div[@id='selbox_ST']//select[@class='smartTrackerName normal1']");
+	public static By dd_SelectaListToUse = By.xpath("//ul[@id='sortable']//tr[@class='table_row']//div[@id='selbox_ST']//select[@class='smartTrackerName normal1']");
 			
 	public static By ADD_RULE_WITH_LIST = By.xpath("//tr[@id='addChoiceButton1']//a[@class='grey left']//span[contains(text(),'ADD RULE')]");
 	
@@ -105,7 +109,7 @@ public class RequisitionProcessingObj extends CommonObj {
 	public static By saveRuleWithList(String item) {
 		return By.xpath("(//tr[@class='table_row']//div[@class='createOptions flr']//a[@id='optrule_create_button']//img[@alt='create'])[" + item + "]");
 	}
-	
+	public static By expandsearch = By.xpath("//div[@id='expndsearch1']/a[contains(text(),'Expand search')]");
 	public static By DENY_RADIOBTN = By.xpath("//input[@id='denyRadioButton']");
 	public static By TEXT_BOX = By.id("srTextAreaComments");
 	public static By SEARCH_HDR = By.xpath("//h2[contains(text(),'Requisition Search')]");
@@ -172,6 +176,7 @@ public class RequisitionProcessingObj extends CommonObj {
 		public static By createtabNames(String tabName){
 			return By.xpath("//span[@id='"+tabName+"']/a");
 		}
+		public static By REQUESTER_CANCEL_REQUSET=By.xpath("//select[@id='reqselection']");
 		public static By REQUESTOR_AVAILABLE(String GroupName) {
 				return By.xpath("//select[@id='AvailRequestorsList']//option[contains(text(),'"+GroupName+"')]");
 		}
@@ -185,8 +190,11 @@ public class RequisitionProcessingObj extends CommonObj {
 		public static By CANCELTN_STATUSMESSAGE= By.xpath("//div[@id='serach_msgbar2'][contains(text(),'Requisition Status Update Successful')]");
 		public static By EXPANDSEARCH= By.xpath("//div[@id='expndsearch1']/a");
 		
+		public static By CANCEL_REQUISITION_BTN=By.xpath("//a[@id='cancelReq']//span[contains(text(),'CANCEL REQUISITION')]");
 		
-		
+		public static By REQ_GRP_DROPDOWN_OPTION(String ReqName) {
+			return By.xpath("//div[@class='Select-menu-outer']//div[@role='option'][contains(text(),'"+ReqName+"')]");
+		}
 		
 	
 }

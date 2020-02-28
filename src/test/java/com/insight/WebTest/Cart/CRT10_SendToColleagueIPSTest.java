@@ -24,6 +24,10 @@ public class CRT10_SendToColleagueIPSTest extends CartLib{
 	CommonLib commonLib = new CommonLib();
 	CartLib cartLib = new CartLib();
 	CMTLib cmtLib = new CMTLib();
+	SearchLib searchLib = new SearchLib();
+	CanadaLib canadaLib = new CanadaLib();
+	ProductDisplayInfoLib prodInfoLib = new ProductDisplayInfoLib();
+	SearchLib search = new SearchLib();
 	   
 	// #############################################################################################################
     // #    Name of the Test         : CRT10_SendToColleagueIPS
@@ -53,22 +57,52 @@ public class CRT10_SendToColleagueIPSTest extends CartLib{
 										"Web_Cart", intCounter);
 								TestEngineWeb.reporter.initTestCaseDescription("SendToColleagueIPS");
 					
-					String searchItem1 = data.get("SearchItem1");
-					String searchItem2 = data.get("SearchItem2");
-					cmtLib.loginToCMTSearchWebGrpAndUser(data.get("header"), data.get("WebGrp"), data.get("LnameEmailUname"), data.get("ContactName"));
+					
+					//cmtLib.loginToCMTSearchWebGrpAndUser(data.get("header"), data.get("WebGrp"), data.get("LnameEmailUname"), data.get("ContactName"));
+					cmtLib.loginToCMT(data.get("header"));
+					cmtLib.searchForWebGroup(data.get("WebGrp"));
+					cmtLib.clickOnTheWebGroup(data.get("WebGrp_Name"));
+					cmtLib.hoverOnManageWebGroupsAndSelectOptions(data.get("Manage_Web_Grp_Options"));
+					cmtLib.searchForaUserAndSelect(data.get("LnameEmailUname"), data.get("ContactName"));
+					
 					cmtLib.setPermissions(data.get("Menu_Name"),data.get("Enable_Purchasing_Popup"));
 					String mainWindow = parentWindow();
 					cmtLib.clickOnloginAs();
 					switchToWindow(mainWindow);	
-					commonLib.searchProduct(searchItem1);
+					cmtLib.loginVerification(data.get("ContactName"));
+					
+					commonLib.searchProduct(data.get("SearchItem1"));
+					searchLib.verifyBreadCrumbInSearchResultsPage(data.get("SearchItem1"));
+					verifyDefaultContract();
+					
+					String searchItem=prodInfoLib.getPartNumberExactlyInSearchResultsPage();
+					cartLib.clickMorePricesAvilable(0);
+					clickOnUSCommuditiesPrice();
+					clickOnAddToCartInAllContractPrices();
+								
+			
+					canadaLib.continueToCheckout();
+					canadaLib.verifyPlaceCartLabel();
+					verifyDefaultContractInCart();
+					prodInfoLib.verifyCartPageAndPartDetailsForRecentlyItemDynamically(searchItem);
+					search.verifyContract(data.get("Default_contract"));
+					search.selectContractInCartPage(data.get("Contract"));
+					commonLib.searchProduct(data.get("SearchItem2"));
+					verifyBreadCrum(data.get("SearchItem2"));
+					verifyBreadCrum(data.get("memory"));
+					search.verifyContract(data.get("Contract"));
+					String searchItem1=prodInfoLib.getPartNumberExactlyInSearchResultsPage();
 					commonLib.addFirstDisplyedItemToCartAndVerify();
-					commonLib.continueToShopping();
-					commonLib.searchProduct(searchItem2);
-					commonLib.addFirstDisplyedItemToCartAndVerify();
-					commonLib.closePopUp();
+					canadaLib.continueToCheckout();
+					canadaLib.verifyPlaceCartLabel();
+					prodInfoLib.verifyCartPageAndPartDetailsForRecentlyItemDynamically(searchItem1);
+					
 					cartLib.clickAndVerifySendToAColleagueErrorMSG_IPS(data.get("OrderUtilities"));
+					cartLib.verifySendToAColleague(data.get("OrderUtilities"),data.get("YourName"),data.get("YourEmail1"),data.get("YourEmail1"),data.get("YourComments"));
+					verifyErrorMessagesInSendToAColleaguePopUpForEmail();
 					cartLib.verifySendToAColleague(data.get("OrderUtilities"),data.get("YourName"),data.get("YourEmail"),data.get("RecipientEmail"),data.get("YourComments"));
-					   System.out.println("Test completed");
+					verifySendToAColleagueSucessMessage();
+					System.out.println("Test completed");
 		 				
 							} catch (Exception e) {
 								ReportStatus.blnStatus = false;

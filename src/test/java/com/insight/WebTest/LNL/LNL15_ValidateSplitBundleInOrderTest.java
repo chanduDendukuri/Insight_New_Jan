@@ -86,7 +86,7 @@ public class LNL15_ValidateSplitBundleInOrderTest extends LineLevelInfoLib{
 						verifyOrderAndItemInfoBreadCrumb();
 				     	orderLib.continueButtonOnAdditionalInformationSection();
 				     	clickOnSplitIntoIndividualLines();
-				     	verifySplitLineItemsLabel();
+				     	//verifySplitLineItemsLabel(data.get("Quantity"));
 				     	verifyBundleIsAddedToCart(data.get("Bundle_One"));
 				     	verifyBundleIsAddedToCart(data.get("Bundle_Two"));
 				     	orderLib.clickContinueOnLineLevelInfo();
@@ -103,13 +103,16 @@ public class LNL15_ValidateSplitBundleInOrderTest extends LineLevelInfoLib{
 						String refNumber=orderLib.getTextfromReferenceNumber();
 						//Verify Receipt
 						orderLib.verifyReceiptVerbiage();
-						canadaLib.clickOnSideMenuSelectAccountToolOptions(data.get("Tools_Menu2"),data.get("Tools_Menu_DD2"));
+						
+						searchLib.verifyAccountToolsFromSideMenuAndClick(data.get("Tools_Menu2"),data.get("Tools_Menu_DD2"));
 						odhLib.verifyOrderHistoryPage();
-						odhLib.selectQuickSearchDropdown(data.get("Search_By"),refNumber);
-						commonLib.spinnerImage();
-						odhLib.verifySearchResultsAreDisplayed();
+						/*odhLib.selectQuickSearchDropdown(data.get("Search_By"),refNumber);*/
 						String orderNumber=odhLib.getFirstOrderNumber();
-						odhLib.clickOrderNumber();
+						orderLib.clickonorderNumLinkinRecentorders(refNumber);
+						commonLib.spinnerImage();
+						//odhLib.verifySearchResultsAreDisplayed();
+						
+						//odhLib.clickOrderNumber();
 						invoiceHistoryLib.verifyOrderDetailsPage();
 						odhLib.getOrderNumberOnOrderDetailsPageAndVerify(orderNumber);
 						int itemNo=Integer.valueOf(data.get("Quantity"));

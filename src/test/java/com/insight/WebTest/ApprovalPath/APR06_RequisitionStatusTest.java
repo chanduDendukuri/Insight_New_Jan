@@ -31,7 +31,7 @@ public class APR06_RequisitionStatusTest extends ApprovalPathLib {
 	OrderLib orderLib = new OrderLib();
 	ProductDisplayInfoLib pipLib = new ProductDisplayInfoLib();
 	ShipBillPayLib sbpLib = new ShipBillPayLib();
-	InvoiceHistoryLib ivhLib=new InvoiceHistoryLib();
+	InvoiceHistoryLib ivhLib = new InvoiceHistoryLib();
 
 	// #############################################################################################################
 	// # Name of the Test : APR06_RequisitionStatus
@@ -76,54 +76,68 @@ public class APR06_RequisitionStatusTest extends ApprovalPathLib {
 					// Verify Approval Management Page - is Loaded
 					reqProcLib.verifyApprovalManagementPage();
 
-					String ReqGroupName1 = data.get("RequestorGroup1");
+					// String ReqGroupName1 = data.get("RequestorGroup1");
 
 					// Add Requestors to Requestor Group
-					AddRequestorsRequestorGroup(ReqGroupName1);
+					// AddRequestorsRequestorGroup(ReqGroupName1);
 
 					// Click on Reports
 					ClickReports();
 
 					// Click on Requisition status report
 					clickRequisitionStatusReport();
+					// SelectCurrentDate("FromDate");
+					
+					
+					  String strCurrDay = GetCurrDay(); 
+					   
+					  PreviousdatePicker(-370,"FromDate");
+					  SelectCurrentDate("ToDate");
 
-					String strCurrDay = GetCurrDay();
-					int month = 13;
-					datePicker(14, strCurrDay);
 					clickSearch();
 					verifyMessage(data.get("actualText"));
 					scrollUp();
-					commonLib.clickOnAccountToolsAndClickOnProductGrp(data.get("Tools_Menu"),
-							data.get("Tools_Menu_DD"));
-					ClickReports();
+					/*
+					 * commonLib.clickOnAccountToolsAndClickOnProductGrp(data.get("Tools_Menu"),
+					 * data.get("Tools_Menu_DD")); ClickReports(); clickRequisitionStatusReport();
+					 * int months = 3; datePicker(months, strCurrDay);
+					 */
+					ClickOnSeeAllReports();
+					verifyApprovalMgmtReportPage();
+
+					// Click on Requisition status report
 					clickRequisitionStatusReport();
-					int months = 3;
-					datePicker(months, strCurrDay);
-
+					
 					changeFilterStatus(data.get("FilterbyStatus"));
-
+					PreviousdatePicker(-300,"FromDate");
+					SelectCurrentDate("ToDate");
+					clickSearch();
+					// datePicker(14, strCurrDay);
 					// Displays Requestors
-					displayRequestorsRecords();
+					VerifyRequestors();
 					// Verify the Paging Count 50
 					VerifyPageCount50();
-
-					changeFilterStatus(data.get("FilterbyStatus1"));
-					displayRequestorsRecords();
-					changeFilterStatus(data.get("FilterbyStatus2"));
-					displayRequestorsRecords();
+					
+					changeFilterStatus(data.get("FilterbyStatus1")); 
+					PreviousdatePicker(-300,"FromDate");;
+					clickSearch();
+					displayRequestorsRecords(data.get("FilterbyStatus1"));
+					/*
+					 * changeFilterStatus(data.get("FilterbyStatus2")); displayRequestorsRecords();
+					 */
 					commonLib.clickLogOutLink(data.get("Logout_Header"));
 
 					System.out.println("Test completed");
 				} catch (Exception e) {
 					ReportStatus.blnStatus = false;
-				//	gErrorMessage = e.getMessage();
+					// gErrorMessage = e.getMessage();
 					gTestStatus = false;
 				}
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 			ReportStatus.blnStatus = false;
-			//gErrorMessage = e.toString();
+			// gErrorMessage = e.toString();
 			gTestStatus = false;
 			ReportStatus.fnUpdateResultStatus("APR06_RequisitionStatus", "TC_APR06", ReportStatus.strMethodName, 1,
 					browser);

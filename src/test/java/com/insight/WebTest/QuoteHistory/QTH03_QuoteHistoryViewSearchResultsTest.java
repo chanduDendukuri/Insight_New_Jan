@@ -58,7 +58,6 @@ public class QTH03_QuoteHistoryViewSearchResultsTest extends QuoteHistoryLib {
 							CanadaLib canadaLib=new CanadaLib();
 							CartLib cartLib=new CartLib();
 							InvoiceHistoryLib invoiceHistoryLib = new InvoiceHistoryLib();
-							MarriottIntlCorpLib marriottIntlCorpLib=new MarriottIntlCorpLib();
 							CommonLib commonLib = new CommonLib();
 							ProductDisplayInfoLib prodinfo=new ProductDisplayInfoLib();
 							
@@ -95,9 +94,9 @@ public class QTH03_QuoteHistoryViewSearchResultsTest extends QuoteHistoryLib {
 							verifyQuoteHistoryPageOpened();		
 							invoiceHistoryLib.verifyQuickSearch();
 							invoiceHistoryLib.verifyAdvancedSearch();
-							commonLib.clickLogOutLink(data.get("Logout_Header"));
+							//commonLib.clickLogOutLink(data.get("Logout_Header"));
 							
-							cmtLib.loginToCMT(data.get("Header"));
+							/*cmtLib.loginToCMT(data.get("Header"));
 							cmtLib.verifyClientSearchTitle();
 							cmtLib.searchForWebGroup(data.get("WebGrp1"));
 							cmtLib.clickOnTheWebGroup(data.get("Webgroupname"));
@@ -119,9 +118,9 @@ public class QTH03_QuoteHistoryViewSearchResultsTest extends QuoteHistoryLib {
 							cmtLib.loginVerification("User - "+data.get("ContactName1"));
 							canadaLib.clickOnSideMenuSelectAccountToolOptions(data.get("Tools_Menu"),
 									data.get("Tools_Menu_DD"));
-							verifyQuoteHistoryPageOpened();	
+							verifyQuoteHistoryPageOpened();	*/
 							invoiceHistoryLib.clickOnAdvancedSearch();
-							invoiceHistoryLib.datePickerStartDateCalender(data.get("FromDate"));
+							//invoiceHistoryLib.datePickerStartDateCalender(data.get("FromDate"));
 							//invoiceHistoryLib.datePickerEndDateCalender(data.get("ToDate"));
 							invoiceHistoryLib.clickOnSearchUnderAdvancedSearch();
 							invoiceHistoryLib.verifySearchResultsAreDisplayed();
@@ -132,7 +131,7 @@ public class QTH03_QuoteHistoryViewSearchResultsTest extends QuoteHistoryLib {
 							quoteNumberLink();
 							verifyQuoteDetails();
 							getDelailsOnQuotePage();
-							verifyConvertQuoteButton();
+							verifyConvertQuoteButtonEnable();
 							verifyPrint();
 							verifyEmailIcon();
 							verifyEditThisQuoteIcon();

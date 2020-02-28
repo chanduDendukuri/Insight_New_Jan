@@ -10,6 +10,7 @@ import org.testng.annotations.Test;
 import com.insight.Lib.CMTLib;
 import com.insight.Lib.CanadaLib;
 import com.insight.Lib.CartLib;
+import com.insight.Lib.CommonCanadaLib;
 import com.insight.Lib.CommonLib;
 import com.insight.Lib.InvoiceHistoryLib;
 import com.insight.Lib.MarriottIntlCorpLib;
@@ -61,6 +62,9 @@ public class REP08_SoftwareLicenseDetailDefaultSettingsTest extends ReportingLib
 				CMTLib cmtLib = new CMTLib();
 				CanadaLib canadaLib = new CanadaLib();				
 				InvoiceHistoryLib invoiceHistoryLib = new InvoiceHistoryLib();
+				CommonCanadaLib ccp = new CommonCanadaLib();
+				
+				
 				cmtLib.loginToCMTSearchWebGrpAndUser(data.get("Header"), data.get("WebGrp"),
 						data.get("LnameEmailUname"), data.get("ContactName"));
 				cmtLib.setPermissionsToDisable(data.get("Menu_Name"), data.get("Set_Permission1"));
@@ -72,32 +76,39 @@ public class REP08_SoftwareLicenseDetailDefaultSettingsTest extends ReportingLib
 						data.get("Tools_Menu_DD"));
 				canadaLib.clickOnReportOptions(data.get("ReportOption"));
 				canadaLib.verifyReportsPage();
+				verifySelectReportOptions();
 				canadaLib.verifySelectReport(data.get("SelectReport"));
 				verifyScheduleReport();
+				verifyScheduleReportOption(data.get("Soption"));
 				List<String> optionList = Arrays.asList(data.get("ScheduleOptions").split(","));
 				verifyScheduleReportOptions(optionList);
-
 				canadaLib.verifyFilterbyCurrency(data.get("Currency"));
 				canadaLib.verifyDeliveryOption();
 				List<String> deliveryOptionsList = Arrays.asList(data.get("DeliveryOptions").split(","));
 				verifyDeliveryMethodOptions(deliveryOptionsList);
 				verifyDefaultAccountSelection(data.get("DefaultAccountSelOpt"));
-				verifyTreeForAllAccounts();
+				verifytheLinkedSoldTosText();
+				verifyDefualtCurrancyUSD();
+				verifyStartDate("01");
+				EndDateVerification();
 				verifyDefaultCurrentDate(data.get("CurrentDate"));
 				List<String> dateOptionsList = Arrays.asList(data.get("ScheduleDates").split(","));
-				verifyScheduleReportOptionsDates(dateOptionsList);
-				selctOrderType(data.get("OrderType"));
+				verifyScheduleReportOptionsdates(dateOptionsList);
 				canadaLib.clickOnDeliveryMethod(data.get("DeliveryMethod"));
 				canadaLib.clickOnDeliveryFormat(data.get("DeliverFormat"));
 				canadaLib.clickOnRun();
-				commonLib.spinnerImage();
-				List<String> excelData = Arrays.asList(data.get("ExcelData").split(","));
-				verifyDownloadedReportExcelFile(excelData);
-
+				Thread.sleep(60000);
+				String List="Manufacturer,Product Description,Enrollment Number,Vendor Master,Pool Description,Invoiced Quantity,Total Sales,Currency,Points,Total Points";
+				ccp.verifyExportFile("Page1","2",List,ccp.getLatestFilefromDir());
 				commonLib.clickLogOutLink(data.get("Logout_Header"));
-
-				cmtLib.loginToCMTSearchWebGrpAndUser(data.get("Header"), data.get("WebGrp1"),
-						data.get("LnameEmailUname1"), data.get("ContactName1"));
+				
+				//Logout
+				
+				cmtLib.navigateBackToCMT();
+				cmtLib.hoverOverMasterGroupAndSelectChangeGrp();
+				cmtLib.searchForWebGroup(data.get("WebGrp1"));
+				cmtLib.manageUsers();
+				cmtLib.searchForaUserAndSelect(data.get("LnameEmailUname1"), data.get("ContactName1"));
 				cmtLib.setPermissionsToDisable(data.get("Menu_Name"), data.get("Set_Permission1"));
 				cmtLib.setPermissions(data.get("Menu_Name"), data.get("Set_Permission2"));
 				cmtLib.setPermissions(data.get("Menu_Name"), data.get("Set_Permission3"));
@@ -109,25 +120,24 @@ public class REP08_SoftwareLicenseDetailDefaultSettingsTest extends ReportingLib
 				canadaLib.clickOnReportOptions(data.get("ReportOption"));
 				canadaLib.verifyReportsPage();
 				canadaLib.verifySelectReport(data.get("SelectReport"));
+				verifytheLinkedSoldTosText();
+				verifyStartDate("01");
+				EndDateVerification();
 				verifyScheduleReport();
-
 				verifyScheduleReportOptions(optionList);
-
 				canadaLib.verifyFilterbyCurrency(data.get("Currency"));
 				canadaLib.verifyDeliveryOption();
-
+				Thread.sleep(10000);
 				verifyDeliveryMethodOptions(deliveryOptionsList);
-
 				verifyDefaultCurrentDate(data.get("CurrentDate"));
-
-				verifyScheduleReportOptionsDates(dateOptionsList);
-				selctOrderType(data.get("OrderType"));
+				Thread.sleep(10000);
+				verifyScheduleReportOptionsdates(dateOptionsList);
 				canadaLib.clickOnDeliveryMethod(data.get("DeliveryMethod"));
 				canadaLib.clickOnDeliveryFormat(data.get("DeliverFormat"));
-				canadaLib.clickOnRun();
-				commonLib.spinnerImage();
-
-				verifyDownloadedReportExcelFile(excelData);
+				canadaLib.clickOnRun(); 
+				Thread.sleep(60000);
+				String List2="Manufacturer,Product Description,Enrollment Number,Vendor Master,Pool Description,Invoiced Quantity,Total Sales,Currency,Points,Total Points";
+				ccp.verifyExportFile("Page1","2",List2,ccp.getLatestFilefromDir());
 				commonLib.clickLogOutLink(data.get("Logout_Header"));
 				
 				

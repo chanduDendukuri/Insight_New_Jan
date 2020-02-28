@@ -78,41 +78,23 @@ public class REQ07_CreateDeleteRGRulesTest extends ChinaLib{
 						// clicking on Optional Rules
 						reqProcLib.clickOptionalRules();
 						Thread.sleep(1000);
+						
+						
+						reqProcLib.SelectCretaeRule("Without list routing factors ");
 
-						// create rules
-
-						// reqProcLib.createRule(data.get("Cart_Type_Standard"),
-						// data.get("Min_Amt_0"), data.get("Max_Amt_99"),
-						// data.get("Result_Path1"), "1");
-						// verify success add message
-						// reqProcLib.verifySuccessMsg();
-						// Thread.sleep(1000);
-						// reqProcLib.createRule(data.get("Cart_Type_NonStandard"),
-						// data.get("Min_Amt_100"), data.get("Max_Amt_199"),
-						// data.get("Result_Path2"), "2");
-						// verify success add message
-						// reqProcLib.verifySuccessMsg();
-						// Thread.sleep(1000);
-						// reqProcLib.createRule(data.get("Cart_Type_Any"),
-						// data.get("Min_Amt_200"), data.get("Max_Amt_299"),
-						// data.get("Result_Path3"), "3");
-						// verify success add message
-						// reqProcLib.verifySuccessMsg();
-
-
-						reqProcLib.createRule(data.get("Cart_Type_Standard"), data.get("Min_Amt_0"), data.get("Max_Amt_99"),
+						reqProcLib.createRule(data.get("Cart_Type_Standard"),"path1", data.get("Min_Amt_0"), data.get("Max_Amt_99"),
 								data.get("Result_Path1"), "1");
 						// verify success add message
 						reqProcLib.verifySuccessMsg();
 						Thread.sleep(1000);
-						reqProcLib.createRule(data.get("Cart_Type_NonStandard"), data.get("Min_Amt_100"), data.get("Max_Amt_199"),
+						reqProcLib.createRule(data.get("Cart_Type_NonStandard"),"path2", data.get("Min_Amt_100"), data.get("Max_Amt_199"),
 								data.get("Result_Path2"), "2");
 
 						// verify success add message
 						reqProcLib.verifySuccessMsg();
 
 						Thread.sleep(1000);
-						reqProcLib.createRule(data.get("Cart_Type_Any"), data.get("Min_Amt_200"), data.get("Max_Amt_299"),
+						reqProcLib.createRule(data.get("Cart_Type_Any"),"path3", data.get("Min_Amt_200"), data.get("Max_Amt_299"),
 								data.get("Result_Path3"), "3");
 
 						// verify success add message
@@ -124,27 +106,14 @@ public class REQ07_CreateDeleteRGRulesTest extends ChinaLib{
 						reqProcLib.clickDeleteRule("Second");
 						reqProcLib.clickDeleteRule("Third");
 
-						// back to Requestor Group Search
-						reqProcLib.backtoReqSearchForCreateRules();
-
-						Thread.sleep(3000);
-						// Click on Create Rules Edit link button
-						reqProcLib.clickCreateRulesLink();
-
-						Thread.sleep(2000);
-						// clicking on Optional Rules
-						reqProcLib.clickOptionalRules();
-
-						// select with rule listing factor dropdown
-						reqProcLib.selectWithRuleListingFactor(data.get("CreateRule_WithListOption"));
-
-						// click on ADD ROUTE button
-						reqProcLib.clickAdRouteButton();
-
+						// Click create Rule
+						reqProcLib.SelectCretaeRule("With list routing factors ");
+						reqProcLib.VerifyIfRoutingOptionsareVisibleandDelete();
+						//Click Add Route
+						reqProcLib.ClickAddRoute();
 						// select HDLList after ADD ROUTE click
-						reqProcLib.selectHDLListOption(data.get("SmartTracker_HDLLIstOption"));
-
-						// click ADD RULE button
+						reqProcLib.selectSelectaListToUseOption(data.get("SmartTracker_HDLLIstOption"));
+						// click ADD RULE button and enter the details
 						reqProcLib.addRuleWithList(data.get("List1_Option"), data.get("Cart_Type_Standard"), data.get("Min_Amt_0"),
 								data.get("Max_Amt_99"), data.get("Result_Path1"), "1");
 
@@ -155,11 +124,13 @@ public class REQ07_CreateDeleteRGRulesTest extends ChinaLib{
 						reqProcLib.clickDeleteRule("WithRule");
 
 						// Delete Routing List choice
-						reqProcLib.deleteRoutingOption();
+						//reqProcLib.deleteRoutingOption();
+						reqProcLib.VerifyIfRoutingOptionsareVisibleandDelete();
 
 						commonLib.clickLogOutLink(data.get("Logout"));
 						// fnCloseTest();
 						System.out.println("Test completed");
+						
 					} catch (Exception e) {
 						ReportStatus.blnStatus = false;
 						//gErrorMessage = e.getMessage();

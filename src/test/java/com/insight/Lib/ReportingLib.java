@@ -5,7 +5,10 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FilenameFilter;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.apache.poi.xssf.usermodel.XSSFSheet;
@@ -48,7 +51,7 @@ public class ReportingLib extends ReportsObj {
 		}
 		else {
 			reporter.failureReport("Verify  "+reportName+" is selected to Select DeliveryReport on Reports Page",
-					"Delivery Option are Not selected to "+reportName+"", "");
+					"Delivery Option are Not selected to "+reportName+"", "",driver);
 		}
 		}
 	
@@ -66,7 +69,7 @@ public class ReportingLib extends ReportsObj {
 		}
 		else {
 			reporter.failureReport("Enter Custom Name On the Invoiced orders Report Page",
-					"Custom Name Field Not Exists and Entered", "");
+					"Custom Name Field Not Exists and Entered", "",driver);
 		}
 
 	}
@@ -112,7 +115,7 @@ public class ReportingLib extends ReportsObj {
 		reporter.SuccessReport("Verify Schedule report Options on Report Page"," Schedule Report Options exist on Report Page", "");
 		}
 		else {
-			reporter.failureReport("Verify Schedule report Options on Report Page"," Schedule Report Options doesnot exist on Report Page", "");
+			reporter.failureReport("Verify Schedule report Options on Report Page"," Schedule Report Options doesnot exist on Report Page", "",driver);
 		}
 
 	}
@@ -131,7 +134,7 @@ public class ReportingLib extends ReportsObj {
 		reporter.SuccessReport("Verify Schedule report "+Options.get(i)+" Options on Report Page"," Schedule Report  "+Options.get(i)+" Options exist on Report Page", "");
 		}
 		else {
-			reporter.failureReport("Verify Schedule report Options"+Options.get(i)+" on Report Page"," Schedule Report Options doesnot exist on Report Page", "");
+			reporter.failureReport("Verify Schedule report Options"+Options.get(i)+" on Report Page"," Schedule Report Options doesnot exist on Report Page", "",driver);
 		}
 		}
 
@@ -143,19 +146,26 @@ public class ReportingLib extends ReportsObj {
 	 * @throws Throwable
 	 */
 	public void verifyScheduleReportOptionsDates(List<String> Options) throws Throwable {
-		
 		for (int i=0 ; i <Options.size();i++){
-		waitForVisibilityOfElement(SCHEDULEREPORT_DATES, "Select Delivery Method");
-		if (isElementPresent(SCHEDULEREPORT_DATES, "Select ADelivery Method", true)){				
-			selectByVisibleText(SCHEDULEREPORT_DATES,Options.get(i),"Schedule Report");	
-		reporter.SuccessReport("Verify Schedule report "+Options.get(i)+" Options on Report Page"," Schedule Report  "+Options.get(i)+" Options exist on Report Page", "");
+		if (isElementPresent(SCHEDULEREPORT_OPTIONS, "Select ADelivery Method", true)){				
+			selectByVisibleText(SCHEDULEREPORT_OPTIONS,Options.get(i),"Schedule Report");	
+		reporter.SuccessReport("Verify Schedule report "+Options.get(i)+" Options on Report Page"," Schedule Report  "+Options.get(i)+" Options exist on Report Page", Options.get(i));
 		}
 		else {
-			reporter.failureReport("Verify Schedule report Options"+Options.get(i)+" on Report Page"," Schedule Report  "+Options.get(i)+" Options doesnot exist on Report Page", "");
+			reporter.failureReport("Verify Schedule report Options"+Options.get(i)+" on Report Page"," Schedule Report  "+Options.get(i)+" Options doesnot exist on Report Page", "",driver);
 		}
 		}
 
 	}
+public void verifyScheduleReportOption(String Options) throws Throwable {
+		if (isVisibleOnly(ScheduledOption(Options), "Select ADelivery Method")){				
+		reporter.SuccessReport("Verify Schedule report "+Options+" Options on Report Page"," Schedule Report  "+Options+" Options exist on Report Page",Options);
+		}
+		else {
+			reporter.failureReport("Verify Schedule report Options"+Options+" on Report Page"," Schedule Report  "+Options+" Options doesnot exist on Report Page", "",driver);
+		}
+		}
+
 	
 	/**
 	 * Method is to select Delivery Method Options
@@ -171,7 +181,7 @@ public class ReportingLib extends ReportsObj {
 		reporter.SuccessReport("Verify Schedule report "+Options.get(i)+" Options on Report Page"," Schedule Report  "+Options.get(i)+" Options exist on Report Page", "");
 		}
 		else {
-			reporter.failureReport("Verify Schedule report Options"+Options.get(i)+" on Report Page"," Schedule Report  "+Options.get(i)+" Options doesnot exist on Report Page", "");
+			reporter.failureReport("Verify Schedule report Options"+Options.get(i)+" on Report Page"," Schedule Report  "+Options.get(i)+" Options doesnot exist on Report Page", "",driver);
 		}
 		}
 
@@ -190,7 +200,7 @@ public class ReportingLib extends ReportsObj {
 		reporter.SuccessReport("Verify Account Selections Default to  "+accountSelection+" Options on Report Page"," Account Selections Default to  "+accountSelection+" Options exist on Report Page", "");
 		}
 		else {
-			reporter.failureReport("Verify Account Selections Default to "+accountSelection+" on Report Page"," Account Selections Default to "+accountSelection+" Options doesnot exist on Report Page", "");
+			reporter.failureReport("Verify Account Selections Default to "+accountSelection+" on Report Page"," Account Selections Default to "+accountSelection+" Options doesnot exist on Report Page", "",driver);
 		}
 		}
 	
@@ -208,7 +218,7 @@ public class ReportingLib extends ReportsObj {
 		reporter.SuccessReport("Quick Date defaults to  "+currentDate+" Options on Report Page"," Quick Date defaults to  "+currentDate+"  exist on Report Page", "");
 		}
 		else {
-			reporter.failureReport("Quick Date defaults to "+currentDate+" on Report Page"," Quick Date defaults to  "+currentDate+" doesnot exist on Report Page", "");
+			reporter.failureReport("Quick Date defaults to "+currentDate+" on Report Page"," Quick Date defaults to  "+currentDate+" doesnot exist on Report Page", "",driver);
 		}
 		}
 	
@@ -226,7 +236,7 @@ public class ReportingLib extends ReportsObj {
 		reporter.SuccessReport("Click on Smart tracker "," Smart Traker checkbox exists and clicked", "");
 		}
 		else {
-			reporter.failureReport("Click on Smart tracker "," Smart Traker checkbox not exists ", "");
+			reporter.failureReport("Click on Smart tracker "," Smart Traker checkbox not exists ", "",driver);
 		}
 		}
 
@@ -260,7 +270,7 @@ public class ReportingLib extends ReportsObj {
 				if (downloadedExcelContent.equals(columnHeaders)) {
 					reporter.SuccessReport(columnHeaders, "are avilable", "");
 				} else {
-					reporter.failureReport(columnHeaders, "are not avilable", "");
+					reporter.failureReport(columnHeaders, "are not avilable", "",driver);
 				}
 			}
 			if(rowNumbers==2)
@@ -270,7 +280,7 @@ public class ReportingLib extends ReportsObj {
 				if (downloadedExcelContent.equals(excelActualData)) {
 					reporter.SuccessReport("Excel data are avilable", "","");
 				} else {
-					reporter.failureReport("Excel data are not avilable", "","");
+					reporter.failureReport("Excel data are not avilable", "","",driver);
 				}
 			}
 
@@ -296,7 +306,7 @@ public class ReportingLib extends ReportsObj {
 		}
 		else {
 			reporter.failureReport("Enter 2 Emails(1Valid and 1 Invalid) in Email Report  on Reports Page",
-					"Email Report Textbox Exists and Entered", "");
+					"Email Report Textbox Exists and Entered", "",driver);
 		}
 
 	}
@@ -321,7 +331,7 @@ public class ReportingLib extends ReportsObj {
 	}
 			else{
 				reporter.failureReport("Verify the Warrning Message on Reports Page",
-						"Warrning Message doesnot exists","");
+						"Warrning Message doesnot exists","",driver);
 			}
 		}	}
 	
@@ -341,7 +351,7 @@ public class ReportingLib extends ReportsObj {
 		}
 		else {
 			reporter.failureReport("Enter theTemplate Name on Reports Page",
-					"Template Name field doesnot exists and entered", "");
+					"Template Name field doesnot exists and entered", "",driver);
 			}
 		}
 
@@ -359,7 +369,7 @@ public class ReportingLib extends ReportsObj {
 		reporter.SuccessReport("Verify Schedule report "+Options+" Options on Report Page"," Schedule Report  "+Options+" Options exist on Report Page", "");
 		}
 		else {
-			reporter.failureReport("Verify Schedule report Options"+Options+" on Report Page"," Schedule Report Options doesnot exist on Report Page", "");
+			reporter.failureReport("Verify Schedule report Options"+Options+" on Report Page"," Schedule Report Options doesnot exist on Report Page", "",driver);
 		}
 		}
 
@@ -398,7 +408,7 @@ public class ReportingLib extends ReportsObj {
 		}
 		else {
 			reporter.failureReport("Report Templates on Reporting Management Page",
-					"Report Templates doesnot exists and selected", "");
+					"Report Templates doesnot exists and selected", "",driver);
 			}
 		}
 	
@@ -419,7 +429,7 @@ public class ReportingLib extends ReportsObj {
 		 }
 		 else{
 			 reporter.failureReport("Verify the Report Name on Reporting Management Page",
-						"Report Name exists", "");
+						"Report Name exists", "",driver);
 		 }
 		 if (isElementPresent(LAST_RUN_DATE,"Last run Dates", true)){
 			 SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy");
@@ -435,7 +445,7 @@ public class ReportingLib extends ReportsObj {
 		 }
 		 else{
 			 reporter.failureReport("Last Run Date in Report Templates on Reporting Management Page",
-						"Last Run Date doesnot exists with Not Today's Date", "");
+						"Last Run Date doesnot exists with Not Today's Date", "",driver);
 		 }
 		 
 		reporter.SuccessReport("Report Templates on Reporting Management Page",
@@ -444,7 +454,7 @@ public class ReportingLib extends ReportsObj {
 		}
 		else {
 			reporter.failureReport("Report Templates on Reporting Management Page",
-					"Report Templates exists and selected", "");
+					"Report Templates exists and selected", "",driver);
 		}
 		}
 	
@@ -462,7 +472,7 @@ public class ReportingLib extends ReportsObj {
 		}
 		else {
 			reporter.failureReport("Verify  Report Name: QTP_Test_InvTemp on Reporting Management Page",
-					"Report Name: QTP_Test_InvTemp not exists and Deleted", "");
+					"Report Name: QTP_Test_InvTemp not exists and Deleted", "",driver);
 			}
 		}
 
@@ -492,7 +502,7 @@ public class ReportingLib extends ReportsObj {
 		}
 		else {
 			reporter.failureReport("Verify Manufacturers Filter Default to ALL  on Reports Page",
-					"Manufacturers Filter Not Default to 'ALL'  on Reports Page", "");
+					"Manufacturers Filter Not Default to 'ALL'  on Reports Page", "",driver);
 			}
 		
 		
@@ -502,7 +512,7 @@ public class ReportingLib extends ReportsObj {
 	   }
 	 else {
 		reporter.failureReport("Verify Product type Filter Default to ALL  on Reports Page",
-				"Product types Filter Not Default to 'ALL'  on Reports Page", "");
+				"Product types Filter Not Default to 'ALL'  on Reports Page", "",driver);
 		}
 		
 	  if (isElementPresent(PROD_CAT, " Product Categories product ")){				
@@ -511,7 +521,7 @@ public class ReportingLib extends ReportsObj {
 	   }
 	 else {
 		reporter.failureReport("Verify Product Categories Filter Default to ALL  on Reports Page",
-				"Product Categories Filter Not Default to 'ALL'  on Reports Page", "");
+				"Product Categories Filter Not Default to 'ALL'  on Reports Page", "",driver);
 		}
 	  if (isElementPresent(PROD_SUB, " Product subCategories product ")){				
 		reporter.SuccessReport("Verify Manufacturers Filter Default to ALL  on Reports Page",
@@ -519,7 +529,7 @@ public class ReportingLib extends ReportsObj {
 	   }
 	 else {
 		reporter.failureReport("Verify Product SubCategories Filter Default to ALL  on Reports Page",
-				"Product SubCategories Filter Not Default to 'ALL'  on Reports Page", "");
+				"Product SubCategories Filter Not Default to 'ALL'  on Reports Page", "",driver);
 		}
 	}
 
@@ -543,7 +553,7 @@ public class ReportingLib extends ReportsObj {
 		    }
 		    else{
 		    	reporter.failureReport("Verify Include Insight Partner Data Checkbox Default to OFF on Reports Page",
-	    				"Include Insight Partner Data Checkbox is not  Default to OFF on Reports Page", "");
+	    				"Include Insight Partner Data Checkbox is not  Default to OFF on Reports Page", "",driver);
 		    }
 		}
 		else {
@@ -560,15 +570,12 @@ public class ReportingLib extends ReportsObj {
 	public void verifyTreeForAllAccounts() throws Throwable {
 		waitForVisibilityOfElement(TREE, "Hirearichy Tree");
 		if (isElementPresent(TREE, "Hirearichy Tree", true)){			
-	      
 		    reporter.SuccessReport("Verify  Hierarchy tree displays with a list of soldto's that are selected on Reports Page",
 			"soldto's are selected", "");
-		    
-		  
 		}
 		else {
 			reporter.failureReport("Verify  Hierarchy tree displays with a list of soldto's that are selected on Reports Page",
-					"soldto's are not selected", "");
+					"soldto's are not selected", "",driver);
 				}
 		}
 
@@ -686,7 +693,7 @@ public class ReportingLib extends ReportsObj {
 		}
 		else {
 			reporter.failureReport("Select Reporting Admin Login As Link from User Management Page",
-					"Reporting Admin Login As Link does not Exist", "");
+					"Reporting Admin Login As Link does not Exist", "",driver);
 		}
 		switchToChildWindow();
 		}
@@ -760,7 +767,7 @@ public class ReportingLib extends ReportsObj {
 			}
 			else {
 				reporter.failureReport("Select Insight Canada, Spain and United Kingdom in Select Regions List",
-						"Insight North America and Insight EMEA Items does not Exists and Selected", "");
+						"Insight North America and Insight EMEA Items does not Exists and Selected", "",driver);
 			}
 	}
 	
@@ -779,7 +786,7 @@ public class ReportingLib extends ReportsObj {
 		}
 		else {
 			reporter.failureReport("Select Reporting Admin Login As Link from User Management Page",
-					"Reporting Admin Login As Link does not Exist", "");
+					"Reporting Admin Login As Link does not Exist", "",driver);
 		}
 		}
 	/**
@@ -796,7 +803,7 @@ public class ReportingLib extends ReportsObj {
 		}
 		else {
 			reporter.failureReport("Hierarchy Tree on Reports Page",
-					"Hierarchy Tree but Exists and not  Selected", "");
+					"Hierarchy Tree but Exists and not  Selected", "",driver);
 		}
 		}
 	
@@ -843,7 +850,7 @@ public void grandParentCheckboxNotClicked()throws Throwable {
 		}
 		reporter.SuccessReport("Verify the all soldto's on Reports Page" ,"1st soldto and 2nd soldto under the current soldto is selected","No.of Slected soldtos"+total);	
 		}else {
-			reporter.failureReport("Verify the all soldto's on Reports Page" ,"1st soldto and 2nd soldto under the current soldto is Not selected", "");	
+			reporter.failureReport("Verify the all soldto's on Reports Page" ,"1st soldto and 2nd soldto under the current soldto is Not selected", "",driver);	
 		}
 
 		
@@ -854,13 +861,13 @@ public void grandParentCheckboxNotClicked()throws Throwable {
 			String Parent=driver.findElement(GRANDPARENT_CHECKBOX).getAttribute("id");
 			reporter.SuccessReport("Verify the Grand Parent for the current soldto on Reports Page" ,"Grand Parent for the current soldto is selected",Parent);
 		}else {
-			reporter.failureReport("Verify the Grand Parent for the current soldto on Reports Page" ,"Reporting Parent for the current soldto is not selected","",driver);	
+			reporter.failureReport("Verify the Grand Parent for the current soldto on Reports Page" ,"Grand Parent for the current soldto is not selected","",driver);	
 }
 	}
 	public void verifyGreateGrandParentCheckboxisSelected()throws Throwable {
 		if(driver.findElement(GREATEGRANDPARENT_CHECKBOX).isSelected()) {
 			String Parent=driver.findElement(GREATEGRANDPARENT_CHECKBOX).getAttribute("id");
-			reporter.SuccessReport("Verify the Greate Grand Parent for the current soldto on Reports Page" ,"Grand Parent for the current soldto is selected",Parent);
+			reporter.SuccessReport("Verify the Greate Grand Parent for the current soldto on Reports Page" ,"Greate Grand Parent for the current soldto is selected",Parent);
 		}else {
 			reporter.failureReport("Verify the Greate Grand Parent for the current soldto on Reports Page" ,"Reporting Parent for the current soldto is not selected","",driver);	
 }
@@ -868,15 +875,117 @@ public void grandParentCheckboxNotClicked()throws Throwable {
 	
 	public void verifyGreateGrandParentCheckboxisNotSelected()throws Throwable {
 		if(driver.findElement(GREATEGRANDPARENT_CHECKBOX).isSelected()) {
-			reporter.failureReport("Verify the Greate Grand Parent for the current soldto on Reports Page" ,"Reporting Parent for the current soldto is selected","",driver);	
+			reporter.failureReport("Verify the Greate Grand Parent for the current soldto on Reports Page" ,"Greate Grand Parent for the current soldto is selected","",driver);	
 		}else {
 			String Parent=driver.findElement(GREATEGRANDPARENT_CHECKBOX).getAttribute("id");
-			reporter.SuccessReport("Verify the Greate Grand Parent for the current soldto on Reports Page" ,"Grand Parent for the current soldto is not selected",Parent);
-	
-		
-		
+			reporter.SuccessReport("Verify the Greate Grand Parent for the current soldto on Reports Page" ,"Greate Grand Parent for the current soldto is not selected",Parent);
 		}
 	}
+	public void verifyDefualtCurrancyUSD()throws Throwable {
+		if(isVisibleOnly(USDCURRENCY,"USD")) {
+			reporter.SuccessReport("Verify Convert All Transactions to on Reports Page" ,"Convert All Transactions Default to USD Exists",getText(USDCURRENCY,"Defualt Currency"));
+		}else {
+			reporter.failureReport("Verify Defualt Currency" ,"Defualt Currancy Option is Not selected","",driver);	
+		}
+	}
+	public void verifyStartDate(String date)throws Throwable {
+		if(isVisibleOnly(STARTDATEINPUTFIELD,"StartDate")){
+			String Date=driver.findElement(ReportsObj.startDate).getAttribute("value");
+			if(Date.contains(date)) {
+				reporter.SuccessReport("Verify Strart Date" ,"Start Date defaults to the first day of the current month Exists","Start Date defaults to the first day:"+Date);
+			}else {
+				reporter.failureReport("Verify Strart Date" ,"Start date is Not Day 1 of Current Month","",driver);	
+			}
+			
+		}
+	}
+		public void EndDateVerification()throws Throwable {
+			LocalDate today = LocalDate.now();
+			String newDate = today.format(DateTimeFormatter.ofPattern("MM/dd/uuuu"));
+             System.out.println("newDate" +newDate);
+             if(isVisibleOnly(ENDDATEINPUTFIELD,"end date")) {
+            	String date=driver.findElement(ReportsObj.ENDDATEINPUT).getAttribute("value"); 
+            	if(date.contains(newDate))
+            	{
+    				reporter.SuccessReport("Verify End Date" ,"End date is equal to current date as Expected",date);
+            		}
+            	}else {
+    				reporter.failureReport("Verify End Date" ,"End date is equal to current date as Expected","",driver);	
+            	}
+		}
+		public void verifytheLinkedSoldTosText() throws Throwable {
+					if(isVisibleOnly(LINKEDSOLDTOS,"Linked Accounts Data")) {
+						List<WebElement> list2 = driver.findElements(LINKEDSOLDTO);
+						for (int i = 0; i<list2.size(); i++) {
+						String textlinkedaccount= list2.get(i).getAttribute("value").trim();
+						reporter.SuccessReport("Verify Selected Soltos", "Selected SolTo", textlinkedaccount);
+						}
+					}
+		}
+		
+		public void verifytheSelectedcentersRegions() throws Throwable {
+			if(isVisibleOnly(SELECTEDCENTERS,"Selected Centers")) {
+				reporter.SuccessReport("Verify Selected Centers and Regions", "Selected Centers and Regions", getText(SELECTEDCENTERS,"")+getText(SELECTEDREGIONS,""));	
+			}
+			}
+		public void verifyDownloadedReportExcel(String sheetName, String rowNumber, String columnHeaders) throws Throwable {
+			Thread.sleep(10000);
+		String sfile = System.getProperty("user.dir") + "\\" + "DownloadedFiles" + "\\";
+		File file = new File(sfile);
+		if (file.exists()) {
+		List<String> downloadedExcelContent = CommonLib.readRowFromExcel(sfile, sheetName, Integer.parseInt(rowNumber));
+		List<String> acutalContent = Arrays.asList(columnHeaders.split(","));
+		System.out.println("Compare content" + downloadedExcelContent.equals(acutalContent));
+		if (downloadedExcelContent.equals(acutalContent)) {
+			reporter.SuccessReport(columnHeaders,  "columns are avilable in Reporting Excel Sheet", "columns: "+columnHeaders);
+		} else {
+			reporter.failureReport(columnHeaders, columnHeaders+ " are not avilable", "", driver);
+		 }
+		}else {
+			reporter.failureReport("Verify Headers", "File dose not exists", "", driver);
+		}
+		System.out.println("File Deletion :" + file.delete());
+		if (file.exists()) {
+			file.delete();
+			reporter.SuccessReport("reporting Excel File", "File closed", "");
+		}else {
+			// do nothing
+		}
+		}	
+		
+		/**
+		 * Method is to select Schedule report Options Dates
+		 * 
+		 * @throws Throwable
+		 */
+		public void verifyScheduleReportOptionsdates(List<String> Options) throws Throwable {
+			
+			for (int i=0 ; i <Options.size();i++){
+			waitForVisibilityOfElement(DELIVERY_METHODOPTIONS, "Select Delivery Method");
+			if (isElementPresent(SCHEDULEREPORT_DATES, "Select ADelivery Method", true)){				
+				selectByVisibleText(SCHEDULEREPORT_DATES,Options.get(i),"Schedule Report");	
+			reporter.SuccessReport("Verify Schedule report "+Options.get(i)+" Options on Report Page"," Schedule Report  "+Options.get(i)+" Options exist on Report Page", Options.get(i));
+			}
+			else {
+				reporter.failureReport("Verify Schedule report Options"+Options.get(i)+" on Report Page"," Schedule Report  "+Options.get(i)+" Options doesnot exist on Report Page", "",driver);
+			}
+			}
+
+		}	
+		
+		
+			public void verifySelectReportOptions() throws Throwable {
+				if(isVisibleOnly(SELECTEDREPORTSOPTIONS,"Select Report Options")) {
+				List<WebElement> list2 = driver.findElements(SELECTEDREPORTSOPTIONS);
+				for(int i=0;i<list2.size();i++) {
+					String Options=list2.get(i).getText();
+					reporter.SuccessReport("Verify Select Report Options"," Select Report Options exist on Report Page", Options);
+				}
+			}else{
+				reporter.failureReport("Verify Select Report Options","Select Report Options doesnot exist on Report Page", "",driver);
+			}
+			}
+		
 }
 
 

@@ -33,8 +33,8 @@ public class REQ05_NOForceApprovalPathTest extends ChinaLib{
 	   
 
 	   
-	// #############################################################################################################
-		// # Name of the Test : REQ08_TestRules
+	    // #############################################################################################################
+		// # Name of the Test : REQ05_NOForceApprovalPathTest
 		// # Migration Author : Cigniti Technologies
 		// #
 		// # Date of Migration : September 2019
@@ -78,8 +78,12 @@ public class REQ05_NOForceApprovalPathTest extends ChinaLib{
 						ReqLib.verifyCreate_EditRequestoreGrpGeader();
 						ReqLib.verifyApproverPathSettings();
 						ReqLib.verifyApproverPathSettingsWithRadioCheck();
-
-						searchLib.searchInHomePage(data.get("SearchItem"));
+						commonLib.clickLogOutLink(data.get("header1"));	
+						cmtLib.navigateBackToCMT();
+						cmtLib.hoverOnManageWebGroupsAndSelectOptions(data.get("Manage_Web_Grp_Options"));
+						cmtLib.searchForaUserAndSelect(data.get("LnameEmailUname"), data.get("ContactName")); // uftrequestor@mailnator.com
+						cmtLib.loginAsAdminCMT();
+						searchLib.searchInHomePage(data.get("SearchItem")); //HP desktops
 
 						// Add a item to cart >> proceed To Checkout >> place order >>
 						// Verify the review order details,Receipt Order And Date

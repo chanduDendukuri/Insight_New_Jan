@@ -407,6 +407,16 @@ public class EndUserFeaturesLib extends EndUserFeaturesObj{
 		}
 
 	}
+	public void verifyAccountFavouritesLinksPageOpened() throws Throwable {
+		if(isVisibleOnly(AccountFavLinkAvailablity, "Account Favourites links header")) {
+			reporter.SuccessReport("Verify Account Favorite Links Page", "Page Loaded","");
+		}
+		else {
+			reporter.failureReport("Verify Manage Favorite Links Page", "Page does Not Exists","",driver);
+
+		}
+
+	}
 
 
 	/**
@@ -437,12 +447,12 @@ public class EndUserFeaturesLib extends EndUserFeaturesObj{
 	 * Method is to verify Account SearchBar from account drop down in Home Page
 	 */
 	public void verifyAccountNamechanged(String accountName,String accountname) throws Throwable {
-		Thread.sleep(10000);
+		Thread.sleep(15000);
 		if(accountName.equals(accountname)){
-			reporter.failureReport("Account Name in Changed in Welcome Page", "Account Name does Not Changed","",driver);
+			reporter.failureReport("Account Name in Changed in Welcome Page", "Account Name does Not Changed",accountName +" and "+accountname +" Both are matched",driver);
 		}
 		else {
-			reporter.SuccessReport("Account Name is Changed in Welcome Page", "Account Name Changed","");
+			reporter.SuccessReport("Account Name is Changed in Welcome Page", "Account Name Changed",accountName +" and "+accountname +" Both are not matching");
 		}
 	}
 	
@@ -872,5 +882,9 @@ public class EndUserFeaturesLib extends EndUserFeaturesObj{
 			reporter.failureReport("System displays Remove Link on Current Account Tab in Account Management -Account Tools Page", "Remove Link on Current Account Tab is Not Exists",getText(REMOVEDEFUALT,"Remove default account"),driver);
 
 		}
+	}
+	public void selectToolsOnHeader() throws Throwable{
+		click(CommonObj.TOOLS_DD_HEADER, "tools drop down");
+
 	}
 }

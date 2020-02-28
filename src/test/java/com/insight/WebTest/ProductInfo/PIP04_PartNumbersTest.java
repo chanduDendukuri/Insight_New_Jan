@@ -59,6 +59,8 @@ public class PIP04_PartNumbersTest extends ProductDisplayInfoLib{
 
 						// search for a product
 						searchLib.searchInHomePage(data.get("SearchText"));
+						Thread.sleep(4000);
+						searchLib.removeTheFilterForInStockOnly(data.get("In_Stock"));
 						// verifying manufacturer number in product details page
 						verifyTheManufacturerNumberInProductDetailsPage(data.get("SearchText"));
 						// verifying manufacturer number in overview tab product details page.

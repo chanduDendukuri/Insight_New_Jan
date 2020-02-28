@@ -87,12 +87,17 @@ public class LNL14_ValidateSplitFeatureinOrderTest extends LineLevelInfoLib{
 				     	verifyOrderAndItemInfoBreadCrumb();
 				     	orderLib.continueButtonOnAdditionalInformationSection();
 				     	clickOnSplitIntoIndividualLines();
-				     	verifySplitLineItemsLabel();
+				     	//verifySplitLineItemsLabel(data.get("Quantity"));
+				     	verifyLineLevelOptionalLinks(data.get("Quantity"));
+				     	
 				     	orderLib.clickContinueOnLineLevelInfo();
 				     	canadaLib.verifySBP();
 				     	orderLib.shippingBillPayContinueButton(); // Click continue on shipping address Section
 						orderLib.billingAddressContinueButton(); // Click continue on Billing address Section
 						orderLib.selectPaymentInfoMethodCreditCard(data.get("Card_Number").toString(), data.get("Card_Name"),data.get("Month"), data.get("Year"),data.get("PO_Number"),data.get("POReleaseNumber"));  // VISA card
+						
+						// payment info
+						//orderLib.termsInPaymentInfo(data.get("PO_Number"),data.get("POReleaseNumber"));
 						orderLib.clickOnReviewOrderButton();
 						
 						//Place Order

@@ -160,7 +160,7 @@ public class SLP14_AdobeVIP extends SLPLib{
 					ReportStatus.blnStatus = false;
 					//gErrorMessage = e.getMessage();
 					gTestStatus = false;
-					throw new RuntimeException(e);
+					//throw new RuntimeException(e);
 				}
 			}
 		} catch (Exception e) {

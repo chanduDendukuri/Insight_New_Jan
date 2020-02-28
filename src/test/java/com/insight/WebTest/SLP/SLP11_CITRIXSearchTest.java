@@ -94,9 +94,11 @@ public class SLP11_CITRIXSearchTest extends SLPLib{
 						orderLib.continueToCheckOutOnAddCart();
 						verifyCITRIXItemInCart(data.get("SearchText1"));
 				     	
-						Thread.sleep(3000);
-				     	int itemnumber=Integer.valueOf(data.get("Item_Number"));
-				     	verifyCartPageAndPartDetails(itemnumber-1);
+					/*
+					 * Thread.sleep(3000); int itemnumber=Integer.valueOf(data.get("Item_Number"));
+					 * verifyCartPageAndPartDetails(itemnumber-1);
+					 */
+						pipLib. verifyCartPageAndPartDetailsForRecentlyItemDynamically(data.get("SearchText1"));
 				     	
 				        // search for product and add to cart  : Workstations
 						searchLib.searchInHomePage(data.get("SearchText3"));
@@ -109,7 +111,7 @@ public class SLP11_CITRIXSearchTest extends SLPLib{
 						orderLib.continueToCheckOutOnAddCart();
 						canadaLib.verifyPlaceCartLabel();
 						cartLib.verifyItemInCartByInsightPart(mfrNumber);
-						verifyCartPageAndPartDetails(itemnumber);
+						pipLib. verifyCartPageAndPartDetailsForRecentlyItemDynamically(mfrNumber);
 						// Verify CITRIX part in cart
 						verifyCITRIXItemInCart(data.get("SearchText1"));
 						verifyCitrixItemsInCart();

@@ -49,8 +49,6 @@ public class ODP05_PlaceOrderPrinterFirendlyTest extends OrderLib{
 							TestData, "Web_Order_Placement", intCounter);
 					TestEngineWeb.reporter.initTestCaseDescription("PlaceOrderPrinterFirendly");
 
-			
-
                       // Login to CMT and disable Allow File Upload during Checkout,Override Payment Options
 						cmtLib.loginToCMT(data.get("Header"));
 						cmtLib.searchForWebGroup(data.get("WebGrp"));
@@ -63,6 +61,8 @@ public class ODP05_PlaceOrderPrinterFirendlyTest extends OrderLib{
 						cmtLib.hoverOnManageWebGroupsAndSelectOptions(data.get("Manage_Web_Grp_Options"));
 						cmtLib.searchForaUserAndSelect(data.get("LnameEmailUname"), data.get("ContactName"));
 						cmtLib.loginAsAdminCMT();
+						// Login verification
+						cmtLib.loginVerification("User - "+data.get("ContactName"));
 
 						// Select First Product and Add to cart
 						searchLib.searchInHomePage(data.get("SearchText"));
@@ -85,22 +85,29 @@ public class ODP05_PlaceOrderPrinterFirendlyTest extends OrderLib{
 
 						clickPrintIconOnCartPage(data.get("Order_Utilities"));
 						VerifyPrintPopup(prodDesc,quantity,stock,totalPrice,unitPrice);
-
+						cartLib.closePrintPopUp();
 						proceedToCheckout();
 						continueButtonOnAdditionalInformationSection();  // Click continue on Additional information Section
 						clickContinueOnLineLevelInfo(); // Click continue on Line Level information Section
-						shippingBillPayContinueButton(); // Click continue on shipping address Section
-						shippingBillPayContinueButton(); // Click continue on Shipping options Section
-						shippingBillPayContinueButton(); //Click continue on Billing address Section
+						shippingBillPayContinueButton();  // continue button on Shipping address
+						shippingOptionsCarrierSelection();  // carrier selection or continue in shipping options
+						shippingBillPayContinueButton();  // Continue on billing address section
 
 						selectPaymentInfoMethodCreditCard(data.get("Card_Number").toString(), data.get("Card_Name"),data.get("Month"), data.get("Year"),data.get("PO_Number"),data.get("POReleaseNumber"));  // American Express card
-
 						clickOnReviewOrderButton();
+						
+						clickPrintIconOnCartPage(data.get("Order_Utilities"));
+						VerifyPrintPopup(prodDesc,quantity,stock,totalPrice,unitPrice);
+						cartLib.closePrintPopUp();
 						//Place Order
 						String summaryAmount=cartLib.getSummaryAmountInCart();
 						placeOrderAndVerifyReceiptOrderAndDate(summaryAmount);
 						//Verify Receipt
 						verifyReceiptVerbiage();
+						clickOrderDetailsLinkOnReceiptPage();
+						clickPrintIconOnCartPage(data.get("Order_Utilities"));
+						VerifyPrintPopup(prodDesc,quantity,stock,totalPrice,unitPrice);
+						cartLib.closePrintPopUp();
 						//selecting bundle from company standards page
 						commonLib.clickAccountToolsFromSideMenuAndClickOnProductGrp(data.get("toolsMenuName"),data.get("dropDown") ,data.get("productGroup"),data.get("productName"));
 						searchLib.clickAddToOrderOnCompanyStandardsScreen();
@@ -116,22 +123,32 @@ public class ODP05_PlaceOrderPrinterFirendlyTest extends OrderLib{
 
 						clickPrintIconOnCartPage(data.get("Order_Utilities"));
 						VerifyPrintPopup(prodDesc1,quantity1,stock1,totalPrice1,unitPrice1);
-
+						cartLib.closePrintPopUp();
+						
 						proceedToCheckout();
 						continueButtonOnAdditionalInformationSection();  // Click continue on Additional information Section
 						clickContinueOnLineLevelInfo(); // Click continue on Line Level information Section
-						shippingBillPayContinueButton(); // Click continue on shipping address Section
-						shippingBillPayContinueButton(); // Click continue on Shipping options Section
-						shippingBillPayContinueButton(); //Click continue on Billing address Section
+						shippingBillPayContinueButton();  // continue button on Shipping address
+						shippingOptionsCarrierSelection();  // carrier selection or continue in shipping options
+						shippingBillPayContinueButton();  // Continue on billing address section
 
 						selectPaymentInfoMethodCreditCard(data.get("Card_Number1").toString(), data.get("Card_Name"),data.get("Month"), data.get("Year"),data.get("PO_Number"),data.get("POReleaseNumber"));  // American Express card
 
 						clickOnReviewOrderButton();
+						clickPrintIconOnCartPage(data.get("Order_Utilities"));
+						VerifyPrintPopup(prodDesc1,quantity1,stock1,totalPrice1,unitPrice1);
+						cartLib.closePrintPopUp();
+						
 						//Place Order
 						String summaryAmount1=cartLib.getSummaryAmountInCart();
 						placeOrderAndVerifyReceiptOrderAndDate(summaryAmount1);
 						//Verify Receipt
 						verifyReceiptVerbiage();
+						clickOrderDetailsLinkOnReceiptPage();
+						clickPrintIconOnCartPage(data.get("Order_Utilities"));
+						VerifyPrintPopup(prodDesc1,quantity1,stock1,totalPrice1,unitPrice1);
+						cartLib.closePrintPopUp();
+						
 						//Logout
 						cmtLib.navigateBackToCMT();
 						cmtLib.hoverOverMasterGroupAndSelectChangeGrp();
@@ -156,22 +173,30 @@ public class ODP05_PlaceOrderPrinterFirendlyTest extends OrderLib{
 
 						clickPrintIconOnCartPage(data.get("Order_Utilities"));
 						VerifyPrintPopup(prodDesc2,quantity2,stock2,totalPrice2,unitPrice2);
-
+						cartLib.closePrintPopUp();
 						proceedToCheckout();
 						continueButtonOnAdditionalInformationSection();  // Click continue on Additional information Section
 						clickContinueOnLineLevelInfo(); // Click continue on Line Level information Section
-						shippingBillPayContinueButton(); // Click continue on shipping address Section
-						shippingBillPayContinueButton(); // Click continue on Shipping options Section
-						shippingBillPayContinueButton(); //Click continue on Billing address Section
+						shippingBillPayContinueButton();  // continue button on Shipping address
+						shippingOptionsCarrierSelection();  // carrier selection or continue in shipping options
+						shippingBillPayContinueButton();  // Continue on billing address section
 
-						enterCreditCard(data.get("Card_Number").toString(), data.get("Card_Name"),data.get("Month"), data.get("Year"), data.get("poNumebr"),data.get("POReleaseNumber"));  // American Express card
+						selectPaymentInfoMethodCreditCard(data.get("Card_Number").toString(), data.get("Card_Name"),data.get("Month"), data.get("Year"), data.get("poNumebr"),data.get("POReleaseNumber"));  // American Express card
 
 						clickOnReviewOrderButton();
+						clickPrintIconOnCartPage(data.get("Order_Utilities"));
+						VerifyPrintPopup(prodDesc2,quantity2,stock2,totalPrice2,unitPrice2);
+						cartLib.closePrintPopUp();
 						//Place Order
 						String summaryAmount2=cartLib.getSummaryAmountInCart();
 						placeOrderAndVerifyReceiptOrderAndDate(summaryAmount2);
 						//Verify Receipt
 						verifyReceiptVerbiage();
+						clickOrderDetailsLinkOnReceiptPage();
+						clickPrintIconOnCartPage(data.get("Order_Utilities"));
+						VerifyPrintPopup(prodDesc2,quantity2,stock2,totalPrice2,unitPrice2);
+						cartLib.closePrintPopUp();
+						
 						//Logout
 						cmtLib.navigateBackToCMT();
 						cmtLib.hoverOverMasterGroupAndSelectChangeGrp();
@@ -196,18 +221,18 @@ public class ODP05_PlaceOrderPrinterFirendlyTest extends OrderLib{
 
 						clickPrintIconOnCartPage(data.get("Order_Utilities"));
 						VerifyPrintPopup(prodDesc3,quantity3,stock3,totalPrice3,unitPrice3);
-
+						cartLib.closePrintPopUp();
 						proceedToCheckout();
-						addAdditionalInformation(data.get("Url"), data.get("RP_HDL_Txt"), data.get("WG_HDL_Txt"), data.get("Additional_Notes"), data.get("Invoice_Notes"));
+						cartLib.addAdditionalInformationInCheckOut(data.get("Url"), data.get("RP_HDL_Txt"));
 						continueButtonOnAdditionalInformationSection();  // Click continue on Additional information Section
 						addLineLevelInfoSmartTracker(data.get("rP_LNL_Txt"));
 						clearPhnumberInShippinAddress();
-						shippingBillPayContinueButton(); // Click continue on shipping address Section
-						shippingBillPayContinueButton(); // Click continue on Shipping options Section
-						shippingBillPayContinueButton(); //Click continue on Billing address Section
+						shippingBillPayContinueButton();  // continue button on Shipping address
+						shippingOptionsCarrierSelection();  // carrier selection or continue in shipping options
+						shippingBillPayContinueButton();  // Continue on billing address section
 
 						//Adding Visa card
-						enterCreditCard(data.get("Card_Number2").toString(), data.get("Card_Name"),data.get("Month"), data.get("Year"), data.get("poNumebr"),data.get("POReleaseNumber"));
+						selectPaymentInfoMethodCreditCard(data.get("Card_Number2").toString(), data.get("Card_Name"),data.get("Month"), data.get("Year"), data.get("poNumebr"),data.get("POReleaseNumber"));
 						clickOnReviewOrderButton();
 						verifyPlaceOrderLabel();
 						//Verify print popup Window
@@ -219,12 +244,16 @@ public class ODP05_PlaceOrderPrinterFirendlyTest extends OrderLib{
 
 						clickPrintIconOnCartPage(data.get("Order_Utilities"));
 						VerifyPrintPopup(prodDesc4,quantity4,stock4,totalPrice4,unitPrice4);
-
+						cartLib.closePrintPopUp();
 						//Place Order
 						String summaryAmount3=cartLib.getSummaryAmountInCart();
 						placeOrderAndVerifyReceiptOrderAndDate(summaryAmount3);
 						//Verify Receipt
 						verifyReceiptVerbiage();
+						clickOrderDetailsLinkOnReceiptPage();
+						clickPrintIconOnCartPage(data.get("Order_Utilities"));
+						VerifyPrintPopup(prodDesc4,quantity4,stock4,totalPrice4,unitPrice4);
+						cartLib.closePrintPopUp();
 						//commonLib.clickLogOutLink(data.get("Logout"));
 
 						// fnCloseTest();

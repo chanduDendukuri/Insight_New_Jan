@@ -34,10 +34,10 @@ public class InvoiceHistoryLib extends InvoiceHistoryObj {
 		waitForVisibilityOfElement(CanadaObj.SEARCHBY_DROPDOWN, "Quick Search");
 		if (isVisibleOnly(CanadaObj.SEARCHBY_DROPDOWN, "Quick Search")) {
 
-			click(CanadaObj.SEARCHBY_DROPDOWN, "SearchBy");
+			click(CanadaObj.SEARCHBY_DROPDOWN, "Clicking on SearchBy Dropdown");
 			// selectSearchBy(searchBy);
 			// click(CanadaLib.drpSearchByDropdownValue,"Search bY Dropdown Value");
-			click(CanadaObj.getSearchByTextOrder(searchBy), "Search By");
+			click(CanadaObj.getSearchByTextOrder(searchBy), "Open Search By and select " + searchBy,searchBy);
 			Thread.sleep(3000);
 			// click(CanadaObj.QUICK_SEARCH_TEXT, "Click on Text");
 			type(CanadaObj.QUICK_SEARCH_TEXT, text, "Text ");
@@ -272,8 +272,15 @@ public class InvoiceHistoryLib extends InvoiceHistoryObj {
 	 */
 	public void verifyHeaderLevelInfo() throws Throwable {
 		if (isVisibleOnly(HEADER_LEVEL_INFO, "Header level info")) {
-			reporter.SuccessReport("Verify Hedder Level Smart Trackers on Account Management - Invoice History Page",
-					"Hedder Level Smart Trackers Exist", "");
+			click(HEADER_LEVEL_INFO, "Header level info", "Header level info");
+			List <WebElement> element=driver.findElements(By.xpath("//section[@id='invoiceHeader']//dl"));
+			for(int  i=0;i<element.size();i++) {
+				if(!element.get(i).getText().equals("")) {
+					reporter.SuccessReport("Verify Header evel info", "Header level info present ",element.get(i).getText(), driver);
+				}else {
+					reporter.failureReport("Verify Header evel info", "Header level info not present ",element.get(i).getText(), driver);
+				}
+			}
 		} else {
 			reporter.failureReport("Verify Hedder Level Smart Trackers on Account Management - Invoice History Page",
 					"Hedder Level Smart Trackers not Exist", "", driver);
@@ -287,12 +294,17 @@ public class InvoiceHistoryLib extends InvoiceHistoryObj {
 	 */
 	public void verifyLineLevelInfo() throws Throwable {
 		if (isVisibleOnly(LINE_LEVEL_INFO, "Header level info")) {
-			reporter.SuccessReport("Verify Line Level Smart Trackers on Account Management - Invoice History Page",
-					"Line Level Smart Trackers Exist", "");
-		} else {
+			reporter.SuccessReport("Verify Line Level Smart Trackers on Account Management - Invoice History Page","Line Level Smart Trackers is present", "");
+			if(!getText(LINE_LEVEL_INFO, "Line level info").equals("")) {
+				reporter.SuccessReport("Verify Line Level Smart Trackers on Account Manaement ", "Line Level Smart Trackers on Account Management  present ",getText(LINE_LEVEL_INFO, "Line level info").trim(), driver);
+				}else {
+					reporter.failureReport("Verify Line Level Smart Trackers on Account Manaement ", "Line Level Smart Trackers on Account Management  is empty", "", driver);
+				}
+			}
+		else {
 			reporter.failureReport("Verify Line Level Smart Trackers on Account Management - Invoice History Page",
 					"Line Level Smart Trackers not Exist", "", driver);
-		}
+	  }
 	}
 
 	/**
@@ -305,7 +317,7 @@ public class InvoiceHistoryLib extends InvoiceHistoryObj {
 		if (isVisibleOnly(LICENSE_PROOF_LINK, "License proof link")) {
 			status = true;
 			reporter.SuccessReport("Verify LicenceProof Link Exist", "LicenceProof Link Exist", "");
-			click(LICENSE_PROOF_LINK, "License proof link");
+			JSClick(LICENSE_PROOF_LINK, "License proof link");
 
 		} else {
 			reporter.failureReport("Verify LicenceProof Link Exist", "LicenceProof Link Exist", "", driver);
@@ -326,7 +338,10 @@ public class InvoiceHistoryLib extends InvoiceHistoryObj {
 			reporter.failureReport("Verify Invoice License Proof", "Invoice License Proof Information POPUP not Exist",
 					"", driver);
 		}
-
+	}
+	
+	public void clickCloseLicensePopup() throws Throwable {
+		JSClick(LICENCE_PROOF_CLOSE_POPUP, "Close popup");
 	}
 
 	/**
@@ -1148,7 +1163,7 @@ public class InvoiceHistoryLib extends InvoiceHistoryObj {
 	public void getInvoiceNumberFromSearchResults() throws Throwable {
 		List<WebElement> myList = driver.findElements(INVOICE_NUMBER);
 		if (myList.size() != 0) {
-			for (int i = 1; i <= 2; i++) {
+			for (int i = 0; i <= 3; i++) {
 				String invoicenumber = (myList.get(i)).getText();
 				reporter.SuccessReport("Verify the Invoice details", "Invoice results are displayed",
 						"Invoice number:" + invoicenumber);
@@ -1165,6 +1180,7 @@ public class InvoiceHistoryLib extends InvoiceHistoryObj {
 	public void verifyExcelDownload() throws Throwable {
 		Files.deleteIfExists(Paths.get("./\\DownloadedFiles\\orderhistory.xls"));
 		click(EXPORT_TO_EXCEL, "export to excel");
+		Thread.sleep(5000);
 		if (Files.exists(Paths.get("./\\DownloadedFiles\\orderhistory.xls"))) {
 			reporter.SuccessReport("Export excel verification", "Exported excel file successfully", "");
 		} else {
@@ -1183,6 +1199,10 @@ public class InvoiceHistoryLib extends InvoiceHistoryObj {
 
 	public void selectSearchBy(String searchby) throws Throwable {
 		selectByVisibleText(CanadaObj.drpSearchBy, searchby, "Sort by dropdown");
+	}
+	
+	public void clickOnInvoiceDetailsTab() throws Throwable {
+		click(INVOICE_DETAILS_TAB, "Invoice detais tab", "");
 	}
 
 }

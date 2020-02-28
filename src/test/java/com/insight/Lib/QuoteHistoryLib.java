@@ -677,11 +677,24 @@ public class QuoteHistoryLib extends QuoteHistoryObj {
      */
     public void verifyConvertQuoteButton() throws Throwable {
 
-        if (isElementPresent(orderObj.CONVERT_QUOTE_BTN, "Convert Quote")) {
-            reporter.failureReport("Verify  Convert Quote button", " Convert Quote button  Exist", "");
+        if (isElementPresent(OrderObj.CONVERT_QUOTE_BTN, "Convert Quote")) {
+            reporter.failureReport("Verify  Convert Quote button", " Convert Quote button  Exist", "",driver);
         } else {
 
             reporter.SuccessReport("Verify  Convert Quote button ", " Convert Quote button Doesnot Exist", "");
+        }
+    }
+    /**
+     * Method is used to verify Quote History  present
+     *
+     * @throws Throwable
+     */
+    public void verifyConvertQuoteButtonEnable() throws Throwable {
+        if (isElementPresent(OrderObj.CONVERT_QUOTE_BTN, "Convert Quote")) {
+            reporter.SuccessReport("Verify  Convert Quote button ", " Convert Quote button  Exists", "");
+            
+        } else {
+        	reporter.failureReport("Verify  Convert Quote button", " Convert Quote button  does not Exist", "",driver);
         }
     }
 
@@ -709,7 +722,7 @@ public class QuoteHistoryLib extends QuoteHistoryObj {
             } else {
 
                 reporter.failureReport("Verify search results in Invoice hisory page   ",
-                        "Search results are not displayed", searchBy);
+                        "Search results are not displayed", searchBy,driver);
             }
         }
     }
@@ -731,7 +744,7 @@ public class QuoteHistoryLib extends QuoteHistoryObj {
                 reporter.SuccessReport("Verify  Erorr Message", "Error Message is present", errortext);
             } else {
 
-                reporter.failureReport("Verify  Erorr Message", "Error Message is not present", "");
+                reporter.failureReport("Verify  Erorr Message", "Error Message is not present", "",driver);
             }
         }
         else {

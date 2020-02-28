@@ -67,6 +67,7 @@ public class EndUserFeaturesObj extends ActionEngine{
     
     public static By SETTINGS_ICON_IN_TOOLS_MENU=By.xpath("//div[@class='o-grid  o-grid--gutters-small']//div[@class='o-grid__item  o-grid__item--shrink']");
     public static By FAVOURITE_LINKS_HEADER=By.xpath("//div[@id='QuickLinks__permissionForm']");
+    public static By AccountFavLinkAvailablity=By.xpath("//h3[contains(text(),'Account Favorites')]");
 
     //current account
     public static By YOU_ARE_LOGGED_IN_AS_TEXT=By.xpath("//div[@class='medium-4 columns setPaddingLeft']//p[@class='m-b-md']//strong");

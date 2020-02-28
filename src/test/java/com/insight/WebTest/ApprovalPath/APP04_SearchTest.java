@@ -74,123 +74,158 @@ public class APP04_SearchTest extends ApprovalPathLib {
 					reqProcLib.verifyApprovalManagementPage();
 
 					// System Displays All Approval paths and Details
-					VerifyApprovalPathAndApprovers();
+					int count =VerifyApprovalPathAndApprovers();
 
 					// Create Create New Approval Path - QTPTesting1
 					CreateNewApprovalPathLink();
 
-					String AppPathName1 = data.get("AppPathName");
-					AppPathName1 = AppPathName1.concat(getRandomNumeric(1));
-
-					// Enter Name
-					EnterNewApprovalPath(AppPathName1);
-
+					String newApproverPathName1 = RandomApprovalPathName("QTP Testing");
+					EnterNewApprovalPath(newApproverPathName1);
 					// Select Approvers
-					SelectApprover(null,1);
+					SelectApprover(null,2);
 
 					// --- '>' icon
-					Add_Approver_Btn_Click();
-
+					//Add_Approver_Btn_Click();
+					scrollUp();
 					// Create Approval path
 					ClickCreateApprovalPathButton();
-
+					VerifyAppovalPathCreated(newApproverPathName1);
 					// Create Create New Approval Path - QTPTesting1
 					CreateNewApprovalPathLink();
 
-					String AppPathName2 = data.get("AppPathName");
-					AppPathName2 = AppPathName2.concat(getRandomNumeric(1));
-
-					// Enter Name
-					EnterNewApprovalPath(AppPathName2);
+					String newApproverPathName2 = RandomApprovalPathName("QTP Testing");
+					EnterNewApprovalPath(newApproverPathName2);
 
 					// Select Approvers
-					SelectApprover(null,1);
-
+					SelectApprover(null,2);
+					scrollUp();
 					// --- '>' icon
-					Add_Approver_Btn_Click();
-
-					// Create Approval path
+					//Add_Approver_Btn_Click();
 					ClickCreateApprovalPathButton();
+					VerifyAppovalPathCreated(newApproverPathName2);
 					
-					Thread.sleep(2000);
 					
-					// Verify Approval is added - first approval path
-					VerifyFirstApproverAdded(AppPathName1);
 					
-					Thread.sleep(1000);
-
-					// Verify Approval is Added - second approval path
-					VerifySecondApproverAdded(AppPathName2);
 
 					// Enter Partial name and Search
-					String[] strApprovalPathName = (AppPathName1).split("Testing");
+					String[] strApprovalPathName = (newApproverPathName1).split("Testing");
 
 					// Search with QTP - and click on search button
-					SearchUser(strApprovalPathName[0]);
+					//SearchUser(strApprovalPathName[0]);
 
-					// Verify Search results - QTPTesting1 - first random number
-					VerifyAppovalPathCreated(AppPathName1);
-
-					// Verify Search results - QTPTesting2 - second random
-					// number
-					VerifyAppovalPathCreated(AppPathName2);
+					
 
 					// Edit first approval path
-					ClickEditLinkButton(AppPathName1);
-
+					ClickEditLinkButton(newApproverPathName1);
+					VerifyIsInEditMode();
+					int a1 = NumberofApproversAddedtoRightSide();
 					// Select Approvers and click Add
-					SelectApprover(null,1);
-
+					SelectApprover(null,3);
+					int a2 = NumberofApproversAddedtoRightSide();
+					if(a2==a1+3) {
+						reporter.SuccessReport("Approvers added", "Approvers added successfully", "", driver);
+					}
+					else {
+						reporter.failureReport("Approvers added", "Approvers are not added successfully", "", driver);	
+					}
 					// Add button to add approver
-					Add_Approver_Btn_Click();
+					//Add_Approver_Btn_Click();
 
 					ClickUpdateButton();
-
+					
+					VerifyAppovalPathCreated(newApproverPathName1);
+					VerifyAppovalPathCreated(newApproverPathName2);
+					// Search with QTP - and click on search button
+					//SearchUser(strApprovalPathName[0]);
 					// Search with QTP - and click on search button
 					SearchUser(strApprovalPathName[0]);
-
+					VerifyAppovalPathCreated(newApproverPathName1);
+					VerifyAppovalPathCreated(newApproverPathName2);
+					
+					
+					
+					
 					// Edit second approval path
-					ClickEditLinkButton(AppPathName2);
-
+					ClickEditLinkButton(newApproverPathName1);
+					VerifyIsInEditMode();
+					int a3 = NumberofApproversAddedtoRightSide();
 					// Select Approvers and click Add
-					SelectApprover(null,1);
-
+					SelectApprover(null,2);
+					
 					// Add button to add approver
-					Add_Approver_Btn_Click();
+					//Add_Approver_Btn_Click();
+					int a4 = NumberofApproversAddedtoRightSide();
+					if(a4==a3+2) {
+						reporter.SuccessReport("Approvers added", "Approvers added successfully", "", driver);
+					}
+					else {
+						reporter.failureReport("Approvers added", "Approvers are not added successfully", "", driver);	
+					}
+					ClickUpdateButton();
+					
+					
+					
+					
+					// Edit first approval path
+					ClickEditLinkButton(newApproverPathName2);
+					
+					// Select Approvers and click Add
+					SelectApprover(null,3);
+					
+					// Add button to add approver
+					//Add_Approver_Btn_Click();
 
 					ClickUpdateButton();
-
-					// Perform Last name Search - "Automation"
-					String strLastName = data.get("Select_Approver");
-					ApproverSearchTextBox(strLastName);
-
-					// Click Viewing all Available Approvers'
-					ClickViewAllPathDetails();
-
-					// System Displays All Approval paths and Details
+					VerifySuccessUpdate();
+					VerifyNumberOfApproversInApprovalManagement(newApproverPathName2,5);
+					
+					
+					// Get the Existing User Last name to Search
+					ApproverSearchTextBox("Automation");
+					// Search button click
+					SearchClick();
 					VerifyApprovalPathAndApprovers();
-
-					Thread.sleep(2000);
-
+					
+					
+					/*
+					 * // Search with QTP - and click on search button
+					 * .a1..a1.//SearchUser(strApprovalPathName[1]);
+					 * VerifyAppovalPathCreated(newApproverPathName1);
+					 * VerifyAppovalPathCreated(newApproverPathName2); // Edit second approval path
+					 * ClickEditLinkButton(newApproverPathName2);
+					 * 
+					 * // Select Approvers and click Add SelectApprover(null,3);
+					 * 
+					 * // Add button to add approver //Add_Approver_Btn_Click();
+					 * 
+					 * ClickUpdateButton(); VerifySuccessUpdate();
+					 * VerifyAppovalPathCreated(newApproverPathName1);
+					 * VerifyAppovalPathCreated(newApproverPathName2);
+					 * VerifyNumberOfApproversInApprovalManagement(newApproverPathName1,7);
+					 */
+					scrollUp();
+					ClickOnViewAllOrRefreshIcon();
+					VerifyApprovalPathAndApprovers();
+					
 					// Delete Created Approval path - QTPTesting with 1st random
 					// number
-					DeleteApprovers(AppPathName1);
+					DeleteApprovers(newApproverPathName1);
 
 					Thread.sleep(1000);
 
 					// Confirm Delete
-					ConfirmDelete(AppPathName1);
+					ConfirmDelete(newApproverPathName1);
 
 					Thread.sleep(2000);
 
 					// Delete Created Approval path - QTPTesting with 2nd random
 					// number
-					DeleteApprovers(AppPathName2);
+					DeleteApprovers(newApproverPathName2);
 
 					Thread.sleep(1000);
 
 					// Confirm Delete
-					ConfirmDelete(AppPathName2);
+					ConfirmDelete(newApproverPathName2);
 
 					commonLib.clickLogOutLink(data.get("Logout"));
 

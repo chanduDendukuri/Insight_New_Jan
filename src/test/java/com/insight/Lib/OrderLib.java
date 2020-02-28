@@ -1,13 +1,17 @@
 package com.insight.Lib;
 
+import java.awt.*;
+import java.awt.event.KeyEvent;
 import java.io.FileNotFoundException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+import java.util.Set;
 
 import org.omg.PortableServer.THREAD_POLICY_ID;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 
 import com.insight.ObjRepo.CanadaObj;
@@ -16,7 +20,8 @@ import com.insight.ObjRepo.OrderObj;
 import com.insight.ObjRepo.CommonObj;
 import com.insight.ObjRepo.InvoiceHistoryObj;
 import com.insight.ObjRepo.ShipBillPayObj;
-import java.awt.Toolkit;
+import org.openqa.selenium.interactions.Actions;
+
 import java.awt.datatransfer.StringSelection;
 
 
@@ -64,7 +69,8 @@ public class OrderLib extends OrderObj{
 		}
 	}
 	
-	public void addWarrantyInCartPage() throws Throwable {
+	public String addWarrantyInCartPage() throws Throwable {
+		String actaulWarrantyItemDec=null;
 		if(isElementPresent(ADD_WARRANTY_LINK,"Warranty link" )){
 			click(ADD_WARRANTY_LINK, "Warranty link");
 			waitForVisibilityOfElement(ADD_FIRST_WARRANTY, "warranty", driver);
@@ -73,7 +79,7 @@ public class OrderLib extends OrderObj{
 			String expectedWarrantyItemDec=driver.findElement(FIRST_WARRANTY_DESC_ON_POPUP).getAttribute("innerText");
 			click(ADD_TO_CART_IN_WARRANTY_POPUP, "Add to cart in warranty screen");
 			Thread.sleep(2000);
-			String actaulWarrantyItemDec=getText(WARRANTY_ITEM_DESC_ON_CART_SCREEN, "item description");
+			 actaulWarrantyItemDec=getText(WARRANTY_ITEM_DESC_ON_CART_SCREEN, "item description");
 			if (expectedWarrantyItemDec.equals(actaulWarrantyItemDec)) {
 				reporter.SuccessReport("Verify the warranty item added.","Warranty added successfully","Warranty: "+actaulWarrantyItemDec);
 			}else{
@@ -83,6 +89,7 @@ public class OrderLib extends OrderObj{
 		}else {
 			reporter.failureReport("Warranty link in add to cart", "Warranty link is not visible in cart page", "", driver);
 		}
+		return actaulWarrantyItemDec;
 			
 	}
 	
@@ -324,7 +331,7 @@ public class OrderLib extends OrderObj{
 	 * @throws Throwable
 	 */
 	public List<String> placeOrderAndVerifyReceiptOrderAndDate(String totalSummary) throws Throwable {
-List<String> orderdetails = new ArrayList<String>();
+               List<String> orderdetails = new ArrayList<String>();
 		clickUntil(PLACE_ORDER_BTN, RECEIPT_LABEL,"Place order button");
 		Thread.sleep(3000);
 
@@ -362,8 +369,6 @@ List<String> orderdetails = new ArrayList<String>();
 			  if (isElementPresent(DATE_ORDERED, "Date ordered")) {
 				String dateOrdered = getText(DATE_ORDERED, "Date ordered");
 				String actualDate = getCurrentDateTime("dd-MMM-yyyy");
-
-				
 
 				if (actualDate.contains(dateOrdered)) {
 					orderdetails.add(actualDate);
@@ -594,7 +599,7 @@ List<String> orderdetails = new ArrayList<String>();
 	 */
 	public void clickContinueOnLineLevelInfo() throws Throwable{
 		if(isVisible(LLI_CONTINUE_BTN, "Continue button Linelevel Info")){
-			click(LLI_CONTINUE_BTN, "Continue button of Linelevel Info");
+			clickUntil(LLI_CONTINUE_BTN,CONTINUE_BTN, "Continue button of Linelevel Info");
 		}
 		Thread.sleep(2000);
 	}
@@ -662,10 +667,10 @@ List<String> orderdetails = new ArrayList<String>();
 			  selectByValue(EXPIRATION_MONTH,month , "Expiration month");
 			  click(EXPIRATION_YEAR, "Expiration year");
 			  selectByValue(EXPIRATION_YEAR,year , "Expiration year");
-			  if(isElementPresent(PO_NUMBER,"PO Number")){
+			  if(isVisibleOnly(PO_NUMBER,"PO Number")){
 			  type(PO_NUMBER, PONumber, "PO number");
 			  }
-			  if(isElementPresent(PO_REALESE_NUMBER,"PO Realese Number")){
+			  if(isVisibleOnly(PO_REALESE_NUMBER,"PO Realese Number")){
 				  typeText(PO_REALESE_NUMBER, PORealeseNumber, "PO number");
 			  }
 		}
@@ -846,7 +851,12 @@ List<String> orderdetails = new ArrayList<String>();
 			reporter.failureReport("Verify the TAX before and after adding licence",
 					"Before and after adding licence tax is not equal which is" + ActualTax + "and" , result);
 		}
-
+	}
+	
+	public String getTaxInReceipt() throws Throwable {
+		String tax= getText(ADDLICENCE_TAX_AMOUNT, "Tax displayed after adding LICENCE");
+		reporter.SuccessReport("Get Tax on receipt page", "Tax on receipt page is ", getText(ADDLICENCE_TAX_AMOUNT, "Tax displayed after adding LICENCE"));
+	    return tax;
 	}
 
 	/**
@@ -1044,7 +1054,7 @@ List<String> orderdetails = new ArrayList<String>();
 	public String verifyTheTaxOnPlaceOrderPage() throws Throwable {
 		Thread.sleep(3000);
 		String result = getText(ADDLICENCE_TAX_AMOUNT, "Tax displayed after adding LICENCE").replace("$", "");
-		if (isElementPresent(ADDLICENCE_TAX_AMOUNT, "Tax displayed", true) ) {
+		if (isElementPresent(ADDLICENCE_TAX_AMOUNT, "Tax displayed", true) && !result.equals("")) {
 			reporter.SuccessReport("Verify Taxes on Place Order Page", "Taxes Exist and shows as :" , "Tax estimate USD "+result);
 		} else
 			reporter.failureReport("Verify Taxes on Place Order Page", "Place Order Page Shows Tax as 0.00","",driver);
@@ -1105,7 +1115,7 @@ List<String> orderdetails = new ArrayList<String>();
 	 */
 	public void verifyReceiptVerbiage() throws Throwable{
 		Thread.sleep(3000);
-		if(isElementPresent(THANK_YOU_FOR_ORDER_MSG, "Thank you message") || isElementPresent(THANK_YOU_FOR_ORDER_REQUEST_MSG, "Thank you message")){
+		if(isElementPresent(THANK_YOU_FOR_ORDER_MSG, "Thank you message") || isElementPresent(THANK_YOU_FOR_ORDER_REQUEST_MSG, "Thank you message")|| isElementPresent(THANK_YOU_FOR_ORDER_MSG_ON_RECEIPT, "Thank you for your order")){
 			reporter.SuccessReport("Verify Receipt Verbiage", "Thank you for order message displayed","Order Confirmation Page");
 		}else{
 			reporter.failureReport("Verify Receipt Verbiage", "Thank you for order message not displayed","",driver);
@@ -1147,7 +1157,6 @@ List<String> orderdetails = new ArrayList<String>();
 	public void verifyBillingAddressOnReceiptPage(String sectionName) throws Throwable{
 		  
 		if(isElementPresent(headerlinkCheck(sectionName),"Header link check")){
-		
 			// verifying Company name 
 		String comapanyName=getText(BILLING_ADDRESS_COMPANY_NAME, "Company name");
 		  if(comapanyName.isEmpty()){
@@ -1177,7 +1186,7 @@ List<String> orderdetails = new ArrayList<String>();
 		if(mnfNo[1].equals(mnfrNumber)){
 			reporter.SuccessReport("Verify manufacturer numebr in Receipt page", "Your cart verification is successful","");
 		}else{
-			reporter.failureReport("Verify manufacturer numebr in Receipt page", "Your cart verification is not successful","");
+			reporter.failureReport("Verify manufacturer numebr in Receipt page", "Your cart verification is not successful","",driver);
 		}
 	}
 	
@@ -1228,12 +1237,13 @@ List<String> orderdetails = new ArrayList<String>();
 	public void verifyFileUploadOption(String exeFileNameOfAutoITWithExetension) throws Throwable {
 		 
 		try {
-			if (isElementPresent(UPLOAD_FILE, "Upload file")) {
-				System.out.println(System.getProperty("user.dir") + "\\AutoIt\\" + exeFileNameOfAutoITWithExetension);
+			if (isElementPresent(FILE_UPLOAD, "Upload file")) {
+				//System.out.println(System.getProperty("user.dir") + "\\AutoIt\\" + exeFileNameOfAutoITWithExetension);
 				Thread.sleep(2000);
-				click(UPLOAD_FILE, "Upload file");
-				Runtime.getRuntime()
-						.exec(System.getProperty("user.dir") + "\\AutoIt\\" + exeFileNameOfAutoITWithExetension);
+				click(FILE_UPLOAD, "Upload file");
+				/*Runtime.getRuntime()
+						.exec(System.getProperty("user.dir") + "\\AutoIt\\" + exeFileNameOfAutoITWithExetension);*/
+				//sendKeys("");
 				Thread.sleep(3000);
 
 				Thread.sleep(2000);
@@ -1292,6 +1302,8 @@ List<String> orderdetails = new ArrayList<String>();
 			}else{
 				reporter.failureReport("Verify type of the card in payment info ", "Type of the card  verification is not successful","");
 			}
+		}else {
+			reporter.failureReport("Verify Payment info section is present", "Payment info section does not exists in the receipt page", "", driver);
 		}
 	}
 	
@@ -1386,6 +1398,18 @@ List<String> orderdetails = new ArrayList<String>();
 		
 	    }return all_elements_text;
 	}
+	/**
+	 * 
+	 * @return
+	 */
+	public List<String> getContractDetailsOnCart(){
+		List<WebElement> myList = driver.findElements(CartObj.CART_CONTRACT_DETAILS);
+		List<String> all_elements_text = new ArrayList<>();
+		for (int i = 0; i < myList.size(); i++) {
+			all_elements_text.add(myList.get(i).getText());
+		
+	    }return all_elements_text;
+	}
 	
 	/**
 	 * 
@@ -1403,44 +1427,57 @@ List<String> orderdetails = new ArrayList<String>();
 		List<WebElement> qty = driver.findElements(CartObj.QUANTITY_PRINT_POPUP);
 		List<WebElement> stock = driver.findElements(CartObj.STOCK_PRINT_POPUP);
 		List<WebElement> total_price = driver.findElements(CartObj.TOTAL_PRICE_PRINT_POPUP);
-		List<WebElement> unit_price = driver.findElements(CartObj.TOTAL_PRICE_PRINT_POPUP);
-		
+		List<WebElement> unit_price = driver.findElements(CartObj.UNIT_PRICE_PRINT_POPUP);
+		getWG800NumberOnPrintPopup();
 		for (int i = 0; i <myList.size() ; i++) {
 		    String desc = myList.get(i).getText();
 			 if(desc.equals(prodDesc.get(i))){
-				 reporter.SuccessReport("Verify product description ", "Product description : ","");
+				 reporter.SuccessReport("Verify product description ", "Product description : ",prodDesc.get(i));
 			 }else{
-				 reporter.failureReport("Verify product description ", "Product description verification failed. Actual is: ",""); 
+				 reporter.failureReport("Verify product description ", "Product description verification failed. Actual is: ","",driver); 
 			 }
 			 
 			 String quantity = qty.get(i).getAttribute("value");
 			 if(quantity.equals(quantity2.get(i))){
 				 reporter.SuccessReport("Verify product Quantity ", "Product Quantity : ",quantity2.get(i));
 			 }else{
-				 reporter.failureReport("Verify product Quantity ", "Product Quantity verification failed. Actual is: ",""); 
+				 reporter.failureReport("Verify product Quantity ", "Product Quantity verification failed. Actual is: ",quantity2.get(i),driver); 
 			 }
 			 
 			 String expectedstock = stock.get(i).getText();
 			 if(expectedstock.equals(stock2.get(i))){
-				 reporter.SuccessReport("Verify product stock ", "Product stock : ","");
+				 reporter.SuccessReport("Verify product stock ", "Product stock : ",stock2.get(i));
 			 }else{
-				 reporter.failureReport("Verify product stock ", "Product stock verification failed. Actual is: ",""); 
+				 reporter.failureReport("Verify product stock ", "Product stock verification failed. Actual is: ",stock2.get(i),driver); 
 			 } 
 			 
 			 String expectedtoatalprice= total_price.get(i).getText();
 			 if(expectedtoatalprice.equals(totalPrice.get(i))){
 				 reporter.SuccessReport("Verify total price ", "Product total price : ",expectedtoatalprice);
 			 }else{
-				 reporter.SuccessReport("Verify total price ", "Product total price verification failed. Actual is: ",""); 
+				 reporter.failureReport("Verify total price ", "Product total price verification failed. Actual is: ",expectedtoatalprice,driver);
 			 } 
 			
 			 String expectedUnitPrice= unit_price.get(i).getText();
 			 if(expectedUnitPrice.equals(unitPrice.get(i))){
 				 reporter.SuccessReport("Verify total price ", "Product total price : ",expectedUnitPrice);
 			 }else{
-				 reporter.failureReport("Verify total price ", "Product total price verification failed. Actual is: ",""); 
+				 reporter.failureReport("Verify total price ", "Product total price verification failed. Actual is: ",expectedUnitPrice,driver);
 			 } 
 		}
+	}
+	
+	/*
+	 * Method is to verify warranties exists on print popup 
+	 */
+	public String verifyWarrantiesOnPrintPopup(String partNumber) throws Throwable {
+		String warranrty=getText(CartObj.getWarrantiesOnPrintPopUp(partNumber), "warranties on print popup");
+		if(isVisibleOnly(CartObj.getWarrantiesOnPrintPopUp(partNumber), "warranties on print popup")) {
+			reporter.SuccessReport("View Printable POPUP warranties", "Warranties exists", getText(CartObj.getWarrantiesOnPrintPopUp(partNumber), "warranties on print popup"), driver);
+		}else {
+			reporter.failureReport("View Printable POPUP warranties", "Warranties does not exists", "", driver);
+		}
+		return warranrty;
 	}
 
 	
@@ -1460,7 +1497,7 @@ List<String> orderdetails = new ArrayList<String>();
 		if(isElementPresent(SAVE_QUOTE_MSG, "Success message")){
 			 reporter.SuccessReport("Verify Success message", "Save as Quote - Successful message displayed","");
 		 }else{
-			 reporter.failureReport("Verify Success message ", "Save as Quote - Successful message not displayed ",""); 
+			 reporter.failureReport("Verify Success message ", "Save as Quote - Successful message not displayed ","",driver); 
 		 
 		}
 	}
@@ -1472,9 +1509,9 @@ List<String> orderdetails = new ArrayList<String>();
 	public String verifyTaxInSaveAsQuotePage() throws Throwable{
 		String taxAmount=getText(TAX_IN_SAVE_QUOTE, "tax in quote");
 		if(taxAmount==null || taxAmount.isEmpty()){
-			reporter.failureReport("Verify tax amount in save quote page ", "Tax amount is empty",""); 
+			reporter.failureReport("Verify tax amount in save quote page ", "Tax amount is empty","",driver); 
 		}else{
-			reporter.SuccessReport("Verify tax amount in save quote page ", "Tax amount is present",""); 
+			reporter.SuccessReport("Verify tax amount in save quote page ", "Tax amount is present",taxAmount); 
 		}
 		return taxAmount;
 	}
@@ -1510,7 +1547,7 @@ List<String> orderdetails = new ArrayList<String>();
 		if(isElementPresent(QUOTE_DETAILS_PAGE_LABEL, "Quote details page")){
 			reporter.SuccessReport("Verify Quote details page", "Quote details page is displayed","");
 		 }else{
-			 reporter.failureReport("Verify Quote details page", "Quote details page not displayed",""); 
+			 reporter.failureReport("Verify Quote details page", "Quote details page not displayed","",driver); 
 
 		}
 	}
@@ -1527,7 +1564,7 @@ List<String> orderdetails = new ArrayList<String>();
 		if(isElementPresent(labelRecentorders, "Recentorders page")){
 			reporter.SuccessReport("Verify Recentorders page", "Recentorders page is displayed","");
 		 }else{
-			 reporter.failureReport("Verify Recentorders page", "Recentorders page not displayed",""); 
+			 reporter.failureReport("Verify Recentorders page", "Recentorders page not displayed","",driver); 
 
 		}
 	}
@@ -1541,7 +1578,7 @@ List<String> orderdetails = new ArrayList<String>();
 		clickUntil(CONVERT_QUOTE_BTN, CartObj.CART_LABEL_ON_CART_PAGE, "Convert quote button", "Convert quote button");
 		reporter.SuccessReport("Click on Covert Quote Button", "Covert Quote Button is Exists and Selected","");
 		 }else{
-			 reporter.failureReport("Click on Covert Quote Button", "Covert Quote Button is Not Exists",""); 
+			 reporter.failureReport("Click on Covert Quote Button", "Covert Quote Button is Not Exists","",driver); 
 
 		}
 	}
@@ -1553,10 +1590,10 @@ List<String> orderdetails = new ArrayList<String>();
 	public void verifyTheQuantityIsdisabled() throws Throwable{
 		WebElement element =driver.findElement(CartObj.QUANTITY_DISABLED);
 		if(element.isDisplayed()){
-			reporter.SuccessReport("Verify Quantity disabled", "Quantity is disabled","");
+			reporter.SuccessReport("Verify Quantity disabled", "Quantity is disabled and is in read only mode","");
 		}else{
 			 
-			 reporter.failureReport("Verify Quantity disabled", "Quantity is not disabled",""); 
+			 reporter.failureReport("Verify Quantity disabled", "Quantity is not disabled","", driver); 
 		}
 	}
 	/**
@@ -1575,9 +1612,9 @@ List<String> orderdetails = new ArrayList<String>();
 	public void verifyTheQuantityOfCartProductOnReceiptPage(String quantity) throws Throwable{
 		String actualQuantity=getAttributeByValue(CartObj.QUANTITY, "Quantity");
 		if(quantity.equals(actualQuantity)){
-			reporter.SuccessReport("Verify Quantity added in cart", "Quantity addede succesfully",quantity); 
+			reporter.SuccessReport("Verify Quantity added in cart", "Quantity addede succesfully","Quantity: "+quantity); 
 		}else{
-			reporter.failureReport("Verify Quantity added in cart", "Quantity is not added to the cart correctly. actaul quantity is : "+actualQuantity+ "Expected is : ",quantity); 
+			reporter.failureReport("Verify Quantity added in cart", "Quantity is not added to the cart correctly. actaul quantity is : "+actualQuantity+ "Expected is : ",quantity,driver); 
 		
 		}
 	}
@@ -1590,7 +1627,7 @@ List<String> orderdetails = new ArrayList<String>();
 		if(isElementPresent(BUNDLE_TABLE_IN_SAVE_QUOTE, "Product bundle table in save Quote")){
 			reporter.SuccessReport("Verify Product bundle table in save Quote", "Product bundle table is loaded successfully","");
 		}else{
-			reporter.failureReport("Verify Product bundle table in save Quote", "Product bundle table is not loaded.","");
+			reporter.failureReport("Verify Product bundle table in save Quote", "Product bundle table is not loaded.","",driver);
 		}
 	}
 	
@@ -1602,6 +1639,7 @@ List<String> orderdetails = new ArrayList<String>();
 	
 	public void clickonApprovalManagementTabs(String link) throws Throwable{
 		click(getApprovalmanagementtabs(link), "Approval Management Link"+link);
+		Thread.sleep(3000);
 		}
 	
 	
@@ -1633,7 +1671,9 @@ List<String> orderdetails = new ArrayList<String>();
 			 if(isElementPresent(SMART_TRACKER_LABEL,"Smart tracker in LL info section")){
 			type(RP_LNL_Txt, rP_LNL_Txt, "RP_LNL_Txt text box");
 			click(LLI_CONTINUE_BTN, "Continue button");
-		    }
+		       }
+			}else {
+				reporter.failureReport("Line levl info", "Line level information is not present", "", driver);
 			}
 	 }
 	 /**
@@ -1647,7 +1687,7 @@ List<String> orderdetails = new ArrayList<String>();
 				if(Phnmbr.isEmpty()){
 					reporter.SuccessReport("Verify Phone number is cleared", "Phone Number is empty","");
 				}else{
-					reporter.failureReport("Verify Phone number is cleared", "Phone Number is not null","");
+					reporter.failureReport("Verify Phone number is cleared", "Phone Number is not null","",driver);
 				}
 			}
 			}
@@ -1660,7 +1700,7 @@ List<String> orderdetails = new ArrayList<String>();
 			click(COPY_TOALL_LNK, "Copy to all link");
 				reporter.SuccessReport("Click Copy to all on Line Level Information Page","Copy to all Link Exists and Clicked","");
 			}else
-				reporter.failureReport("Click Copy to all on Line Level Information Page","Copy to all Link Does Not Exist","");
+				reporter.failureReport("Click Copy to all on Line Level Information Page","Copy to all Link Does Not Exist","",driver);
 		}
 	 /**
 	  * 
@@ -1766,7 +1806,7 @@ List<String> orderdetails = new ArrayList<String>();
 		if (PONum.isEmpty()) {
 			reporter.SuccessReport("Delete PO Number in Ship, Bill & Pay Page", "PO Number Field Exists and Deleted","PO Number:"+PONum);
 		} else
-			reporter.failureReport("Delete PO Number in Ship, Bill & Pay Page", "PONumber Field does not Exist","PO Number:"+PONum);
+			reporter.failureReport("Delete PO Number in Ship, Bill & Pay Page", "PONumber Field does not Exist","PO Number:"+PONum,driver);
 
 	}
 
@@ -1801,7 +1841,11 @@ List<String> orderdetails = new ArrayList<String>();
 	 * @throws Throwable
 	 */
 	public void clickonorderNumLinkinRecentorders(String orderLink) throws Throwable {
+		refreshPage();
+		waitForVisibilityOfElement(orderlinkInOrderHistory(orderLink),  "Search results");
+		if (isElementPresent(orderlinkInOrderHistory(orderLink), "Search results")) {
 		click(orderlinkInOrderHistory(orderLink), "select placed order from recent orders");
+	}
 	}
 
 	/**
@@ -1814,7 +1858,7 @@ List<String> orderdetails = new ArrayList<String>();
 			click(tabNameinOrderDetails(TabName), TabName + "link");
 			reporter.SuccessReport("Verify" + TabName + "link in the Order Detail ","Link Exist and Clicked",TabName);
 		} else
-			reporter.failureReport("Verify" + TabName + " link in the Order Details ",  "Link Does not Exist",TabName);
+			reporter.failureReport("Verify" + TabName + " link in the Order Details ",  "Link Does not Exist",TabName,driver);
 	}
 
 	/**
@@ -1839,7 +1883,7 @@ List<String> orderdetails = new ArrayList<String>();
 			reporter.SuccessReport(" Smart Trackers Verification in customer details page", "Header Level Smart Tracker exists in customer details page","");
 		} else
 			reporter.failureReport(" Smart Trackers Verification in customer details page",
-					"Header Level Smart Tracker Does not Exist in customer details page","");
+					"Header Level Smart Tracker Does not Exist in customer details page","",driver);
 	}
 	/**
 	 * 
@@ -1868,6 +1912,8 @@ List<String> orderdetails = new ArrayList<String>();
 			click(ReferenceLink(refNum), "Reference Number Link");
 			reporter.SuccessReport("Click  Ref Number on Requisition Search Results Page",
 					"Ref Number Link Exists and Clicked",refNum);
+		}else {
+			reporter.failureReport("ApprovalManagement Header", "ApprovalManagement Header doe not exists", "", driver);
 		}
 	}
 
@@ -1878,20 +1924,18 @@ List<String> orderdetails = new ArrayList<String>();
 	public void verifyApprovalManagmentHeaderandClickonUpdateLink() throws Throwable {
 		if (isElementPresent(APPROVAL_MNGMNT_HDR2, "ApprovalManagement Header")) {
 			reporter.SuccessReport("Verify Approval Management  Page", "Approval Management Page Exist","");
-		} else
-			reporter.failureReport("Verify Approval Management  Page", "Approval Management Page does Not Exists","");
 		click(UPDATE_BTN, "Update Button");
 		click(CONTINUE_BTNIN, "Continue Button");
-		reporter.SuccessReport("Approve Requisition", "Continue Button Exists and Clicked","");
 		navigateToBackPage();
-		if (isElementPresent(APPROVAL_MNGMNT_HDR2, "ApprovalManagement Header")) {
-			if (isElementPresent(APPROVAL_MNGMNT_HDR2, "ApprovalManagement Header")) {
+		if (isElementPresent(APPROVAL_MNGMNT_HDR2, "ApprovalManagement Header") && isElementPresent(OrderObj.APPROVED_STATUS, "ApprovalManagement Header")) {
 				reporter.SuccessReport("Verify Requisition Status on  Approval Management Page ",
 						"Requisition Aprroved","");
 			} else
 				reporter.failureReport("Verify Requisition Status on  Approval Management Page ",
-						"Requisition Not Aprroved","");
-		}
+						"Requisition Not Aprroved","",driver);
+		    }
+	else {
+		reporter.failureReport("Verify Approval Management  Page", "Approval Management Page does Not Exists","",driver);}
 	}
 
 	/**
@@ -1901,13 +1945,10 @@ List<String> orderdetails = new ArrayList<String>();
 	public void verifyOrderNumberandClickonUpdateLink() throws Throwable {
 		if (isElementPresent(APPROVAL_MNGMNT_HDR2, "ApprovalManagement Header")) {
 			reporter.SuccessReport("Verify Approval Management  Page", "Approval Management Page Exist","");
+			click(UPDATE_BTN, "Update Button");
+			click(CONTINUE_BTNIN, "Continue Button");
 		} else
-			reporter.failureReport("Verify Approval Management  Page", "Approval Management Page does Not Exists","");
-		click(UPDATE_BTN, "Update Button");
-		click(CONTINUE_BTNIN, "Continue Button");
-		reporter.SuccessReport("Approve Requisition", "Continue Button Exists and Clicked","");
-		
-		
+			reporter.failureReport("Verify Approval Management  Page", "Approval Management Page does Not Exists","",driver);
 	}
 
 	/**
@@ -1950,7 +1991,7 @@ List<String> orderdetails = new ArrayList<String>();
 			type(ADDINFO_EMAIL, email, "Email");
 		} else {
 			reporter.failureReport("Verify the the Order and item information page",
-					"Order and item information page is not displayed","");
+					"Order and item information page is not displayed","",driver);
 		}
 	}
 
@@ -1965,7 +2006,7 @@ List<String> orderdetails = new ArrayList<String>();
 					"Order Placed By Name,Phone,Email Fields is Verfied","");
 		} else {
 			reporter.failureReport("Verify Order Placed By fields on Cart : Ship, Bill & Pay : Place Requisition Page",
-					"Order Placed By Name,Phone,Email Fields is not Verfied","");
+					"Order Placed By Name,Phone,Email Fields is not Verfied","",driver);
 		}
 	}
 
@@ -1980,7 +2021,7 @@ List<String> orderdetails = new ArrayList<String>();
 		if (OrdNum.equals(RefNumber)) {
 			reporter.SuccessReport("Get The Order Number on Aproval management Page", "Order Number Exist in Approval Management page:"+OrdNum,"");
 		} else
-			reporter.failureReport("Get The Order Number on Aproval management Page", "Order Number Not Exists:"+OrdNum,"");
+			reporter.failureReport("Get The Order Number on Aproval management Page", "Order Number Not Exists:"+OrdNum,"",driver);
 
 	}
 
@@ -1998,7 +2039,7 @@ List<String> orderdetails = new ArrayList<String>();
 				reporter.SuccessReport("Verify success message",
 						"Shipping payments options success message is displayed","");
 			} else {
-				reporter.failureReport("Verify success message", "Success message is not displayed","");
+				reporter.failureReport("Verify success message", "Success message is not displayed","",driver);
 			}
 		} else {
 			// Do nothing
@@ -2041,14 +2082,10 @@ List<String> orderdetails = new ArrayList<String>();
 	public void verifyApprovalManagmentandClickUpdate() throws Throwable {
 		if (isElementPresent(APPROVAL_MNGMNT_HDR2, "ApprovalManagement Header")) {
 			reporter.SuccessReport("Verify Approval Management  Page", "Approval Management Page Exist","");
+			click(UPDATE_BTN, "Update Button");
 		} else
-			reporter.failureReport("Verify Approval Management  Page", "Approval Management Page does Not Exists","");
-		if(click(UPDATE_BTN, "Update Button")){
-			reporter.SuccessReport("Verify Approval Management  Page", "Requisition placed has been Approved.","");
-		} else
-			reporter.failureReport("Verify Approval Management  Page", "Requisition not Approved.","");
-		}
-	
+			reporter.failureReport("Verify Approval Management  Page", "Approval Management Page does Not Exists","",driver);
+	}	
 	/**
 	 * 
 	 * @param quoteName
@@ -2061,7 +2098,7 @@ List<String> orderdetails = new ArrayList<String>();
 		if(isElementPresent(SAVE_QUOTE_MSG, "Success message")){
 			 reporter.SuccessReport("Verify Success message", "Save as Quote - Successful message displayed","");
 		 }else{
-			 reporter.failureReport("Verify Success message ", "Save as Quote - Successful message not displayed ",""); 
+			 reporter.failureReport("Verify Success message ", "Save as Quote - Successful message not displayed ","",driver); 
 		}
 	}
 	/**
@@ -2106,7 +2143,7 @@ List<String> orderdetails = new ArrayList<String>();
 		if(companyName.equals(address)) {
 			reporter.SuccessReport("Verify company name ", "company name verified successfully. Name is : ", address);
 		}else {
-			reporter.failureReport("Verify company name ", "company name is not verified. Name is : ", address);
+			reporter.failureReport("Verify company name ", "company name is not verified. Name is : ", address,driver);
 		}
 	}
 	
@@ -2307,9 +2344,9 @@ List<String> orderdetails = new ArrayList<String>();
 	
 	public void verifyTaxEstimatesAreEqual(float tax1,float tax2) throws Throwable {
 		if(tax1==tax2) {
-			reporter.SuccessReport("Verify Tax estimates are equal", "Tax estimates are equal", "Tax 1: "+tax1+"  Tax2: "+tax2);
+			reporter.SuccessReport("Verify Tax estimates are equal", "Tax estimates are equal", "Tax 1: $"+tax1+"  Tax2: $"+tax2);
 		}else {
-			reporter.failureReport("Verify Tax estimates are equal", "Tax estimates are not equal", "");
+			reporter.failureReport("Verify Tax estimates are equal", "Tax estimates are not equal", "",driver);
 		}
 	}
 	
@@ -2353,11 +2390,12 @@ List<String> orderdetails = new ArrayList<String>();
 		if(isVisibleOnly(PAYMENT_METHOD_VERIFICATION_TERMS,"Terms")) {
 			reporter.failureReport("Verify payment options:", "Terms Exists in payment Options", "Terms");
 			if(isVisibleOnly(PAYMENT_METHOD_VERIFICATION_procurementscard,"Procurement Card")) {
-				reporter.failureReport("Verify payment options:", "Procurementcard  Option exits", "");	
+				reporter.failureReport("Verify payment options:", "Procurementcard  Option exits", "",driver);	
 			}
-		}else {
-			  reporter.SuccessReport("Verify payment options:", "Only Credit card exists as Payments Option", "Credit Card");	
-		   if(isElementPresent(PAYMENT_METHOD_DD, "payment DD")){
+		}
+		else {
+		  reporter.SuccessReport("Verify payment options:", "Only Credit card exists as Payments Option", "Credit Card");	
+		   if(isVisibleOnly(PAYMENT_METHOD_DD, "payment DD")){
 			//click(PAYMENT_METHOD_DD, "payment method drop down");
 			click(PAYMENT_METHOD_SELECTION, "payment method selection::Credit Card");
 		}
@@ -2485,7 +2523,7 @@ List<String> orderdetails = new ArrayList<String>();
 					"Order Placed By Name:"+Name+" Email:"+Email+" Fields are Verfied", "");
 		} else {
 			reporter.failureReport("Verify Order Placed By fields on Cart : Ship, Bill & Pay : Place Requisition Page",
-					"Order Placed By Name:"+Name+" Email:"+Email+" Fields is not Verfied", "");
+					"Order Placed By Name:"+Name+" Email:"+Email+" Fields is not Verfied", "",driver);
 		}
 	}
 
@@ -2500,7 +2538,222 @@ List<String> orderdetails = new ArrayList<String>();
 					"Order Placed By Name"+Name+" Email:"+Email+" Fields are Verfied", "");
 		} else {
 			reporter.failureReport("Verify Order Placed By fields on Customer details Page",
-					"Order Placed By Name:"+Name+" Email:"+Email+" Fields is not Verfied", "");
+					"Order Placed By Name:"+Name+" Email:"+Email+" Fields is not Verfied", "",driver);
 		}
+
+	  }
+	
+	/**
+	 * Method id to verify the cart part and contract details 
+	 * @param itemNum
+	 * @throws Throwable
+	 */
+	public void verifyCartPageAndPartandContractDetails(int itemNum) throws Throwable {
+		List<String> prodDesc1 = getProductDescriptionOfCartProduct();
+		List<String> totalPrice1 = getCartProductTotalPrice();
+		List<String> unitPrice1=getCartProductUnitPrice();
+		List<String> quantity=getCartProductQuantity();
+		List<String> stock=getCartProductStock();
+		List<String> contracts=getContractDetailsOnCart();
+		Thread.sleep(3000);
+		if (prodDesc1.get(itemNum)!=null && totalPrice1!=null) {
+			Thread.sleep(3000);
+			reporter.SuccessReport("Verify the part added to cart ", "cart details "," Contract : "+contracts.get(itemNum)+
+					 "  prod Description : " + prodDesc1.get(itemNum) + "   Quantity : "+quantity.get(itemNum)
+							+ "  Total Price: " + totalPrice1.get(itemNum)+ "   Unit price: "+unitPrice1.get(itemNum)+ "   "+stock.get(itemNum));
+		} else {
+			reporter.failureReport("Verify the part added to cart ", "Part is not added to cart.", "", driver);
+		}
+      }
+	
+	/**
+	 * method is to verify the valid card number error message
+	 * @throws Throwable
+	 */
+	public void verifyVISACardTypedErrorMessage() throws Throwable {
+		if(isVisibleOnly(VALID_VISA_CARD_ERROR_MSG, "valid card number error message")) {
+			reporter.SuccessReport("verify valid card error message", "Please enter valid card number message displayed", "Message : VISA card type is not supported", driver);
+		}else {
+			reporter.failureReport("verify valid card error message", "Please enter valid card number message does not displayed", "", driver);
+		}
+	  }
+	/**
+	 * method is to verify the valid card number error message
+	 * @throws Throwable
+	 */
+	public void verifyDiscoverCardErrorMessage() throws Throwable {
+		if(isVisibleOnly(VALID_DIACOVER_CARD_ERROR_MSG, "valid card number error message")) {
+			reporter.SuccessReport("verify valid card error message", "Please enter valid card number message displayed", "Message : Discover card type is not supported", driver);
+		}else {
+			reporter.failureReport("verify valid card error message", "Please enter valid card number message does not displayed", "", driver);
+		}
+	  }
+	
+	
+	/**
+	 * Method is to verify Custom 800 Number in Quote Receipt Print View
+	 * @param phoneNumber
+	 * @throws Throwable
+	 */
+	 public void verifyWG800NumberOnSaveAsQuoteScreen(String phoneNumber) throws Throwable {
+		 Set<String> handle=driver.getWindowHandles();
+		   if (handle.size()>2) {
+			   switchToChildWindow();
+			   Thread.sleep(2000);
+			   String actualNumber=getText(WG_800_NUMBER_ON_QUOTE_PRINTABLE_PAGE, "WG 800 number").replace("-", "");
+				 if(phoneNumber.equals(actualNumber)) {
+					 reporter.SuccessReport("verify WG 800 number in quote printable page", "Custom 800 Number in Quote Receipt Print View Exists and Value Returned", phoneNumber, driver);
+				 }else {
+					 reporter.failureReport("verify WG 800 number in quote printable page", "Custom 800 Number in Quote Receipt Print View does not Exists ", "", driver);
+				 }
+				 driver.close();
+				   ArrayList<String> tabs = new ArrayList<String>(driver.getWindowHandles());
+				   driver.switchTo().window(tabs.get(1));
+		   }else {
+			   reporter.failureReport("View Printable page ", "Printable page does not exists", "", driver);
+		   }
+	 }
+	 
+	 public void selectOrderUtilitiesOnSaveAsQuotesScreen(String orderUtilities) throws Throwable {
+		 if(isVisibleOnly(ORDER_UTILITIES_QUOTE_PAGE, "Order utilites")) {
+			 click(ORDER_UTILITIES_QUOTE_PAGE, "Order utilities", "");
+			 selectByVisibleText(ORDER_UTILITIES_QUOTE_PAGE, orderUtilities, "orderUtilities");
+		 }else {
+			 reporter.failureReport("Select Pick View Printable Page under Utility Option", "Expected Pick View Printable Page under Utility Option doex not Exists ", "", driver);
+		 }
+	 }
+	 
+	 public void clickPrintOnReceiptpage() throws Throwable {
+		 click(PRINT_ON_RECEIPT_PAGE, "Print on receipt page", "");
+	  }
+	 
+	 /**
+	  * Method is to verify the phone number on receipt page print popup
+	  * @param phoneNumber
+	  * @throws Throwable
+	  */
+	 public void verifyPhoneNumberOnPrintPopupOfReceipPage(String phoneNumber) throws Throwable {
+		 String actualNumber=getText(TELEPHONE_NUMBER_ON_PRINT_RECEIPT, "Telephone number on receipt page");
+		 if(phoneNumber.equals(actualNumber)) {
+			 reporter.SuccessReport("verify WG 800 number in receipt printable page", "Custom 800 Number in Receipt Print popup Exists and Value Returned", phoneNumber, driver);
+		 }else {
+			 reporter.failureReport("verify WG 800 number in receipt printable page", "Custom 800 Number in  Receipt Print popup View does not Exists ", "", driver);
+		 }
+	 }
+	 
+	 public String getWG800NumberOnPrintPopup() throws Throwable {
+			 return getText(TELEPHONE_NUMBER_ON_PRINT_RECEIPT, "Telephone number on receipt page");
+	 }
+
+
+	public String getCartProductUnitPriceInViewCart() throws Throwable {
+		String value = null;
+		List<WebElement> myList = driver.findElements(CartObj.lblUnitpriceWithCurrency);
+		for (int i = 0; i < myList.size(); i++) {
+			value = myList.get(i).getText();
+			reporter.SuccessReport("Product Unit Price", "Unit Price is ", value, driver);
+			break;
+		}
+		return value;
 	}
+	 /**
+	  * Method is to verify bundles in print popup
+	  * @param productGroup
+	  * @throws Throwable
+	  */
+	public void verifyBundleOnPrintPopup(String productGroup) throws Throwable {
+		if(isVisibleOnly(bundleOnPrintPopup(productGroup), "bundle on print popup")) {
+			reporter.SuccessReport("View Printable POPUP", "Cart item bundle in Print View Exist", "Cart item bundle in Print View :Insight Part #: BUNDLE-1 for :"+productGroup, driver);
+		}else {
+			reporter.failureReport("View Printable POPUP", "Cart item bundle in Print View does not Exist", "", driver);
 		}
+		
+	}
+	public void enterFileNameInWindowsPopup() throws Throwable{
+		String path= "./AutoIt/UploadFile.xls";
+		String a =System.getProperty("user.dir") + "\\AutoIt\\UploadFile.xls";
+
+		setClipboardData(a);
+        //native key strokes for CTRL, V and ENTER keys
+		Robot robot = new Robot();
+		robot.keyPress(KeyEvent.VK_CONTROL);
+		robot.keyPress(KeyEvent.VK_V);
+		robot.keyRelease(KeyEvent.VK_V);
+		robot.keyRelease(KeyEvent.VK_CONTROL);
+		robot.keyPress(KeyEvent.VK_ENTER);
+		robot.keyRelease(KeyEvent.VK_ENTER);
+		System.out.println("ABD");
+	   }
+	
+	/**
+	 * verify file uploaded 
+	 * @param fileName
+	 * @throws Throwable
+	 */
+	
+	public void verfyFileUploadedSuccessfully(String fileName) throws Throwable {
+		if(isVisibleOnly(getUploadedFileName(fileName), "file name")) {
+			reporter.SuccessReport("Verify file upload", "File uploaded successfully", "File  : "+fileName, driver);
+		}else {
+			reporter.failureReport("Verify file upload", "File uploaded is not successful", "", driver);
+		}
+	   }
+	
+	public void verifyDownloadedAttachmentLinkOnCustomerDetailsTab() throws Throwable {
+		if(isVisibleOnly(CLICK_TO_VIEW_ATTACHMENT, "click to view attachment link")) {
+			click(CLICK_TO_VIEW_ATTACHMENT, "click to view or download attachment link", "");
+		}else {
+			reporter.failureReport("verify click to view or download attachment link", "click to view or download attachment link does not exists", "", driver);
+		}
+	   }
+	
+public void VerifyPrintPopupWithWarranties(List<String> prodDesc,List<String> quantity2,List<String> totalPrice,List<String> unitPrice) throws Throwable{
+		
+		// verifying the Product description
+		List<WebElement> myList = driver.findElements(CartObj.ITEM_DESC);
+		List<WebElement> qty = driver.findElements(CartObj.QUANTITY_PRINT_POPUP);
+		List<WebElement> total_price = driver.findElements(CartObj.TOTAL_PRICE_PRINT_POPUP);
+		List<WebElement> unit_price = driver.findElements(CartObj.UNIT_PRICE_PRINT_POPUP);
+		getWG800NumberOnPrintPopup();
+		for (int i = 0; i <myList.size() ; i++) {
+		    String desc = myList.get(i).getText();
+			 if(desc.equals(prodDesc.get(i))){
+				 reporter.SuccessReport("Verify product description ", "Product description : ",prodDesc.get(i));
+			 }else{
+				 reporter.failureReport("Verify product description ", "Product description verification failed. Actual is: ","",driver); 
+			 }
+			 
+			 String quantity = qty.get(i).getAttribute("value");
+			 if(quantity.equals(quantity2.get(i))){
+				 reporter.SuccessReport("Verify product Quantity ", "Product Quantity : ",quantity2.get(i));
+			 }else{
+				 reporter.failureReport("Verify product Quantity ", "Product Quantity verification failed. Actual is: ",quantity2.get(i),driver); 
+			 }
+			 
+
+			 String expectedtoatalprice= total_price.get(i).getText();
+			 if(expectedtoatalprice.equals(totalPrice.get(i))){
+				 reporter.SuccessReport("Verify total price ", "Product total price : ",expectedtoatalprice);
+			 }else{
+				 reporter.failureReport("Verify total price ", "Product total price verification failed. Actual is: ",totalPrice.get(i),driver);
+			 } 
+			
+			 String expectedUnitPrice= unit_price.get(i).getText();
+			 if(expectedUnitPrice.equals(unitPrice.get(i))){
+				 reporter.SuccessReport("Verify unit price ", "Unit price : ",expectedUnitPrice);
+			 }else{
+				 reporter.failureReport("Verify unit price ", "Unit price verification failed. Actual is: ",expectedUnitPrice,driver);
+			 } 
+		}
+	   }
+
+public void getSubTotalAmountOnPrintPopup() throws Throwable {
+	String subtotal=getText(CartObj.SUBTOTAL_AMOUNT, "subtotal");
+	if(isVisibleOnly(CartObj.SUBTOTAL_AMOUNT, "Print page subtotal amount") && !subtotal.equals("")) {
+		reporter.SuccessReport("Verify subtotal amount in print popup", "Subtotal amount exists", subtotal, driver);
+	}else{
+		reporter.failureReport("Verify subtotal amount in print popup", "Subtotal amount exists", "", driver);
+	}
+}
+	}
+
